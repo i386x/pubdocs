@@ -6,21 +6,45 @@ interested in. Maybe You find some of these interesting too.
 
 ## Contents
 
+1. [Debugging](#debugging)
+1. [Fedora Project](#fedora-project)
+   1. [GNOME](#gnome)
+   1. [Packaging](#packaging)
+1. [Linux](#linux)
+   1. [Administration](#administration)
+   1. [Error Codes](#error-codes)
+   1. [Kernel](#kernel)
+   1. [Networking](#networking)
+   1. [Shared Libraries](#shared-libraries)
+   1. [Shells](#shells)
+   1. [Terminal](#terminal)
+   1. [Utilities](#utilities)
+1. [Opensource.com articles](#opensourcecom-articles)
+1. [Programming](#programming)
+   1. [Curiosities](#curiosities)
+   1. [Documenting](#documenting)
+   1. [Git](#git)
+   1. [Programming Languages](#programming-languages)
+1. [Security](#security)
+1. [Z-Stuff](#z-stuff-unordered-and-uncategorized-stuff)
+
 ## Debugging
 
 * [How to Debug C Program using gdb in 6 Simple Steps](https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb)
 * [List of all function calls made in an application](https://stackoverflow.com/questions/9549693/list-of-all-function-calls-made-in-an-application)
+* [StackTraces](https://fedoraproject.org/wiki/StackTraces)
 * [Tracing program/function execution on source line level](https://stackoverflow.com/questions/39602306/tracing-program-function-execution-on-source-line-level)
 * [Where is core dump located?](https://ask.fedoraproject.org/en/question/98776/where-is-core-dump-located/)
 
 ## Fedora Project
 
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
+* [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
 
 ### GNOME
 
 * [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
-* GNOME Shell Extensions:
+* GNOME Shell Extensions
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
 
 ### Packaging
@@ -52,7 +76,7 @@ interested in. Maybe You find some of these interesting too.
 * [RPM HOWTO](http://www.tldp.org/HOWTO/RPM-HOWTO/index.html)
 * [RPM Packaging Guide](https://rpm-packaging-guide.github.io/)
 * [RPM Package Manager](http://rpm.org/)
-* `rpmlint`:
+* `rpmlint`
   * [Common Rpmlint issues](https://fedoraproject.org/wiki/Common_Rpmlint_issues)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
 
@@ -62,8 +86,12 @@ interested in. Maybe You find some of these interesting too.
 
 #### Testing
 
+* [Changes/InvokingTests](https://fedoraproject.org/wiki/Changes/InvokingTests)
+* [CI](https://fedoraproject.org/wiki/CI)
 * [How to test updates](https://fedoraproject.org/wiki/How_to_test_updates)
 * [QA:Updates Testing](https://fedoraproject.org/wiki/QA:Updates_Testing)
+* [Taskotron](https://fedoraproject.org/wiki/Taskotron)
+  * [pagure.io](https://pagure.io/group/taskotron)
 * [Using Mock to test package builds](https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds)
 
 ##### Beaker
@@ -113,9 +141,10 @@ interested in. Maybe You find some of these interesting too.
 * [DASH Shell (git)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [FISH Shell](http://fishshell.com/)
   * [git](https://github.com/fish-shell/fish-shell)
-  * issues:
+  * issues
     * [Killing fish reparents some child processes into CPU hogs](https://github.com/fish-shell/fish-shell/issues/3644)
       * [another attempt to workaround a glibc bug](https://github.com/fish-shell/fish-shell/commit/56e05dab02840443bb29beb6a596e8e3f35c5461#diff-fc9a1225873620e0a6b45c16ed066f27)
+* [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 
 ### Terminal
 
@@ -125,6 +154,11 @@ interested in. Maybe You find some of these interesting too.
 * [Linux Serial Console](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/serial-console.rst)
 * [Look how to fix column calculation in Python readline if use color prompt](https://stackoverflow.com/questions/9468435/look-how-to-fix-column-calculation-in-python-readline-if-use-color-prompt)
 * [Serial Programming/termios](https://en.wikibooks.org/wiki/Serial_Programming/termios)
+
+### Utilities
+
+* `make`
+  * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/make.html)
 
 ## Opensource.com articles
 
@@ -136,7 +170,9 @@ interested in. Maybe You find some of these interesting too.
 
 ### Documenting
 
-* Writing manual pages:
+* [Markdown](https://daringfireball.net/projects/markdown/)
+* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+* Writing manual pages
   * [man page example](https://github.com/karelzak/util-linux/blob/master/Documentation/howto-man-page.txt)
   * [What you need to know to write man pages](https://www.linux.com/news/what-you-need-know-write-man-pages)
 
@@ -144,9 +180,11 @@ interested in. Maybe You find some of these interesting too.
 
 #### FAQ
 
+* [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
+* [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [How to create patch between two tags with multiple commits between them?](https://stackoverflow.com/questions/9078820/how-to-create-patch-between-two-tags-with-multiple-commits-between-them)
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
