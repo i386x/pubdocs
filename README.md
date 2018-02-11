@@ -115,7 +115,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Kernel
 
-* [linux-0.01](https://github.com/zavg/linux-0.01/tree/master/kernel)
+* [linux-0.01](https://github.com/zavg/linux-0.01)
 
 ### Networking
 
