@@ -56,6 +56,7 @@ interested in. Maybe You find some of these interesting too.
 * [Creating RPM Packages with Fedora](https://fedoraproject.org/wiki/How_to_create_an_RPM_package)
 * [Fedora Packaging Guidelines](https://fedoraproject.org/wiki/Packaging:Guidelines)
 * [Fedora Packaging Guidelines for RPM Scriptlets](https://fedoraproject.org/wiki/Packaging:Scriptlets)
+* [fedpkg HOWTO](fedpkg-HOWTO.md)
 * [How to create a GNU Hello RPM package](https://fedoraproject.org/wiki/How_to_create_a_GNU_Hello_RPM_package)
 * [Infrastructure/WhatHappenedToPkgdb](https://fedoraproject.org/wiki/Infrastructure/WhatHappenedToPkgdb)
 * [Join the package collection maintainers](https://fedoraproject.org/wiki/Join_the_package_collection_maintainers)
