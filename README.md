@@ -25,6 +25,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Documenting](#documenting)
    1. [Git](#git)
    1. [Programming Languages](#programming-languages)
+1. [Projects](#projects)
 1. [Security](#security)
 1. [Z-Stuff](#z-stuff-unordered-and-uncategorized-stuff)
 
@@ -38,7 +39,9 @@ interested in. Maybe You find some of these interesting too.
 
 ## Fedora Project
 
+* [Fedora Crypto Consolidation](https://fedoraproject.org/wiki/Fedora_Crypto_Consolidation?rd=FedoraCryptoConsolidation)
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
+* [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
 
 ### GNOME
@@ -49,6 +52,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Packaging
 
+* [Bodhi](https://fedoraproject.org/wiki/Bodhi)
 * [Creating RPM Packages with Fedora](https://fedoraproject.org/wiki/How_to_create_an_RPM_package)
 * [Fedora Packaging Guidelines](https://fedoraproject.org/wiki/Packaging:Guidelines)
 * [Fedora Packaging Guidelines for RPM Scriptlets](https://fedoraproject.org/wiki/Packaging:Scriptlets)
@@ -194,7 +198,18 @@ interested in. Maybe You find some of these interesting too.
 
 #### C
 
+* [CScout](https://www2.dmst.aueb.gr/dds/pubs/jrnl/2010-SCP-CScout/html/cscout.html)
+* [Complete macro expansion algorithm](https://www.spinellis.gr/blog/20060626/x3J11-86-196.pdf)
+* [Complete macro expansion algorithm (annotated and corrected)](https://www.spinellis.gr/blog/20060626/cpp.algo.pdf)
 * [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)
+* [Undefined behavior](http://en.cppreference.com/w/c/language/behavior)
+* [What Every C Programmer Should Know about Undefined Behavior](http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
+
+## Projects
+
+* [Hypervisor](https://github.com/Bareflank/hypervisor)
+* [Pegex Parser for Perl](https://github.com/ingydotnet/pegex-pm)
+* [RE2 (C++)](https://github.com/google/re2)
 
 ## Security
 
@@ -203,3 +218,4 @@ interested in. Maybe You find some of these interesting too.
 ## Z-Stuff (unordered and uncategorized stuff)
 
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
+* [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
