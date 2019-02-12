@@ -163,6 +163,20 @@ type), write update notes and submit.
 dnf install /lib/ld-linux.so.2
 ```
 
+### Git
+
+```sh
+# Removing ignored/untracked items:
+git clean -xdf
+```
+
+### RPM
+
+```sh
+# List all the files stored in <package>.rpm:
+rpm -qlp <package>.rpm
+```
+
 ### Debugging
 
 ```sh
@@ -236,6 +250,11 @@ readelf -a <elf_binary>
 patchelf
 # - set/add R(UN)PATH:
 patchelf --set-rpath <rpath> <elf_binary>
+
+# Scan ELF binary:
+scanelf
+# - find where the <symbol> is:
+scanelf -l -s <symbol>
 
 # RPATH manipulation:
 chrpath

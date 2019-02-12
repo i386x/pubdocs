@@ -6,6 +6,10 @@ interested in. Maybe You find some of these interesting too.
 
 ## Contents
 
+1. [Applications](#applications)
+   1. [Text Editors](#text-editors)
+1. [Blogs](#blogs)
+1. [Books](#books)
 1. [Debugging](#debugging)
 1. [Fedora Project](#fedora-project)
    1. [GNOME](#gnome)
@@ -15,19 +19,50 @@ interested in. Maybe You find some of these interesting too.
    1. [Error Codes](#error-codes)
    1. [Kernel](#kernel)
    1. [Networking](#networking)
+   1. [Programming in Linux](#programming-in-linux)
    1. [Shared Libraries](#shared-libraries)
    1. [Shells](#shells)
    1. [Terminal](#terminal)
    1. [Utilities](#utilities)
+1. [Math](#math)
+   1. [Category Theory](#category-theory)
 1. [Opensource.com articles](#opensourcecom-articles)
 1. [Programming](#programming)
+   1. [Articles](#articles)
+   1. [Code Analysis](#code-analysis)
    1. [Curiosities](#curiosities)
    1. [Documenting](#documenting)
    1. [Git](#git)
    1. [Programming Languages](#programming-languages)
+   1. [Social Events](#social-events)
+   1. [Talks](#talks)
 1. [Projects](#projects)
 1. [Security](#security)
-1. [Z-Stuff](#z-stuff-unordered-and-uncategorized-stuff)
+1. [Z-Stuff (unsorted stuff)](#z-stuff-unsorted-stuff)
+
+## Applications
+
+### Text Editors
+
+* [Geany](https://www.geany.org/)
+  * [plugins](https://plugins.geany.org/)
+
+## Blogs
+
+* [Bartosz Milewski](https://bartoszmilewski.com/)
+* [bell0bytes](https://bell0bytes.eu)
+* [FPComplete](https://www.fpcomplete.com/blog)
+* [jamiebuilds](https://jamie.build/)
+  * [github](https://github.com/jamiebuilds)
+* [The Clean Coder](http://thecleancoder.blogspot.com/)
+  * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
+
+## Books
+
+* [Culture Map, The (Erin Meyer)](https://www.amazon.com/Culture-Map-INTL-ED-Decoding/dp/1610392760/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=)
+* [On Lisp: Advanced Techniques for Common Lisp (Paul Graham)](http://www.paulgraham.com/onlisp.html)
+* [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
+  * [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
 
 ## Debugging
 
@@ -46,9 +81,10 @@ interested in. Maybe You find some of these interesting too.
 
 ### GNOME
 
-* [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
 * GNOME Shell Extensions
+  * [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
+* [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
 
 ### Packaging
 
@@ -57,21 +93,49 @@ interested in. Maybe You find some of these interesting too.
 * [Fedora Packaging Guidelines](https://fedoraproject.org/wiki/Packaging:Guidelines)
 * [Fedora Packaging Guidelines for RPM Scriptlets](https://fedoraproject.org/wiki/Packaging:Scriptlets)
 * [fedpkg HOWTO](fedpkg-HOWTO.md)
+* [How to build in Copr](http://miroslav.suchy.cz/blog/archives/2013/12/29/how_to_build_in_copr/index.html)
 * [How to create a GNU Hello RPM package](https://fedoraproject.org/wiki/How_to_create_a_GNU_Hello_RPM_package)
 * [Infrastructure/WhatHappenedToPkgdb](https://fedoraproject.org/wiki/Infrastructure/WhatHappenedToPkgdb)
 * [Join the package collection maintainers](https://fedoraproject.org/wiki/Join_the_package_collection_maintainers)
 * [Licensing:Main](https://fedoraproject.org/wiki/Licensing:Main)
 * [Licensing:MIT](https://fedoraproject.org/wiki/Licensing:MIT?rd=Licensing/MIT)
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
+* [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
 * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
 
 #### Go packaging
 
 * [Go Packaging Guidelines Draft (packaging-committee)](https://pagure.io/packaging-committee/issue/382)
+* [go-compilers](https://src.fedoraproject.org/rpms/go-compilers)
+* [go-macros](https://github.com/gofed/go-macros)
 * [golang@lists.fedoraproject.org](https://lists.fedoraproject.org/archives/list/golang@lists.fedoraproject.org/)
 * [More Go packaging](https://fedoraproject.org/wiki/More_Go_packaging)
 * [More Go packaging (packaging-committee)](https://pagure.io/packaging-committee/issue/734)
+* [Packaging activity of various golang libraries](https://lists.fedoraproject.org/archives/list/golang@lists.fedoraproject.org/thread/O3SJ3IPF4QKFNNFJUSN6ZEEEKNQOQMSQ/)
+  * [elazarl/goproxy](https://github.com/elazarl/goproxy)
+    * [Fix TestNoProxyHeaders and TestNoProxyHeadersHttps tests](https://github.com/elazarl/goproxy/pull/215)
+    * [proxy: force HttpRequest.Close to false when dropping hop-by-hop headers](https://github.com/elazarl/goproxy/pull/100)
+    * [TestNoProxyHeaders and TestNoProxyHeadersHttps tests failing](https://github.com/elazarl/goproxy/issues/92)
+  * Go binding to google protobuf
+    * [golang-github-google-go-genproto](https://src.fedoraproject.org/rpms/golang-github-google-go-genproto)
+    * [golang-googlecode-gogoprotobuf](https://src.fedoraproject.org/rpms/golang-googlecode-gogoprotobuf)
+    * [golang-googlecode-goprotobuf](https://src.fedoraproject.org/rpms/golang-googlecode-goprotobuf)
+
+#### Python packaging
+
+* [bandit](https://bandit.readthedocs.io)
+* [coverage](https://coverage.readthedocs.io)
+* [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
+* [mypy](https://mypy.readthedocs.io)
+* [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
+* [pydocstyle](http://www.pydocstyle.org)
+* [python-packaging](https://python-packaging.readthedocs.io)
+* [setuptools](https://setuptools.readthedocs.io)
+  * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
+* [tox](https://tox.readthedocs.io/) [[repo](https://github.com/tox-dev/tox)]
+* [unittest2](https://pypi.org/project/unittest2/) [[article](http://www.voidspace.org.uk/python/articles/unittest2.shtml)] [[repo](https://hg.python.org/unittest2)]
+* [wheel](https://wheel.readthedocs.io)
 
 #### RPM
 
@@ -107,12 +171,16 @@ interested in. Maybe You find some of these interesting too.
 
 ## Linux
 
+* [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 
 ### Administration
 
 * [Configuring Sudo](https://fedoraproject.org/wiki/Configuring_Sudo)
 * [Linux Users and Groups](https://www.linode.com/docs/tools-reference/linux-users-and-groups/)
+* [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
+* [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
+* [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
 
 ### Error Codes
 
@@ -120,11 +188,16 @@ interested in. Maybe You find some of these interesting too.
 
 ### Kernel
 
+* [Eudyptula Challenge](http://eudyptula-challenge.org/)
 * [linux-0.01](https://github.com/zavg/linux-0.01)
 
 ### Networking
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
+
+### Programming in Linux
+
+* [In-Memory-Only ELF Execution (Without tmpfs)](https://magisterquis.github.io/2018/03/31/in-memory-only-elf-execution.html)
 
 ### Shared Libraries
 
@@ -165,9 +238,49 @@ interested in. Maybe You find some of these interesting too.
 * `make`
   * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/make.html)
 
+## Math
+
+* [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
+* [NRICH](https://nrich.maths.org/)
+
+### Category Theory
+
+* [Category Theory - Bartosz Milewski](https://www.youtube.com/playlist?list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_)
+* [Category Theory II - Bartosz Milewski](https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm)
+* [Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
+
 ## Opensource.com articles
 
 ## Programming
+
+### Articles
+
+* [Asynchronous API in C++ and the Continuation Monad](https://www.fpcomplete.com/blog/2012/06/asynchronous-api-in-c-and-the-continuation-monad)
+* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
+* How to build terminal emulator
+  * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
+  * [lpty: pty control for lua](http://tset.de/lpty/index.html)
+  * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
+
+### Code Analysis
+
+* [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
+
+#### Coverity Scan
+
+* [cscppc](https://github.com/kdudka/cscppc)
+* [csdiff](https://github.com/kdudka/csdiff)
+* [csmock](https://github.com/kdudka/csmock)
+* [cswrap](https://github.com/kdudka/cswrap)
+
+#### Supporting Tools
+
+* [Bugzilla binding (Python)](https://github.com/python-bugzilla/python-bugzilla)
+
+#### Tools
+
+* [faf (Python)](https://github.com/abrt/faf)
+* [Prospector (Python)](https://github.com/PyCQA/prospector)
 
 ### Curiosities
 
@@ -206,17 +319,102 @@ interested in. Maybe You find some of these interesting too.
 * [Undefined behavior](http://en.cppreference.com/w/c/language/behavior)
 * [What Every C Programmer Should Know about Undefined Behavior](http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
 
+#### Haskell
+
+* [Functional Programming Course](https://github.com/data61/fp-course)
+* [How to Script with Stack](https://haskell-lang.org/tutorial/stack-script)
+* [Learn You a Haskell](http://learnyouahaskell.com/)
+* [Practical Haskell programs from scratch - a quick and easy guide](https://www.ahri.net/practical-haskell-programs-from-scratch/)
+  * [example](https://github.com/jhrcek/random-failures/blob/master/cli.hs)
+
+#### LISP
+
+* [container-lisp](https://github.com/container-lisp)
+
+#### M4
+
+* [m4_by_example](https://github.com/jkubin/m4_by_example)
+
+### Social Events
+
+* [Coding Dojo Brno](https://github.com/dojo-brno/dojo-brno)
+
+### Talks
+
+* [Old Is the New New - Kevlin Henney, GOTO Chicago 2018](https://gotochgo.com/2018/sessions/371)
+* [Procedural Programming: It’s Back? It Never Went Away - Kevlin Henney, ACCU 2018](https://www.youtube.com/watch?v=mrY6xrWp3Gs)
+* [The Future of Programming - Bret Victor, DBX 2013](https://vimeo.com/71278954)
+
 ## Projects
 
-* [Hypervisor](https://github.com/Bareflank/hypervisor)
-* [Pegex Parser for Perl](https://github.com/ingydotnet/pegex-pm)
+* [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
+* [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
+* [bin-public (Bash)](https://github.com/lzap/bin-public)
+* [Bioconductor (various repos)](https://github.com/Bioconductor)
+* [BioPython (Python)](https://biopython.org/)
+* [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
+* [click (Python)](https://github.com/pallets/click)
+* [did (Python)](https://github.com/psss/did)
+* [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
+* [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
+* Expected `Type`
+  * [Boost `optional<T>` (C++)](https://github.com/boostorg/optional) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/optional/doc/html/index.html)]
+  * [Expected!](https://bell0bytes.eu/expected/)
+  * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
+  * [`std::expected` (C++)](https://github.com/ptal/expected)
+* [Godot Engine (C++)](https://github.com/godotengine/godot)
+* [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
+* [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
+* [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
+* [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
+* [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
+* [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
+* [kcov (C++)](https://github.com/SimonKagstrom/kcov)
+* [kobo (Python)](https://github.com/release-engineering/kobo)
+* [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
+* [L-system (M4)](https://github.com/jkubin/L-system)
+* [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
+* [lolcat (Ruby)](https://github.com/busyloop/lolcat)
+* [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
+* [PANDA (C)](https://github.com/panda-re/panda)
+* [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
+* [pluggy (Python)](https://github.com/pytest-dev/pluggy)
+* [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [RE2 (C++)](https://github.com/google/re2)
+* [retdec (C++)](https://github.com/avast-tl/retdec)
+* [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
+* [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
+* [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
+* [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
+* [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
+* [six (Python)](https://github.com/benjaminp/six)
+* [slop (C++)](https://github.com/naelstrof/slop)
+* [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
+  * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
+  * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
+* [systemd (C)](https://github.com/systemd/systemd)
+* [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
+* [ugene (C++)](https://github.com/ugeneunipro/ugene)
+* [util-linux (C)](https://github.com/karelzak/util-linux)
+* [virtualenv (Python)](https://github.com/pypa/virtualenv)
+* [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
+* [yapps (Python)](https://github.com/smurfix/yapps)
+* [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 
 ## Security
 
+* [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
+* [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
+* [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
+* [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
+* [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
 
-## Z-Stuff (unordered and uncategorized stuff)
+## Z-Stuff (unsorted stuff)
 
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
+* [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
+* [Project Euler](https://projecteuler.net/)
+  * [Lambda Count](https://projecteuler.net/problem=623)
+  * [Largest product in a series](https://projecteuler.net/problem=8)
 * [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
