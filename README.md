@@ -8,7 +8,7 @@ interested in. Maybe You find some of these interesting too.
 
 1. [Applications](#applications)
    1. [Text Editors](#text-editors)
-1. [Blogs](#blogs)
+1. [Blogs/Repos](#blogs-repos)
 1. [Books](#books)
 1. [Debugging](#debugging)
 1. [Fedora Project](#fedora-project)
@@ -38,6 +38,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Talks](#talks)
 1. [Projects](#projects)
 1. [Security](#security)
+1. [Virtualization](#virtualization)
 1. [Z-Stuff (unsorted stuff)](#z-stuff-unsorted-stuff)
 
 ## Applications
@@ -47,13 +48,14 @@ interested in. Maybe You find some of these interesting too.
 * [Geany](https://www.geany.org/)
   * [plugins](https://plugins.geany.org/)
 
-## Blogs
+## Blogs/Repos
 
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
   * [github](https://github.com/jamiebuilds)
+* [John Lamb](https://github.com/dobbymoodge)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
   * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 
@@ -261,6 +263,7 @@ interested in. Maybe You find some of these interesting too.
   * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
   * [lpty: pty control for lua](http://tset.de/lpty/index.html)
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
+* [Writing kernels that boot with Qemu and Grub - a tutorial](https://www.cs.vu.nl/~herbertb/misc/writingkernels.txt)
 
 ### Code Analysis
 
@@ -279,7 +282,9 @@ interested in. Maybe You find some of these interesting too.
 
 #### Tools
 
+* [extract-trace (Bash)](https://github.com/gnulib-modules/bootstrap/blob/master/build-aux/extract-trace)
 * [faf (Python)](https://github.com/abrt/faf)
+* [generic_autotools.py (Python)](https://pagure.io/FedoraReview/blob/devel/f/plugins/generic_autotools.py)
 * [Prospector (Python)](https://github.com/PyCQA/prospector)
 
 ### Curiosities
@@ -348,12 +353,23 @@ interested in. Maybe You find some of these interesting too.
 ## Projects
 
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
+* [Ansible (Python)](https://github.com/ansible/ansible) [[doc](https://docs.ansible.com/ansible/latest/index.html)]
+* [Ansible Molecule (Python)](https://github.com/ansible/molecule) [[doc](https://molecule.readthedocs.io/en/latest/)]
+* Ansible roles:
+  * [standard-test-roles (Bash/Python/Yaml)](https://pagure.io/standard-test-roles/tree/master)
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
+* [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
 * [bin-public (Bash)](https://github.com/lzap/bin-public)
 * [Bioconductor (various repos)](https://github.com/Bioconductor)
 * [BioPython (Python)](https://biopython.org/)
+* [blockdiag](https://github.com/blockdiag)
+  * [actdiag (Python)](https://github.com/blockdiag/actdiag)
+  * [blockdiag (Python)](https://github.com/blockdiag/blockdiag)
+  * [nwdiag (Python)](https://github.com/blockdiag/nwdiag)
+  * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
 * [click (Python)](https://github.com/pallets/click)
+* [cscope (C)](https://github.com/nhorman/cscope)
 * [did (Python)](https://github.com/psss/did)
 * [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
@@ -362,6 +378,8 @@ interested in. Maybe You find some of these interesting too.
   * [Expected!](https://bell0bytes.eu/expected/)
   * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
   * [`std::expected` (C++)](https://github.com/ptal/expected)
+* [fmf (Python)](https://github.com/psss/fmf)
+* [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
@@ -376,11 +394,18 @@ interested in. Maybe You find some of these interesting too.
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
+* [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
+  * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
+* [packit-service](https://github.com/packit-service)
+  * [packit (Python)](https://github.com/packit-service/packit)
 * [PANDA (C)](https://github.com/panda-re/panda)
+* [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
 * [pluggy (Python)](https://github.com/pytest-dev/pluggy)
+* [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [RE2 (C++)](https://github.com/google/re2)
+* [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
@@ -389,6 +414,7 @@ interested in. Maybe You find some of these interesting too.
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [six (Python)](https://github.com/benjaminp/six)
 * [slop (C++)](https://github.com/naelstrof/slop)
+* [Software Collections](https://github.com/sclorg) [[homepage](https://www.softwarecollections.org/en/)]
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
@@ -409,6 +435,15 @@ interested in. Maybe You find some of these interesting too.
 * [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
 * [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
+
+## Virtualization
+
+* [libguestfs](http://libguestfs.org/)
+  * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
+  * [virt-sysprep(1)](http://libguestfs.org/virt-sysprep.1.html)
+* [QEMU Guest Agent Protocol Reference](https://qemu.weilnetz.de/doc/qemu-ga-ref.html)
+* [QEMU QMP Reference Manual](https://qemu.weilnetz.de/doc/qemu-qmp-ref.html)
+* [QEMU User Documentation](https://qemu.weilnetz.de/doc/qemu-doc.html)
 
 ## Z-Stuff (unsorted stuff)
 
