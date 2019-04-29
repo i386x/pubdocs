@@ -20,6 +20,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Kernel](#kernel)
    1. [Networking](#networking)
    1. [Programming in Linux](#programming-in-linux)
+   1. [Security](#security)
    1. [Shared Libraries](#shared-libraries)
    1. [Shells](#shells)
    1. [Terminal](#terminal)
@@ -201,6 +202,12 @@ interested in. Maybe You find some of these interesting too.
 
 * [In-Memory-Only ELF Execution (Without tmpfs)](https://magisterquis.github.io/2018/03/31/in-memory-only-elf-execution.html)
 
+### Security
+
+#### SSH
+
+* [Establishing client VNC connection over SSH in one step (e.g., with the -via option)](https://unix.stackexchange.com/questions/83795/establishing-client-vnc-connection-over-ssh-in-one-step-e-g-with-the-via-opt)
+
 ### Shared Libraries
 
 * [ld.so, ld-linux.so - dynamic linker/loader](http://man7.org/linux/man-pages/man8/ld.so.8.html)
@@ -357,6 +364,7 @@ interested in. Maybe You find some of these interesting too.
 * [Ansible Molecule (Python)](https://github.com/ansible/molecule) [[doc](https://molecule.readthedocs.io/en/latest/)]
 * Ansible roles:
   * [standard-test-roles (Bash/Python/Yaml)](https://pagure.io/standard-test-roles/tree/master)
+* [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
 * [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
 * [bin-public (Bash)](https://github.com/lzap/bin-public)
@@ -391,6 +399,7 @@ interested in. Maybe You find some of these interesting too.
 * [kobo (Python)](https://github.com/release-engineering/kobo)
 * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
 * [L-system (M4)](https://github.com/jkubin/L-system)
+* [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs)
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
@@ -423,6 +432,7 @@ interested in. Maybe You find some of these interesting too.
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
 * [util-linux (C)](https://github.com/karelzak/util-linux)
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
+* [Weldr](https://github.com/weldr)
 * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
