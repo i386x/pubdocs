@@ -189,6 +189,10 @@ interested in. Maybe You find some of these interesting too.
 
 * [Common Error Codes](https://www.student.cs.uwaterloo.ca/~cs136/seashell/docs/seashell-error-codes.html)
 
+### File System
+
+* [9 commands to check hard disk partitions and disk space on Linux](https://www.binarytides.com/linux-command-check-disk-partitions/)
+
 ### Kernel
 
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
@@ -362,6 +366,8 @@ interested in. Maybe You find some of these interesting too.
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
 * [Ansible (Python)](https://github.com/ansible/ansible) [[doc](https://docs.ansible.com/ansible/latest/index.html)]
 * [Ansible Molecule (Python)](https://github.com/ansible/molecule) [[doc](https://molecule.readthedocs.io/en/latest/)]
+* Ansible modules:
+  * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible) [[home](https://www.ansible.com/integrations/networks/a10)]
 * Ansible roles:
   * [standard-test-roles (Bash/Python/Yaml)](https://pagure.io/standard-test-roles/tree/master)
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
