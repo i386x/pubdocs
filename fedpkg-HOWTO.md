@@ -235,6 +235,13 @@ See also:
 Consult the documentation and/or source code of maintained package how to deal
 with it.
 
+### ELF hardening
+
+```sh
+# Do hardening checks:
+annocheck -v --debug-rpm <debug_rpm> <rpm>
+```
+
 ### ELF/COFF/coredumps analysis
 
 ```sh
@@ -262,9 +269,11 @@ chrpath
 chrpath -r <new_rpath> <elf_binary>
 
 # See lot of info about ELF/COFF binary:
-objdump
+objdump <elf_or_coff_binary>
 # - show all headers:
 objdump -x <elf_binary>
+# - disassemble and display the relocation entries and line numbers:
+objdump -ldr <elf_or_coff_binary>
 
 # List the all coredumps of the program <prog>:
 coredumpctl list <prog>
