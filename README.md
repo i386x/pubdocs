@@ -49,16 +49,19 @@ interested in. Maybe You find some of these interesting too.
 * [Geany](https://www.geany.org/)
   * [plugins](https://plugins.geany.org/)
 
-## Blogs/Repos
+## Articles/Blogs/Repos
 
+* [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
   * [github](https://github.com/jamiebuilds)
 * [John Lamb](https://github.com/dobbymoodge)
+* [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
   * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
+* [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
 
 ## Books
 
@@ -151,6 +154,7 @@ interested in. Maybe You find some of these interesting too.
 * `rpmlint`
   * [Common Rpmlint issues](https://fedoraproject.org/wiki/Common_Rpmlint_issues)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
+* [Some tips on RPM conditional macros](https://backreference.org/2011/09/17/some-tips-on-rpm-conditional-macros/)
 
 #### Spec files examples
 
@@ -201,6 +205,7 @@ interested in. Maybe You find some of these interesting too.
 ### Networking
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
+* [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
 
 ### Programming in Linux
 
@@ -255,6 +260,10 @@ interested in. Maybe You find some of these interesting too.
 
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
 * [NRICH](https://nrich.maths.org/)
+* [Project Euler](https://projecteuler.net/)
+  * [Lambda Count](https://projecteuler.net/problem=623)
+  * [Largest product in a series](https://projecteuler.net/problem=8)
+* [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
 
 ### Category Theory
 
@@ -365,10 +374,13 @@ interested in. Maybe You find some of these interesting too.
 
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
 * [Ansible (Python)](https://github.com/ansible/ansible) [[doc](https://docs.ansible.com/ansible/latest/index.html)]
+* [Ansible lint (Python)](https://github.com/ansible/ansible-lint)
 * [Ansible Molecule (Python)](https://github.com/ansible/molecule) [[doc](https://molecule.readthedocs.io/en/latest/)]
+* [Ansible Runner (Python)](https://github.com/ansible/ansible-runner) [[doc](https://ansible-runner.readthedocs.io/en/latest/)]
 * Ansible modules:
   * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible) [[home](https://www.ansible.com/integrations/networks/a10)]
 * Ansible roles:
+  * [OASIS Roles](https://github.com/oasis-roles)
   * [standard-test-roles (Bash/Python/Yaml)](https://pagure.io/standard-test-roles/tree/master)
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
@@ -404,13 +416,20 @@ interested in. Maybe You find some of these interesting too.
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [kobo (Python)](https://github.com/release-engineering/kobo)
 * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
+* [leapp (Python)](https://github.com/oamg/leapp)
+  * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
+    * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
+* [leapp-repository (Python)](https://github.com/oamg/leapp-repository)
 * [L-system (M4)](https://github.com/jkubin/L-system)
 * [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs)
+* [libteam (C)](https://github.com/jpirko/libteam)
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
+* [oVirt](https://github.com/oVirt)
+  * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
 * [packit-service](https://github.com/packit-service)
   * [packit (Python)](https://github.com/packit-service/packit)
 * [PANDA (C)](https://github.com/panda-re/panda)
@@ -440,6 +459,7 @@ interested in. Maybe You find some of these interesting too.
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
 * [Weldr](https://github.com/weldr)
 * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
+* [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 
@@ -465,7 +485,3 @@ interested in. Maybe You find some of these interesting too.
 
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
-* [Project Euler](https://projecteuler.net/)
-  * [Lambda Count](https://projecteuler.net/problem=623)
-  * [Largest product in a series](https://projecteuler.net/problem=8)
-* [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
