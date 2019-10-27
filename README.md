@@ -8,7 +8,7 @@ interested in. Maybe You find some of these interesting too.
 
 1. [Applications](#applications)
    1. [Text Editors](#text-editors)
-1. [Blogs/Repos](#blogs-repos)
+1. [Articles/Blogs/GitHub Users](#articles-blogs-github-users)
 1. [Books](#books)
 1. [Debugging](#debugging)
 1. [Fedora Project](#fedora-project)
@@ -39,6 +39,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Talks](#talks)
 1. [Projects](#projects)
 1. [Security](#security)
+1. [Testing](#testing)
 1. [Virtualization](#virtualization)
 1. [Z-Stuff (unsorted stuff)](#z-stuff-unsorted-stuff)
 
@@ -49,7 +50,7 @@ interested in. Maybe You find some of these interesting too.
 * [Geany](https://www.geany.org/)
   * [plugins](https://plugins.geany.org/)
 
-## Articles/Blogs/Repos
+## Articles/Blogs/GitHub Users
 
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Bartosz Milewski](https://bartoszmilewski.com/)
@@ -59,6 +60,9 @@ interested in. Maybe You find some of these interesting too.
   * [github](https://github.com/jamiebuilds)
 * [John Lamb](https://github.com/dobbymoodge)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
+* [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
+* [Simon Brand](https://blog.tartanllama.xyz/)
+* [TechOverflow](https://techoverflow.net/)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
   * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
@@ -130,6 +134,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### Python packaging
 
+* [Awesome Python Typing](https://github.com/typeddjango/awesome-python-typing)
 * [bandit](https://bandit.readthedocs.io)
 * [coverage](https://coverage.readthedocs.io)
 * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
@@ -153,6 +158,7 @@ interested in. Maybe You find some of these interesting too.
 * [RPM Package Manager](http://rpm.org/)
 * `rpmlint`
   * [Common Rpmlint issues](https://fedoraproject.org/wiki/Common_Rpmlint_issues)
+* [rpm-showme](https://pagure.io/minimization/rpm-showme)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
 * [Some tips on RPM conditional macros](https://backreference.org/2011/09/17/some-tips-on-rpm-conditional-macros/)
 
@@ -178,6 +184,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Linux
 
+* [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 
@@ -189,6 +196,46 @@ interested in. Maybe You find some of these interesting too.
 * [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
 * [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
 
+#### Ansible
+
+* [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
+* [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
+
+* Ansible modules:
+
+* [A10 Networks](https://www.ansible.com/integrations/networks/a10)
+
+* Ansible tips:
+
+* [How to make Ansible execute a shell script if a package is not installed](https://stackoverflow.com/questions/21892603/how-to-make-ansible-execute-a-shell-script-if-a-package-is-not-installed/46630866#46630866)
+
+* Ansible tools:
+
+* [Ansible Molecule](https://molecule.readthedocs.io/en/latest/)
+* [Ansible Runner](https://ansible-runner.readthedocs.io/en/latest/)
+  * [Running Roles Directly](https://ansible-runner.readthedocs.io/en/latest/standalone.html#running-roles-directly)
+* [Testing Ansible automation with molecule](https://redhatnordicssa.github.io/how-we-test-our-roles)
+
+#### Ansible Roles
+
+Docs:
+
+* [Ansible Best Practices (from OASIS roles)](https://github.com/oasis-roles/meta_standards/blob/master/README.md#ansible-best-practices)
+* [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
+* [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+
+Projects:
+
+* [ansible-role-nodepool](https://opendev.org/windmill/ansible-role-nodepool)
+* [Cloud Alchemy Roles](https://github.com/cloudalchemy)
+* [FreeIPA Ansible Collection](https://github.com/freeipa/ansible-freeipa)
+* [geerlingguy's Ansible Roles](https://galaxy.ansible.com/geerlingguy) <https://github.com/geerlingguy>
+* [OASIS Roles](https://github.com/oasis-roles) ([OASIS Origin](https://github.com/oasis-origin))
+  * [gluster_gdeploy](https://github.com/oasis-roles/gluster_gdeploy)
+  * [meta_skeleton](https://github.com/oasis-roles/meta_skeleton)
+  * [rhsm](https://github.com/oasis-roles/rhsm)
+* [standard-test-roles](https://pagure.io/standard-test-roles/tree/master)
+
 ### Error Codes
 
 * [Common Error Codes](https://www.student.cs.uwaterloo.ca/~cs136/seashell/docs/seashell-error-codes.html)
@@ -196,6 +243,7 @@ interested in. Maybe You find some of these interesting too.
 ### File System
 
 * [9 commands to check hard disk partitions and disk space on Linux](https://www.binarytides.com/linux-command-check-disk-partitions/)
+* [Can losetup be made efficient with sparse files?](https://unix.stackexchange.com/questions/464278/can-losetup-be-made-efficient-with-sparse-files)
 
 ### Kernel
 
@@ -323,6 +371,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### FAQ
 
+* [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
@@ -332,6 +381,7 @@ interested in. Maybe You find some of these interesting too.
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
 * [Source Forge repo gives “denying non-fast-forward refs/heads/master” error](https://stackoverflow.com/questions/12450703/source-forge-repo-gives-denying-non-fast-forward-refs-heads-master-error)
+* [Update Git submodule to latest commit on origin](https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin)
 
 ### Programming Languages
 
@@ -373,15 +423,12 @@ interested in. Maybe You find some of these interesting too.
 ## Projects
 
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
-* [Ansible (Python)](https://github.com/ansible/ansible) [[doc](https://docs.ansible.com/ansible/latest/index.html)]
+* [Ansible (Python)](https://github.com/ansible/ansible)
 * [Ansible lint (Python)](https://github.com/ansible/ansible-lint)
-* [Ansible Molecule (Python)](https://github.com/ansible/molecule) [[doc](https://molecule.readthedocs.io/en/latest/)]
-* [Ansible Runner (Python)](https://github.com/ansible/ansible-runner) [[doc](https://ansible-runner.readthedocs.io/en/latest/)]
+* [Ansible Molecule (Python)](https://github.com/ansible/molecule)
+* [Ansible Runner (Python)](https://github.com/ansible/ansible-runner)
 * Ansible modules:
-  * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible) [[home](https://www.ansible.com/integrations/networks/a10)]
-* Ansible roles:
-  * [OASIS Roles](https://github.com/oasis-roles)
-  * [standard-test-roles (Bash/Python/Yaml)](https://pagure.io/standard-test-roles/tree/master)
+  * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible)
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
 * [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
@@ -395,6 +442,7 @@ interested in. Maybe You find some of these interesting too.
   * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
 * [click (Python)](https://github.com/pallets/click)
+* [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [did (Python)](https://github.com/psss/did)
 * [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
@@ -404,12 +452,12 @@ interested in. Maybe You find some of these interesting too.
   * [Expected!](https://bell0bytes.eu/expected/)
   * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
   * [`std::expected` (C++)](https://github.com/ptal/expected)
-* [fmf (Python)](https://github.com/psss/fmf)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
+* [imagefactory](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
@@ -426,6 +474,9 @@ interested in. Maybe You find some of these interesting too.
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
+* [mock (Python)](https://github.com/rpm-software-management/mock)
+* [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
+* [nmstate (Python)](https://github.com/nmstate/nmstate)
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [oVirt](https://github.com/oVirt)
@@ -437,6 +488,7 @@ interested in. Maybe You find some of these interesting too.
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
 * [pluggy (Python)](https://github.com/pytest-dev/pluggy)
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
+* [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [RE2 (C++)](https://github.com/google/re2)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
@@ -453,6 +505,7 @@ interested in. Maybe You find some of these interesting too.
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [systemd (C)](https://github.com/systemd/systemd)
+* [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
 * [util-linux (C)](https://github.com/karelzak/util-linux)
@@ -472,6 +525,22 @@ interested in. Maybe You find some of these interesting too.
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
 * [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
 
+## Testing
+
+* [Centos on dockerhub](https://hub.docker.com/_/centos)
+* [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
+* [CI Tests for Container Images Based on Red Hat Software Collections](https://github.com/sclorg/rhscl-container-ci)
+  * [`yaml/builders`](https://github.com/sclorg/rhscl-container-ci/tree/master/yaml/builders)
+* [fmf](https://github.com/psss/fmf)
+* [gluetool](https://github.com/gluetool/gluetool)
+* [resalloc](https://github.com/praiskup/resalloc)
+* [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
+* [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
+* [`testing-farm`](https://gitlab.com/testing-farm)
+  * [`artemis`](https://gitlab.com/testing-farm/artemis)
+* [tmt](https://github.com/psss/tmt)
+* [Zuul CI](https://zuul-ci.org/) [[docs](https://zuul-ci.org/docs/zuul/)]
+
 ## Virtualization
 
 * [libguestfs](http://libguestfs.org/)
@@ -483,5 +552,6 @@ interested in. Maybe You find some of these interesting too.
 
 ## Z-Stuff (unsorted stuff)
 
+* [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
