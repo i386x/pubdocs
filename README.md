@@ -11,6 +11,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Articles/Blogs/GitHub Users](#articles-blogs-github-users)
 1. [Books](#books)
 1. [Debugging](#debugging)
+1. [Dictionaries](#dictionaries)
 1. [Fedora Project](#fedora-project)
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
@@ -41,6 +42,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Security](#security)
 1. [Testing](#testing)
 1. [Virtualization](#virtualization)
+1. [Web Development](#web-development)
 1. [Z-Stuff (unsorted stuff)](#z-stuff-unsorted-stuff)
 
 ## Applications
@@ -55,6 +57,7 @@ interested in. Maybe You find some of these interesting too.
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
+* [catonmat Articles Archive](https://catonmat.net/archive)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
   * [github](https://github.com/jamiebuilds)
@@ -81,6 +84,11 @@ interested in. Maybe You find some of these interesting too.
 * [StackTraces](https://fedoraproject.org/wiki/StackTraces)
 * [Tracing program/function execution on source line level](https://stackoverflow.com/questions/39602306/tracing-program-function-execution-on-source-line-level)
 * [Where is core dump located?](https://ask.fedoraproject.org/en/question/98776/where-is-core-dump-located/)
+
+## Dictionaries
+
+* [slovnik.cz](http://www.slovnik.cz/)
+* [Wiktionary](https://en.wiktionary.org/)
 
 ## Fedora Project
 
@@ -112,6 +120,7 @@ interested in. Maybe You find some of these interesting too.
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
+* [Universal Packaging Tool (upt)](https://framagit.org/upt/upt)
 * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
 
 #### Go packaging
@@ -142,9 +151,14 @@ interested in. Maybe You find some of these interesting too.
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
 * [pydocstyle](http://www.pydocstyle.org)
 * [python-packaging](https://python-packaging.readthedocs.io)
+* [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
 * [setuptools](https://setuptools.readthedocs.io)
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
 * [tox](https://tox.readthedocs.io/) [[repo](https://github.com/tox-dev/tox)]
+  * [Getting the most out of tox](https://alexgaynor.net/2010/dec/17/getting-most-out-tox/)
+  * [How can tox install the modules via the requirements file?](https://stackoverflow.com/questions/12258456/how-can-tox-install-the-modules-via-the-requirements-file)
+  * [Tox-Driven Python Development](http://www.boronine.com/2012/11/15/Tox-Driven-Python-Development/)
+  * [Tox tricks and patterns](https://blog.ionelmc.ro/2015/04/14/tox-tricks-and-patterns/)
 * [unittest2](https://pypi.org/project/unittest2/) [[article](http://www.voidspace.org.uk/python/articles/unittest2.shtml)] [[repo](https://hg.python.org/unittest2)]
 * [wheel](https://wheel.readthedocs.io)
 
@@ -161,6 +175,11 @@ interested in. Maybe You find some of these interesting too.
 * [rpm-showme](https://pagure.io/minimization/rpm-showme)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
 * [Some tips on RPM conditional macros](https://backreference.org/2011/09/17/some-tips-on-rpm-conditional-macros/)
+
+#### Ruby Packaging
+
+* [Bundler's Purpose and Rationale](https://bundler.io/v1.7/rationale.html)
+* [Understanding the `Gemfile.lock` file](https://stackoverflow.com/questions/7517524/understanding-the-gemfile-lock-file)
 
 #### Spec files examples
 
@@ -212,6 +231,7 @@ interested in. Maybe You find some of these interesting too.
 * Ansible tools:
 
 * [Ansible Molecule](https://molecule.readthedocs.io/en/latest/)
+  * [Using Molecule V2 to test Ansible Roles](https://werner-dijkerman.nl/2017/09/05/using-molecule-v2-to-test-ansible-roles/)
 * [Ansible Runner](https://ansible-runner.readthedocs.io/en/latest/)
   * [Running Roles Directly](https://ansible-runner.readthedocs.io/en/latest/standalone.html#running-roles-directly)
 * [Testing Ansible automation with molecule](https://redhatnordicssa.github.io/how-we-test-our-roles)
@@ -223,6 +243,7 @@ Docs:
 * [Ansible Best Practices (from OASIS roles)](https://github.com/oasis-roles/meta_standards/blob/master/README.md#ansible-best-practices)
 * [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
 * [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+* [Roles (from Adfinis Sygroup Ansible Guide)](https://docs.adfinis-sygroup.ch/public/ansible-guide/roles.html)
 
 Projects:
 
@@ -278,14 +299,21 @@ Projects:
 
 ### Shells
 
-* Bourne Again Shell
-  * [Bash Guide for Beginners](http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+* Bourne Again Shell:
   * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html)
+  * [Bash bang commands: A must-know trick for the Linux command line](https://www.redhat.com/sysadmin/bash-bang-commands)
+  * [Bash Guide](http://mywiki.wooledge.org/BashGuide)
+  * [Bash Guide for Beginners](http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+  * [Bash One-Liners Explained, Part I: Working with files](https://catonmat.net/bash-one-liners-explained-part-one)
+  * [Bash One-Liners Explained, Part II: Working with strings](https://catonmat.net/bash-one-liners-explained-part-two)
+  * [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls)
+  * [Quotes](http://mywiki.wooledge.org/Quotes)
+  * [The Definitive Guide to Bash Command Line History](https://catonmat.net/the-definitive-guide-to-bash-command-line-history)
   * [Writing your own Bash Completion Function](http://fahdshariff.blogspot.cz/2011/04/writing-your-own-bash-completion.html)
 * [DASH Shell (git)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [FISH Shell](http://fishshell.com/)
   * [git](https://github.com/fish-shell/fish-shell)
-  * issues
+  * issues:
     * [Killing fish reparents some child processes into CPU hogs](https://github.com/fish-shell/fish-shell/issues/3644)
       * [another attempt to workaround a glibc bug](https://github.com/fish-shell/fish-shell/commit/56e05dab02840443bb29beb6a596e8e3f35c5461#diff-fc9a1225873620e0a6b45c16ed066f27)
 * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
@@ -331,11 +359,13 @@ Projects:
   * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
   * [lpty: pty control for lua](http://tset.de/lpty/index.html)
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
+* [Parsing command line arguments](https://www.fpcomplete.com/blog/2017/12/parsing-command-line-arguments)
 * [Writing kernels that boot with Qemu and Grub - a tutorial](https://www.cs.vu.nl/~herbertb/misc/writingkernels.txt)
 
 ### Code Analysis
 
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
+* [Compiler Explorer](https://godbolt.org/)
 
 #### Coverity Scan
 
@@ -369,6 +399,8 @@ Projects:
 
 ### Git
 
+* [Pro Git](https://git-scm.com/book/en/v2)
+
 #### FAQ
 
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
@@ -394,6 +426,17 @@ Projects:
 * [Undefined behavior](http://en.cppreference.com/w/c/language/behavior)
 * [What Every C Programmer Should Know about Undefined Behavior](http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
 
+#### C++
+
+* Error handling and exceptions:
+  * [Functional exceptionless error-handling with optional and expected](https://blog.tartanllama.xyz/optional-expected/)
+    * [reddit discussion](https://www.reddit.com/r/cpp/comments/7gua48/functional_exceptionless_errorhandling_with/?sort=top)
+  * [`std::visit` is everything wrong with modern C++](https://bitbashing.io/std-visit.html)
+  * [why choose sum types over exceptions?](https://vittorioromeo.info/index/blog/adts_over_exceptions.html)
+  * [Why is exception handling bad?](https://stackoverflow.com/questions/1736146/why-is-exception-handling-bad)
+* [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
+* [Substitution Failure Is Not An Error (SFINAE)](https://en.cppreference.com/w/cpp/language/sfinae)
+
 #### Haskell
 
 * [Functional Programming Course](https://github.com/data61/fp-course)
@@ -410,12 +453,20 @@ Projects:
 
 * [m4_by_example](https://github.com/jkubin/m4_by_example)
 
+#### Python
+
+* [Constantly print Subprocess output while process is running](https://stackoverflow.com/questions/4417546/constantly-print-subprocess-output-while-process-is-running)
+
 ### Social Events
 
 * [Coding Dojo Brno](https://github.com/dojo-brno/dojo-brno)
 
 ### Talks
 
+* prof. Donald Ervin Knuth in Brno:
+  * [Donald Knuth, Dana Scott – Turing Prize Laureates in Brno](https://www.fi.muni.cz/donald-knuth-dana-scott-turing-prize-laureates-in-brno.html)
+  * [Donald Knuth: Programming is like nothing else. Become friends with geeks](https://www.idnes.cz/technet/technika/donald-knuth-interview-computer-science-brno-czech-republic.A191016_112708_tec_technika_pka)
+  * [Programování vám pomůže chápat svět, říká slavný geek. Varuje před AI](https://www.idnes.cz/technet/technika/donald-knuth-rozhovor-programovani-umela-inteligence-brno-czech-republic.A191016_141814_tec_technika_pka?zdroj=vykuk_obecny)
 * [Old Is the New New - Kevlin Henney, GOTO Chicago 2018](https://gotochgo.com/2018/sessions/371)
 * [Procedural Programming: It’s Back? It Never Went Away - Kevlin Henney, ACCU 2018](https://www.youtube.com/watch?v=mrY6xrWp3Gs)
 * [The Future of Programming - Bret Victor, DBX 2013](https://vimeo.com/71278954)
@@ -533,6 +584,7 @@ Projects:
   * [`yaml/builders`](https://github.com/sclorg/rhscl-container-ci/tree/master/yaml/builders)
 * [fmf](https://github.com/psss/fmf)
 * [gluetool](https://github.com/gluetool/gluetool)
+* [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
@@ -550,8 +602,16 @@ Projects:
 * [QEMU QMP Reference Manual](https://qemu.weilnetz.de/doc/qemu-qmp-ref.html)
 * [QEMU User Documentation](https://qemu.weilnetz.de/doc/qemu-doc.html)
 
+## Web Development
+
+* [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
+* [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
+
 ## Z-Stuff (unsorted stuff)
 
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
+* [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
+* [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
+  * [CHTIP: Frank a chilli](https://neviditelnypes.lidovky.cz/zabava/chtip-frank-a-chilli.A120921_182947_p_zabava_wag)
