@@ -8,7 +8,10 @@ interested in. Maybe You find some of these interesting too.
 
 1. [Applications](#applications)
    1. [Text Editors](#text-editors)
-1. [Articles/Blogs/GitHub Users](#articles-blogs-github-users)
+1. [Articles, Blogs, GitHub Users](#articles--blogs--github-users)
+   1. [Articles](#articles)
+   1. [Blogs](#blogs)
+   1. [GitHub Users](#github-users)
 1. [Books](#books)
 1. [Debugging](#debugging)
 1. [Dictionaries](#dictionaries)
@@ -52,23 +55,33 @@ interested in. Maybe You find some of these interesting too.
 * [Geany](https://www.geany.org/)
   * [plugins](https://plugins.geany.org/)
 
-## Articles/Blogs/GitHub Users
+## Articles, Blogs, GitHub Users
+
+### Articles
 
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
+* [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
+* [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
+* [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
+* [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
+
+### Blogs
+
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [catonmat Articles Archive](https://catonmat.net/archive)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
-  * [github](https://github.com/jamiebuilds)
-* [John Lamb](https://github.com/dobbymoodge)
-* [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Simon Brand](https://blog.tartanllama.xyz/)
 * [TechOverflow](https://techoverflow.net/)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
-  * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
-* [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
+
+### GitHub Users
+
+* [jamiebuilds](https://github.com/jamiebuilds)
+* [John Lamb](https://github.com/dobbymoodge)
 
 ## Books
 
@@ -220,15 +233,15 @@ interested in. Maybe You find some of these interesting too.
 * [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
 * [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
 
-* Ansible modules:
+Ansible modules:
 
 * [A10 Networks](https://www.ansible.com/integrations/networks/a10)
 
-* Ansible tips:
+Ansible tips:
 
 * [How to make Ansible execute a shell script if a package is not installed](https://stackoverflow.com/questions/21892603/how-to-make-ansible-execute-a-shell-script-if-a-package-is-not-installed/46630866#46630866)
 
-* Ansible tools:
+Ansible tools:
 
 * [Ansible Molecule](https://molecule.readthedocs.io/en/latest/)
   * [Using Molecule V2 to test Ansible Roles](https://werner-dijkerman.nl/2017/09/05/using-molecule-v2-to-test-ansible-roles/)
@@ -552,6 +565,7 @@ Projects:
 * [six (Python)](https://github.com/benjaminp/six)
 * [slop (C++)](https://github.com/naelstrof/slop)
 * [Software Collections](https://github.com/sclorg) [[homepage](https://www.softwarecollections.org/en/)]
+* [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
