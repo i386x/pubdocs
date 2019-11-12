@@ -8,7 +8,7 @@ interested in. Maybe You find some of these interesting too.
 
 1. [Applications](#applications)
    1. [Text Editors](#text-editors)
-1. [Articles, Blogs, GitHub Users](#articles--blogs--github-users)
+1. [Articles, Blogs, GitHub Users](#articles-blogs-github-users)
    1. [Articles](#articles)
    1. [Blogs](#blogs)
    1. [GitHub Users](#github-users)
