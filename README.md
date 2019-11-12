@@ -198,7 +198,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [rpms/kernel](https://src.fedoraproject.org/rpms/kernel/blob/master/f/kernel.spec)
 
-#### Testing
+#### Testing (Fedora Packaging)
 
 * [Changes/InvokingTests](https://fedoraproject.org/wiki/Changes/InvokingTests)
 * [CI](https://fedoraproject.org/wiki/CI)
