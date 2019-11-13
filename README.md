@@ -16,6 +16,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Debugging](#debugging)
 1. [Dictionaries](#dictionaries)
 1. [Fedora Project](#fedora-project)
+   1. [Developer](#developer)
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
 1. [Linux](#linux)
@@ -109,6 +110,13 @@ interested in. Maybe You find some of these interesting too.
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
 * [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
+
+### Developer
+
+* [Fedora Developer](https://developer.fedoraproject.org/)
+  * [Docker](https://developer.fedoraproject.org/tools/docker/about.html)
+  * [Python](https://developer.fedoraproject.org/tech/languages/python/python-installation.html)
+  * [Vagrant](https://developer.fedoraproject.org/tools/vagrant/about.html)
 
 ### GNOME
 
@@ -505,6 +513,7 @@ Projects:
   * [nwdiag (Python)](https://github.com/blockdiag/nwdiag)
   * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
+* [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
