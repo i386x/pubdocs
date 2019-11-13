@@ -241,15 +241,15 @@ interested in. Maybe You find some of these interesting too.
 * [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
 * [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
 
-Ansible modules:
+Ansible modules
 
 * [A10 Networks](https://www.ansible.com/integrations/networks/a10)
 
-Ansible tips:
+Ansible tips
 
 * [How to make Ansible execute a shell script if a package is not installed](https://stackoverflow.com/questions/21892603/how-to-make-ansible-execute-a-shell-script-if-a-package-is-not-installed/46630866#46630866)
 
-Ansible tools:
+Ansible tools
 
 * [Ansible Molecule](https://molecule.readthedocs.io/en/latest/)
   * [Using Molecule V2 to test Ansible Roles](https://werner-dijkerman.nl/2017/09/05/using-molecule-v2-to-test-ansible-roles/)
@@ -259,14 +259,14 @@ Ansible tools:
 
 #### Ansible Roles
 
-Docs:
+Docs
 
 * [Ansible Best Practices (from OASIS roles)](https://github.com/oasis-roles/meta_standards/blob/master/README.md#ansible-best-practices)
 * [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
 * [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 * [Roles (from Adfinis Sygroup Ansible Guide)](https://docs.adfinis-sygroup.ch/public/ansible-guide/roles.html)
 
-Projects:
+Projects
 
 * [ansible-role-nodepool](https://opendev.org/windmill/ansible-role-nodepool)
 * [Cloud Alchemy Roles](https://github.com/cloudalchemy)
@@ -320,7 +320,7 @@ Projects:
 
 ### Shells
 
-* Bourne Again Shell:
+* Bourne Again Shell
   * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html)
   * [Bash bang commands: A must-know trick for the Linux command line](https://www.redhat.com/sysadmin/bash-bang-commands)
   * [Bash Guide](http://mywiki.wooledge.org/BashGuide)
@@ -334,7 +334,7 @@ Projects:
 * [DASH Shell (git)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [FISH Shell](http://fishshell.com/)
   * [git](https://github.com/fish-shell/fish-shell)
-  * issues:
+  * issues
     * [Killing fish reparents some child processes into CPU hogs](https://github.com/fish-shell/fish-shell/issues/3644)
       * [another attempt to workaround a glibc bug](https://github.com/fish-shell/fish-shell/commit/56e05dab02840443bb29beb6a596e8e3f35c5461#diff-fc9a1225873620e0a6b45c16ed066f27)
 * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
@@ -449,7 +449,7 @@ Projects:
 
 #### C++
 
-* Error handling and exceptions:
+* Error handling and exceptions
   * [Functional exceptionless error-handling with optional and expected](https://blog.tartanllama.xyz/optional-expected/)
     * [reddit discussion](https://www.reddit.com/r/cpp/comments/7gua48/functional_exceptionless_errorhandling_with/?sort=top)
   * [`std::visit` is everything wrong with modern C++](https://bitbashing.io/std-visit.html)
@@ -484,7 +484,7 @@ Projects:
 
 ### Talks
 
-* prof. Donald Ervin Knuth in Brno:
+* prof. Donald Ervin Knuth in Brno
   * [Donald Knuth, Dana Scott – Turing Prize Laureates in Brno](https://www.fi.muni.cz/donald-knuth-dana-scott-turing-prize-laureates-in-brno.html)
   * [Donald Knuth: Programming is like nothing else. Become friends with geeks](https://www.idnes.cz/technet/technika/donald-knuth-interview-computer-science-brno-czech-republic.A191016_112708_tec_technika_pka)
   * [Programování vám pomůže chápat svět, říká slavný geek. Varuje před AI](https://www.idnes.cz/technet/technika/donald-knuth-rozhovor-programovani-umela-inteligence-brno-czech-republic.A191016_141814_tec_technika_pka?zdroj=vykuk_obecny)
@@ -499,7 +499,7 @@ Projects:
 * [Ansible lint (Python)](https://github.com/ansible/ansible-lint)
 * [Ansible Molecule (Python)](https://github.com/ansible/molecule)
 * [Ansible Runner (Python)](https://github.com/ansible/ansible-runner)
-* Ansible modules:
+* Ansible modules
   * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible)
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
