@@ -60,7 +60,7 @@ Inform the upstream if you create a new patch.
 
 Commit the changes:
 ```sh
-# Affected branches: master, f27, f26
+# Affected branches: master, f<X>, f<Y> (X > Y)
 #
 # Assume the recent branch is master.
 # 1. Commit the changes to the master branch:
@@ -81,14 +81,15 @@ Build/test the package locally:
 git checkout master
 fedpkg --release master local
 fedpkg clean
-# Build the package as local for Fedora 27:
-git checkout f27
-fedpkg --release f27 local
+# Build the package as local for Fedora <X>:
+git checkout f<X>
+fedpkg --release f<X> local
 fedpkg clean
-# Build the package as local for Fedora 26:
-git checkout f26
-fedpkg --release f26 local
+# Build the package as local for Fedora <Y>:
+git checkout f<Y>
+fedpkg --release f<Y> local
 fedpkg clean
+# ... and so on.
 ```
 
 Build/test the package using `mock`:
@@ -98,16 +99,17 @@ git checkout master
 fedpkg srpm
 mock -r fedora-rawhide-x86_64 <path to srpm>
 fedpkg clean
-# Mock build for Fedora 27:
-git checkout f27
+# Mock build for Fedora <X>:
+git checkout f<X>
 fedpkg srpm
 mock -r fedora-27-x86_64 <path to srpm>
 fedpkg clean
-# Mock build for Fedora 26:
-git checkout f26
+# Mock build for Fedora <Y>:
+git checkout f<Y>
 fedpkg srpm
 mock -r fedora-26-x86_64 <path to srpm>
 fedpkg clean
+# ... and so on.
 ```
 
 ## Sending the changes
@@ -116,10 +118,10 @@ Do scratch builds:
 ```sh
 # Do scratch build for all arches. If no srpm is provided, build from most
 # recent pushed commit. You should switch to the corresponding branch (master,
-# f27, f26 for rawhide, f27, f26, respectively):
-git checkout [master|f27|f26]
+# f<X>, f<Y> for rawhide, f<X>, f<Y>, respectively):
+git checkout [master|f<X>|f<Y>]
 fedpkg srpm
-fedpkg scratch-build --target [rawhide|f27|f26] --srpm <path to srpm>
+fedpkg scratch-build --target [rawhide|f<X>|f<Y>] --srpm <path to srpm>
 ```
 
 Push the changes (if scratch builds succeeds):
@@ -153,6 +155,13 @@ Choose `Create -> New Update`.
 
 Select package, candidate builds, related bugs, final details (choose a proper
 type), write update notes and submit.
+
+## Fedora Minimization
+
+* [Fedora Minimization Objective](https://docs.fedoraproject.org/en-US/minimization/)
+* [Feedback Pipeline](https://minimization.github.io/reports/) [[source](https://github.com/minimization/feedback-pipeline)]
+* [minimization](https://pagure.io/minimization)
+  * [tickets](https://pagure.io/minimization/issues)
 
 ## Useful utilities and tricks
 
