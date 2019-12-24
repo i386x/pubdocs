@@ -64,6 +64,7 @@ interested in. Maybe You find some of these interesting too.
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
+* [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
 
@@ -72,11 +73,13 @@ interested in. Maybe You find some of these interesting too.
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [catonmat Articles Archive](https://catonmat.net/archive)
+* [Doomsday Vault](https://x-c3ll.github.io/)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Simon Brand](https://blog.tartanllama.xyz/)
 * [TechOverflow](https://techoverflow.net/)
+* [Terence Tao's What's New](https://terrytao.wordpress.com/)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
 
 ### GitHub Users
@@ -239,6 +242,7 @@ interested in. Maybe You find some of these interesting too.
 #### Ansible
 
 * [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
+  * [Developing collections](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html)
 * [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
 
 Ansible modules
@@ -300,6 +304,7 @@ Projects
 ### Programming in Linux
 
 * [In-Memory-Only ELF Execution (Without tmpfs)](https://magisterquis.github.io/2018/03/31/in-memory-only-elf-execution.html)
+* [Loading "fileless" Shared Objects (memfd_create + dlopen)](https://x-c3ll.github.io/posts/fileless-memfd_create/)
 
 ### Security
 
@@ -554,6 +559,7 @@ Projects
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [oVirt](https://github.com/oVirt)
   * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
+* [packer (Go)](https://github.com/hashicorp/packer)
 * [packit-service](https://github.com/packit-service)
   * [packit (Python)](https://github.com/packit-service/packit)
 * [PANDA (C)](https://github.com/panda-re/panda)
@@ -567,6 +573,7 @@ Projects
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
+* [rpminspect (C)](https://github.com/rpminspect/rpminspect)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
@@ -583,6 +590,9 @@ Projects
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
 * [util-linux (C)](https://github.com/karelzak/util-linux)
+* [Vagrant (Ruby)](https://github.com/hashicorp/vagrant) [[doc](https://www.vagrantup.com/)]
+* [vagrant-kvm (Ruby)](https://github.com/adrahon/vagrant-kvm/)
+* [vagrant-libvirt (Ruby)](https://github.com/vagrant-libvirt/vagrant-libvirt)
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
 * [Weldr](https://github.com/weldr)
 * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
@@ -592,6 +602,7 @@ Projects
 
 ## Security
 
+* [2019 CWE Top 25 Most Dangerous Software Errors](http://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html)
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
 * [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
@@ -618,6 +629,7 @@ Projects
 
 ## Virtualization
 
+* [How to use vagrant-kvm](https://gist.github.com/yuanying/924ce2ce61b75ab818b5)
 * [libguestfs](http://libguestfs.org/)
   * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
   * [virt-sysprep(1)](http://libguestfs.org/virt-sysprep.1.html)

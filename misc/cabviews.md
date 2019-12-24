@@ -17,3 +17,8 @@
 * https://www.youtube.com/user/mika67407/videos
 * https://www.youtube.com/user/joro1407/videos
 * https://www.youtube.com/user/dulevoz/videos
+* https://www.youtube.com/user/vpart/videos
+* https://www.youtube.com/user/adriantrain/videos
+* [YusTren](https://www.youtube.com/channel/UCbsDr5W9mDkINjxuqnAUkfg/videos)
+* [Maquivia](https://www.youtube.com/channel/UCBbxtOvDira4bLyyB9v6TdQ/videos)
+* https://www.youtube.com/user/orezul/videos
