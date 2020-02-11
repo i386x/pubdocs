@@ -61,9 +61,14 @@ interested in. Maybe You find some of these interesting too.
 ### Articles
 
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
+* [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
+* [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
+* [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
+* [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
@@ -77,6 +82,7 @@ interested in. Maybe You find some of these interesting too.
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
+* [Richard WM Jones](https://rwmj.wordpress.com/)
 * [Simon Brand](https://blog.tartanllama.xyz/)
 * [TechOverflow](https://techoverflow.net/)
 * [Terence Tao's What's New](https://terrytao.wordpress.com/)
@@ -178,6 +184,9 @@ interested in. Maybe You find some of these interesting too.
 * [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
 * [setuptools](https://setuptools.readthedocs.io)
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
+* spec file examples
+  * [python-elementpath.spec](https://src.fedoraproject.org/rpms/python-elementpath/blob/master/f/python-elementpath.spec)
+  * [python-xmlschema.spec](https://src.fedoraproject.org/rpms/python-xmlschema/blob/master/f/python-xmlschema.spec)
 * [tox](https://tox.readthedocs.io/) [[repo](https://github.com/tox-dev/tox)]
   * [Getting the most out of tox](https://alexgaynor.net/2010/dec/17/getting-most-out-tox/)
   * [How can tox install the modules via the requirements file?](https://stackoverflow.com/questions/12258456/how-can-tox-install-the-modules-via-the-requirements-file)
@@ -212,7 +221,7 @@ interested in. Maybe You find some of these interesting too.
 #### Testing (Fedora Packaging)
 
 * [Changes/InvokingTests](https://fedoraproject.org/wiki/Changes/InvokingTests)
-* [CI](https://fedoraproject.org/wiki/CI)
+* [CI](https://docs.fedoraproject.org/en-US/ci/)
 * [How to test updates](https://fedoraproject.org/wiki/How_to_test_updates)
 * [QA:Updates Testing](https://fedoraproject.org/wiki/QA:Updates_Testing)
 * [Taskotron](https://fedoraproject.org/wiki/Taskotron)
@@ -360,11 +369,14 @@ Projects
 
 ## Math
 
+* [math.stackexchange.com](https://math.stackexchange.com/)
+  * [downset](https://math.stackexchange.com/search?q=downset)
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
 * [NRICH](https://nrich.maths.org/)
 * [Project Euler](https://projecteuler.net/)
   * [Lambda Count](https://projecteuler.net/problem=623)
   * [Largest product in a series](https://projecteuler.net/problem=8)
+* [Steven Roman - Mathematics](https://www.youtube.com/channel/UCalphvDmYSEzHchGFW8BxGg)
 * [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
 
 ### Category Theory
@@ -392,6 +404,7 @@ Projects
 
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
 * [Compiler Explorer](https://godbolt.org/)
+* [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
 
 #### Coverity Scan
 
@@ -422,6 +435,7 @@ Projects
 * Writing manual pages
   * [man page example](https://github.com/karelzak/util-linux/blob/master/Documentation/howto-man-page.txt)
   * [What you need to know to write man pages](https://www.linux.com/news/what-you-need-know-write-man-pages)
+* [Type terms](https://www.supremo.co.uk/typeterms/)
 
 ### Git
 
@@ -569,6 +583,7 @@ Projects
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
+* [Quay (Python)](https://github.com/quay/quay)
 * [RE2 (C++)](https://github.com/google/re2)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
@@ -577,6 +592,7 @@ Projects
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
+* [Shake (Haskell)](https://github.com/ndmitchell/shake/) [[docs](https://shakebuild.com/)]
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [six (Python)](https://github.com/benjaminp/six)
 * [slop (C++)](https://github.com/naelstrof/slop)
@@ -593,6 +609,7 @@ Projects
 * [Vagrant (Ruby)](https://github.com/hashicorp/vagrant) [[doc](https://www.vagrantup.com/)]
 * [vagrant-kvm (Ruby)](https://github.com/adrahon/vagrant-kvm/)
 * [vagrant-libvirt (Ruby)](https://github.com/vagrant-libvirt/vagrant-libvirt)
+* [vdr (C)](https://github.com/yavdr/vdr)
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
 * [Weldr](https://github.com/weldr)
 * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
@@ -625,6 +642,8 @@ Projects
 * [`testing-farm`](https://gitlab.com/testing-farm)
   * [`artemis`](https://gitlab.com/testing-farm/artemis)
 * [tmt](https://github.com/psss/tmt)
+* [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
+  * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)
 * [Zuul CI](https://zuul-ci.org/) [[docs](https://zuul-ci.org/docs/zuul/)]
 
 ## Virtualization
@@ -646,6 +665,8 @@ Projects
 
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
+* [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
+  * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
 * [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
 * [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
