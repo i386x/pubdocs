@@ -15,8 +15,12 @@ interested in. Maybe You find some of these interesting too.
 1. [Books](#books)
 1. [Debugging](#debugging)
 1. [Dictionaries](#dictionaries)
+1. [Electronics](#electronics)
+   1. [Beam Bots](#beam-bots)
+   1. [RC Circuits](#rc-circuits)
 1. [Fedora Project](#fedora-project)
    1. [Developer](#developer)
+   1. [FESCO](#fesco)
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
 1. [Linux](#linux)
@@ -24,6 +28,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Error Codes](#error-codes)
    1. [Kernel](#kernel)
    1. [Networking](#networking)
+   1. [Printing](#printing)
    1. [Programming in Linux](#programming-in-linux)
    1. [Security](#security)
    1. [Shared Libraries](#shared-libraries)
@@ -60,7 +65,9 @@ interested in. Maybe You find some of these interesting too.
 
 ### Articles
 
+* [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
+* [Amazon and commercial open source in the cloud: It's complicated](https://www.zdnet.com/article/amazon-and-commercial-open-source-in-the-cloud-its-complicated/)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
@@ -69,6 +76,7 @@ interested in. Maybe You find some of these interesting too.
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
+* [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
@@ -82,6 +90,7 @@ interested in. Maybe You find some of these interesting too.
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [jamiebuilds](https://jamie.build/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
+* [Radek Pazdera](https://radek.io/)
 * [Richard WM Jones](https://rwmj.wordpress.com/)
 * [Simon Brand](https://blog.tartanllama.xyz/)
 * [TechOverflow](https://techoverflow.net/)
@@ -113,9 +122,22 @@ interested in. Maybe You find some of these interesting too.
 * [slovnik.cz](http://www.slovnik.cz/)
 * [Wiktionary](https://en.wiktionary.org/)
 
+## Electronics
+
+### Beam Bots
+
+* [solarbotics.net](http://solarbotics.net/)
+
+### RC Circuits
+
+* [Pro pamětníky - trochu historie RC, aneb jak jsme bastlili v Česku](https://rc-model.rajce.idnes.cz/Pro_pametniky_-_trochu_historie_RC%2C_aneb_jak_jsme_bastlili_v_Cesku/#)
+* [Schéma rádiového dálkového ovládání. Vyrábíme rádiové ovládání letadla. Vysvětlení režimu](https://hkls.ru/cs/fejjsbuk/shema-pulta-radioupravleniya-delaem-radioupravlenie-dlya.html)
+
 ## Fedora Project
 
 * [Fedora Crypto Consolidation](https://fedoraproject.org/wiki/Fedora_Crypto_Consolidation?rd=FedoraCryptoConsolidation)
+* [Fedora Engineering Steering Committee](https://docs.fedoraproject.org/en-US/fesco/)
+  * [pagure.io](https://pagure.io/fesco)
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
 * [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
@@ -126,6 +148,10 @@ interested in. Maybe You find some of these interesting too.
   * [Docker](https://developer.fedoraproject.org/tools/docker/about.html)
   * [Python](https://developer.fedoraproject.org/tech/languages/python/python-installation.html)
   * [Vagrant](https://developer.fedoraproject.org/tools/vagrant/about.html)
+
+### FESCO
+
+* [mingw CVEs aren't getting fixed](https://pagure.io/fesco/issue/2333)
 
 ### GNOME
 
@@ -222,6 +248,8 @@ interested in. Maybe You find some of these interesting too.
 
 * [Changes/InvokingTests](https://fedoraproject.org/wiki/Changes/InvokingTests)
 * [CI](https://docs.fedoraproject.org/en-US/ci/)
+* [Flexible Metadata Format](https://fedoraproject.org/wiki/Flexible_Metadata_Format)
+  * [Metadata](https://pagure.io/fedora-ci/metadata)
 * [How to test updates](https://fedoraproject.org/wiki/How_to_test_updates)
 * [QA:Updates Testing](https://fedoraproject.org/wiki/QA:Updates_Testing)
 * [Taskotron](https://fedoraproject.org/wiki/Taskotron)
@@ -308,7 +336,15 @@ Projects
 ### Networking
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
+* [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
+
+### Printing
+
+* [CUPSDriverlessPrinting](https://wiki.debian.org/CUPSDriverlessPrinting)
+  * [IPP-over-USB (Short Version)](https://wiki.debian.org/CUPSDriverlessPrinting?action=show&redirect=DriverlessPrinting#IPP-over-USB_.28Short_Version.29)
+* [Printing](https://fedoraproject.org/wiki/Printing)
+  * [How to debug printing problems](https://fedoraproject.org/wiki/How_to_debug_printing_problems)
 
 ### Programming in Linux
 
@@ -427,6 +463,9 @@ Projects
 ### Curiosities
 
 * [Advent of Code](https://adventofcode.com/)
+* one-liners
+  * [Glob Pattern Matcher (C)](https://en.wikipedia.org/wiki/One-liner_program#C)
+  * [Print `unix` (C)](https://gist.github.com/Keith-S-Thompson/6920347)
 
 ### Documenting
 
@@ -437,6 +476,13 @@ Projects
   * [What you need to know to write man pages](https://www.linux.com/news/what-you-need-know-write-man-pages)
 * [Type terms](https://www.supremo.co.uk/typeterms/)
 
+#### TeX
+
+* [Diagonal lines in table cell](https://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell)
+  * [Diagonally divided table cell [duplicate]](https://tex.stackexchange.com/questions/7262/diagonally-divided-table-cell)
+* [OPmac - rozšiřující makra plain TeXu](http://petr.olsak.net/opmac.html)
+  * [OPmac - tipy, triky, návody](http://petr.olsak.net/opmac-tricks.html)
+
 ### Git
 
 * [Pro Git](https://git-scm.com/book/en/v2)
@@ -446,10 +492,12 @@ Projects
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
+* [How can I move a tag on a git branch to a different commit?](https://stackoverflow.com/questions/8044583/how-can-i-move-a-tag-on-a-git-branch-to-a-different-commit)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
-* [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [How to create patch between two tags with multiple commits between them?](https://stackoverflow.com/questions/9078820/how-to-create-patch-between-two-tags-with-multiple-commits-between-them)
+* [How to grep (search) committed code in the Git history](https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history)
+* [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
 * [Source Forge repo gives “denying non-fast-forward refs/heads/master” error](https://stackoverflow.com/questions/12450703/source-forge-repo-gives-denying-non-fast-forward-refs-heads-master-error)
@@ -477,6 +525,15 @@ Projects
 * [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
 * [Substitution Failure Is Not An Error (SFINAE)](https://en.cppreference.com/w/cpp/language/sfinae)
 
+#### Caml
+
+* [The Caml Language](http://caml.inria.fr/)
+  * [papers](https://caml.inria.fr/pub/papers/)
+
+#### Go
+
+* [Go Antipatterns](https://hackmongo.com/page/golang-antipatterns/)
+
 #### Haskell
 
 * [Functional Programming Course](https://github.com/data61/fp-course)
@@ -492,6 +549,10 @@ Projects
 #### M4
 
 * [m4_by_example](https://github.com/jkubin/m4_by_example)
+
+#### OCaml
+
+See [Caml](#caml).
 
 #### Python
 
@@ -522,6 +583,7 @@ Projects
   * [A10 Networks (Python)](https://github.com/a10networks/a10-ansible)
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
+* [Augeas (C)](https://github.com/hercules-team/augeas)
 * [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
 * [bin-public (Bash)](https://github.com/lzap/bin-public)
 * [Bioconductor (various repos)](https://github.com/Bioconductor)
@@ -533,6 +595,7 @@ Projects
   * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
+* [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
@@ -544,7 +607,10 @@ Projects
   * [Expected!](https://bell0bytes.eu/expected/)
   * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
   * [`std::expected` (C++)](https://github.com/ptal/expected)
+* [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
+* [goals (OCaml)](http://git.annexia.org/?p=goals.git)
+  * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
@@ -552,6 +618,7 @@ Projects
 * [imagefactory](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
+* [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [kobo (Python)](https://github.com/release-engineering/kobo)
@@ -568,7 +635,9 @@ Projects
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [mock (Python)](https://github.com/rpm-software-management/mock)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
+* [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
+* [normalize.css (CSS)](https://github.com/necolas/normalize.css)
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [oVirt](https://github.com/oVirt)
@@ -580,17 +649,23 @@ Projects
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
 * [pluggy (Python)](https://github.com/pytest-dev/pluggy)
+* [popt (C)](https://github.com/rpm-software-management/popt)
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [Quay (Python)](https://github.com/quay/quay)
 * [RE2 (C++)](https://github.com/google/re2)
+* [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
+* [rpm (C)](https://github.com/rpm-software-management/rpm)
 * [rpminspect (C)](https://github.com/rpminspect/rpminspect)
+* [rvm (Bash)](https://github.com/rvm/rvm)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
+* [schema (Python)](https://github.com/keleshev/schema)
+* [Schematics (Python)](https://github.com/schematics/schematics)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
 * [Shake (Haskell)](https://github.com/ndmitchell/shake/) [[docs](https://shakebuild.com/)]
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
@@ -603,8 +678,11 @@ Projects
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [systemd (C)](https://github.com/systemd/systemd)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
+* [The LaTeX3 Project](https://github.com/latex3)
+* [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
+* [unbox - J Interpreter (C/J)](https://github.com/iocane/unbox)
 * [util-linux (C)](https://github.com/karelzak/util-linux)
 * [Vagrant (Ruby)](https://github.com/hashicorp/vagrant) [[doc](https://www.vagrantup.com/)]
 * [vagrant-kvm (Ruby)](https://github.com/adrahon/vagrant-kvm/)
@@ -620,6 +698,7 @@ Projects
 ## Security
 
 * [2019 CWE Top 25 Most Dangerous Software Errors](http://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html)
+* [A (Very) Basic Intro To Elliptic Curve Cryptography](https://hackernoon.com/very-basic-intro-to-elliptic-curve-cryptography-ww3g3t3n)
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
 * [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
@@ -660,6 +739,7 @@ Projects
 
 * [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
+* [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
 
 ## Z-Stuff (unsorted stuff)
 
@@ -668,6 +748,9 @@ Projects
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
 * [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
+* [How can I restart pulseaudio without having to logout?](https://askubuntu.com/questions/15223/how-can-i-restart-pulseaudio-without-having-to-logout)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
+* [Oriental](https://www.oriental.cz/)
+  * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
 * [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
   * [CHTIP: Frank a chilli](https://neviditelnypes.lidovky.cz/zabava/chtip-frank-a-chilli.A120921_182947_p_zabava_wag)
