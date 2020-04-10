@@ -13,6 +13,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Blogs](#blogs)
    1. [GitHub Users](#github-users)
 1. [Books](#books)
+1. [CentOS](#centos)
 1. [Debugging](#debugging)
 1. [Dictionaries](#dictionaries)
 1. [Electronics](#electronics)
@@ -68,6 +69,7 @@ interested in. Maybe You find some of these interesting too.
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Amazon and commercial open source in the cloud: It's complicated](https://www.zdnet.com/article/amazon-and-commercial-open-source-in-the-cloud-its-complicated/)
+* [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
@@ -80,6 +82,7 @@ interested in. Maybe You find some of these interesting too.
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
+* [Why introverts are ignored and often overlooked](https://www.raconteur.net/hr/introverts-workplace)
 
 ### Blogs
 
@@ -88,6 +91,7 @@ interested in. Maybe You find some of these interesting too.
 * [catonmat Articles Archive](https://catonmat.net/archive)
 * [Doomsday Vault](https://x-c3ll.github.io/)
 * [FPComplete](https://www.fpcomplete.com/blog)
+* [Haoyi's Programming Blog](http://www.lihaoyi.com/)
 * [jamiebuilds](https://jamie.build/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Radek Pazdera](https://radek.io/)
@@ -108,6 +112,10 @@ interested in. Maybe You find some of these interesting too.
 * [On Lisp: Advanced Techniques for Common Lisp (Paul Graham)](http://www.paulgraham.com/onlisp.html)
 * [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
   * [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
+
+## CentOS
+
+* [CentOSStream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 
 ## Debugging
 
@@ -201,11 +209,19 @@ interested in. Maybe You find some of these interesting too.
 
 * [Awesome Python Typing](https://github.com/typeddjango/awesome-python-typing)
 * [bandit](https://bandit.readthedocs.io)
+* [Building and Distributing Packages with Setuptools](https://setuptools.readthedocs.io/en/latest/setuptools.html) [[repo](https://github.com/pypa/setuptools)]
 * [coverage](https://coverage.readthedocs.io)
 * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
 * [mypy](https://mypy.readthedocs.io)
+* [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
+* [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/)
+* [PEP 518 -- Specifying Minimum Build System Requirements for Python Projects](https://www.python.org/dev/peps/pep-0518/)
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
+* [Poetry](https://python-poetry.org/)
+  * [The `pyproject.toml` file](https://python-poetry.org/docs/pyproject/)
 * [pydocstyle](http://www.pydocstyle.org)
+* [Python Packaging Authority](https://github.com/pypa)
+  * [A sample Python project](https://github.com/pypa/sampleproject)
 * [python-packaging](https://python-packaging.readthedocs.io)
 * [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
 * [setuptools](https://setuptools.readthedocs.io)
@@ -223,7 +239,9 @@ interested in. Maybe You find some of these interesting too.
 
 #### RPM
 
+* [Create Local Repos](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 * [Maximum RPM](http://ftp.rpm.org/max-rpm/)
+* [`mock` Wiki](https://github.com/rpm-software-management/mock/wiki)
 * [Packaging:RPMMacros](https://fedoraproject.org/wiki/Packaging:RPMMacros)
 * [RPM Guide](https://docs-old.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html)
 * [RPM HOWTO](http://www.tldp.org/HOWTO/RPM-HOWTO/index.html)
@@ -337,6 +355,7 @@ Projects
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
 * [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
+* [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
 
 ### Printing
@@ -370,6 +389,7 @@ Projects
 
 ### Shells
 
+* [Awesome Shell](https://github.com/alebcay/awesome-shell)
 * Bourne Again Shell
   * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html)
   * [Bash bang commands: A must-know trick for the Linux command line](https://www.redhat.com/sysadmin/bash-bang-commands)
@@ -378,8 +398,10 @@ Projects
   * [Bash One-Liners Explained, Part I: Working with files](https://catonmat.net/bash-one-liners-explained-part-one)
   * [Bash One-Liners Explained, Part II: Working with strings](https://catonmat.net/bash-one-liners-explained-part-two)
   * [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls)
+  * [How To Use Bash Parameter Substitution Like A Pro](https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html)
   * [Quotes](http://mywiki.wooledge.org/Quotes)
   * [The Definitive Guide to Bash Command Line History](https://catonmat.net/the-definitive-guide-to-bash-command-line-history)
+  * [Why should eval be avoided in Bash, and what should I use instead?](https://stackoverflow.com/questions/17529220/why-should-eval-be-avoided-in-bash-and-what-should-i-use-instead/17529221#17529221)
   * [Writing your own Bash Completion Function](http://fahdshariff.blogspot.cz/2011/04/writing-your-own-bash-completion.html)
 * [DASH Shell (git)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [FISH Shell](http://fishshell.com/)
@@ -496,6 +518,7 @@ Projects
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
 * [How to create patch between two tags with multiple commits between them?](https://stackoverflow.com/questions/9078820/how-to-create-patch-between-two-tags-with-multiple-commits-between-them)
+* [How to compare files from two different branches?](https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches)
 * [How to grep (search) committed code in the Git history](https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history)
 * [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
@@ -584,6 +607,7 @@ See [Caml](#caml).
 * [Antora Default UI (HTML/CSS/JavaScript)](https://gitlab.com/antora/antora-ui-default/tree/master) [[example](https://antora.gitlab.io/antora-ui-default/)]
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
 * [Augeas (C)](https://github.com/hercules-team/augeas)
+* [bash-lib (Bash)](https://github.com/aks/bash-lib)
 * [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
 * [bin-public (Bash)](https://github.com/lzap/bin-public)
 * [Bioconductor (various repos)](https://github.com/Bioconductor)
@@ -593,7 +617,9 @@ See [Caml](#caml).
   * [blockdiag (Python)](https://github.com/blockdiag/blockdiag)
   * [nwdiag (Python)](https://github.com/blockdiag/nwdiag)
   * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
+* [Blueprint CSS Framework (CSS)](https://github.com/joshuaclayton/blueprint-css)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
+* [Bottlerocket OS (Rust)](https://github.com/bottlerocket-os/bottlerocket)
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [click (Python)](https://github.com/pallets/click)
@@ -609,11 +635,13 @@ See [Caml](#caml).
   * [`std::expected` (C++)](https://github.com/ptal/expected)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
+* [Glazier (Python)](https://github.com/google/glazier)
 * [goals (OCaml)](http://git.annexia.org/?p=goals.git)
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
+* [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [imagefactory](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
@@ -667,6 +695,7 @@ See [Caml](#caml).
 * [schema (Python)](https://github.com/keleshev/schema)
 * [Schematics (Python)](https://github.com/schematics/schematics)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
+* [sh (Golang)](https://github.com/mvdan/sh)
 * [Shake (Haskell)](https://github.com/ndmitchell/shake/) [[docs](https://shakebuild.com/)]
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [six (Python)](https://github.com/benjaminp/six)
@@ -676,6 +705,7 @@ See [Caml](#caml).
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
+* [stubby (C)](https://github.com/getdnsapi/stubby)
 * [systemd (C)](https://github.com/systemd/systemd)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [The LaTeX3 Project](https://github.com/latex3)
@@ -727,6 +757,8 @@ See [Caml](#caml).
 
 ## Virtualization
 
+* [How to Setup QEMU Output to Console and Automate Using Shell Script](https://fadeevab.com/how-to-setup-qemu-output-to-console-and-automate-using-shell-script/)
+* [How to SSH from host to guest using QEMU?](https://unix.stackexchange.com/questions/124681/how-to-ssh-from-host-to-guest-using-qemu)
 * [How to use vagrant-kvm](https://gist.github.com/yuanying/924ce2ce61b75ab818b5)
 * [libguestfs](http://libguestfs.org/)
   * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
@@ -737,12 +769,22 @@ See [Caml](#caml).
 
 ## Web Development
 
+* [6 Methods For Vertical Centering With CSS](https://vanseodesign.com/css/vertical-centering/)
 * [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
 * [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
+* CSS browser reset:
+  * [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
+    * https://github.com/mciastek/web-animation/blob/master/src/basic/styles/reset.css
+* [cssnano](https://cssnano.co/)
+* [How do I vertically align text in a div?](https://stackoverflow.com/questions/2939914/how-do-i-vertically-align-text-in-a-div?noredirect=1&lq=1)
+* [How do I vertically center text with CSS?](https://stackoverflow.com/questions/8865458/how-do-i-vertically-center-text-with-css)
+* [Jak psát web (in Czech)](https://www.jakpsatweb.cz/)
+* [Vertical Centering in CSS](https://www.jakpsatweb.cz/css/css-vertical-center-solution.html)
 
 ## Z-Stuff (unsorted stuff)
 
+* [12 zlatých pravidel duševního zdraví](https://www.patentnimedicina.cz/cz/ze-supliku-tcm/12-zlatych-pravidel-dusevniho-zdravi)
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)

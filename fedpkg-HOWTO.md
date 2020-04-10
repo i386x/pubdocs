@@ -159,7 +159,9 @@ type), write update notes and submit.
 ## Fedora Minimization
 
 * [Fedora Minimization Objective](https://docs.fedoraproject.org/en-US/minimization/)
-* [Feedback Pipeline](https://minimization.github.io/reports/) [[source](https://github.com/minimization/feedback-pipeline)]
+* [Feedback Pipeline (1)](https://minimization.github.io/reports/) [[source](https://github.com/minimization/feedback-pipeline)]
+* [Feedback Pipeline (2)](https://tiny.distro.builders/)
+  * [ELN Compose projection](https://tiny.distro.builders/config-view--eln-compose.html)
 * [minimization](https://pagure.io/minimization)
   * [tickets](https://pagure.io/minimization/issues)
 
