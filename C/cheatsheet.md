@@ -62,7 +62,14 @@ most important parts of the language.
 
 * **TODO**
 
-### 2.1 C Program
+### 2.1 Source Files
+
+#### Comments
+
+* comments in C are multiline
+* a comment starts with `/*` and ends with `*/`
+
+### 2.2 C Program
 
 * every C program is consisting of *functions* and *variables*
 * source files of C programs (files where functions and variables are defined)
