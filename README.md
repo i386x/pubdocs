@@ -38,9 +38,9 @@ interested in. Maybe You find some of these interesting too.
    1. [Utilities](#utilities)
 1. [Math](#math)
    1. [Category Theory](#category-theory)
-1. [Opensource.com articles](#opensourcecom-articles)
+1. [Opensource.com Articles](#opensourcecom-articles)
 1. [Programming](#programming)
-   1. [Articles](#articles)
+   1. [Articles (programming)](#articles-programming)
    1. [Code Analysis](#code-analysis)
    1. [Curiosities](#curiosities)
    1. [Documenting](#documenting)
@@ -49,7 +49,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Social Events](#social-events)
    1. [Talks](#talks)
 1. [Projects](#projects)
-1. [Security](#security)
+1. [Security (general)](#security-general)
 1. [Testing](#testing)
 1. [Virtualization](#virtualization)
 1. [Web Development](#web-development)
@@ -72,10 +72,12 @@ interested in. Maybe You find some of these interesting too.
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
+* [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
@@ -299,6 +301,7 @@ interested in. Maybe You find some of these interesting too.
 * [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
   * [Developing collections](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html)
 * [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
+* [Ansible Tower Lab (With Demos) Using Vagrant For Mac OS](https://github.com/m1820/atd)
 
 Ansible modules
 
@@ -443,11 +446,13 @@ Projects
 * [Category Theory II - Bartosz Milewski](https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm)
 * [Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
 
-## Opensource.com articles
+## Opensource.com Articles
+
+TODO
 
 ## Programming
 
-### Articles
+### Articles (programming)
 
 * [Asynchronous API in C++ and the Continuation Monad](https://www.fpcomplete.com/blog/2012/06/asynchronous-api-in-c-and-the-continuation-monad)
 * [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
@@ -455,6 +460,7 @@ Projects
   * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
   * [lpty: pty control for lua](http://tset.de/lpty/index.html)
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
+* [Obscure C++ Features](http://madebyevan.com/obscure-cpp-features/)
 * [Parsing command line arguments](https://www.fpcomplete.com/blog/2017/12/parsing-command-line-arguments)
 * [Writing kernels that boot with Qemu and Grub - a tutorial](https://www.cs.vu.nl/~herbertb/misc/writingkernels.txt)
 
@@ -725,7 +731,7 @@ See [Caml](#caml).
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 
-## Security
+## Security (general)
 
 * [2019 CWE Top 25 Most Dangerous Software Errors](http://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html)
 * [A (Very) Basic Intro To Elliptic Curve Cryptography](https://hackernoon.com/very-basic-intro-to-elliptic-curve-cryptography-ww3g3t3n)
@@ -742,9 +748,11 @@ See [Caml](#caml).
 * [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
 * [CI Tests for Container Images Based on Red Hat Software Collections](https://github.com/sclorg/rhscl-container-ci)
   * [`yaml/builders`](https://github.com/sclorg/rhscl-container-ci/tree/master/yaml/builders)
+* [dogtail](https://gitlab.com/dogtail/dogtail)
 * [fmf](https://github.com/psss/fmf)
 * [gluetool](https://github.com/gluetool/gluetool)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
+* [PyAutoGUI](https://github.com/asweigart/pyautogui)
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
