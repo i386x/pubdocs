@@ -26,6 +26,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Packaging](#packaging)
 1. [Linux](#linux)
    1. [Administration](#administration)
+   1. [Containers](#containers)
    1. [Error Codes](#error-codes)
    1. [Kernel](#kernel)
    1. [Networking](#networking)
@@ -79,7 +80,6 @@ interested in. Maybe You find some of these interesting too.
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
-* [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
@@ -117,7 +117,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## CentOS
 
-* [CentOSStream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
+* [CentOS Stream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 
 ## Debugging
 
@@ -169,6 +169,7 @@ interested in. Maybe You find some of these interesting too.
   * [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
 * [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
+* [Monospaced fonts in pidgin](https://gist.github.com/armonge/3909580)
 
 ### Packaging
 
@@ -281,6 +282,7 @@ interested in. Maybe You find some of these interesting too.
 * [Beaker Home Page](https://beaker-project.org/)
   * [Resources](https://beaker-project.org/docs/)
 * [beakerlib (git)](https://github.com/beakerlib/beakerlib)
+* [beakerlib-libraries (git)](https://pagure.io/beakerlib-libraries)
 
 ## Linux
 
@@ -340,6 +342,12 @@ Projects
   * [rhsm](https://github.com/oasis-roles/rhsm)
 * [standard-test-roles](https://pagure.io/standard-test-roles/tree/master)
 
+### Containers
+
+* [A Hacker’s Guide To Moving Linux Services Into Containers](http://crunchtools.com/a-hackers-guide-to-moving-linux-services-into-containers/)
+* [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
+* [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
+
 ### Error Codes
 
 * [Common Error Codes](https://www.student.cs.uwaterloo.ca/~cs136/seashell/docs/seashell-error-codes.html)
@@ -348,18 +356,38 @@ Projects
 
 * [9 commands to check hard disk partitions and disk space on Linux](https://www.binarytides.com/linux-command-check-disk-partitions/)
 * [Can losetup be made efficient with sparse files?](https://unix.stackexchange.com/questions/464278/can-losetup-be-made-efficient-with-sparse-files)
+* [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
+* [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
+* [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
+* [Partition and Format Drive With NTFS](https://relentlesscoding.com/2019/01/05/partition-and-format-drive-with-ntfs/)
+* [Turn off (spin down) external (USB) HDD on Linux](https://superuser.com/questions/1138498/turn-off-spin-down-external-usb-hdd-on-linux)
 
 ### Kernel
 
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
 * [linux-0.01](https://github.com/zavg/linux-0.01)
+* [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
+
+#### Programming Device Drivers
+
+##### Virtual Mouse Driver
+
+* [Control mouse by writing to `/dev/input/mice`](https://stackoverflow.com/questions/20595716/control-mouse-by-writing-to-dev-input-mice)
+* [MouseK-driver](https://github.com/kushsharma/mouse-driver)
+  * [linux/drivers/hid/usbhid/usbmouse.c](https://elixir.bootlin.com/linux/latest/source/drivers/hid/usbhid/usbmouse.c)
+* [uinput module](https://www.kernel.org/doc/html/latest/input/uinput.html)
+* [Using Linux virtual mouse driver](https://stackoverflow.com/questions/16482260/using-linux-virtual-mouse-driver)
+  * [入門級 Mouse Linux Kernel Driver](https://fred-zone.blogspot.com/2010/01/mouse-linux-kernel-driver.html)
 
 ### Networking
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
 * [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
+* [Building a virtual network with qemu](http://csortu.blogspot.com/2009/12/building-virtual-network-with-qemu.html)
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
+* [how to connect multiple kvm/qemu VM guests in to a subnet [closed]](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
+* [[Qemu-discuss] Connecting two qemu VMs](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
 
 ### Printing
 
@@ -401,8 +429,10 @@ Projects
   * [Bash One-Liners Explained, Part I: Working with files](https://catonmat.net/bash-one-liners-explained-part-one)
   * [Bash One-Liners Explained, Part II: Working with strings](https://catonmat.net/bash-one-liners-explained-part-two)
   * [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls)
+  * [`getopts_long`](https://groups.google.com/forum/#!original/comp.unix.shell/du0MD5HGn4U/4Jp3vUYAeGEJ)
   * [How To Use Bash Parameter Substitution Like A Pro](https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html)
   * [Quotes](http://mywiki.wooledge.org/Quotes)
+  * [Small `getopts` tutorial](https://wiki.bash-hackers.org/howto/getopts_tutorial)
   * [The Definitive Guide to Bash Command Line History](https://catonmat.net/the-definitive-guide-to-bash-command-line-history)
   * [Why should eval be avoided in Bash, and what should I use instead?](https://stackoverflow.com/questions/17529220/why-should-eval-be-avoided-in-bash-and-what-should-i-use-instead/17529221#17529221)
   * [Writing your own Bash Completion Function](http://fahdshariff.blogspot.cz/2011/04/writing-your-own-bash-completion.html)
@@ -520,6 +550,7 @@ TODO
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
+* [Git rebase gets stuck after resolving merge conflict](https://stackoverflow.com/questions/21833300/git-rebase-gets-stuck-after-resolving-merge-conflict)
 * [How can I move a tag on a git branch to a different commit?](https://stackoverflow.com/questions/8044583/how-can-i-move-a-tag-on-a-git-branch-to-a-different-commit)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
@@ -587,6 +618,17 @@ See [Caml](#caml).
 
 * [Constantly print Subprocess output while process is running](https://stackoverflow.com/questions/4417546/constantly-print-subprocess-output-while-process-is-running)
 
+#### Tcl/Tk
+
+* [Named arguments](https://wiki.tcl-lang.org/page/Named+arguments)
+* [Parse Command Line in a Tcl Script](https://wuhrr.wordpress.com/2009/09/13/parse-command-line-in-a-tcl-script/)
+* [Tcl Library](https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/toc.md)
+* [TCL TK Tutorial: Tool Command Language](https://www.guru99.com/tcl-tutorial.html)
+* [Tcl/Tk 8.6 Manual](https://www.tcl.tk/man/tcl8.6/)
+* [Tcl/Tk Books](http://www.tcltk.com/consortium/resources/books.html)
+* [Tcl/Tk Documentation](https://devdocs.io/tcl_tk/)
+* [TclTk.com](http://www.tcltk.com/)
+
 ### Social Events
 
 * [Coding Dojo Brno](https://github.com/dojo-brno/dojo-brno)
@@ -632,6 +674,7 @@ See [Caml](#caml).
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [did (Python)](https://github.com/psss/did)
+* [Docs to Markdown (JavaScript)](https://github.com/evbacher/gd2md-html)
 * [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
 * Expected `Type`
@@ -667,6 +710,7 @@ See [Caml](#caml).
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
+* [LVM2 (C)](https://github.com/lvmteam/lvm2)
 * [mock (Python)](https://github.com/rpm-software-management/mock)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
 * [nix (C++)](https://github.com/NixOS/nix)
@@ -690,6 +734,7 @@ See [Caml](#caml).
 * [Quay (Python)](https://github.com/quay/quay)
 * [RE2 (C++)](https://github.com/google/re2)
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
+* [Red Hat Bugzilla](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
@@ -707,14 +752,16 @@ See [Caml](#caml).
 * [six (Python)](https://github.com/benjaminp/six)
 * [slop (C++)](https://github.com/naelstrof/slop)
 * [Software Collections](https://github.com/sclorg) [[homepage](https://www.softwarecollections.org/en/)]
+* [Spack (Python)](https://github.com/spack/spack) [[doc](https://spack.readthedocs.io/en/latest/index.html)]
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [stubby (C)](https://github.com/getdnsapi/stubby)
 * [systemd (C)](https://github.com/systemd/systemd)
-* [toolbox (Bash)](https://github.com/debarshiray/toolbox)
+* [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
+* [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
@@ -748,11 +795,14 @@ See [Caml](#caml).
 * [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
 * [CI Tests for Container Images Based on Red Hat Software Collections](https://github.com/sclorg/rhscl-container-ci)
   * [`yaml/builders`](https://github.com/sclorg/rhscl-container-ci/tree/master/yaml/builders)
+* [dbus test example (lvm2)](https://github.com/lvmteam/lvm2/blob/master/test/dbus/lvmdbustest.py)
 * [dogtail](https://gitlab.com/dogtail/dogtail)
 * [fmf](https://github.com/psss/fmf)
 * [gluetool](https://github.com/gluetool/gluetool)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
+* [Pexpect](https://github.com/pexpect/pexpect) [[doc](https://pexpect.readthedocs.io/en/stable/index.html)]
 * [PyAutoGUI](https://github.com/asweigart/pyautogui)
+* [Python-uinput](https://github.com/tuomasjjrasanen/python-uinput)
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
@@ -761,6 +811,9 @@ See [Caml](#caml).
 * [tmt](https://github.com/psss/tmt)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
   * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)
+* [umockdev](https://github.com/martinpitt/umockdev)
+  * [example of use](https://gitlab.gnome.org/GNOME/gvfs/-/blob/master/test/gvfs-test)
+* [xdotool](https://github.com/jordansissel/xdotool) [[doc](https://www.semicomplete.com/projects/xdotool/)]
 * [Zuul CI](https://zuul-ci.org/) [[docs](https://zuul-ci.org/docs/zuul/)]
 
 ## Virtualization
@@ -800,6 +853,7 @@ See [Caml](#caml).
 * [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
 * [How can I restart pulseaudio without having to logout?](https://askubuntu.com/questions/15223/how-can-i-restart-pulseaudio-without-having-to-logout)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
+* [MTB okruh severozápadně od Brna](https://www.czex.cz/zbartos/vbaba.htm)
 * [Oriental](https://www.oriental.cz/)
   * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
 * [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
