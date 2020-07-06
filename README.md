@@ -68,11 +68,14 @@ interested in. Maybe You find some of these interesting too.
 ### Articles
 
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
+* [9 Key Machine Learning Algorithms Explained in Plain English](https://www.freecodecamp.org/news/a-no-code-intro-to-the-9-most-important-machine-learning-algorithms-today/)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Amazon and commercial open source in the cloud: It's complicated](https://www.zdnet.com/article/amazon-and-commercial-open-source-in-the-cloud-its-complicated/)
+* ['Boringly reliable': Red Hat architect thinks Kubernetes is 'mostly done' – but there are still plenty of bugs](https://www.theregister.com/2020/06/17/kubernetes_clayton_coleman_interview/)
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [HOW TO CONTRIBUTE TO OPEN SOURCE: THE ULTIMATE GUIDE](https://builtin.com/software-engineering-perspectives/open-source-contribution)
 * [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
@@ -102,6 +105,7 @@ interested in. Maybe You find some of these interesting too.
 * [TechOverflow](https://techoverflow.net/)
 * [Terence Tao's What's New](https://terrytao.wordpress.com/)
 * [The Clean Coder](http://thecleancoder.blogspot.com/)
+* [Vladimir Keleshev](http://keleshev.com/)
 
 ### GitHub Users
 
@@ -130,6 +134,8 @@ interested in. Maybe You find some of these interesting too.
 ## Dictionaries
 
 * [slovnik.cz](http://www.slovnik.cz/)
+* [The Free Dictionary](https://www.thefreedictionary.com/)
+  * [The Farlex Grammar Book](https://www.thefreedictionary.com/the-farlex-grammar-book.htm)
 * [Wiktionary](https://en.wiktionary.org/)
 
 ## Electronics
@@ -288,6 +294,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
+* [Referenced Specifications](https://refspecs.linuxfoundation.org/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 
 ### Administration
@@ -356,6 +363,7 @@ Projects
 
 * [9 commands to check hard disk partitions and disk space on Linux](https://www.binarytides.com/linux-command-check-disk-partitions/)
 * [Can losetup be made efficient with sparse files?](https://unix.stackexchange.com/questions/464278/can-losetup-be-made-efficient-with-sparse-files)
+* [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
 * [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
 * [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
 * [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
@@ -682,6 +690,9 @@ See [Caml](#caml).
   * [Expected!](https://bell0bytes.eu/expected/)
   * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
   * [`std::expected` (C++)](https://github.com/ptal/expected)
+* [Fedora Infrastructure](https://github.com/fedora-infra)
+  * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
+* [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
 * [Glazier (Python)](https://github.com/google/glazier)
@@ -694,11 +705,11 @@ See [Caml](#caml).
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [imagefactory](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
+* [Insights Core (Python)](https://github.com/RedHatInsights/insights-core)
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
-* [kobo (Python)](https://github.com/release-engineering/kobo)
 * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
 * [leapp (Python)](https://github.com/oamg/leapp)
   * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
@@ -711,8 +722,10 @@ See [Caml](#caml).
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
+* [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
 * [mock (Python)](https://github.com/rpm-software-management/mock)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
+* [Ninja (C++)](https://github.com/ninja-build/ninja) [[doc](https://ninja-build.org/)]
 * [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
 * [normalize.css (CSS)](https://github.com/necolas/normalize.css)
@@ -734,7 +747,10 @@ See [Caml](#caml).
 * [Quay (Python)](https://github.com/quay/quay)
 * [RE2 (C++)](https://github.com/google/re2)
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
-* [Red Hat Bugzilla](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
+* [Red Hat Bugzilla (Perl)](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
+* [release-engineering](https://github.com/release-engineering)
+  * [dist-git (Python/Bash)](https://github.com/release-engineering/dist-git)
+  * [kobo (Python)](https://github.com/release-engineering/kobo)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
@@ -758,6 +774,7 @@ See [Caml](#caml).
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [stubby (C)](https://github.com/getdnsapi/stubby)
+* [sway (C)](https://github.com/swaywm/sway)
 * [systemd (C)](https://github.com/systemd/systemd)
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
@@ -773,6 +790,7 @@ See [Caml](#caml).
 * [vdr (C)](https://github.com/yavdr/vdr)
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
 * [Weldr](https://github.com/weldr)
+* [wlroots (C)](https://github.com/swaywm/wlroots)
 * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
@@ -856,5 +874,6 @@ See [Caml](#caml).
 * [MTB okruh severozápadně od Brna](https://www.czex.cz/zbartos/vbaba.htm)
 * [Oriental](https://www.oriental.cz/)
   * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
+* [Red Hat People team](https://github.com/red-hat-people-team)
 * [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
   * [CHTIP: Frank a chilli](https://neviditelnypes.lidovky.cz/zabava/chtip-frank-a-chilli.A120921_182947_p_zabava_wag)
