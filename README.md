@@ -93,11 +93,13 @@ interested in. Maybe You find some of these interesting too.
 
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
+* [Catch22](http://www.catch22.net/)
 * [catonmat Articles Archive](https://catonmat.net/archive)
 * [Doomsday Vault](https://x-c3ll.github.io/)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [Haoyi's Programming Blog](http://www.lihaoyi.com/)
 * [jamiebuilds](https://jamie.build/)
+* [Ken Shirriff's blog](http://www.righto.com/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Radek Pazdera](https://radek.io/)
 * [Richard WM Jones](https://rwmj.wordpress.com/)
@@ -116,6 +118,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [Culture Map, The (Erin Meyer)](https://www.amazon.com/Culture-Map-INTL-ED-Decoding/dp/1610392760/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=)
 * [On Lisp: Advanced Techniques for Common Lisp (Paul Graham)](http://www.paulgraham.com/onlisp.html)
+* [Red Hat Developer eBooks](https://developers.redhat.com/ebooks)
 * [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
   * [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
 
@@ -131,8 +134,9 @@ interested in. Maybe You find some of these interesting too.
 * [Tracing program/function execution on source line level](https://stackoverflow.com/questions/39602306/tracing-program-function-execution-on-source-line-level)
 * [Where is core dump located?](https://ask.fedoraproject.org/en/question/98776/where-is-core-dump-located/)
 
-## Dictionaries
+## Dictionaries & Translators
 
+* [DeepL Translator](https://www.deepl.com/translator)
 * [slovnik.cz](http://www.slovnik.cz/)
 * [The Free Dictionary](https://www.thefreedictionary.com/)
   * [The Farlex Grammar Book](https://www.thefreedictionary.com/the-farlex-grammar-book.htm)
@@ -223,6 +227,7 @@ interested in. Maybe You find some of these interesting too.
 * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
 * [mypy](https://mypy.readthedocs.io)
 * [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
+* [PEP 420 -- Implicit Namespace Packages](https://www.python.org/dev/peps/pep-0420/) [[example](https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/context/)]
 * [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/)
 * [PEP 518 -- Specifying Minimum Build System Requirements for Python Projects](https://www.python.org/dev/peps/pep-0518/)
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
@@ -301,6 +306,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [Configuring Sudo](https://fedoraproject.org/wiki/Configuring_Sudo)
 * [Linux Users and Groups](https://www.linode.com/docs/tools-reference/linux-users-and-groups/)
+* [Miscellaneous stuff](https://github.com/myllynen/misc)
 * [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
 * [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
 * [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
@@ -365,6 +371,7 @@ Projects
 * [Can losetup be made efficient with sparse files?](https://unix.stackexchange.com/questions/464278/can-losetup-be-made-efficient-with-sparse-files)
 * [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
 * [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
+* [How to create virtual block device (loop device/filesystem) in Linux](https://www.thegeekdiary.com/how-to-create-virtual-block-device-loop-device-filesystem-in-linux/)
 * [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
 * [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
 * [Partition and Format Drive With NTFS](https://relentlesscoding.com/2019/01/05/partition-and-format-drive-with-ntfs/)
@@ -490,6 +497,18 @@ TODO
 
 ## Programming
 
+### Algorithms & Data Structures
+
+#### Text Editing
+
+* [Data structure for text editor](https://stackoverflow.com/questions/4199694/data-structure-for-text-editor)
+* [Gap buffer](https://en.wikipedia.org/wiki/Gap_buffer)
+* [Piece table](https://en.wikipedia.org/wiki/Piece_table)
+* [Rope (data structure)](https://en.wikipedia.org/wiki/Rope_(data_structure))
+  * [example](https://github.com/ivmai/bdwgc/tree/master/cord)
+* [Most efficient data structure to add styles to text](https://stackoverflow.com/questions/4185624/most-efficient-data-structure-to-add-styles-to-text/4197146)
+* [Text Editor: Data Structures](https://news.ycombinator.com/item?id=15381886)
+
 ### Articles (programming)
 
 * [Asynchronous API in C++ and the Continuation Monad](https://www.fpcomplete.com/blog/2012/06/asynchronous-api-in-c-and-the-continuation-monad)
@@ -498,7 +517,6 @@ TODO
   * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
   * [lpty: pty control for lua](http://tset.de/lpty/index.html)
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
-* [Obscure C++ Features](http://madebyevan.com/obscure-cpp-features/)
 * [Parsing command line arguments](https://www.fpcomplete.com/blog/2017/12/parsing-command-line-arguments)
 * [Writing kernels that boot with Qemu and Grub - a tutorial](https://www.cs.vu.nl/~herbertb/misc/writingkernels.txt)
 
@@ -590,8 +608,11 @@ TODO
   * [`std::visit` is everything wrong with modern C++](https://bitbashing.io/std-visit.html)
   * [why choose sum types over exceptions?](https://vittorioromeo.info/index/blog/adts_over_exceptions.html)
   * [Why is exception handling bad?](https://stackoverflow.com/questions/1736146/why-is-exception-handling-bad)
-* [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
+* [Functional Programming in C++](https://github.com/graninas/cpp_functional_programming)
+* [Obscure C++ Features](http://madebyevan.com/obscure-cpp-features/)
 * [Substitution Failure Is Not An Error (SFINAE)](https://en.cppreference.com/w/cpp/language/sfinae)
+* [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
+* [Where and why do I have to put the “template” and “typename” keywords?](https://stackoverflow.com/questions/610245/where-and-why-do-i-have-to-put-the-template-and-typename-keywords)
 
 #### Caml
 
@@ -674,17 +695,21 @@ See [Caml](#caml).
   * [nwdiag (Python)](https://github.com/blockdiag/nwdiag)
   * [seqdiag (Python)](https://github.com/blockdiag/seqdiag)
 * [Blueprint CSS Framework (CSS)](https://github.com/joshuaclayton/blueprint-css)
+* [Boehm-Demers-Weiser Garbage Collector (C)](https://github.com/ivmai/bdwgc/)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
 * [Bottlerocket OS (Rust)](https://github.com/bottlerocket-os/bottlerocket)
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
+* [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
+* [doit (Python)](https://github.com/pydoit/doit) [[doc](https://pydoit.org/contents.html)]
 * [did (Python)](https://github.com/psss/did)
 * [Docs to Markdown (JavaScript)](https://github.com/evbacher/gd2md-html)
 * [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
+* [ewig (C++)](https://github.com/arximboldi/ewig)
 * Expected `Type`
   * [Boost `optional<T>` (C++)](https://github.com/boostorg/optional) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/optional/doc/html/index.html)]
   * [Expected!](https://bell0bytes.eu/expected/)
@@ -692,6 +717,7 @@ See [Caml](#caml).
   * [`std::expected` (C++)](https://github.com/ptal/expected)
 * [Fedora Infrastructure](https://github.com/fedora-infra)
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
+* [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
@@ -705,12 +731,14 @@ See [Caml](#caml).
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [imagefactory](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
+* [immer (C++)](https://github.com/arximboldi/immer) [[doc](https://sinusoid.es/immer/#contents)]
 * [Insights Core (Python)](https://github.com/RedHatInsights/insights-core)
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
+* [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
 * [leapp (Python)](https://github.com/oamg/leapp)
   * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
     * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
@@ -759,6 +787,7 @@ See [Caml](#caml).
 * [rvm (Bash)](https://github.com/rvm/rvm)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
+* [scelta (C++)](https://github.com/SuperV1234/scelta)
 * [schema (Python)](https://github.com/keleshev/schema)
 * [Schematics (Python)](https://github.com/schematics/schematics)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
@@ -776,6 +805,7 @@ See [Caml](#caml).
 * [stubby (C)](https://github.com/getdnsapi/stubby)
 * [sway (C)](https://github.com/swaywm/sway)
 * [systemd (C)](https://github.com/systemd/systemd)
+* [Tilix (D)](https://github.com/gnunn1/tilix)
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
@@ -795,6 +825,7 @@ See [Caml](#caml).
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
+* [zug (C++)](https://github.com/arximboldi/zug) [[doc](https://sinusoid.es/zug/#contents)]
 
 ## Security (general)
 
@@ -851,7 +882,8 @@ See [Caml](#caml).
 * [6 Methods For Vertical Centering With CSS](https://vanseodesign.com/css/vertical-centering/)
 * [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
-* [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
+* Color schemes:
+  * [Paraíso for Pygments](https://github.com/idleberg/Paraiso-Pygments)
 * CSS browser reset:
   * [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
     * https://github.com/mciastek/web-animation/blob/master/src/basic/styles/reset.css
@@ -859,6 +891,7 @@ See [Caml](#caml).
 * [How do I vertically align text in a div?](https://stackoverflow.com/questions/2939914/how-do-i-vertically-align-text-in-a-div?noredirect=1&lq=1)
 * [How do I vertically center text with CSS?](https://stackoverflow.com/questions/8865458/how-do-i-vertically-center-text-with-css)
 * [Jak psát web (in Czech)](https://www.jakpsatweb.cz/)
+* [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
 * [Vertical Centering in CSS](https://www.jakpsatweb.cz/css/css-vertical-center-solution.html)
 
 ## Z-Stuff (unsorted stuff)
@@ -875,5 +908,6 @@ See [Caml](#caml).
 * [Oriental](https://www.oriental.cz/)
   * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
 * [Red Hat People team](https://github.com/red-hat-people-team)
+* [Rubens LP (Illustrator / Graphic Artist)](https://www.rubenslp.com.br/)
 * [Soutěž ve vaření chilli](https://www.cact.cz/noviny/2005/02/chilli.htm)
   * [CHTIP: Frank a chilli](https://neviditelnypes.lidovky.cz/zabava/chtip-frank-a-chilli.A120921_182947_p_zabava_wag)
