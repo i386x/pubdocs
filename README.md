@@ -37,6 +37,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Shells](#shells)
    1. [Terminal](#terminal)
    1. [Utilities](#utilities)
+   1. [X](#x)
 1. [Math](#math)
    1. [Category Theory](#category-theory)
 1. [Opensource.com Articles](#opensourcecom-articles)
@@ -70,6 +71,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [9 Key Machine Learning Algorithms Explained in Plain English](https://www.freecodecamp.org/news/a-no-code-intro-to-the-9-most-important-machine-learning-algorithms-today/)
+* [A First Look At The Podman 2.0 API](http://crunchtools.com/a-first-look-at-the-podman-2-0-api/)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Amazon and commercial open source in the cloud: It's complicated](https://www.zdnet.com/article/amazon-and-commercial-open-source-in-the-cloud-its-complicated/)
 * ['Boringly reliable': Red Hat architect thinks Kubernetes is 'mostly done' – but there are still plenty of bugs](https://www.theregister.com/2020/06/17/kubernetes_clayton_coleman_interview/)
@@ -92,6 +94,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Blogs
 
+* [0x00sec](https://0x00sec.org/)
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [Catch22](http://www.catch22.net/)
@@ -122,6 +125,7 @@ interested in. Maybe You find some of these interesting too.
 * [Red Hat Developer eBooks](https://developers.redhat.com/ebooks)
 * [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
   * [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
+* [The Heart of Conflict: A Spirituality of Transformation](https://www.amazon.co.uk/Heart-Conflict-Spirituality-Transformation/dp/1896836577)
 
 ## CentOS
 
@@ -176,6 +180,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### GNOME
 
+* [Boosting the Real Time Performance of Gnome Shell 3.34 in Ubuntu 19.10](https://discourse.ubuntu.com/t/boosting-the-real-time-performance-of-gnome-shell-3-34-in-ubuntu-19-10/13095)
 * GNOME Shell Extensions
   * [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
@@ -198,6 +203,7 @@ interested in. Maybe You find some of these interesting too.
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
+* [Unified source and PR driven workflow](https://github.com/projectatomic/rpmdistro-gitoverlay/blob/master/doc/reworking-fedora-releng.md)
 * [Universal Packaging Tool (upt)](https://framagit.org/upt/upt)
 * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
 
@@ -300,6 +306,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
+* [LWN.net](https://lwn.net/)
 * [Referenced Specifications](https://refspecs.linuxfoundation.org/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 
@@ -339,8 +346,8 @@ Ansible tools
 
 Docs
 
-* [Ansible Best Practices (from OASIS roles)](https://github.com/oasis-roles/meta_standards/blob/master/README.md#ansible-best-practices)
 * [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
+* [Meta Best Practices (v1.0.0)](https://github.com/oasis-roles/meta_standards/tree/1.0.0)
 * [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 * [Roles (from Adfinis Sygroup Ansible Guide)](https://docs.adfinis-sygroup.ch/public/ansible-guide/roles.html)
 
@@ -416,6 +423,7 @@ Projects
 
 * [In-Memory-Only ELF Execution (Without tmpfs)](https://magisterquis.github.io/2018/03/31/in-memory-only-elf-execution.html)
 * [Loading "fileless" Shared Objects (memfd_create + dlopen)](https://x-c3ll.github.io/posts/fileless-memfd_create/)
+* [Pure python in memory SO loading without shm](https://0x00sec.org/t/pure-python-in-memory-so-loading-without-shm/6453)
 
 ### Security
 
@@ -452,6 +460,7 @@ Projects
   * [The Definitive Guide to Bash Command Line History](https://catonmat.net/the-definitive-guide-to-bash-command-line-history)
   * [Why should eval be avoided in Bash, and what should I use instead?](https://stackoverflow.com/questions/17529220/why-should-eval-be-avoided-in-bash-and-what-should-i-use-instead/17529221#17529221)
   * [Writing your own Bash Completion Function](http://fahdshariff.blogspot.cz/2011/04/writing-your-own-bash-completion.html)
+* [commandlinefu.com](https://www.commandlinefu.com/)
 * [DASH Shell (git)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [FISH Shell](http://fishshell.com/)
   * [git](https://github.com/fish-shell/fish-shell)
@@ -474,12 +483,28 @@ Projects
 * `make`
   * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/make.html)
 
+### X
+
+* [freedesktop.org repositories (mirror)](https://github.com/freedesktop)
+  * [libX11](https://github.com/freedesktop/xorg-libX11)
+  * [libXaw](https://github.com/freedesktop/xorg-libXaw)
+  * [libXaw3d](https://github.com/freedesktop/xorg-libXaw3d)
+  * [libxcb](https://github.com/freedesktop/xcb-libxcb)
+  * [xorgproto](https://github.com/freedesktop/xorg-xorgproto)
+* [Motif](https://github.com/fjardon/motif)
+* [XCB](https://xcb.freedesktop.org/)
+  * [API](https://xcb.freedesktop.org/XcbApi/): [public](https://xcb.freedesktop.org/PublicApi/), [protocol stub](https://xcb.freedesktop.org/ProtocolStubApi/), [protocol extension](https://xcb.freedesktop.org/ProtocolExtensionApi/)
+  * [Basic Graphics Programming With The XCB Library](https://www.x.org/releases/current/doc/libxcb/tutorial/index.html)
+  * [modules](https://xcb.freedesktop.org/manual/modules.html)
+  * [tutorial](https://xcb.freedesktop.org/tutorial/)
+
 ## Math
 
 * [math.stackexchange.com](https://math.stackexchange.com/)
   * [downset](https://math.stackexchange.com/search?q=downset)
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
 * [NRICH](https://nrich.maths.org/)
+* [Papers We Love](https://paperswelove.org/)
 * [Project Euler](https://projecteuler.net/)
   * [Lambda Count](https://projecteuler.net/problem=623)
   * [Largest product in a series](https://projecteuler.net/problem=8)
@@ -497,6 +522,8 @@ Projects
 TODO
 
 ## Programming
+
+* [Design Patterns](http://www.vincehuston.org/dp/)
 
 ### Algorithms & Data Structures
 
@@ -644,6 +671,10 @@ TODO
 
 See [Caml](#caml).
 
+#### Prolog
+
+* [99 Prolog Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2009s2/prolog/problemas/)
+
 #### Python
 
 * [Constantly print Subprocess output while process is running](https://stackoverflow.com/questions/4417546/constantly-print-subprocess-output-while-process-is-running)
@@ -699,16 +730,20 @@ See [Caml](#caml).
 * [Boehm-Demers-Weiser Garbage Collector (C)](https://github.com/ivmai/bdwgc/)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
 * [Bottlerocket OS (Rust)](https://github.com/bottlerocket-os/bottlerocket)
+* [Brotli (C)](https://github.com/google/brotli)
+  * [madler/brotli (C)](https://github.com/madler/brotli)
+  * [RFC 7932](https://tools.ietf.org/html/rfc7932)
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cscope (C)](https://github.com/nhorman/cscope)
-* [doit (Python)](https://github.com/pydoit/doit) [[doc](https://pydoit.org/contents.html)]
 * [did (Python)](https://github.com/psss/did)
+* [distorm (C/Python)](https://github.com/gdabah/distorm)
 * [Docs to Markdown (JavaScript)](https://github.com/evbacher/gd2md-html)
 * [docutils (Python)](https://github.com/docutils/docutils) [[doc](http://docutils.sourceforge.net/docs/)]
+* [doit (Python)](https://github.com/pydoit/doit) [[doc](https://pydoit.org/contents.html)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
 * [ewig (C++)](https://github.com/arximboldi/ewig)
 * Expected `Type`
@@ -730,7 +765,7 @@ See [Caml](#caml).
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
-* [imagefactory](https://github.com/redhat-imaging/imagefactory)
+* [imagefactory (Python)](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
 * [immer (C++)](https://github.com/arximboldi/immer) [[doc](https://sinusoid.es/immer/#contents)]
 * [Insights Core (Python)](https://github.com/RedHatInsights/insights-core)
@@ -738,7 +773,6 @@ See [Caml](#caml).
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
-* [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
 * [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
 * [leapp (Python)](https://github.com/oamg/leapp)
   * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
@@ -751,6 +785,7 @@ See [Caml](#caml).
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
+* [Marshal parser (Python)](https://github.com/fedora-python/marshalparser/)
 * [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
 * [mock (Python)](https://github.com/rpm-software-management/mock)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
@@ -788,6 +823,7 @@ See [Caml](#caml).
 * [rvm (Bash)](https://github.com/rvm/rvm)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [ScanCode toolkit (Python)](https://github.com/nexB/scancode-toolkit)
+* [scantailor (C++)](https://github.com/scantailor/scantailor)
 * [scelta (C++)](https://github.com/SuperV1234/scelta)
 * [schema (Python)](https://github.com/keleshev/schema)
 * [Schematics (Python)](https://github.com/schematics/schematics)
@@ -806,7 +842,14 @@ See [Caml](#caml).
 * [stubby (C)](https://github.com/getdnsapi/stubby)
 * [sway (C)](https://github.com/swaywm/sway)
 * [systemd (C)](https://github.com/systemd/systemd)
-* [Tilix (D)](https://github.com/gnunn1/tilix)
+* Terminal emulators
+  * [Alacritty (Rust)](https://github.com/alacritty/alacritty)
+  * [Eterm (C)](https://github.com/mej/Eterm)
+  * [Guake 3 (Python)](https://github.com/Guake/guake)
+  * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
+  * [Terminator 3 (Python)](https://github.com/multiSnow/terminator3)
+  * [Tilix (D)](https://github.com/gnunn1/tilix)
+  * [Xiki (Ruby)](https://github.com/trogdoro/xiki)
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
@@ -820,12 +863,18 @@ See [Caml](#caml).
 * [vagrant-libvirt (Ruby)](https://github.com/vagrant-libvirt/vagrant-libvirt)
 * [vdr (C)](https://github.com/yavdr/vdr)
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
+* [Volatility Framework (Python)](https://github.com/volatilityfoundation/volatility)
 * [Weldr](https://github.com/weldr)
+* Window managers
+  * [Fluxbox (C++)](https://github.com/fluxbox/fluxbox)
+  * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [wlroots (C)](https://github.com/swaywm/wlroots)
-* [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
+* [zlib (C)](https://github.com/madler/zlib/)
+  * [flate (Go)](https://github.com/golang/go/tree/master/src/compress/flate)
+  * [RFC 1951](https://tools.ietf.org/html/rfc1951)
 * [zug (C++)](https://github.com/arximboldi/zug) [[doc](https://sinusoid.es/zug/#contents)]
 
 ## Security (general)
@@ -849,6 +898,11 @@ See [Caml](#caml).
 * [dogtail](https://gitlab.com/dogtail/dogtail)
 * [fmf](https://github.com/psss/fmf)
 * [gluetool](https://github.com/gluetool/gluetool)
+* Jake Wernette's series on Jenkins Shared Libraries
+  1. [What Are Jenkins Shared Libraries And Why You Should Use Them](https://itnext.io/jenkins-shared-libraries-part-1-5ba3d072536a)
+  1. [How To Build Your Own Jenkins Shared Library](https://itnext.io/how-to-build-your-own-jenkins-shared-library-9dc129db260c)
+  1. [Unit Testing a Jenkins Shared Library](https://itnext.io/unit-testing-a-jenkins-shared-library-9bfb6b599748)
+  1. [Collecting Code Coverage for a Jenkins Shared Library](https://itnext.io/collecting-code-coverage-for-a-jenkins-shared-library-c2d8f502732e)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
 * [Pexpect](https://github.com/pexpect/pexpect) [[doc](https://pexpect.readthedocs.io/en/stable/index.html)]
 * [PyAutoGUI](https://github.com/asweigart/pyautogui)
@@ -898,6 +952,7 @@ See [Caml](#caml).
 ## Z-Stuff (unsorted stuff)
 
 * [12 zlatých pravidel duševního zdraví](https://www.patentnimedicina.cz/cz/ze-supliku-tcm/12-zlatych-pravidel-dusevniho-zdravi)
+* [Blue Light Screen Protector Panels](https://eyespc.com/collections/blue-light-filter-panels)
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
