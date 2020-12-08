@@ -117,7 +117,23 @@ main()
 
 ## 4 Variables
 
-* **TODO**
+* variables must be declared before they are used
+
+### 4.1 Declaration
+
+A general form of declaration is
+```
+<type> <list-of-variables> ";"
+```
+where `<type>` is a type of a variable and `<list-of-variables>` is a comma
+separated list of identifiers.
+
+#### Example
+
+```C
+int a, b, c;
+```
+declares three variables `a`, `b`, and `c` of type `int`.
 
 ## 5 Expressions
 
