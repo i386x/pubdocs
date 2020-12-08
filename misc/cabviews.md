@@ -9,7 +9,10 @@
 * [CB-Train Driver](https://www.youtube.com/channel/UC1yHBkvFtv1zLZywKwbMbEg/videos)
 * [J.N.V.](https://www.youtube.com/channel/UCNED4lGLrsrVLTQaHeADZEg/videos)
 * [RobM](https://www.youtube.com/channel/UCHnJok6-vpLXS1K_ir72QpQ/videos)
+* [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
 * [Radolfzell-Friedrichshafen](https://www.youtube.com/watch?v=JmbDvjDnH5k)
+* [Taurus-Tf](https://www.youtube.com/channel/UCowsdpGGcTcKhgurICOJERg/videos)
+* https://www.youtube.com/c/vlexxGmbH/videos
 * https://www.youtube.com/user/lorirocks777/videos
 * [Railway Emotions](https://www.youtube.com/channel/UCRYl1C12IXPs2Uo_25OdrPA/videos)
 * [Associazione Verbano Express](https://www.youtube.com/channel/UC3-diLH1e2WCceg4_E7Vq-g/videos)
@@ -30,4 +33,6 @@
 * [YusTren](https://www.youtube.com/channel/UCbsDr5W9mDkINjxuqnAUkfg/videos)
 * [Maquivia](https://www.youtube.com/channel/UCBbxtOvDira4bLyyB9v6TdQ/videos)
 * https://www.youtube.com/user/orezul/videos
-* [Taipei-Taipei](https://www.youtube.com/watch?v=ko_GG_ANBbA)
+* [Taipei to Taipei](https://www.youtube.com/watch?v=ko_GG_ANBbA)
+* [Takayama to Osaka](https://www.youtube.com/watch?v=tH3gJ1cWU-Y)
+* https://www.youtube.com/user/urbanbiobio/videos

@@ -21,6 +21,7 @@ interested in. Maybe You find some of these interesting too.
    1. [RC Circuits](#rc-circuits)
 1. [Fedora Project](#fedora-project)
    1. [Developer](#developer)
+   1. [ELN](#eln)
    1. [FESCO](#fesco)
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
@@ -78,10 +79,12 @@ interested in. Maybe You find some of these interesting too.
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
 * [HOW TO CONTRIBUTE TO OPEN SOURCE: THE ULTIMATE GUIDE](https://builtin.com/software-engineering-perspectives/open-source-contribution)
 * [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
+* [No, Kubernetes doesn’t make applications portable, say analysts. Good luck avoiding lock-in, too](https://www.theregister.com/2020/09/08/kubernetes_app_portability_problems/)
 * [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
@@ -90,6 +93,7 @@ interested in. Maybe You find some of these interesting too.
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
+* [Why Cloud-Based Architectures and Open Source Don’t Always Mix](https://www.itprotoday.com/hybrid-cloud/why-cloud-based-architectures-and-open-source-don-t-always-mix)
 * [Why introverts are ignored and often overlooked](https://www.raconteur.net/hr/introverts-workplace)
 
 ### Blogs
@@ -129,6 +133,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## CentOS
 
+* [CentOS Project](https://github.com/CentOS)
 * [CentOS Stream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 
 ## Debugging
@@ -173,6 +178,11 @@ interested in. Maybe You find some of these interesting too.
   * [Docker](https://developer.fedoraproject.org/tools/docker/about.html)
   * [Python](https://developer.fedoraproject.org/tech/languages/python/python-installation.html)
   * [Vagrant](https://developer.fedoraproject.org/tools/vagrant/about.html)
+
+### ELN
+
+* [Fedora ELN project](https://docs.fedoraproject.org/en-US/eln/)
+  * [Buildroot configuration](https://docs.fedoraproject.org/en-US/eln/buildroot/)
 
 ### FESCO
 
@@ -228,23 +238,48 @@ interested in. Maybe You find some of these interesting too.
 #### Python packaging
 
 * [Awesome Python Typing](https://github.com/typeddjango/awesome-python-typing)
-* [bandit](https://bandit.readthedocs.io)
 * [Building and Distributing Packages with Setuptools](https://setuptools.readthedocs.io/en/latest/setuptools.html) [[repo](https://github.com/pypa/setuptools)]
-* [coverage](https://coverage.readthedocs.io)
-* [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
-* [mypy](https://mypy.readthedocs.io)
-* [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
+* [Classifiers](https://pypi.org/classifiers/)
+* [coverage](https://coverage.readthedocs.io) [[repo](https://github.com/nedbat/coveragepy)]
+* [coveralls.io](https://coveralls.io/)
+  * [coveralls](https://coveralls-python.readthedocs.io/) [[repo](https://github.com/coveralls-clients/coveralls-python)]
+* Linters
+  * [bandit](https://bandit.readthedocs.io)
+  * [black](https://black.readthedocs.io/) [[repo](https://github.com/psf/black)]
+  * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
+    * [flake8-logging-format](https://github.com/globality-corp/flake8-logging-format)
+    * [hacking](https://docs.openstack.org/hacking/) [[repo](https://github.com/openstack/hacking)]
+    * [mccabe](https://github.com/PyCQA/mccabe)
+    * [pycodestyle](https://pycodestyle.pycqa.org/) [[repo](https://github.com/PyCQA/pycodestyle)]
+    * [pyflakes](https://github.com/PyCQA/pyflakes)
+  * [isort](https://pycqa.github.io/isort/) [[repo](https://github.com/PyCQA/isort)]
+  * [mypy](http://mypy-lang.org/) [[docs](https://mypy.readthedocs.io)] [[repo](https://github.com/python/mypy)]
+    * [typeshed](https://github.com/python/typeshed)
+    * [typing](https://docs.python.org/3/library/typing.html)
+  * [pydocstyle](http://www.pydocstyle.org) [[repo](https://github.com/PyCQA/pydocstyle)]
+  * [pylint](http://pylint.pycqa.org/) [[repo](https://github.com/PyCQA/pylint)]
+  * [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
+* [Python Packaging User Guide](https://packaging.python.org/)
+  * [Including files in source distributions with `MANIFEST.in`](https://packaging.python.org/guides/using-manifest-in/)
+  * [Packaging Python Projects (tutorial)](https://packaging.python.org/tutorials/packaging-projects/)
+* [PEP 20 -- The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
+* [PEP 257 -- Docstring Conventions](https://www.python.org/dev/peps/pep-0257/)
+* [PEP 263 -- Defining Python Source Code Encodings](https://www.python.org/dev/peps/pep-0263/)
+* [PEP 345 -- Metadata for Python Software Packages 1.2](https://www.python.org/dev/peps/pep-0345/)
 * [PEP 420 -- Implicit Namespace Packages](https://www.python.org/dev/peps/pep-0420/) [[example](https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/context/)]
+* [PEP 426 -- Metadata for Python Software Packages 2.0](https://www.python.org/dev/peps/pep-0426/)
+* [PEP 459 -- Standard Metadata Extensions for Python Software Packages](https://www.python.org/dev/peps/pep-0459/)
 * [PEP 517 -- A build-system independent format for source trees](https://www.python.org/dev/peps/pep-0517/)
 * [PEP 518 -- Specifying Minimum Build System Requirements for Python Projects](https://www.python.org/dev/peps/pep-0518/)
+* [PEP 561 -- Distributing and Packaging Type Information](https://www.python.org/dev/peps/pep-0561/)
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
 * [Poetry](https://python-poetry.org/)
   * [The `pyproject.toml` file](https://python-poetry.org/docs/pyproject/)
-* [pydocstyle](http://www.pydocstyle.org)
+* [pytest](https://docs.pytest.org/) [[repo](https://github.com/pytest-dev/pytest)]
+  * [pytest-cov](https://pytest-cov.readthedocs.io/) [[repo](https://github.com/pytest-dev/pytest-cov/)]
 * [Python Packaging Authority](https://github.com/pypa)
   * [A sample Python project](https://github.com/pypa/sampleproject)
 * [python-packaging](https://python-packaging.readthedocs.io)
-* [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
 * [setuptools](https://setuptools.readthedocs.io)
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
 * spec file examples
@@ -366,6 +401,8 @@ Projects
 ### Containers
 
 * [A Hacker’s Guide To Moving Linux Services Into Containers](http://crunchtools.com/a-hackers-guide-to-moving-linux-services-into-containers/)
+* [Fedora Container Registry](https://registry.fedoraproject.org/)
+* [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 
@@ -412,6 +449,10 @@ Projects
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
 * [[Qemu-discuss] Connecting two qemu VMs](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
 
+#### RFCs
+
+* [RFC 822 -- STANDARD FOR THE FORMAT OF ARPA INTERNET TEXT MESSAGES](https://tools.ietf.org/html/rfc822.html)
+
 ### Printing
 
 * [CUPSDriverlessPrinting](https://wiki.debian.org/CUPSDriverlessPrinting)
@@ -433,6 +474,7 @@ Projects
 
 ### Shared Libraries
 
+* [Chapter 5: Building shared libraries with Libtool](http://freesoftwaremagazine.com/articles/building_shared_libraries_once_using_autotools/)
 * [ld.so, ld-linux.so - dynamic linker/loader](http://man7.org/linux/man-pages/man8/ld.so.8.html)
 * [Program Library HOWTO](http://tldp.org/HOWTO/Program-Library-HOWTO/index.html)
 
@@ -583,10 +625,12 @@ TODO
 
 * [Markdown](https://daringfireball.net/projects/markdown/)
 * [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+* [On comment headers](https://www.embedded.com/on-comment-headers/)
+* [Type terms](https://www.supremo.co.uk/typeterms/)
+* [What should I put in header comments at the top of source files?](https://stackoverflow.com/questions/2036187/what-should-i-put-in-header-comments-at-the-top-of-source-files)
 * Writing manual pages
   * [man page example](https://github.com/karelzak/util-linux/blob/master/Documentation/howto-man-page.txt)
   * [What you need to know to write man pages](https://www.linux.com/news/what-you-need-know-write-man-pages)
-* [Type terms](https://www.supremo.co.uk/typeterms/)
 
 #### TeX
 
@@ -597,6 +641,7 @@ TODO
 
 ### Git
 
+* [git-abc](https://github.com/rhdrjones/git-abc)
 * [Pro Git](https://git-scm.com/book/en/v2)
 
 #### FAQ
@@ -734,10 +779,12 @@ See [Caml](#caml).
   * [madler/brotli (C)](https://github.com/madler/brotli)
   * [RFC 7932](https://tools.ietf.org/html/rfc7932)
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
+* [cdemu (C)](https://github.com/cdemu/cdemu) [[doc](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
+* [cppcheck (C++)](https://github.com/danmar/cppcheck)
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [did (Python)](https://github.com/psss/did)
 * [distorm (C/Python)](https://github.com/gdabah/distorm)
@@ -755,8 +802,10 @@ See [Caml](#caml).
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
 * [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
+* [FlySpell (EmacsLisp)](https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/flyspell.el)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
+* [git-review (Python)](https://opendev.org/opendev/git-review)
 * [Glazier (Python)](https://github.com/google/glazier)
 * [goals (OCaml)](http://git.annexia.org/?p=goals.git)
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
@@ -765,6 +814,7 @@ See [Caml](#caml).
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
+* [icmake (C)](https://gitlab.com/fbb-git/icmake/) [[home](https://fbb-git.gitlab.io/icmake/)]
 * [imagefactory (Python)](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
 * [immer (C++)](https://github.com/arximboldi/immer) [[doc](https://sinusoid.es/immer/#contents)]
@@ -773,12 +823,10 @@ See [Caml](#caml).
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
-* [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
-* [leapp (Python)](https://github.com/oamg/leapp)
-  * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
-    * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
-* [leapp-repository (Python)](https://github.com/oamg/leapp-repository)
 * [L-system (M4)](https://github.com/jkubin/L-system)
+* [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
+* [LanguageTool (Java)](https://github.com/languagetool-org/languagetool) [[home](https://languagetool.org/)]
+* [libevent (C)](https://github.com/libevent/libevent)
 * [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs)
 * [libteam (C)](https://github.com/jpirko/libteam)
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
@@ -793,6 +841,12 @@ See [Caml](#caml).
 * [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
 * [normalize.css (CSS)](https://github.com/necolas/normalize.css)
+* [OS and Application Modernization Group](https://github.com/oamg)
+  * [convert2rhel (Python)](https://github.com/oamg/convert2rhel)
+  * [leapp (Python)](https://github.com/oamg/leapp)
+  * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
+    * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
+  * [leapp-repository (Python)](https://github.com/oamg/leapp-repository)
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [oVirt](https://github.com/oVirt)
@@ -804,10 +858,13 @@ See [Caml](#caml).
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
 * [pluggy (Python)](https://github.com/pytest-dev/pluggy)
+* [Podium (JavaScript)](https://github.com/sa-mw-dach/podium)
 * [popt (C)](https://github.com/rpm-software-management/popt)
+* [proselint (Python)](https://github.com/amperser/proselint) [[home](http://proselint.com/)]
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
+* [PyTorch (C++/Python)](https://github.com/pytorch/pytorch)
 * [Quay (Python)](https://github.com/quay/quay)
 * [RE2 (C++)](https://github.com/google/re2)
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
@@ -817,6 +874,7 @@ See [Caml](#caml).
   * [kobo (Python)](https://github.com/release-engineering/kobo)
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
+* [review-rot (Python)](https://github.com/redhat-aqe/review-rot)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [rpm (C)](https://github.com/rpm-software-management/rpm)
 * [rpminspect (C)](https://github.com/rpminspect/rpminspect)
@@ -869,12 +927,15 @@ See [Caml](#caml).
   * [Fluxbox (C++)](https://github.com/fluxbox/fluxbox)
   * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [wlroots (C)](https://github.com/swaywm/wlroots)
+* [XL - An extensible language](https://github.com/c3d/xl)
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
+* [yodl (C)](https://gitlab.com/fbb-git/yodl) [[home](https://fbb-git.gitlab.io/yodl/)]
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 * [zlib (C)](https://github.com/madler/zlib/)
   * [flate (Go)](https://github.com/golang/go/tree/master/src/compress/flate)
   * [RFC 1951](https://tools.ietf.org/html/rfc1951)
+* [zlib-ng (C)](https://github.com/zlib-ng/zlib-ng)
 * [zug (C++)](https://github.com/arximboldi/zug) [[doc](https://sinusoid.es/zug/#contents)]
 
 ## Security (general)
@@ -890,6 +951,7 @@ See [Caml](#caml).
 
 ## Testing
 
+* [beakerlib](https://github.com/beakerlib)
 * [Centos on dockerhub](https://hub.docker.com/_/centos)
 * [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
 * [CI Tests for Container Images Based on Red Hat Software Collections](https://github.com/sclorg/rhscl-container-ci)
@@ -897,12 +959,14 @@ See [Caml](#caml).
 * [dbus test example (lvm2)](https://github.com/lvmteam/lvm2/blob/master/test/dbus/lvmdbustest.py)
 * [dogtail](https://gitlab.com/dogtail/dogtail)
 * [fmf](https://github.com/psss/fmf)
+* [freedesktop.org CI templates](https://gitlab.freedesktop.org/freedesktop/ci-templates) [[docs](https://freedesktop.pages.freedesktop.org/ci-templates/)]
 * [gluetool](https://github.com/gluetool/gluetool)
 * Jake Wernette's series on Jenkins Shared Libraries
   1. [What Are Jenkins Shared Libraries And Why You Should Use Them](https://itnext.io/jenkins-shared-libraries-part-1-5ba3d072536a)
   1. [How To Build Your Own Jenkins Shared Library](https://itnext.io/how-to-build-your-own-jenkins-shared-library-9dc129db260c)
   1. [Unit Testing a Jenkins Shared Library](https://itnext.io/unit-testing-a-jenkins-shared-library-9bfb6b599748)
   1. [Collecting Code Coverage for a Jenkins Shared Library](https://itnext.io/collecting-code-coverage-for-a-jenkins-shared-library-c2d8f502732e)
+* [KUnit - Unit Testing for the Linux Kernel](https://kunit.dev/third_party/kernel/docs/)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
 * [Pexpect](https://github.com/pexpect/pexpect) [[doc](https://pexpect.readthedocs.io/en/stable/index.html)]
 * [PyAutoGUI](https://github.com/asweigart/pyautogui)
@@ -910,8 +974,10 @@ See [Caml](#caml).
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
-* [`testing-farm`](https://gitlab.com/testing-farm)
-  * [`artemis`](https://gitlab.com/testing-farm/artemis)
+* [Special Project Upstream Testing Repository](https://github.com/RedHat-SP-Security/tests)
+* [testing-cabal](https://github.com/testing-cabal)
+* [testing-farm](https://gitlab.com/testing-farm)
+  * [artemis](https://gitlab.com/testing-farm/artemis)
 * [tmt](https://github.com/psss/tmt)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
   * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)
@@ -937,6 +1003,7 @@ See [Caml](#caml).
 * [6 Methods For Vertical Centering With CSS](https://vanseodesign.com/css/vertical-centering/)
 * [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
+* [Browsers' default CSS for HTML elements](https://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements)
 * Color schemes:
   * [Paraíso for Pygments](https://github.com/idleberg/Paraiso-Pygments)
 * CSS browser reset:
