@@ -18,6 +18,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Dictionaries & Translators](#dictionaries--translators)
 1. [Electronics](#electronics)
    1. [Beam Bots](#beam-bots)
+   1. [Power Management](#power-management)
    1. [RC Circuits](#rc-circuits)
 1. [Fedora Project](#fedora-project)
    1. [Developer](#developer)
@@ -25,6 +26,7 @@ interested in. Maybe You find some of these interesting too.
    1. [FESCO](#fesco)
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
+   1. [System Management](#system-management)
 1. [Linux](#linux)
    1. [Administration](#administration)
    1. [Containers](#containers)
@@ -49,6 +51,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Curiosities](#curiosities)
    1. [Documenting](#documenting)
    1. [Git](#git)
+   1. [Graphics](#graphics)
    1. [Programming Languages](#programming-languages)
    1. [Social Events](#social-events)
    1. [Talks](#talks)
@@ -70,18 +73,26 @@ interested in. Maybe You find some of these interesting too.
 
 ### Articles
 
+* [50+ Useful Kubernetes Tools for 2020](https://caylent.com/50-useful-kubernetes-tools-for-2020)
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [9 Key Machine Learning Algorithms Explained in Plain English](https://www.freecodecamp.org/news/a-no-code-intro-to-the-9-most-important-machine-learning-algorithms-today/)
 * [A First Look At The Podman 2.0 API](http://crunchtools.com/a-first-look-at-the-podman-2-0-api/)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [Amazon and commercial open source in the cloud: It's complicated](https://www.zdnet.com/article/amazon-and-commercial-open-source-in-the-cloud-its-complicated/)
+* [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
 * ['Boringly reliable': Red Hat architect thinks Kubernetes is 'mostly done' – but there are still plenty of bugs](https://www.theregister.com/2020/06/17/kubernetes_clayton_coleman_interview/)
+* [CentOS Linux 8 will end in 2021 and shifts focus to CentOS Stream](https://www.cyberciti.biz/linux-news/centos-linux-8-will-end-in-2021-and-shifts-focus-to-centos-stream/)
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
+* [Fedora Developers Discuss Retiring NTP, Deprecating SCP Protocol](https://www.phoronix.com/scan.php?page=news_item&px=Fedora-Down-With-NTP-SCP)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
+* [Free will is the real benefit of Red Hat OpenShift Service on AWS](https://siliconangle.com/2020/12/01/free-will-real-benefit-red-hat-openshift-service-aws-reinvent/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
+* [How Jim Whitehurst sold the IBM deal to Red Hat board](https://www.bizjournals.com/triangle/news/2020/12/02/ibm-red-hat-whitehurst-krishna-deal-cloud-data.html)
 * [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
 * [HOW TO CONTRIBUTE TO OPEN SOURCE: THE ULTIMATE GUIDE](https://builtin.com/software-engineering-perspectives/open-source-contribution)
+* [IBM CEO Arvind Krishna wants to completely transform his organization](https://techcrunch.com/2020/11/10/ibm-ceo-arvind-krishna-wants-to-completely-transform-his-organization/?guccounter=1&guce_referrer=aHR0cHM6Ly9tYWlsLmNvcnAucmVkaGF0LmNvbS96aW1icmEv&guce_referrer_sig=AQAAAD0n0hLh8JvMkMVYkhLjmHfpBBsQWKKhS9U6gHlgrxY0_20BxM05_L8uAATTg4b6-5cvWAe5Dg-HbBN4vDYJMOJqloVaVY1MZY_U6gnQCOyMbqDoRBLrY4CznusDohpoB-P7BRKCM5MS2h-7Evlq79Dzw1l-3VEGEjyP1jTCb_YJ)
 * [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
+* [IBM’s Jim Whitehurst On Why Red Hat Wins vs. VMware, HPE](https://www.crn.com/news/cloud/ibm-s-jim-whitehurst-on-why-red-hat-wins-vs-vmware-hpe)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [No, Kubernetes doesn’t make applications portable, say analysts. Good luck avoiding lock-in, too](https://www.theregister.com/2020/09/08/kubernetes_app_portability_problems/)
@@ -89,6 +100,8 @@ interested in. Maybe You find some of these interesting too.
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
+* [Rocky Linux is go: CentOS founder's new project aims to be 100% compatible with Red Hat Enterprise Linux](https://www.theregister.com/2020/12/10/rocky_linux/)
+* [Systemd’s Lennart Poettering Wants to Bring Linux Home Directories into the 21st Century](https://thenewstack.io/systemds-lennart-poettering-wants-to-bring-linux-home-directories-into-the-21st-century/)
 * [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
@@ -119,6 +132,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### GitHub Users
 
+* [Fabian (copy)](https://github.com/copy/) [[home](http://copy.sh/)]
 * [jamiebuilds](https://github.com/jamiebuilds)
 * [John Lamb](https://github.com/dobbymoodge)
 
@@ -158,6 +172,10 @@ interested in. Maybe You find some of these interesting too.
 
 * [solarbotics.net](http://solarbotics.net/)
 
+### Power Management
+
+* [Building a LiFePO4 Battery](https://docs.google.com/document/d/1Oz4NzIyvfr8AKmWZ75G-NqWUgfMxvNS4rosGNNUDkRI/edit)
+
 ### RC Circuits
 
 * [Pro pamětníky - trochu historie RC, aneb jak jsme bastlili v Česku](https://rc-model.rajce.idnes.cz/Pro_pametniky_-_trochu_historie_RC%2C_aneb_jak_jsme_bastlili_v_Cesku/#)
@@ -191,8 +209,15 @@ interested in. Maybe You find some of these interesting too.
 ### GNOME
 
 * [Boosting the Real Time Performance of Gnome Shell 3.34 in Ubuntu 19.10](https://discourse.ubuntu.com/t/boosting-the-real-time-performance-of-gnome-shell-3-34-in-ubuntu-19-10/13095)
+* GNOME Applications
+  * [`gnome-tweaks`](https://gitlab.gnome.org/GNOME/gnome-tweaks)
 * GNOME Shell Extensions
+  * [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+  * [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
   * [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
+  * [Disconnect Wifi](https://extensions.gnome.org/extension/904/disconnect-wifi/)
+  * [GTK Title Bar](https://extensions.gnome.org/extension/1732/gtk-title-bar/)
+  * [Sound Input & Output Device Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
 * [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
 * [Monospaced fonts in pidgin](https://gist.github.com/armonge/3909580)
@@ -246,7 +271,7 @@ interested in. Maybe You find some of these interesting too.
 * Linters
   * [bandit](https://bandit.readthedocs.io)
   * [black](https://black.readthedocs.io/) [[repo](https://github.com/psf/black)]
-  * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)]
+  * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)] [[extensions](https://julien.danjou.info/the-best-flake8-extensions/)]
     * [flake8-logging-format](https://github.com/globality-corp/flake8-logging-format)
     * [hacking](https://docs.openstack.org/hacking/) [[repo](https://github.com/openstack/hacking)]
     * [mccabe](https://github.com/PyCQA/mccabe)
@@ -337,11 +362,16 @@ interested in. Maybe You find some of these interesting too.
 * [beakerlib (git)](https://github.com/beakerlib/beakerlib)
 * [beakerlib-libraries (git)](https://pagure.io/beakerlib-libraries)
 
+### System Management
+
+* [Clean up PackageKit cache the right way](https://askbot.fedoraproject.org/en/question/108524/clean-up-packagekit-cache-the-right-way/)
+
 ## Linux
 
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [LWN.net](https://lwn.net/)
+  * [An introduction to compound pages](https://lwn.net/Articles/619514/)
 * [Referenced Specifications](https://refspecs.linuxfoundation.org/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 
@@ -452,6 +482,8 @@ Projects
 #### RFCs
 
 * [RFC 822 -- STANDARD FOR THE FORMAT OF ARPA INTERNET TEXT MESSAGES](https://tools.ietf.org/html/rfc822.html)
+* [RFC 5234 -- Augmented BNF for Syntax Specifications: ABNF](https://tools.ietf.org/html/rfc5234.html)
+  * [example](https://github.com/toml-lang/toml/blob/master/toml.abnf)
 
 ### Printing
 
@@ -459,6 +491,8 @@ Projects
   * [IPP-over-USB (Short Version)](https://wiki.debian.org/CUPSDriverlessPrinting?action=show&redirect=DriverlessPrinting#IPP-over-USB_.28Short_Version.29)
 * [Printing](https://fedoraproject.org/wiki/Printing)
   * [How to debug printing problems](https://fedoraproject.org/wiki/How_to_debug_printing_problems)
+* [Undocumented Printing](http://www.undocprint.org/start)
+  * [QPDL - Quick Page Description Language](http://www.undocprint.org/formats/page_description_languages/qpdl)
 
 ### Programming in Linux
 
@@ -594,6 +628,7 @@ TODO
 
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
 * [Compiler Explorer](https://godbolt.org/)
+* [Guide to disassemble](https://gist.github.com/jarun/ea47cc31f1b482d5586138472139d090)
 * [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
 
 #### Coverity Scan
@@ -661,6 +696,10 @@ TODO
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
 * [Source Forge repo gives “denying non-fast-forward refs/heads/master” error](https://stackoverflow.com/questions/12450703/source-forge-repo-gives-denying-non-fast-forward-refs-heads-master-error)
 * [Update Git submodule to latest commit on origin](https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin)
+
+### Graphics
+
+* [Michael Abrash's Graphics Programming Black Book Special Edition](http://www.phatcode.net/res/224/files/html/index.html)
 
 ### Programming Languages
 
@@ -782,6 +821,7 @@ See [Caml](#caml).
 * [cdemu (C)](https://github.com/cdemu/cdemu) [[doc](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
+* [Cheese (C)](https://github.com/GNOME/cheese)
 * [click (Python)](https://github.com/pallets/click)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cppcheck (C++)](https://github.com/danmar/cppcheck)
@@ -814,6 +854,7 @@ See [Caml](#caml).
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
+* [i3: A tiling window manager (C)](https://github.com/i3/i3) [[home](https://i3wm.org/)]
 * [icmake (C)](https://gitlab.com/fbb-git/icmake/) [[home](https://fbb-git.gitlab.io/icmake/)]
 * [imagefactory (Python)](https://github.com/redhat-imaging/imagefactory)
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
@@ -823,6 +864,7 @@ See [Caml](#caml).
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
+* [kdenlive (C++)](https://github.com/KDE/kdenlive)
 * [L-system (M4)](https://github.com/jkubin/L-system)
 * [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
 * [LanguageTool (Java)](https://github.com/languagetool-org/languagetool) [[home](https://languagetool.org/)]
@@ -841,14 +883,15 @@ See [Caml](#caml).
 * [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
 * [normalize.css (CSS)](https://github.com/necolas/normalize.css)
+* [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
+  * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [OS and Application Modernization Group](https://github.com/oamg)
   * [convert2rhel (Python)](https://github.com/oamg/convert2rhel)
   * [leapp (Python)](https://github.com/oamg/leapp)
   * [leapp-guidelines](https://github.com/oamg/leapp-guidelines)
     * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
   * [leapp-repository (Python)](https://github.com/oamg/leapp-repository)
-* [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
-  * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
+* [OSBuild Composer (Go)](https://github.com/osbuild/osbuild-composer)
 * [oVirt](https://github.com/oVirt)
   * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
 * [packer (Go)](https://github.com/hashicorp/packer)
@@ -866,6 +909,7 @@ See [Caml](#caml).
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [PyTorch (C++/Python)](https://github.com/pytorch/pytorch)
 * [Quay (Python)](https://github.com/quay/quay)
+* [QuestDB (Java)](https://github.com/questdb/questdb)
 * [RE2 (C++)](https://github.com/google/re2)
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
 * [Red Hat Bugzilla (Perl)](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
@@ -913,9 +957,11 @@ See [Caml](#caml).
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
+* [Typer (Python)](https://github.com/tiangolo/typer) [[home](https://typer.tiangolo.com)]
 * [ugene (C++)](https://github.com/ugeneunipro/ugene)
 * [unbox - J Interpreter (C/J)](https://github.com/iocane/unbox)
 * [util-linux (C)](https://github.com/karelzak/util-linux)
+* [v86 (JavaScript)](https://github.com/copy/v86)
 * [Vagrant (Ruby)](https://github.com/hashicorp/vagrant) [[doc](https://www.vagrantup.com/)]
 * [vagrant-kvm (Ruby)](https://github.com/adrahon/vagrant-kvm/)
 * [vagrant-libvirt (Ruby)](https://github.com/vagrant-libvirt/vagrant-libvirt)
@@ -997,6 +1043,7 @@ See [Caml](#caml).
 * [QEMU Guest Agent Protocol Reference](https://qemu.weilnetz.de/doc/qemu-ga-ref.html)
 * [QEMU QMP Reference Manual](https://qemu.weilnetz.de/doc/qemu-qmp-ref.html)
 * [QEMU User Documentation](https://qemu.weilnetz.de/doc/qemu-doc.html)
+* [virtio-mem](https://virtio-mem.gitlab.io)
 
 ## Web Development
 
@@ -1022,6 +1069,7 @@ See [Caml](#caml).
 * [Blue Light Screen Protector Panels](https://eyespc.com/collections/blue-light-filter-panels)
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
+* [Color Cards](https://www.mosaic-commons.org/colorcards)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
 * [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
