@@ -94,6 +94,7 @@ interested in. Maybe You find some of these interesting too.
 * [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
 * [IBM’s Jim Whitehurst On Why Red Hat Wins vs. VMware, HPE](https://www.crn.com/news/cloud/ibm-s-jim-whitehurst-on-why-red-hat-wins-vs-vmware-hpe)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
+* [Karōjisatsu](https://itrevolution.com/karojisatsu/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [No, Kubernetes doesn’t make applications portable, say analysts. Good luck avoiding lock-in, too](https://www.theregister.com/2020/09/08/kubernetes_app_portability_problems/)
 * [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
@@ -101,6 +102,7 @@ interested in. Maybe You find some of these interesting too.
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
 * [Rocky Linux is go: CentOS founder's new project aims to be 100% compatible with Red Hat Enterprise Linux](https://www.theregister.com/2020/12/10/rocky_linux/)
+* [Starting with an idea and building a community](https://github.com/readme/evan-you)
 * [Systemd’s Lennart Poettering Wants to Bring Linux Home Directories into the 21st Century](https://thenewstack.io/systemds-lennart-poettering-wants-to-bring-linux-home-directories-into-the-21st-century/)
 * [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
@@ -108,6 +110,7 @@ interested in. Maybe You find some of these interesting too.
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
 * [Why Cloud-Based Architectures and Open Source Don’t Always Mix](https://www.itprotoday.com/hybrid-cloud/why-cloud-based-architectures-and-open-source-don-t-always-mix)
 * [Why introverts are ignored and often overlooked](https://www.raconteur.net/hr/introverts-workplace)
+* [Why Is Apple’s M1 Chip So Fast?](https://debugger.medium.com/why-is-apples-m1-chip-so-fast-3262b158cba2)
 
 ### Blogs
 
@@ -139,6 +142,7 @@ interested in. Maybe You find some of these interesting too.
 ## Books
 
 * [Culture Map, The (Erin Meyer)](https://www.amazon.com/Culture-Map-INTL-ED-Decoding/dp/1610392760/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=)
+* [O'Reilly Classics](https://www.goodreads.com/list/show/142694.Humble_Book_Bundle_O_Reilly_Classics_by_O_Reilly)
 * [On Lisp: Advanced Techniques for Common Lisp (Paul Graham)](http://www.paulgraham.com/onlisp.html)
 * [Red Hat Developer eBooks](https://developers.redhat.com/ebooks)
 * [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
@@ -196,6 +200,7 @@ interested in. Maybe You find some of these interesting too.
   * [Docker](https://developer.fedoraproject.org/tools/docker/about.html)
   * [Python](https://developer.fedoraproject.org/tech/languages/python/python-installation.html)
   * [Vagrant](https://developer.fedoraproject.org/tools/vagrant/about.html)
+* [rhbzquery](https://github.com/juhp/rhbzquery)
 
 ### ELN
 
@@ -236,6 +241,7 @@ interested in. Maybe You find some of these interesting too.
 * [Licensing:Main](https://fedoraproject.org/wiki/Licensing:Main)
 * [Licensing:MIT](https://fedoraproject.org/wiki/Licensing:MIT?rd=Licensing/MIT)
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
+* [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
 * [Unified source and PR driven workflow](https://github.com/projectatomic/rpmdistro-gitoverlay/blob/master/doc/reworking-fedora-releng.md)
@@ -301,6 +307,7 @@ interested in. Maybe You find some of these interesting too.
 * [Poetry](https://python-poetry.org/)
   * [The `pyproject.toml` file](https://python-poetry.org/docs/pyproject/)
 * [pytest](https://docs.pytest.org/) [[repo](https://github.com/pytest-dev/pytest)]
+  * [Good Integration Practices](https://docs.pytest.org/en/stable/goodpractices.html)
   * [pytest-cov](https://pytest-cov.readthedocs.io/) [[repo](https://github.com/pytest-dev/pytest-cov/)]
 * [Python Packaging Authority](https://github.com/pypa)
   * [A sample Python project](https://github.com/pypa/sampleproject)
@@ -382,6 +389,7 @@ interested in. Maybe You find some of these interesting too.
 * [Miscellaneous stuff](https://github.com/myllynen/misc)
 * [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
 * [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
+* [The Virtual Disk Guide](http://scribesguides.com/)
 * [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
 
 #### Ansible
@@ -498,7 +506,13 @@ Projects
 
 * [In-Memory-Only ELF Execution (Without tmpfs)](https://magisterquis.github.io/2018/03/31/in-memory-only-elf-execution.html)
 * [Loading "fileless" Shared Objects (memfd_create + dlopen)](https://x-c3ll.github.io/posts/fileless-memfd_create/)
+* [Non-blocking I/O with pipes in C](https://www.geeksforgeeks.org/non-blocking-io-with-pipes-in-c/)
+* [`popen` implementation in Android](https://android.googlesource.com/platform/bionic/+/3884bfe9661955543ce203c60f9225bbdf33f6bb/libc/unistd/popen.c)
 * [Pure python in memory SO loading without shm](https://0x00sec.org/t/pure-python-in-memory-so-loading-without-shm/6453)
+
+#### POSIX
+
+* [pread, read - read from a file](https://pubs.opengroup.org/onlinepubs/009695399/functions/read.html)
 
 ### Security
 
@@ -581,6 +595,7 @@ Projects
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
 * [NRICH](https://nrich.maths.org/)
 * [Papers We Love](https://paperswelove.org/)
+* [PlanetMath](https://www.planetmath.org/)
 * [Project Euler](https://projecteuler.net/)
   * [Lambda Count](https://projecteuler.net/problem=623)
   * [Largest product in a series](https://projecteuler.net/problem=8)
@@ -602,6 +617,10 @@ TODO
 * [Design Patterns](http://www.vincehuston.org/dp/)
 
 ### Algorithms & Data Structures
+
+#### Sorting
+
+* [Sleep sort](https://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort)
 
 #### Text Editing
 
@@ -843,6 +862,7 @@ See [Caml](#caml).
 * [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
 * [FlySpell (EmacsLisp)](https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/flyspell.el)
+* [{fmt} (C++)](https://github.com/fmtlib/fmt)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
 * [git-review (Python)](https://opendev.org/opendev/git-review)
@@ -872,6 +892,7 @@ See [Caml](#caml).
 * [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs)
 * [libteam (C)](https://github.com/jpirko/libteam)
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
+* [logiops (C++)](https://github.com/PixlOne/logiops)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
@@ -911,6 +932,7 @@ See [Caml](#caml).
 * [Quay (Python)](https://github.com/quay/quay)
 * [QuestDB (Java)](https://github.com/questdb/questdb)
 * [RE2 (C++)](https://github.com/google/re2)
+* [React Photobooth (JavaScript)](https://github.com/Outfitio/react-photobooth)
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
 * [Red Hat Bugzilla (Perl)](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
 * [release-engineering](https://github.com/release-engineering)
@@ -1006,12 +1028,15 @@ See [Caml](#caml).
 * [dogtail](https://gitlab.com/dogtail/dogtail)
 * [fmf](https://github.com/psss/fmf)
 * [freedesktop.org CI templates](https://gitlab.freedesktop.org/freedesktop/ci-templates) [[docs](https://freedesktop.pages.freedesktop.org/ci-templates/)]
+* GitHub CI
+  * [Practical guide to CI with Jenkins and GitHub](https://resources.github.com/whitepapers/practical-guide-to-CI-with-Jenkins-and-GitHub/)
 * [gluetool](https://github.com/gluetool/gluetool)
 * Jake Wernette's series on Jenkins Shared Libraries
   1. [What Are Jenkins Shared Libraries And Why You Should Use Them](https://itnext.io/jenkins-shared-libraries-part-1-5ba3d072536a)
   1. [How To Build Your Own Jenkins Shared Library](https://itnext.io/how-to-build-your-own-jenkins-shared-library-9dc129db260c)
   1. [Unit Testing a Jenkins Shared Library](https://itnext.io/unit-testing-a-jenkins-shared-library-9bfb6b599748)
   1. [Collecting Code Coverage for a Jenkins Shared Library](https://itnext.io/collecting-code-coverage-for-a-jenkins-shared-library-c2d8f502732e)
+* [Jenkins Job Builder](https://docs.openstack.org/infra/jenkins-job-builder/index.html)
 * [KUnit - Unit Testing for the Linux Kernel](https://kunit.dev/third_party/kernel/docs/)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
 * [Pexpect](https://github.com/pexpect/pexpect) [[doc](https://pexpect.readthedocs.io/en/stable/index.html)]
@@ -1027,6 +1052,7 @@ See [Caml](#caml).
 * [tmt](https://github.com/psss/tmt)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
   * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)
+* [The log/event processing pipeline you can't have](https://apenwarr.ca/log/20190216)
 * [umockdev](https://github.com/martinpitt/umockdev)
   * [example of use](https://gitlab.gnome.org/GNOME/gvfs/-/blob/master/test/gvfs-test)
 * [xdotool](https://github.com/jordansissel/xdotool) [[doc](https://www.semicomplete.com/projects/xdotool/)]
