@@ -159,6 +159,7 @@ hexadecimal-escape-sequence = %x5C.78 1*XDIGIT  ; \x XDIGIT+
 * if the character constant contains more than one `c-char`s, its value depends
   on implementation
 * if `c-char` is an escape sequence, its value is given by the following table:
+
   Escape Sequence | Meaning | Value
   ----------------+---------+------
   `\'` | apostrophe | 39
