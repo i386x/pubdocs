@@ -126,7 +126,7 @@ Grammar:
 ```abnf
 character-constant = [ %x4C ] %x27 1*c-char %x27  ; L?' c-char '
 
-; Any source character except new line (\n), apostrophe (\') and backslash (\\).
+; Any source character except new line (\n), apostrophe (\'), and backslash (\\).
 ; For simplicity, as a source character is considered anything from exclamation
 ; mark (!) to tilde (~) plus white space characters. Depending on implementation,
 ; other characters can be also included.
@@ -179,3 +179,33 @@ hexadecimal-escape-sequence = %x5C.78 1*XDIGIT  ; \x XDIGIT+
   typecast to `char`
 * character constants prefixed with `L` are considered wide and their type is
   `wchar_t`
+
+## String Literals
+
+Grammar:
+```abnf
+string-literal = [ %x4C ] %x22 *s-char %x22
+
+; Any source character except new line (\n), quotes (\"), and backslash (\\).
+c-char =  %x07-09 / %x0B-0D / %x20-21 / %x23-5B / %x5D-7E
+c-char =/ escape-sequence
+```
+
+* a string literal `s` is declared as `static char s[]`, initialized by
+  characters from `s` and terminated with `\0`
+* adjacent string literals are joined to form the one string literal (their
+  characters form a consecutive sequence terminated with `\0`)
+* if `s` is a string literal prefixed with `L`, it is considered as wide and
+  declared as `static wchar_t s[]`
+
+## Punctuators
+
+A `punctuator` is one of:
+```C
+[  ]  (  )  {  }  .  ->
+++  --  &  *  +  -  ~  !
+/  %  <<  >>  <  >  <=  >=  ==  !=  ^  |  &&  ||
+?  :  ;  ...
+=  *=  /=  %=  +=  -=  <<=  >>=  &=  ^=  |=
+,  #  ##
+```
