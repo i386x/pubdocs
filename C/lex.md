@@ -160,21 +160,21 @@ hexadecimal-escape-sequence = %x5C.78 1*XDIGIT  ; \x XDIGIT+
   on implementation
 * if `c-char` is an escape sequence, its value is given by the following table:
 
-    Escape Sequence | Meaning | Value
-    ----------------+---------+------
-    `\'` | apostrophe | 39
-    `\"` | quotes | 34
-    `\?` | question mark | 63
-    `\\` | backslash | 92
-    `\a` | bell | 7
-    `\b` | backspace | 8
-    `\f` | form feed | 12
-    `\n` | line feed | 10
-    `\r` | carriage return | 13
-    `\t` | horizontal tab | 9
-    `\v` | vertical tab | 11
-    `\ooo` | octal escape sequence | `0ooo`
-    `\xhh` | hexadecimal escape sequence | `0xhh`
+  | Escape Sequence | Meaning | Value |
+  | --------------- | ------- | ----- |
+  | `\'` | apostrophe | 39 |
+  | `\"` | quotes | 34 |
+  | `\?` | question mark | 63 |
+  | `\\` | backslash | 92 |
+  | `\a` | bell | 7 |
+  | `\b` | backspace | 8 |
+  | `\f` | form feed | 12 |
+  | `\n` | line feed | 10 |
+  | `\r` | carriage return | 13 |
+  | `\t` | horizontal tab | 9 |
+  | `\v` | vertical tab | 11 |
+  | `\ooo` | octal escape sequence | `0ooo` |
+  | `\xhh` | hexadecimal escape sequence | `0xhh` |
 * if `char` is considered signed, `\ooo` and `\xhh` are sign-extended and
   typecast to `char`
 * character constants prefixed with `L` are considered wide and their type is
