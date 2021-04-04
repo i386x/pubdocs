@@ -1,8 +1,9 @@
 # C Cheat Sheet
 
 The purpose of this document is to provide a handy notes about C programming
-language. Its aim is to be as short as possible and at the same time cover the
-most important parts of the language.
+language. Its aim is to be as short as possible and at the same time to cover
+the most important parts of the language. The standard C library is not
+included in this cheat sheet.
 
 ## 0 Contents
 
@@ -60,8 +61,6 @@ most important parts of the language.
 
 ## 2 C Project
 
-* **TODO**
-
 ### 2.1 Source Files
 
 #### Comments
@@ -113,7 +112,20 @@ main()
 
 ## 3 Data Types
 
-* **TODO**
+### 3.1 Base Data Types
+
+* size is machine dependent
+* `char` - character, byte
+* `short` - short integer
+* `int` - integer
+  * can be 16 bits or 32 bits long
+* `long` - long integer, at least 32 bits long
+* `float` - floating point number (single precision)
+  * usually 32 bits, 6 significant digits, range from `1e-38` to `1e38`
+* `double` - floating point number (double precision)
+* can be arranged to arrays, structures, and unions
+* can be referenced by pointers
+* can be returned by functions
 
 ## 4 Variables
 
@@ -128,6 +140,8 @@ A general form of declaration is
 where `<type>` is a type of a variable and `<list-of-variables>` is a comma
 separated list of identifiers.
 
+Arrays are declared
+
 #### Example
 
 ```C
@@ -137,11 +151,23 @@ declares three variables `a`, `b`, and `c` of type `int`.
 
 ## 5 Expressions
 
-* **TODO**
+* expression evaluation can be changed by enclosing subexpressions between
+  parentheses, compare `a + b*c` and `(a + b)*c`
+* during the evaluation, when the value of expression is known, the expression
+  is not further evaluated (this is called *short evaluation*)
 
 ### 5.1 Atomic Expressions
 
-#### String Constants (Literals)
+#### Number Literals
+
+* character literals are written as a single character or a single escape
+  sequence between single quotes, e.g. `'A'`, `'\n'`, and their values are
+  ASCII values of quoted character/escape sequence
+* integers are written as sequence of digits, e.g. `1`, `123`, etc
+* floating point numbers are written as a sequence of digits containing a dot
+  that delimits integral and fractional part. e.g. `0.4`, `42.0`, etc
+
+#### String Literals
 
 * sequence of characters between `"`
   * exaples: `""`, `"abcd"`, `"abcd\n"`
@@ -158,20 +184,129 @@ Escape Sequence | Meaning | Code | Note
 `\"` | `"` character | 34 |
 `\\` | `\` character | 92 |
 
+### 5.2 Assignment Expressions
+
+* `a = b` - convert `b` to the `a`'s type, assign `b`'s value (after
+  conversion) to `a`, and return `a`'s value
+* evaluated from right to left
+
+### 5.3 Arithmetic Expressions
+
+* if both operands are integers, the operation is done over integers
+* if one of the operands is a floating point number and the other one is an
+  integer, it is converted to a floating point number before the operation is
+  performed
+* `a + b` addition
+* `a - b` subtraction
+* `a * b` multiplication
+* `a / b` division
+  * if `a` and `b` are both integers, the result is truncated
+* `++a` increase `a` by one, evaluates to `a + 1`
+* `a++` increase `a` by one, evaluates to `a`
+* `--a` decrease `a` by one, evaluates to `a - 1`
+* `a--` decrease `a` by one, evaluates to `a`
+
+### 5.4 Comparisons
+
+* same conversion rules as for arithmetic expressions are applied
+* `a < b` is 1 if `a` is less than `b`
+* `a <= b` is 1 if `a` is less or equal to `b`
+* `a != b` is 1 if `a` is not equal to `b`
+* `a == b` is 1 if `a` is equal to `b`
+
+### 5.5 Logic Expressions
+
+* evaluated from left to right
+* `a || b` true if `a` or `b` is true
+* `a && b` true if both `a` and `b` are true
+
 ## 6 Statements
 
-* **TODO**
+### 6.1 Empty Statement
+
+```C
+;
+```
+
+No operation.
+
+### 6.2 Expression Statement
+
+Syntax:
+```C
+expression;
+```
+
+Evaluate `expression`.
+
+### 6.3 Branching
+
+Syntax:
+```C
+if (expr)
+  stmt1
+else
+  stmt2
+```
+
+If `expr` is true, do `stmt1`. Otherwise, do `stmt2`.
+
+### 6.4 Loops
+
+#### `while`
+
+Syntax:
+```C
+while (expression) {
+  statement1;
+  statement2;
+  ...
+  statementN;
+}
+
+while (expression)
+  statement;
+```
+
+Semantics:
+1. evaluate `expression`
+1. if `expression` is true
+   1. execute statements
+   1. go to 1
+
+#### `for`
+
+Syntax:
+```C
+for (expr1; expr2; expr3) {
+  stmt1;
+  stmt2;
+  ...
+  stmtN;
+}
+
+for (expr1; expr2; expr3)
+  statement;
+```
+
+Semantics:
+1. evaluate `expr1`
+1. if `expr2` is true
+   1. execute statements
+   1. evaluate `expr3`
+   1. go to 2
 
 ## 7 Functions
 
-* **TODO**
-  * values are passed to function throught *arguments*
+* values are passed to function through *arguments*
 
 ## 8 Preprocessor
 
-* **TODO**
-  * `#include <header.h>` - include the content of `header.h` to the currently
-    processed source file
+* `#include <header.h>` - include the content of `header.h` to the currently
+  processed source file
+* `#define NAME TEXT` - define macro `NAME` that expands to `TEXT`; `NAME` is
+  an identifier; since now, every occurrence of identifier `NAME` is replaced
+  by `TEXT`
 
 ## 9 References
 
