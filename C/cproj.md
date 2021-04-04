@@ -5,6 +5,19 @@
 * source file can `#include` header files
 * source files and header files have usually `.c` and `.h` suffixes,
   respectively
-* each source file is first [preprocessed](preprocessor.md) and then compiled
+* each source file is first [preprocessed](prep.md) and then compiled
 * compiled files can be further passed to linker which produces executable,
   static, or shared library from them
+
+## Translation Unit
+
+A grammar for translation unit is:
+```abnf
+translation-unit = 1*external-declaration
+
+external-declaration = function-definition
+external-declaration =/ declaration
+```
+
+* for `function-definition`, see [Functions](func.md)
+* for `declaration`, see [Declarations](decl.md)
