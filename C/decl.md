@@ -31,19 +31,19 @@ identifier-list = identifier *( "," identifier )
 ```
 
 * declaration gives an interpretation to identifier
-* if a declaration also allocates a memory, it is called *definition*
+* if a declaration also reserves a storage, it is called *definition*
 * declaration must have at least one declarator or type specifier must declare
-  a name of structure, union, or enumeration
-* declarator syntax follows the syntax of expression that returns the object of
-  the type given in declaration, formally
+  a structure tag, a union tag, or an enumeration member
+* declarator syntax resembles the syntax of the expression that returns the
+  object of the specified type, formally
   * if *T D* is a declaration, where *T* is the type and *D* is the declarator,
     *h* is the isomorphism from declarators abstract syntax trees to
     expressions abstract syntax trees, and *E = h(D)* is the expression, then
     `E` returns the object of the type *T*
 * let *T D* is a declaration, where *T* is the type and *D* is the declarator;
-  identifier in *D* can be then defined inductively
-  * if *D* is `identifier`, then *D* has type *T*
-  * if *D* has form `"(" D1 ")"`, then identifier in *D1* has type *T*
+  the type of identifier in *D* can be then defined inductively
+  * if *D* is `identifier`, then *D* is of the type *T*
+  * if *D* has form `"(" D1 ")"`, then identifier in *D1* is of the type *T*
 
 ## Types
 
@@ -82,9 +82,10 @@ typedef-name = identifier
 
 * `char` type
   * at least 8 bits
-  * `char` is large enough to hold any character from the runtime character set
+  * `char` is large enough to hold any character from the execution character
+    set
   * a value of stored character is equal to its code from the character set and
-    its unsigned
+    its non-negative
   * other values can be also stored in `char`, but their range and whether they
     are signed or unsigned depends on implementation
   * `unsigned char` and `signed char` are of the same size as `char`
@@ -100,7 +101,7 @@ typedef-name = identifier
   * signed
   * its size is greater or equal to the size of `int`
 * `unsigned` types arithmetic is modulo `2**n` (`**` denotes power), where `n`
-  is the number of bits of the used type
+  is the number of bits of the used type representation
 * non-negative values stored in signed type is a subset of values stored in
   unsigned type and they are represented in the same way
 * `float`, `double`, and `long double` can refer to the same type
@@ -129,9 +130,9 @@ enumerator = enumeration-constant [ "=" constant-expression ]
      value of its predecessor increased by one
   1. if the enumerator is of the form `A` and it has no predecessor, the
      enumeration constant `A` has value 0
-* enumeration constant shares the same name space as variables
-* enumeration names have the same meaning as the names of structures and unions
-  except that incomplete enumeration types are not allowed
+* enumeration constants share the same scope as variables
+* enumeration tags have the same meaning as the structure and union tags except
+  that incomplete enumeration types are not allowed
 
 ### Derived Types
 
@@ -143,19 +144,19 @@ functions, pointers, structures, and unions.
 * in a declaration *T D*
   * if *D* has the form `"*" Q D1`, where *Q* is the list of type qualifiers
     and
-  * identifier in *T D1* has type *m T*, where *m* is the type modifier (e.g.
-    array, pointer, function)
-  then the type of identifier in *D* is *m Q pointer to T*
-* *Q* relates to pointer, not to referred object
+  * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
+    (e.g. array, pointer, function)
+  then the type of the identifier of *D* is *m Q pointer to T*
+* *Q* applies to the pointer, not to the object to which the pointer points
 
 #### Arrays
 
 * in a declaration *T D*
   * if *D* has the form `D1 "[" [ N ] "]"`, where *N* is a constant expression
-    which value must be of integer type and greater than 0 and
-  * identifier in *T D1* has type *m T*, where *m* is the type modifier
-  then the type of identifier in *D* is *m array of T*
-* if *N* is omitted, the array type is incomplete
+    that must evaluate to positive integer, and
+  * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
+  then the type of identifier of *D* is *m array of T*
+* if *N* is missing, the array type is incomplete
 * array elements can be objects of arithmetic types, pointers, structures,
   unions, and arrays
 * array elements must have complete types
@@ -175,12 +176,12 @@ functions, pointers, structures, and unions.
 * in a declaration *T D*
   * if *D* has the form `D1 "(" P ")"`, where *P* is the type parameters list
     and
-  * identifier in *T D1* has type *m T*, where *m* is the type modifier
-  then the type of identifier in *D* is *m function with parameters P and
+  * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
+  then the type of identifier of *D* is *m function with arguments P and a
   return type T*
-* *P* determines types of parameters
+* *P* determines the types of parameters
 * for functions without parameters, *P* is `void`
-* if *P* ends with `...`, more parameters than those explicitly specified in
+* if *P* ends with `, ...`, more arguments than those explicitly specified in
   *P* can be passed to the function
 * parameters that are declared as arrays and functions are converted to
   pointers (see [Functions](func.md))
@@ -198,20 +199,20 @@ functions, pointers, structures, and unions.
   * if *D* has the form `D1 "(" [ I ] ")"`, where *I* is the list of
     identifiers and
   * identifier in *T D1* has type *m T*, where *m* is the type modifier
-  then the type of identifier in *D* is *m function with unspecified parameters
-  and return type T*
-* declaration gives no hints about parameters types
+  then the type of identifier of *D* is *m function with unspecified arguments
+  and a return type T*
+* declaration gives no information about parameters types
 * *I* can be used only if the function declarator is a part of function
   definition as a function header
 
 #### Structures and Unions
 
-* structure is an object made from the sequence of named elements, called
-  members of the structure, that have different types
-* union is defined like structure, but all its members have the same memory
-  address
+* structure is an object made from the sequence of named elements of various
+  types, called members
+* union is defined like structure, but all its members are placed on the same
+  storage location
 
-Declarations of structures and unions is summed up by the following grammar:
+Declarations of structures and unions are summed up by the following grammar:
 ```abnf
 struct-or-union-specifier = struct-or-union [ identifier ] "{" struct-declaration-list "}"
 struct-or-union-specifier =/ struct-or-union identifier
@@ -235,7 +236,7 @@ struct-declarator =/ [ declarator ] ":" constant-expression
   called *bit field*
 * a type specifier of the form
   `struct-or-union identifier "{" struct-declaration-list "}"` declares
-  `identifier` as the name of a structure or union determined by
+  `identifier` as the tag of a structure or union determined by
   `struct-declaration-list`
 * the following declaration of the form `struct-or-union identifier` in the
   same scope refers to the same type
@@ -261,10 +262,11 @@ struct-declarator =/ [ declarator ] ":" constant-expression
   * has `int` or `unsigned int` type (depends on implementation)
   * it is interpreted as integer object which size is the number of specified
     bits
-  * the layout of neighbor members depends on implementation
-  * if the first of two neighboring bit fields is too large, it can be split or
-    padded
-  * unnamed bit field of the size 0 enforces padding
+  * the layout of adjacent members depends on implementation
+  * if the second of two adjacent bit fields don't fit into cell occupied by
+    the first bit field, the second field can be split between the cells or the
+    first bit field cell can be padded
+  * unnamed bit field of the size 0 enforces the padding
 * addresses of structure members are ascending in the order of their
   declarations
 * non-bit-field structure members are usually aligned, depending on their types
@@ -317,8 +319,8 @@ direct-abstract-declarator =/ [ direct-abstract-declarator ] "(" [ parameter-typ
 
 ## Objects (Variables)
 
-* *object* (variable) is a memory place characterized by its type and storage
-  class
+* *object* (variable) is a storage location characterized by its type and
+  storage class
 * type gives the meaning to the object's value
 
 ### Object Initialization
@@ -351,10 +353,12 @@ initializer-list = initializer *( "," initializer )
   * by string literals
     * a string literal is treated as a list of character constant initializers,
       including null character, enclosed between `{` and `}`
+    * if the size of array is `N`, the length of string literal (terminating
+      null character is not counted) must be less or equal to `N`
 * structures can be initialized
   * by the simple expression of the same type
-  * by the list of initializers of their members following the given order and
-    enclosed between `{` and `}`
+  * by the list of initializers of their members in order and enclosed between
+    `{` and `}`
     * unnamed bit fields are ignored and left uninitialized
     * more initializers than members is not allowed
     * less initializers than members is allowed, the missing initializers are
@@ -366,10 +370,10 @@ initializer-list = initializer *( "," initializer )
 * static unions cannot be initialized explicitly
 * arrays and structures are called *aggregates*
 * if a member of aggregate is an aggregate, the rules are applied recursively
-* `{` and `}` can be omitted from the nested aggregate initializer; the
-  initialization of the nested aggregate consumes only the required number of
+* `{` and `}` can be omitted from the subaggregate initializer; the
+  initialization of the subaggregate consumes only the required number of
   elements and the rest is leave for the initialization of the remaining
-  aggregates
+  aggregate members
   * e.g. `int a[2][2] = { { 1, 2 }, { 3, 4 } };` has the same effect as
     `int a[2][2] = { 1, 2, 3, 4 };`
 
@@ -390,7 +394,7 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
   * for functions declared inside function: `extern`
   * for objects and functions declared outside function: static with external
     linkage
-* storage class determines the storage duration of the object
+* storage class determines the storage lifetime of the object
 * two storage classes: automatic and static
 
 ### Automatic Storage Class
@@ -398,17 +402,17 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
 * declaration of automatic object is also its definition
 * automatic objects are local in the given block and they are disposed during
   the exit from the block
-* if no storage class is specified besides `auto` specifier, declarations
-  inside of block make automatic objects
+* if no storage class is specified or `auto` specifier is used, declarations
+  inside a block make automatic objects
 * objects declared with `register` are automatic and should be stored in
-  processor registers
+  machine's registers
 * objects with `register` specifier are not addressable
 
 ### Static Storage Class
 
 * inside function, a declaration containing `static` specifier is also a
   definition
-* static objects can be local in the given block or external for all blocks
+* static objects can be local in the given block or external to all blocks
 * their values persist the entering to or exiting from the block
 * inside the block they are declared with `static` keyword
 * objects outside of all block are always static
@@ -423,10 +427,10 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
 * identifiers can belong to the several non-overlapping name spaces:
   * objects
   * functions
-  * `typedef`ed names
-  * enumeration constants
+  * `typedef` names
+  * `enum` constants
   * labels
-  * names of structures, unions, and enumerations
+  * tags of structures, unions, and enumerations
   * members of structures or unions
 * in external declarations, the scope of the object or function begins with the
   end of their declarators and ends with the end of the translation unit
@@ -437,7 +441,7 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
 * in block, the scope of identifier begins with the end of declarator and ends
   with the end of the block
 * the scope of the label is the entire function
-* the scope of the name of the structure, union, or enumeration and the scope
+* the scope of the tag of the structure, union, or enumeration and the scope
   of the enumeration constant begins with their occurrence in the type
   specifier and ends
   * with the end of translation unit (for the external declarations)
@@ -450,10 +454,10 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
 * linkage determines whether objects or functions of the same name, but from
   different scopes, are identical
 * in the translation unit, all declarations of the same object or function
-  identifier with internal linkage refer to the same subject unique in the
-  entire translation unit
+  identifier with internal linkage refer to the same thing unique in the entire
+  translation unit
 * all declarations of the same object or function identifier with the external
-  linkage refer to the same subject shared with entire program
+  linkage refer to the same thing shared with entire program
 * the first external identifier declaration
   * if `static` is used, its linkage is internal
   * otherwise, its linkage is external
@@ -468,24 +472,24 @@ storage-class-specifier =/ %x74.79.70.65.64.65.66     ; typedef
 
 ## Types Equivalence
 
-* two list of type specifiers are considered the same if their sets of type
+* two list of type specifiers are considered equivalent if their sets of type
   specifiers are the same
-* structures, unions, and enumerations with different or no names are
-  considered distinct
+* structures, unions, and enumerations with different or no tags are considered
+  distinct
 * two types are considered the same if, after `typedef` names substitutions and
   identifiers from function parameters omission, they have same abstract
-  declarators; arrays sizes and functions parameters types are significant
+  declarators; array sizes and function parameters types are significant
 
 ## Declarations Equivalence
 
 Two declarations are considered equivalent:
 * if their types are equivalent
 * if one type is incomplete type of structure, union, or enumeration and the
-  other type is the corresponding complete type with the same name
+  other type is the corresponding complete type with the same tag
 * if one type is incomplete type of array and the other type is complete type
   of array and their elements have equivalent types
-* if one type is a function declared in the old way and the other type is the
-  corresponding function declared in the new way
+* if one type is a function declared in the old-style and the other type is the
+  otherwise identical function declared in the new-style
 
 ## External Declarations
 
@@ -507,7 +511,8 @@ Two declarations are considered equivalent:
 * if the translation unit contains the object definition, all tentative
   definitions of the same object are considered redundant
 * if the translation unit contains no object definition, all tentative
-  definitions of the same object become one definition with the initializer 0
+  definitions of the same object become a single definition with the
+  initializer 0
 * every object must have exactly one definition
   * for objects with internal linkage, this applies to the translation unit
   * for objects with external linkage, this applies to the program

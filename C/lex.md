@@ -50,7 +50,7 @@ LETTER = "_" / %x41-5A / %x61-7A  ; _, A-Z, a-z
 
 * their names are case sensitive
 * identifiers serve as names of macros, variables (objects), type names,
-  members, labels, and functions
+  members, tags, labels, and functions
 * for internal identifiers is significant the first 31 characters
 * for external identifiers, it is 6 (case sensitivity may be not considered)
 
@@ -160,8 +160,8 @@ hexadecimal-escape-sequence = %x5C.78 1*XDIGIT  ; \x XDIGIT+
   on implementation
 * if `c-char` is an escape sequence, its value is given by the following table:
 
-  | Escape Sequence | Meaning | Value |
-  | --------------- | ------- | ----- |
+  | Escape Sequence | Meaning | Value (ASCII) |
+  | --------------- | ------- | ------------- |
   | `\'` | apostrophe | 39 |
   | `\"` | quotes | 34 |
   | `\?` | question mark | 63 |
@@ -193,7 +193,7 @@ c-char =/ escape-sequence
 
 * a string literal `s` is declared as `static char s[]`, initialized by
   characters from `s` and terminated with `\0`
-* adjacent string literals are joined to form the one string literal (their
+* adjacent string literals are concatenated into one string literal (their
   characters form a consecutive sequence terminated with `\0`)
 * if `s` is a string literal prefixed with `L`, it is considered as wide and
   declared as `static wchar_t s[]`
