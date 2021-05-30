@@ -173,6 +173,7 @@ functions, pointers, structures, and unions.
 
 ##### New Style Declarations
 
+* a new style declaration is also called *function prototype*
 * in a declaration *T D*
   * if *D* has the form `D1 "(" P ")"`, where *P* is the type parameters list
     and
