@@ -12,9 +12,16 @@
 
 ## Conversions
 
-The following text uses these auxiliary functions:
+The following text uses these auxiliary functions and macros:
 * *trunc(F)* truncates the fractional part of floating point value *F*
-* *fround(N)* return the floating point value nearest to *N*
+* *fround(N)* returns the floating point value nearest to *N*
+* `abs(x)` returns the absolute value of `x`
+* `ipow(x, y)` returns the `y`th power of `x`
+* `NBITS(x)` returns the number of bits occupied by `x` (i.e. `8 * sizeof x`)
+* `UNSIGNED(x)` converts `x` to the corresponding unsigned type
+* `PROMOTE(x)` performs integral promotion of `x`
+* `PROMOTED_TYPE(x)` gets the type of promoted `x`
+* `PROMOTED_TYPE_MAX(x)` returns the largest value of the type of promoted `x`
 
 ### Integral Promotion
 
@@ -222,3 +229,430 @@ argument-expression-list = assignment-expression *( "," assignment-expression )
 * before the function is entered, designator and all arguments are fully
   evaluated
 * recursive calls are permitted
+
+#### Structure References
+
+* in `E.I`, `E` must be a structure or a union, and `I` must be the name of a
+  member of `E`
+* the value of `E.I` is the value of the named member of `E`, the type of `E.I`
+  is the type of the member
+* `E.I` is an l-value if `E` is an l-value and the type of `E.I` is not an
+  array type
+* in `P->I`, `P` must be a pointer to a structure or a union, and `I` must be
+  the name of a member of `E`
+* `P->I` is the same as `(*P).I`
+  * the result of `P->I` refers to the named member of `*P` and the type is the
+    type of the member
+  * the result of `P->I` is an l-value if the type is not an array type
+
+#### Postfix Incrementation
+
+* in `E++` and `E--`, the value of `E++` and `E--` is the value of `E`
+  * after the value is noted, `E` is incremented (`++`) or decremented (`--`)
+    by 1
+* `E` must be l-value, the result of `E++` and `E--` is not an l-value
+
+### Unary Expressions
+
+Grammar for unary expressions:
+```abnf
+unary-expression = postfix-expression
+unary-expression /= "++" unary-expression
+unary-expression /= "--" unary-expression
+unary-expression /= unary-operator cast-expression
+unary-expression /= %x73.69.7A.65.6F.66 unary-expression
+unary-expression /= %x73.69.7A.65.6F.66 "(" type-name ")"
+
+unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
+```
+
+#### Prefix Incrementation Operators
+
+* in `++E` and `--E`, `E` is incremented (`++`) or decremented (`--`) by 1
+* the value of `++E` (`--E`) is the value of `E` after the incrementation
+  (decrementation)
+* `E` must be an l-value, the result of `++E` and `--E` is not an l-value
+
+#### Address Operator
+
+* `&E` takes the adrress of `E`
+* `E` must be an l-value referring
+  * neither to a bit field
+  * not to a `register` object
+  or must be of function type
+* `&E` evaluates to the pointer to object `E` or, if `E` is of function type,
+  to the function referred to by the l-value `E`
+* if `E` has the type *T*, `&E` has the type *pointer to T*
+
+#### Indirection Operator
+
+* `*E` returns the object or function to which `E` points
+* if `E` is a pointer to an object of arithmetic, structure, union, or pointer
+  type, then `*E` is an l-value
+* if `E` has the type *pointer to T*, then `*E` has the type *T*
+
+#### Unary Plus Operator
+
+* in `+E`, `E` must have arithmetic type (if it is integral, `E` undergoes
+  integral promotion)
+* the value of `+E` is the value of `E`
+* the type of `+E` is the type of promoted `E`
+
+#### Unary Minus Operator
+
+* in `-E`, `E` must have arithmetic type (if it is integral, `E` undergoes
+  integral promotion)
+* the value of `-E` is the negative of the value of `E`
+  * if `E` is unsigned, then `-E == PROMOTED_TYPE_MAX(E) - PROMOTE(E) + 1`;
+    `-0 == 0`
+* the type of `-E` is the type of promoted `E`
+
+#### One's Complement Operator
+
+* in `~E`, `E` must have integral type (integral promotions are performed)
+* the value of `~E` is the one's complement of the value of `E`
+  * if `E` is unsigned, then `~E == PROMOTED_TYPE_MAX(E) - PROMOTE(E)`
+  * if `E` is signed, then `~E == (PROMOTED_TYPE(E))~UNSIGNED(PROMOTE(E))`
+* the type of `~E` is the type of promoted `E`
+
+#### Logical Negation Operator
+
+* in `!E`, `E` must have arithmetic type or be a pointer
+* the value of `!E` is 1 if `E == 0` and 0 otherwise
+* the type of `!E` is `int`
+
+#### `sizeof` Operator
+
+* in `sizeof E`, `E` is either expression (not evaluated) or `(T)`, where `T`
+  is a type name
+* `E` must not be a function type, incomplete type, or bit field
+* the value of `sizeof E` is the number of bytes needed to store an object of
+  the type of `E`
+  * if `E` has type `char`, it is 1
+  * if `E` is an array, it is the total number of bytes in the array
+    * `sizeof T[n] == n * sizeof(T)`
+  * if `E` is a structure or union, it is the number of bytes in the object,
+    including any padding required to make the object tile an array
+* the type of `sizeof E` is unsigned integral constant
+  * the particular type is implementation-defined (`<stddef.h>` defines this
+    type as `size_t`
+
+### Cast Expressions
+
+Grammar for cast expressions:
+```abnf
+cast-expression = unary-expression
+cast-expression /= "(" type-name ")" cast-expression
+```
+
+* the construction `(T)E` is called a *cast*
+* the value of `E` is converted to the type `T`
+* `(T)E` is not an l-value
+
+### Multiplicative Expressions
+
+Grammar for multiplicative expressions:
+```abnf
+multiplicative-expression = cast-expression
+multiplicative-expression /= multiplicative-expression "*" cast-expression
+multiplicative-expression /= multiplicative-expression "/" cast-expression
+multiplicative-expression /= multiplicative-expression "%" cast-expression
+```
+
+* in `E1 * E2` and `E1 / E2`, `E1` and `E2` must have arithmetic type
+* in `E1 % E2`, `E1` and `E2` must have integral type
+* first, `E1` and `E2` undergo the usual arithmetic conversions, then the type
+  of the result is predicted
+* `E1 * E2` denotes the multiplication of `E1` by `E2`
+* `E1 / E2` yields the quotient of the division of `E1` by `E2`
+  * if `E2` is 0, the result is undefined
+* `E1 % E2` yields the remainder of the division of `E1` by `E2`
+  * if `E2` is 0, the result is undefined, otherwise `(a/b)*b + a%b == a`
+  * if both `E1 >= 0` and `E2 >= 0`, then `E1 % E2 >= 0` and `E1 % E2 < E2`;
+    otherwise it is only guaranteed then `abs(E1 % E2) < abs(E2)`
+
+### Additive Expressions
+
+Grammar for additive expressions:
+```abnf
+additive-expression = multiplicative-expression
+additive-expression /= additive-expression "+" multiplicative-expression
+additive-expression /= additive-expression "-" multiplicative-expression
+```
+
+* in `E1 + E2` or `E1 - E2`, if `E1` or `E2` have arithmetic type, the usual
+  arithmetic conversions are performed
+* `E1 + E2` evaluates to the sum of `E1` and `E2`, `E1 - E2` evaluates to the
+  difference of `E1` and `E2`
+* a pointer `P` to an object in an array and a value `I` of any integral
+  type may be added
+  * the type of `P + I` is the type of `P`
+  * `I` is converted to the address offset by multiplying `I` by `sizeof *P`
+  * `P + I` points to the object in the same array appropriately offset from
+    `P` (`P + 1` points to the object next to `P`)
+  * if `B` points to the first object in the array and `I < 0` or `I > N`,
+    where `N` is the size of the array, then `B + I` is undefined
+* in `P - I`, if `P` is a pointer and `I` a value of any integral type, then
+  the same conversions and conditions as for `P + I` apply
+* if `P1` and `P2` are pointers to objects of the same type, `P1 - P2` is the
+  displacement between `*P1` and `*P2`
+  * signed integral value
+  * the type depends on the implementation; in `<stddef.h>`, it is defined as
+    `ptrdiff_t`
+  * for two successive objects, the difference is 1
+  * if `P1` and `P2` not point to objects within the same array, the value is
+    undefined
+* if `P` points to the last element of an array, then `(P + 1) - P` is 1
+
+### Shift Expressions
+
+Grammar for shift expressions:
+```abnf
+shift-expression = additive-expression
+shift-expression /= shift-expression "<<" additive-expression
+shift-expression /= shift-expression ">>" additive-expression
+```
+
+* in `E1 << E2` and `E1 >> E2`, `E1` and `E2` must be integral and they undergo
+  integral promotions
+* the type of the result is the type of promoted `E1`
+* if `E2 < 0` or `E2 >= NBITS(E1)`, then the result is undefined
+* `E1 << E2` evaluates to `E1` left-shifted `E2` bits; this is equivalent to
+  `E1 * ipow(2, E2)` without overflow
+* `E1 >> E2` evaluates to `E1` right-shifted `E2` bits
+  * if `E1` is unsigned or `E1 >= 0`, this is equivalent to `E1 / ipow(2, E2)`
+  * otherwise the result is implementation-defined
+
+### Relational Expressions
+
+Grammar for relational expressions:
+```abnf
+relational-expression = shift-expression
+relational-expression /= relational-expression "<" shift-expression
+relational-expression /= relational-expression ">" shift-expression
+relational-expression /= relational-expression "<=" shift-expression
+relational-expression /= relational-expression ">=" shift-expression
+```
+
+* `a R b`, where `R` is one of `<` (less), `>` (greater), `<=` (less or equal)
+  and `>=` (greater or equal), evaluates to
+  * 1 if the relation is true
+  * 0 otherwise
+* the type of the result of `a R b` is `int`
+* arithmetic operands undergo the usual arithmetic conversions
+* two pointers, `P1` and `P2`, may be compared
+  * `*P1` and `*P2` must have same type
+  * qualifiers are ignored
+  * the result of `P1 R P2` depends on relative locations of `*P1` and `*P2` in
+    the address space
+    * if `P1` and `P2` point to the same simple object, `P1` and `P2` compare
+      equal
+    * if `P1` and `P2` point to members of the same structure, then `P1`
+      compare higher than `P2` if and only if `*P1` is declared later in the
+      structure than `*P2`
+    * if `P1` and `P2` point to members of the same union, `P1` and `P2`
+      compare equal
+    * if `P1` and `P2` point to members of an array, then the corresponding
+      subscripts are compared
+    * if `P` points to the last member of an array, then `P + 1` compares
+      higher than `P`
+    * otherwise, `P1 R P2` is undefined
+
+### Equality Expressions
+
+Grammar for equality expressions:
+```abnf
+equality-expression = relational-expression
+equality-expression /= equality-expression "==" relational-expression
+equality-expression /= equality-expression "!=" relational-expression
+```
+
+* `==` (equal to) and `!=` (not equal to) follow the same rules as the
+  relational operators
+* a pointer may be compared to
+  * a constant integral expression with value 0
+  * a pointer to `void`
+
+### Bitwise AND Expression
+
+Grammar for a bitwise AND expression:
+```abnf
+AND-expression = equality-expression
+AND-expression /= AND-expression "&" equality-expression
+```
+
+* in `E1 & E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
+  conversions
+* `E1 & E2` evaluates to bitwise AND of `E1` and `E2`
+
+### Bitwise Exclusive OR Expression
+
+Grammar for a bitwise exclusive OR expression:
+```abnf
+exclusive-OR-expression = AND-expression
+exclusive-OR-expression /= exclusive-OR-expression "^" AND-expression
+```
+
+* in `E1 ^ E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
+  conversions
+* `E1 ^ E2` evaluates to bitwise exclusive OR of `E1` and `E2`
+
+### Bitwise Inclusive OR Expression
+
+Grammar for a bitwise inclusive OR expression:
+```abnf
+inclusive-OR-expression = exclusive-OR-expression
+inclusive-OR-expression /= inclusive-OR-expression "|" exclusive-OR-expression
+```
+
+* in `E1 | E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
+  conversions
+* `E1 | E2` evaluates to bitwise inclusive OR of `E1` and `E2`
+
+### Logical AND Expression
+
+Grammar for a logical AND expression:
+```abnf
+logical-AND-expression = inclusive-OR-expression
+logical-AND-expression /= logical-AND-expression "&&" inclusive-OR-expression
+```
+
+* in `E1 && E2`, each of `E1` and `E2` must have arithmetic type or be a
+  pointer
+* `E1 && E2` evaluates to 1 if both `E1` and `E2` compare unequal to 0;
+  otherwise `E1 && E2` evaluates to 0
+* the type of the result of `E1 && E2` is `int`
+* `E1 && E2` is evaluated as follows:
+  1. `E1` is evaluated, including all side effects
+  1. if `E1 == 0`, then `E1 && E2 == 0`
+  1. `E2` is evaluated, including all side effects
+  1. if `E2 == 0`, then `E1 && E2 == 0`
+  1. `E1 && E2 == 1`
+
+### Logical OR Expression
+
+Grammar for a logical OR expression:
+```abnf
+logical-OR-expression = logical-AND-expression
+logical-OR-expression /= logical-OR-expression "||" logical-AND-expression
+```
+
+* in `E1 || E2`, each of `E1` and `E2` must have arithmetic type or be a
+  pointer
+* `E1 || E2` evaluates to 1 if `E1` or `E2` compare unequal to 0; otherwise
+  `E1 || E2` evaluates to 0
+* the type of the result of `E1 && E2` is `int`
+* `E1 || E2` is evaluated as follows:
+  1. `E1` is evaluated, including all side effects
+  1. if `E1 != 0`, then `E1 || E2 == 1`
+  1. `E2` is evaluated, including all side effects
+  1. if `E2 != 0`, then `E1 || E2 == 1`
+  1. `E1 || E2 == 0`
+
+### Conditional Expression
+
+Grammar for a conditional expression:
+```abnf
+conditional-expression = logical-OR-expression
+conditional-expression /= logical-OR-expression "?" expression ":" conditional-expression
+```
+
+* `E1 ? E2 : E3` is evaluated as follows:
+  1. `E1` is evaluated, including all side effects
+  1. if `E1 != 0`, then `E2` is evaluated and returned as the result of the
+     expression
+  1. `E3` is evaluated and returned as the result of the expression
+* the type of the result is determined as follows:
+  * if `E2` and `E3` are both arithmetic, then the usual arithmetic conversions
+    are performed to bring them to a common type and that is the type of the
+    result
+  * if both `E2` and `E3` are `void`, or structures or unions of the same type,
+    or pointers to objects of the same type, the result has the common type
+  * if one of `E2` and `E3` is a pointer and the other the constant 0, then the
+    0 is converted to the pointer type and that is the type of the result
+  * if one of `E2` and `E3` has type `void *` and the other is a pointer, the
+    other is converted to `void *` and that is the type of the result
+  * in the type comparison of pointers, any type qualifiers of `*E2` and `*E3`
+    are insignificant
+  * the result inherits qualifiers from both `E2` and `E3`
+
+### Assignment Expressions
+
+Grammar for assignment expressions:
+```abnf
+assignment-expression = conditional-expression
+assignment-expression /= unary-expression assignment-operator assignment-expression
+
+assignment-operator = "=" / "*=" / "/=" / "%=" / "+=" / "-=" / "<<=" / ">>=" / "&=" / "^=" / "|="
+```
+
+* in `E1 op= E2`
+  * `E1` must be an l-value
+  * `E1` must be modifiable
+    * `E1` must not be an array or a function
+    * `E1` must not have an incomplete type
+  * `E1`'s type must not be qualified with `const`
+    * if it is a structure or union, it must not have any member or submember
+      qualified with `const`
+* the value of `E1 op= E2` is the value stored in `E1` after the assignment has
+  taken place
+* the type of `E1 op= E2` is the type of `E1`
+* in `E1 = E2`
+  * the value of the object referred to by `E1` is replaced by the value of
+    `E2`
+  * one of the following must be true:
+    * `E1` and `E2` have both arithmetic type; then `E2` is converted to the
+      type of `E1` by the assignment
+    * `E1` and `E2` are both structures or unions of the same type
+    * `E1` (`E2`) is a pointer and `E2` (`E1`) has type `void *`
+    * `E1` is a pointer, `E2` is a constant expression with value 0
+    * `E1` and `E2` are both pointers to functions or objects whose types are
+      the same except for the possible absence of `const` or `volatile` in `E2`
+* `E1 op= E2` is equivalent to `E1 = E1 op (E2)` except that `E1` is evaluated
+  only once
+
+### Comma Expression
+
+Grammar for a comma expression:
+```abnf
+expression = assignment-expression
+expression /= expression "," assignment-expression
+```
+
+* `E1, E2` is evaluated as follows:
+  1. `E1` is evaluated with all side effects
+  1. the value of `E1` is discarded
+  1. `E2` is evaluated
+* the type and value of `E1, E2` is the type and value of `E2`
+
+### Constant Expressions
+
+Grammar for constant expressions:
+```abnf
+constant-expression = conditional-expression
+```
+
+* constant expressions may not contain
+  * assignments
+  * increment and decrement operators
+  * function calls
+  * comma operators
+  except in an operand of `sizeof`
+* if the constant expression is required to be integral
+  * its operands must consist of integer, enumeration, character, and floating
+    constants
+  * casts must specify an integral type
+  * any floating constants must be cast to an integer
+  * any operand is permitted to `sizeof`
+* in the constant expressions of initializers
+  * the operands may be any type of constant
+  * the unary `&` operator may be applied
+    * to external or static objects
+    * to external or static arrays subscripted with a constant expression
+    * implicitly by appearance of unsubscripted arrays and functions
+  * constant expressions must evaluate either to a constant or to the address
+    of a previously declared external or static object plus or minus a constant
+* in the integral constant expressions after `#if` are not permitted
+  * `sizeof` expressions
+  * enumeration constants
+  * casts
