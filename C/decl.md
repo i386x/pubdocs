@@ -115,8 +115,8 @@ typedef-name = identifier
 Enumeration types are unique `int` types representing a set of named integer
 constants, called enumeration constants:
 ```abnf
-enum-specifier = %x65.6E.75.6D [ identifier ] "{" enumerator-list [ "," ] "}"
-enum-specifier =/ %x65.6E.75.6D identifier
+enum-specifier = %x65.6E.75.6D [ identifier ] "{" enumerator-list [ "," ] "}"  ; enum
+enum-specifier =/ %x65.6E.75.6D identifier                                     ; enum
 
 enumerator-list = enumerator *( "," enumerator )
 

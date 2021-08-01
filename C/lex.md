@@ -184,11 +184,11 @@ hexadecimal-escape-sequence = %x5C.78 1*XDIGIT  ; \x XDIGIT+
 
 Grammar:
 ```abnf
-string-literal = [ %x4C ] %x22 *s-char %x22
+string-literal = [ %x4C ] %x22 *s-char %x22  ; L?" s-char* "
 
 ; Any source character except new line (\n), quotes (\"), and backslash (\\).
-c-char =  %x07-09 / %x0B-0D / %x20-21 / %x23-5B / %x5D-7E
-c-char =/ escape-sequence
+s-char =  %x07-09 / %x0B-0D / %x20-21 / %x23-5B / %x5D-7E
+s-char =/ escape-sequence
 ```
 
 * a string literal `s` is declared as `static char s[]`, initialized by

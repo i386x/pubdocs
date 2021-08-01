@@ -257,11 +257,11 @@ argument-expression-list = assignment-expression *( "," assignment-expression )
 Grammar for unary expressions:
 ```abnf
 unary-expression = postfix-expression
-unary-expression /= "++" unary-expression
-unary-expression /= "--" unary-expression
-unary-expression /= unary-operator cast-expression
-unary-expression /= %x73.69.7A.65.6F.66 unary-expression
-unary-expression /= %x73.69.7A.65.6F.66 "(" type-name ")"
+unary-expression =/ "++" unary-expression
+unary-expression =/ "--" unary-expression
+unary-expression =/ unary-operator cast-expression
+unary-expression =/ %x73.69.7A.65.6F.66 unary-expression   ; sizeof
+unary-expression =/ %x73.69.7A.65.6F.66 "(" type-name ")"  ; sizeof
 
 unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
 ```
@@ -342,7 +342,7 @@ unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
 Grammar for cast expressions:
 ```abnf
 cast-expression = unary-expression
-cast-expression /= "(" type-name ")" cast-expression
+cast-expression =/ "(" type-name ")" cast-expression
 ```
 
 * the construction `(T)E` is called a *cast*
@@ -354,9 +354,9 @@ cast-expression /= "(" type-name ")" cast-expression
 Grammar for multiplicative expressions:
 ```abnf
 multiplicative-expression = cast-expression
-multiplicative-expression /= multiplicative-expression "*" cast-expression
-multiplicative-expression /= multiplicative-expression "/" cast-expression
-multiplicative-expression /= multiplicative-expression "%" cast-expression
+multiplicative-expression =/ multiplicative-expression "*" cast-expression
+multiplicative-expression =/ multiplicative-expression "/" cast-expression
+multiplicative-expression =/ multiplicative-expression "%" cast-expression
 ```
 
 * in `E1 * E2` and `E1 / E2`, `E1` and `E2` must have arithmetic type
@@ -376,8 +376,8 @@ multiplicative-expression /= multiplicative-expression "%" cast-expression
 Grammar for additive expressions:
 ```abnf
 additive-expression = multiplicative-expression
-additive-expression /= additive-expression "+" multiplicative-expression
-additive-expression /= additive-expression "-" multiplicative-expression
+additive-expression =/ additive-expression "+" multiplicative-expression
+additive-expression =/ additive-expression "-" multiplicative-expression
 ```
 
 * in `E1 + E2` or `E1 - E2`, if `E1` or `E2` have arithmetic type, the usual
@@ -409,8 +409,8 @@ additive-expression /= additive-expression "-" multiplicative-expression
 Grammar for shift expressions:
 ```abnf
 shift-expression = additive-expression
-shift-expression /= shift-expression "<<" additive-expression
-shift-expression /= shift-expression ">>" additive-expression
+shift-expression =/ shift-expression "<<" additive-expression
+shift-expression =/ shift-expression ">>" additive-expression
 ```
 
 * in `E1 << E2` and `E1 >> E2`, `E1` and `E2` must be integral and they undergo
@@ -428,10 +428,10 @@ shift-expression /= shift-expression ">>" additive-expression
 Grammar for relational expressions:
 ```abnf
 relational-expression = shift-expression
-relational-expression /= relational-expression "<" shift-expression
-relational-expression /= relational-expression ">" shift-expression
-relational-expression /= relational-expression "<=" shift-expression
-relational-expression /= relational-expression ">=" shift-expression
+relational-expression =/ relational-expression "<" shift-expression
+relational-expression =/ relational-expression ">" shift-expression
+relational-expression =/ relational-expression "<=" shift-expression
+relational-expression =/ relational-expression ">=" shift-expression
 ```
 
 * `a R b`, where `R` is one of `<` (less), `>` (greater), `<=` (less or equal)
@@ -463,8 +463,8 @@ relational-expression /= relational-expression ">=" shift-expression
 Grammar for equality expressions:
 ```abnf
 equality-expression = relational-expression
-equality-expression /= equality-expression "==" relational-expression
-equality-expression /= equality-expression "!=" relational-expression
+equality-expression =/ equality-expression "==" relational-expression
+equality-expression =/ equality-expression "!=" relational-expression
 ```
 
 * `==` (equal to) and `!=` (not equal to) follow the same rules as the
@@ -478,7 +478,7 @@ equality-expression /= equality-expression "!=" relational-expression
 Grammar for a bitwise AND expression:
 ```abnf
 AND-expression = equality-expression
-AND-expression /= AND-expression "&" equality-expression
+AND-expression =/ AND-expression "&" equality-expression
 ```
 
 * in `E1 & E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
@@ -490,7 +490,7 @@ AND-expression /= AND-expression "&" equality-expression
 Grammar for a bitwise exclusive OR expression:
 ```abnf
 exclusive-OR-expression = AND-expression
-exclusive-OR-expression /= exclusive-OR-expression "^" AND-expression
+exclusive-OR-expression =/ exclusive-OR-expression "^" AND-expression
 ```
 
 * in `E1 ^ E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
@@ -502,7 +502,7 @@ exclusive-OR-expression /= exclusive-OR-expression "^" AND-expression
 Grammar for a bitwise inclusive OR expression:
 ```abnf
 inclusive-OR-expression = exclusive-OR-expression
-inclusive-OR-expression /= inclusive-OR-expression "|" exclusive-OR-expression
+inclusive-OR-expression =/ inclusive-OR-expression "|" exclusive-OR-expression
 ```
 
 * in `E1 | E2`, `E1` and `E2` must be integral and undergo the usual arithmetic
@@ -514,7 +514,7 @@ inclusive-OR-expression /= inclusive-OR-expression "|" exclusive-OR-expression
 Grammar for a logical AND expression:
 ```abnf
 logical-AND-expression = inclusive-OR-expression
-logical-AND-expression /= logical-AND-expression "&&" inclusive-OR-expression
+logical-AND-expression =/ logical-AND-expression "&&" inclusive-OR-expression
 ```
 
 * in `E1 && E2`, each of `E1` and `E2` must have arithmetic type or be a
@@ -534,14 +534,14 @@ logical-AND-expression /= logical-AND-expression "&&" inclusive-OR-expression
 Grammar for a logical OR expression:
 ```abnf
 logical-OR-expression = logical-AND-expression
-logical-OR-expression /= logical-OR-expression "||" logical-AND-expression
+logical-OR-expression =/ logical-OR-expression "||" logical-AND-expression
 ```
 
 * in `E1 || E2`, each of `E1` and `E2` must have arithmetic type or be a
   pointer
 * `E1 || E2` evaluates to 1 if `E1` or `E2` compare unequal to 0; otherwise
   `E1 || E2` evaluates to 0
-* the type of the result of `E1 && E2` is `int`
+* the type of the result of `E1 || E2` is `int`
 * `E1 || E2` is evaluated as follows:
   1. `E1` is evaluated, including all side effects
   1. if `E1 != 0`, then `E1 || E2 == 1`
@@ -554,7 +554,7 @@ logical-OR-expression /= logical-OR-expression "||" logical-AND-expression
 Grammar for a conditional expression:
 ```abnf
 conditional-expression = logical-OR-expression
-conditional-expression /= logical-OR-expression "?" expression ":" conditional-expression
+conditional-expression =/ logical-OR-expression "?" expression ":" conditional-expression
 ```
 
 * `E1 ? E2 : E3` is evaluated as follows:
@@ -581,7 +581,7 @@ conditional-expression /= logical-OR-expression "?" expression ":" conditional-e
 Grammar for assignment expressions:
 ```abnf
 assignment-expression = conditional-expression
-assignment-expression /= unary-expression assignment-operator assignment-expression
+assignment-expression =/ unary-expression assignment-operator assignment-expression
 
 assignment-operator = "=" / "*=" / "/=" / "%=" / "+=" / "-=" / "<<=" / ">>=" / "&=" / "^=" / "|="
 ```
@@ -616,7 +616,7 @@ assignment-operator = "=" / "*=" / "/=" / "%=" / "+=" / "-=" / "<<=" / ">>=" / "
 Grammar for a comma expression:
 ```abnf
 expression = assignment-expression
-expression /= expression "," assignment-expression
+expression =/ expression "," assignment-expression
 ```
 
 * `E1, E2` is evaluated as follows:
@@ -643,7 +643,7 @@ constant-expression = conditional-expression
     constants
   * casts must specify an integral type
   * any floating constants must be cast to an integer
-  * any operand is permitted to `sizeof`
+  * any operand is permitted for `sizeof`
 * in the constant expressions of initializers
   * the operands may be any type of constant
   * the unary `&` operator may be applied
