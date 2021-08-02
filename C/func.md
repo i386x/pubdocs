@@ -12,8 +12,10 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
 * for the *declarator declaration-list* part
   * the *declarator* must specify explicitly that the declared identifier has
     function type, i.e. it must contain one of the forms
-    1. *direct-declarator* `(` *parameter-type-list* `)`
-    1. *direct-declarator* `(` [ *identifier-list* ] `)`
+    ```abnf
+    direct-declarator =/ direct-declarator "(" parameter-type-list ")"
+    direct-declarator =/ direct-declarator "(" [ identifier-list ] ")"
+    ```
     where the *direct-declarator* is an identifier or a parenthesized
     identifier
     * the declared identifier must not achieve function type by means of a
