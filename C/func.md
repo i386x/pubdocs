@@ -45,7 +45,8 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
         redeclared only in inner blocks)
     * in the declaration of parameters
       * a type *array of T* is adjusted to read *pointer to T*
-      * a type *function returning T* is adjusted to read *pointer to function returning T*
+      * a type *function returning T* is adjusted to read *pointer to function
+        returning T*
       * in the first edition of ANSI standard, `float` is adjusted to read
         `double` (this is noticeable when a pointer to a parameter is generated
         within a function)
