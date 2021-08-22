@@ -14,6 +14,25 @@
     and also the raising of floating-point exceptions may be omitted)
   * enabled by `#pragma STDC FP_CONTRACT ON`
 
+The following table sums up the precedence and associativity of operators:
+| Operators | Associativity |
+| --------- | ------------- |
+| `()` `[]` `->` `.` | left to right |
+| `!` `~` `++` `--` `+` `-` `*` `&` `(type)` `sizeof` | right to left |
+| `*` `/` `%` | left to right |
+| `+` `-` | left to right |
+| `<<` `>>` | left to right |
+| `<` `<=` `>` `>=` | left to right |
+| `==` `!=` | left to right |
+| `&` | left to right |
+| `^` | left to right |
+| `|` | left to right |
+| `&&` | left to right |
+| `||` | left to right |
+| `?:` | right to left |
+| `=` `+=` `-=` `*=` `/=` `%=` `&=` `^=` `|=` `<<=` `>>=` | right to left |
+| `,` | left to right |
+
 ## Conversions
 
 The following text uses these auxiliary functions and macros:
