@@ -9,6 +9,10 @@
   * sometimes the behavior can be adjusted by non-standard library functions
 * overflows during integral operations are mostly ignored, but this is not in
   general guaranteed
+* (*C99*) floating-point expression may be *contracted*
+  * evaluated as though it were an atomic operation (omitting rounding errors
+    and also the raising of floating-point exceptions may be omitted)
+  * enabled by `#pragma STDC FP_CONTRACT ON`
 
 ## Conversions
 
@@ -29,6 +33,14 @@ The following text uses these auxiliary functions and macros:
   type, can be used everywhere where integer is expected
   * if the value fits to `int`, it is converted to `int`
   * otherwise, it is converted to `unsigned int`
+* in *C99*, the integral promotion is based on conversion ranks
+  * an object or expression with an integer type whose rank is less than or
+    equal to the rank of `int` or `unsigned int` can be used everywhere where
+    `int` or `unsigned int` is expected
+  * a bit field of type `_Bool`, `int`, `signed int`, or `unsigned int` can be
+    used everywhere where `int` or `unsigned int` is expected
+  * if an `int` can represent all values of the original type, the value is
+    converted to an `int`; otherwise, it is converted to an `unsigned int`
 
 ### Integral Conversions
 
@@ -44,6 +56,12 @@ The following text uses these auxiliary functions and macros:
 * integer *I* to signed type *S*
   * if *I* can be represented in *S*, the value is unchanged
   * otherwise the result is implementation-defined
+
+### Boolean Type
+
+* any scalar value *V* to `_Bool` value *B*
+  * if *V* equals to 0, then *B* is 0
+  * otherwise *B* is 1
 
 ### Integral and Floating Point Types
 
@@ -65,7 +83,35 @@ The following text uses these auxiliary functions and macros:
   * within the range: *fround(value)*
   * out of range: undefined
 
+### Complex Types
+
+* when converting complex types, both the real and imaginary parts follow the
+  conversion rules of the corresponding real types
+* real type value *R* to complex type value *C*
+  * the real part of *C* becomes *R*
+  * the imaginary part of *C* becomes 0
+* imaginary type value *I* to complex type value *C*
+  * the real part of *C* becomes 0
+  * the imaginary part of *C* becomes *I*
+* complex type value *C* to real type value *R*
+  * the real part of *C* is converted to *R*
+* complex type value *C* to imaginary type value *I*
+  * the imaginary part of *C* is converted to *I*
+
 ### Arithmetic Conversions
+
+To handle extended integer types, *C99* introduces *conversion ranks*:
+* `_Bool` has the smallest rank
+* `char`, `signed char`, and `unsigned char` have the smaller rank than `_Bool`
+* `short` and `unsigned short` have the smaller rank than `signed char`
+* `int` and `unsigned int` have the smaller rank than `short`
+  * enumeration types have the same rank as their compatible integral types
+* `long` and `unsigned long` have the smaller rank than `int`
+* `long long` and `unsigned long long` have the smaller rank than `long`
+* extended integer types must have smaller rank than standard integral types
+  with the same width
+* the rank of a signed integer type shall be greater than the rank of any
+  signed integer type with less precision
 
 In binary arithmetic expressions, these conversion rules before the arithmetic
 operation are performed:
@@ -82,6 +128,26 @@ operation are performed:
 1. if one operand is `long int`, the other is converted to `long int`
 1. if one operand is `unsigned int`, the other is converted to `unsigned int`
 1. both operands have type `int`
+
+With the integer conversion ranks, these rules are slightly adjusted in *C99*:
+1. if one operand is `long double`, the other is converted to `long double`
+1. if one operand is `double`, the other is converted to `double`
+1. if one operand is `float`, the other is converted to `float`
+1. apply integral promotion to both operands
+1. if both operands have the same type, then no further conversion is needed
+1. if both operands have signed integer types or both have unsigned integer
+   types, the operand with the type of lesser rank is converted to the type of
+   the operand with greater rank
+1. if the operand that has unsigned integer type has rank greater or equal to
+   the rank of the type of the other operand, then the operand with signed
+   integer type is converted to the type of the operand with unsigned integer
+   type
+1. if the type of the operand with signed integer type can represent all of the
+   values of the type of the operand with unsigned integer type, then the
+   operand with unsigned integer type is converted to the type of the operand
+   with signed integer type
+1. both operands are converted to the unsigned integer type corresponding to
+   the type of the operand with signed integer type
 
 ### Pointers and Integers
 
@@ -251,6 +317,7 @@ argument-expression-list = assignment-expression *( "," assignment-expression )
   * after the value is noted, `E` is incremented (`++`) or decremented (`--`)
     by 1
 * `E` must be l-value, the result of `E++` and `E--` is not an l-value
+* `E` must have real type or be a pointer
 
 ### Unary Expressions
 
@@ -272,6 +339,7 @@ unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
 * the value of `++E` (`--E`) is the value of `E` after the incrementation
   (decrementation)
 * `E` must be an l-value, the result of `++E` and `--E` is not an l-value
+* `E` must have real type or be a pointer
 
 #### Address Operator
 
@@ -440,6 +508,7 @@ relational-expression =/ relational-expression ">=" shift-expression
   * 0 otherwise
 * the type of the result of `a R b` is `int`
 * arithmetic operands undergo the usual arithmetic conversions
+* both operands must have real type or be pointers
 * two pointers, `P1` and `P2`, may be compared
   * `*P1` and `*P2` must have same type
   * qualifiers are ignored
@@ -469,6 +538,7 @@ equality-expression =/ equality-expression "!=" relational-expression
 
 * `==` (equal to) and `!=` (not equal to) follow the same rules as the
   relational operators
+* both operands must have arithmetic types or be pointers
 * a pointer may be compared to
   * a constant integral expression with value 0
   * a pointer to `void`

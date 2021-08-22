@@ -8,6 +8,8 @@
 * each source file is first [preprocessed](prep.md) and then compiled
 * compiled files can be further passed to linker which produces executable,
   static, or shared library from them
+  * when an executable is run, the control is passed to the function `main`,
+    which serves as the entry point of the C program
 
 ## Translation Unit
 

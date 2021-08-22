@@ -49,15 +49,18 @@ identifier-list = identifier *( "," identifier )
 
 Grammar for type specifier is:
 ```abnf
-type-specifier = %x76.6F.69.64               ; void
-type-specifier =/ %x63.68.61.72              ; char
-type-specifier =/ %x73.68.6F.72.74           ; short
-type-specifier =/ %x69.6E.74                 ; int
-type-specifier =/ %x6C.6F.6E.67              ; long
-type-specifier =/ %x66.6C.6F.61.74           ; float
-type-specifier =/ %x64.6F.75.62.6C.65        ; double
-type-specifier =/ %x73.69.67.6E.65.64        ; signed
-type-specifier =/ %x75.6E.73.69.67.6E.65.64  ; unsigned
+type-specifier = %x76.6F.69.64                     ; void
+type-specifier =/ %x63.68.61.72                    ; char
+type-specifier =/ %x73.68.6F.72.74                 ; short
+type-specifier =/ %x69.6E.74                       ; int
+type-specifier =/ %x6C.6F.6E.67                    ; long
+type-specifier =/ %x66.6C.6F.61.74                 ; float
+type-specifier =/ %x64.6F.75.62.6C.65              ; double
+type-specifier =/ %x73.69.67.6E.65.64              ; signed
+type-specifier =/ %x75.6E.73.69.67.6E.65.64        ; unsigned
+type-specifier =/ %x5F.42.6F.6F.6C                 ; _Bool (C99)
+type-specifier =/ %x5F.43.6F.6D.70.6C.65.78        ; _Complex (C99)
+type-specifier =/ %x5F.49.6D.61.67.69.6E.61.72.79  ; _Imaginary (C99)
 type-specifier =/ struct-or-union-specifier
 type-specifier =/ enum-specifier
 type-specifier =/ typedef-name
@@ -77,15 +80,22 @@ typedef-name = identifier
   respectively
 * `signed` is meaningful only with `char`; with other types it is redundant
 * *old rule, not in C99*: the implicit type specifier is `int`
+* (*C99*) if there is a `long` but not `double`, the second `long` can be used
+* (*C99*) with `float` and `double`, either `_Complex` or `_Imaginary` can be
+  used
 
 ### Arithmetic Types
 
+* `_Bool` type (*C99*)
+  * unsigned integral type
+  * can hold only 0 or 1
 * `char` type
   * at least 8 bits
   * `char` is large enough to hold any character from the execution character
     set
   * a value of stored character is equal to its code from the character set and
     its non-negative
+    * it holds for machine's standard printing characters
   * other values can be also stored in `char`, but their range and whether they
     are signed or unsigned depends on implementation
   * `unsigned char` and `signed char` are of the same size as `char`
@@ -100,6 +110,10 @@ typedef-name = identifier
   * at least 32 bits
   * signed
   * its size is greater or equal to the size of `int`
+* `long long int` type (*C99*)
+  * at least 64 bits
+  * signed
+  * its size is greater or equal to the size of `long int`
 * `unsigned` types arithmetic is modulo `2**n` (`**` denotes power), where `n`
   is the number of bits of the used type representation
 * non-negative values stored in signed type is a subset of values stored in
@@ -109,6 +123,20 @@ typedef-name = identifier
     and a range from `10**-37` to `10**37`
   * `double` (double precision type) must be precise at least as `float`
   * `long double` must be precise at least as `double`
+* (*C99*) besides the standard integer types, the implementation may provide
+  also *extended integer types*
+* (*C99*) `float _Complex`, `double _Complex`, and `long double _Complex` are
+  three types representing complex numbers
+  * arithmetic types which are not complex types are called real types
+  * each complex type has the same representation and alignment requirements as
+    an array containing exactly two elements of the corresponding real type
+    * the first element is equal to the real part
+    * the second element is equal to the imaginary part
+* (*C99*) optionally, `float _Imaginary`, `double _Imaginary`, and
+  `long double _Imaginary` may also be provided
+  * they are representing the imaginary part of the complex number
+  * the difference between imaginary and ordinary floating-point types is in
+    arithmetic conversions
 
 #### Enumerations
 
@@ -133,6 +161,8 @@ enumerator = enumeration-constant [ "=" constant-expression ]
 * enumeration constants share the same scope as variables
 * enumeration tags have the same meaning as the structure and union tags except
   that incomplete enumeration types are not allowed
+* compilers need not check whether the value stored in an object declared to
+  have enumeration type is valid for that type
 
 ### Derived Types
 
@@ -146,16 +176,17 @@ functions, pointers, structures, and unions.
     and
   * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
     (e.g. array, pointer, function)
-  then the type of the identifier of *D* is *m Q pointer to T*
+  * then the type of the identifier of *D* is *m Q pointer to T*
 * *Q* applies to the pointer, not to the object to which the pointer points
 
 #### Arrays
 
 * in a declaration *T D*
-  * if *D* has the form `D1 "[" [ N ] "]"`, where *N* is a constant expression
-    that must evaluate to positive integer, and
+  * if *D* has the form `D1 "[" [ N ] "]"`, where *N*, specifying the number of
+    elements (the size) of the array, is a constant expression that must
+    evaluate to positive integer, and
   * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
-  then the type of identifier of *D* is *m array of T*
+  * then the type of identifier of *D* is *m array of T*
 * if *N* is missing, the array type is incomplete
 * array elements can be objects of arithmetic types, pointers, structures,
   unions, and arrays
@@ -178,8 +209,8 @@ functions, pointers, structures, and unions.
   * if *D* has the form `D1 "(" P ")"`, where *P* is the type parameters list
     and
   * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
-  then the type of identifier of *D* is *m function with arguments P and a
-  return type T*
+  * then the type of identifier of *D* is *m function with arguments P and a
+    return type T*
 * *P* determines the types of parameters
 * for functions without parameters, *P* is `void`
 * if *P* ends with `, ...`, more arguments than those explicitly specified in
@@ -200,8 +231,8 @@ functions, pointers, structures, and unions.
   * if *D* has the form `D1 "(" [ I ] ")"`, where *I* is the list of
     identifiers and
   * identifier in *T D1* has type *m T*, where *m* is the type modifier
-  then the type of identifier of *D* is *m function with unspecified arguments
-  and a return type T*
+  * then the type of identifier of *D* is *m function with unspecified
+    arguments and a return type T*
 * declaration gives no information about parameters types
 * *I* can be used only if the function declarator is a part of function
   definition as a function header

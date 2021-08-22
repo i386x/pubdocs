@@ -11,9 +11,9 @@ preprocessing-token =/ punctuator
 preprocessing-token =/ PPOTHER
 
 header-name = "<" 1*h-char ">"
-header-name =/ %x22 1*q-char %x22
+header-name =/ %x22 1*q-char %x22  ; "..."
 
-pp-number = [ "." ] DIGIT *( DIGIT / LETTER / "E" ( "+" / "-" ) "." )
+pp-number = [ "." ] DIGIT *( DIGIT / ILETTER / ( "E" / "P" ) ( "+" / "-" ) "." )
 
 ; Any source character except new line (\n) and greater than (>).
 h-char = %x07-09 / %x0B-0D / %x20-3D / %x3F-7E
@@ -227,6 +227,16 @@ Trigraph sequences and their meaning:
 * `#` `pragma` *[ pp-tokens ]*
   * performs an implementation dependent action
   * an unrecognized pragma is ignored
+* pragmas introduced with *C99*
+  * `#pragma STDC FP_CONTRACT ON|OFF`
+    * enables/disables *contracted* floating-point expressions
+    * depending on the place of usage, its effect lasts until the next
+      `FP_CONTRACT` appearance, the end of the compound statement, or the end
+      of the translation unit
+  * `#pragma STDC FENV_ACCESS ON|OFF`
+    * inform the implementation when a program might access the floating-point
+      environment (allows the compiler to do certain optimizations)
+    * the scoping rules are the same as for `FP_CONTRACT`
 
 ## Null Directive
 

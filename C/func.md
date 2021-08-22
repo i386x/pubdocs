@@ -24,6 +24,7 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
     * the *parameter-type-list* declares its parameters, together with their
       types
       * each declarator in the *parameter-type-list* must contain an identifier
+        * identifier names need not agree with the function prototype
         * if the function takes no parameters, the *parameter-type-list*
           consists solely of `void`
       * if the *parameter-type-list* ends with `, ...`, the function may be
@@ -50,3 +51,8 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
       * in the first edition of ANSI standard, `float` is adjusted to read
         `double` (this is noticeable when a pointer to a parameter is generated
         within a function)
+
+## The Funtion `main`
+
+* the function `main` is the program entry point
+* the value returned by the function `main` is the program exit code

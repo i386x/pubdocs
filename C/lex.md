@@ -15,7 +15,7 @@ token =/ punctuator
 
 A comment is everything between `/*` and `*/`.
 
-**C99**: Also everything between `//` and a new-line character is a comment.
+(*C99*) Also everything between `//` and a new-line character is a comment.
 
 As a white space character is considered:
 ```abnf
@@ -23,6 +23,22 @@ WS = %x07 / %x08 / %x09 / %x0A / %x0B / %x0C / %x0D / %x20  ; \a, \b, \t, \n, \v
 ```
 
 Comments and white space characters are ignored.
+
+## Universal Character Names
+
+Grammar:
+```abnf
+UCNAME = %x5C.75 4XDIGIT   ; \u (C99)
+UCNAME =/ %x5C.55 8XDIGIT  ; \U (C99)
+```
+
+* `\Unnnnnnnn` designates the character from the ISO/IEC 10646 (Unicode)
+  character set with the code point `nnnnnnnn`
+* `\unnnn` is an abbreviation for `\U0000nnnn`
+* `nnnn` should be neither in the range `0000` through `00A0` (except `0024`,
+  `0040`, or `0060`) nor in the range `D800` through `DFFF` inclusive
+* universal character names can be used in identifiers, character constants,
+  and string literals
 
 ## Keywords
 
@@ -38,12 +54,20 @@ default         goto          sizeof          volatile
 do              if            static          while
 ```
 
+Additionally, these names are considered keywords in *C99*:
+```C
+_Bool
+_Complex
+_Imaginary
+```
+
 ## Identifiers
 
 Grammar:
 ```abnf
-identifier = LETTER *( LETTER / DIGIT )
+identifier = ILETTER *( ILETTER / DIGIT )
 
+ILETTER = LETTER / UCNAME
 DIGIT  = %x30-39                  ; 0-9
 LETTER = "_" / %x41-5A / %x61-7A  ; _, A-Z, a-z
 ```
@@ -77,7 +101,9 @@ octal-constant       = "0" *ODIGIT
 hexadecimal-constant = "0X" *XDIGIT
 
 integer-suffix = "U" [ "L" ]
+integer-suffix =/ "U" ( %x4C.4C / %x6C.6C )      ; LL/ll (C99)
 integer-suffix =/ "L" [ "U" ]
+integer-suffix =/ ( %x4C.4C / %x6C.6C ) [ "U" ]  ; LL/ll (C99)
 
 NZDIGIT = %x31-39  ; 1-9
 ODIGIT  = %x30-37  ; 0-7
@@ -85,14 +111,21 @@ XDIGIT  = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"  ; 0-9 A-F a-f
 ```
 
 * `U` or `u` suffix means that the integer is unsigned (its type is
-  `unsigned int` or `unsigned long int`)
-* `L` or `l` suffix means that the integer is `long` (its type is `long int` or
-  `unsigned long int`)
+  `unsigned int`, `unsigned long int`, or `unsigned long long int`)
+* `L` or `l` suffix means that the integer is `long` or `long long` (its type
+   is `long int`, `long long int`, `unsigned long int`, or
+   `unsigned long long int`)
+* `LL` or `ll` suffix means that the integer is `long long` (its type is
+  `long long int` or `unsigned long long int`)
 * if the integer constant is written as decimal without suffix, then its type
   is the first matching type from `int`, `long int`, `unsigned long int`
+  (*C99*: `long long int`)
 * if the integer constant is written as octal or hexadecimal without suffix,
   its type is the first matching from `int`, `unsigned int`, `long int`,
-  `unsigned long int`
+  `unsigned long int`, `long long int`, `unsigned long long int`
+* (*C99*) if the integer constant cannot be represented by any type in its list,
+  it may have an extended integer type; if it has no extended integer type, it
+  has no type
 
 ### Floating Constants
 
@@ -100,16 +133,28 @@ Grammar:
 ```abnf
 floating-constant = fractional-constant [ exponent-part ] [ "F" / "L" ]
 floating-constant =/ 1*DIGIT exponent-part [ "F" / "L" ]
+floating-constant =/ "0X" x-fractional-constant b-exponent-part [ "F" / "L" ]  ; C99
+floating-constant =/ "0X" 1*XDIGIT b-exponent-part [ "F" / "L" ]               ; C99
 
 fractional-constant = *DIGIT "." 1*DIGIT
 fractional-constant =/ 1*DIGIT "."
 
+x-fractional-constant = *XDIGIT "." 1*XDIGIT
+x-fractional-constant =/ 1*XDIGIT "."
+
 exponent-part = "E" [ "+" / "-" ] 1*DIGIT
+
+b-exponent-part = "P" [ "+" / "-" ] 1*DIGIT
 ```
 
 * floating constant without suffix has type `double`
 * with `F` or `f` suffix, it has type `float`
 * with `L` or `l` suffix, it has type `long double`
+* (*C99*) hexadecimal floating constants
+  * the fractional part is interpreted as a hexadecimal rational number, e.g
+    `AB.C == A*16 + B + C*(1./16)`
+  * in the exponent part, the base is 2 and the exponent is interpreted as a
+    decimal number; thus `0x.4p3` is equal to `4./16 * 8` which is `2.0`
 
 ### Enumeration Constants
 
@@ -136,6 +181,7 @@ c-char =/ escape-sequence
 escape-sequence = simple-escape-sequence
 escape-sequence =/ octal-escape-sequence
 escape-sequence =/ hexadecimal-escape-sequence
+escape-sequence =/ UCNAME
 
 simple-escape-sequence = %x5C.27   ; \'
 simple-escape-sequence =/ %x5C.22  ; \"
