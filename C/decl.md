@@ -178,6 +178,7 @@ functions, pointers, structures, and unions.
     (e.g. array, pointer, function)
   * then the type of the identifier of *D* is *m Q pointer to T*
 * *Q* applies to the pointer, not to the object to which the pointer points
+* arithmetic and pointer types are collectively called *scalar types*
 
 #### Arrays
 
@@ -243,6 +244,7 @@ functions, pointers, structures, and unions.
   types, called members
 * union is defined like structure, but all its members are placed on the same
   storage location
+* array and structure types are collectively called *aggregate types*
 
 Declarations of structures and unions are summed up by the following grammar:
 ```abnf
