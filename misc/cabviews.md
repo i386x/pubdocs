@@ -7,7 +7,10 @@
 * [Vovlaku.sk](https://www.youtube.com/channel/UCRK0bjzf3Gf3Om03m4syzxw/videos)
 * [Lukáš Starý](https://www.youtube.com/user/277slovan/videos)
 * [CB-Train Driver](https://www.youtube.com/channel/UC1yHBkvFtv1zLZywKwbMbEg/videos)
+* [Pavel Přinda](https://www.youtube.com/channel/UCZEHGNI3Rpu4WLkpWmfF-cw/videos)
 * [J.N.V.](https://www.youtube.com/channel/UCNED4lGLrsrVLTQaHeADZEg/videos)
+* https://www.youtube.com/user/lookfromlok/videos
+* https://www.youtube.com/user/mikulda2/videos
 * https://www.youtube.com/c/Fantomasmag/videos
 * [RobM](https://www.youtube.com/channel/UCHnJok6-vpLXS1K_ir72QpQ/videos)
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
