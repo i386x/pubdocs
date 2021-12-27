@@ -11,8 +11,12 @@
 * [J.N.V.](https://www.youtube.com/channel/UCNED4lGLrsrVLTQaHeADZEg/videos)
 * https://www.youtube.com/user/lookfromlok/videos
 * https://www.youtube.com/user/mikulda2/videos
+* https://www.youtube.com/user/majlas1/videos
+* [Tomáš Daniel](https://www.youtube.com/channel/UCaq8PmbmC2-yEdkrfEPx2OQ/videos)
 * https://www.youtube.com/c/Fantomasmag/videos
 * [RobM](https://www.youtube.com/channel/UCHnJok6-vpLXS1K_ir72QpQ/videos)
+* [Peter Hudec](https://www.youtube.com/channel/UCDzrCs8cHBZUX49oXTF7WxQ/videos)
+* [KIWI RAILTV](https://www.youtube.com/channel/UC8L0FiD3Znju_qEwlCXybSw/videos)
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
 * [Radolfzell-Friedrichshafen](https://www.youtube.com/watch?v=JmbDvjDnH5k)
 * [Taurus-Tf](https://www.youtube.com/channel/UCowsdpGGcTcKhgurICOJERg/videos)
@@ -20,6 +24,7 @@
 * https://www.youtube.com/user/lorirocks777/videos
 * [Railway Emotions](https://www.youtube.com/channel/UCRYl1C12IXPs2Uo_25OdrPA/videos)
 * [Associazione Verbano Express](https://www.youtube.com/channel/UC3-diLH1e2WCceg4_E7Vq-g/videos)
+* [Theitaliantraindrivers](https://www.youtube.com/c/Theitaliantraindrivers/videos)
 * https://www.youtube.com/user/FaustoTz/videos
 * [Liono pointcom](https://www.youtube.com/channel/UCUKWZLzVbCes5AJm3f1m12g/videos)
 * [France Cab Ride](https://www.youtube.com/user/rumtex/videos)
