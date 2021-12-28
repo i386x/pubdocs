@@ -18,8 +18,10 @@ interested in. Maybe You find some of these interesting too.
 1. [Dictionaries & Translators](#dictionaries--translators)
 1. [Electronics](#electronics)
    1. [Beam Bots](#beam-bots)
+   1. [Game Consoles](#game-consoles)
    1. [Power Management](#power-management)
    1. [RC Circuits](#rc-circuits)
+   1. [Telephones](#telephones)
 1. [Fedora Project](#fedora-project)
    1. [Developer](#developer)
    1. [ELN](#eln)
@@ -27,6 +29,8 @@ interested in. Maybe You find some of these interesting too.
    1. [GNOME](#gnome)
    1. [Packaging](#packaging)
    1. [System Management](#system-management)
+1. [Hardware](#hardware)
+   1. [Networking (HW)](#networking-hw)
 1. [Linux](#linux)
    1. [Administration](#administration)
    1. [Containers](#containers)
@@ -91,6 +95,7 @@ interested in. Maybe You find some of these interesting too.
 * [An open letter to the Linux community](https://lore.kernel.org/lkml/CAK8KejpUVLxmqp026JY7x5GzHU2YJLPU8SzTZUNXU2OXC70ZQQ@mail.gmail.com/)
 * [Announcing the Cloud Native Glossary](https://www.cncf.io/blog/2021/05/05/announcing-the-cloud-native-glossary/)
 * [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
+* [AWS commits to update its own Linux every other year](https://www.theregister.com/2021/11/23/amazon_linux_2022/)
 * [AWS’ secret weapon is revolutionizing computing](https://siliconangle.com/2021/06/18/aws-secret-weapon-revolutionizing-computing/)
 * ['Boringly reliable': Red Hat architect thinks Kubernetes is 'mostly done' – but there are still plenty of bugs](https://www.theregister.com/2020/06/17/kubernetes_clayton_coleman_interview/)
 * [CentOS Linux 8 will end in 2021 and shifts focus to CentOS Stream](https://www.cyberciti.biz/linux-news/centos-linux-8-will-end-in-2021-and-shifts-focus-to-centos-stream/)
@@ -98,25 +103,30 @@ interested in. Maybe You find some of these interesting too.
 * [CentOS Stream: 'I was slow on the uptake, but I get what they are doing now,' says Rocky Linux founder](https://www.theregister.com/2021/07/09/centos_stream_greg_kurtzer/)
 * [Conductor: Why We Migrated from Kubernetes to Nomad](https://thenewstack.io/conductor-why-we-migrated-from-kubernetes-to-nomad/)
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
+* [Containers vs. Pods - Taking a Deeper Look](https://iximiuz.com/en/posts/containers-vs-pods/)
 * [Conway Is Killing You And Little Is Helping](https://hackernoon.com/conway-is-killing-you-and-little-is-helping-750f3acfb60e)
 * [Cool happenings in Fedora Workstation land](https://blogs.gnome.org/uraeus/2021/09/16/cool-happenings-in-fedora-workstation-land/)
 * [Cracks are showing in Enterprise Open Source's foundations](https://www.jeffgeerling.com/blog/2021/cracks-are-showing-enterprise-open-sources-foundations)
 * [Developers: These are the top skills you will need in 2021](https://www.techrepublic.com/article/developers-these-are-the-top-skills-you-will-need-in-2021/)
 * [EKS vs GKE vs AKS – Evaluating Kubernetes in the Cloud](https://securityboulevard.com/2021/01/eks-vs-gke-vs-aks-evaluating-kubernetes-in-the-cloud-3/)
+* [Faster hardware through software](https://research.redhat.com/blog/article/faster-hardware-through-software/)
 * [Fedora Developers Discuss Retiring NTP, Deprecating SCP Protocol](https://www.phoronix.com/scan.php?page=news_item&px=Fedora-Down-With-NTP-SCP)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
+* [Five key and emerging trends in cloud observability](https://www.information-age.com/five-key-emerging-trends-cloud-observability-123497271/)
 * [Free will is the real benefit of Red Hat OpenShift Service on AWS](https://siliconangle.com/2020/12/01/free-will-real-benefit-red-hat-openshift-service-aws-reinvent/)
 * [Gartner: 10 infrastructure trends you need to know](https://www.networkworld.com/article/3447397/gartner-10-infrastructure-trends-you-need-to-know.html)
 * [Gartner reveals four trends that are shaping the future of public cloud](https://www.information-age.com/gartner-reveals-four-trends-that-shaping-future-public-cloud-123496370/)
 * [Here's Why IBM Is Wading Deeper Into Hybrid Cloud Waters (as It Should)](https://www.fool.com/investing/2021/06/15/why-ibm-wading-deeper-in-hybrid-cloud-computing/)
 * [How Jim Whitehurst sold the IBM deal to Red Hat board](https://www.bizjournals.com/triangle/news/2020/12/02/ibm-red-hat-whitehurst-krishna-deal-cloud-data.html)
 * [How Kubernetes Saved OpenStack](https://vmblog.com/archive/2021/04/29/how-kubernetes-saved-openstack.aspx#.YcNVxPeYVhE)
+* [HOW THE FINANCIAL SECTOR CAN PREPARE FOR THE NEW AGE OF RESILIENCE](https://www.financederivative.com/how-the-financial-sector-can-prepare-for-the-new-age-of-resilience/)
 * [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
 * [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
 * [HOW TO CONTRIBUTE TO OPEN SOURCE: THE ULTIMATE GUIDE](https://builtin.com/software-engineering-perspectives/open-source-contribution)
 * [How to explain GitOps in plain English](https://enterprisersproject.com/article/2021/6/gitops-explained-plain-english)
 * [IBM CEO Arvind Krishna wants to completely transform his organization](https://techcrunch.com/2020/11/10/ibm-ceo-arvind-krishna-wants-to-completely-transform-his-organization/?guccounter=1&guce_referrer=aHR0cHM6Ly9tYWlsLmNvcnAucmVkaGF0LmNvbS96aW1icmEv&guce_referrer_sig=AQAAAD0n0hLh8JvMkMVYkhLjmHfpBBsQWKKhS9U6gHlgrxY0_20BxM05_L8uAATTg4b6-5cvWAe5Dg-HbBN4vDYJMOJqloVaVY1MZY_U6gnQCOyMbqDoRBLrY4CznusDohpoB-P7BRKCM5MS2h-7Evlq79Dzw1l-3VEGEjyP1jTCb_YJ)
 * [IBM: Misunderstood Growth Strategy](https://seekingalpha.com/article/4406466-ibm-misunderstood-growth-strategy)
+* [IBM: Shareholders Must Prepare For An Ideological Shift](https://seekingalpha.com/article/4469304-ibm-stock-buy-prepare-for-ideological-shift)
 * [IBM’s First “Pandemic Quarter”: 5 Key Takeaways from Big Blue’s Earnings](https://www.cbronline.com/news/ibms-first-pandemic-quarter)
 * [IBM’s Jim Whitehurst On Why Red Hat Wins vs. VMware, HPE](https://www.crn.com/news/cloud/ibm-s-jim-whitehurst-on-why-red-hat-wins-vs-vmware-hpe)
 * [Inclusivity leads to diversity: How men can be better allies for women in tech](https://www.idgconnect.com/article/3630390/inclusivity-leads-to-diversity-how-men-can-be-better-allies-for-women-in-tech.html)
@@ -127,7 +137,9 @@ interested in. Maybe You find some of these interesting too.
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [Kubernetes Is Not Your Platform, It's Just the Foundation](https://www.infoq.com/articles/kubernetes-successful-adoption-foundation/)
 * [Kubernetes is so Simple You Can Explore it with Curl](https://blog.tilt.dev/2021/03/18/kubernetes-is-so-simple.html)
+* [Leaders Focus on Automation Opportunity](https://www.meritalk.com/articles/leaders-focus-on-automation-opportunity/)
 * [Linus Torvalds on how AMD and Intel are changing how processor interrupts are handled](https://www.zdnet.com/article/linus-torvalds-on-how-amd-and-intel-are-changing-how-processor-interrupts-are-handled/)
+* [Managed container services: KaaS, KPaaS & CaaS explained and compared](https://www.cncf.io/blog/2021/11/04/managed-container-services-kaas-kpaas-caas-explained-and-compared/)
 * [Microsoft’s New Linux Distro Is a Warning Shot at Red Hat](https://www.reviewgeek.com/92661/microsofts-new-linux-distro-is-a-warning-shot-at-red-hat/)
 * [New GNOME Human Interface Guidelines now official – and obviously some people hate it](https://www.theregister.com/2021/08/09/gnome_human_interface_guidelines/)
 * [New normal is just normal](https://moozzaa.medium.com/new-normal-is-just-normal-1d623d710c93)
@@ -138,6 +150,8 @@ interested in. Maybe You find some of these interesting too.
 * [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
 * [Rant about Github pull-request workflow implementation](https://julien.danjou.info/rant-about-github-pull-request-workflow-implementation/)
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
+* [Rebuilding the entire RubyGems in Copr](http://frostyx.cz/posts/rebuilding-the-entire-rubygems-in-copr)
+* [Red Hat tackles enterprise-grade AI/ML issues through its Kubernetes platform](https://siliconangle.com/2021/10/19/red-hat-tackles-enterprise-grade-ai-ml-issues-kubernetes-platform-kubecon/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Remote work, one year in: 5 ways to boost mental health](https://enterprisersproject.com/article/2021/3/remote-work-5-tips-mental-health?sc_cid=70160000000eUoRAAU&elqTrackId=4555bbeb016e492db0acc123ad644ca2&elq=4d1d9704ea49411395f73b213edcf61e&elqaid=82185&elqat=1&elqCampaignId=360725&elqcst=272&elqcsid=26931)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
@@ -153,12 +167,14 @@ interested in. Maybe You find some of these interesting too.
 * [The killing of CentOS Linux: 'The CentOS board doesn't get to decide what Red Hat engineering teams do'](https://www.theregister.com/2021/01/26/killing_centos/)
 * [The rise and rise of open-source software](https://www.businesslive.co.za/fm/fm-fox/digital/2021-08-19-the-rise-and-rise-of-open-source-software/)
 * [The rise of Rocky Linux](https://changelog.com/podcast/427)
+* [What Developers Need to Know About Edge Computing](https://devops.com/what-developers-need-to-know-about-edge-computing/)
 * [What is Cloud Native? The Cloud Computing Delivery Model Explained](https://www.freecodecamp.org/news/get-started-with-cloud-native/)
 * [Where to Turn for a CentOS Replacement? Here’s 5 Solid Linux Distros to Check Out](https://thenewstack.io/where-to-turn-for-a-centos-replacement-heres-5-solid-linux-distros-to-check-out/)
 * [Why Choose VMware Virtualization for Kubernetes and Containers](https://blogs.vmware.com/vsphere/2021/01/why-choose-vmware-virtualization-kubernetes-containers.html)
 * [Why Cloud-Based Architectures and Open Source Don’t Always Mix](https://www.itprotoday.com/hybrid-cloud/why-cloud-based-architectures-and-open-source-don-t-always-mix)
 * [Why data gravity won’t stop the move to multicloud](https://venturebeat.com/2021/03/06/why-data-gravity-wont-stop-the-move-to-multicloud/)
 * [Why I Hate the Cloud](https://vmiss.net/why-i-hate-the-cloud/)
+* [Why IBM's Non-GAAP Reporting Isn't as Bad as People Are Saying](https://www.fool.com/investing/2021/10/20/why-ibm-non-gaap-reporting-isnt-as-bad-as-people/)
 * [Why introverts are ignored and often overlooked](https://www.raconteur.net/hr/introverts-workplace)
 * [Why Is Apple’s M1 Chip So Fast?](https://debugger.medium.com/why-is-apples-m1-chip-so-fast-3262b158cba2)
 * [Why Kubernetes was inevitable](https://www.cncf.io/blog/2021/08/02/why-kubernetes-was-inevitable/)
@@ -176,7 +192,10 @@ interested in. Maybe You find some of these interesting too.
 * [Doomsday Vault](https://x-c3ll.github.io/)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [Haoyi's Programming Blog](http://www.lihaoyi.com/)
+* [Internal Register](https://internalregister.github.io/)
 * [ionel's codelog](https://blog.ionelmc.ro/)
+* [Ivan Velichko](https://iximiuz.com/en/)
+* [Jakub Kadlčík](http://frostyx.cz/)
 * [jamiebuilds](https://jamie.build/)
 * [Ken Shirriff's blog](http://www.righto.com/)
 * [Miroslav Suchý](http://miroslav.suchy.cz/blog/)
@@ -234,9 +253,15 @@ interested in. Maybe You find some of these interesting too.
 
 ## Electronics
 
+* [ElectroNoobs](https://electronoobs.com/index.php)
+
 ### Beam Bots
 
 * [solarbotics.net](http://solarbotics.net/)
+
+### Game Consoles
+
+* [Building a 'Homebrew' Video Game Console](https://internalregister.github.io/2019/03/14/Homebrew-Console.html)
 
 ### Power Management
 
@@ -246,6 +271,14 @@ interested in. Maybe You find some of these interesting too.
 
 * [Pro pamětníky - trochu historie RC, aneb jak jsme bastlili v Česku](https://rc-model.rajce.idnes.cz/Pro_pametniky_-_trochu_historie_RC%2C_aneb_jak_jsme_bastlili_v_Cesku/#)
 * [Schéma rádiového dálkového ovládání. Vyrábíme rádiové ovládání letadla. Vysvětlení režimu](https://hkls.ru/cs/fejjsbuk/shema-pulta-radioupravleniya-delaem-radioupravlenie-dlya.html)
+
+### Telephones
+
+* [Australian Post Office Telephone No. 1040](https://www.britishtelephones.com/aus/1040.htm)
+* [Eliminate back feeded Audio Signal](https://electronics.stackexchange.com/questions/318649/eliminate-back-feeded-audio-signal)
+* [How were four wires replaced with two wires in early telephones?](https://electronics.stackexchange.com/questions/543433/how-were-four-wires-replaced-with-two-wires-in-early-telephones)
+* [Modeling Telephony Hybrids using 2 x 2 Matrices](http://www.dougrice.plus.com/dougnapTheory/index.htm)
+* [The first one-piece telephone: type 330](http://www.johnhearfield.com/Telephone/One_piece.htm)
 
 ## Fedora Project
 
@@ -323,6 +356,7 @@ interested in. Maybe You find some of these interesting too.
 * [packit](https://packit.dev/)
   * [Documentation](https://packit.dev/docs/)
 * [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
+* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
 * [Unified source and PR driven workflow](https://github.com/projectatomic/rpmdistro-gitoverlay/blob/master/doc/reworking-fedora-releng.md)
@@ -465,6 +499,13 @@ interested in. Maybe You find some of these interesting too.
 
 * [Clean up PackageKit cache the right way](https://askbot.fedoraproject.org/en/question/108524/clean-up-packagekit-cache-the-right-way/)
 
+## Hardware
+
+### Networking (HW)
+
+* [Turris](https://www.turris.cz/cs/) [[doc](https://docs.turris.cz/)]
+* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)
+
 ## Linux
 
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
@@ -553,6 +594,7 @@ Projects
 * [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
 * [How to create virtual block device (loop device/filesystem) in Linux](https://www.thegeekdiary.com/how-to-create-virtual-block-device-loop-device-filesystem-in-linux/)
 * [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
+* [ISO 9660](https://wiki.osdev.org/ISO_9660)
 * [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
 * [Partition and Format Drive With NTFS](https://relentlesscoding.com/2019/01/05/partition-and-format-drive-with-ntfs/)
 * [Turn off (spin down) external (USB) HDD on Linux](https://superuser.com/questions/1138498/turn-off-spin-down-external-usb-hdd-on-linux)
@@ -581,10 +623,12 @@ Projects
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
 * [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
 * [Building a virtual network with qemu](http://csortu.blogspot.com/2009/12/building-virtual-network-with-qemu.html)
+* [Computer Networking Fundamentals Learning Series](https://iximiuz.com/en/series/computer-networking-fundamentals/)
+* [Connecting two qemu VMs (Qemu-discuss)](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
-* [how to connect multiple kvm/qemu VM guests in to a subnet [closed]](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
+* [how to connect multiple kvm/qemu VM guests in to a subnet](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
-* [[Qemu-discuss] Connecting two qemu VMs](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
+* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)
 
 #### RFCs
 
@@ -966,6 +1010,7 @@ See [Caml](#caml).
 
 * [Coding Dojo Brno](https://github.com/dojo-brno/dojo-brno)
 * [DevConf.cz 2021](https://devconfcz2021.sched.com/)
+* [PackagingCon](https://packaging-con.org/)
 
 ### Talks
 
@@ -1001,6 +1046,7 @@ See [Caml](#caml).
 * [ASIO (C++)](https://github.com/chriskohlhoff/asio) [[doc](http://think-async.com/Asio)]
 * [Async http client/server framework (Python)](https://github.com/aio-libs/aiohttp) [[doc](https://docs.aiohttp.org/en/stable/)]
 * [Augeas (C)](https://github.com/hercules-team/augeas)
+* [AutoGen (C)](https://sourceforge.net/p/autogen/code/ci/master/tree/)
 * [Backward-cpp (C++)](https://github.com/bombela/backward-cpp)
 * [Bash Line Editor (Bash)](https://github.com/akinomyoga/ble.sh)
 * [bash-lib (Bash)](https://github.com/aks/bash-lib)
@@ -1072,6 +1118,7 @@ See [Caml](#caml).
 * [goals (OCaml)](http://git.annexia.org/?p=goals.git)
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
+* [gosu (Golang)](https://github.com/tianon/gosu)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
@@ -1119,6 +1166,7 @@ See [Caml](#caml).
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
 * [Marshal parser (Python)](https://github.com/fedora-python/marshalparser/)
+* [Matrix (An open network for secure, decentralized communication) server setup using Ansible and Docker (Ansible)](https://github.com/spantaleev/matrix-docker-ansible-deploy/)
 * [memleax (C)](https://github.com/WuBingzheng/memleax)
 * [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
 * [mock (Python)](https://github.com/rpm-software-management/mock)
@@ -1172,6 +1220,7 @@ See [Caml](#caml).
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [review-rot (Python)](https://github.com/redhat-aqe/review-rot)
+* [rhlp (Java)](https://github.com/oskutka/rhlp)
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [rpm (C)](https://github.com/rpm-software-management/rpm)
 * [rpm-showme (Python)](https://pagure.io/minimization/rpm-showme)
@@ -1191,6 +1240,7 @@ See [Caml](#caml).
 * [Slides Code Highlighter (HTML/SCSS/JavaScript)](https://github.com/romannurik/SlidesCodeHighlighter)
 * [slop (C++)](https://github.com/naelstrof/slop)
 * [Software Collections](https://github.com/sclorg) [[home](https://www.softwarecollections.org/en/)]
+* [SoS (Python)](https://github.com/sosreport/sos) [[doc](https://sos.readthedocs.io/en/main/)]
 * [Spack (Python)](https://github.com/spack/spack) [[doc](https://spack.readthedocs.io/en/latest/index.html)]
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
@@ -1210,6 +1260,7 @@ See [Caml](#caml).
   * [Xiki (Ruby)](https://github.com/trogdoro/xiki)
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
+* [thinbox (Python)](https://github.com/inknos/thinbox/)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [tre (C)](https://github.com/laurikari/tre)
 * [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
@@ -1242,6 +1293,7 @@ See [Caml](#caml).
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
 * [yodl (C)](https://gitlab.com/fbb-git/yodl) [[home](https://fbb-git.gitlab.io/yodl/)]
+* [zchunk (C)](https://github.com/zchunk/zchunk)
 * [Ziglang (Zig)](https://github.com/ziglang/zig) [[home](https://ziglang.org/)]
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 * [zlib (C)](https://github.com/madler/zlib/)
@@ -1311,6 +1363,7 @@ See [Caml](#caml).
 * [Python-uinput](https://github.com/tuomasjjrasanen/python-uinput)
 * [Red Hat Quality Engineering](https://github.com/RedHatQE)
   * [GitLab CI Openstack executor](https://github.com/RedHatQE/openstack-gitlab-executor)
+* [ReportPortal.io](https://reportportal.io/) [[repos](https://github.com/reportportal)]
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
@@ -1373,15 +1426,20 @@ See [Caml](#caml).
 
 * [12 zlatých pravidel duševního zdraví](https://www.patentnimedicina.cz/cz/ze-supliku-tcm/12-zlatych-pravidel-dusevniho-zdravi)
 * [3D Sets](https://3dsets.com/)
+* [base48 hackerspace](https://base48.cz/)
 * [Blue Light Screen Protector Panels](https://eyespc.com/collections/blue-light-filter-panels)
+* [Book Depository](https://www.bookdepository.com/)
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [Color Cards](https://www.mosaic-commons.org/colorcards)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
+* [Hlídač státu](https://www.hlidacstatu.cz/) [[repos](https://github.com/HlidacStatu)]
+  * [UZIS_COVID_DATA](https://github.com/HlidacStatu/UZIS_COVID_DATA)
 * [How can I extract a page range / a part of a PDF?](https://askubuntu.com/a/282105)
 * [How can I restart pulseaudio without having to logout?](https://askubuntu.com/questions/15223/how-can-i-restart-pulseaudio-without-having-to-logout)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
+* [Jak rozebrat smartphone Huawei P 20 Lite / Nova 3 / Smart P / Y5 / Y6 Prime 2018 / Y9](https://device-wiki.com/cs/jak-rozebrat-smartphone-huawei-p-20-lite-nova-3.html#Y5_a_Y6_Prime_2018)
 * [MTB okruh severozápadně od Brna](https://www.czex.cz/zbartos/vbaba.htm)
 * [Oriental](https://www.oriental.cz/)
   * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
