@@ -219,13 +219,9 @@ interested in. Maybe You find some of these interesting too.
 
 ## Books
 
-* [Culture Map, The (Erin Meyer)](https://www.amazon.com/Culture-Map-INTL-ED-Decoding/dp/1610392760/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=)
-* [O'Reilly Classics](https://www.goodreads.com/list/show/142694.Humble_Book_Bundle_O_Reilly_Classics_by_O_Reilly)
-* [On Lisp: Advanced Techniques for Common Lisp (Paul Graham)](http://www.paulgraham.com/onlisp.html)
+* [Graduate Texts in Mathematics](https://en.wikipedia.org/wiki/Graduate_Texts_in_Mathematics)
 * [Red Hat Developer eBooks](https://developers.redhat.com/ebooks)
-* [Structure and Interpretation of Computer Programs (Harold Abelson and Gerald Jay Sussman with Julie Sussman)](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
-  * [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
-* [The Heart of Conflict: A Spirituality of Transformation](https://www.amazon.co.uk/Heart-Conflict-Spirituality-Transformation/dp/1896836577)
+* [zlibrary](https://1lib.cz/)
 
 ## CentOS
 
@@ -355,6 +351,7 @@ interested in. Maybe You find some of these interesting too.
 * [Packager Dashboard](https://packager-dashboard.fedoraproject.org/)
 * [packit](https://packit.dev/)
   * [Documentation](https://packit.dev/docs/)
+    * [Onboarding Guide](https://packit.dev/docs/guide/)
 * [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
 * [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
@@ -504,7 +501,7 @@ interested in. Maybe You find some of these interesting too.
 ### Networking (HW)
 
 * [Turris](https://www.turris.cz/cs/) [[doc](https://docs.turris.cz/)]
-* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)
+* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)]
 
 ## Linux
 
@@ -628,7 +625,7 @@ Projects
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
 * [how to connect multiple kvm/qemu VM guests in to a subnet](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
-* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)
+* [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)]
 
 #### RFCs
 
@@ -994,6 +991,10 @@ See [Caml](#caml).
 * [Python Curses Handling Window (Terminal) Resize](https://stackoverflow.com/questions/5161552/python-curses-handling-window-terminal-resize)
 * [Python Prompt Toolkit](https://python-prompt-toolkit.readthedocs.io/) [[repo](https://github.com/prompt-toolkit/python-prompt-toolkit)]
 * [Urwid](http://urwid.org/) [[repo](https://github.com/urwid/urwid)]
+
+#### Scheme
+
+* [SICP Collections](https://docs.racket-lang.org/sicp-manual/index.html)
 
 #### Tcl/Tk
 

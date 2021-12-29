@@ -7,6 +7,7 @@
 * [Vovlaku.sk](https://www.youtube.com/channel/UCRK0bjzf3Gf3Om03m4syzxw/videos)
 * [Lukáš Starý](https://www.youtube.com/user/277slovan/videos)
 * [CB-Train Driver](https://www.youtube.com/channel/UC1yHBkvFtv1zLZywKwbMbEg/videos)
+* [Johnny Trains CZ](https://www.youtube.com/channel/UCM2sHi3cI4oTgLah6lpvL5A/videos)
 * [Pavel Přinda](https://www.youtube.com/channel/UCZEHGNI3Rpu4WLkpWmfF-cw/videos)
 * [J.N.V.](https://www.youtube.com/channel/UCNED4lGLrsrVLTQaHeADZEg/videos)
 * https://www.youtube.com/user/lookfromlok/videos
@@ -16,6 +17,7 @@
 * https://www.youtube.com/c/Fantomasmag/videos
 * [RobM](https://www.youtube.com/channel/UCHnJok6-vpLXS1K_ir72QpQ/videos)
 * [Peter Hudec](https://www.youtube.com/channel/UCDzrCs8cHBZUX49oXTF7WxQ/videos)
+* https://www.youtube.com/c/Kolej%C4%85zMateuszem/videos
 * [KIWI RAILTV](https://www.youtube.com/channel/UC8L0FiD3Znju_qEwlCXybSw/videos)
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
 * [Radolfzell-Friedrichshafen](https://www.youtube.com/watch?v=JmbDvjDnH5k)
