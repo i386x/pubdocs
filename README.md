@@ -21,6 +21,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Game Consoles](#game-consoles)
    1. [Power Management](#power-management)
    1. [RC Circuits](#rc-circuits)
+   1. [Simulation](#simulation)
    1. [Telephones](#telephones)
 1. [Fedora Project](#fedora-project)
    1. [Developer](#developer)
@@ -249,6 +250,8 @@ interested in. Maybe You find some of these interesting too.
 
 ## Electronics
 
+* [All About Circuits](https://www.allaboutcircuits.com/)
+* [Creative Techos](https://www.youtube.com/c/CreativeTechos/videos)
 * [ElectroNoobs](https://electronoobs.com/index.php)
 
 ### Beam Bots
@@ -261,12 +264,17 @@ interested in. Maybe You find some of these interesting too.
 
 ### Power Management
 
+* [Auto cut off 3.7 volt battery charger circuit](https://www.youtube.com/watch?v=kIm7mKrD9_I) [[circuit diagram](https://drive.google.com/file/d/1C-NGClLN0LAPDPL03lD-SujnB4Trl49C/view)]
 * [Building a LiFePO4 Battery](https://docs.google.com/document/d/1Oz4NzIyvfr8AKmWZ75G-NqWUgfMxvNS4rosGNNUDkRI/edit)
 
 ### RC Circuits
 
 * [Pro pamětníky - trochu historie RC, aneb jak jsme bastlili v Česku](https://rc-model.rajce.idnes.cz/Pro_pametniky_-_trochu_historie_RC%2C_aneb_jak_jsme_bastlili_v_Cesku/#)
 * [Schéma rádiového dálkového ovládání. Vyrábíme rádiové ovládání letadla. Vysvětlení režimu](https://hkls.ru/cs/fejjsbuk/shema-pulta-radioupravleniya-delaem-radioupravlenie-dlya.html)
+
+### Simulation
+
+* [ngspice](http://ngspice.sourceforge.net/) [[repo](https://github.com/ngspice/ngspice)]
 
 ### Telephones
 
@@ -449,7 +457,10 @@ interested in. Maybe You find some of these interesting too.
 
 * [Create Local Repos](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 * [Maximum RPM](http://ftp.rpm.org/max-rpm/)
-* [`mock` Wiki](https://github.com/rpm-software-management/mock/wiki)
+* `mock`
+  * [Mock](https://rpm-software-management.github.io/mock/)
+  * [Mock Setup Using Local Mirror](https://fedoraproject.org/wiki/Docs/Drafts/MockSetupUsingLocalMirror)
+  * [Using Mock to test package builds](https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds)
 * [Packaging:RPMMacros](https://fedoraproject.org/wiki/Packaging:RPMMacros)
 * [RPM Guide](https://docs-old.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html)
 * [RPM HOWTO](http://www.tldp.org/HOWTO/RPM-HOWTO/index.html)
@@ -489,8 +500,9 @@ interested in. Maybe You find some of these interesting too.
 
 * [Beaker Home Page](https://beaker-project.org/)
   * [Resources](https://beaker-project.org/docs/)
-* [beakerlib (git)](https://github.com/beakerlib/beakerlib)
-* [beakerlib-libraries (git)](https://pagure.io/beakerlib-libraries)
+* [beakerlib (Bash)](https://github.com/beakerlib/beakerlib)
+* [beakerlib/distribution (Bash)](https://github.com/beakerlib/distribution)
+* [beakerlib-libraries (Bash)](https://pagure.io/beakerlib-libraries)
 
 ### System Management
 
@@ -573,6 +585,7 @@ Projects
 ### Containers
 
 * [A Hacker’s Guide To Moving Linux Services Into Containers](http://crunchtools.com/a-hackers-guide-to-moving-linux-services-into-containers/)
+* [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
@@ -715,6 +728,7 @@ Projects
 * `chroot`
   * [How to Use the chroot Command on Linux](https://www.howtogeek.com/441534/how-to-use-the-chroot-command-on-linux/)
 * `make`
+  * [Makefiles: What is an order-only prerequisite?](https://stackoverflow.com/questions/58039810/makefiles-what-is-an-order-only-prerequisite/58040049)
   * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/make.html)
 
 ### X
@@ -768,6 +782,7 @@ Projects
 
 * [Design Patterns](http://www.vincehuston.org/dp/)
 * [Semantic Versioning](https://semver.org/)
+* [Sourcegraph](https://sourcegraph.com/search)
 * [strchr.com](https://www.strchr.com/)
 
 ### Algorithms & Data Structures
@@ -873,6 +888,7 @@ Projects
 
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
+* [Git: 1.List all files in a branch, 2.compare files from different branch](https://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
 * [Git Commit Messages: 50/72 Formatting](https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting)
 * [Git rebase gets stuck after resolving merge conflict](https://stackoverflow.com/questions/21833300/git-rebase-gets-stuck-after-resolving-merge-conflict)
@@ -882,6 +898,7 @@ Projects
 * [How to create patch between two tags with multiple commits between them?](https://stackoverflow.com/questions/9078820/how-to-create-patch-between-two-tags-with-multiple-commits-between-them)
 * [How to compare files from two different branches?](https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches)
 * [How to grep (search) committed code in the Git history](https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history)
+* [How to retrieve a single file from a specific revision in Git?](https://stackoverflow.com/questions/610208/how-to-retrieve-a-single-file-from-a-specific-revision-in-git)
 * [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
@@ -908,6 +925,7 @@ Projects
 * [CScout](https://www2.dmst.aueb.gr/dds/pubs/jrnl/2010-SCP-CScout/html/cscout.html)
 * [Complete macro expansion algorithm](https://www.spinellis.gr/blog/20060626/x3J11-86-196.pdf)
 * [Complete macro expansion algorithm (annotated and corrected)](https://www.spinellis.gr/blog/20060626/cpp.algo.pdf)
+* [ISO/IEC 9899:1999 (Draft)](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf)
 * [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)
 * [Undefined behavior](http://en.cppreference.com/w/c/language/behavior)
 * [What Every C Programmer Should Know about Undefined Behavior](http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
@@ -1245,6 +1263,7 @@ See [Caml](#caml).
 * [Spack (Python)](https://github.com/spack/spack) [[doc](https://spack.readthedocs.io/en/latest/index.html)]
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx)
+  * [sphinx-autodoc-typehints (Python)](https://github.com/agronholm/sphinx-autodoc-typehints)
   * [sphinx_asciidoc (Python)](https://github.com/lruzicka/sphinx_asciidoc)
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [stubby (C)](https://github.com/getdnsapi/stubby)
@@ -1374,7 +1393,7 @@ See [Caml](#caml).
 * [testing-cabal](https://github.com/testing-cabal)
 * [testing-farm](https://gitlab.com/testing-farm)
   * [artemis](https://gitlab.com/testing-farm/artemis)
-* [tmt](https://github.com/psss/tmt)
+* [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/psss/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
   * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)

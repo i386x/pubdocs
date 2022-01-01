@@ -5,7 +5,8 @@
 * https://www.youtube.com/user/Merond22/videos
 * [Na co zírá mašinfíra](https://tv.idnes.cz/porady/na-co-zira-masinfira.K913033)
 * [Vovlaku.sk](https://www.youtube.com/channel/UCRK0bjzf3Gf3Om03m4syzxw/videos)
-* [Lukáš Starý](https://www.youtube.com/user/277slovan/videos)
+* [staroslav](https://www.youtube.com/user/277slovan/videos)
+* [k venda](https://www.youtube.com/channel/UC4_Z_tFCUHgTWJuMNS6v3Wg/videos)
 * [CB-Train Driver](https://www.youtube.com/channel/UC1yHBkvFtv1zLZywKwbMbEg/videos)
 * [Johnny Trains CZ](https://www.youtube.com/channel/UCM2sHi3cI4oTgLah6lpvL5A/videos)
 * [Pavel Přinda](https://www.youtube.com/channel/UCZEHGNI3Rpu4WLkpWmfF-cw/videos)
@@ -20,14 +21,18 @@
 * https://www.youtube.com/c/Kolej%C4%85zMateuszem/videos
 * [KIWI RAILTV](https://www.youtube.com/channel/UC8L0FiD3Znju_qEwlCXybSw/videos)
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
+* https://www.youtube.com/c/SwedishRailcam/videos
+* https://www.youtube.com/c/TrainThor/videos
 * [Radolfzell-Friedrichshafen](https://www.youtube.com/watch?v=JmbDvjDnH5k)
 * [Taurus-Tf](https://www.youtube.com/channel/UCowsdpGGcTcKhgurICOJERg/videos)
+* [DHLLAHNN](https://www.youtube.com/channel/UCwxAsFF7pN96Zpf7MLza7fw/videos)
 * https://www.youtube.com/c/vlexxGmbH/videos
 * https://www.youtube.com/user/lorirocks777/videos
 * [Railway Emotions](https://www.youtube.com/channel/UCRYl1C12IXPs2Uo_25OdrPA/videos)
 * [Associazione Verbano Express](https://www.youtube.com/channel/UC3-diLH1e2WCceg4_E7Vq-g/videos)
 * [Theitaliantraindrivers](https://www.youtube.com/c/Theitaliantraindrivers/videos)
 * https://www.youtube.com/user/FaustoTz/videos
+* https://www.youtube.com/c/CabViewsPT/videos
 * [Liono pointcom](https://www.youtube.com/channel/UCUKWZLzVbCes5AJm3f1m12g/videos)
 * [France Cab Ride](https://www.youtube.com/user/rumtex/videos)
 * [ForwardUntoDawn](https://www.youtube.com/channel/UCU3LH764QyHzinwJsoCF0kw/videos)
