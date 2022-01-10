@@ -45,10 +45,15 @@ expression-statement = [ expression ] ";"
 
 Grammar for a compound statement:
 ```abnf
+; before C99
 compound-statement = "{" [ declaration-list ] [ statement-list ] "}"
+; C99
+compound-statement = "{" *block-item "}"
+; end
 
 declaration-list = 1*declaration
 statement-list = 1*statement
+block-item = declaration / statement
 ```
 
 * also called *block*
@@ -64,6 +69,7 @@ statement-list = 1*statement
     performed
 * initializations of `static` objects are performed only once, before the
   program begins execution
+* (*C99*) declarations and statements can be mixed
 
 ## Selection Statements
 
@@ -100,6 +106,10 @@ selection-statement =/ %x73.77.69.74.63.68 "(" expression ")" statement         
   1. if no `case` constant matches `E` and there is a `default` label, control
      passes to the labeled statement
   1. if no `case` matches and there is no `default`, `S` is not executed
+* (*C99*) a selection statement is a block
+  * scope is a strict subset of the scope of its enclosing block
+* (*C99*) each substatement associated with a selection statement is a block
+  * scope is a strict subset of the scope of the selection statement
 
 ## Iteration Statements
 
@@ -108,6 +118,8 @@ Grammar for iteration statements:
 iteration-statement = %x77.68.69.6C.65 "(" expression ")" statement                                       ; while
 iteration-statement =/ %x64.6F statement %x77.68.69.6C.65 "(" expression ")" ";"                          ; do while
 iteration-statement =/ %x66.6F.72 "(" [ expression ] ";" [ expression ] ";" [ expression ] ")" statement  ; for
+; C99
+iteration-statement =/ %x66.6F.72 "(" declaration [ expression ] ";" [ expression ] ")" statement         ; for
 ```
 
 * in `while (E) S` and `do S while (E);`
@@ -137,6 +149,13 @@ iteration-statement =/ %x66.6F.72 "(" [ expression ] ";" [ expression ] ";" [ ex
       E3;
     }
     ```
+* (*C99*) an iteration statement is a block
+  * scope is a strict subset of the scope of its enclosing block
+* (*C99*) the loop body is a block
+  * scope is a strict subset of the scope of the iteration statement
+* (*C99*) the scope of any identifiers declared in the *declaration* part of a
+  `for` loop is the remainder of the declaration and the entire loop (including
+  the other two expressions)
 
 ## Jump Statements
 
@@ -151,6 +170,8 @@ jump-statement =/ %x72.65.74.75.72.6E [ expression ] ";"  ; return
 * in `goto label;`
   * `label` must be a label located in the current function
   * control transfers to the labeled statement
+  * (*C99*) jump should not be made from outside the scope of an identifier
+    having a variably modified type to inside the scope of that identifier
 * a `continue` statement
   * can be used only within an iteration statement
   * it causes control to pass to the loop continuation portion of the smallest
