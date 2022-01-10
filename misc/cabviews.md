@@ -42,6 +42,7 @@
 * https://www.youtube.com/user/diiselrong/videos
 * https://www.youtube.com/user/vpart/videos
 * https://www.youtube.com/user/adriantrain/videos
+* https://www.youtube.com/user/m4rek32/videos
 * https://www.youtube.com/user/ThePserus/videos
 * [UkTraine](https://www.youtube.com/channel/UClGXGTUWnW7FO47GFlNJHfg/videos)
 * https://www.youtube.com/c/OlehHudzeliak/videos

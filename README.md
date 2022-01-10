@@ -7,6 +7,7 @@ interested in. Maybe You find some of these interesting too.
 ## Contents
 
 1. [Applications](#applications)
+   1. [Instant Messengers](#instant-messengers)
    1. [Text Editors](#text-editors)
 1. [Articles, Blogs, GitHub Users](#articles-blogs-github-users)
    1. [Articles](#articles)
@@ -36,6 +37,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Administration](#administration)
    1. [Containers](#containers)
    1. [Error Codes](#error-codes)
+   1. [File System](#file-system)
    1. [Kernel](#kernel)
    1. [Networking](#networking)
    1. [Printing](#printing)
@@ -74,6 +76,11 @@ interested in. Maybe You find some of these interesting too.
 1. [Z-Stuff (unsorted stuff)](#z-stuff-unsorted-stuff)
 
 ## Applications
+
+### Instant Messengers
+
+* [Pidgin](https://pidgin.im/)
+  * [Using Pidgin](https://developer.pidgin.im/wiki/Using Pidgin)
 
 ### Text Editors
 
@@ -480,6 +487,7 @@ interested in. Maybe You find some of these interesting too.
   * [Common Rpmlint issues](https://fedoraproject.org/wiki/Common_Rpmlint_issues)
 * [rpm-showme](https://pagure.io/minimization/rpm-showme)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
+* [show rpm packages scriptlets](https://www.commandlinefu.com/commands/view/7555/show-rpm-packages-scriptlets)
 * [Some tips on RPM conditional macros](https://backreference.org/2011/09/17/some-tips-on-rpm-conditional-macros/)
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 
@@ -684,6 +692,10 @@ Projects
 #### SSH
 
 * [Establishing client VNC connection over SSH in one step (e.g., with the -via option)](https://unix.stackexchange.com/questions/83795/establishing-client-vnc-connection-over-ssh-in-one-step-e-g-with-the-via-opt)
+* [Generate public SSH key from private SSH key](https://blog.tinned-software.net/generate-public-ssh-key-from-private-ssh-key/)
+* [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+* [How to use ssh-keygen to generate a new SSH key](https://www.ssh.com/academy/ssh/keygen)
+* [Use RSA private key to generate public key?](https://stackoverflow.com/questions/5244129/use-rsa-private-key-to-generate-public-key)
 
 ### Shared Libraries
 
@@ -735,6 +747,9 @@ Projects
 
 ### Utilities
 
+* `gcc`
+  * [An Introduction to GCC](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/index.html)
+    * [Link order of libraries](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/gccintro_18.html)
 * `chroot`
   * [How to Use the chroot Command on Linux](https://www.howtogeek.com/441534/how-to-use-the-chroot-command-on-linux/)
 * `make`
@@ -758,6 +773,7 @@ Projects
 
 ## Math
 
+* [Aleph 0](https://www.youtube.com/c/Aleph0/videos)
 * [math.stackexchange.com](https://math.stackexchange.com/)
   * [downset](https://math.stackexchange.com/search?q=downset)
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
@@ -769,6 +785,7 @@ Projects
   * [Largest product in a series](https://projecteuler.net/problem=8)
 * [Steven Roman - Mathematics](https://www.youtube.com/channel/UCalphvDmYSEzHchGFW8BxGg)
 * [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
+* [Topology (University of Toronto Course)](http://www.math.toronto.edu/ivan/mat327/?resources)
 
 ### Category Theory
 
@@ -792,6 +809,7 @@ Projects
 
 * [Design Patterns](http://www.vincehuston.org/dp/)
 * [Semantic Versioning](https://semver.org/)
+* [Software optimization resources](https://www.agner.org/optimize/)
 * [Sourcegraph](https://sourcegraph.com/search)
 * [strchr.com](https://www.strchr.com/)
 
@@ -1416,6 +1434,7 @@ See [Caml](#caml).
   * [example of use](https://gitlab.gnome.org/GNOME/gvfs/-/blob/master/test/gvfs-test)
 * [xdotool](https://github.com/jordansissel/xdotool) [[doc](https://www.semicomplete.com/projects/xdotool/)]
 * [Zuul CI](https://zuul-ci.org/) [[docs](https://zuul-ci.org/docs/zuul/)]
+* [zuul-distro-jobs](https://pagure.io/zuul-distro-jobs)
 
 ## Virtualization
 
@@ -1465,6 +1484,7 @@ See [Caml](#caml).
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [Color Cards](https://www.mosaic-commons.org/colorcards)
+* [Dálkový pochod Drahanskou vrchovinou](http://www.dpdv.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
 * [Hlídač státu](https://www.hlidacstatu.cz/) [[repos](https://github.com/HlidacStatu)]
