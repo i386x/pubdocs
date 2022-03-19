@@ -2,7 +2,10 @@
 
 Grammar for a function definition:
 ```abnf
+; before C99
 function-definition = [ declaration-specifiers ] declarator [ declaration-list ] compound-statement
+; C99
+function-definition = declaration-specifiers declarator [ declaration-list ] compound-statement
 ```
 
 * for the *declaration-specifiers* part
@@ -46,6 +49,11 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
         redeclared only in inner blocks)
     * in the declaration of parameters
       * a type *array of T* is adjusted to read *pointer to T*
+      * (*C99*) a type *array of T* is adjusted to read *qualified pointer to
+        T*
+        * type qualifiers are specified within `[` and `]`
+        * `static` between `[` and `]` means that the array has at least as
+          many elements as specified by the size expression
       * a type *function returning T* is adjusted to read *pointer to function
         returning T*
       * in the first edition of ANSI standard, `float` is adjusted to read
@@ -56,3 +64,15 @@ function-definition = [ declaration-specifiers ] declarator [ declaration-list ]
 
 * the function `main` is the program entry point
 * the value returned by the function `main` is the program exit code
+* the translator recognizes two prototypes of the function `main`:
+  1. `int main(void);` for programs that do not need command-line arguments
+  1. `int main(int argc, char *argv[]);` for programs accepting command-line
+     arguments
+     * `argc` is the argument count, i.e. the number of command-line arguments
+       the program was invoked with
+       * `argc` is always at least 1
+     * `argv` is the argument vector, one argument per character string
+       * `argv[0]` is the name by which the program was invoked
+       * `argv[1]` is the first program argument
+       * `argv[argc - 1]` is the last program argument
+       * `argv[argc]` is always `NULL`

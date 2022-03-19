@@ -246,6 +246,8 @@ primary-expression =/ "(" expression ")"
   union, or pointer type
 * string literal has type array of `char` (`wchar_t`), but the pointer
   generation rules are usually (except certain initializers) applied
+* (*C99*) all identifiers must be declared, i.e. implicit functions are not
+  permitted (except those implicitly declared by the standard, e.g. `__func__`)
 
 ### Postfix Expressions
 
@@ -258,6 +260,8 @@ postfix-expression =/ postfix-expression "." identifier
 postfix-expression =/ postfix-expression "->" identifier
 postfix-expression =/ postfix-expression "++"
 postfix-expression =/ postfix-expression "--"
+; C99
+postfix-expression =/ "(" type-name ")" "{" initializer-list [ "," ] "}"
 
 argument-expression-list = assignment-expression *( "," assignment-expression )
 ```
@@ -338,6 +342,21 @@ argument-expression-list = assignment-expression *( "," assignment-expression )
 * `E` must be l-value, the result of `E++` and `E--` is not an l-value
 * `E` must have real type or be a pointer
 
+#### (C99) Compound Literals
+
+* a construct `"(" type-name ")" "{" initializer-list [ "," ] "}"` is a
+  *compound literal*
+  * provides unnamed object
+  * its type is a *type-name*
+    * a *type-name* shall not be a variable length array type
+    * if a *type-name* is an array of unknown size, the size is determined by
+      `"{" initializer-list [ "," ] "}"` and the type of the compound literal
+      is that of the completed array type
+  * its value is `"{" initializer-list [ "," ] "}"`
+  * the result is an l-value
+* the object provided by a compound literal outside of a function block has
+  static storage duration (it has automatic storage duration otherwise)
+
 ### Unary Expressions
 
 Grammar for unary expressions:
@@ -374,6 +393,7 @@ unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
 #### Indirection Operator
 
 * `*E` returns the object or function to which `E` points
+  * if `E` has a type `void *`, `*E` is not allowed
 * if `E` is a pointer to an object of arithmetic, structure, union, or pointer
   type, then `*E` is an l-value
 * if `E` has the type *pointer to T*, then `*E` has the type *T*

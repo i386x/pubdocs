@@ -78,6 +78,17 @@ LETTER = "_" / %x41-5A / %x61-7A  ; _, A-Z, a-z
 * for internal identifiers is significant the first 31 characters
 * for external identifiers, it is 6 (case sensitivity may be not considered)
 
+### `__func__` Identifier (C99)
+
+* shall be implicitly declared by the translator as if the declaration
+  ```C
+  static const char __func__[] = "<function-name>";
+  ```
+  appeared immediately after the opening brace of each function definition,
+  where `<function-name>` is the name of the lexically-enclosing function
+* `<function-name>` is encoded as if it had been written in the source
+  character set and then translated into the execution character set
+
 ## Constants
 
 There are four types of constants:

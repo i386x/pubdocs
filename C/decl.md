@@ -4,7 +4,10 @@ Grammar:
 ```abnf
 declaration = declaration-specifiers [ init-declarator-list ] ";"
 
+; before C99
 declaration-specifiers = 1*( storage-class-specifier / type-specifier / type-qualifier )
+; C99
+declaration-specifiers = 1*( storage-class-specifier / type-specifier / type-qualifier / function-specifier )
 
 init-declarator-list = init-declarator *( "," init-declarator )
 
@@ -14,7 +17,16 @@ declarator = [ pointer ] direct-declarator
 
 direct-declarator = identifier
 direct-declarator =/ "(" declarator ")"
+; before C99
 direct-declarator =/ direct-declarator "[" [ constant-expression ] "]"
+; C99
+direct-declarator =/ direct-declarator "[" *type-qualifier [ assignment-expression ] "]"
+; C99
+direct-declarator =/ direct-declarator "[" %x73.74.61.74.69.63 *type-qualifier assignment-expression "]"
+; C99
+direct-declarator =/ direct-declarator "[" 1*type-qualifier %x73.74.61.74.69.63 assignment-expression "]"
+; C99
+direct-declarator =/ direct-declarator "[" *type-qualifier "*" "]"
 direct-declarator =/ direct-declarator "(" parameter-type-list ")"
 direct-declarator =/ direct-declarator "(" [ identifier-list ] ")"
 
@@ -28,6 +40,9 @@ parameter-declaration = declaration-specifiers declarator
 parameter-declaration =/ declaration-specifiers [ abstract-declarator ]
 
 identifier-list = identifier *( "," identifier )
+
+; C99
+function-specifier = %x69.6E.6C.69.6E.65  ; inline
 ```
 
 * declaration gives an interpretation to identifier
@@ -83,6 +98,10 @@ typedef-name = identifier
 * (*C99*) if there is a `long` but not `double`, the second `long` can be used
 * (*C99*) with `float` and `double`, either `_Complex` or `_Imaginary` can be
   used
+* (*C99*) in each declaration or function definition, at least one type
+  specifier shall be given in the declaration specifiers
+* (*C99*) in each `struct` declaration and type name, at least one type
+  specifier shall be given in the specifier-qualifier list
 
 ### Arithmetic Types
 
@@ -188,6 +207,16 @@ functions, pointers, structures, and unions.
     evaluate to positive integer, and
   * identifier in *T D1* is of the type *m T*, where *m* is the type modifier
   * then the type of identifier of *D* is *m array of T*
+  * (*C99*) if *D* has the one of the forms
+    * `D1 "[" *type-qualifier [ assignment-expression ] "]"`
+    * `D1 "[" "static" *type-qualifier assignment-expression "]"`
+    * `D1 "[" 1*type-qualifier "static" assignment-expression "]"`
+    * `D1 "[" *type-qualifier "*" "]"`
+    where *assignment-expression* shall have an integer type and after
+    evaluation be greater than zero, and
+  * (*C99*) identifier in *T D1* is of the type *d T*, where *d* is the derived
+    declarator type list
+  * (*C99*) then the type of identifier of *D* is *d array of T*
 * if *N* is missing, the array type is incomplete
 * array elements can be objects of arithmetic types, pointers, structures,
   unions, and arrays
@@ -200,6 +229,23 @@ functions, pointers, structures, and unions.
 * arrays are stored by rows
   * given a declaration of array `int arr[N][M][K]`, the expression
     `arr[i][j][k]` is equivalent to `*(arr + i*M*K + j*K + k)`
+* (*C99*) the optional type qualifiers and `static` shall appear only in
+  * a declaration of a function parameter with an array type
+  * the outermost array type derivation
+* (*C99*) the array type is not a variable length array type if
+  * the size is an integer constant expression and
+  * the element type has a known constant size
+* (*C99*) only identifier with no linkage and both block or function prototype
+  scope declaring an object with no static storage duration shall have a
+  variable length array type
+* (*C99*) the size of each instance of a variable length array type remains the
+  same during its lifetime
+* (*C99*) if the size is `*`, the array type is a variable length array type of
+  unspecified size and its type is considered complete
+  * can only be used in declarations with function prototype scope
+* (*C99*) in a declaration at function prototype scope
+  * *assignment-expression* that is not a constant integer expression is
+    treated as if it were replaced by `*`
 
 #### Functions
 
@@ -237,6 +283,29 @@ functions, pointers, structures, and unions.
 * declaration gives no information about parameters types
 * *I* can be used only if the function declarator is a part of function
   definition as a function header
+
+##### `inline` Specifier (C99)
+
+* shall be used only in the declaration of an identifier for a function
+* an inline definition of a function with external linkage shall not contain
+  * a definition of a modifiable object with static storage duration
+  * a reference to an identifier with internal linkage
+* should be placed before return type and after storage class specifier
+* suggests that calls to the function be as fast as possible (it is
+  implementation-defined whether or not such suggestions are effective)
+* an inline function can be any function with internal linkage
+* for a function with external linkage
+  * if it is declared with an `inline` specifier
+    * it shall be also defined in the same translation unit
+  * if all of the file scope declarations for a function in a translation unit
+    have `inline` without `extern`
+    * the definition in that translation unit is an inline definition
+  * an inline definition
+    * does not provide an external definition for the function
+    * does not forbid an external definition in another translation unit
+    * provides an alternative to an external definition
+      * may be used by a translator to implement any call to the function in
+        the same translation unit
 
 #### Structures and Unions
 
@@ -294,6 +363,7 @@ struct-declarator =/ [ declarator ] ":" constant-expression
   can be referred only within the same declaration
 * a bit field member
   * has `int` or `unsigned int` type (depends on implementation)
+    * (*C99*) has also `_Bool` type
   * it is interpreted as integer object which size is the number of specified
     bits
   * the layout of adjacent members depends on implementation
@@ -319,6 +389,7 @@ Grammar for type qualifiers:
 ```abnf
 type-qualifier = %x63.6F.6E.73.74            ; const
 type-qualifier =/ %x76.6F.6C.61.74.69.6C.65  ; volatile
+type-qualifier =/ %x72.65.73.74.72.69.63.74  ; restrict (C99)
 ```
 
 * type qualifiers can be used with any type specifier
@@ -326,6 +397,16 @@ type-qualifier =/ %x76.6F.6C.61.74.69.6C.65  ; volatile
   object lifetime
 * `volatile` denotes that the object has important optimization properties;
   usually optimizations are not allowed with volatile objects
+* (*C99*) `restrict` marks a pointer as restrict-qualified
+  * introduced for optimization purposes
+  * only valid for pointer types derived from object or incomplete types
+  * an object that is accessed through a restrict-qualified pointer should not
+    be accessed by any other pointer (all accesses to that object use, directly
+    or indirectly, the value of that particular pointer)
+  * restrict-qualified pointer should not change its value during its lifetime
+  * the value of a restrict-qualified pointer should not be carried out of the
+    block, except the case it is declared in a block when that block finishes
+    execution
 
 ### Type Names
 
@@ -337,7 +418,12 @@ abstract-declarator = pointer
 abstract-declarator =/ [ pointer ] direct-abstract-declarator
 
 direct-abstract-declarator = "(" abstract-declarator ")"
+; before C99
 direct-abstract-declarator =/ [ direct-abstract-declarator ] "[" [ constant-expression ] "]"
+; C99
+direct-abstract-declarator =/ [ direct-abstract-declarator ] "[" [ assignment-expression ] "]"
+; C99
+direct-abstract-declarator =/ [ direct-abstract-declarator ] "[" "*" "]"
 direct-abstract-declarator =/ [ direct-abstract-declarator ] "(" [ parameter-type-list ] ")"
 ```
 
@@ -364,10 +450,22 @@ Grammar for initializers:
 initializer = assignment-expression
 initializer =/ "{" initializer-list [ "," ] "}"
 
+; before C99
 initializer-list = initializer *( "," initializer )
+; C99
+initializer-list = [ designation ] initializer *( "," [ designation ] initializer )
+
+; C99
+designation = 1*designator "="
+
+; C99
+designator = "[" constant-expression "]"
+; C99
+designator =/ "." identifier
 ```
 
 * initializer gives to object its initial value
+* each `"{" initializer-list [ "," ] "}"` has an associated *current object*
 * static objects require initializers with constant expressions
 * arrays and `register` or `auto` objects with initializers of the form
   `"{" C *( "," C ) [ "," ] "}"` require *C* to be constant expressions
@@ -410,6 +508,23 @@ initializer-list = initializer *( "," initializer )
   aggregate members
   * e.g. `int a[2][2] = { { 1, 2 }, { 3, 4 } };` has the same effect as
     `int a[2][2] = { 1, 2, 3, 4 };`
+* (*C99*) a designation causes the following initializer to begin
+  initialization of the subobject described by the designator
+  * initialization then continues forward in order, beginning with the next
+    subobject after that described by the designator
+  * a list of designators unambiguously determines a subobject to be
+    initialized
+    * `[N]` determines the *N*th element of an array
+    * `.name` determines the *name* member of a structure or union
+* (*C99*) if a designator has the form `"[" constant-expression "]"`
+  * the current object shall have array type
+  * the *constant-expression* shall be an integer constant expression
+    * for arrays of known sizes the value shall be a non-negative integer less
+      than the size of the array
+    * for arrays of unknown sizes this can be any non-negative value
+* (*C99*) if a designator has the form `"." identifier`
+  * the current object shall have structure or union type
+  * the *identifier* shall be name of a member of that type
 
 ## Storage Class
 

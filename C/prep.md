@@ -44,13 +44,17 @@ elif-group = "#" %x65.6C.69.66 constant-expression %x0A [ group ]  ; elif
 else-group = "#" %x65.6C.73.65 %x0A [ group ]                      ; else
 endif-line = "#" %x65.6E.64.69.66 %x0A                             ; endif
 
-control-line = "#" %x69.6E.63.6C.75.64.65 pp-tokens %x0A                                           ; include
-control-line =/ "#" %x64.65.66.69.6E.65 [ pp-tokens ] %x0A                                         ; define
-control-line =/ "#" %x64.65.66.69.6E.65 identifier "(" [ identifier-list ] ")" [ pp-tokens ] %x0A  ; define
-control-line =/ "#" %x75.6E.64.65.66 identifier %x0A                                               ; undef
-control-line =/ "#" %x6C.69.6E.65 pp-tokens %x0A                                                   ; line
-control-line =/ "#" %x65.72.72.6F.72 [ pp-tokens ] %x0A                                            ; error
-control-line =/ "#" %x70.72.61.67.6D.61 [ pp-tokens ] %x0A                                         ; pragma
+control-line = "#" %x69.6E.63.6C.75.64.65 pp-tokens %x0A                                                 ; include
+control-line =/ "#" %x64.65.66.69.6E.65 identifier [ pp-tokens ] %x0A                                    ; define
+control-line =/ "#" %x64.65.66.69.6E.65 identifier "(" [ identifier-list ] ")" [ pp-tokens ] %x0A        ; define
+; C99
+control-line =/ "#" %x64.65.66.69.6E.65 identifier "(" "..." ")" [ pp-tokens ] %x0A                      ; define
+; C99
+control-line =/ "#" %x64.65.66.69.6E.65 identifier "(" identifier-list "," "..." ")" [ pp-tokens ] %x0A  ; define
+control-line =/ "#" %x75.6E.64.65.66 identifier %x0A                                                     ; undef
+control-line =/ "#" %x6C.69.6E.65 pp-tokens %x0A                                                         ; line
+control-line =/ "#" %x65.72.72.6F.72 [ pp-tokens ] %x0A                                                  ; error
+control-line =/ "#" %x70.72.61.67.6D.61 [ pp-tokens ] %x0A                                               ; pragma
 control-line =/ "#" %x0A
 
 text-line = [ pp-tokens ] %x0A
@@ -111,6 +115,10 @@ Trigraph sequences and their meaning:
   * leading and trailing white space around *pp-tokens* is discarded
   * *identifier* may be redefined only with macro with the same
     *[ identifier-list ]* and *[ pp-tokens ]*
+* (*C99*) `#` `define` *identifier* `(` `...` `)` *[ pp-tokens ]* and `#`
+  `define` *identifier* `(` *identifier-list* `,` `...` `)` *[ pp-tokens ]*
+  * only these forms allow an occurrence of the identifier `__VA_ARGS__` in
+    *pp-tokens*
 * `#` `undef` *identifier*
   * causes the *identifier*'s definition to be forgotten
   * *identifier* may be unknown (not defined)
@@ -126,9 +134,16 @@ Trigraph sequences and their meaning:
   1. arguments are collected; during collection, arguments are not expanded
   1. the number of arguments in the call must match the number of parameters in
      the definition
+     * (*C99*) if the identifier list in the macro definition ends with an
+       ellipsis, the number of arguments in the invocation shall be greater
+       than the number of parameters in the macro definition (excluding the
+       `...`); the trailing arguments (those covered with `...`), including
+       their comma separators, are merged to form a single item: the variable
+       arguments
   1. leading and trailing white space is removed from the arguments
   1. every unquoted occurrence of the parameter's identifier in the macro body
      is replaced by the token sequence of the corresponding argument
+     * (*C99*) `__VA_ARGS__` is replaced with the variable arguments
      * unless the parameter's identifier is preceded by `#`, or preceded or
        followed by `##`, the argument tokens are examined for macro calls, and
        expanded as necessary, just before insertion
@@ -228,15 +243,32 @@ Trigraph sequences and their meaning:
   * performs an implementation dependent action
   * an unrecognized pragma is ignored
 * pragmas introduced with *C99*
-  * `#pragma STDC FP_CONTRACT ON|OFF`
+  * `#pragma STDC FP_CONTRACT ON|OFF|DEFAULT`
     * enables/disables *contracted* floating-point expressions
     * depending on the place of usage, its effect lasts until the next
       `FP_CONTRACT` appearance, the end of the compound statement, or the end
       of the translation unit
-  * `#pragma STDC FENV_ACCESS ON|OFF`
+  * `#pragma STDC FENV_ACCESS ON|OFF|DEFAULT`
     * inform the implementation when a program might access the floating-point
       environment (allows the compiler to do certain optimizations)
     * the scoping rules are the same as for `FP_CONTRACT`
+  * `#pragma STDC CX_LIMITED_RANGE ON|OFF|DEFAULT`
+    * inform the implementation that the usual mathematical formulas for
+      complex multiply, divide, and absolute value are acceptable
+    * the scoping rules are the same as for `FP_CONTRACT`
+
+### (C99) `_Pragma` Operator
+
+* a unary operator of the form `_Pragma` `(` *string-literal* `)`
+* it is processed as follows:
+  1. *string-literal* is converted to *pp-tokens* in the following way:
+     * the `L` prefix is deleted
+     * leading and trailing double-quotes are deleted
+     * `\"` and `\\` are replaced with `"` and `\`, respectively
+     * the resulting sequence of characters is processed to produce *pp-tokens*
+  1. *pp-tokens* are executed as if they were the *pp-tokens* in a pragma
+     directive
+  1. the original four tokens `_Pragma` `(` *string-literal* `)` are removed
 
 ## Null Directive
 
@@ -259,3 +291,14 @@ redefined:
 * `__STDC__`
   * the constant 1
   * defined to be 1 only in standard conforming implementations
+* (*C99*) `__STDC_VERSION__`
+  * the version of the standard
+  * has the form `yyyymmL`, e.g. `199901L`
+* (*C99*) `__STDC_IEC_559__`
+  * indicates conformance to the IEC 60559 floating-point arithmetic (set to 1
+    in the positive case)
+* (*C99*) `__STDC_ISO_10646__`
+  * the version of the ISO/IEC 10646 standard; indicates that values of type
+    `wchar_t` are the coded representations of the characters defined by
+    ISO/IEC 10646
+  * has the form `yyyymmL`, e.g. `199712L`
