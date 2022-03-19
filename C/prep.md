@@ -172,7 +172,7 @@ Trigraph sequences and their meaning:
 
 ## File Inclusion
 
-* `#` `include` *<filename>*
+* `#` `include` *\<filename\>*
   * replaces itself by the entire contents of the file *filename*
   * if the *filename* contains any of `"`, `'`, `\`, or `/*`, the effect is
     undefined

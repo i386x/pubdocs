@@ -442,7 +442,7 @@ unary-operator = "&" / "*" / "+" / "-" / "~" / "!"
     including any padding required to make the object tile an array
 * the type of `sizeof E` is unsigned integral constant
   * the particular type is implementation-defined (`<stddef.h>` defines this
-    type as `size_t`
+    type as `size_t`)
 
 ### Cast Expressions
 

@@ -22,9 +22,9 @@ direct-declarator =/ direct-declarator "[" [ constant-expression ] "]"
 ; C99
 direct-declarator =/ direct-declarator "[" *type-qualifier [ assignment-expression ] "]"
 ; C99
-direct-declarator =/ direct-declarator "[" %x73.74.61.74.69.63 *type-qualifier assignment-expression "]"
+direct-declarator =/ direct-declarator "[" %x73.74.61.74.69.63 *type-qualifier assignment-expression "]"   ; static
 ; C99
-direct-declarator =/ direct-declarator "[" 1*type-qualifier %x73.74.61.74.69.63 assignment-expression "]"
+direct-declarator =/ direct-declarator "[" 1*type-qualifier %x73.74.61.74.69.63 assignment-expression "]"  ; static
 ; C99
 direct-declarator =/ direct-declarator "[" *type-qualifier "*" "]"
 direct-declarator =/ direct-declarator "(" parameter-type-list ")"
