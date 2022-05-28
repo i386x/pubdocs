@@ -35,6 +35,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Networking (HW)](#networking-hw)
 1. [Linux](#linux)
    1. [Administration](#administration)
+   1. [Databases](#databases)
    1. [Containers](#containers)
    1. [Error Codes](#error-codes)
    1. [File System](#file-system)
@@ -52,6 +53,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Category Theory](#category-theory)
    1. [Computer Science](#computer-science)
    1. [Cryptography](#cryptography)
+   1. [Set Theory](#set-theory)
 1. [Opensource.com Articles](#opensourcecom-articles)
 1. [Programming](#programming)
    1. [Algorithms & Data Structures](#algorithms--data-structures)
@@ -95,6 +97,7 @@ interested in. Maybe You find some of these interesting too.
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [An open letter to the Linux community](https://lore.kernel.org/lkml/CAK8KejpUVLxmqp026JY7x5GzHU2YJLPU8SzTZUNXU2OXC70ZQQ@mail.gmail.com/)
 * [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
+* [Distributed transaction patterns for microservices compared](https://developers.redhat.com/articles/2021/09/21/distributed-transaction-patterns-microservices-compared#)
 * [Faster hardware through software](https://research.redhat.com/blog/article/faster-hardware-through-software/)
 * [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
 * [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
@@ -111,6 +114,8 @@ interested in. Maybe You find some of these interesting too.
 
 #### Open Hybrid Cloud Daily
 
+* [3 essential soft skills IT pros need](https://enterprisersproject.com/article/2021/11/it-career-3-essential-soft-skills)
+* [5 Kubernetes trends to watch in 2022](https://enterprisersproject.com/article/2022/1/5-kubernetes-trends-watch-2022)
 * [50+ Useful Kubernetes Tools for 2020](https://caylent.com/50-useful-kubernetes-tools-for-2020)
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [A First Look At The Podman 2.0 API](http://crunchtools.com/a-first-look-at-the-podman-2-0-api/)
@@ -122,6 +127,8 @@ interested in. Maybe You find some of these interesting too.
 * [AWS commits to update its own Linux every other year](https://www.theregister.com/2021/11/23/amazon_linux_2022/)
 * [AWS’ secret weapon is revolutionizing computing](https://siliconangle.com/2021/06/18/aws-secret-weapon-revolutionizing-computing/)
 * ['Boringly reliable': Red Hat architect thinks Kubernetes is 'mostly done' – but there are still plenty of bugs](https://www.theregister.com/2020/06/17/kubernetes_clayton_coleman_interview/)
+* [Breaking Analysis: The Improbable Rise of Kubernetes to Become the Cloud OS](https://wikibon.com/breaking-analysis-the-improbable-rise-of-kubernetes/)
+* [Canonical: OpenStack is dead, long live OpenStack](https://www.theregister.com/2022/03/14/canonical_bullish_on_openstack/)
 * [CentOS Linux 8 is about to die. What do you do next?](https://www.zdnet.com/article/centos-linux-8-is-about-to-die-what-do-you-do-next/#ftag=RSSbaffb68)
 * [CentOS Linux 8 will end in 2021 and shifts focus to CentOS Stream](https://www.cyberciti.biz/linux-news/centos-linux-8-will-end-in-2021-and-shifts-focus-to-centos-stream/)
 * [CentOS replacement Rocky Linux 8.4 arrives, and proves instantly popular](https://www.zdnet.com/article/centos-replacement-rocky-linux-8-4-arrives-and-proves-instantly-popular/)
@@ -133,6 +140,7 @@ interested in. Maybe You find some of these interesting too.
 * [Cool happenings in Fedora Workstation land](https://blogs.gnome.org/uraeus/2021/09/16/cool-happenings-in-fedora-workstation-land/)
 * [Cracks are showing in Enterprise Open Source's foundations](https://www.jeffgeerling.com/blog/2021/cracks-are-showing-enterprise-open-sources-foundations)
 * [Developers: These are the top skills you will need in 2021](https://www.techrepublic.com/article/developers-these-are-the-top-skills-you-will-need-in-2021/)
+* [Does Google Have the Best Container Platform?](https://www.sdxcentral.com/articles/news/does-google-have-the-best-container-platform/2022/02/)
 * [EKS vs GKE vs AKS – Evaluating Kubernetes in the Cloud](https://securityboulevard.com/2021/01/eks-vs-gke-vs-aks-evaluating-kubernetes-in-the-cloud-3/)
 * [Fedora Developers Discuss Retiring NTP, Deprecating SCP Protocol](https://www.phoronix.com/scan.php?page=news_item&px=Fedora-Down-With-NTP-SCP)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
@@ -142,10 +150,14 @@ interested in. Maybe You find some of these interesting too.
 * [Gartner: Key infrastructure and operations trends to dominate 2022](https://www.networkworld.com/article/3643580/gartner-key-infrastructure-and-operations-trends-to-dominate-2022.html)
 * [Gartner reveals four trends that are shaping the future of public cloud](https://www.information-age.com/gartner-reveals-four-trends-that-shaping-future-public-cloud-123496370/)
 * [Here's Why IBM Is Wading Deeper Into Hybrid Cloud Waters (as It Should)](https://www.fool.com/investing/2021/06/15/why-ibm-wading-deeper-in-hybrid-cloud-computing/)
+* [How Are API Management and Service Mesh Different?](https://devops.com/how-are-api-management-and-service-mesh-different/)
 * [How Jim Whitehurst sold the IBM deal to Red Hat board](https://www.bizjournals.com/triangle/news/2020/12/02/ibm-red-hat-whitehurst-krishna-deal-cloud-data.html)
 * [How Kubernetes Saved OpenStack](https://vmblog.com/archive/2021/04/29/how-kubernetes-saved-openstack.aspx#.YcNVxPeYVhE)
 * [HOW THE FINANCIAL SECTOR CAN PREPARE FOR THE NEW AGE OF RESILIENCE](https://www.financederivative.com/how-the-financial-sector-can-prepare-for-the-new-age-of-resilience/)
+* [How to Choose a Kubernetes Service: 6 Questions to Consider](https://www.itprotoday.com/hybrid-cloud-and-multicloud/how-choose-kubernetes-service-6-questions-consider)
 * [How to explain GitOps in plain English](https://enterprisersproject.com/article/2021/6/gitops-explained-plain-english)
+* [IBM ‘A Different Company’ Post-Kyndryl, With Bets On Red Hat, Automation, Consulting](https://www.crn.com/news/cloud/ibm-a-different-company-post-kyndryl-with-bets-on-red-hat-automation-consulting)
+* [IBM buoys investors with strong results and a bright forecast](https://siliconangle.com/2022/04/19/ibm-buoys-investors-strong-results-bright-forecast/)
 * [IBM CEO Arvind Krishna wants to completely transform his organization](https://techcrunch.com/2020/11/10/ibm-ceo-arvind-krishna-wants-to-completely-transform-his-organization/?guccounter=1&guce_referrer=aHR0cHM6Ly9tYWlsLmNvcnAucmVkaGF0LmNvbS96aW1icmEv&guce_referrer_sig=AQAAAD0n0hLh8JvMkMVYkhLjmHfpBBsQWKKhS9U6gHlgrxY0_20BxM05_L8uAATTg4b6-5cvWAe5Dg-HbBN4vDYJMOJqloVaVY1MZY_U6gnQCOyMbqDoRBLrY4CznusDohpoB-P7BRKCM5MS2h-7Evlq79Dzw1l-3VEGEjyP1jTCb_YJ)
 * [IBM: Misunderstood Growth Strategy](https://seekingalpha.com/article/4406466-ibm-misunderstood-growth-strategy)
 * [IBM: Shareholders Must Prepare For An Ideological Shift](https://seekingalpha.com/article/4469304-ibm-stock-buy-prepare-for-ideological-shift)
@@ -154,12 +166,14 @@ interested in. Maybe You find some of these interesting too.
 * [Inclusivity leads to diversity: How men can be better allies for women in tech](https://www.idgconnect.com/article/3630390/inclusivity-leads-to-diversity-how-men-can-be-better-allies-for-women-in-tech.html)
 * [Intel And AMD’s Biggest Cloud Threat May Be An Open X86 Instruction Set](https://www.forbes.com/sites/paulteich/2019/10/15/intel-and-amds-biggest-cloud-threat-may-be-open-x86/?sh=5e2c8f8a4139)
 * [Istio as an Example of When Not to Do Microservices](https://blog.christianposta.com/microservices/istio-as-an-example-of-when-not-to-do-microservices/)
+* [IT careers: 10 essential skills for 2022](https://enterprisersproject.com/article/2021/12/it-careers-10-essential-skills-2022?sc_cid=70160000000eUoRAAU&elqTrackId=4726cd2606ff433c90880db771538316&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Karōjisatsu](https://itrevolution.com/karojisatsu/)
 * [Kubernetes Failure Stories](https://github.com/hjacobs/kubernetes-failure-stories)
 * [Kubernetes Is Not Your Platform, It's Just the Foundation](https://www.infoq.com/articles/kubernetes-successful-adoption-foundation/)
 * [Kubernetes is so Simple You Can Explore it with Curl](https://blog.tilt.dev/2021/03/18/kubernetes-is-so-simple.html)
 * [Leaders Focus on Automation Opportunity](https://www.meritalk.com/articles/leaders-focus-on-automation-opportunity/)
 * [Linus Torvalds on how AMD and Intel are changing how processor interrupts are handled](https://www.zdnet.com/article/linus-torvalds-on-how-amd-and-intel-are-changing-how-processor-interrupts-are-handled/)
+* [Lock-in and Multi-Cloud](https://www.tbray.org/ongoing/When/202x/2022/01/30/Cloud-Lock-In)
 * [Managed container services: KaaS, KPaaS & CaaS explained and compared](https://www.cncf.io/blog/2021/11/04/managed-container-services-kaas-kpaas-caas-explained-and-compared/)
 * [Microsoft’s New Linux Distro Is a Warning Shot at Red Hat](https://www.reviewgeek.com/92661/microsofts-new-linux-distro-is-a-warning-shot-at-red-hat/)
 * [New GNOME Human Interface Guidelines now official – and obviously some people hate it](https://www.theregister.com/2021/08/09/gnome_human_interface_guidelines/)
@@ -169,9 +183,12 @@ interested in. Maybe You find some of these interesting too.
 * [Open Service as a Service in Practice](https://blog.tomecek.net/post/open-service-as-a-service-in-practice/)
 * [Open Source Jobs Report: Explosive cloud growth knocks Linux off top spot for desired skillsets](https://www.theregister.com/2021/09/21/open_source_jobs_report/)
 * [OpenStack’s Complicated Kubernetes Relationship](https://containerjournal.com/topics/container-ecosystems/openstacks-complicated-kubernetes-relationship/)
+* [Oracle Linux appears somewhere unexpected: The Windows Store](https://www.theregister.com/2022/02/02/oracle_linux_microsoft/)
+* [Rackspace is now the roach motel of cloud platforms](https://www.computerworld.com/article/3649196/rackspace-is-now-the-roach-motel-of-cloud-platforms.html#tk.rss_cloudcomputing)
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
 * [Red Hat tackles enterprise-grade AI/ML issues through its Kubernetes platform](https://siliconangle.com/2021/10/19/red-hat-tackles-enterprise-grade-ai-ml-issues-kubernetes-platform-kubecon/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
+* [Red Hat’s retiring CFO on her advice for younger professionals](https://fortune.com/2022/04/04/red-hat-retiring-cfo-advice-younger-professionals/)
 * [Remote work, one year in: 5 ways to boost mental health](https://enterprisersproject.com/article/2021/3/remote-work-5-tips-mental-health?sc_cid=70160000000eUoRAAU&elqTrackId=4555bbeb016e492db0acc123ad644ca2&elq=4d1d9704ea49411395f73b213edcf61e&elqaid=82185&elqat=1&elqCampaignId=360725&elqcst=272&elqcsid=26931)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
 * [Rocky Linux is go: CentOS founder's new project aims to be 100% compatible with Red Hat Enterprise Linux](https://www.theregister.com/2020/12/10/rocky_linux/)
@@ -181,12 +198,20 @@ interested in. Maybe You find some of these interesting too.
 * [The 2 Problems Facing Linux (and Open Source) in 2020](https://www.patreon.com/posts/32306856)
 * [The cloud native story behind Red Hat’s partnership with AWS](https://siliconangle.com/2021/11/30/the-cloud-native-story-behind-red-hats-partnership-with-aws-reinvent/)
 * [The Edge, the cloud and Kubernetes with Brian Gracely](https://www.emilyomier.com/podcast/the-edge-the-cloud-and-kubernetes-with-brian-gracely)
+* [The future of Kubernetes – and why developers should look beyond Kubernetes in 2022](https://www.cncf.io/blog/2022/03/04/the-future-of-kubernetes-and-why-developers-should-look-beyond-kubernetes-in-2022/)
+* [The Intel Split](https://stratechery.com/2022/the-intel-split/)
 * [The killing of CentOS Linux: 'The CentOS board doesn't get to decide what Red Hat engineering teams do'](https://www.theregister.com/2021/01/26/killing_centos/)
+* [The Quantum Technology Ecosystem – Explained](https://steveblank.com/2022/03/22/the-quantum-technology-ecosystem-explained/)
 * [The rise and rise of open-source software](https://www.businesslive.co.za/fm/fm-fox/digital/2021-08-19-the-rise-and-rise-of-open-source-software/)
 * [The rise of Rocky Linux](https://changelog.com/podcast/427)
+* [The Truth About Starting With Microservices](https://arnoldgalovics.com/truth-about-microservices/)
 * [Thoughts on Cloud Outages](https://www.thecloudcast.net/2021/12/thoughts-on-cloud-outages.html)
+* [Ubuntu market-share is in a nosedive (and that's ok)](https://lunduke.substack.com/p/ubuntu-market-share-is-in-a-nosedive?s=r)
+* [Virtual collaboration: 9 resources to help your team](https://enterprisersproject.com/article/2021/4/virtual-collaboration-9-resources?sc_cid=70160000000eUoRAAU&elqTrackId=f92c7a976a1945d69587281b6da2d461&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
 * [What Developers Need to Know About Edge Computing](https://devops.com/what-developers-need-to-know-about-edge-computing/)
 * [What is Cloud Native? The Cloud Computing Delivery Model Explained](https://www.freecodecamp.org/news/get-started-with-cloud-native/)
+* [What is serverless computing? An introduction to AWS Lambda](https://4sysops.com/archives/what-is-serverless-computing-an-introduction-to-aws-lambda/)
+* [Where edge is making a difference](https://www.theregister.com/2022/04/11/red_hat_edge_validated_patterns/)
 * [Where to Turn for a CentOS Replacement? Here’s 5 Solid Linux Distros to Check Out](https://thenewstack.io/where-to-turn-for-a-centos-replacement-heres-5-solid-linux-distros-to-check-out/)
 * [Why Choose VMware Virtualization for Kubernetes and Containers](https://blogs.vmware.com/vsphere/2021/01/why-choose-vmware-virtualization-kubernetes-containers.html)
 * [Why Cloud-Based Architectures and Open Source Don’t Always Mix](https://www.itprotoday.com/hybrid-cloud/why-cloud-based-architectures-and-open-source-don-t-always-mix)
@@ -195,6 +220,7 @@ interested in. Maybe You find some of these interesting too.
 * [Why IBM's Non-GAAP Reporting Isn't as Bad as People Are Saying](https://www.fool.com/investing/2021/10/20/why-ibm-non-gaap-reporting-isnt-as-bad-as-people/)
 * [Why Kubernetes was inevitable](https://www.cncf.io/blog/2021/08/02/why-kubernetes-was-inevitable/)
 * [Why the Kubernetes wave is not equal to Virtualization… but why that doesn’t matter!](https://anthonyspiteri.net/kubernetes-virtualization/)
+* [You probably don’t need AWS and are better off without it](https://www.trickster.dev/post/you-probably-dont-need-aws-and-are-better-off-without-it/)
 * [Your Linux container and Kubernetes forecast for 2021](https://www.infoworld.com/article/3604337/your-linux-container-and-kubernetes-forecast-for-2021.html)
 
 ### Blogs
@@ -206,6 +232,7 @@ interested in. Maybe You find some of these interesting too.
 * [Bob Nystrom](http://journal.stuffwithstuff.com/)
 * [Catch22](http://www.catch22.net/)
 * [catonmat Articles Archive](https://catonmat.net/archive)
+* [Chris Kief](https://chriskief.com/)
 * [Doomsday Vault](https://x-c3ll.github.io/)
 * [FPComplete](https://www.fpcomplete.com/blog)
 * [Haoyi's Programming Blog](http://www.lihaoyi.com/)
@@ -243,7 +270,9 @@ interested in. Maybe You find some of these interesting too.
 ## CentOS
 
 * [CentOS Project](https://github.com/CentOS)
+* [CentOS Software Factory](https://centos.softwarefactory-project.io/)
 * [CentOS Stream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
+* [CentOS Stream Feature Request SIG](https://wiki.centos.org/SpecialInterestGroup/StreamFeatureRequest)
 * [Where can I report bugs/RFE for the CentOS Project ?](https://wiki.centos.org/ReportBugs)
 
 ## Debugging
@@ -364,6 +393,7 @@ interested in. Maybe You find some of these interesting too.
 * [Infrastructure/WhatHappenedToPkgdb](https://fedoraproject.org/wiki/Infrastructure/WhatHappenedToPkgdb)
 * [Join the package collection maintainers](https://fedoraproject.org/wiki/Join_the_package_collection_maintainers)
 * Koji build system
+  * [Koji Kerberos/GSSAPI debugging](https://docs.pagure.org/koji/kerberos_gssapi_debug/)
   * [koji-shadow (Python)](https://pagure.io/koji/blob/master/f/util/koji-shadow)
   * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
 * [Licensing Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/)
@@ -448,6 +478,7 @@ interested in. Maybe You find some of these interesting too.
 * [pytest](https://docs.pytest.org/) [[repo](https://github.com/pytest-dev/pytest)]
   * [Good Integration Practices](https://docs.pytest.org/en/stable/goodpractices.html)
   * [pytest-cov](https://pytest-cov.readthedocs.io/) [[repo](https://github.com/pytest-dev/pytest-cov/)]
+* [Python 2 Dropping Database for Fedora](https://fedora.portingdb.xyz/)
 * [Python Packaging Authority](https://github.com/pypa)
   * [A sample Python project](https://github.com/pypa/sampleproject)
 * [Python Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/)
@@ -523,7 +554,8 @@ interested in. Maybe You find some of these interesting too.
 
 ### System Management
 
-* [Clean up PackageKit cache the right way](https://askbot.fedoraproject.org/en/question/108524/clean-up-packagekit-cache-the-right-way/)
+* [DNF System Upgrade](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/)
+* [How to clean up PackageKit in Fedora OS the right way !](https://anglehit.com/how-to-clean-up-packagekit-in-fedora-os-the-right-way/)
 
 ## Hardware
 
@@ -534,18 +566,24 @@ interested in. Maybe You find some of these interesting too.
 
 ## Linux
 
+* [Building Red Hat Enterprise Linux 9 for the x86-64-v2 microarchitecture level](https://developers.redhat.com/blog/2021/01/05/building-red-hat-enterprise-linux-9-for-the-x86-64-v2-microarchitecture-level)
+* [Getting Red Hat Developer Subscription: What RHEL users need to know](https://developers.redhat.com/articles/getting-red-hat-developer-subscription-what-rhel-users-need-know)
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
+* [How to activate your no-cost Red Hat Enterprise Linux subscription](https://developers.redhat.com/blog/2021/02/10/how-to-activate-your-no-cost-red-hat-enterprise-linux-subscription)
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [Install Arch Linux with Full Disk Encryption (LVM on LUKS)](https://gist.github.com/mjnaderi/28264ce68f87f52f2cabb823a503e673)
 * [LWN.net](https://lwn.net/)
   * [An introduction to compound pages](https://lwn.net/Articles/619514/)
 * [Referenced Specifications](https://refspecs.linuxfoundation.org/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
+* [Updates to using Ansible in RHEL 8.6 and 9.0](https://www.redhat.com/en/blog/updates-using-ansible-rhel-86-and-90)
 
 ### Administration
 
+* [Clear systemd journal](https://ma.ttias.be/clear-systemd-journal/)
 * [Configuring Sudo](https://fedoraproject.org/wiki/Configuring_Sudo)
 * [Enable Sysadmin (Sysadmin Articles & Guides by Red Hat)](https://www.redhat.com/sysadmin/)
+* [How to read *.journal files?](https://unix.stackexchange.com/questions/210150/how-to-read-journal-files)
 * [Linux Users and Groups](https://www.linode.com/docs/tools-reference/linux-users-and-groups/)
 * [Miscellaneous stuff](https://github.com/myllynen/misc)
 * [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
@@ -606,9 +644,17 @@ Projects
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
+* [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
+* [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
+
+### Databases
+
+* [How to configure GTID-based replication on MySQL servers](https://www.redhat.com/sysadmin/gtid-replication-mysql-servers)
+* Queries in PostgreSQL
+  * [1. Query execution stages](https://postgrespro.com/blog/pgsql/5969262)
 
 ### Error Codes
 
@@ -630,10 +676,13 @@ Projects
 
 ### Kernel
 
+* [Developing on a native Linux platform](https://kernelnewbies.org/OutreachyfirstpatchSetup)
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
 * [linux-0.01](https://github.com/zavg/linux-0.01)
+* [Linux Kernel Module Cheat](https://github.com/cirosantilli/linux-kernel-module-cheat)
 * [The Boot Loader Specification](https://systemd.io/BOOT_LOADER_SPECIFICATION/)
 * [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
+  * [HOWTO do Linux kernel development](https://www.kernel.org/doc/html/latest/process/howto.html)
 
 #### Programming Device Drivers
 
@@ -653,6 +702,7 @@ Projects
 * [Building a virtual network with qemu](http://csortu.blogspot.com/2009/12/building-virtual-network-with-qemu.html)
 * [Computer Networking Fundamentals Learning Series](https://iximiuz.com/en/series/computer-networking-fundamentals/)
 * [Connecting two qemu VMs (Qemu-discuss)](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
+* [DNSSEC algorithms for TLDs (and everyone else)](https://blog.apnic.net/2022/03/24/dnssec-algorithms-for-tlds-and-everyone-else/)
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
 * [how to connect multiple kvm/qemu VM guests in to a subnet](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
@@ -671,6 +721,8 @@ Projects
 * [How to Make a Raspberry Pi-Powered Print Server](https://www.tomshardware.com/how-to/raspberry-pi-print-server)
 * [Printing](https://fedoraproject.org/wiki/Printing)
   * [How to debug printing problems](https://fedoraproject.org/wiki/How_to_debug_printing_problems)
+* Printing and Scanning
+  * [Printing and scanning terminology](https://docs.fedoraproject.org/en-US/quick-docs/cups-terminology/)
 * [Undocumented Printing](http://www.undocprint.org/start)
   * [QPDL - Quick Page Description Language](http://www.undocprint.org/formats/page_description_languages/qpdl)
 
@@ -750,6 +802,8 @@ Projects
 * `gcc`
   * [An Introduction to GCC](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/index.html)
     * [Link order of libraries](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/gccintro_18.html)
+* `chrony`
+  * [chrony](https://chrony.tuxfamily.org/)
 * `chroot`
   * [How to Use the chroot Command on Linux](https://www.howtogeek.com/441534/how-to-use-the-chroot-command-on-linux/)
 * `make`
@@ -801,9 +855,27 @@ Projects
 
 * [The German cipher machine Enigma](https://www.matematiksider.dk/enigma_eng.html)
 
+### Set Theory
+
+* [A well-order on a uncountable set](https://math.stackexchange.com/questions/1833322/a-well-order-on-a-uncountable-set)
+* [Equivalents of a Failure of the Axiom of Choice](https://sites.dartmouth.edu/dujs/2010/03/24/equivalents-of-a-failure-of-the-axiom-of-choice/)
+* [Is there a known well ordering of the reals?](https://math.stackexchange.com/questions/6501/is-there-a-known-well-ordering-of-the-reals)
+* [V=L and a Well-Ordering of the Reals](https://mathoverflow.net/questions/6593/v-l-and-a-well-ordering-of-the-reals)
+* [Why worry about the axiom of choice?](https://mathoverflow.net/questions/22927/why-worry-about-the-axiom-of-choice)
+
 ## Opensource.com Articles
 
 * [4 ways to edit photos on the Linux command line](https://opensource.com/article/21/11/edit-photos-linux-command-line?sc_cid=70160000000eUoRAAU&elqTrackId=862d9a77e1714e09aa51a77088d500a0&elq=5e4fe7bb95a743c8bdbfbfe22aba1b4d&elqaid=88471&elqat=1&elqCampaignId=406136&elqcst=272&elqcsid=26931)
+* [5 must-have Linux media players](https://opensource.com/article/21/2/linux-media-players?sc_cid=70160000000eUoRAAU&elqTrackId=33518535f0f744619d80df7af7143f47&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
+* [5 ways to protect your documents with open source software](https://opensource.com/article/21/4/secure-documents-open-source?sc_cid=70160000000eUoRAAU&elqTrackId=c76a52a66417477e82027b001aa2422d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+* [12 inspiring examples of open source in education this year](https://opensource.com/article/21/12/open-source-education?sc_cid=70160000000eUoRAAU&elqTrackId=835ef4766b7b4f42bffb605fd8c70479&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [An open source alternative to Microsoft Exchange](https://opensource.com/article/21/9/open-source-groupware-grommunio?sc_cid=70160000000eUoRAAU&elqTrackId=332ea600c66e465da35e3de60be65d1d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+* [How disagreement creates unity in open source](https://opensource.com/article/21/10/disagreement-open-source)
+* [My favorite Linux commands for optimizing web images](https://opensource.com/article/21/12/optimize-web-images-linux?sc_cid=70160000000eUoRAAU&elqTrackId=d146b4445f684c459ac361c22368ae25&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [Open source file sharing with this Linux tool](https://opensource.com/article/21/12/file-sharing-linux-samba?sc_cid=70160000000eUoRAAU&elqTrackId=88ca563cc43542e1b5827e823fe1a43e&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable?sc_cid=70160000000eUoRAAU&elqTrackId=42b2e59ab6114554aba7d5405b88dae5&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [Run your favorite Windows applications on Linux](https://opensource.com/article/21/2/linux-wine?sc_cid=70160000000eUoRAAU&elqTrackId=53197434c7ed4343a262dd78a8274f3f&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
+* [Send your scans to a Linux machine over your network](https://opensource.com/article/21/4/linux-scan-samba?sc_cid=70160000000eUoRAAU&elqTrackId=9909ed9e433d46dc943ee4ae16607de0&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
 
 ## Programming
 
@@ -814,6 +886,8 @@ Projects
 * [strchr.com](https://www.strchr.com/)
 
 ### Algorithms & Data Structures
+
+* [Crit-bit trees](https://cr.yp.to/critbit.html)
 
 #### Hashing
 
@@ -866,6 +940,7 @@ Projects
   * [csdiff](https://github.com/csutils/csdiff)
   * [csmock](https://github.com/csutils/csmock)
   * [cswrap](https://github.com/csutils/cswrap)
+* [kdudka's talks](https://kdudka.fedorapeople.org/)
 
 #### Tools
 
@@ -914,6 +989,7 @@ Projects
 
 #### FAQ
 
+* [Adding Commits to Someone Else's Pull Request](https://tighten.com/blog/adding-commits-to-a-pull-request/)
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [Git: 1.List all files in a branch, 2.compare files from different branch](https://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch)
@@ -933,6 +1009,10 @@ Projects
 * [Renaming the default branch from master](https://github.com/github/renaming/)
 * [Source Forge repo gives “denying non-fast-forward refs/heads/master” error](https://stackoverflow.com/questions/12450703/source-forge-repo-gives-denying-non-fast-forward-refs-heads-master-error)
 * [Update Git submodule to latest commit on origin](https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin)
+
+#### GitHub
+
+* [github.com status](https://www.githubstatus.com/)
 
 ### Graphics
 
@@ -1084,6 +1164,7 @@ See [Caml](#caml).
 * [act (Golang)](https://github.com/nektos/act)
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
 * [Ansible (Python)](https://github.com/ansible/ansible)
+* [ansible-bender (Python)](https://github.com/ansible-community/ansible-bender)
 * [Ansible lint (Python)](https://github.com/ansible/ansible-lint)
 * [Ansible Molecule (Python)](https://github.com/ansible/molecule)
 * [Ansible Runner (Python)](https://github.com/ansible/ansible-runner)
@@ -1138,8 +1219,10 @@ See [Caml](#caml).
 * [DropWatch (C)](https://github.com/nhorman/dropwatch)
 * [dune (OCaml)](https://github.com/ocaml/dune) [[home](https://dune.build/)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
+* [Dyninst (C/C++)](https://github.com/dyninst/dyninst)
 * [ebiso (C)](https://github.com/gozora/ebiso)
 * [EfiFs - EFI File System Drivers (C)](https://github.com/pbatard/efifs)
+* [errata-tool (Python)](https://github.com/red-hat-storage/errata-tool)
 * [ewig (C++)](https://github.com/arximboldi/ewig)
 * Expected `Type`
   * [Boost `optional<T>` (C++)](https://github.com/boostorg/optional) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/optional/doc/html/index.html)]
@@ -1221,12 +1304,15 @@ See [Caml](#caml).
 * [modulemd-tools (Python)](https://github.com/rpm-software-management/modulemd-tools)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
 * [mpllibs (C++)](https://github.com/sabel83/mpllibs) [[home](http://abel.web.elte.hu/mpllibs/)]
+* [neovim (C/Lua/Vim Script)](https://github.com/neovim/neovim) [[home](https://neovim.io/)]
+  * [null-ls.nvim (Lua)](https://github.com/jose-elias-alvarez/null-ls.nvim/)
 * [Ninja (C++)](https://github.com/ninja-build/ninja) [[doc](https://ninja-build.org/)]
 * [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
 * [nohang (Python)](https://github.com/hakavlad/nohang)
 * [normalize.css (CSS)](https://github.com/necolas/normalize.css)
 * [npyscreen (Python)](https://github.com/npcole/npyscreen) [[home](http://www.npcole.com/npyscreen/)] [[doc](https://npyscreen.readthedocs.io/)]
+* [NVIDIA Linux Open GPU Kernel Module Source (C)](https://github.com/NVIDIA/open-gpu-kernel-modules) [[blog](https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/)]
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
 * [OS and Application Modernization Group](https://github.com/oamg)
@@ -1419,11 +1505,13 @@ See [Caml](#caml).
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
 * [resalloc-openstack](https://github.com/praiskup/resalloc-openstack)
 * [rhts](https://github.com/beaker-project/rhts)
+* [Schedule tests the GitOps way with Testing Farm as GitHub Action](https://developers.redhat.com/articles/2022/05/04/schedule-tests-gitops-way-testing-farm-github-action#)
 * [Special Project Upstream Testing Repository](https://github.com/RedHat-SP-Security/tests)
 * [Test container images in Red Hat OpenShift 4 with Ansible and CI/CD](https://developers.redhat.com/articles/2021/08/13/test-container-images-red-hat-openshift-4-ansible-and-cicd#)
 * [testing-cabal](https://github.com/testing-cabal)
 * [testing-farm](https://gitlab.com/testing-farm)
   * [artemis](https://gitlab.com/testing-farm/artemis)
+  * [cli](https://gitlab.com/testing-farm/cli)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/psss/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
@@ -1493,6 +1581,7 @@ See [Caml](#caml).
 * [How can I restart pulseaudio without having to logout?](https://askubuntu.com/questions/15223/how-can-i-restart-pulseaudio-without-having-to-logout)
 * [How to download an MP3 track from a YouTube video](https://askubuntu.com/questions/178481/how-to-download-an-mp3-track-from-a-youtube-video)
 * [Jak rozebrat smartphone Huawei P 20 Lite / Nova 3 / Smart P / Y5 / Y6 Prime 2018 / Y9](https://device-wiki.com/cs/jak-rozebrat-smartphone-huawei-p-20-lite-nova-3.html#Y5_a_Y6_Prime_2018)
+* [Mimecast Service Status](https://status.mimecast.com/)
 * [MTB okruh severozápadně od Brna](https://www.czex.cz/zbartos/vbaba.htm)
 * [Oriental](https://www.oriental.cz/)
   * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
