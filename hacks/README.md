@@ -1,4 +1,4 @@
-# Shell Pearls
+# Shell Hacks
 
 A set of useful shell hacks gathered over the Internet.
 
@@ -38,3 +38,21 @@ For example, to commit your static html documetation to github pages, type
 ```sh
 $ git snapshot html gh-pages
 ```
+
+## Hardware
+
+Exploring hardware capabilities.
+
+### CPU
+
+* Print CPU HW capabilities:
+  ```
+  $ ld.so --help
+  ```
+
+### GPU
+
+* Get details about graphics card:
+  ```
+  $ lspci -d ::0300 -v -nn
+  ```
