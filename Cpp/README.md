@@ -46,6 +46,28 @@ Prata.
 
 * identifiers are case sensitive
 
+#### Keywords
+
+```C++
+asm               do                  if                      return             typedef
+auto              double              inline                  short              typeid
+bool              dynamic_cast        int                     signed             typename
+break             else                long                    sizeof             union
+case              enum                mutable                 static             unsigned
+catch             explicit            namespace               static_cast        using
+char              export              new                     struct             virtual
+class             extern              operator                switch             void
+const             false               private                 template           volatile
+const_cast        float               protected               this               wchar_t
+continue          for                 public                  throw              while
+default           friend              register                true
+delete            goto                reinterpret_cast        try
+```
+
+### Integer Constants
+
+### Floating-Point Constants
+
 ### Character Constants and String Literals
 
 * in C++, a *character* is one of
@@ -85,14 +107,18 @@ Prata.
   * integral data type
   * can hold both negative and non-negative values
 
+* `double`
+  * floating-point data type
+
 ## Declarations
 
+* every entity must be declared before it is used
 * a declaration associates an identifier with the type
   * if the declaration also reserves the storage and the location of the
     storage and associates them with the identifier then it is called the
     *definition*
 
-### Variable (Object) Declaration
+### Variable (Object) Declarations
 
 * *object* is an entity with given storage and location
 * a declaration of variable/object
@@ -104,6 +130,18 @@ Prata.
   * states that *identifier* represents the object of type *type*
   * reserve the storage and location for the object and associate it with
     *identifier*
+* *type *identifier* `=` *expression* `;`
+  * like *type* *identifier* `;`, but also initializes the object associated
+    with *identifier* with *expression*
+  * the value of *expression*, after possible promotions and conversions, must
+    have the same type as *type* or must be convertible to *type*
+
+### Function Declarations
+
+* a function signature followed by `;` is called a *function prototype*
+* *return-type* *identifier* `(` *specification-of-parameters* `)` `;`
+  * declares *identifier* as a function accepting arguments given by
+    *specification-of-parameters* and returning a value of *return-type*
 
 ## Expressions
 
@@ -112,16 +150,76 @@ Prata.
 * some operators may be overloaded
   * compiler choose the proper variant based on types of the operands
 
-### `::` Operator
+### Primary Expressions
+
+* literal, identifier, and qualified identifier is a primary expression
+* `(` *expression* `)` is a primary expression
+* qualified identifier is an identifier determined by the scope resolution
+  operator (`::`)
+
+### Scope Resolution Operator (`::`)
 
 * `::` operator groups left to right
 * it helps to qualify identifiers
-  * `A :: B` tells to compiler to look for `B` in the name space `A`
-  * `::foo` tells to compiler to look for `foo` in the global name space
+  * `A :: B` tells the compiler to look for `B` in the name space `A`
+  * `::foo` tells the compiler to look for `foo` in the global name space
+
+### Postfix Operators
+
+* postfix operators `()` group left to right
+
+* *E* `(` *list-of-arguments* `)`
+  * *E* must evaluate to the callable entity
+  * *list-of-arguments* is a comma-separated list of expressions
+    * the number and type of expressions, after they are evaluated and the
+      values are converted, must match the *E*'s signature
+  * expressions in the *list-of-arguments* are evaluated in any order, but
+    after *E*
+  * after all expressions in the *list-of-arguments* are evaluated, *E* is
+    called with their values as its arguments
+    * argument value is assigned to the corresponding function parameter
+      declared in the *E*'s signature
+    * in callee, parameters are seen as local variables defined and initialized
+      every time the function is called
+  * the type of *E* `(` *list-of-arguments* `)` is the return type of *E*
+  * the value of *E* `(` *list-of-arguments* `)` is the value returned by
+    callee
+
+### Multiplicative Operators
+
+* multiplicative operators `*` group left to right
+* *E1* `*` *E2*
+  * both *E1* and *E2* have arithmetic types
+    * the values of *E1* and *E2* are converted to the same types according to
+      the conversion rules and this type is the type of the result
+    * the value of the expression is the value of *E1* multiplied by the value
+      of *E2*
+
+### Additive Operators
+
+* additive operators `+`, `-` group left to right
+* *E1* `+` *E2*, *E1* `-` *E2*
+  * both *E1* and *E2* have arithmetic types
+    * the values of *E1* and *E2* are converted to the same types according to
+      the conversion rules and this type is the type of the result
+    * the value of the *E1* `+` *E2* is the value of *E1* plus the value of
+      *E2*
+    * the value of the *E1* `-` *E2* is the value of *E1* minus the value of
+      *E2*
 
 ### Shift Operators
 
 * shift operators `<<` and `>>` group left to right
+
+### Assignment Operators
+
+* assignment operators `=` group right to left
+* *E1* `=` *E2*
+  * assigns the value of *E2* to the object referred by *E1*
+  * *E1* must refer to a modifiable object
+  * the value of *E1* `=` *E2* is the value of *E1* after assignment
+  * the value of *E2*, after possible promotions and conversions, must have the
+    same type as *E1* or must be convertible to the type of *E1*
 
 ## Statements
 
@@ -136,31 +234,45 @@ Prata.
   1. `return` *expression* `;`
 * can only be used within functions
 * returns the control-flow back to the caller
+* *expression*'s type must coincide with the function's return type
+  * the value of *expression* is returned to the caller (it is the value of
+    `E(...)` expression)
 
 ## Functions
 
-* a definition of a function consists of a *function prototype* immediately
+* a definition of a function consists of a *function signature* immediately
   followed by a *function body*
-* a function prototype has the form: *return-type* *identifier* `(`
+* a function signature has the form: *return-type* *identifier* `(`
   *specification-of-parameters* `)`
 * a function body has the form: `{` *declarations-and-statements* `}`
+  * note that function definition is neither declaration nor statement and thus
+    nested functions are forbidden
 * a *return-type* specifies a type of the information returned to the caller
   * such information is called *return value*
+  * if *return-type* is `void`, the function has no return value
+* an *identifier* specifies the name of the function
 * a *specification-of-parameters* specifies a number and types of arguments
   that caller must pass to the function right before the function code is
   executed
-  * unlike C, missing *specification-of-parameters* means that the function has
-    no parameters; the same effect has also when *specification-of-parameters*
-    is `void`
+* a *specification-of-parameters* has following forms
+  * it is empty or `void`; this means that the function has no parameters
+  * it is a comma-separated list of *parameter declarations*
+* a *parameter declaration* can have one of the following forms
+  1. *type* *identifier*
+     * specifies the type and name of the function parameter
+     * within the function, *identifier* is seen as a variable of type *type*,
+       defined every time the function is called, and initialized by the caller
+     * *identifier* can be omitted in prototypes
 
 ### Function `main`
 
 * prototypes
-  1. `int main()`
+  1. `int main();`
 * the function `main` is the first function called when a program starts, that
   is the function `main` is the *entry point* of the program
 * if there is no `return` statement at the end of the `main`'s function body,
   it is as if the last statement of the `main`'s function body was `return 0;`
+* the `main`'s return value is the program's exit code
 
 ## Name Spaces
 
@@ -168,17 +280,21 @@ Prata.
   * the same identifier can be member of different name spaces
 * name spaces can be nested
 
-### Operator `::`
-
-* operator `::` is used to access the name space member
-  * `A :: B` means *use `B` from name space `A`*
-
 ### Directive `using`
 
 * `using namespace foo;` exports all identifiers from the name space `foo` to
   the current scope
 * `using foo::bar;` exports `bar` from the name space `foo` to the current
   scope
+
+## Classes
+
+* *class* is user defined data type
+* the definition of class consist of
+  * the definition of data
+  * the definition of operations over the data
+    * member functions
+    * overloaded operators
 
 ## References
 
