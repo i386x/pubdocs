@@ -97,12 +97,14 @@ interested in. Maybe You find some of these interesting too.
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [An open letter to the Linux community](https://lore.kernel.org/lkml/CAK8KejpUVLxmqp026JY7x5GzHU2YJLPU8SzTZUNXU2OXC70ZQQ@mail.gmail.com/)
 * [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
+* [Data privacy: 5 mistakes you are probably making](https://enterprisersproject.com/article/2022/4/data-privacy-5-mistakes?sc_cid=70160000000eUoRAAU&elqTrackId=3c8663e165ce4d2cbbcca74cb1030885&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [Distributed transaction patterns for microservices compared](https://developers.redhat.com/articles/2021/09/21/distributed-transaction-patterns-microservices-compared#)
 * [Faster hardware through software](https://research.redhat.com/blog/article/faster-hardware-through-software/)
 * [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
 * [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
 * [HOW TO CONTRIBUTE TO OPEN SOURCE: THE ULTIMATE GUIDE](https://builtin.com/software-engineering-perspectives/open-source-contribution)
 * [IPython-like RPM Lua interactive console](https://eng.hroncok.cz/2020/05/14/ilua-rpm-console)
+* [Meeting-free days: 11 productivity tips from IT leaders](https://enterprisersproject.com/article/2022/2/meeting-free-days-11-productivity-tips-it-leaders?sc_cid=70160000000eUoRAAU&elqTrackId=549f2c2f7dcb44d0af8896e22a3f9fc5&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [New normal is just normal](https://moozzaa.medium.com/new-normal-is-just-normal-1d623d710c93)
 * [Rant about Github pull-request workflow implementation](https://julien.danjou.info/rant-about-github-pull-request-workflow-implementation/)
 * [Rebuilding the entire RubyGems in Copr](http://frostyx.cz/posts/rebuilding-the-entire-rubygems-in-copr)
@@ -115,6 +117,7 @@ interested in. Maybe You find some of these interesting too.
 #### Open Hybrid Cloud Daily
 
 * [3 essential soft skills IT pros need](https://enterprisersproject.com/article/2021/11/it-career-3-essential-soft-skills)
+* [4 Reasons Why AWS Could Lose Its Dominant Cloud Market Share](https://www.itprotoday.com/iaas-and-paas/4-reasons-why-aws-could-lose-its-dominant-cloud-market-share)
 * [5 Kubernetes trends to watch in 2022](https://enterprisersproject.com/article/2022/1/5-kubernetes-trends-watch-2022)
 * [50+ Useful Kubernetes Tools for 2020](https://caylent.com/50-useful-kubernetes-tools-for-2020)
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
@@ -133,6 +136,7 @@ interested in. Maybe You find some of these interesting too.
 * [CentOS Linux 8 will end in 2021 and shifts focus to CentOS Stream](https://www.cyberciti.biz/linux-news/centos-linux-8-will-end-in-2021-and-shifts-focus-to-centos-stream/)
 * [CentOS replacement Rocky Linux 8.4 arrives, and proves instantly popular](https://www.zdnet.com/article/centos-replacement-rocky-linux-8-4-arrives-and-proves-instantly-popular/)
 * [CentOS Stream: 'I was slow on the uptake, but I get what they are doing now,' says Rocky Linux founder](https://www.theregister.com/2021/07/09/centos_stream_greg_kurtzer/)
+* [Cloud Pricing Comparison: AWS vs. Azure vs. Google Cloud Platform in 2022](https://cast.ai/blog/cloud-pricing-comparison-aws-vs-azure-vs-google-cloud-platform/)
 * [Conductor: Why We Migrated from Kubernetes to Nomad](https://thenewstack.io/conductor-why-we-migrated-from-kubernetes-to-nomad/)
 * [Containers are Not the Future](https://www.linkedin.com/pulse/containers-future-ian-eyberg/)
 * [Containers vs. Pods - Taking a Deeper Look](https://iximiuz.com/en/posts/containers-vs-pods/)
@@ -141,6 +145,7 @@ interested in. Maybe You find some of these interesting too.
 * [Cracks are showing in Enterprise Open Source's foundations](https://www.jeffgeerling.com/blog/2021/cracks-are-showing-enterprise-open-sources-foundations)
 * [Developers: These are the top skills you will need in 2021](https://www.techrepublic.com/article/developers-these-are-the-top-skills-you-will-need-in-2021/)
 * [Does Google Have the Best Container Platform?](https://www.sdxcentral.com/articles/news/does-google-have-the-best-container-platform/2022/02/)
+* [Don't Use Kubernetes, Yet](https://matt-rickard.com/dont-use-kubernetes-yet/)
 * [EKS vs GKE vs AKS – Evaluating Kubernetes in the Cloud](https://securityboulevard.com/2021/01/eks-vs-gke-vs-aks-evaluating-kubernetes-in-the-cloud-3/)
 * [Fedora Developers Discuss Retiring NTP, Deprecating SCP Protocol](https://www.phoronix.com/scan.php?page=news_item&px=Fedora-Down-With-NTP-SCP)
 * [Fedora Project lead targets design, packaging in ten year vision](https://devclass.com/2020/01/07/fedora-project-lead-targets-design-packaging-in-ten-year-vision/)
@@ -175,7 +180,9 @@ interested in. Maybe You find some of these interesting too.
 * [Linus Torvalds on how AMD and Intel are changing how processor interrupts are handled](https://www.zdnet.com/article/linus-torvalds-on-how-amd-and-intel-are-changing-how-processor-interrupts-are-handled/)
 * [Lock-in and Multi-Cloud](https://www.tbray.org/ongoing/When/202x/2022/01/30/Cloud-Lock-In)
 * [Managed container services: KaaS, KPaaS & CaaS explained and compared](https://www.cncf.io/blog/2021/11/04/managed-container-services-kaas-kpaas-caas-explained-and-compared/)
+* [Managed services vs. hosted services vs. cloud services: What's the difference?](https://enterprisersproject.com/article/2022/5/managed-services-vs-hosted-services-vs-cloud-services)
 * [Microsoft’s New Linux Distro Is a Warning Shot at Red Hat](https://www.reviewgeek.com/92661/microsofts-new-linux-distro-is-a-warning-shot-at-red-hat/)
+* [Multi-cloud architecture: pros and cons](https://www.cncf.io/blog/2022/06/01/multi-cloud-architecture-pros-and-cons/)
 * [New GNOME Human Interface Guidelines now official – and obviously some people hate it](https://www.theregister.com/2021/08/09/gnome_human_interface_guidelines/)
 * [NixOS and the changing face of Linux operating systems](https://www.theregister.com/2021/12/03/nixos_linux_os_design/)
 * [No, Kubernetes doesn’t make applications portable, say analysts. Good luck avoiding lock-in, too](https://www.theregister.com/2020/09/08/kubernetes_app_portability_problems/)
@@ -186,12 +193,15 @@ interested in. Maybe You find some of these interesting too.
 * [Oracle Linux appears somewhere unexpected: The Windows Store](https://www.theregister.com/2022/02/02/oracle_linux_microsoft/)
 * [Rackspace is now the roach motel of cloud platforms](https://www.computerworld.com/article/3649196/rackspace-is-now-the-roach-motel-of-cloud-platforms.html#tk.rss_cloudcomputing)
 * [Reality Check: A Peek at the Developer Experience with Kubernetes](https://thenewstack.io/reality-check-a-peek-at-the-developer-experience-with-kubernetes/)
+* [Red Hat in-vehicle operating system in modern and future vehicles](https://news.ycombinator.com/item?id=31332590)
 * [Red Hat tackles enterprise-grade AI/ML issues through its Kubernetes platform](https://siliconangle.com/2021/10/19/red-hat-tackles-enterprise-grade-ai-ml-issues-kubernetes-platform-kubecon/)
 * [Red Hat’s new CEO talks about navigating the gradual recovery from the coronavirus](https://www.newsobserver.com/news/business/article241853301.html)
 * [Red Hat’s retiring CFO on her advice for younger professionals](https://fortune.com/2022/04/04/red-hat-retiring-cfo-advice-younger-professionals/)
 * [Remote work, one year in: 5 ways to boost mental health](https://enterprisersproject.com/article/2021/3/remote-work-5-tips-mental-health?sc_cid=70160000000eUoRAAU&elqTrackId=4555bbeb016e492db0acc123ad644ca2&elq=4d1d9704ea49411395f73b213edcf61e&elqaid=82185&elqat=1&elqCampaignId=360725&elqcst=272&elqcsid=26931)
 * [Review of Pod-to-Pod Communications in Kubernetes](https://superuser.openstack.org/articles/review-of-pod-to-pod-communications-in-kubernetes/)
 * [Rocky Linux is go: CentOS founder's new project aims to be 100% compatible with Red Hat Enterprise Linux](https://www.theregister.com/2020/12/10/rocky_linux/)
+* [Start skilling on Azure with these helpful guides](https://azure.microsoft.com/en-us/blog/start-skilling-on-azure-with-these-helpful-guides/)
+* [Steering Through Shocks, Chasing Chances: Why Open Source Technology Makes More Sense Than Ever](https://minutehack.com/opinions/steering-through-shocks-chasing-chances-why-open-source-technology-makes-more-sense-than-ever)
 * [Systemd’s Lennart Poettering Wants to Bring Linux Home Directories into the 21st Century](https://thenewstack.io/systemds-lennart-poettering-wants-to-bring-linux-home-directories-into-the-21st-century/)
 * [Ten Years Later — What Is Cloud Native?](https://devops.com/ten-years-later-what-is-cloud-native/)
 * [Terraform vs. Ansible: A Fight to the Death or Friends Forever?](https://adamtheautomator.com/terraform-vs-ansible/)
@@ -199,6 +209,7 @@ interested in. Maybe You find some of these interesting too.
 * [The cloud native story behind Red Hat’s partnership with AWS](https://siliconangle.com/2021/11/30/the-cloud-native-story-behind-red-hats-partnership-with-aws-reinvent/)
 * [The Edge, the cloud and Kubernetes with Brian Gracely](https://www.emilyomier.com/podcast/the-edge-the-cloud-and-kubernetes-with-brian-gracely)
 * [The future of Kubernetes – and why developers should look beyond Kubernetes in 2022](https://www.cncf.io/blog/2022/03/04/the-future-of-kubernetes-and-why-developers-should-look-beyond-kubernetes-in-2022/)
+* [The future of Linux: Fedora project leader Matthew Miller weighs in](https://www.techrepublic.com/article/linux-fedora-project-matthew-miller/)
 * [The Intel Split](https://stratechery.com/2022/the-intel-split/)
 * [The killing of CentOS Linux: 'The CentOS board doesn't get to decide what Red Hat engineering teams do'](https://www.theregister.com/2021/01/26/killing_centos/)
 * [The Quantum Technology Ecosystem – Explained](https://steveblank.com/2022/03/22/the-quantum-technology-ecosystem-explained/)
@@ -264,7 +275,7 @@ interested in. Maybe You find some of these interesting too.
 ## Books
 
 * [Graduate Texts in Mathematics](https://en.wikipedia.org/wiki/Graduate_Texts_in_Mathematics)
-* [Red Hat Developer eBooks](https://developers.redhat.com/ebooks)
+* [Red Hat Developer e-books](https://developers.redhat.com/e-books)
 * [zlibrary](https://1lib.cz/)
 
 ## CentOS
@@ -410,6 +421,7 @@ interested in. Maybe You find some of these interesting too.
 * [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
+* [Thousands of PyPI and RubyGems RPMs now available for RHEL 9](https://developers.redhat.com/articles/2022/06/07/thousands-pypi-and-rubygems-rpms-now-available-rhel-9)
 * [Unified source and PR driven workflow](https://github.com/projectatomic/rpmdistro-gitoverlay/blob/master/doc/reworking-fedora-releng.md)
 * [Universal Packaging Tool (upt) (Python)](https://framagit.org/upt/upt)
 * [Updates policy](https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/)
@@ -643,12 +655,15 @@ Projects
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
+* [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
+* [Quay.io Status](https://status.quay.io/)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
+* [Stolostron project](https://github.com/stolostron/stolostron)
 
 ### Databases
 
@@ -867,10 +882,12 @@ Projects
 
 * [4 ways to edit photos on the Linux command line](https://opensource.com/article/21/11/edit-photos-linux-command-line?sc_cid=70160000000eUoRAAU&elqTrackId=862d9a77e1714e09aa51a77088d500a0&elq=5e4fe7bb95a743c8bdbfbfe22aba1b4d&elqaid=88471&elqat=1&elqCampaignId=406136&elqcst=272&elqcsid=26931)
 * [5 must-have Linux media players](https://opensource.com/article/21/2/linux-media-players?sc_cid=70160000000eUoRAAU&elqTrackId=33518535f0f744619d80df7af7143f47&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
+* [5 open source alternatives to Doodle polls](https://opensource.com/article/22/4/open-source-alternatives-doodle-polls?sc_cid=70160000000eUoRAAU&elqTrackId=53c61a95b3cf48598f2df5d59185dac1&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [5 ways to protect your documents with open source software](https://opensource.com/article/21/4/secure-documents-open-source?sc_cid=70160000000eUoRAAU&elqTrackId=c76a52a66417477e82027b001aa2422d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
 * [12 inspiring examples of open source in education this year](https://opensource.com/article/21/12/open-source-education?sc_cid=70160000000eUoRAAU&elqTrackId=835ef4766b7b4f42bffb605fd8c70479&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [An open source alternative to Microsoft Exchange](https://opensource.com/article/21/9/open-source-groupware-grommunio?sc_cid=70160000000eUoRAAU&elqTrackId=332ea600c66e465da35e3de60be65d1d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
 * [How disagreement creates unity in open source](https://opensource.com/article/21/10/disagreement-open-source)
+* [Manage your Gmail filters from the Linux command line](https://opensource.com/article/22/5/gmailctl-linux-command-line-tool?sc_cid=70160000000eUoRAAU&elqTrackId=db4d27b25a944d3ebad8c791e4ef03d0&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [My favorite Linux commands for optimizing web images](https://opensource.com/article/21/12/optimize-web-images-linux?sc_cid=70160000000eUoRAAU&elqTrackId=d146b4445f684c459ac361c22368ae25&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Open source file sharing with this Linux tool](https://opensource.com/article/21/12/file-sharing-linux-samba?sc_cid=70160000000eUoRAAU&elqTrackId=88ca563cc43542e1b5827e823fe1a43e&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable?sc_cid=70160000000eUoRAAU&elqTrackId=42b2e59ab6114554aba7d5405b88dae5&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
@@ -929,6 +946,7 @@ Projects
 * [Automation of Formal Verification](https://github.com/aufover)
   * [aufover-benchmark](https://github.com/aufover/aufover-benchmark)
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
+* [Code Climate](https://codeclimate.com/)
 * [Compiler Explorer](https://godbolt.org/)
 * [Guide to disassemble](https://gist.github.com/jarun/ea47cc31f1b482d5586138472139d090)
 * [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
@@ -1107,6 +1125,8 @@ See [Caml](#caml).
 * [Hide implementation details from the Python C API](https://vstinner.github.io/hide-implementation-details-python-c-api.html)
 * [Isolate Python Subinterpreters](https://vstinner.github.io/isolate-subinterpreters.html)
 * [Python 3 documentation](https://docs.python.org/3/)
+* [Python Development (Victor’s notes)](https://pythondev.readthedocs.io/)
+  * [Python Debug Tools](https://pythondev.readthedocs.io/debug_tools.html)
 * [Python eval(): Evaluate Expressions Dynamically](https://realpython.com/python-eval-function/)
 
 ##### Console UI Libraries
@@ -1180,8 +1200,9 @@ See [Caml](#caml).
 * [bash-lib (Bash)](https://github.com/aks/bash-lib)
 * [Bats: Bash Automated Testing System (Bash)](https://github.com/sstephenson/bats)
 * [bin-public (Bash)](https://github.com/lzap/bin-public)
-* [Bioconductor (various repos)](https://github.com/Bioconductor)
+* [Bioconductor repositories](https://github.com/Bioconductor)
 * [BioPython (Python)](https://biopython.org/)
+* [Bitwarden repositories](https://github.com/bitwarden)
 * [blockdiag](https://github.com/blockdiag)
   * [actdiag (Python)](https://github.com/blockdiag/actdiag)
   * [blockdiag (Python)](https://github.com/blockdiag/blockdiag)
@@ -1201,6 +1222,8 @@ See [Caml](#caml).
 * [Cheese (C)](https://github.com/GNOME/cheese)
 * [click (Python)](https://github.com/pallets/click)
 * [cmdliner (OCaml)](https://github.com/dbuenzli/cmdliner)
+* ComplianceAsCode
+  * [content (Bash/Python)](https://github.com/ComplianceAsCode/content)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cppcheck (C++)](https://github.com/danmar/cppcheck)
 * [cryptography (Python)](https://github.com/pyca/cryptography) [[doc](https://cryptography.io/en/latest/)]
@@ -1254,6 +1277,7 @@ See [Caml](#caml).
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
 * [hubtty (Python)](https://github.com/hubtty/hubtty) [[home](https://hubtty.github.io/)]
+* [HyperShift (Golang)](https://github.com/openshift/hypershift)
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [i3: A tiling window manager (C)](https://github.com/i3/i3) [[home](https://i3wm.org/)]
 * [icmake (C)](https://gitlab.com/fbb-git/icmake/) [[home](https://fbb-git.gitlab.io/icmake/)]
@@ -1266,6 +1290,7 @@ See [Caml](#caml).
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
+* [keylime (Python)](https://github.com/keylime/keylime)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [kdenlive (C++)](https://github.com/KDE/kdenlive)
 * [KubeLinter (Golang)](https://github.com/stackrox/kube-linter)
@@ -1331,6 +1356,7 @@ See [Caml](#caml).
 * [PCMemTest (C)](https://github.com/martinwhitaker/pcmemtest)
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
+* [Portable Test Execution Framework (C)](https://github.com/comps/ptef)
 * [pluggy (Python)](https://github.com/pytest-dev/pluggy)
 * [Podium (JavaScript)](https://github.com/sa-mw-dach/podium)
 * [popt (C)](https://github.com/rpm-software-management/popt)
@@ -1443,11 +1469,13 @@ See [Caml](#caml).
 
 * [2019 CWE Top 25 Most Dangerous Software Errors](http://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html)
 * [A (Very) Basic Intro To Elliptic Curve Cryptography](https://hackernoon.com/very-basic-intro-to-elliptic-curve-cryptography-ww3g3t3n)
+* [Containers vulnerability risk assessment](https://www.redhat.com/en/blog/containers-vulnerability-risk-assessment)
 * [CWE VIEW: Software Development](https://cwe.mitre.org/data/definitions/699.html)
 * [CWE/SANS TOP 25 Most Dangerous Software Errors](https://www.sans.org/top25-software-errors/)
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
 * [FreeIPA](https://www.freeipa.org/) [[repo](https://github.com/freeipa/ansible-freeipa)]
 * [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
+* [Is your Go application FIPS compliant?](https://developers.redhat.com/articles/2022/05/31/your-go-application-fips-compliant)
 * Kerberos
   * [Containerized Testing with Kerberos and SSH](https://www.confluent.io/blog/containerized-testing-with-kerberos-and-ssh/)
   * [k5start](https://www.eyrie.org/~eagle/software/kstart/k5start.html)
@@ -1456,6 +1484,7 @@ See [Caml](#caml).
   * [Manual Testing](https://k5wiki.kerberos.org/wiki/Manual_Testing)
   * [MIT Kerberos Documentation](https://web.mit.edu/kerberos/krb5-latest/doc/)
   * [Unlock Django Framework With Kerberos](https://systango.medium.com/unlock-django-framework-with-kerberos-92106035848b)
+* [Kubernetes Operators: good security practices](https://www.redhat.com/en/blog/kubernetes-operators-good-security-practices)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
 * [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
@@ -1496,6 +1525,7 @@ See [Caml](#caml).
 * [KUnit - Unit Testing for the Linux Kernel](https://kunit.dev/third_party/kernel/docs/)
 * [LinchPin](https://github.com/CentOS-PaaS-SIG/linchpin)
 * [Pexpect](https://github.com/pexpect/pexpect) [[doc](https://pexpect.readthedocs.io/en/stable/index.html)]
+* [Portable Test Execution Framework](https://github.com/comps/ptef) [[video (short)](https://www.youtube.com/watch?v=FodeosLO_RM)] [[video (long)](https://www.youtube.com/watch?v=qMbxrhlguhk)]
 * [PyAutoGUI](https://github.com/asweigart/pyautogui)
 * [Python-uinput](https://github.com/tuomasjjrasanen/python-uinput)
 * [Red Hat Quality Engineering](https://github.com/RedHatQE)
