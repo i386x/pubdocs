@@ -130,7 +130,7 @@ delete            goto                reinterpret_cast        try
   * states that *identifier* represents the object of type *type*
   * reserve the storage and location for the object and associate it with
     *identifier*
-* *type *identifier* `=` *expression* `;`
+* *type* *identifier* `=` *expression* `;`
   * like *type* *identifier* `;`, but also initializes the object associated
     with *identifier* with *expression*
   * the value of *expression*, after possible promotions and conversions, must
