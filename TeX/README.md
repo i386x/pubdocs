@@ -256,6 +256,7 @@ of which have the meaning of macro, it performs the following steps:
         * either a balanced text if the current token in the token list has
           category 1
         * or the current token
+
         and remove these tokens from the token list
       * otherwise load to the *n*th parameter a sequence of tokens up to the
         separator keeping 1 and 2 category tokens balanced and remove the
