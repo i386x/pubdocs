@@ -390,7 +390,7 @@ processor. Here is the table with the summary:
 | `\char` | start a paragraph | typeset | typeset |
 | `\noboundary` | start a paragraph | suppress kerns and ligatures | idle |
 | space | idle | insert a glue | idle |
-| `\ ` | start a paragraph | insert a glue | insert a glue |
+| `\<space>` | start a paragraph | insert a glue | insert a glue |
 | `\relax` | idle | idle | idle |
 | `\ignorespaces` | skip blanks | skip blanks | skip blanks |
 | `\end` | finish all activities | insert `\par` and try again | missing `$` |
@@ -583,36 +583,42 @@ processor. Here is the table with the summary:
 
 * (1) besides `\toks0` to `\toks255`, there are also primitive tokens registers:
   ```tex
-  \output      \everypar    \everymath    \everydisplay    \everyhbox    \everyvbox
-  \everyjob    \everycr     \errhelp
+  \output      \everypar    \everymath    \everydisplay    \everyhbox
+  \everyvbox   \everyjob    \everycr     \errhelp
   ```
 * (2) besides `\count0` to `\count255`, there are also primitive count
   (integer) registers:
   ```tex
-  \pretolerance          \tolerance              \linepenalty             \hyphenpenalty          \clubpenalty          \exhyphenpenalty
-  \widowpenalty          \displaywidowpenalty    \brokenpenalty           \binoppenalty           \relpenalty           \predisplaypenalty
-  \postdisplaypenalty    \interlinepenalty       \doublehyphendemerits    \finalhyphendemerits    \adjdemerits          \mag
-  \delimiterfactor       \looseness              \time                    \day                    \month                \year
-  \showboxbreadth        \showboxdepth           \hbadness                \vbadness               \pausing              \tracingonline
-  \tracingmacros         \tracingstats           \tracingparagraphs       \tracingpages           \tracingoutput        \tracinglostchars
-  \tracingcommands       \tracingrestores        \uchyph                  \outputpenalty          \maxdeadcycles        \hangafter
-  \floatingpenalty       \globaldefs             \fam                     \escapechar             \defaulthyphenchar    \defaultskewchar
-  \endlinechar           \newlinechar            \language                \lefthyphenmin          \righthyphenmin       \holdinginserts
-  \errorcontextlines
+  \pretolerance          \tolerance           \linepenalty             \hyphenpenalty
+  \clubpenalty           \exhyphenpenalty     \widowpenalty            \displaywidowpenalty
+  \brokenpenalty         \binoppenalty        \relpenalty              \predisplaypenalty
+  \postdisplaypenalty    \interlinepenalty    \doublehyphendemerits    \finalhyphendemerits
+  \adjdemerits           \mag                 \delimiterfactor         \looseness
+  \time                  \day                 \month                   \year
+  \showboxbreadth        \showboxdepth        \hbadness                \vbadness
+  \pausing               \tracingonline       \tracingmacros           \tracingstats
+  \tracingparagraphs     \tracingpages        \tracingoutput           \tracinglostchars
+  \tracingcommands       \tracingrestores     \uchyph                  \outputpenalty
+  \maxdeadcycles         \hangafter           \floatingpenalty         \globaldefs
+  \fam                   \escapechar          \defaulthyphenchar       \defaultskewchar
+  \endlinechar           \newlinechar         \language                \lefthyphenmin
+  \righthyphenmin        \holdinginserts      \errorcontextlines
   ```
 * (3) besides `\dimen0` to `\dimen255`, there are also primitive dimension
   registers:
   ```tex
-  \parindent        \mathsurround      \lineskiplimit       \hsize            \vsize                 \maxdepth
-  \splitmaxdepth    \boxmaxdepth       \hfuzz               \vfuzz            \delimitershortfall    \nulldelimiterspace
-  \scriptspace      \predisplaysize    \displaywidth        \displayindent    \overfullrule          \hangindent
-  \hoffset          \voffset           \emergencystretch
+  \parindent             \mathsurround          \lineskiplimit    \hsize             \vsize
+  \maxdepth              \splitmaxdepth         \boxmaxdepth      \hfuzz             \vfuzz
+  \delimitershortfall    \nulldelimiterspace    \scriptspace      \predisplaysize    \displaywidth
+  \displayindent         \overfullrule          \hangindent       \hoffset           \voffset
+  \emergencystretch
   ```
 * (4) besides `\skip0` to `\skip255`, there are also primitive glue registers:
   ```tex
-  \lineskip                 \baselineskip    \parskip        \abovedisplayskip    \belowdisplayskip    \abovedisplayshortskip
-  \belowdisplayshortskip    \leftskip        \rightskip      \topskip             \splittopskip        \tabskip
-  \spaceskip                \xspaceskip      \parfillskip
+  \lineskip            \baselineskip             \parskip                  \abovedisplayskip
+  \belowdisplayskip    \abovedisplayshortskip    \belowdisplayshortskip    \leftskip
+  \rightskip           \topskip                  \splittopskip             \tabskip
+  \spaceskip           \xspaceskip               \parfillskip
   ```
 * (5) besides `\muskip0` to `\muskip255`, there are also primitive math glue
   registers:
