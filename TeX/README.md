@@ -646,7 +646,7 @@ are also opening/closing a group while being processed.
 New fonts are loaded using the `\font` command, which also defines a font
 switch control sequence which is used to change the current used font. The
 syntax of `\font` is:
-* `\font` *<control sequence> <equals> <file name> <at clause>*
+* `\font` *\<control sequence\> \<equals\> \<file name\> \<at clause\>*
 
 ### Main Processor's Registers and Primitives
 
