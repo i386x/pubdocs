@@ -644,7 +644,9 @@ are also opening/closing a group while being processed.
 ### Fonts
 
 New fonts are loaded using the `\font` command, which also defines a font
-switch control sequence which is used to change the current used font.
+switch control sequence which is used to change the current used font. The
+syntax of `\font` is:
+* `\font` *<control sequence> <equals> <file name> <at clause>*
 
 ### Main Processor's Registers and Primitives
 
@@ -655,24 +657,31 @@ switch control sequence which is used to change the current used font.
 * `\tracingcommands` enables tracing what primitives do
 * `\tracingmacros` enables tracing macro expansions
 
-#### Fonts
+#### Definitions
 
+* `\chardef` gives a control sequence a meaning of `\charXX`
+* `\countdef` gives a control sequence a meaning of `\countXX`
+* `\def` defines a macro
+* `\dimendef` gives a control sequence a meaning of `\dimenXX`
+* `\edef` defines a macro, expand tokens inside its body
 * `\font` defines font switch or refers to the current font
+* `\futurelet` gives a control sequence a meaning of the token behind the next
+  token (these 2 tokens are not removed)
+* `\gdef` defines a macro globally
+* `\let` gives a control sequence a meaning of some other token
+* `\long` means that macro parameter can contain `\par`
+* `\mathchardef` gives a control sequence a meaning of `\mathcharXXXX`
+* `\muskipdef` gives a control sequence a meaning of `\muskipXX`
+* `\outer` means that macro cannot be inside other macro
+* `\read` defines a macro with a content of the entire file as its body
+* `\skipdef` gives a control sequence a meaning of `\skipXX`
+* `\toksdef` gives a control sequence a meaning of `\muskipXX`
+* `\xdef` defines a macro globally, expand tokens inside its body
 
 #### Grouping
 
 * `\begingroup` opens a group
 * `\endgroup` closes the group
-
-#### Macros Definition
-
-* `\def` defines a macro
-* `\edef` defines a macro, expand tokens inside its body
-* `\gdef` defines a macro globally
-* `\let` gives a control sequence meaning of some other token
-* `\long` means that macro parameter can contain `\par`
-* `\outer` means that macro cannot be inside other macro
-* `\xdef` defines a macro globally, expand tokens inside its body
 
 #### Miscellaneous
 
@@ -698,11 +707,120 @@ switch control sequence which is used to change the current used font.
 
 ## Terminology and Syntax Rules
 
+In the following, `at`, `scaled`, `bp`, `cc`, `cm`, `dd`, `in`, `mm`, `pc`,
+`pt`, `sp`, `em`, `ex`, `by`, `depth`, `height`, `width`, `fil`, `fill`,
+`filll`, `minus`, `plus`, `spread`, `to`, and `true` are considered *keywords*.
+Keywords are case insensitive. In `fil`, `fill`, and `filll` are allowed spaces
+between the `l`s.
+
+* *at clause*
+  * `<space>*`
+  * `<space>* at<dimen>`
+  * `<space>* scaled<number>`
 * *balanced text*
   * tokens between a token with category 1 and a token with category 2,
     excluding these tokens, where every token with category 1 must have a
     matching token with category 2
+* *control sequence*
+  * a token with the 13 category is a control sequence
+  * if the token processor sees a category 0 character followed by category 11
+    characters, the these category 11 characters form a control sequence 
+  * if the expand processor sees `\csname<something>\endcsname`,
+    then `<something>` becomes a control sequence
+* *dimen*
+  * `<sign><float><unit>`
+  * `<sign>?` `\dimen` register
+  * `<sign>?` `\skip` register
+* *equals*
+  * `<space>*` `(=, 12)?`
+* *file name*
+  * a fully expanded sequence of tokens
+  * initial spaces are skipped
+  * non-expandable control sequence ends the file name
+  * tokens of categories 1, 2, 3, 4, 6, 7, 8, 11, and 12 can be included in the
+    file name
+* *filler*
+  * `( <space> | \relax )*`
+* *font*
+  * a control sequence with the meaning of a font switch
+  * `\font`
+  * `\textfont<number>`
+  * `\scriptfont<number>`
+  * `\scriptscriptfont<number>`
+* *number*
+  * `<sign> <digit>+ <space>?`
+  * `<sign> (', 12) <odigit>+ <space>?`
+  * `<sign> (", 12) <xdigit>+ <space>?`
+  * ``<sign> (`, 12) <single-char-token> <space>?``
+  * `<sign> \count register`
+  * `<sign> \dimen register`
+  * `<sign> \skip register`
+  * `<sign> \chardef constant`
+  * `<sign> \mathchardef constant`
+* `<digit>` is defined as:
+  ```
+  <digit> ::= <odigit> | (8, 12) | (9, 12)
+  ```
+* `<float>` is defined as:
+  ```
+  <float> ::= <digit>+
+  <float> ::= (', 12) <odigit>+
+  <float> ::= (", 12) <xdigit>+
+  <float> ::= (`, 12) <single-char-token>
+  <float> ::= \chardef constant
+  <float> ::= \mathchardef constant
+  <float> ::= <digit>+ <float-point> <digit>*
+  <float> ::= <float-point> <digit>+
+  ```
+* `<float-point>` is defined as:
+  ```
+  <float-point> ::= (., 12) | (,, 12)
+  ```
+* `<odigit>` is defined as:
+  ```
+  <odigit> ::= (0, 12) | (1, 12) | (2, 12) | (3, 12)
+            |  (4, 12) | (5, 12) | (6, 12) | (7, 12)
+  ```
+* `<sign>` is defined as:
+  ```
+  <sign> ::= [ <space>, (+, 12), (-, 12) ]*
+  ```
+* `<single-char-token>` is defined as:
+  ```
+  <single-char-token> ::= single character control sequence
+                       |  token (ASCII value, category)
+  ```
+* `<space>` is defined as:
+  ```
+  <space> ::= token of category 10 or its equivalent control sequence
+  ```
+* `<unit>` is defined as:
+  ```
+  <unit> ::= <space>* ( true <space>* )? pt <space>?
+  <unit> ::= <space>* ( true <space>* )? pc <space>?
+  <unit> ::= <space>* ( true <space>* )? bp <space>?
+  <unit> ::= <space>* ( true <space>* )? dd <space>?
+  <unit> ::= <space>* ( true <space>* )? cc <space>?
+  <unit> ::= <space>* ( true <space>* )? in <space>?
+  <unit> ::= <space>* ( true <space>* )? cm <space>?
+  <unit> ::= <space>* ( true <space>* )? mm <space>?
+  <unit> ::= <space>* ( true <space>* )? sp <space>?
+  <unit> ::= <space>* em <space>?
+  <unit> ::= <space>* ex <space>?
+  <unit> ::= <space>* \count register
+  <unit> ::= <space>* \dimen register
+  <unit> ::= <space>* \skip register
+  <unit> ::= <space>* \chardef constant
+  <unit> ::= <space>* \mathchardef constant
+  ```
+* `<xdigit>` is defined as:
+  ```
+  <xdigit> ::= <digit> | (A, 11) | (B, 11) | (C, 11) | (D, 11) | (E, 11) | (F, 11)
+                       | (A, 12) | (B, 12) | (C, 12) | (D, 12) | (E, 12) | (F, 12)
+  ```
 
 ## References
 
+* Donald Ervin Knuth: *The TeXbook*, 1986.
+* Donald Ervin Knuth: *TeX: The Program*, 1986.
 * Petr Olšák: *TeXbook naruby* (TeXbook inside out), 2nd edition, 2001.
