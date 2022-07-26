@@ -178,7 +178,7 @@ following way:
    * remove the token from the list of tokens
    * send it to the main processor
 
-### How Macros are Defined
+### How Macros Are Defined
 
 Whenever TeX sees the following sequence of tokens
 ```
@@ -235,7 +235,7 @@ checked if the sequence of consecutive `<#>` tokens inside the balanced text is
   where *n* is less or equal to the number of parameters in the parameters
   specification.
 
-### How Macros are Expanded
+### How Macros Are Expanded
 
 When the expand processor sees a control sequence or an active character both
 of which have the meaning of macro, it performs the following steps:
@@ -277,7 +277,7 @@ of which have the meaning of macro, it performs the following steps:
       list
    3. otherwise, send the current token to be written to the token list
 
-### How Conditionals are Processed
+### How Conditionals Are Processed
 
 In the following text, under the `\if...`, `\or`, `\else`, and `\fi` are also
 considered control sequences having the same meaning.
@@ -313,6 +313,44 @@ When the expand processor is going to expand `\else`:
 When the expand processor is going to expand `\fi`:
 1. check whether the `\fi` is not extra
 1. remove the `\fi` from the token list
+
+### Summary of What Is Not Expanded
+
+1. a control sequence is not expanded if it is requested as a parameter of a
+   command
+1. a control sequence is not expanded if it is a token at `\let`, `\futurelet`,
+   and `\show` commands
+1. the `\let` command does not expand *equals*
+1. a control sequence which is a part of parameters definition at `\def`,
+   `\edef`, `\gdef`, and `\xdef` is not expanded
+1. a control sequence which is a part of a macro body at `\def` and `\gdef` is
+   not expanded
+1. a control sequence that is going to be a part of a token list assembled by
+   `\read` or to be assigned to a token register is not expanded
+1. a control sequence is not expanded during the first pass through a token
+   sequence at `\uppercase`, `\lowercase`, and `\write`
+1. a control sequence is not expanded when it is read as a part of align
+   template during a processing of `\halign` or `\valign`
+   * token immediately following `\span` is expanded
+   * tokens that form a *glue* value to be assigned to `\tabskip` are also
+     expanded
+1. a single character control sequence which is a part of a *number* value
+   (i.e. a token behind `` ` ``) is not expanded
+1. when TeX scans for the presence of the second `$` after the first `$` to
+   distinguish between `$` and `$$` it not expands the token in the place where
+   the second `$` is expected
+1. when TeX scans parameters to be passed to a macro, it does not expand
+   possible control sequences
+1. a control sequence marked with `\noexpand` is not expanded
+1. when TeX skips tokens between `\if...` and `\fi`, it does not expand
+   possible control sequences
+1. the first two tokens after `\ifx` are not expanded
+1. the first token after `\string`, `\meaning`, `\noexpand`,
+   `\afterassignment`, and `\aftergroup` is not expanded
+1. during the first pass, `\expandafter` and `\futurelet` do not expand the
+   first token
+1. the tokens from the token register inserted to the token list by `\the` are
+   not expanded
 
 ### Expand Processor's Registers and Primitives
 
@@ -628,13 +666,51 @@ processor. Here is the table with the summary:
 
 Commands different from those listed in the table above are treated as errors.
 
+### Registers and Data Types
+
+Register is a place in TeX's memory where information is stored. Register can
+serve either as an auxiliary storage or a parameter for tuning TeX's
+algorithms. Registers can be accessed by:
+1. primitive, e.g. `\baselineskip`
+1. primitive and number, e.g. `\catcode64`
+1. primitive and a more complex specifier, e.g. `\fontdimen3\tenrm`
+1. a control sequence defined by commands like `\chardef`, e.g. `\pageno`
+
+A value can be assigned to or retrieved from a register.
+
+There are six types of registers:
+1. number registers, e.g. `\count0`
+1. dimension registers, e.g. `\dimen0`
+1. glue registers, e.g. `\skip0`
+1. math glue registers, e.g. `\muskip0`
+1. token registers, e.g. `\toks0`
+1. box registers, e.g. `\box0`
+
+Registers that serve as an auxiliary storage are:
+* `\count10` to `\count255`
+* `\dimen0` to `\dimen255`
+* `\skip0` to `\skip255`
+* `\muskip0` to `\muskip255`
+* `\toks0` to `\toks255`
+* `\box0` to `\box254`
+
+`\count0` to `\count9` keeps a page number inserted to DVI (up to 10 page
+numbers per page). The rightmost zeros are stripped, e.g. if `\count0` is 1 and
+`\count2` is 3, the page in DVI will be numbered as `1.0.3`.
+
+`\box255` holds a page ready to be shipped out (by `\shipout`).
+
+`\countdef`, `\dimendef`, `\skipdef`, `\muskipdef`, and `\toksdef` can define a
+control sequence to be a register equivalent, e.g. `\countdef\counta=0` makes
+`\counta` to be an equivalent for `\count0`.
+
 ### Groups
 
 If the main processor sees a category 1 token or the `\begingroup` primitive it
 opens a group. Inside a group, all assignments are local unless this behavior
 is changed with the `\globaldefs` register or the `\global` prefix.
 
-If the mains processor sees a category 2 token or the `\endgroup` primitive it
+If the main processor sees a category 2 token or the `\endgroup` primitive it
 closes the group and all the local assignments are reverted back to their state
 before the group opening.
 
