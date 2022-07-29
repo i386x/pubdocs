@@ -37,13 +37,6 @@ terminal or log file):
    * if an ASCII character is equal to the value stored in `\newlinechar` it is
      replaced by end-line character native for the host environment
 
-### Input Processor's Registers and Primitives
-
-* `\endlinechar` holds the character to be appended to the end of line
-* `\escapechar` holds the value that represents escape character, used whenever
-  a control sequence is converted to string
-* `\newlinechar` holds the character that triggers the line break
-
 ## Token Processor
 
 *Token* is either a pair containing value and category or a control sequence.
@@ -147,10 +140,6 @@ category):
 1. move to the next line
 1. if the last character on the line has category 0
    * emit the empty control sequence
-
-### Token Processor's Registers and Primitives
-
-* `\catcode` sets/gets the category code of the given character
 
 ## Expand Processor
 
@@ -354,11 +343,19 @@ When the expand processor is going to expand `\fi`:
 
 ### Expand Processor's Registers and Primitives
 
+* `\botmark` expands to the last `\mark` on the current page
 * `\csname` `<text>` `\endcsname` fully expands `<text>` and then makes a
   control sequence from the result
 * `\else` is a part of a conditional
-* `\expandafter` expands the second token after `\expandafter`
+* `\endcsname` marks the end of the control sequence produced by `\csname`
+* `\endinput` tells the expand processor to stop reading tokens from the
+  current file
+* `\expandafter` expands the second token after `\expandafter`, then going back
+  to the beginning of the token list
 * `\fi` is a part of a conditional
+* `\firstmark` expands to the first `\mark` on the current page
+* `\fontname` expands to the font name (file name and *at clause*) of the given
+  font
 * `\if` compares ASCII values of two tokens (non-expandable control sequences
   has ASCII value 256)
 * `\ifcase` chooses the *n*th case where *n* is the number from the condition
@@ -370,7 +367,7 @@ When the expand processor is going to expand `\fi`:
 * `\ifhbox` tests whether the box whose number is given in the condition is a
   `\hbox`
 * `\ifhmode` tests whether the main processor is in horizontal mode
-* `\ifinner` tests whether the main processor is in inner mode
+* `\ifinner` tests whether the main processor is in inner (restricted) mode
 * `\ifmmode` tests whether the main processor is in math mode
 * `\ifnum` compares two numbers
 * `\ifodd` tests whether the number given in the condition is odd
@@ -382,8 +379,10 @@ When the expand processor is going to expand `\fi`:
   void
 * `\ifx` compares two macros for their definitions equality or two tokens for
   matching their ASCII values and categories
+* `\input` tells to the expand processor to read tokens from the given file
+* `\jobname` expand to the name of the main `*.tex` source file
 * `\meaning` expands to the meaning of the next token
-* `\noexpand` marks the following token as non-expandable for the one round
+* `\noexpand` marks the following token as non-expandable
 * `\or` is a part of a conditional
 * `\romannumeral` followed by a number or a number register expands to the
   value of the number expressed in Roman digits
@@ -392,6 +391,8 @@ When the expand processor is going to expand `\fi`:
   case of control sequences)
 * `\the` gets the value stored in the given register or font
   * if the register is a tokens register its content is not further expanded
+  * otherwise the result of an expansion is a sequence of category 10 and 12
+    tokens
 
 ## Main Processor
 
@@ -674,9 +675,10 @@ algorithms. Registers can be accessed by:
 1. primitive, e.g. `\baselineskip`
 1. primitive and number, e.g. `\catcode64`
 1. primitive and a more complex specifier, e.g. `\fontdimen3\tenrm`
-1. a control sequence defined by commands like `\chardef`, e.g. `\pageno`
+1. a control sequence defined by commands like `\countdef`, e.g. `\pageno`
 
-A value can be assigned to or retrieved from a register.
+A value can be assigned to or retrieved from a register. Before the assignment
+the value must match the type of a register or be convertible to this type.
 
 There are six types of registers:
 1. number registers, e.g. `\count0`
@@ -704,6 +706,12 @@ numbers per page). The rightmost zeros are stripped, e.g. if `\count0` is 1 and
 control sequence to be a register equivalent, e.g. `\countdef\counta=0` makes
 `\counta` to be an equivalent for `\count0`.
 
+#### Numeric Constants
+
+#### Data Types
+
+#### Conversions
+
 ### Groups
 
 If the main processor sees a category 1 token or the `\begingroup` primitive it
@@ -726,8 +734,40 @@ syntax of `\font` is:
 
 ### Main Processor's Registers and Primitives
 
+#### Alignment
+
+* `\cleaders` works like *centered* `\leaders`
+* `\cr` ends row or column
+* `\crcr` works like `\cr`, but if the last command was `\cr`, `\crcr`, or
+  `\noalign` then this command has no effect
+* `\halign` makes a table
+* `\leaders` makes a space repeatedly filled with a rule or a box
+* `\noalign` specifies what to insert between columns or rows
+
+#### Arithmetic
+
+* `\advance` performs `x += y`
+* `\divide` performs `x /= y`
+* `\multiply` performs `x *= y`
+
+#### Boxes
+
+* `\box` inserts the content of the box to the contributions list and clears
+  the box register
+* `\copy` works like `\box` but without clearing the register
+* `\lastbox` removes the last box (does not work if the box is in the page
+  list)
+
+#### Contributions
+
+* `\kern` makes a solid space
+* `\lastkern` gets the last `\kern`
+* `\lastpenalty` gets the last `\penalty`
+* `\lastskip` gets the last `\skip`
+
 #### Debugging
 
+* `\message` writes an expanded text to the log file and terminal window
 * `\show` shows the meaning of the following token
 * `\showlists` shows lists with page material
 * `\tracingcommands` enables tracing what primitives do
@@ -754,22 +794,19 @@ syntax of `\font` is:
 * `\toksdef` gives a control sequence a meaning of `\muskipXX`
 * `\xdef` defines a macro globally, expand tokens inside its body
 
-#### Grouping
+#### Error Management
 
-* `\begingroup` opens a group
-* `\endgroup` closes the group
+* `\batchmode` tells TeX to skip all errors and to not display error messages
+  on terminal
+* `\errmessage` issues user-defined error
+* `\errorstopmode` tells TeX to stop on error and ask a user for what to do
+  next
 
-#### Miscellaneous
+#### File Operations
 
-* `\global` states that the following action (assignment, definition) will be
-  done at global level
-* `\globaldefs` states that all assignments are either global, local, or
-  default
+* `\closein` closes the input file
+* `\closeout` closes the output file
 * `\immediate` states that file operations are performed immediately
-* `\message` writes an expanded text to the log file and terminal window
-* `\uccode` holds translation mapping for `\uppercase`
-* `\uppercase` translates characters according to `\uccode`, category remains
-  unchanged
 * `\write` writes a fully expanded text to a given file
   * unless `\immediate` prefix is used, the expansion is deferred until
     `\shipout`
@@ -777,9 +814,263 @@ syntax of `\font` is:
     written to the log file
   * if the file number is greater than 15, the text is written also to terminal
 
-#### Registers
+#### Floats
 
-* `\toks` gives access to a register for a token sequence storage
+* `\insert` makes a float
+
+#### Grouping
+
+* `\begingroup` opens a group
+* `\endgroup` closes the group
+
+#### Horizontal Contributions
+
+* `\<space>` inserts space explicitly
+* `\-` marks a place where a word can be hyphenated
+* `\/` makes italic correction
+* `\accent` makes an accent
+* `\char` typesets a character
+* `\discretionary` tells the TeX how a word should be hyphenated
+* `\hbox` makes a horizontal box
+* `\hfil` is a shortcut for `\hskip 0pt plus 1fil`
+* `\hfill` is a shortcut for `\hskip 0pt plus 1fill`
+* `\hfilneg` is a shortcut for `\hskip 0pt plus -1fil`
+* `\hrule` makes a horizontal rule
+* `\hskip` makes a horizontal space
+* `\hss` is a shortcut for `\hskip 0pt plus 1fil minus 1fil`
+* `\hyphenation` defines a user-defined hyphenation of words
+* `\indent` starts the horizontal mode and inserts an empty box about
+  `\parindent` width
+* `\lower` lowers the box
+* `\mark` puts a mark to the contributions list
+* `\noboundary` suppresses implicit ligatures and `\kern`s
+* `\noindent` starts the horizontal mode (paragraph) without indentation
+
+#### Math Contributions
+
+* `\delimiter` typesets a delimiter (parentheses)
+* `\displaylimits` sets the *displaylimits* flag to Op atom
+* `\eqno` allows to put a number on the right-hand side of an equation
+* `\left` makes a left parentheses
+* `\leqno` allows to put a number on the left-hand side of an equation
+* `\limits` sets the *limits* flag to Op atom
+* `\mathaccent` makes an accent in math list
+* `\mathbin` makes a Bin atom
+* `\mathchar` typesets a math character
+* `\mathchoice` chooses what to typeset according to used math font style
+* `\mathclose` makes a Close atom
+* `\mathinner` makes an Inner atom
+* `\mathop` makes an Op atom
+* `\mathopen` makes an Open atom
+* `\mathord` makes an Ord atom
+* `\mathpunct` makes a Punct atom
+* `\mathrel` makes a Rel atom
+* `\mkern` makes a solid space in the math list
+* `\mskip` makes a space in the math list
+
+##### Fonts
+
+* `\displaystyle` sets display (D) style
+
+##### Fractions
+
+* `\above` makes a fraction line, accepts thickness
+* `\abovewithdelims` works like `\above` plus adds parentheses to sides
+
+##### Matrices
+
+* `\atop` puts a one object above the second
+* `\atopwithdelims` works like `\atop` plus add parentheses to sides
+
+#### Miscellaneous
+
+* `\afterassignment` saves a token and puts it to the token list after
+  assignment has been performed
+* `\aftergroup` saves a token and puts it to the token list after group has
+  been finished
+* `\dump` works like `\end` but dumps TeX's memory to FMT file (works only with
+  IniTeX)
+* `\end` finishes all TeX activities and terminates it
+  * in the horizontal mode inserts `\par` before itself and it is read again
+  * in the vertical mode
+    * if the current page and the contributions list are empty and
+      `\deadcycles` is zero it terminates TeX
+    * otherwise insert an empty box of `\hsize` width, `\vfill`, and
+      `\penalty-2^30` to the vertical list, which invokes the page completion
+      algorithm, and then `\end` is read again
+* `\global` states that the following action (assignment, definition) will be
+  done at the global level
+* `\ignorespaces` tells to the main processor to ignore all spaces until
+  non-space command occurs
+* `\lowercase` translates characters according to `\lccode`, category remains
+  unchanged
+* `\uppercase` translates characters according to `\uccode`, category remains
+  unchanged
+
+#### Parameters and Registers
+
+##### Alignment
+
+* `\everycr` is a list of tokens inserted to the token list after `\cr` or
+  `\crcr` that ends a line
+
+##### Auxiliary Storage
+
+* `\count` gives the access to a register for an integer storage
+* `\dimen` gives the access to a register for a dimension storage
+* `\muskip` gives the access to a register for a math space storage
+* `\toks` gives the access to a register for a token sequence storage
+
+##### Boxes
+
+* `\badness` keeps a badness of the last completed box
+* `\boxmaxdepth` keeps the maximal allowed depth of a box
+* `\dp` sets/gets a box depth
+* `\ht` sets/gets a box height
+
+##### Codes
+
+* `\catcode` sets/gets the category code of the given character
+* `\delcode` tells to TeX how a character should be treated if it appears in
+  math formula as a delimiter (parentheses)
+* `\lccode` defines translation mapping for `\lowercase`
+* `\mathcode` associates a math code with a character, i.e. it tells TeX how to
+  translate `\char` to `\mathchar`
+* `\uccode` defines translation mapping for `\uppercase`
+
+##### Definitions
+
+* `\globaldefs` states that all assignments are either global (if positive),
+  local (if negative), or default (if zero &ndash; then the `\global` comes to
+  action)
+
+##### Error Management
+
+* `\errhelp` holds tokens displayed when help is requested after `\errmessage`
+* `\errorcontextlines` holds the number of extra context lines when error
+  occurs
+
+##### Floats
+
+* `\floatingpenalty` is a penalty for insertions that are split
+* `\holdinginserts` keeps inserts in the output box if the value is positive
+* `\insertpenalties` is the sum of all penalties for split insertions on the
+  page
+
+##### Fonts
+
+* `\defaulthyphenchar` is the default hyphenation character for all fonts
+* `\defaultskewchar` is the default skew character for all fonts
+* `\fontdimen` sets/gets a parameter to the font
+* `\hyphenchar` sets/gets the hyphenation character of the font
+
+##### Horizontal Contributions
+
+* `\emergencystretch` is a stretch value added to a line to reduce badnesses
+  on third (final) pass of line-breaking
+* `\everyhbox` is a list of tokens inserted to the token list when a `\hbox`
+  assembling process just started
+* `\everypar` is a list of tokens inserted to the token list when entering the
+  horizontal mode
+* `\exhyphenpenalty` is a penalty for line break after explicit hyphen
+* `\hangafter` is a number of lines in a paragraph affected by `\hangindent`
+* `\hbadness` is a maximal horizontal badness
+* `\hfuzz` is a maximum `\hbox` overrun
+* `\hyphenpenalty` is a penalty for line break after discretionary hyphen
+* `\language` chooses a hyphenation table
+* `\lefthyphenmin` is a minimal number of characters in the left-hand side of
+  the split word
+* `\linepenalty` is a penalty added to badness of every line in a paragraph
+
+##### Horizontal Spaces
+
+* `\hangindent` is an indentation of lines given by `\hangafter`
+* `\leftskip` is a space before each line of a paragraph
+
+##### Input Processor
+
+* `\endlinechar` holds the character to be appended to the end of line
+* `\escapechar` holds the value that represents escape character, used whenever
+  a control sequence is converted to string
+  * applicable for `\errmessage`, `\message`, `\string`, and `\write`
+  * if the escape character is outside of the range 0 to 255, including 255,
+    nothing is printed before a control sequence identifier
+* `\inputlineno` holds the number of the currently processed line from the
+  currently processed file
+* `\newlinechar` holds the character that is converted to the operating system
+  defined line break
+
+##### Math Contributions
+
+* `\binoppenalty` is the amount of penalty inserted after every Bin atom
+* `\delimiterfactor` is a ratio for variable delimiters multiplied by 1000
+* `\everydisplay` is a list of tokens inserted to the token list after entering
+  the display mode (`$$`)
+* `\everymath` is a list of tokens inserted to the token list after entering
+  the math mode (`$`)
+* `\fam` sets the current family number
+
+##### Math Spaces
+
+* `\delimitershortfall` is a maximum space not covered by a delimiter
+* `\displayindent` is an indentation for lines in math displays
+* `\displaywidth` is a length of line in math displays
+* `\mathsurround` is a size of a solid space around `$...$`
+* `\medmuskip` is a size of the medium math space
+
+##### Miscellaneous
+
+* `\everyjob` is a list of tokens inserted to the token list when TeX starts
+
+##### Page
+
+* `\deadcycles` holds the number of output routines that ship no pages to DVI
+* `\hoffset` is a horizontal offset in `\shipout`
+* `\hsize` determines the width of the box with a page material
+* `\mag` is a document magnification (1000 means 1)
+* `\maxdeadcycles` is a maximal number of *dead cycles* (a call of the output
+  routine where no page was shipped to DVI)
+* `\maxdepth` is the maximal depth of the page box
+
+##### Time
+
+* `\day` keeps a day of a month
+* `\month` keeps a month number
+
+##### Vertical Contributions
+
+* `\adjdemerits` is the amount of demerits of adjacent incompatible lines
+* `\brokenpenalty` is the amount of penalty added to `\interlinepenalty`,
+  `\widowpenalty` and `\clubpenalty` if the line contains a hyphenated word
+* `\clubpenalty` is the amount of penalty added after the first line of a
+  paragraph
+* `\displaywidowpenalty` is the amount of penalty for creating a widow line
+  before a display
+* `\doublehyphendemerits` is the amount of demerits of consecutive broken lines
+* `\everyvbox` is a list of tokens inserted to the token list when a `\vbox`
+  assembling process just started
+* `\finalhyphendemerits` is the amount of demerits of a penultimate broken line
+* `\interlinepenalty` is the penalty added between two lines of a paragraph
+* `\looseness` is a change to the number of lines in a paragraph
+
+##### Vertical Spaces
+
+* `\abovedisplayshortskip` is the space between a text and the top of the math
+  display if the last line of text do not collide with the equation
+* `\abovedisplayskip` is the space between a text and the top of the math
+  display
+* `\baselineskip` is the desired space between baselines
+* `\belowdisplayshortskip` is the space between a text and the bottom of the
+  math display if the last line of text do not collide with the equation
+* `\belowdisplayskip` is the space between a text and the bottom of the math
+  display
+* `\lineskip` is the space between two lines if `\baselineskip` cannot be used
+* `\lineskiplimit` is used to choose between `\lineskip` and `\baselineskip`
+
+#### Vertical Contributions
+
+* `\moveleft` moves a box to the left
+* `\moveright` moves a box to the right
 
 ## Terminology and Syntax Rules
 
