@@ -383,9 +383,13 @@ When the expand processor is going to expand `\fi`:
 * `\jobname` expand to the name of the main `*.tex` source file
 * `\meaning` expands to the meaning of the next token
 * `\noexpand` marks the following token as non-expandable
+* `\number` expands to a sequence of digits representing the decimal value of
+  its parameter
 * `\or` is a part of a conditional
-* `\romannumeral` followed by a number or a number register expands to the
-  value of the number expressed in Roman digits
+* `\romannumeral` expands to a sequence of Roman digits representing the value
+  of its parameter
+* `\splitbotmark` expands the last `\mark` in the `\vsplit`ted box
+* `\splitfirstmark` expands the first `\mark` in the `\vsplit`ted box
 * `\string` converts its parameter to its string representation composed from
   category 12 and 10 tokens (`\escapechar` drives printing the escape char in
   case of control sequences)
@@ -393,6 +397,7 @@ When the expand processor is going to expand `\fi`:
   * if the register is a tokens register its content is not further expanded
   * otherwise the result of an expansion is a sequence of category 10 and 12
     tokens
+* `\topmark` expands to the last `\mark` from the previous page
 
 ## Main Processor
 
@@ -743,6 +748,11 @@ syntax of `\font` is:
 * `\halign` makes a table
 * `\leaders` makes a space repeatedly filled with a rule or a box
 * `\noalign` specifies what to insert between columns or rows
+* `\omit` ignores a template
+* `\span` spans columns in a row
+* `\valign` makes a transposed table
+* `\xleaders` works like `\cleaders` but the left and right filler is divided
+  between all boxes
 
 #### Arithmetic
 
@@ -752,26 +762,34 @@ syntax of `\font` is:
 
 #### Boxes
 
-* `\box` inserts the content of the box to the contributions list and clears
-  the box register
+* `\box` inserts the box to the contributions list and clears the box register
 * `\copy` works like `\box` but without clearing the register
 * `\lastbox` removes the last box (does not work if the box is in the page
   list)
+* `\setbox` assigns a box to the box register
+* `\unhbox` unpacks a `\hbox` and clears the box register
+* `\unhcopy` works like `\unhbox` but without clearing the register
+* `\unvbox` unpacks a `\vbox` and clears the box register
+* `\unvcopy` works like `\unvbox` but without clearing the register
 
 #### Contributions
 
 * `\kern` makes a solid space
 * `\lastkern` gets the last `\kern`
 * `\lastpenalty` gets the last `\penalty`
-* `\lastskip` gets the last `\skip`
+* `\lastskip` gets the last space
+* `\penalty` inserts a penalty
+* `\unkern` removes the last `\kern` if present
+* `\unpenalty` removes the last `\penalty` if present
+* `\unskip` removes the last space if present
 
 #### Debugging
 
 * `\message` writes an expanded text to the log file and terminal window
 * `\show` shows the meaning of the following token
+* `\showbox` shows the box's content
 * `\showlists` shows lists with page material
-* `\tracingcommands` enables tracing what primitives do
-* `\tracingmacros` enables tracing macro expansions
+* `\showthe` shows the token
 
 #### Definitions
 
@@ -788,11 +806,11 @@ syntax of `\font` is:
 * `\long` means that macro parameter can contain `\par`
 * `\mathchardef` gives a control sequence a meaning of `\mathcharXXXX`
 * `\muskipdef` gives a control sequence a meaning of `\muskipXX`
-* `\outer` means that macro cannot be inside other macro
+* `\outer` means that macro cannot be used inside an other macro
 * `\read` defines a macro with a content of the entire file as its body
 * `\skipdef` gives a control sequence a meaning of `\skipXX`
-* `\toksdef` gives a control sequence a meaning of `\muskipXX`
-* `\xdef` defines a macro globally, expand tokens inside its body
+* `\toksdef` gives a control sequence a meaning of `\toksXX`
+* `\xdef` defines a macro globally, expands tokens inside its body
 
 #### Error Management
 
@@ -801,12 +819,16 @@ syntax of `\font` is:
 * `\errmessage` issues user-defined error
 * `\errorstopmode` tells TeX to stop on error and ask a user for what to do
   next
+* `\nonstopmode` tells TeX to not stop on any error
+* `\scrollmode` tells TeX to scroll error messages on the terminal
 
 #### File Operations
 
 * `\closein` closes the input file
 * `\closeout` closes the output file
 * `\immediate` states that file operations are performed immediately
+* `\openin` opens a file for input
+* `\openout` opens a file for output
 * `\write` writes a fully expanded text to a given file
   * unless `\immediate` prefix is used, the expansion is deferred until
     `\shipout`
@@ -817,6 +839,11 @@ syntax of `\font` is:
 #### Floats
 
 * `\insert` makes a float
+
+#### Fonts
+
+* `\nullfont` is a void font without any characters and with seven parameters
+  set to zero
 
 #### Grouping
 
@@ -845,6 +872,11 @@ syntax of `\font` is:
 * `\mark` puts a mark to the contributions list
 * `\noboundary` suppresses implicit ligatures and `\kern`s
 * `\noindent` starts the horizontal mode (paragraph) without indentation
+* `\par` finishes the paragraph
+* `\parshape` sets the shape of a paragraph
+* `\patterns` defines a hyphenation table (IniTeX only)
+* `\raise` raises the box
+* `\setlanguage` inserts a mark according it the hyphenation table is chosen
 
 #### Math Contributions
 
@@ -867,15 +899,28 @@ syntax of `\font` is:
 * `\mathrel` makes a Rel atom
 * `\mkern` makes a solid space in the math list
 * `\mskip` makes a space in the math list
+* `\nolimits` sets the *nolimits* flag to Op atom
+* `\nonscript` tells TeX that the following space can be used only in
+  non-script styles
+* `\overline` makes an Over atom
+* `\radical` makes a radical
+* `\right` makes a right parentheses
+* `\underline` makes an Under atom
+* `\vcenter` makes a Vcent atom
 
 ##### Fonts
 
 * `\displaystyle` sets display (D) style
+* `\scriptscriptstyle` sets *script script* (SS) style
+* `\scriptstyle` sets script (S) style
+* `\textstyle` sets text (T) style
 
 ##### Fractions
 
 * `\above` makes a fraction line, accepts thickness
 * `\abovewithdelims` works like `\above` plus adds parentheses to sides
+* `\over` makes a fraction
+* `\overwithdelims` works like `\over` plus adds parentheses to sides
 
 ##### Matrices
 
@@ -904,8 +949,14 @@ syntax of `\font` is:
   non-space command occurs
 * `\lowercase` translates characters according to `\lccode`, category remains
   unchanged
+* `\relax` performs no action
 * `\uppercase` translates characters according to `\uccode`, category remains
   unchanged
+
+#### Page
+
+* `\shipout` ships the box to DVI
+* `\special` inserts a whatsit node into DVI
 
 #### Parameters and Registers
 
@@ -913,12 +964,14 @@ syntax of `\font` is:
 
 * `\everycr` is a list of tokens inserted to the token list after `\cr` or
   `\crcr` that ends a line
+* `\tabskip` is a space between columns or rows
 
 ##### Auxiliary Storage
 
 * `\count` gives the access to a register for an integer storage
 * `\dimen` gives the access to a register for a dimension storage
 * `\muskip` gives the access to a register for a math space storage
+* `\skip` gives the access to a register for a space storage
 * `\toks` gives the access to a register for a token sequence storage
 
 ##### Boxes
@@ -927,6 +980,7 @@ syntax of `\font` is:
 * `\boxmaxdepth` keeps the maximal allowed depth of a box
 * `\dp` sets/gets a box depth
 * `\ht` sets/gets a box height
+* `\wd` sets/gets a box width
 
 ##### Codes
 
@@ -936,7 +990,25 @@ syntax of `\font` is:
 * `\lccode` defines translation mapping for `\lowercase`
 * `\mathcode` associates a math code with a character, i.e. it tells TeX how to
   translate `\char` to `\mathchar`
+* `\sfcode` associates a space factor with a character
 * `\uccode` defines translation mapping for `\uppercase`
+
+##### Debugging
+
+* `\pausing` tells TeX to stop on every input line
+* `\showboxbreadth` determines maximum items per level when showing a box
+* `\showboxdepth` determines maximum levels when showing a box
+* `\tracingcommands` enables tracing of what primitives do
+* `\tracinglostchars` enable tracing of characters that were not found in the
+  current font
+* `\tracingmacros` enables tracing macro expansions
+* `\tracingonline` enables sending tracing messages also to terminal
+* `\tracingoutput` enables tracing boxes that were sent to DVI
+* `\tracingpages` enables tracing of how pages are assembled
+* `\tracingparagraphs` enables tracing of how paragraphs are assembled
+* `\tracingrestores` enables tracing of what is restored after leaving a group
+* `\tracingstats` enables reporting of overall TeX statistics (memory used,
+  fonts loaded, etc.)
 
 ##### Definitions
 
@@ -963,6 +1035,10 @@ syntax of `\font` is:
 * `\defaultskewchar` is the default skew character for all fonts
 * `\fontdimen` sets/gets a parameter to the font
 * `\hyphenchar` sets/gets the hyphenation character of the font
+* `\scriptfont` sets the font for the script style
+* `\scriptscriptfont` sets the font for the *script script* style
+* `\skewchar` sets/gets the skew character of the font
+* `\textfont` sets the font for the text style
 
 ##### Horizontal Contributions
 
@@ -981,11 +1057,25 @@ syntax of `\font` is:
 * `\lefthyphenmin` is a minimal number of characters in the left-hand side of
   the split word
 * `\linepenalty` is a penalty added to badness of every line in a paragraph
+* `\overfullrule` is the width of a rule used to mark overfull `\hbox`es
+* `\pretolerance` is a badness tolerance before hyphenation
+* `\righthyphenmin` is a minimal number of characters in the right-hand side of
+  the split word
+* `\tolerance` is a badness tolerance after hyphenation
+* `\uchyph` enables hyphenation of words starting with an upper-case letter
+  * upper-case letters are those with `\lccode` different from zero and ASCII
+    value of the character
 
 ##### Horizontal Spaces
 
 * `\hangindent` is an indentation of lines given by `\hangafter`
-* `\leftskip` is a space before each line of a paragraph
+* `\leftskip` is a left space before each line of a paragraph
+* `\parfillskip` is a space inserted right to the last line of a paragraph
+* `\parindent` is an indentation added at the beginning of a paragraph
+* `\rightskip` is a right space after each line of a paragraph
+* `\spacefactor` is a ratio for spaces multiplied by 1000
+* `\spaceskip` is a space between words, if non-zero
+* `\xspaceskip` is a space between sentences, if non-zero
 
 ##### Input Processor
 
@@ -1009,14 +1099,20 @@ syntax of `\font` is:
 * `\everymath` is a list of tokens inserted to the token list after entering
   the math mode (`$`)
 * `\fam` sets the current family number
+* `\relpenalty` is the amount of penalty inserted after every Rel atom
 
 ##### Math Spaces
 
 * `\delimitershortfall` is a maximum space not covered by a delimiter
 * `\displayindent` is an indentation for lines in math displays
-* `\displaywidth` is a length of line in math displays
-* `\mathsurround` is a size of a solid space around `$...$`
-* `\medmuskip` is a size of the medium math space
+* `\displaywidth` is the length of line in math displays
+* `\mathsurround` is the size of a solid space around `$...$`
+* `\medmuskip` is the size of the medium math space
+* `\nulldelimiterspace` is the width of a null delimiter
+* `\predisplaysize` is the length of text preceding a math display
+* `\scriptspace` is the space after superscript or subscript
+* `\thickmuskip` is the size of the thick math space
+* `\thinmuskip` is the size of the thin math space
 
 ##### Miscellaneous
 
@@ -1031,11 +1127,26 @@ syntax of `\font` is:
 * `\maxdeadcycles` is a maximal number of *dead cycles* (a call of the output
   routine where no page was shipped to DVI)
 * `\maxdepth` is the maximal depth of the page box
+* `\output` is a list of tokens representing output routine
+* `\outputpenalty` is a penalty at the current page break
+* `\pagedepth` is the depth of a box with a page material
+* `\pagefilllstretch` is the sum of all `\vskip plus filll`s on the current
+  page
+* `\pagefillstretch` is the sum of all `\vskip plus fill`s on the current page
+* `\pagefilstretch` is the sum of all `\vskip plus fil`s on the current page
+* `\pagegoal` is the desired height of the current page
+* `\pageshrink` is the sum of all `\vskip` shrinks on the current page
+* `\pagestretch` is the sum of all `\vskip` stretches on the current page
+* `\pagetotal` is the recent height of the current page
+* `\voffset` is a vertical offset in `\shipout`
+* `\vsize` determines the height of the box with a page material
 
 ##### Time
 
 * `\day` keeps a day of a month
 * `\month` keeps a month number
+* `\time` keeps the number of minutes since midnight
+* `\year` keeps the year
 
 ##### Vertical Contributions
 
@@ -1052,6 +1163,15 @@ syntax of `\font` is:
 * `\finalhyphendemerits` is the amount of demerits of a penultimate broken line
 * `\interlinepenalty` is the penalty added between two lines of a paragraph
 * `\looseness` is a change to the number of lines in a paragraph
+* `\postdisplaypenalty` is a penalty inserted after a math display
+* `\predisplaypenalty` is a penalty inserted before a math display
+* `\prevdepth` is the depth of the previously added box
+* `\prevgraf` is a number of paragraph lines added so far
+* `\splitmaxdepth` is the maximal depth of the `\vsplit`ted box
+* `\vbadness` is a maximal vertical badness
+* `\vfuzz` is a maximum `\vbox` overrun
+* `\widowpenalty` is the amount of penalty added after the line before the last
+  line of a paragraph
 
 ##### Vertical Spaces
 
@@ -1066,11 +1186,25 @@ syntax of `\font` is:
   display
 * `\lineskip` is the space between two lines if `\baselineskip` cannot be used
 * `\lineskiplimit` is used to choose between `\lineskip` and `\baselineskip`
+* `\parskip` is the space at the top of a paragraph
+* `\splittopskip` is like `\topskip` but for `\vsplit`ted boxes
+* `\topskip` is the space at the top of the current page
 
 #### Vertical Contributions
 
 * `\moveleft` moves a box to the left
 * `\moveright` moves a box to the right
+* `\vadjust` inserts its contributions after paragraph has been completed
+* `\vbox` makes a vertical box
+* `\vfil` is a shortcut for `\vskip 0pt plus 1fil`
+* `\vfill` is a shortcut for `\vskip 0pt plus 1fill`
+* `\vfilneg` is a shortcut for `\vskip 0pt plus -1fil`
+* `\vrule` makes a vertical rule
+* `\vskip` makes a vertical space
+* `\vsplit` splits a vertical box
+* `\vss` is a shortcut for `\vskip 0pt plus 1fil minus 1fil`
+* `\vtop` makes a vertical box with the reference point on the baseline of the
+  first line
 
 ## Terminology and Syntax Rules
 
@@ -1088,12 +1222,19 @@ between the `l`s.
   * tokens between a token with category 1 and a token with category 2,
     excluding these tokens, where every token with category 1 must have a
     matching token with category 2
+* *box specification*
+  * `<space>* to<dimen><filler>`
+  * `<space>* spread<dimen><filler>`
+  * `<filler>`
 * *control sequence*
   * a token with the 13 category is a control sequence
   * if the token processor sees a category 0 character followed by category 11
     characters, the these category 11 characters form a control sequence 
   * if the expand processor sees `\csname<something>\endcsname`,
     then `<something>` becomes a control sequence
+* *delimiter*
+  * ASCII character with non-negative `\delcode`
+  * `\delimiter<27-bit number>`
 * *dimen*
   * `<sign><float><unit>`
   * `<sign>?` `\dimen` register
@@ -1114,6 +1255,15 @@ between the `l`s.
   * `\textfont<number>`
   * `\scriptfont<number>`
   * `\scriptscriptfont<number>`
+* *glue*
+  * `<dimen><stretch>?<shrink>?`
+  * `<sign>` `\skip` register
+* *mudimen*
+  * `<sign><float><mu-unit>`
+  * `<sign>?` `\muskip` register
+* *muglue*
+  * `<mudimen><mu-stretch>?<mu-shrink>?`
+  * `<sign>` `\muskip` register
 * *number*
   * `<sign> <digit>+ <space>?`
   * `<sign> (', 12) <odigit>+ <space>?`
@@ -1124,9 +1274,22 @@ between the `l`s.
   * `<sign> \skip register`
   * `<sign> \chardef constant`
   * `<sign> \mathchardef constant`
+* *optional by*
+  * `<space>*` `( by )?`
+* *rule specification*
+  * `<space>*`
+  * `( <width> | <height> | <depth> )+`
+* `<depth>` is defined as:
+  ```
+  <depth> ::= <space>* depth <dimen>
+  ```
 * `<digit>` is defined as:
   ```
   <digit> ::= <odigit> | (8, 12) | (9, 12)
+  ```
+* `<fill-unit>` is defined as:
+  ```
+  <fill-unit> ::= <space>* fil <space>* ( l <space>* ( l <space>* )? )?
   ```
 * `<float>` is defined as:
   ```
@@ -1143,10 +1306,41 @@ between the `l`s.
   ```
   <float-point> ::= (., 12) | (,, 12)
   ```
+* `<generic-dimen>` is defined as:
+  ```
+  <generic-dimen> ::= <dimen>
+  <generic-dimen> ::= <sign> <float> <fill-unit>
+  ```
+* `<generic-mu-dimen>` is defined as:
+  ```
+  <generic-mu-dimen> ::= <mu-dimen>
+  <generic-mu-dimen> ::= <sign> <float> <fill-unit>
+  ```
+* `<height>` is defined as:
+  ```
+  <height> ::= <space>* height <dimen>
+  ```
+* `<mu-shrink>` is defined as:
+  ```
+  <mu-shrink> ::= <space>* ( minus <generic-mu-dimen> )?
+  ```
+* `<mu-stretch>` is defined as:
+  ```
+  <mu-stretch> ::= <space>* ( plus <generic-mu-dimen> )?
+  ```
+* `<mu-unit>` is defined as:
+  ```
+  <mu-unit> ::= <space>* mu <space>?
+  <mu-unit> ::= <space>* \muskip register
+  ```
 * `<odigit>` is defined as:
   ```
   <odigit> ::= (0, 12) | (1, 12) | (2, 12) | (3, 12)
             |  (4, 12) | (5, 12) | (6, 12) | (7, 12)
+  ```
+* `<shrink>` is defined as:
+  ```
+  <shrink> ::= <space>* ( minus <generic-dimen> )?
   ```
 * `<sign>` is defined as:
   ```
@@ -1160,6 +1354,10 @@ between the `l`s.
 * `<space>` is defined as:
   ```
   <space> ::= token of category 10 or its equivalent control sequence
+  ```
+* `<stretch>` is defined as:
+  ```
+  <stretch> ::= <space>* ( plus <generic-dimen> )?
   ```
 * `<unit>` is defined as:
   ```
@@ -1179,6 +1377,10 @@ between the `l`s.
   <unit> ::= <space>* \skip register
   <unit> ::= <space>* \chardef constant
   <unit> ::= <space>* \mathchardef constant
+  ```
+* `<width>` is defined as:
+  ```
+  <width> ::= <space>* width <dimen>
   ```
 * `<xdigit>` is defined as:
   ```
