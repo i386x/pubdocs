@@ -713,9 +713,174 @@ control sequence to be a register equivalent, e.g. `\countdef\counta=0` makes
 
 #### Numeric Constants
 
+`\chardef\xyz=<number>` defines an 8-bit (0 to 255) numeric constant `\xyz`,
+which serves as an equivalent for `\char<number>`.
+
+`\mathchardef\uvw=<number>` defines a 15-bit (0 to 32767) numeric constant
+`\uvw`, which serves as an equivalent for `\mathchar<number>`.
+
 #### Data Types
 
+A number register (`\count`) occupies 4 bytes. The range of stored number is
+`-2**31 + 1` (-2147483647) to `2**31 - 1` (2147483647).
+
+A dimension register (`\dimen`) occupies 4 bytes. Dimensions are stored
+internally in `sp` units, the range of stored dimension is `(-2**30 + 1) sp`
+(-1073741823 `sp`) to `(2**30 - 1) sp` (1073741823 `sp`). When assigning a
+value to a dimension register, TeX supports various range of units:
+| Unit | Meaning |
+| ---- | ------- |
+| `pt` | point |
+| `pc` | pica (1 `pc` = 12 `pt`) |
+| `in` | inch (1 `in` = 72.27 `pt`) |
+| `bp` | big point, Postscript point (72 `bp` = 1 `in`) |
+| `cm` | centimeter (2.54 `cm` = 1 `in`) |
+| `mm` | millimeter (10 `mm` = 1 `cm`) |
+| `dd` | didot point (1157 `dd` = 1238 `pt`) |
+| `cc` | cicero (1 `cc` = 12 `dd`) |
+| `sp` | scaled point, base TeX precision unit (65536 `sp` = 1 `pt`) |
+| `em` | the width of a quad (the letter M) in the current font (`\fontdimen6\font`) |
+| `ex` | the height of the letter x in the current font (`\fontdimen5\font) |
+
+A glue register (`\skip`) has 3 dimension components: the base dimension, the
+stretch dimension, and the shrink dimension. Besides the standard units, the
+stretch and shrink dimensions can be also specified in dimensionless `fil`,
+`fill`, or `filll` units. These units are internally stored as `pt`, that is
+1.5 `fill` is internally stored as 1.5 `pt`, which is 98304 `sp`. The number of
+`l`s in `fil`, `fill`, and `filll` specifies the order of stretching or
+shrinking. For the standard units, the order is 0.
+
+A math glue register (`\muskip`) has the same memory layout as a glue register.
+The only allowed dimension unit is `mu`, internally stored as `pt`, and also
+`fil`, `fill`, and `filll` for stretch and shrink dimensions.
+
+A token register (`\toks`) refers to a list of tokens.
+
 #### Conversions
+
+Allowed conversions between data types are:
+* glue to dimension &ndash; stretch and shrink parts are omitted
+* dimension to number &ndash; the stored value remains unchanged, i.e. to the
+  number register is assigned the number of `sp` held in a dimension register
+* any other conversions composed from the conversions above
+
+#### Arithmetic Operations
+
+`\advance X <optional by> Y`, where `X` is a number, dimension, glue, or math
+glue register and `Y` is a number, dimension, glue, or math glue value,
+performs `X += Y` as follows:
+1. convert `Y` to the type of `X`
+   * if it is not possible, the operation is canceled with an error
+1. do `X += Y'`, where `Y'` denotes the converted `Y` from step 1
+   * if `X` is glue or math glue, then `X += Y'` is computed as
+     * `X.base += Y'.base`
+     * `X.stretch += Y'.stretch`
+     * `X.shrink += Y'.shrink`
+
+`X Y`, where `X` is a floating-point number and `Y` is a dimension register
+evaluates to `X * Y`.
+
+`\multiply X <optional by> Y` and `\divide X <optional by> Y`, where `X` is a
+number, dimension, glue, or math glue register and `Y` is a number value
+performs `X *= Y` and `X /= Y` (integer division), respectively, as follows:
+1. let `op` denotes one of `*` or `/`
+1. if `X` is a number register
+   * `X op= Y`
+1. if `X` is a dimension register
+   * `X.sp op= Y` (`.sp` means that the operation is performed on `sp` units)
+1. if `X` is a glue or math glue register
+   * `X.base.sp op= Y`
+   * `X.stretch.sp op= Y`
+   * `X.shrink.sp op= Y`
+
+As `\divide` is working only with integers, it cannot be used to compute the
+quotient of two floating-point numbers. However, there are several tricks how
+to do that:
+1. **Division by a floating point constant** *k*. Just multiply by 1/*k*,
+   example:
+   ```tex
+   % Divide \dimen0 by 1.2:
+   \dimen0 0.83334\dimen0
+   ```
+1. **Finding the quotient of two floating-point numbers**. Dimension and glue
+   values are stored internally in `sp` units. The primitive `\the` followed by
+   dimension or glue register expands to a fixed-point number expressing the
+   value of the register in `pt` units. The relation between `pt` and `sp`
+   implies that a value in `pt` is stored as a fixed-point number with a
+   decimal point between the second and third byte. Therefore, to find a
+   quotient between two numbers, it is natural to store these number in
+   dimension registers as dimensions in `pt` units. The following algorithm in
+   pseudo C++-like language finds a quotient of two dimensions, everything in
+   `pt` units:
+   ```C++
+   void quotient(dimen & x, dimen y)
+   {
+     // We need the quotient to be in pt units, that is after the computation
+     // x should hold (x/y)*65536 internally. As x and y are stored internally
+     // as x*65536 and y*65536, respectively, we need to divide y by 65536.
+     // However, this may cause a precision loss. Luckily, it is sufficient to
+     // divide y only by a fraction of 65536, say 65536/K. To determine the K,
+     // note that the largest value that can be held in dimension registers is
+     // 16383.9999pt. That is, we can choose K such that x*K will be as close
+     // to 16383.9999pt as possible. Since 65536 is a power of 2, we choose K
+     // to be also a power of two, so we express K as 2**k. Now observe the
+     // following equality:
+     //
+     //   (x/y)*65536 = [(x*65536)/(y*65536)]*65536
+     //               = [(x*65536*K)/(y*65536*K)]*65536
+     //               = [(x*65536*K)/(y*K)]
+     //               = {(x*65536*K)/[y/(1/K)]}
+     //               = {(x*65536*K)/[(y*65536)/(65536/K)]}
+     //
+     // We can compute (x*65536*K) and (65536/K) quantities simultaneously in a
+     // loop:
+     //
+     //   count z = 65536;
+     //   while (x < 8192 * pt)
+     //     x *= 2, z /= 2;
+     //
+     // As y, stored as y*65536, and z are integers, the denominator y/z does
+     // not overflow. Moreover, observe that z is always a power of 2 less or
+     // equal to 65536, and thus y is always divisible by z. The only case when
+     // TeX reports arithmetic overflow is when z reaches zero. This happens
+     // when x < 8192sp = 0.125pt. Now that we have denominator, we can use it
+     // to divide x, which has now internal quantity old_x*65536*K, by it to
+     // get the final result.
+
+     count z = 65536;
+
+     if (y == 0)
+       error("Division by zero!");
+
+     if (x == 0)
+       return;
+
+     if (x < 0) {
+       x = -x;
+       z = -z;
+     }
+
+     while (x < 8192 * one_pt)
+       x *= 2, z /= 2;
+     y /= z;
+     x /= y;
+   }
+   ```
+1. **Computing the reciprocal value of a floating point number**. The previous
+   algorithm can be modified to find a reciprocal value:
+   ```C++
+   void reciprocal(dimen & x)
+   {
+     dimen y = x;
+     x = 8192 * one_pt;
+
+     if (y == 0)
+       error("Division by zero!");
+
+     y /= 8;
+     x /= y;
+   }
+   ```
 
 ### Groups
 
