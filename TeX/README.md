@@ -411,6 +411,108 @@ a simple evaluation loop:
 
 ### Main Processor's Modes
 
+During the document assembling process, the main processor is switching between
+six modes:
+1. vertical mode
+1. internal vertical mode
+1. horizontal mode
+1. restricted horizontal mode
+1. math mode
+1. display math mode
+
+In vertical and internal vertical mode, TeX is building a *vertical list*. A
+vertical list may content these elements, which are stored vertically in the
+top-down manner:
+* boxes (`\hbox`, `\vbox`, `\vtop`)
+* rules (`\hrule`)
+* kerns (`\kern`)
+* glues (`\vskip`, `\leaders`, `\cleaders`, `\xleaders`, `\vfil`, `\vfill`,
+  `\vfilneg`, `\vss`)
+* penalties (`\penalty`)
+* marks (`\mark`, `\write`)
+* whatsits (`\special`)
+* inserts (`\insert`)
+The vertical list built in vertical mode is broken by TeX into particular
+pages.
+
+In horizontal and restricted horizontal mode, TeX is building a *horizontal
+list*. A horizontal list may content these elements, which are stored
+horizontally in the left-to-right manner:
+* characters or ligatures (category 11 and 12 tokens, `\char`, `\chardef`
+  defined constant)
+* boxes (`\hbox`, `\vbox`, `\vtop`)
+* rules (`\vrule`)
+* kerns (`\kern`)
+* glues (`\hskip`, `\leaders`, `\cleaders`, `\xleaders`, space token, `\hfil`,
+  `\hfill`, `\hfilneg`, `\hss`)
+* penalties (`\penalty`)
+* discretionaries (`\discretionary`)
+* marks (`\mark`, `\write`, `\vadjust`)
+* whatsits (`\special`)
+* inserts (`\insert`)
+
+In math and display math mode, TeX is building a *math list*.
+
+Switching between these modes are driven using the following rules:
+1. When TeX starts, its in vertical mode.
+1. Any mode plus `\vbox` or `\vtop`, math mode plus `\vcenter`:
+   1. remember box specification
+   1. enter a group
+   1. enter the internal vertical mode
+   1. assemble a vertical list for this box
+   1. leave the group
+   1. complete and adjust the vertical list
+   1. leave the internal vertical mode
+   1. pass the box for further processing
+1. Any mode plus `\hbox`:
+   1. remember box specification
+   1. enter a group
+   1. enter the restricted horizontal mode
+   1. assemble a horizontal list for this box
+   1. leave the group
+   1. complete and adjust the horizontal list
+   1. leave the restricted horizontal mode
+   1. pass the box for further processing
+1. Vertical or internal vertical mode plus category 11 token, category 12
+   token, `\char`, `\chardef` defined constant, `\hskip`, `\hfil`, `\hfill`,
+   `\hss`, `\hfilneg`, `\unhbox`, `\unhcopy`, `\vrule`, `\valign`, `\accent`,
+   `\discretionary`, `\-`, `\<space>`, `\noboundary`, `$`, `$$`, `\indent`, or
+   `\noindent`:
+   1. enter the horizontal mode
+   1. if the current token is distinct from `\indent` and `\noindent`, return
+      it back to the token list
+   1. initialize an empty horizontal list for incoming material
+   1. if the current token was distinct from `\noindent`, insert to the
+      horizontal list an empty `\hbox` of the width `\parindent`
+   1. insert the content of `\everypar` to the beginning of the token list
+   1. contribute to the horizontal list with incoming material
+      * note that `$$` in the vertical mode results in empty line (i.e. empty
+        `\hbox` of the width `\parindent`) before equation
+1. Horizontal mode plus `\par`, `\vskip`, `\vfil`, `\vfill`, `\vss`,
+   `\vfilneg`, `\end`, `\unvbox`, `\unvcopy`, `\halign`, `\hrule`, or `\dump`:
+   1. if the current token is not `\par`
+      * insert the current token back to the token list
+      * insert `\par` to the token list
+      * get the next token from the token list, which is now `\par`
+   1. process the current token, which is `\par`
+      * if `\par` command has been invoked during the processing
+        * invoke paragraph making algorithm, which also results in returning
+          back to the vertical or internal vertical mode
+1. Horizontal mode plus `}` or `\endgroup` that closes `\vbox`, `\vtop`, or
+   `\vcenter`:
+   * invoke `\par` command, which results in returning back to the vertical or
+     internal vertical mode
+1. Horizontal or restricted horizontal mode plus `$`:
+   * enter the math mode (note that restricted horizontal mode plus `$$` means
+     enter the math mode on the first `$` and then leave math mode on the
+     second `$`)
+1. Horizontal mode plus `$$`:
+   * enter the display math mode
+1. Math mode plus `$`:
+   * leave the math mode
+1. Display math mode plus `$$`:
+   * leave the display math mode
+
 ### Handling the Commands
 
 A command to be processed by the main processor is either a token or a control
@@ -740,7 +842,7 @@ value to a dimension register, TeX supports various range of units:
 | `cc` | cicero (1 `cc` = 12 `dd`) |
 | `sp` | scaled point, base TeX precision unit (65536 `sp` = 1 `pt`) |
 | `em` | the width of a quad (the letter M) in the current font (`\fontdimen6\font`) |
-| `ex` | the height of the letter x in the current font (`\fontdimen5\font) |
+| `ex` | the height of the letter x in the current font (`\fontdimen5\font`) |
 
 A glue register (`\skip`) has 3 dimension components: the base dimension, the
 stretch dimension, and the shrink dimension. Besides the standard units, the
@@ -755,6 +857,27 @@ The only allowed dimension unit is `mu`, internally stored as `pt`, and also
 `fil`, `fill`, and `filll` for stretch and shrink dimensions.
 
 A token register (`\toks`) refers to a list of tokens.
+
+A box register (`\box`) refers to a data structure that holds a list of
+horizontal (`h`) or vertical (`v`) material, called *box*. Supported operations
+with a box register are:
+* filling a register with a material (`\setbox`)
+* using a register (`\box`, `\copy`)
+* unpacking the material from a register (`\unhbox`, `\unvbox`, `\unhcopy`,
+  `\unvcopy`)
+* manipulating dimensions of a box held in a register (`\wd`, `\ht`, \dp`)
+* testing a register (`\ifvoid`, `\ifhbox`, `\ifvbox`)
+* inspecting the material in a register (`\showbox`)
+
+`\box`, `\unhbox`, and `\unvbox` globally empties the register after using it.
+On the other hand, changes made by `\setbox` are recorded at the current
+nesting level of the nesting stack. This has following consequences:
+```tex
+\setbox0=...
+{ \setbox0=... {\box0}  % Register \box0 is emptied
+}  % Restoring the value of the \box0 register prior the \setbox0 operation
+{ ... {\box0} ...}  % Register \box0 is emptied
+```
 
 #### Conversions
 
