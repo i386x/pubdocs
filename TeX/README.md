@@ -1025,6 +1025,206 @@ switch control sequence which is used to change the current used font. The
 syntax of `\font` is:
 * `\font` *\<control sequence\> \<equals\> \<file name\> \<at clause\>*
 
+### Boxes
+
+A box is a rectangular-shaped object with the *reference point*. From the
+reference point are measured three box dimensions:
+* a box width &ndash; a distance between reference point and the right edge of
+  the box
+* a box height &ndash; a distance between reference point and the top edge of
+  the box
+* a box depth &ndash; a distance between reference point and the bottom edge of
+  the box
+
+Some box dimensions may be negative, e.g. both `\hbox{kern-20pt}` and
+`\hbox to-20pt{}` make a box of width -20pt. Such a box shifts the current
+position 20pt to the left. Note that
+* `\hbox` cannot have negative height and depth
+* `\vbox` cannot have negative width
+unless set by `\ht`, `\dp`, and `\wd`.
+
+Some examples of boxes are:
+* group of characters
+* line in a paragraph
+* table item
+* table
+* page
+
+Horizontal boxes are positioned so their reference points lie on the
+*baseline*.
+
+Vertical boxes are positioned so their reference points lie on the same y-axis.
+
+#### How a Horizontal Box Is Assembled
+
+Lets describe a procedure of how the horizontal list is transformed to the
+horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
+1. First, define procedure variables:
+   * `context` &ndash; the context inside which the box is build
+   * `horizontal_list` &ndash; the horizontal list
+   * `new_hbox` &ndash; the horizontal box just made
+1. Determine `new_hbox._expected_width`:
+   ```python
+   new_hbox._expected_width = None
+
+   if new_hbox._spec["to"]:
+       new_hbox._expected_width = new_hbox._spec["to"]
+   elif context.width:
+       new_hbox._expected_width = context.width
+   ```
+1. Move `horizontal_list` to `new_hbox.list`
+1. Compute `new_hbox.height` and `new_hbox.depth`:
+   ```python
+   new_hbox.height = 0
+   new_hbox.depth = 0
+
+   for element in new_hbox.list:
+       if element.type.base not in (BOX, RULE, CHAR):
+           continue
+       # `\raise x` sets `element.offset` to `x`
+       # `\lower x` sets `element.offset` to `-x`
+       h = element.height + element.offset
+       d = element.depth - element.offset
+       if h > new_hbox.height:
+           new_hbox.height = h
+       if d > new_hbox.depth:
+           new_hbox.depth = d
+   ```
+1. Compute `\vrule` dimensions:
+   ```python
+   for vrule in new_hbox.list:
+       if vrule.type is not VRULE:
+           continue
+       if vrule.height is None:
+           vrule.height = new_hbox.height
+       if vrule.depth is None:
+           vrule.depth = new_hbox.depth
+       if vrule.width is None:
+           vrule.width = 0.4*pt
+   ```
+1. Compute natural width:
+   ```python
+   new_hbox._natural_width = 0
+
+   for element in new_hbox.list:
+       if element.type.base in (BOX, RULE, CHAR):
+           new_hbox._natural_width += element.width
+       elif element.type.base is SKIP:
+           new_hbox._natural_width += element.base
+       elif element.type.base is KERN:
+           new_hbox._natural_width += element.size
+   ```
+1. Adjust expected width:
+   ```python
+   if new_hbox._spec["spread"]:
+       new_hbox._expected_width = new_hbox._spec["spread"] + new_hbox._natural_width
+   ```
+1. If `new_hbox._expected_width` in not specified:
+   * Set `new_hbox.width` to `new_hbox._natural_width`.
+   * Set `new_hbox.badness` to 0.
+   * Emit `new_hbox`.
+1. If `new_hbox.list` is empty:
+   * Set `new_hbox.width` to `new_hbox._expected_width`.
+   * Set `new_hbox.badness` to 0.
+   * Emit `new_hbox`.
+1. Compute box spread:
+   ```python
+   if new_hbox._spec["spread"]:
+       new_hbox._spread = new_hbox._spec["spread"]
+   else:
+       new_hbox._spread = new_hbox._expected_width - new_hbox._natural_width
+   ```
+1. If `new_hbox._spread` is 0:
+   * Set `new_hbox.width` to `new_hbox._expected_width`.
+   * Set `new_hbox.badness` to 0.
+   * Emit `new_hbox`.
+1. Sum up all stretch/shrink values:
+   ```python
+   new_hbox._total_sx = [0, 0, 0, 0]
+
+   for skip in new_hbox.list:
+       if skip.type is not SKIP:
+           continue
+       if new_hbox._spread > 0:
+           new_hbox._total_sx[skip.stretch.order] += skip.stretch.value
+       else:
+           new_hbox._total_sx[skip.shrink.order] += skip.shrink.value
+   ```
+1. Select stretch/shrink order:
+   ```python
+   new_hbox._order = 3
+
+   while new_hbox._order >= 0 and new_hbox._total_sx[new_hbox._order] == 0:
+       new_hbox._order -= 1
+   ```
+1. Set `new_hbox.width` to `new_hbox._expected_width`.
+1. Compute stretch/shrink sign and scale:
+   ```python
+   s = new_hbox._spread
+   o = new_hbox._order
+
+   if s < 0:
+       if o < 0:
+           new_hbox._sign = 0
+       else:
+           new_hbox._sign = -1
+       if o < 0 or (o == 0 and -s > new_hbox._total_sx[o]):
+           new_hbox._scale = 1.0
+       else:
+           new_hbox._scale = -s/new_hbox._total_sx[o]
+   else:
+       if o < 0:
+           new_hbox._sign = 0
+           new_hbox._scale = 0.0
+       else:
+           new_hbox._sign = 1
+           new_hbox._scale = s/new_hbox._total_sx[o]
+   ```
+1. Compute badness:
+   ```python
+   s = new_hbox._spread
+   o = new_hbox._order
+
+   new_hbox.badness = 0
+   if s < 0:
+       if o < 0 or (o == 0 and -s > new_hbox._total_sx[o]):
+           new_hbox.badness = INFINITY
+           x = -s - new_hbox._total_sx[0]
+           if x > context.hfuzz or context.hbadness < 100:
+               warning(f"Overfull \\hbox ({x}pt too wide).")
+       elif o == 0:
+           new_hbox.badness = min(100*abs(s/new_hbox._total_sx[o])**3, 10000)
+           if new_hbox.badness > context.hbadness:
+               warning(f"Tight \\hbox (badness {new_hbox.badness}).")
+   elif o <= 0:
+       if new_hbox._total_sx[0] <= 0:
+           new_hbox.badness = 10000
+       else:
+           new_hbox.badness = min(100*abs(s/new_hbox._total_sx[0])**3, 10000)
+       if new_hbox.badness > context.hbadness:
+           if new_hbox.badness > 100:
+               warning(f"Underfull \\hbox (badness {new_hbox.badness}).")
+           else:
+               warning(f"Loose \\hbox (badness {new_hbox.badness}).")
+   ```
+1. Shrink or stretch the box:
+   ```python
+   s = new_hbox._spread
+   o = new_hbox._order
+
+   for skip in new_hbox.list:
+       if skip.type.base is not SKIP:
+           continue
+       if s < 0 and skip.shrink.order == o:
+           skip.base += new_hbox._sign*new_hbox._scale*skip.shrink.value
+       if s > 0 and skip.stretch.order == o:
+           skip.base += new_hbox._sign*new_hbox._scale*skip.stretch.value
+   ```
+1. Emit the box `new_hbox`.
+
+The reference point of the `new_hbox` is the reference point of its first
+element.
+
 ### Main Processor's Registers and Primitives
 
 #### Alignment
