@@ -1079,7 +1079,7 @@ horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
    new_hbox.depth = 0
 
    for element in new_hbox.list:
-       if element.type.base not in (BOX, RULE, CHAR):
+       if element.type.super not in (BOX, RULE, CHAR):
            continue
        # `\raise x` sets `element.offset` to `x`
        # `\lower x` sets `element.offset` to `-x`
@@ -1107,11 +1107,11 @@ horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
    new_hbox._natural_width = 0
 
    for element in new_hbox.list:
-       if element.type.base in (BOX, RULE, CHAR):
+       if element.type.super in (BOX, RULE, CHAR):
            new_hbox._natural_width += element.width
-       elif element.type.base is SKIP:
+       elif element.type.super is SKIP:
            new_hbox._natural_width += element.base
-       elif element.type.base is KERN:
+       elif element.type is KERN:
            new_hbox._natural_width += element.size
    ```
 1. Adjust expected width:
@@ -1143,7 +1143,7 @@ horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
    new_hbox._total_sx = [0, 0, 0, 0]
 
    for skip in new_hbox.list:
-       if skip.type is not SKIP:
+       if skip.type.super is not SKIP:
            continue
        if new_hbox._spread > 0:
            new_hbox._total_sx[skip.stretch.order] += skip.stretch.value
@@ -1213,7 +1213,7 @@ horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
    o = new_hbox._order
 
    for skip in new_hbox.list:
-       if skip.type.base is not SKIP:
+       if skip.type.super is not SKIP:
            continue
        if s < 0 and skip.shrink.order == o:
            skip.base += new_hbox._sign*new_hbox._scale*skip.shrink.value
@@ -1224,6 +1224,238 @@ horizontal box (the reverse process is done by `\unhbox` or `\unhcopy`):
 
 The reference point of the `new_hbox` is the reference point of its first
 element.
+
+#### How a Vertical Box Is Assembled
+
+Lets describe a procedure of how the vertical list is transformed to the
+vertical box (the reverse process is done by `\unvbox` or `\unvcopy`):
+1. First, define procedure variables:
+   * `context` &ndash; the context inside which the box is build
+   * `vertical_list` &ndash; the vertical list
+   * `new_vbox` &ndash; the vertical box just made
+1. Determine `new_vbox._expected_height`:
+   ```python
+   new_vbox._expected_height = None
+
+   if new_vbox._spec["to"]:
+       new_vbox._expected_height = new_vbox._spec["to"]
+   elif context.height:
+       new_vbox._expected_height = context.height
+   ```
+1. Move `vertical_list` to `new_vbox.list`.
+1. Compute `new_vbox.width`:
+   ```python
+   new_vbox.width = 0
+
+   for element in new_vbox.list:
+       if element.type.super not in (BOX, RULE):
+           continue
+       # `\moveright x` sets `element.offset` to `x`
+       # `\moveleft x` sets `element.offset` to `-x`
+       w = element.width + element.offset
+       if w > new_vbox.width:
+           new_vbox.width = w
+   ```
+1. Compute `\hrule` dimensions:
+   ```python
+   for hrule in new_vbox.list:
+       if hrule.type is not HRULE:
+           continue
+       if hrule.width is None:
+           hrule.width = new_vbox.width
+       if hrule.height is None:
+           hrule.height = 0.4*pt
+       if hrule.depth is None:
+           hrule.depth = 0
+   ```
+1. Compute `new_vbox.depth`:
+   ```python
+   def get_last_element(list, types):
+       seen = None
+
+       for x in list:
+           if x.type.super in types:
+               seen = x
+       return seen
+
+
+   def get_next_element(list, element, types):
+       next = None
+
+       searching = True
+       for x in list:
+           if searching:
+               if x is element:
+                   searching = False
+               continue
+           if x.type.super in types:
+               next = x
+               break
+       return next
+
+
+   new_vbox.depth = 0
+
+   last_box = get_last_element(new_vbox.list, (BOX, RULE))
+   if last_box and not get_next_element(new_vbox.list, last_box, (SKIP, KERN)):
+       new_vbox.depth = last_box.depth
+
+   if new_vbox.depth > context.boxmaxdepth:
+       new_vbox.depth = context.boxmaxdepth
+   ```
+1. Compute natural height:
+   ```python
+   new_vbox._natural_height = 0
+
+   for element in new_vbox.list:
+       if element.type.super in (BOX, RULE):
+           new_vbox._natural_height += element.height + element.depth
+       elif element.type.super is SKIP:
+           new_vbox._natural_height += element.base
+       elif element.type is KERN:
+           new_vbox._natural_height += element.size
+   new_vbox._natural_height -= new_vbox.depth
+   ```
+1. Adjust expected height:
+   ```python
+   if new_vbox._spec["spread"]:
+       new_vbox._expected_height = new_vbox._spec["spread"] + new_vbox._natural_height
+   ```
+1. If `new_vbox._expected_height` is not specified:
+   * Set `new_vbox.height` to `new_vbox._natural_height`.
+   * Set `new_vbox.badness` to 0.
+   * Emit `new_vbox`.
+1. If `new_vbox.list` is empty:
+   * Set `new_vbox.height` to `new_vbox._expected_height`
+   * Set `new_vbox.badness` to 0.
+   * Emit `new_vbox`.
+1. Compute box spread:
+   ```python
+   if new_vbox._spec["spread"]:
+       new_vbox._spread = new_vbox._spec["spread"]
+   else:
+       new_vbox._spread = new_vbox._expected_height - new_vbox._natural_height
+   ```
+1. If `new_vbox._spread` is 0:
+   * Set `new_vbox.height` to `new_vbox._expected_height`.
+   * Set `new_vbox.badness` to 0.
+   * Emit `new_vbox`.
+1. Sum up all stretch/shrink values:
+   ```python
+   new_vbox._total_sx = [0, 0, 0, 0]
+
+   for skip in new_vbox.list:
+       if skip.type.super is not SKIP:
+           continue
+       if new_vbox._spread > 0:
+           new_vbox._total_sx[skip.stretch.order] += skip.stretch.value
+       else:
+           new_vbox._total_sx[skip.shrink.order] += skip.shrink.value
+   ```
+1. Select stretch/shrink order:
+   ```python
+   new_vbox._order = 3
+
+   while new_vbox._order >= 0 and new_vbox._total_sx[new_vbox._order] == 0:
+       new_vbox._order -= 1
+   ```
+1. Set `new_vbox.height` to `new_vbox._expected_height`.
+1. Compute stretch/shrink sign and scale:
+   ```python
+   s = new_vbox._spread
+   o = new_vbox._order
+
+   if s < 0:
+       if o < 0:
+           new_vbox._sign = 0
+       else:
+           new_vbox._sign = -1
+       if o < 0 or (o == 0 and -s > new_vbox._total_sx[o]):
+           new_vbox._scale = 1.0
+       else:
+           new_vbox._scale = -s/new_vbox._total_sx[o]
+   else:
+       if o < 0:
+           new_vbox._sign = 0
+           new_vbox._scale = 0.0
+       else:
+           new_vbox._sign = 1
+           new_vbox._scale = s/new_vbox._total_sx[o]
+   ```
+1. Compute badness:
+   ```python
+   s = new_vbox._spread
+   o = new_vbox._order
+
+   new_vbox.badness = 0
+   if s < 0:
+       if o < 0 or (o == 0 and -s > new_vbox._total_sx[o]):
+           new_vbox.badness = INFINITY
+           x = -s - new_vbox._total_sx[0]
+           if x > context.vfuzz or context.vbadness < 100:
+               warning(f"Overfull \\vbox ({x}pt too high).")
+       elif o == 0:
+           new_vbox.badness = min(100*abs(s/new_vbox._total_sx[o])**3, 10000)
+           if new_vbox.badness > context.vbadness:
+               warning(f"Tight \\vbox (badness {new_vbox.badness}).")
+   elif o <= 0:
+       if new_vbox._total_sx[0] <= 0:
+           new_vbox.badness = 10000
+       else:
+           new_vbox.badness = min(100*abs(s/new_vbox._total_sx[0])**3, 10000)
+       if new_vbox.badness > context.vbadness:
+           if new_vbox.badness > 100:
+               warning(f"Underfull \\vbox (badness {new_vbox.badness}).")
+           else:
+               warning(f"Loose \\vbox (badness {new_vbox.badness}).")
+   ```
+1. Shrink or stretch the box:
+   ```python
+   s = new_vbox._spread
+   o = new_vbox._order
+
+   for skip in new_vbox.list:
+       if skip.type.super is not SKIP:
+           continue
+       if s < 0 and skip.shrink.order == o:
+           skip.base += new_vbox._sign*new_vbox._scale*skip.shrink.value
+       if s > 0 and skip.stretch.order == o:
+           skip.base += new_vbox._sign*new_vbox._scale*skip.stretch.value
+   ```
+1. Emit the box `new_vbox`.
+
+The top edge of the `new_vbox` is the top edge of its first element.
+
+If `new_vbox` is `\vtop`:
+```python
+h = 0
+
+for element in new_vbox.list:
+    if element.type.super in (BOX, RULE, SKIP, KERN):
+        break
+else:
+    element = None
+
+if element and element.type.super in (BOX, RULE):
+    h = element.height
+
+d = new_vbox.height + new_vbox.depth - h
+new_vbox.height = h
+new_vbox.depth = d
+```
+
+If `new_vbox` is `\vcenter`:
+```python
+assert context.mode == MMODE
+
+# Current family 2 font
+font = context.font.family[2]
+# \fontdimen22\font (math axis from baseline distance in upwards direction)
+x = font.dimens[22]
+
+new_vbox.height -= x
+new_vbox.depth += x
+```
 
 ### Main Processor's Registers and Primitives
 
