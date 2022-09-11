@@ -1025,6 +1025,17 @@ switch control sequence which is used to change the current used font. The
 syntax of `\font` is:
 * `\font` *\<control sequence\> \<equals\> \<file name\> \<at clause\>*
 
+Fonts have parameters accessed via `\fontdimen` *\<number\>*.
+
+Text fonts must have these 7 parameters:
+1. `\fontdimen1` &ndash; slant per pt
+1. `\fontdimen2` &ndash; interword space
+1. `\fontdimen3` &ndash; interword stretch
+1. `\fontdimen4` &ndash; interword shrink
+1. `\fontdimen5` &ndash; x-height
+1. `\fontdimen6` &ndash; quad width
+1. `\fontdimen7` &ndash; extra space
+
 ### Boxes
 
 A box is a rectangular-shaped object with the *reference point*. From the
@@ -1456,6 +1467,197 @@ x = font.dimens[22]
 new_vbox.height -= x
 new_vbox.depth += x
 ```
+
+### Spaces
+
+Lets see how spaces are inserted to horizontal/vertical list.
+
+#### How Spaces Are Inserted to the Horizontal List
+
+When a space is inserted to the horizontal list the current position where the
+next element will be inserted is shifted to the right about the space width.
+
+*Kern* is a space with the fixed width. Kerns usually disallows line breaks.
+Kern can be inserted to the horizontal list in these ways:
+1. According to the table of kerning pairs of the current font. This can be
+   described by the following algorithm:
+   ```python
+   # This check is done before the current command is executed
+   if last_command.type == CHAR and current_command.type == CHAR:
+       kern = context.font.kerning_table.get((last_command.code, current_command.code))
+       if kern:
+           emit(kern)
+   ```
+1. Using `\kern` or `\/` command.
+
+*Skip* is a space that can shrunk or stretched. Skips usually allows line
+breaks. Skip can be inserted to the horizontal list in these ways:
+1. Using space token. This token is converted to `\hskip` according to the
+   following algorithm:
+   ```python
+   # Get the current font:
+   font = context.font
+
+   # Gather the current font parameters:
+   space = font.dimens[2]
+   stretch = font.dimens[3]
+   shrink = font.dimens[4]
+   extra = font.dimens[7]
+
+   # Get the `\spacefactor`:
+   f = context.spacefactor
+
+   # Prefer `\spaceskip` and `\xspaceskip` over `\fontdimen`:
+   if f < 2000 and context.spaceskip != 0:
+       space = context.spaceskip.base
+       stretch = context.spaceskip.stretch
+       shrink = context.spaceskip.shrink
+   elif f >= 2000 and context.xspaceskip != 0:
+       space = context.xspaceskip.base
+       stretch = context.xspaceskip.stretch
+       shrink = context.xspaceskip.shrink
+
+   # Adjust space dimensions:
+   stretch *= f/1000
+   shrink *= 1000/f
+   if f >= 2000 and context.xspaceskip == 0:
+       space += extra
+
+   # Insert `\hskip`:
+   emit(hskip(space, stretch, shrink))
+   ```
+   The value of `\spacefactor` is changing while the horizontal list is
+   building. The exact process is described by the following snippet from the
+   horizontal list building procedure:
+   ```python
+   open_hlist(context)
+
+   # At the beginning of the horizontal list, set `\spacefactor` to 1000:
+   context.spacefactor = 1000
+
+   while True:
+       # Get the element from the token list:
+       e = get_element(context)
+
+       # If the element marks the end of the horizontal list, finish the
+       # horizontal list:
+       if e.type.match(END_HLIST):
+           break
+       # If the element is a character:
+       elif e.type.match(CHAR):
+           # - insert the character to the horizontal list:
+           emit(e)
+           # - read the `\sfcode` of the character:
+           sf = context.sfcodes[e.code]
+           # - adjust the value:
+           if sf == 0:
+               sf = context.spacefactor
+           elif context.spacefactor < 1000 and 1000 < sf:
+               sf = 1000
+           # - assign the adjusted value to `\spacefactor`:
+           context.spacefactor = sf
+       # If the element is a box or rule:
+       elif e.type.match(BOX, RULE):
+           # - insert the element to the horizontal list:
+           emit(e)
+           # - set `\spacefactor` to 1000
+           context.spacefactor = 1000
+       # If the element is `\spacefactor`:
+       elif e.type.match(COMMAND) and e.code == CMD_SPACEFACTOR:
+           # - scan the new `\spacefactor` value specified as `= <number>`:
+           sf = scan(context, NUMBER_ASSIGNMENT)
+           # - `\spacefactor` must be positive:
+           assert sf > 0
+           # - update `\spacefactor`:
+           context.spacefactor = sf
+       # Other elements are processed without changing `\spacefactor`:
+       else:
+           process(e)
+   close_hlist(context)
+   ```
+1. Using `\<space>` command. This is an equivalent to
+   ```tex
+   \hskip \fontdimen2\font plus \fontdimen3\font minus \fontdimen4\font
+   ```
+1. Using `\hskip`, `\hss`, `\hfil`, `\hfill`, or `\hfilneg` command.
+
+#### How Spaces Are Inserted to the Vertical List
+
+Vertical spaces are measured as a distance between the bottom of the one box
+and the top of the second box.
+
+*Automatically inserted interline space*
+* inserted automatically between every two boxes in the vertical list
+* not inserted if there is a rule between the boxes
+* the whole process can be described by the following snippet of the vertical
+  list building procedure:
+  ```python
+  open_vlist(context)
+
+  # The `\prevdepth` register:
+  context.prevdepth = -1000*pt
+
+  while True:
+      # Get the element to be inserted into the vertical list:
+      e = get_element(context)
+
+      # End of the vertical list -> finish the vertical list:
+      if e.type.match(END_VLIST):
+          break
+      # Box arrives:
+      elif e.type.match(BOX):
+          # Box arrives also previously:
+          if context.prevdepth > -1000*pt:
+              d = context.prevdepth
+              h = e.height
+              # Space between boxes is `\baselineskip` minus height of the
+              # current minus depth of the previous:
+              s = context.baselineskip.base - h - d
+
+              # `\lineskiplimit` is the minimal distance between boxes:
+              if s >= context.lineskiplimit:
+                  emit(vskip(s, context.baselineskip.stretch, context.baselineskip.shrink))
+              else:
+                  # If boxes are touching each other use `\lineskip`:
+                  emit(vskip(context.lineskip))
+          # We have the box -> record its depth to `\prevdepth`:
+          context.prevdepth = e.depth
+          emit(e)
+      elif e.type.match(RULE):
+          # Rule between boxes means no interline space is inserted:
+          context.prevdepth = -1000*pt
+          emit(e)
+      else:
+          # Other elements of the vertical list have no effect to interline
+          # spaces except that `\prevdepth`, `\baselineskip`, `\lineskip`, and
+          # `\lineskiplimit` can be changed there:
+          process(e)
+  close_vlist(context)
+  ```
+
+*`\topskip`-based space*
+* determines the size of the initial space at the top of the page
+* `\topskip` is the distance between the page's box top edge and the first
+  baseline on the page
+* the following snippet from page builder demonstrates how the initial space is
+  inserted:
+  ```python
+  # If the first box or rule comes to the page:
+  if current_page.is_empty() and e.type.match(BOX, RULE):
+      h = e.height
+      # Insert the initial space based on `\topskip`:
+      if h < context.topskip.base:
+          emit(vskip(context.topskip.base - h, context.topskip.stretch, context.topskip.shrink))
+      else:
+          emit(vskip(0, context.topskip.stretch, context.topskip.shrink))
+      # And then insert the box or rule:
+      emit(e)
+  ```
+
+Analogously, `\vsplit` uses `\splittopskip`.
+
+*`\parskip`-based space*
+* between two paragraphs is automatically inserted `\vskip\parskip`
 
 ### Main Processor's Registers and Primitives
 
