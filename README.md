@@ -32,6 +32,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Packaging](#packaging)
    1. [System Management](#system-management)
 1. [Hardware](#hardware)
+   1. [BIOS/UEFI](#bios-uefi)
    1. [Networking (HW)](#networking-hw)
 1. [Linux](#linux)
    1. [Administration](#administration)
@@ -55,6 +56,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Cryptography](#cryptography)
    1. [Set Theory](#set-theory)
 1. [Opensource.com Articles](#opensourcecom-articles)
+1. [Operating Systems](#operating-systems)
 1. [Programming](#programming)
    1. [Algorithms & Data Structures](#algorithms--data-structures)
    1. [Articles (Programming)](#articles-programming)
@@ -106,6 +108,7 @@ interested in. Maybe You find some of these interesting too.
 * [IPython-like RPM Lua interactive console](https://eng.hroncok.cz/2020/05/14/ilua-rpm-console)
 * [Meeting-free days: 11 productivity tips from IT leaders](https://enterprisersproject.com/article/2022/2/meeting-free-days-11-productivity-tips-it-leaders?sc_cid=70160000000eUoRAAU&elqTrackId=549f2c2f7dcb44d0af8896e22a3f9fc5&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [New normal is just normal](https://moozzaa.medium.com/new-normal-is-just-normal-1d623d710c93)
+* [Opening the doors of tech: why diversity is critical to the future of computing](https://research.redhat.com/blog/article/opening-the-doors-of-tech-why-diversity-is-critical-to-the-future-of-computing/)
 * [Rant about Github pull-request workflow implementation](https://julien.danjou.info/rant-about-github-pull-request-workflow-implementation/)
 * [Rebuilding the entire RubyGems in Copr](http://frostyx.cz/posts/rebuilding-the-entire-rubygems-in-copr)
 * [Starting with an idea and building a community](https://github.com/readme/evan-you)
@@ -276,6 +279,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [Graduate Texts in Mathematics](https://en.wikipedia.org/wiki/Graduate_Texts_in_Mathematics)
 * [Red Hat Developer e-books](https://developers.redhat.com/e-books)
+* [Site Reliability Engineering Books](https://sre.google/books/)
 * [zlibrary](https://1lib.cz/)
 
 ## CentOS
@@ -288,6 +292,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Debugging
 
+* [Add custom windows to GDB: Programming the TUI in Python](https://developers.redhat.com/articles/2022/08/03/add-custom-windows-gdb-programming-tui-python)
 * [How to Debug C Program using gdb in 6 Simple Steps](https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb)
 * [List of all function calls made in an application](https://stackoverflow.com/questions/9549693/list-of-all-function-calls-made-in-an-application)
 * [StackTraces](https://fedoraproject.org/wiki/StackTraces)
@@ -392,6 +397,8 @@ interested in. Maybe You find some of these interesting too.
 * [Bodhi](https://fedoraproject.org/wiki/Bodhi)
 * [Creating RPM Packages with Fedora](https://fedoraproject.org/wiki/How_to_create_an_RPM_package)
 * [depict (Python)](https://pagure.io/depict)
+* [Fedora Packager Dashboard](https://packager-dashboard.fedoraproject.org/)
+* [Fedora Packages](https://packages.fedoraproject.org/)
 * [Fedora Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/)
   * [Listing Shared Library Files](https://docs.fedoraproject.org/en-US/packaging-guidelines/#_listing_shared_library_files)
 * [Fedora Rawhide Gating](https://docs.fedoraproject.org/en-US/rawhide-gating/)
@@ -409,11 +416,11 @@ interested in. Maybe You find some of these interesting too.
   * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
 * [Licensing Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/)
 * [Licensing:FAQ](https://fedoraproject.org/wiki/Licensing:FAQ)
+  * [AppStream metainfo license in package license](https://lists.fedoraproject.org/archives/list/legal@lists.fedoraproject.org/thread/W57JRNLWVOT55D7TDF7VYFMJT5QMBEGR/)
 * [Licensing:Main](https://fedoraproject.org/wiki/Licensing:Main)
 * [Licensing:MIT](https://fedoraproject.org/wiki/Licensing:MIT?rd=Licensing/MIT)
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
 * [Package Update Guide](https://docs.fedoraproject.org/en-US/package-maintainers/Package_Update_Guide/)
-* [Packager Dashboard](https://packager-dashboard.fedoraproject.org/)
 * [packit](https://packit.dev/)
   * [Documentation](https://packit.dev/docs/)
     * [Onboarding Guide](https://packit.dev/docs/guide/)
@@ -493,6 +500,7 @@ interested in. Maybe You find some of these interesting too.
 * [Python 2 Dropping Database for Fedora](https://fedora.portingdb.xyz/)
 * [Python Packaging Authority](https://github.com/pypa)
   * [A sample Python project](https://github.com/pypa/sampleproject)
+  * [packaging](https://github.com/pypa/packaging)
 * [Python Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/)
 * [Python Packaging User Guide](https://packaging.python.org/)
   * [Including files in source distributions with `MANIFEST.in`](https://packaging.python.org/guides/using-manifest-in/)
@@ -571,6 +579,12 @@ interested in. Maybe You find some of these interesting too.
 
 ## Hardware
 
+### BIOS/UEFI
+
+* [Getting Started with EDK II](https://github.com/tianocore/tianocore.github.io/wiki/Getting-Started-with-EDK-II)
+* [UEFI](https://wiki.osdev.org/UEFI)
+* [UEFI Specifications](https://uefi.org/specifications)
+
 ### Networking (HW)
 
 * [Turris](https://www.turris.cz/cs/) [[doc](https://docs.turris.cz/)]
@@ -578,6 +592,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Linux
 
+* [An update on Red Hat's conscious language efforts](https://www.redhat.com/en/blog/update-red-hats-conscious-language-efforts)
 * [Building Red Hat Enterprise Linux 9 for the x86-64-v2 microarchitecture level](https://developers.redhat.com/blog/2021/01/05/building-red-hat-enterprise-linux-9-for-the-x86-64-v2-microarchitecture-level)
 * [Getting Red Hat Developer Subscription: What RHEL users need to know](https://developers.redhat.com/articles/getting-red-hat-developer-subscription-what-rhel-users-need-know)
 * [How Operating Systems Work: 10 Concepts you Should Know as a Developer](https://medium.com/cracking-the-data-science-interview/how-operating-systems-work-10-concepts-you-should-know-as-a-developer-8d63bb38331f)
@@ -596,6 +611,7 @@ interested in. Maybe You find some of these interesting too.
 * [Configuring Sudo](https://fedoraproject.org/wiki/Configuring_Sudo)
 * [Enable Sysadmin (Sysadmin Articles & Guides by Red Hat)](https://www.redhat.com/sysadmin/)
 * [How to read *.journal files?](https://unix.stackexchange.com/questions/210150/how-to-read-journal-files)
+* [Linux Magic System Request Key Hacks](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html)
 * [Linux Users and Groups](https://www.linode.com/docs/tools-reference/linux-users-and-groups/)
 * [Miscellaneous stuff](https://github.com/myllynen/misc)
 * [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
@@ -652,6 +668,10 @@ Projects
 ### Containers
 
 * [A Hacker’s Guide To Moving Linux Services Into Containers](http://crunchtools.com/a-hackers-guide-to-moving-linux-services-into-containers/)
+* [A Makefile for your dockerfiles](https://philpep.org/blog/a-makefile-for-your-dockerfiles/)
+* [Basic Setup and Use of Podman in a Rootless environment](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md)
+* [Build a Container with a Dockerfile](https://docs.fedoraproject.org/en-US/iot/build-docker/)
+* [CentOS Containers on Quay.io Registry](https://quay.io/repository/centos/centos?tab=tags)
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
@@ -660,10 +680,13 @@ Projects
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
+* [Podman container|image exists](https://podman.io/blogs/2018/11/27/podman-exists.html)
 * [Quay.io Status](https://status.quay.io/)
+* [Rootless Podman on Fedora](https://thomascfoulds.com/2021/01/23/rootless-podman-on-fedora.html)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 * [Stolostron project](https://github.com/stolostron/stolostron)
+* [Why can’t rootless Podman pull my image?](https://www.redhat.com/sysadmin/rootless-podman)
 
 ### Databases
 
@@ -679,6 +702,7 @@ Projects
 
 * [9 commands to check hard disk partitions and disk space on Linux](https://www.binarytides.com/linux-command-check-disk-partitions/)
 * [Can losetup be made efficient with sparse files?](https://unix.stackexchange.com/questions/464278/can-losetup-be-made-efficient-with-sparse-files)
+* [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition)
 * [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
 * [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
 * [How to create virtual block device (loop device/filesystem) in Linux](https://www.thegeekdiary.com/how-to-create-virtual-block-device-loop-device-filesystem-in-linux/)
@@ -695,9 +719,29 @@ Projects
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
 * [linux-0.01](https://github.com/zavg/linux-0.01)
 * [Linux Kernel Module Cheat](https://github.com/cirosantilli/linux-kernel-module-cheat)
-* [The Boot Loader Specification](https://systemd.io/BOOT_LOADER_SPECIFICATION/)
 * [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
   * [HOWTO do Linux kernel development](https://www.kernel.org/doc/html/latest/process/howto.html)
+  * [The kernel’s command-line parameters](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html)
+* [The Linux Kernel HOWTO](https://www.opennet.ru/docs/HOWTO/Kernel-HOWTO.html)
+* [vmlinuz Definition](http://www.linfo.org/vmlinuz.html)
+
+#### Booting
+
+* [Bootable CDs for BIOS and UEFI](https://fedoraproject.org/wiki/User:Pjones/BootableCDsForBIOSAndUEFI)
+* [Booting CentOS from UEFI](https://www.gslab.com/blogs/booting-centos-from-uefi)
+* [booting vmlinuz/initrd from a bootloader](https://www.linuxquestions.org/questions/linux-general-1/booting-vmlinuz-initrd-from-a-bootloader-166873/)
+* [bootup (systemd)](https://www.freedesktop.org/software/systemd/man/bootup.html)
+* [Creating a bootable ISO image with custom bootloader](https://qa.ostack.cn/qa/?qa=671232/)
+* [EFI Boot ISO Example](https://github.com/syzdek/efibootiso)
+* [how to build grub2 bootloader from it's source and test it with qemu emulator](https://stackoverflow.com/questions/31799336/how-to-build-grub2-bootloader-from-its-source-and-test-it-with-qemu-emulator)
+* [How to Create a UEFI Shell Boot Device](https://github.com/KilianKegel/HowTo-create-a-UEFI-Shell-Boot-Drive)
+* [How to use initramfs](https://landley.net/writing/rootfs-howto.html)
+* [initramfs buffer format](https://www.kernel.org/doc/Documentation/early-userspace/buffer-format.txt)
+* [ISOLINUX](https://wiki.syslinux.org/wiki/index.php?title=ISOLINUX)
+* [isolinux.cfg](https://wiki.syslinux.org/wiki/index.php?title=Isolinux.cfg)
+* [Linux initial RAM disk (initrd) overview](https://developer.ibm.com/articles/l-initrd/)
+* [The Boot Loader Specification](https://systemd.io/BOOT_LOADER_SPECIFICATION/)
+* [Using GRUB on UEFI](https://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt)
 
 #### Programming Device Drivers
 
@@ -749,6 +793,7 @@ Projects
 * [Non-blocking I/O with pipes in C](https://www.geeksforgeeks.org/non-blocking-io-with-pipes-in-c/)
 * [`popen` implementation in Android](https://android.googlesource.com/platform/bionic/+/3884bfe9661955543ce203c60f9225bbdf33f6bb/libc/unistd/popen.c)
 * [Pure python in memory SO loading without shm](https://0x00sec.org/t/pure-python-in-memory-so-loading-without-shm/6453)
+* [The Definitive Guide to Linux System Calls](https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/)
 
 #### POSIX
 
@@ -773,6 +818,7 @@ Projects
 #### FAQ
 
 * [Can I change 'rpath' in an already compiled binary?](https://stackoverflow.com/questions/13769141/can-i-change-rpath-in-an-already-compiled-binary)
+* [How to find out the dynamic libraries executables loads when run?](https://unix.stackexchange.com/questions/120015/how-to-find-out-the-dynamic-libraries-executables-loads-when-run)
 * [What is the order that Linux's dynamic linker searches paths in?](https://unix.stackexchange.com/questions/367600/what-is-the-order-that-linuxs-dynamic-linker-searches-paths-in)
 * [Why I cannot override search path of dynamic libraries with LD_LIBRARY_PATH?](https://stackoverflow.com/questions/33519640/why-i-cannot-override-search-path-of-dynamic-libraries-with-ld-library-path)
 
@@ -805,12 +851,14 @@ Projects
 
 ### Terminal
 
+* [Build your own Command Line with ANSI escape codes](https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
 * [Ctrl-s hang terminal emulator?](https://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator)
 * [How to unfreeze after accidentally pressing Ctrl-S in a terminal?](https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal)
 * [ioctl_tty - ioctls for terminals and serial lines](http://man7.org/linux/man-pages/man2/ioctl_tty.2.html)
 * [Linux Serial Console](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/serial-console.rst)
 * [Look how to fix column calculation in Python readline if use color prompt](https://stackoverflow.com/questions/9468435/look-how-to-fix-column-calculation-in-python-readline-if-use-color-prompt)
 * [Serial Programming/termios](https://en.wikibooks.org/wiki/Serial_Programming/termios)
+* [TTY](https://www.kernel.org/doc/html/latest/driver-api/tty/index.html)
 
 ### Utilities
 
@@ -885,6 +933,7 @@ Projects
 * [5 open source alternatives to Doodle polls](https://opensource.com/article/22/4/open-source-alternatives-doodle-polls?sc_cid=70160000000eUoRAAU&elqTrackId=53c61a95b3cf48598f2df5d59185dac1&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [5 ways to protect your documents with open source software](https://opensource.com/article/21/4/secure-documents-open-source?sc_cid=70160000000eUoRAAU&elqTrackId=c76a52a66417477e82027b001aa2422d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
 * [12 inspiring examples of open source in education this year](https://opensource.com/article/21/12/open-source-education?sc_cid=70160000000eUoRAAU&elqTrackId=835ef4766b7b4f42bffb605fd8c70479&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [An introduction to the Linux boot and startup processes](https://opensource.com/article/17/2/linux-boot-and-startup)
 * [An open source alternative to Microsoft Exchange](https://opensource.com/article/21/9/open-source-groupware-grommunio?sc_cid=70160000000eUoRAAU&elqTrackId=332ea600c66e465da35e3de60be65d1d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
 * [How disagreement creates unity in open source](https://opensource.com/article/21/10/disagreement-open-source)
 * [Manage your Gmail filters from the Linux command line](https://opensource.com/article/22/5/gmailctl-linux-command-line-tool?sc_cid=70160000000eUoRAAU&elqTrackId=db4d27b25a944d3ebad8c791e4ef03d0&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
@@ -893,6 +942,11 @@ Projects
 * [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable?sc_cid=70160000000eUoRAAU&elqTrackId=42b2e59ab6114554aba7d5405b88dae5&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Run your favorite Windows applications on Linux](https://opensource.com/article/21/2/linux-wine?sc_cid=70160000000eUoRAAU&elqTrackId=53197434c7ed4343a262dd78a8274f3f&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
 * [Send your scans to a Linux machine over your network](https://opensource.com/article/21/4/linux-scan-samba?sc_cid=70160000000eUoRAAU&elqTrackId=9909ed9e433d46dc943ee4ae16607de0&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+
+## Operating Systems
+
+* [MikeOS](http://mikeos.sourceforge.net/)
+  * [How to write a simple operating system](http://mikeos.sourceforge.net/write-your-own-os.html)
 
 ## Programming
 
@@ -904,6 +958,7 @@ Projects
 
 ### Algorithms & Data Structures
 
+* [Advanced Proactive Caching for Heterogeneous Storage Systems](https://research.redhat.com/blog/research_project/advanced-proactive-caching-for-heterogeneous-storage-systems/)
 * [Crit-bit trees](https://cr.yp.to/critbit.html)
 
 #### Hashing
@@ -949,7 +1004,10 @@ Projects
 * [Code Climate](https://codeclimate.com/)
 * [Compiler Explorer](https://godbolt.org/)
 * [Guide to disassemble](https://gist.github.com/jarun/ea47cc31f1b482d5586138472139d090)
+* [KLEE Symbolic Execution Engine](https://klee.github.io/) [[repo](https://github.com/klee/klee)]
+  * [Testing a Small Function](https://klee.github.io/tutorials/testing-function/)
 * [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
+* [TOP 40 Static Code Analysis Tools (Best Source Code Analysis Tools)](https://www.softwaretestinghelp.com/tools/top-40-static-code-analysis-tools/)
 
 #### Coverity Scan
 
@@ -1002,7 +1060,9 @@ Projects
 ### Git
 
 * [Beginner’s Guide to Interactive Rebasing](https://hackernoon.com/beginners-guide-to-interactive-rebasing-346a3f9c3a6d)
+* [Git: Understanding the Index File](https://mincong.io/2018/04/28/git-index/)
 * [git-abc](https://github.com/rhdrjones/git-abc)
+* [index-format](https://git-scm.com/docs/index-format)
 * [Pro Git](https://git-scm.com/book/en/v2)
 
 #### FAQ
@@ -1016,6 +1076,7 @@ Projects
 * [Git rebase gets stuck after resolving merge conflict](https://stackoverflow.com/questions/21833300/git-rebase-gets-stuck-after-resolving-merge-conflict)
 * [How can I move a tag on a git branch to a different commit?](https://stackoverflow.com/questions/8044583/how-can-i-move-a-tag-on-a-git-branch-to-a-different-commit)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
+* [How do I git rebase the first commit?](https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
 * [How to create patch between two tags with multiple commits between them?](https://stackoverflow.com/questions/9078820/how-to-create-patch-between-two-tags-with-multiple-commits-between-them)
 * [How to compare files from two different branches?](https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches)
@@ -1039,10 +1100,16 @@ Projects
 ### Licensing
 
 * [GPL-Compatible Free Software Licenses](https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses)
+* [SPDX](https://github.com/spdx)
+  * [SPDX License List](https://spdx.org/licenses/) [[repo](https://github.com/spdx/license-list-XML)]
 
 ### Programming Languages
 
 * [Rules (from SonarSource)](https://rules.sonarsource.com/)
+
+#### Assembler
+
+* [GNU Assembler Examples](https://cs.lmu.edu/~ray/notes/gasexamples/)
 
 #### C
 
@@ -1181,6 +1248,7 @@ See [Caml](#caml).
 
 ## Projects
 
+* [ABI Compliance Checker (Perl)](https://github.com/lvc/abi-compliance-checker)
 * [act (Golang)](https://github.com/nektos/act)
 * [Allocator Builder (C++)](https://github.com/FelixPetriconi/AllocatorBuilder)
 * [Ansible (Python)](https://github.com/ansible/ansible)
@@ -1244,6 +1312,8 @@ See [Caml](#caml).
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
 * [Dyninst (C/C++)](https://github.com/dyninst/dyninst)
 * [ebiso (C)](https://github.com/gozora/ebiso)
+* [EDK II - Altera (C)](https://github.com/altera-opensource/uefi-socfpga)
+* [EDK II - TianoCore (C)](https://github.com/tianocore/edk2)
 * [EfiFs - EFI File System Drivers (C)](https://github.com/pbatard/efifs)
 * [errata-tool (Python)](https://github.com/red-hat-storage/errata-tool)
 * [ewig (C++)](https://github.com/arximboldi/ewig)
@@ -1256,6 +1326,7 @@ See [Caml](#caml).
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
 * [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
+* [flexmock (Python)](https://github.com/flexmock/flexmock) [[doc](https://flexmock.readthedocs.io/en/latest/)]
 * [FlySpell (EmacsLisp)](https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/flyspell.el)
 * [{fmt} (C++)](https://github.com/fmtlib/fmt)
 * [fmt (OCaml)](https://github.com/dbuenzli/fmt)
@@ -1269,6 +1340,7 @@ See [Caml](#caml).
 * [Glazier (Python)](https://github.com/google/glazier)
 * [Gmail-Preview-Pane-Arrow-Scrolling-Userscript (JavaScript)](https://github.com/DustinLuck/Gmail-Preview-Pane-Arrow-Scrolling-Userscript)
 * [gmail-yaml-filters (Python)](https://github.com/mesozoic/gmail-yaml-filters)
+* [gnu-efi (C)](https://github.com/rhboot/gnu-efi)
 * [goals (OCaml)](http://git.annexia.org/?p=goals.git)
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
@@ -1293,6 +1365,7 @@ See [Caml](#caml).
 * [keylime (Python)](https://github.com/keylime/keylime)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [kdenlive (C++)](https://github.com/KDE/kdenlive)
+* [KLEE Symbolic Virtual Machine (C/C++)](https://github.com/klee/klee)
 * [KubeLinter (Golang)](https://github.com/stackrox/kube-linter)
 * [L-system (M4)](https://github.com/jkubin/L-system)
 * [lab (Golang)](https://github.com/zaquestion/lab) [[home](https://zaquestion.github.io/lab/)]
@@ -1306,6 +1379,7 @@ See [Caml](#caml).
 * [libkrun (Rust)](https://github.com/containers/libkrun)
 * [libleak (C)](https://github.com/WuBingzheng/libleak)
 * [libmodulemd (C)](https://github.com/fedora-modularity/libmodulemd)
+* [libmypaint (C)](https://github.com/mypaint/libmypaint)
 * [libsigsegv (C)](https://github.com/roswell/libsigsegv)
 * [libteam (C)](https://github.com/jpirko/libteam)
 * [libtsm (C)](https://github.com/asciinema/libtsm) [[origrepo](https://cgit.freedesktop.org/~dvdhrm/libtsm)]
@@ -1329,6 +1403,7 @@ See [Caml](#caml).
 * [modulemd-tools (Python)](https://github.com/rpm-software-management/modulemd-tools)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
 * [mpllibs (C++)](https://github.com/sabel83/mpllibs) [[home](http://abel.web.elte.hu/mpllibs/)]
+* [MyPaint (Python)](https://github.com/mypaint/mypaint)
 * [neovim (C/Lua/Vim Script)](https://github.com/neovim/neovim) [[home](https://neovim.io/)]
   * [null-ls.nvim (Lua)](https://github.com/jose-elias-alvarez/null-ls.nvim/)
 * [Ninja (C++)](https://github.com/ninja-build/ninja) [[doc](https://ninja-build.org/)]
@@ -1365,6 +1440,7 @@ See [Caml](#caml).
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [Python Prompt Toolkit (Python)](https://github.com/prompt-toolkit/python-prompt-toolkit) [[doc](https://python-prompt-toolkit.readthedocs.io/)]
+* [python-magic (Python)](https://github.com/ahupp/python-magic)
 * [PyTorch (C++/Python)](https://github.com/pytorch/pytorch)
 * [Quay (Python)](https://github.com/quay/quay)
 * [QuestDB (Java)](https://github.com/questdb/questdb)
@@ -1396,6 +1472,7 @@ See [Caml](#caml).
 * [sh (Golang)](https://github.com/mvdan/sh)
 * [Shake (Haskell)](https://github.com/ndmitchell/shake/) [[docs](https://shakebuild.com/)]
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
+* [shim, a first-stage UEFI bootloader (C)](https://github.com/rhboot/shim)
 * [six (Python)](https://github.com/benjaminp/six)
 * [Slides Code Highlighter (HTML/SCSS/JavaScript)](https://github.com/romannurik/SlidesCodeHighlighter)
 * [slop (C++)](https://github.com/naelstrof/slop)
@@ -1409,6 +1486,7 @@ See [Caml](#caml).
   * [sphinx-contrib (Python)](https://bitbucket.org/birkenfeld/sphinx-contrib/)
 * [stubby (C)](https://github.com/getdnsapi/stubby)
 * [sway (C)](https://github.com/swaywm/sway)
+* [syslinux (C)](https://git.kernel.org/pub/scm/boot/syslinux/syslinux.git/tree/) [[mirror](https://github.com/TritonDataCenter/syslinux)]
 * [systemd (C)](https://github.com/systemd/systemd)
 * [tarantool (Lua/C)](https://github.com/tarantool/tarantool) [[home](https://www.tarantool.io/en/)]
 * Terminal emulators
@@ -1422,6 +1500,7 @@ See [Caml](#caml).
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
 * [The LaTeX3 Project](https://github.com/latex3)
 * [thinbox (Python)](https://github.com/inknos/thinbox/)
+* [ticketutil (Python)](https://github.com/dmranck/ticketutil)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
 * [tre (C)](https://github.com/laurikari/tre)
 * [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
@@ -1448,6 +1527,7 @@ See [Caml](#caml).
   * [Fluxbox (C++)](https://github.com/fluxbox/fluxbox)
   * [kotatko (C)](https://github.com/contyk/kotatko)
   * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
+* [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
 * [whatpkgs (Python)](https://github.com/fedora-modularity/whatpkgs)
 * [wlroots (C)](https://github.com/swaywm/wlroots)
 * [XL - An extensible language (C++/XL)](https://github.com/c3d/xl)
@@ -1469,6 +1549,8 @@ See [Caml](#caml).
 
 * [2019 CWE Top 25 Most Dangerous Software Errors](http://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html)
 * [A (Very) Basic Intro To Elliptic Curve Cryptography](https://hackernoon.com/very-basic-intro-to-elliptic-curve-cryptography-ww3g3t3n)
+* [Automated dynamic application security testing with RapiDAST and cross-team collaboration](https://www.redhat.com/en/blog/automated-dynamic-application-security-testing-enhancing-development-security-rapidast)
+* [Common Security Advisory Framework (CSAF) beta files now available](https://www.redhat.com/en/blog/common-security-advisory-framework-csaf-beta-files-now-available?channel=blog/channel/security)
 * [Containers vulnerability risk assessment](https://www.redhat.com/en/blog/containers-vulnerability-risk-assessment)
 * [CWE VIEW: Software Development](https://cwe.mitre.org/data/definitions/699.html)
 * [CWE/SANS TOP 25 Most Dangerous Software Errors](https://www.sans.org/top25-software-errors/)
@@ -1559,6 +1641,7 @@ See [Caml](#caml).
 * [How to Setup QEMU Output to Console and Automate Using Shell Script](https://fadeevab.com/how-to-setup-qemu-output-to-console-and-automate-using-shell-script/)
 * [How to SSH from host to guest using QEMU?](https://unix.stackexchange.com/questions/124681/how-to-ssh-from-host-to-guest-using-qemu)
 * [How to use vagrant-kvm](https://gist.github.com/yuanying/924ce2ce61b75ab818b5)
+* [Installation and configuration of cloud-init on the Linux server](https://www.ibm.com/docs/en/cic/1.1.2?topic=kvm-installation-configuration-cloud-init-linux-server)
 * [libguestfs](http://libguestfs.org/)
   * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
   * [virt-sysprep(1)](http://libguestfs.org/virt-sysprep.1.html)
@@ -1587,6 +1670,7 @@ See [Caml](#caml).
 * [How do I vertically align text in a div?](https://stackoverflow.com/questions/2939914/how-do-i-vertically-align-text-in-a-div?noredirect=1&lq=1)
 * [How do I vertically center text with CSS?](https://stackoverflow.com/questions/8865458/how-do-i-vertically-center-text-with-css)
 * [Jak psát web (in Czech)](https://www.jakpsatweb.cz/)
+* [Jekyll Static Site Search With lunr.js](https://thomascfoulds.com/2020/07/27/jekyll-static-site-search-lunr.html)
 * [Lit](https://lit.dev/) [[repo](https://github.com/lit/lit/)]
 * [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
 * [Vertical Centering in CSS](https://www.jakpsatweb.cz/css/css-vertical-center-solution.html)
