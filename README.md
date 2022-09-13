@@ -261,6 +261,7 @@ interested in. Maybe You find some of these interesting too.
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Radek Pazdera](https://radek.io/)
 * [Richard WM Jones](https://rwmj.wordpress.com/)
+* [Simeon Visser](http://simeonvisser.com/)
 * [Simon Brand](https://blog.tartanllama.xyz/)
 * [Sorin Sbarnea](https://sbarnea.com/)
 * [TechOverflow](https://techoverflow.net/)
@@ -395,6 +396,7 @@ interested in. Maybe You find some of these interesting too.
 ### Packaging
 
 * [Bodhi](https://fedoraproject.org/wiki/Bodhi)
+* [`check-missing`](https://pagure.io/fedora-comps/blob/main/f/check-missing)
 * [Creating RPM Packages with Fedora](https://fedoraproject.org/wiki/How_to_create_an_RPM_package)
 * [depict (Python)](https://pagure.io/depict)
 * [Fedora Packager Dashboard](https://packager-dashboard.fedoraproject.org/)
@@ -475,6 +477,7 @@ interested in. Maybe You find some of these interesting too.
     * [pyflakes](https://github.com/PyCQA/pyflakes)
   * [isort](https://pycqa.github.io/isort/) [[repo](https://github.com/PyCQA/isort)]
   * [mypy](http://mypy-lang.org/) [[docs](https://mypy.readthedocs.io)] [[repo](https://github.com/python/mypy)]
+    * [The Comprehensive Guide to mypy](https://sadh.life/post/mypy-guide/)
     * [typeshed](https://github.com/python/typeshed)
     * [typing](https://docs.python.org/3/library/typing.html)
   * [pydocstyle](http://www.pydocstyle.org) [[repo](https://github.com/PyCQA/pydocstyle)]
@@ -508,7 +511,7 @@ interested in. Maybe You find some of these interesting too.
 * [python-packaging](https://python-packaging.readthedocs.io)
 * [python-rpm-packaging](https://github.com/rpm-software-management/python-rpm-packaging/)
 * [Rehashing the src layout](https://blog.ionelmc.ro/2017/09/25/rehashing-the-src-layout/)
-* [setuptools](https://setuptools.readthedocs.io)
+* [setuptools](https://setuptools.readthedocs.io) [[pypa](https://setuptools.pypa.io/en/latest/index.html)]
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
 * spec file examples
   * [python-elementpath.spec](https://src.fedoraproject.org/rpms/python-elementpath/blob/master/f/python-elementpath.spec)
@@ -686,6 +689,7 @@ Projects
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 * [Stolostron project](https://github.com/stolostron/stolostron)
+* [Using volumes with rootless podman, explained](https://www.tutorialworks.com/podman-rootless-volumes/)
 * [Why can’t rootless Podman pull my image?](https://www.redhat.com/sysadmin/rootless-podman)
 
 ### Databases
@@ -951,6 +955,7 @@ Projects
 ## Programming
 
 * [Design Patterns](http://www.vincehuston.org/dp/)
+* [Model Driven Design – theory to practice](https://www.todaysoftmag.com/article/1529/model-driven-design-theory-to-practice)
 * [Semantic Versioning](https://semver.org/)
 * [Software optimization resources](https://www.agner.org/optimize/)
 * [Sourcegraph](https://sourcegraph.com/search)
@@ -1134,6 +1139,8 @@ Projects
   * [why choose sum types over exceptions?](https://vittorioromeo.info/index/blog/adts_over_exceptions.html)
   * [Why is exception handling bad?](https://stackoverflow.com/questions/1736146/why-is-exception-handling-bad)
 * [Functional Programming in C++](https://github.com/graninas/cpp_functional_programming)
+* [GCC and MSVC C++ Demangler](http://demangler.com/)
+* [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html)
 * [Obscure C++ Features](http://madebyevan.com/obscure-cpp-features/)
 * [Substitution Failure Is Not An Error (SFINAE)](https://en.cppreference.com/w/cpp/language/sfinae)
 * [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
@@ -1191,10 +1198,15 @@ See [Caml](#caml).
 * [GUI Programming in Python](https://wiki.python.org/moin/GuiProgramming)
 * [Hide implementation details from the Python C API](https://vstinner.github.io/hide-implementation-details-python-c-api.html)
 * [Isolate Python Subinterpreters](https://vstinner.github.io/isolate-subinterpreters.html)
+* [Providing Multiple Constructors in Your Python Classes](https://realpython.com/python-multiple-constructors/)
 * [Python 3 documentation](https://docs.python.org/3/)
+* [Python 3: Using "yield from" in Generators - Part 1](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-1.html)
+* [Python 3: Using "yield from" in Generators - Part 2](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-2.html)
 * [Python Development (Victor’s notes)](https://pythondev.readthedocs.io/)
   * [Python Debug Tools](https://pythondev.readthedocs.io/debug_tools.html)
+* [Python Metaclasses](https://realpython.com/python-metaclasses/)
 * [Python eval(): Evaluate Expressions Dynamically](https://realpython.com/python-eval-function/)
+* [Python Tips](https://book.pythontips.com/en/latest/)
 
 ##### Console UI Libraries
 
@@ -1204,6 +1216,10 @@ See [Caml](#caml).
 * [Python Curses Handling Window (Terminal) Resize](https://stackoverflow.com/questions/5161552/python-curses-handling-window-terminal-resize)
 * [Python Prompt Toolkit](https://python-prompt-toolkit.readthedocs.io/) [[repo](https://github.com/prompt-toolkit/python-prompt-toolkit)]
 * [Urwid](http://urwid.org/) [[repo](https://github.com/urwid/urwid)]
+
+##### GUI Libraries
+
+* [The Python GTK+ 3 Tutorial](https://python-gtk-3-tutorial.readthedocs.io/en/latest/)
 
 #### Scheme
 
@@ -1294,6 +1310,7 @@ See [Caml](#caml).
   * [content (Bash/Python)](https://github.com/ComplianceAsCode/content)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
 * [cppcheck (C++)](https://github.com/danmar/cppcheck)
+* [cpptex/TeX++ (C++)](https://github.com/syntheticpp/cpptex) [[home](https://kasper.phi-sci.com/tex++/)]
 * [cryptography (Python)](https://github.com/pyca/cryptography) [[doc](https://cryptography.io/en/latest/)]
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [curtsies (Python)](https://github.com/thomasballinger/curtsies) [[doc](https://curtsies.readthedocs.io/)]
@@ -1326,6 +1343,7 @@ See [Caml](#caml).
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
 * [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
+* [Fitcrack (Distributed password cracking system) (C/C++/PHP)](https://github.com/nesfit/fitcrack) [[home](https://fitcrack.fit.vutbr.cz/)]
 * [flexmock (Python)](https://github.com/flexmock/flexmock) [[doc](https://flexmock.readthedocs.io/en/latest/)]
 * [FlySpell (EmacsLisp)](https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/flyspell.el)
 * [{fmt} (C++)](https://github.com/fmtlib/fmt)
@@ -1345,6 +1363,7 @@ See [Caml](#caml).
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
 * [gosu (Golang)](https://github.com/tianon/gosu)
+* [GridPlayer (Python)](https://github.com/vzhd1701/gridplayer)
 * [Hana (C++)](https://github.com/boostorg/hana) [[doc](http://boostorg.github.io/hana/)]
 * [Hoard Memory Allocator (C++)](https://github.com/emeryberger/Hoard)
 * [hub (Golang)](https://github.com/github/hub) [[doc](https://hub.github.com/)]
@@ -1378,6 +1397,7 @@ See [Caml](#caml).
 * [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs)
 * [libkrun (Rust)](https://github.com/containers/libkrun)
 * [libleak (C)](https://github.com/WuBingzheng/libleak)
+* [liblockfile (C)](https://github.com/miquels/liblockfile)
 * [libmodulemd (C)](https://github.com/fedora-modularity/libmodulemd)
 * [libmypaint (C)](https://github.com/mypaint/libmypaint)
 * [libsigsegv (C)](https://github.com/roswell/libsigsegv)
@@ -1520,7 +1540,9 @@ See [Caml](#caml).
 * [verify (Python)](https://github.com/dgilland/verify) [[doc](https://verify.readthedocs.io/en/latest/)]
 * [virtualenv (Python)](https://github.com/pypa/virtualenv)
 * [Vlang (V)](https://github.com/vlang/v) [[home](https://vlang.io/)]
+* [VLC-Qt Library (C++)](https://github.com/vlc-qt/vlc-qt)
 * [Volatility Framework (Python)](https://github.com/volatilityfoundation/volatility)
+* [WASI Libc (C)](https://github.com/WebAssembly/wasi-libc)
 * [Weldr](https://github.com/weldr)
 * Window managers
   * [dwm (C)](https://git.suckless.org/dwm/files.html) [[home](https://dwm.suckless.org/)]
