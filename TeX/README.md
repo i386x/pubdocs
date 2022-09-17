@@ -1659,6 +1659,176 @@ Analogously, `\vsplit` uses `\splittopskip`.
 *`\parskip`-based space*
 * between two paragraphs is automatically inserted `\vskip\parskip`
 
+### Specifying Fill Pattern with `\leaders`
+
+`\leaders` behaves like `\hskip` or `\vskip` &ndash; it is a skip which fills
+its space by the given pattern. `\leaders` accepts these parameters:
+* `\leaders` *\<box or rule\>* *\<glue specification\>*
+
+If *\<box or rule\>* is a rule and when the final size of skip is established:
+1. Establish the missing rule dimensions as described in the
+   horizontal/vertical list-to-box conversion.
+1. In the horizontal mode:
+   * Set the rule width to the finally established skip size.
+1. In the vertical mode:
+   * Set the rule height to the finally established skip size.
+   * Set the rule depth to 0pt.
+1. If the finally established skip size is non-negative:
+   * Draw the rule in the space occupied by the skip with respect to
+     baseline/y-axis.
+
+If *\<box or rule\>* is a box and when the final size of skip is established:
+1. In case of `\leaders` in the horizontal mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the current position:
+   cx = get_current_position_x()
+   # Get the final skip width:
+   tw = e.skip.base
+   # Get the box width:
+   w = e.box.width
+   # Get the x-coord of the left edge of the outer box (box position is its
+   # reference point position):
+   x = get_outer_box().position.x
+
+   if tw <= 0 or w <= 0:
+       set_current_position_x(cx + tw)
+       return
+
+   while x < cx:
+       x += w
+   while x + w < cx + tw:
+       draw(e.box)
+       x += w
+   # Fix the current position:
+   set_current_position_x(cx + tw)
+   ```
+1. In case of `\leaders` in the vertical mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the current position:
+   cy = get_current_position_y()
+   # Get the final skip height:
+   th = e.skip.base
+   # Get the total box height:
+   h = e.box.height + e.box.depth
+   # Get the y-coord of the top edge of the outer box (box position is its
+   # reference point position):
+   y = get_outer_box().position.y - get_outer_box().height
+
+   if th <= 0 or h <= 0:
+       set_current_position_y(cy + th)
+       return
+
+   while y < cy:
+       y += h
+   while y + h < cy + th:
+       draw(e.box)
+       y += h
+   # Fix the current position:
+   set_current_position_y(cy + th)
+   ```
+1. In case of `\cleaders` in the horizontal mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the final skip width:
+   tw = e.skip.base
+   # Get the box width:
+   w = e.box.width
+
+   if tw <= 0 or w <= 0:
+       set_current_position_x(get_current_position_x() + tw)
+       return
+
+   n = int(tw/w)
+   s = (tw - n*w)/2
+
+   set_current_position_x(get_current_position_x() + s)
+   while n > 0:
+       draw(e.box)
+       n -= 1
+   set_current_position_x(get_current_position_x() + s)
+   ```
+1. In case of `\cleaders` in the vertical mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the final skip height:
+   th = e.skip.base
+   # Get the total box height:
+   h = e.box.height + e.box.depth
+
+   if th <= 0 or h <= 0:
+       set_current_position_y(get_current_position_y() + th)
+       return
+
+   n = int(th/h)
+   s = (th - n*h)/2
+
+   set_current_position_y(get_current_position_y() + s)
+   while n > 0:
+       draw(e.box)
+       n -= 1
+   set_current_position_y(get_current_position_y() + s)
+   ```
+1. In case of `\xleaders` in the horizontal mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the final skip width:
+   tw = e.skip.base
+   # Get the box width:
+   w = e.box.width
+
+   if tw <= 0 or w <= 0:
+       set_current_position_x(get_current_position_x() + tw)
+       return
+
+   n = int(tw/w)
+   s = (tw - n*w)/(n + 1)
+
+   set_current_position_x(get_current_position_x() + s)
+   while n > 0:
+       draw(e.box)
+       set_current_position_x(get_current_position_x() + s)
+       n -= 1
+   ```
+1. In case of `\xleaders` in the vertical mode:
+   ```python
+   # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
+   # the DVI.
+
+   # Get the final skip height:
+   th = e.skip.base
+   # Get the total box height:
+   h = e.box.height + e.box.depth
+
+   if th <= 0 or h <= 0:
+       set_current_position_y(get_current_position_y() + th)
+       return
+
+   n = int(th/h)
+   s = (th - n*h)/(n + 1)
+
+   set_current_position_y(get_current_position_y() + s)
+   while n > 0:
+       draw(e.box)
+       set_current_position_y(get_current_position_y() + s)
+       n -= 1
+   ```
+
+### `\special`
+
+* `\special{landscape}` tells `dvips` to rotate page about 90 degrees
+
 ### Main Processor's Registers and Primitives
 
 #### Alignment
@@ -2144,6 +2314,13 @@ between the `l`s.
   * tokens between a token with category 1 and a token with category 2,
     excluding these tokens, where every token with category 1 must have a
     matching token with category 2
+* *box*
+  * is a result of these commands, including their arguments: `\box`, `\copy`,
+    `\vsplit`, `\hbox`, `\vbox`, `\vtop`, and `\lastbox`
+* *box or rule*
+  * `<box>`
+  * `\hrule <rule specification>`
+  * `\vrule <rule specification>`
 * *box specification*
   * `<space>* to<dimen><filler>`
   * `<space>* spread<dimen><filler>`
@@ -2180,6 +2357,10 @@ between the `l`s.
 * *glue*
   * `<dimen><stretch>?<shrink>?`
   * `<sign>` `\skip` register
+* *glue specification*
+  * `\vskip <glue>`, `\vfil`, `\vfill`, `\vss`, `\vfilneg`
+  * `\hskip <glue>`, `\hfil`, `\hfill`, `\hss`, `\hfilneg`
+  * `\mskip <muglue>`
 * *mudimen*
   * `<sign><float><mu-unit>`
   * `<sign>?` `\muskip` register
