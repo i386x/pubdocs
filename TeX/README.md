@@ -553,7 +553,7 @@ processor. Here is the table with the summary:
 | `\lower` | illegal | lower a box | lower a box |
 | `\moveleft` | move a box to the left | illegal | illegal |
 | `\moveright` | move a box to the right | illegal | illegal |
-| `\vadjust` | illegal | put vertical material under the current line | put vertical material under the current display math |
+| `\vadjust` | illegal | put vertical mode material under the current line | put vertical mode material under the current display math |
 | `\/` | illegal | add italic correction | add a kern |
 | `^` | missing `$` | missing `$` | typeset superscript |
 | `_` | missing `$` | missing `$` | typeset subscript |
@@ -859,8 +859,8 @@ The only allowed dimension unit is `mu`, internally stored as `pt`, and also
 A token register (`\toks`) refers to a list of tokens.
 
 A box register (`\box`) refers to a data structure that holds a list of
-horizontal (`h`) or vertical (`v`) material, called *box*. Supported operations
-with a box register are:
+horizontal (`h`) or vertical (`v`) mode material, called *box*. Supported
+operations with a box register are:
 * filling a register with a material (`\setbox`)
 * using a register (`\box`, `\copy`)
 * unpacking the material from a register (`\unhbox`, `\unvbox`, `\unhcopy`,
@@ -1824,6 +1824,159 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
        set_current_position_y(get_current_position_y() + s)
        n -= 1
    ```
+
+### `\halign`, `\valign`
+
+`\halign` is used to make a table. It has the following syntax:
+* `\halign` *\<box specification\>* *\<alignment material\>*
+
+where *\<alignment material\>* is of the form:
+1. *\<preamble\>* `\cr`
+1. *\<line 1\>* `\cr`
+1. *\<line 2\>* `\cr`
+1. *etc.*
+1. *\<line n\>* `\cr`
+1. optional `\noalign`
+
+*\<preamble\>* is separated into *templates* using a token of the category 4
+as a delimiter. Each template must contain just one token of the category 6.
+
+*\<line i\>* is separated into columns using a token of the category 4 as a
+delimiter. If a token of the category 4, `\span`, or `\cr` appears inside a
+group it is not treated as a delimiter.
+
+`\cr` may be directly followed by `\noalign` `{` *\<vertical mode material\>*
+`}`. In this case, *\<vertical mode material\>* is inserted right after the
+recently finished line or right before the first line if the `\cr` finishes the
+preamble.
+
+`\crcr` command is:
+* ignored if it is used right after `\cr` or `\noaling`
+* treated as `\cr` elsewhere
+
+Now, lets describe how `\halign` makes a table:
+1. Open a group.
+1. Load preample:
+   * Preamble is loaded in unexpanded form (except `\tabskip` and `\span`) into
+     a separate memory.
+   * When scanning the preamble, TeX pays attention on these tokens:
+     * `\cr` &ndash; ends the preamble;
+     * `&` (category 4 token) &ndash; separates templates;
+     * `#` (category 6 token) &ndash; where in the template an item should be
+       inserted;
+     * `\tabskip` &ndash; (1) expand tokens that follows `\tabskip` until
+       *\<equals\>* *\<glue specification\>* is given and assign this value to
+       `\tabskip`, (2) *ti* has the value of the `\tabskip` in the time of the
+       end of scanning the *i*th template, *t0* has the value of the `\tabskip`
+       in the time of entering `\halign`, (3) remove `\tabskip` *\<equals\>*
+       *\<glue specification\>* from the preamble;
+     * `\span` &ndash; the token that follows `\span` is expanded.
+1. Convert column items to `\hbox`es:
+   1. Let `&` denote a token of the category 4 and let `#` denote a token of
+      the category 6. Additionally in line, let `&` denote also `\span`.
+   1. Assume the preamble has the form: *x1* `#` *y1* `&` *x2* `#` *y2* `&` ...
+      `&` *xn* `#` *yn* `\cr`.
+      * A sequence *xi* `#` *yi* is called a *template*.
+      * A template can be prefixed with `&` marking a template as a *next round
+        starting point*. At most one `&`-marked template is allowed.
+   1. Assume every line has the form: *z1* `&` *z2* `&` ... `&` *zm* `\cr`.
+   1. Initial spaces and spaces after `&` are ignored.
+   1. If *m* > *n* and the preamble has no `&`-marked template, fail with
+      `Extra alignment tab has been changed to \cr`.
+   1. Let *j* is the index of `&`-marked template. If there is no `&`-marked
+      template, set *j* to 0. Define the index function, *f*(*i*), as follows:
+      * If *j* = 0 or *i* <= *n*, then *f*(*i*) = *i*.
+      * Otherwise set *p* = *j* - 1, *d* = *n* - *p*, *k* = (*i* - *p* - 1) div
+        *d*; then *f*(*i*) = *i* - *kd*.
+   1. For *i* in 1 to max(*n*, *m*):
+      * If *i* <= *m* and the first non-space unexpandable token of *zi* is not
+        `\omit`, make the *i*th `\hbox` with *xf*(*i*) *zi* *yf*(*i*) in its
+        horizontal list. *xf*(*i*) *zi* *yf*(*i*) is expanded and interpreted
+        within the `\hbox`'s group.
+      * Otherwise, if *i* <= *m* and the first non-space unexpandable token of
+        *zi* is `\omit`, make the *i*th `\hbox` with the fully-expanded and
+        interpreted *zi* within `\hbox`'s group, except `\omit`, in its
+        horizontal list.
+      * Otherwise, make the *i*th `\hbox` empty.
+      * The first token of *zi* is expanded before *xi zi yi* is assembled
+        together because of the decision based on the `\omit` presence to be
+        made. This implies that a macro at the beginning of *zi* can include
+        multiple columns and lines to its parameter breaking the table.
+      * *xi zi yi* (or *zi* if `\omit` took an effect) is seen by the expand
+        processor as a continuous stream of tokens. This implies that macro
+        parameter can start in *xi* and ends in *yi*, holding also the whole
+        *zi*.
+      * A `\noalign` as the first non-space unexpandable token following `\cr`
+        is not a part of the `\hbox`'s horizontal list. It is recorded for the
+        later use.
+1. Let *wi* be the maximal natural width of all entries in the *i*th column.
+1. Handle `\span`s:
+   1. In some line, if two columns were delimited with `\span`, merge their
+      `\hbox`es into one `\hbox`. Repeat until there are no `\hbox`es to be
+      merged.
+   1. Let *n* be the number of columns after spanning.
+   1. For 1 <= *i* <= *j* <= *n*, let *wij* be the maximal natural width of all
+      entries that span columns *i* through *j*, including *j*;
+      * if there are no such spanned entries, then set *wij* to *-inf*.
+   1. Let *tk* be the base width of `\tabskip` between columns *k* and (*k* +
+      1), where 1 <= *k* < *n*.
+   1. The final width *wj* of column *j* is computed by the formula
+      * *wj* = max[1 <= *i* <= *j*](*wij* - sum[*i* <= *k* < *j*](*wk* + *tk*))
+
+      for *j* going through 1 to *n*, including *n*.
+   1. Let *wij* = *wi* + *ti* + *w*(*i* + 1) + *t*(*i* + 1) + ... + *wj* be the
+      new width of spanned `\hbox` spanning columns *i* to *j*, including *j*.
+1. Assemble lines and insert them to the vertical list:
+   1. If the first `\cr` is directly followed by `\noalign`, insert the
+      vertical mode material from `\noalign` to the vertical list.
+   1. For *\<line 1\>*, insert a `\hbox` to the vertical list containing:
+      * a skip *t0*;
+      * the `\hbox` from the 1st column of this line, resized to *w1*;
+      * a skip *t1*;
+      * the `\hbox` from the 2nd column of this line, resized to *w2*;
+      * a skip *t2*;
+      * ...
+      * the spanned `\hbox` spanning columns *i* to *j*, including *j*, resized
+        to *wij*;
+      * the skip *tj*;
+      * ...
+      * the `\hbox` from the *n*th, last, column of this line, resized to *wn*;
+      * a skip *tn*.
+   1. If the `\cr` that ends the *\<line 1\>* is directly followed by
+      `\noalign`, insert the vertical mode material from `\noalign` to the
+      vertical list.
+   1. Repeat the previous two steps for the rest of lines.
+   1. Width of every line `\hbox` is further adjusted if `\halign` is followed
+      by `to` or `spread`:
+      * if `to` *w* is given, then every `\hbox` is adjusted to the width *w*
+        (`\tabskip`s get their final values);
+      * if `spread` *s* is given, then the width of every `\hbox` is advanced
+        by *s* (`\tabskip`s get their final values);
+      * *wij* of `\hbox` spanning columns *i* to *j*, including *j*, is
+        adjusted to accommodate the final value of `\tabskip` *k*, *i* <= *k* <
+        *j*.
+   1. If an item `\hbox` contains a `\vrule`:
+      * if the `\vrule` has unspecified height, its height becomes the height
+        of the line `\hbox`;
+      * if the `\vrule` has unspecified depth, its depth becomes the depth of
+        the line `\hbox`.
+   1. If a vertical mode material from `\noalign` contains a `\hrule` with
+      unspecified width, its width becomes the width of the final table.
+1. Close the group.
+
+`\valign` works like `\halign` except it makes a transposed table. Here are
+major differences:
+* column items are `\vbox`es
+* `\cr` ends a column
+* *hi* is the maximal natural height of all `\vbox` entries in the *i*th line
+* the depth of a `\vbox` entry is zero; this is because the first step is the
+  shift of the baseline to the `\vbox`'s bottom
+* `\noalign` contains horizontal mode material
+* `\vbox` entries are assembled into `\vbox` column and separated by `\tabskip`
+* final `\vbox` columns are inserted into horizontal list with horizontal mode
+  material from `\noalign` between them
+
+`\halign` and `\valign` may contain each other.
 
 ### `\special`
 
