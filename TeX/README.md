@@ -171,7 +171,9 @@ following way:
 
 Whenever TeX sees the following sequence of tokens
 ```
-<prefix> <def-command> <cs-or-active> <parameters-specification> <balanced-text>
+<prefix> <def-command> <cs-or-active> <parameters-specification> ({, 1)
+    <balanced-text>
+(}, 2)
 ```
 where
 * `<prefix>` can be empty or one of `\global`, `\long`, and `\outer`
@@ -179,7 +181,10 @@ where
 * `<cs-or-active>` is either a control sequence or a token with category 13
 * `<parameters-specification>` is a specification of parameters of the macro
   (can be empty), and
-* `<balanced-text>` is a balanced text
+* `({, 1)` is any token of the category 1
+* `<balanced-text>` is a *balanced text*
+* `(}, 2)` is any token of the category 2
+
 it assigns to `<cs-or-active>` the meaning of macro with parameters
 `<parameters-specification>` and `<balanced-text>` as its body.
 
@@ -214,8 +219,8 @@ parameter specification results to appending to the parameter specification the
 token (`{`, 1) as a separator. This is the only way how to use (`{`, 1) as a
 separator.
 
-If the `<def-command>` is one of `\edef` or `\xdef` the `<balanced-text>`
-undergoes the full expansion.
+If the `<def-command>` is one of `\edef` or `\xdef` the
+`<balanced-text> (}, 2)` undergoes the full expansion.
 
 Before the (potentially expanded) `<balanced-text>` becomes a macro body, it is
 checked if the sequence of consecutive `<#>` tokens inside the balanced text is
@@ -243,7 +248,8 @@ of which have the meaning of macro, it performs the following steps:
         tokens from the beginning of the token list and load to the *n*th
         parameter
         * either a balanced text if the current token in the token list has
-          category 1
+          category 1 &ndash; surrounding category 1 and 2 tokens will not be
+          loaded into the parameter
         * or the current token
 
         and remove these tokens from the token list
@@ -1978,6 +1984,331 @@ major differences:
 
 `\halign` and `\valign` may contain each other.
 
+### Entering the Math Mode or Display Mode
+
+When entering the math/display mode, do:
+1. Open a group.
+1. Sets `\fam` to -1.
+1. In math mode, insert tokens from `\everymath` to the token stream.
+1. In display mode, insert tokens from `\everydisplay` to the token stream.
+
+### Building a Math List
+
+Math list is build up in math/display mode. Math list is consisting of these
+elements:
+* an atom &ndash; an atom is consisting of three parts:
+  * a nucleus &ndash; an atom core
+  * a superscript &ndash; a superscript of the atom core
+  * a subscript &ndash; a subscript of the atom core
+
+  each of these parts may contain a math symbol, a box, a math list, or be
+  empty
+* horizontal mode material (`\hbox`, `\vbox`, `\vtop`, `\vrule`, `\penalty`,
+  `\discretionary`)
+* vertical mode material (`\mark`, `\insert`, `\vadjust`, `\write`, `\special`)
+* a skip (`\hskip`, `\mskip`, `\nonscript`)
+* a kern (`\kern`, `\mkern`)
+* a style change (`\displaystyle`, `\textstyle`, ...)
+* a generalized fraction (`\above`, `\over`, ...)
+* a boundary (`\left`, `\right`)
+* a four-way choice (`\mathchoice`)
+
+There are thirteen types of atoms, summarized in the following table:
+| Id | Type | Meaning |
+| -- | ---- | ------- |
+| 0 | Ord | ordinary atom, like `x`, `y` |
+| 1 | Op | large operator atom, like `\sum`, `\int`, `\lim` |
+| 2 | Bin | binary operation atom, like `+`, `-` |
+| 3 | Rel | relation atom, like `=`, `<` |
+| 4 | Open | opening atom, like `(` |
+| 5 | Close | closing atom, like `)` |
+| 6 | Punct | punctuation atom, like `,` |
+| 7 | Inner | inner atom, like `{1\over 2}` |
+| 8 | Over | overline atom, like `\overline{x}` |
+| 9 | Under | underline atom, like `\underline{x}` |
+| 10 | Acc | accented atom, like `\mathaccent"7016 x` |
+| 11 | Rad | radical atom, like `\radical"270370 x` |
+| 12 | Vcent | `\vbox` to be centered, produced by `\vcenter` |
+
+Atoms 0 to 6, inclusive, are made when TeX in math/display mode processes a
+math symbol. A math symbol can be:
+* a symbol with assigned `\mathcode`, like ``\mathcode`\-=X`` or
+  ``\mathcode`\'="8000``
+* a `\chardef`-defined control sequence
+* `\char` command, like `\char C`
+* a `\mathchardef`-defined control sequence, like `\mathchardef\alpha=X`
+* `\mathchar` command, like `\mathchar X`
+* `\delimiter` command, like `\delimiter D`
+
+where `C` is an 8-bit number, `X` is a 15-bit number of a form
+`<atom id><font family><character position>`, where
+* `<atom id>` is a 3-bit number specifying an atom based on its id from the
+  previous table except 7 which has a special meaning
+* `<font family>` is a 4-bit number specifying a font family
+* `<character position>` is an 8-bit number specifying a position of the
+  character to be typeset in the given font
+
+and `D` is a 27-bit number of a form
+`<atom id><font family #1><character position #1><font family #2><character position #2>`,
+where `<atom id>`, `<font family #x>`, and `<character position #x>` are
+specified as usual.
+
+Besides `\mathcode`, a symbol can have assigned also `\delcode`, which is a
+24-bit number of a form
+`<font family #1><character position #1><font family #2><character position #2>`.
+A symbol with a positive `\delcode` assigned works, when associated with
+`\left` or `\right`, as a delimiter.
+
+IniTeX assigns each ASCII character `\mathcode<ASCII>=<ASCII>`, except letters
+have `\mathcode<ASCII>="71<ASCII>` and digits have
+`\mathcode<ASCII>="70<ASCII>`.
+
+Atomic fields nucleus, superscript, and subscript are specified by *\<math
+field\>*. *\<math field\>* is converted to the atomic field following these
+rules:
+1. If it is a math symbol, then the atomic field is that math symbol.
+1. Otherwise, open a group, convert a math mode material to the math list, and
+   close the group.
+   1. If the math list is empty, then the atomic field is empty.
+   1. Otherwise, if the math list contains a single Ord atom with no
+      superscript or subscript, then the atomic field is the nucleus of this
+      Ord atom. That is, `x^{y}` yields `x^y`.
+   1. Otherwise, if the math list containing a single Acc atom is a nucleus of
+      an Ord atom, then the Ord atom is replaced with that Acc atom. That is,
+      `x^{\bar a}` yields `x^\bar a`.
+   1. Otherwise, the math list is stored to the atomic field.
+
+Lets describe how TeX converts a formula into the math list. First, some
+conventions:
+* `delcode(d)`, where `d` is a *\<delimiter\>*, returns a `\delcode` of `d` if
+  `d` is a category 11 or 12 token; otherwise, it returns a lower 24 bits from
+  the 27-bit number following `\delimiter`.
+* `Symbol(family, position)` denotes a math symbol. `family` is a font family,
+  `position` is the symbol position in a font.
+* `Left(d)` and `Right(d)` denotes a left and right boundary item,
+  respectively, where `d` is a 24-bit delimiter code.
+* `Atom(id, nucleus, superscript, subscript)` denotes an atom. `id` is atom id;
+  `nucleus`, `superscript`, and `subscript` are eponymous atomic fields. Empty
+  field is denoted `None`. Some atoms also contain extra fields:
+  * `Atom(Op, nucleus, superscript, subscript, limits)` &ndash; `limits` is an
+    extra field specifying limits conventions, one of `DISPLAYLIMITS`
+    (default), `LIMITS`, or `NOLIMITS`;
+  * `Atom(Acc, nucleus, superscript, subscript, symbol)` &ndash; `symbol` is an
+    extra field for `Symbol` holding an accent information;
+  * `Atom(Rad, nucleus, superscript, subscript, delimiter)` &ndash; `delimiter`
+    is an extra field holding *\<24-bit number\>* as a delimiter information.
+* `Fraction(numerator, denominator, thickness, left, right)` denotes a
+  generalized fraction. `numerator` and `denominator` are math lists (`None`
+  denotes an empty list), `thickness` is the fraction line thickness (`DEFAULT`
+  or measure), and `left` and `right` are delimiters (24-bit number or `None`
+  if not present).
+* `Choice(a, b, c, d)` denotes a choice item produced by `\matchoice`.
+
+Now the method (all steps are done in the display/math mode):
+1. If *\<space\>* is read, nothing happens.
+1. If `\<space>` is read, append a `\hskip` *g*, where *g* is the same amount
+   as produced by *\<space\>* in horizontal mode with space factor 1000, to the
+   math list.
+1. If `\hskip` *\<glue\>*, `\hfil`, `\hfill`, `\hss`, `\hfilneg`, or `\mskip`
+   *\<muglue\>* is read, append the skip to the math list.
+1. If `\leaders`, `\cleaders`, or `\xleaders`, followed by *\<box or rule\>*
+   *\<mathematical skip\>*, is read, append the leaders to the math list.
+   *\<mathematical skip\>* is one of `\hskip` *\<glue\>*, `\hfil`, `\hfill`,
+   `\hss`, `\hfilneg`, or `\mskip` *\<muglue\>*.
+1. If `\nonscript` is read, append the special zero-width skip to the math
+   list. If the next item to be appended is skip and the `\nonscript` had been
+   typeset in *script* style or *script script* style, then the skip is
+   canceled.
+1. If a category 11 or 12 token, `\chardef`-defined control sequence, or
+   `\char` *\<8-bit number\>* is read, then:
+   1. Replace the character number, `c`, by its `\mathcode` value, `v`.
+   1. If `v` is `"8000`, put the active char (`c`, 13) back to the token
+      stream.
+   1. Otherwise, put `\mathchar v` to the token stream.
+1. If `\delimiter` *\<27-bit number\>* is read, then:
+   1. Put `\mathchar <atom id><font family #1><character position #1>` to the
+      token stream.
+1. If `\mathchar` *\<15-bit number\>* or `\mathchardef`-defined control
+   sequence is read, then:
+   1. Extract atom id, font family, and a character position from it as `id`,
+      `family`, and `position`, respectively.
+   1. If `id` is 7, then:
+      * Set `id` to 0.
+      * If 0 <= `\fam` <= 15, then set `family` to `\fam`.
+   1. Append `Atom(id, Symbol(family, position), None, None)` to the math list.
+1. If `\/` is read, append a `\kern` of zero-width to the math list.
+1. If `\noboundary` is read, nothing happens.
+1. If `{` *\<math mode material\>* `}` is read, then:
+   1. Open a group, convert the math mode material to the math list `l`, and
+      close the group.
+   1. If `l` is empty, append `Atom(Ord, None, None, None)` to the math list.
+   1. Otherwise, if `l` has only one element which is an Ord or Acc atom, then
+      append this atom to the math list.
+   1. Otherwise, append `Atom(Ord, l, None, None)` to the math list.
+1. If `^` (a token of the category 7) *\<math field\>* is read, then:
+   1. If the math list does not end with atom, append
+      `Atom(Ord, None, None, None)` to the math list.
+   1. If the superscript field of the last element of the math list is not
+      empty, issue `Double superscript` error.
+   1. Otherwise, change the superscript field to the result of the given
+      *\<math field\>*.
+1. If `_` (a token of the category 8) *\<math field\>* is read, then:
+   1. If the math list does not end with atom, append
+      `Atom(Ord, None, None, None)` to the math list.
+   1. If the subscript field of the last element of the math list is not empty,
+      issue `Double subscript` error.
+   1. Otherwise, change the subscript field to the result of the given *\<math
+      field\>*.
+1. If `\displaylimits`, `\limits`, or `\nolimits` is read, then:
+   1. If the last item in the math list is not an Op atom, complain.
+   1. Otherwise, set the `limits` field of the Op atom to `DISPLAYLIMITS`,
+      `LIMITS`, or `NOLIMITS` accordingly.
+1. If *\<box\>* is read, then:
+   1. If the constructed box is void, nothing happens.
+   1. Otherwise, append `Atom(Ord, box, None, None)` to the math list.
+1. If `\raise` *\<dimen\>* *\<box\>* or `\lower` *\<dimen\>* *\<box\>* is read,
+   then the offset of *\<box\>* is adjusted accordingly and the next actions
+   taken are those as if *\<box\>* had been read.
+1. If `\mathord` *\<math field\>* is read, then:
+   1. Append `Atom(Ord, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathop` *\<math field\>* is read, then:
+   1. Append `Atom(Op, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathbin` *\<math field\>* is read, then:
+   1. Append `Atom(Bin, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathrel` *\<math field\>* is read, then:
+   1. Append `Atom(Rel, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathopen` *\<math field\>* is read, then:
+   1. Append `Atom(Open, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathclose` *\<math field\>* is read, then:
+   1. Append `Atom(Close, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathpunct` *\<math field\>* is read, then:
+   1. Append `Atom(Punct, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\mathinner` *\<math field\>* is read, then:
+   1. Append `Atom(Inner, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\overline` *\<math field\>* is read, then:
+   1. Append `Atom(Over, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\underline` *\<math field\>* is read, then:
+   1. Append `Atom(Under, r, None, None)`, where `r` is the result of the given
+      math field, to the math list.
+1. If `\left` *\<delimiter\>* *\<math mode material\>* `\right` *\<delimiter\>*
+   is read, then:
+   1. Open a group.
+   1. Start a new math list `l`.
+   1. Append `Left(dl)` to `l`, where `dl == delcode(<delimiter>)` for the
+      `\left` *\<delimiter\>*.
+   1. Process the *\<math mode material\>*, appending its elements to `l`.
+   1. Append `Right(dr)` to `l`, where `dr == delcode(<delimiter>)` for the
+      `\right` *\<delimiter\>*.
+   1. Close the group.
+   1. Append `Atom(Inner, l, None, None)` to the math list.
+1. If `\over`, `\atop`, `\above` *\<dimen\>*, `\overwithdelims` *\<delimiter\>*
+   *\<delimiter\>*, `\atopwithdelims` *\<delimiter\>* *\<delimiter\>*, or
+   `\abovewithdelims` *\<delimiter\>* *\<delimiter\>* *\<dimen\>* is read,
+   then:
+   1. Save the current math list to `l`.
+   1. If a special holding place, `f`, associated with the current group
+      nesting level is not empty, complain (constructions like
+      `{1\over 2\over 3}` are not allowed).
+   1. Make `Fraction(l, None, th, dl, dr)`, where
+      * if `\over` has been read: `th = DEFAULT`, `dl = dr = None`;
+      * if `\atop` has been read: `th = 0`, `dl = dr = None`;
+      * if `\above` *v* has been read: `th = v`, `dl = dr = None`;
+      * if `\overwithdelims` *da* *db* has been read: `th = DEFAULT`,
+        `dl = delcode(da)`, `dr = delcode(db)`;
+      * if `\atopwithdelims` *da* *db* has been read: `th = 0`,
+        `dl = delcode(da)`, `dr = delcode(db)`;
+      * if `\abovewithdelims` *da* *db* *v* has been read: `th = v`,
+        `dl = delcode(da)`, `dr = delcode(db)`;
+
+      and store it to `f`.
+   1. Clear the current math list.
+   1. Process the math mode material following `\over` until matching `}`, `$`,
+      or `\right`.
+   1. Put the current math list to `f.denominator`.
+   1. Replace the entire content of the current math list with `f`.
+   1. If `f.numerator` starts with `Left(d)`:
+      * Remove `Left(d)` from the `f.numerator` start.
+      * Insert it before `f` in the current math list so the current math list
+        have now two elements: `Left(d)` directly followed by `f`.
+1. If `\mathaccent` *\<15-bit number\>* *\<math field\>* is read, then:
+   1. Extract atom id, font family and character position from *\<15-bit
+      number\>* and store them to `id`, `ff`, and `cp`, respectively.
+   1. Append `Atom(Acc, r, None, None, Symbol(ff, cp))`, where `r` is the
+      result of the given *\<math field\>*, to the math list.
+1. If `\radical` *\<27-bit number\>* *\<math field\>* is read, then:
+   1. Convert *\<27-bit number\>* to *\<24-bit number\>* by discarding the 3
+      highest bits and store the result to `d`.
+   1. Append `Atom(Rad, r, None, None, d)`, where `r` is the result of the
+      given *\<math field\>*, to the math list.
+1. If `\vcenter` *\<box specification\>* `{` *\<vertical mode material\>* `}`
+   is read:
+   1. Form a `\vbox`, `b`, as if `\vcenter` had been `\vbox`.
+   1. Append `Atom(Vcent, b, None, None)` to the math list.
+1. If `\mathchoice` *\<filler\>* `{` *\<math mode material\>* `}` *\<filler\>*
+   `{` *\<math mode material\>* `}` *\<filler\>* `{` *\<math mode material\>*
+   `}` *\<filler\>* `{` *\<math mode material\>* `}` is read, append
+   `Choice(a, b, c, d)` to the math list, where `a`, `b`, `c`, and `d` are
+   results of `{` *\<math mode material\>* `}` as if it had been *\<math
+   field\>*.
+1. If `\displaystyle`, `\textstyle`, `\scriptstyle`, or `\scriptscriptstyle` is
+   read, append this style change item to the mast list.
+1. If `\eqno` or `\leqno`, followed by *\<math mode material\>* `$` is read,
+   then:
+   1. If the current mode is not the display mode, complain.
+   1. Open a group.
+   1. Insert tokens from `\everymath` to the token stream.
+   1. Enter the math mode.
+   1. Convert *\<math mode material\>* to the horizontal list and store it to
+      the `\hbox` `b` that will be used as the equation number of the current
+      display.
+   1. Close the group.
+   1. Insert `$` back to the token stream, where it will terminate the display
+      mode.
+1. If `\halign` *\<box specification\>* `{` *\<alignment material\>* `}` is
+   read, then:
+   1. If the mode is not the display mode or the current math list is not
+      empty, complain.
+   1. If `}` is not followed by *\<assignment\>* commands except `\setbox` or
+      `$$`, complain.
+   1. Process optional *\<assignment\>* commands.
+   1. Process `$$` &ndash; close group, exit display mode.
+   1. Insert `\abovedisplayskip` to the vertical list.
+   1. Insert lines resulted from the `\halign` to the vertical list, each line
+      is shifted right about `\displayindent`.
+   1. Insert `\belowdisplayskip` to the vertical list.
+1. If `\vrule` *\<rule specification\>* is read, append it to the math list.
+1. If `\indent` is read, append `Atom(Ord, b, None, None)`, where `b` is an
+   empty `\hbox` of the width `\parindent`, to the math list.
+1. If `\noindent` is read, nothing happens.
+1. If `\discretionary` *\<general text\>* *\<general text\>* *\<general text\>*
+   is read, then:
+   1. Check that the last *\<general text\>* produces an empty list.
+   1. Append the `\discretionary` to the math list.
+1. If `\-` is read, treat it as `\discretionary{-}{}{}`
+1. If `\unhbox` *\<8-bit number\>* or `\unhcopy` *\<8-bit number\>* is read,
+   then:
+   1. If a box is not void, complain.
+   1. Otherwise, nothing happens.
+1. If `$` is read, then:
+   1. In display mode, read another `$` that must follows.
+   1. Close the group.
+   1. Finish the math list and convert it into a horizontal list.
+   1. After completing a displayed formula, read one optional space.
+
+### Converting a Math List to the Horizontal List
+
+Math list is converted to the horizontal list just right after math/display
+mode ends (`$`, `$$`).
+
 ### `\special`
 
 * `\special{landscape}` tells `dvips` to rotate page about 90 degrees
@@ -2459,6 +2790,23 @@ In the following, `at`, `scaled`, `bp`, `cc`, `cm`, `dd`, `in`, `mm`, `pc`,
 Keywords are case insensitive. In `fil`, `fill`, and `filll` are allowed spaces
 between the `l`s.
 
+* *assignment*
+  * macro definition
+  * assignment to a register or parameter
+  * `\advance`, `\multiply`, `\divide` commands
+  * `\catcode`, `\delcode`, etc. assignment
+  * `\let` command
+  * `\chardef`, `\mathchardef`, `\countdef`, etc. commands
+  * `\font`-defined control sequence or `\nullfont`
+  * `\textfont`, `\scriptfont`, etc. assignment
+  * `\parshape` specification
+  * `\read` command
+  * `\setbox` command
+  * `\font` definition
+  * `\fontdimen`, `\hyphenchar`, and `\skewchar` assignments
+  * `\hyphenation` and `\patterns` commands
+  * `\wd`, `\ht`, and `\dp` assignments
+  * `\errorstopmode`, `\batchmode`, etc. commands
 * *at clause*
   * `<space>*`
   * `<space>* at<dimen>`
@@ -2485,12 +2833,12 @@ between the `l`s.
   * if the expand processor sees `\csname<something>\endcsname`,
     then `<something>` becomes a control sequence
 * *delimiter*
-  * ASCII character with non-negative `\delcode`
-  * `\delimiter<27-bit number>`
+  * `<filler>` ASCII character with non-negative `\delcode`
+  * `<filler> \delimiter<27-bit number>`
 * *dimen*
   * `<sign><float><unit>`
-  * `<sign>?` `\dimen` register
-  * `<sign>?` `\skip` register
+  * `<sign>` `\dimen` register
+  * `<sign>` `\skip` register
 * *equals*
   * `<space>*` `(=, 12)?`
 * *file name*
@@ -2507,6 +2855,8 @@ between the `l`s.
   * `\textfont<number>`
   * `\scriptfont<number>`
   * `\scriptscriptfont<number>`
+* *general text*
+  * `<filler> ({, 1) <balanced text> (}, 2)`
 * *glue*
   * `<dimen><stretch>?<shrink>?`
   * `<sign>` `\skip` register
@@ -2514,9 +2864,18 @@ between the `l`s.
   * `\vskip <glue>`, `\vfil`, `\vfill`, `\vss`, `\vfilneg`
   * `\hskip <glue>`, `\hfil`, `\hfill`, `\hss`, `\hfilneg`
   * `\mskip <muglue>`
+* *horizontal mode material*
+  * a sequence of commands, together with their parameters, allowed in
+    a horizontal mode
+* *math field*
+  * `<filler> <math-symbol>`
+  * `<filler> ({, 1) <math mode material> (}, 2)`
+* *math mode material*
+  * a sequence of commands, together with their parameters, allowed in math or
+    display mode
 * *mudimen*
   * `<sign><float><mu-unit>`
-  * `<sign>?` `\muskip` register
+  * `<sign>` `\muskip` register
 * *muglue*
   * `<mudimen><mu-stretch>?<mu-shrink>?`
   * `<sign>` `\muskip` register
@@ -2533,8 +2892,10 @@ between the `l`s.
 * *optional by*
   * `<space>*` `( by )?`
 * *rule specification*
-  * `<space>*`
-  * `( <width> | <height> | <depth> )+`
+  * `( <width> | <height> | <depth> )* <space>*`
+* *vertical mode material*
+  * a sequence of commands, together with their parameters, allowed in a
+    vertical mode
 * `<depth>` is defined as:
   ```
   <depth> ::= <space>* depth <dimen>
@@ -2553,6 +2914,7 @@ between the `l`s.
   <float> ::= (', 12) <odigit>+
   <float> ::= (", 12) <xdigit>+
   <float> ::= (`, 12) <single-char-token>
+  <float> ::= \count register
   <float> ::= \chardef constant
   <float> ::= \mathchardef constant
   <float> ::= <digit>+ <float-point> <digit>*
@@ -2575,6 +2937,15 @@ between the `l`s.
 * `<height>` is defined as:
   ```
   <height> ::= <space>* height <dimen>
+  ```
+* `<math-symbol>` is defined as:
+  ```
+  <math-symbol> ::= a token of the category 11 or 12
+  <math-symbol> ::= \char<8-bit number>
+  <math-symbol> ::= \chardef constant
+  <math-symbol> ::= \mathchar<15-bit number>
+  <math-symbol> ::= \mathchardef constant
+  <math-symbol> ::= \delimiter<27-bit number>
   ```
 * `<mu-shrink>` is defined as:
   ```
@@ -2606,10 +2977,12 @@ between the `l`s.
   ```
   <single-char-token> ::= single character control sequence
                        |  token (ASCII value, category)
+                       |  active character
   ```
 * `<space>` is defined as:
   ```
-  <space> ::= token of category 10 or its equivalent control sequence
+  <space> ::= token of category 10 or its equivalent control sequence/active
+              character
   ```
 * `<stretch>` is defined as:
   ```
