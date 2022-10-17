@@ -1494,7 +1494,11 @@ Kern can be inserted to the horizontal list in these ways:
        if kern:
            emit(kern)
    ```
-1. Using `\kern` or `\/` command.
+1. Using `\kern` or *italic correction* `\/` command. `\/` command adjusts the
+   space between italic and normal character in the following way:
+   1. It reads from the current font the amount of space associated with the
+      last character.
+   1. Then it inserts this space as a `\kern` to the current horizontal list.
 
 *Skip* is a space that can shrunk or stretched. Skips usually allows line
 breaks. Skip can be inserted to the horizontal list in these ways:
@@ -1989,8 +1993,15 @@ major differences:
 When entering the math/display mode, do:
 1. Open a group.
 1. Sets `\fam` to -1.
-1. In math mode, insert tokens from `\everymath` to the token stream.
-1. In display mode, insert tokens from `\everydisplay` to the token stream.
+1. In math mode:
+   1. Insert tokens from `\everymath` to the token stream.
+   1. Set *C* to *T*.
+1. In display mode:
+   1. Insert tokens from `\everydisplay` to the token stream.
+   1. Set *C* to *D*.
+
+For the meaning of *C*, *D*, and *T* see
+[Converting a Math List to the Horizontal List](#converting-a-math-list-to-the-horizontal-list).
 
 ### Building a Math List
 
@@ -2306,8 +2317,307 @@ Now the method (all steps are done in the display/math mode):
 
 ### Converting a Math List to the Horizontal List
 
-Math list is converted to the horizontal list just right after math/display
-mode ends (`$`, `$$`).
+Lets first describe parameters and auxiliary algorithms involved in
+math-to-horizontal list conversion.
+
+#### Fonts and Styles
+
+There are eight styles in math formulas:
+* a display style, denoted *D*
+* a text style, denoted *T*
+* a script style, denoted *S*
+* a script-script style, denoted *SS*
+* a cramped display style, denoted *D'*
+* a cramped text style, denoted *T'*
+* a cramped script style, denoted *S'*
+* a cramped script-script style, denoted *SS'*
+
+The current style will be denoted *C*.
+
+Transition between styles are realized either by `\displaystyle`, `\textstyle`,
+`\scriptstyle`, or `\scriptscriptstyle` to set *C* to *D*, *T*, *S*, or *SS*,
+respectively, or implicitly by the rules summarized in the following table:
+| *C* | Superscript | Subscript | Numerator | Denominator |
+| --- | ----------- | --------- | --------- | ----------- |
+| *D* | *S* | *S'* | *T* | *T'* |
+| *T* | *S* | *S'* | *S* | *S'* |
+| *S* | *SS* | *SS'* | *SS* | *SS'* |
+| *SS* | *SS* | *SS'* | *SS* | *SS'* |
+| *D'* | *S'* | *S'* | *T'* | *T'* |
+| *T'* | *S'* | *S'* | *S'* | *S'* |
+| *S'* | *SS'* | *SS'* | *SS'* | *SS'* |
+| *SS'* | *SS'* | *SS'* | *SS'* | *SS'* |
+
+The ordering of these styles is *D* > *D'* > *T* > *T'* > *S* > *S'* > *SS* >
+*SS'*. Define *C'* to be *X'* if and only if *C* = *X* or *C* = *X'*.
+Furthermore, define *C^* and *C_* to be the superscript and subscript style for
+*C*, respectively. Note that *C_* is (*C^*)'.
+
+Math mode algorithms are dealing with up to 16 font families ranging from 0 to
+15 inclusive. Each font family contains three fonts:
+* `\textfont` for math formulas at ordinary level (not in subscripts and
+  superscripts)
+* `\scriptfont` for math formulas at the first subscript and superscript level
+* `\scriptscriptfont` for math formulas at the second and more subscript and
+  superscript level
+
+Font families 0, 1, 2, and 3 follow these conventions:
+* Font family 0 is for roman letters used in math formulas.
+* Font family 1 is for math italic letters used in math formulas.
+* Font family 2 is for math symbols.
+* Font family 3 is for math extensions.
+
+Font families 2 and 3 have special meaning. TeX requires that the font family 2
+must have these parameters specified:
+* `\fontdimen8` &ndash; numerator up-shift relative to the axis in *D* or *D'*
+* `\fontdimen9` &ndash; numerator up-shift relative to the axis in *T*, *T'*,
+  *S*, *S'*, *SS*, or *SS'*
+* `\fontdimen10` &ndash; like `\fontdimen9`, used in case of `\atop` or
+  `\atopwithdelims`
+* `\fontdimen11` &ndash; denominator down-shift relative to the axis in *D* or
+  *D'*
+* `\fontdimen12` &ndash; denominator down-shift relative to the axis in *T*,
+  *T'*, *S*, *S'*, *SS*, or *SS'*
+* `\fontdimen13` &ndash; superscript up-shift in *D*
+* `\fontdimen14` &ndash; superscript up-shift in *T*, *S*, or *SS*
+* `\fontdimen15` &ndash; superscript up-shift in *D'*, *T'*, *S'*, or *SS'*
+* `\fontdimen16` &ndash; subscript down-shift if the superscript is empty
+* `\fontdimen17` &ndash; subscript down-shift if the superscript is not empty
+* `\fontdimen18` &ndash; used to compute a minimal superscript up-shift
+* `\fontdimen19` &ndash; used to compute a minimal subscript down-shift
+* `\fontdimen20` &ndash; minimal delimiter size in *D* or *D'*
+* `\fontdimen21` &ndash; minimal delimiter size in *T*, *T'*, *S*, *S'*, *SS*,
+  or *SS'*
+* `\fontdimen22` &ndash; baseline to axis distance measured in up-wards
+  direction
+
+Additionally, TeX requires that the font family 3 must have these parameters
+specified:
+* `\fontdimen8` &ndash; default rule line thickness (`\overline`, `\underline`,
+  fractions)
+* `\fontdimen9` &ndash; spacing around big operators #1
+* `\fontdimen10` &ndash; spacing around big operators #2
+* `\fontdimen11` &ndash; spacing around big operators #3
+* `\fontdimen12` &ndash; spacing around big operators #4
+* `\fontdimen13` &ndash; spacing around big operators #5
+
+#### Auxiliary Algorithms
+
+* *Set box x to the y field in style z* algorithm:
+  1. If *y* field is empty, *x* is set equal to a null (empty) `\hbox`.
+  1. If *y* field contains a symbol `\Sym`:
+     1. Set *x* to `\hbox{\Font\Sym}`, where `\Font` is the font associated
+        with *z*.
+     1. Add the italic correction from `\Font` associated with `\Sym` to the
+        width of *x*.
+
+  1. If *y* field contains a math or horizontal list:
+     1. If *y* field contains a math list, convert it to a horizontal list with
+        the starting style *z*.
+     1. Let `\Content` be the horizontal list, either given or converted.
+     1. Remove stretching and shrinking from skips in `\Content`.
+     1. If `\Content` is a `\hbox`, set *x* to `\Content`.
+     1. Otherwise, set *x* to `\hbox{\Content}`.
+     1. If *x* contains a single character, remove unneeded italic correction.
+* *Set box x to a variable delimiter d, having z minimum height plus depth*
+  algorithm (in C++ like pseudo-code):
+  ```C++
+  enum DelimiterVariant {
+    SMALL_VARIANT,
+    LARGE_VARIANT
+  };
+
+  enum MathFontSize {
+    TEXT_SIZE,
+    SCRIPT_SIZE,
+    SCRIPT_SCRIPT_SIZE
+  };
+
+  // Structure representing a symbol.
+  struct Symbol {
+    Symbol(Font f, CharPos c) : font(f), cpos(c) {}
+    Dimen width();
+    Dimen italic_correction();
+    Dimen height();
+    Dimen depth();
+    Symbol get_repeatable_part();
+    Symbol get_top_part();
+    Symbol get_middle_part();
+    Symbol get_bottom_part();
+
+    Font font;
+    CharPos cpos;
+  };
+
+  // Return true if `s` exists in the associated font.
+  bool symbol_exists(Symbol s);
+  // Return true if `s` is extensible within the associated font.
+  bool is_extensible(Symbol s);
+  // If `s` has the successor in the associated font, return it. Otherwise,
+  // return the non-existing symbol (Symbol(nullfont, 0)).
+  Symbol symbol_successor(Symbol s);
+  // Extract <font family #1> (v == SMALL_VARIANT) or <font family #2>
+  // (v == LARGE_VARIANT) from `d`.
+  FontFamily get_font_family(Delimiter d, DelimiterVariant v);
+  // Extract <character position #1> (v == SMALL_VARIANT) or <character position #2>
+  // (v == LARGE_VARIANT) from `d`.
+  CharPos get_character_position(Delimiter d, DelimiterVariant v);
+  // If `sz == TEXT_SIZE`, return `\textfont ff`.
+  // If `sz == SCRIPT_SIZE`, return `\scriptfont ff`.
+  // If `sz == SCRIPT_SCRIPT_SIZE`, return `\scriptscriptfont ff`.
+  // Otherwise, return `nullfont`.
+  Font get_family_font(FontFamily ff, MathFontSize sz);
+
+  // Enclose `s` with \hbox.
+  Box symbol_to_box(Symbol s)
+  {
+    Box b = HBox();
+
+    b.append(s);
+    b.width = s.width() + s.italic_correction();
+    b.height = s.height();
+    b.depth = s.depth();
+    return b;
+  }
+
+  // Return true if `symbol` or some of its successors is extensible or its
+  // total height is at least `expected_height`. Update `result` and
+  // `max_height_so_far` accordingly.
+  bool best_delimiter_lookup_inner(
+    Symbol symbol, Dimen expected_height, Symbol & result, Dimen & max_height_so_far
+  )
+  {
+    while (symbol_exists(symbol)) {
+      if (is_extensible(symbol)) {
+        result = symbol;
+        return true;
+      }
+      Dimen height = symbol.height() + symbol.width();
+      if (height > max_height_so_far) {
+        result = symbol;
+        max_height_so_far = height;
+        if (height >= expected_height)
+          return true;
+      }
+      symbol = symbol_successor(symbol);
+    }
+    return false;
+  }
+
+  // Lookup for the best fitting delimiter and store it to `best_delimiter`.
+  void best_delimiter_lookup(
+    Delimiter delimiter, MathFontSize size, Dimen expected_height,
+    Symbol & best_delimiter
+  )
+  {
+    struct {
+      FontFamily ff;
+      CharPos cp;
+    } delimiters[2] = {
+      {
+        get_font_family(delimiter, SMALL_VARIANT),
+        get_character_position(delimiter, SMALL_VARIANT)
+      },
+      {
+        get_font_family(delimiter, LARGE_VARIANT),
+        get_character_position(delimiter, LARGE_VARIANT)
+      }
+    };
+
+    Dimen max_height_so_far = 0;
+
+    for (int i = 0; i < 2; i++) {
+      auto d = delimiters[i];
+
+      if (d.ff == 0 && d.cp == 0)
+        continue;
+
+      auto sz = size;
+      while (sz >= TEXT_SIZE) {
+        auto f = get_family_font(d.ff, sz);
+
+        if (
+          f != nullfont
+          && best_delimiter_lookup_inner(
+            Symbol(f, d.cp), expected_height, best_delimiter, max_height_so_far
+          )
+        ) return;
+        sz--;
+      }
+    }
+  }
+
+  // The algorithm itself. Here `delimiter` coincides with `d`, `size` is the
+  // current math size derived from the current math style, `expected_height`
+  // coincides with `z`, and the return value coincides with `x`.
+  Box delimiter_to_box(Delimiter delimiter, MathFontSize size, Dimen expected_height)
+  {
+    Symbol best_delimiter = Symbol(nullfont, 0);
+
+    best_delimiter_lookup(delimiter, size, expected_height, best_delimiter);
+
+    // If no suitable delimiter was found, return an empty \hbox with width set
+    // to \nulldelimiterspace.
+    if (best_delimiter.font == nullfont) {
+      Box b = HBox();
+      b.width = nulldelimiterspace;
+      return b;
+    }
+
+    // Compose delimiter from parts.
+    if (is_extensible(best_delimiter)) {
+      // Repeatable part (always present).
+      Symbol rep = best_delimiter.get_repeatable_part();
+      // Top, middle, and bottom parts (optional).
+      Symbol top = best_delimiter.get_top_part();
+      Symbol mid = best_delimiter.get_middle_part();
+      Symbol bot = best_delimiter.get_bottom_part();
+
+      // Guess how many parts are needed to fulfill `expected_height`.
+      Dimen th = 0, rep_th = rep.height() + rep.depth();
+      int nreps = 0;
+
+      if (top.font != nullfont)
+        th += top.height() + top.depth();
+      if (mid.font != nullfont)
+        th += mid.height() + mid.depth();
+      if (bot.font != nullfont)
+        th += bot.height() + bot.depth();
+      if (rep_th > 0) {
+        while (th < expected_height) {
+          th += (mid.font == nullfont) ? rep_th : 2*rep_th;
+          nreps++;
+        }
+      }
+
+      // Compose the \vbox with the delimiter.
+      Box b = VBox();
+
+      if (bot.font != nullfont)
+        // Insert a box to the `b`'s vertical list begin.
+        b.pushbox(symbol_to_box(bot));
+      for (int i = 0; i < nreps; i++)
+        b.pushbox(symbol_to_box(rep));
+      if (mid.font != nullfont) {
+        b.pushbox(symbol_to_box(mid));
+        for (int i = 0; i < nreps; i++)
+          b.pushbox(symbol_to_box(rep));
+      }
+      if (top.font != nullfont)
+        b.pushbox(symbol_to_box(top));
+
+      // Set box dimensions.
+      b.width = rep.width() + rep.italic_correction();
+      b.height = b.list.empty() ? 0 : b.list[0].height;
+      b.depth = th - b.height;
+
+      return b;
+    }
+
+    // Delimiter is a symbol.
+    return symbol_to_box(best_delimiter);
+  }
+  ```
 
 ### `\special`
 
