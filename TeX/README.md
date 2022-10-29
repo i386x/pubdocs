@@ -2492,7 +2492,7 @@ specified:
         result = symbol;
         return true;
       }
-      Dimen height = symbol.height() + symbol.width();
+      Dimen height = symbol.height() + symbol.depth();
       if (height > max_height_so_far) {
         result = symbol;
         max_height_so_far = height;
@@ -2585,7 +2585,7 @@ specified:
         th += bot.height() + bot.depth();
       if (rep_th > 0) {
         while (th < expected_height) {
-          th += (mid.font == nullfont) ? rep_th : 2*rep_th;
+          th += (mid.font == nullfont) ? rep_th : rep_th*2;
           nreps++;
         }
       }
@@ -2616,6 +2616,42 @@ specified:
 
     // Delimiter is a symbol.
     return symbol_to_box(best_delimiter);
+  }
+  ```
+* *Rebox a given box to a given width* algorithm (in C++ like pseudo-code):
+  ```C++
+  // Return true if `x` is `Symbol`
+  bool is_symbol(Node & x);
+  // Return true if `b` is \vbox
+  bool is_vbox(Box & b);
+
+  // Rebox a given box `b` to a given width `w` and return the reboxed box
+  Box rebox(Box b, Dimen w)
+  {
+    // The `b`'s width matches `w` => nothing to do
+    if (b.width == w)
+      return b;
+
+    // `b` is empty => set `b`'s width to `w`
+    if (b.list.empty()) {
+      b.width = w;
+      return b;
+    }
+
+    // We are going to unpack `b` unless `b` is a \vbox. Therefore, pack \vbox
+    // into protective \hbox
+    if (is_vbox(b))
+      b = HBox(b);
+
+    // Unpack the \hbox (get the horizontal list)
+    List l = b.list.copy();
+
+    // If there is a just one symbol, add a \kern for an italic correction
+    if (l.length() == 1 && is_symbol(l[0]) && l[0].width() != b.width)
+      l += Kern(b.width - l[0].width());
+
+    // Center the horizontal list `l` in a new \hbox of width `w`
+    return HBox(Hss() + l + Hss(), w);
   }
   ```
 
