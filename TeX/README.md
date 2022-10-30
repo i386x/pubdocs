@@ -1500,8 +1500,8 @@ Kern can be inserted to the horizontal list in these ways:
       last character.
    1. Then it inserts this space as a `\kern` to the current horizontal list.
 
-*Skip* is a space that can shrunk or stretched. Skips usually allows line
-breaks. Skip can be inserted to the horizontal list in these ways:
+*Glue* is a space that can shrunk or stretched. Glues usually allows line
+breaks. Glue can be inserted to the horizontal list in these ways:
 1. Using space token. This token is converted to `\hskip` according to the
    following algorithm:
    ```python
@@ -1671,23 +1671,23 @@ Analogously, `\vsplit` uses `\splittopskip`.
 
 ### Specifying Fill Pattern with `\leaders`
 
-`\leaders` behaves like `\hskip` or `\vskip` &ndash; it is a skip which fills
+`\leaders` behaves like `\hskip` or `\vskip` &ndash; it is a glue which fills
 its space by the given pattern. `\leaders` accepts these parameters:
 * `\leaders` *\<box or rule\>* *\<glue specification\>*
 
-If *\<box or rule\>* is a rule and when the final size of skip is established:
+If *\<box or rule\>* is a rule and when the final size of glue is established:
 1. Establish the missing rule dimensions as described in the
    horizontal/vertical list-to-box conversion.
 1. In the horizontal mode:
-   * Set the rule width to the finally established skip size.
+   * Set the rule width to the finally established glue size.
 1. In the vertical mode:
-   * Set the rule height to the finally established skip size.
+   * Set the rule height to the finally established glue size.
    * Set the rule depth to 0pt.
-1. If the finally established skip size is non-negative:
-   * Draw the rule in the space occupied by the skip with respect to
+1. If the finally established glue size is non-negative:
+   * Draw the rule in the space occupied by the glue with respect to
      baseline/y-axis.
 
-If *\<box or rule\>* is a box and when the final size of skip is established:
+If *\<box or rule\>* is a box and when the final size of glue is established:
 1. In case of `\leaders` in the horizontal mode:
    ```python
    # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
@@ -1695,7 +1695,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
 
    # Get the current position:
    cx = get_current_position_x()
-   # Get the final skip width:
+   # Get the final glue width:
    tw = e.skip.base
    # Get the box width:
    w = e.box.width
@@ -1722,7 +1722,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
 
    # Get the current position:
    cy = get_current_position_y()
-   # Get the final skip height:
+   # Get the final glue height:
    th = e.skip.base
    # Get the total box height:
    h = e.box.height + e.box.depth
@@ -1747,7 +1747,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
    # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
    # the DVI.
 
-   # Get the final skip width:
+   # Get the final glue width:
    tw = e.skip.base
    # Get the box width:
    w = e.box.width
@@ -1770,7 +1770,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
    # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
    # the DVI.
 
-   # Get the final skip height:
+   # Get the final glue height:
    th = e.skip.base
    # Get the total box height:
    h = e.box.height + e.box.depth
@@ -1793,7 +1793,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
    # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
    # the DVI.
 
-   # Get the final skip width:
+   # Get the final glue width:
    tw = e.skip.base
    # Get the box width:
    w = e.box.width
@@ -1816,7 +1816,7 @@ If *\<box or rule\>* is a box and when the final size of skip is established:
    # Snippet of Python-like pseudo-code that ships `\leaders` element `e` to
    # the DVI.
 
-   # Get the final skip height:
+   # Get the final glue height:
    th = e.skip.base
    # Get the total box height:
    h = e.box.height + e.box.depth
@@ -1940,18 +1940,18 @@ Now, lets describe how `\halign` makes a table:
    1. If the first `\cr` is directly followed by `\noalign`, insert the
       vertical mode material from `\noalign` to the vertical list.
    1. For *\<line 1\>*, insert a `\hbox` to the vertical list containing:
-      * a skip *t0*;
+      * a glue *t0*;
       * the `\hbox` from the 1st column of this line, resized to *w1*;
-      * a skip *t1*;
+      * a glue *t1*;
       * the `\hbox` from the 2nd column of this line, resized to *w2*;
-      * a skip *t2*;
+      * a glue *t2*;
       * ...
       * the spanned `\hbox` spanning columns *i* to *j*, including *j*, resized
         to *wij*;
-      * the skip *tj*;
+      * the glue *tj*;
       * ...
       * the `\hbox` from the *n*th, last, column of this line, resized to *wn*;
-      * a skip *tn*.
+      * a glue *tn*.
    1. If the `\cr` that ends the *\<line 1\>* is directly followed by
       `\noalign`, insert the vertical mode material from `\noalign` to the
       vertical list.
@@ -2017,7 +2017,7 @@ elements:
 * horizontal mode material (`\hbox`, `\vbox`, `\vtop`, `\vrule`, `\penalty`,
   `\discretionary`)
 * vertical mode material (`\mark`, `\insert`, `\vadjust`, `\write`, `\special`)
-* a skip (`\hskip`, `\mskip`, `\nonscript`)
+* a glue (`\hskip`, `\mskip`, `\nonscript`)
 * a kern (`\kern`, `\mkern`)
 * a style change (`\displaystyle`, `\textstyle`, ...)
 * a generalized fraction (`\above`, `\over`, ...)
@@ -2121,14 +2121,14 @@ Now the method (all steps are done in the display/math mode):
    as produced by *\<space\>* in horizontal mode with space factor 1000, to the
    math list.
 1. If `\hskip` *\<glue\>*, `\hfil`, `\hfill`, `\hss`, `\hfilneg`, or `\mskip`
-   *\<muglue\>* is read, append the skip to the math list.
+   *\<muglue\>* is read, append the glue to the math list.
 1. If `\leaders`, `\cleaders`, or `\xleaders`, followed by *\<box or rule\>*
-   *\<mathematical skip\>*, is read, append the leaders to the math list.
-   *\<mathematical skip\>* is one of `\hskip` *\<glue\>*, `\hfil`, `\hfill`,
+   *\<mathematical glue\>*, is read, append the leaders to the math list.
+   *\<mathematical glue\>* is one of `\hskip` *\<glue\>*, `\hfil`, `\hfill`,
    `\hss`, `\hfilneg`, or `\mskip` *\<muglue\>*.
-1. If `\nonscript` is read, append the special zero-width skip to the math
-   list. If the next item to be appended is skip and the `\nonscript` had been
-   typeset in *script* style or *script script* style, then the skip is
+1. If `\nonscript` is read, append the special zero-width glue to the math
+   list. If the next item to be appended is glue and the `\nonscript` had been
+   typeset in *script* style or *script script* style, then the glue is
    canceled.
 1. If a category 11 or 12 token, `\chardef`-defined control sequence, or
    `\char` *\<8-bit number\>* is read, then:
@@ -2410,12 +2410,11 @@ specified:
         with *z*.
      1. Add the italic correction from `\Font` associated with `\Sym` to the
         width of *x*.
-
   1. If *y* field contains a math or horizontal list:
      1. If *y* field contains a math list, convert it to a horizontal list with
         the starting style *z*.
      1. Let `\Content` be the horizontal list, either given or converted.
-     1. Remove stretching and shrinking from skips in `\Content`.
+     1. Remove stretching and shrinking from glues in `\Content`.
      1. If `\Content` is a `\hbox`, set *x* to `\Content`.
      1. Otherwise, set *x* to `\hbox{\Content}`.
      1. If *x* contains a single character, remove unneeded italic correction.
@@ -2450,12 +2449,12 @@ specified:
   };
 
   // Return true if `s` exists in the associated font.
-  bool symbol_exists(Symbol s);
+  bool symbol_exists(Symbol & s);
   // Return true if `s` is extensible within the associated font.
-  bool is_extensible(Symbol s);
+  bool is_extensible(Symbol & s);
   // If `s` has the successor in the associated font, return it. Otherwise,
   // return the non-existing symbol (Symbol(nullfont, 0)).
-  Symbol symbol_successor(Symbol s);
+  Symbol symbol_successor(Symbol & s);
   // Extract <font family #1> (v == SMALL_VARIANT) or <font family #2>
   // (v == LARGE_VARIANT) from `d`.
   FontFamily get_font_family(Delimiter d, DelimiterVariant v);
@@ -2620,40 +2619,94 @@ specified:
   ```
 * *Rebox a given box to a given width* algorithm (in C++ like pseudo-code):
   ```C++
-  // Return true if `x` is `Symbol`
+  // Return true if `x` is `Symbol`.
   bool is_symbol(Node & x);
-  // Return true if `b` is \vbox
+  // Return true if `b` is \vbox.
   bool is_vbox(Box & b);
 
-  // Rebox a given box `b` to a given width `w` and return the reboxed box
+  // Rebox a given box `b` to a given width `w` and return the reboxed box.
   Box rebox(Box b, Dimen w)
   {
-    // The `b`'s width matches `w` => nothing to do
+    // The `b`'s width matches `w` => nothing to do.
     if (b.width == w)
       return b;
 
-    // `b` is empty => set `b`'s width to `w`
+    // `b` is empty => set `b`'s width to `w`.
     if (b.list.empty()) {
       b.width = w;
       return b;
     }
 
     // We are going to unpack `b` unless `b` is a \vbox. Therefore, pack \vbox
-    // into protective \hbox
+    // into protective \hbox.
     if (is_vbox(b))
       b = HBox(b);
 
-    // Unpack the \hbox (get the horizontal list)
+    // Unpack the \hbox (get the horizontal list).
     List l = b.list.copy();
 
-    // If there is a just one symbol, add a \kern for an italic correction
+    // If there is a just one symbol, add a \kern for an italic correction.
     if (l.length() == 1 && is_symbol(l[0]) && l[0].width() != b.width)
       l += Kern(b.width - l[0].width());
 
-    // Center the horizontal list `l` in a new \hbox of width `w`
+    // Center the horizontal list `l` in a new \hbox of width `w`.
     return HBox(Hss() + l + Hss(), w);
   }
   ```
+
+#### The Conversion
+
+Here is the conversion algorithm itself. The algorithm uses auxiliary
+algorithms introduced in [Auxiliary Algorithms](#auxiliary-algorithms) and also
+several auxiliary functions and macros:
+* *prev*(*I*) refers to the previous item in the math list immediately
+  preceding *I*.
+* *next*(*I*) refers to the next item in the math list immediately following
+  *I*.
+* `\Cfont` expands to `\textfont`, `\scriptfont`, or `\scriptscriptfont`
+  depending on the current math font size used.
+
+* **[Step 0.]** Let *I* be the current (initially the first) item in the math
+  list.
+* **[Case 1.]** If *I* is a rule (`\hrule`, `\vrule`), `\discretionary`,
+  `\penalty`, `\special`, `Left(d)`, or `Right(d)`:
+  * Set *I* to *next*(*I*).
+* **[Case 2.]** If *I* is a glue or kern:
+  * If *I* is a glue that comes from `\nonscript` and *C* <= *S* and the
+    *next*(*I*) is glue or kern:
+    * Remove *next*(*I*) from the math list.
+  * Otherwise, if *I* is `\mskip` or `\mkern`:
+    * Convert `\mskip` or `\mkern` to `\hskip` or `\kern`, respectively, by
+      converting all measures in `mu` to `pt` using the following formula:
+      `units_in_pt = 1.0/18 * \fontdimen6\Cfont2 * units_in_mu`
+  * Set *I* to *next*(*I*).
+* **[Case 3.]** If *I* is `\displaystyle`, `\textstyle`, `\scriptstyle`, or
+  `\scriptscriptstyle`:
+  * Set *C* to *D*, *T*, *S*, or *SS*, respectively.
+  * Set *I* to *next*(*I*).
+* **[Case 4.]** If *I* is `Choice(a, b, c, d)`:
+  * Replace *I* with `a`, `b`, `c`, or `d`, depending on *C*.
+  * Set *I* to the next unprocessed item (*next*(*prev*(*I*))).
+* **[Case 5.]** If *I* is `Atom(Bin, ...)`:
+  * If *I* is the first `Atom` or the previous `Atom` was `Bin`, `Op`, `Rel`,
+    `Open`, or `Punct`:
+    * Change *I* to `Atom(Ord, ...)`.
+    * Go to **Case 14**.
+  * Otherwise, go to **Step 17**.
+* **[Case 6.]** If *I* is `Atom(Rel, ...)`, `Atom(Close, ...)`, or
+  `Atom(Punct, ...)`:
+  * If the previous `Atom` was `Bin`:
+    * Change that previous `Atom` to `Ord`.
+  * Go to **Step 17**.
+* **[Case 7.]** If *I* is `Atom(Open, ...)` or `Atom(Inner, ...)`:
+  * Go to **Step 17**.
+* **[Case 8.]** If *I* is `Atom(Vcent, nucleus, ...)`:
+  * Let `nucleus` be \vbox with height plus depth equal to `v`.
+  * Let `a` is `\fontdimen22\Cfont2`.
+  * Set `nucleus.height` to `0.5*v + a`.
+  * Set `nucleus.depth` to `0.5*v - a`.
+  * Change *I*'s type (`id`) to `Ord`.
+  * Go to **Step 17**.
 
 ### `\special`
 
@@ -2699,11 +2752,11 @@ specified:
 * `\kern` makes a solid space
 * `\lastkern` gets the last `\kern`
 * `\lastpenalty` gets the last `\penalty`
-* `\lastskip` gets the last space
+* `\lastskip` gets the last glue
 * `\penalty` inserts a penalty
 * `\unkern` removes the last `\kern` if present
 * `\unpenalty` removes the last `\penalty` if present
-* `\unskip` removes the last space if present
+* `\unskip` removes the last glue if present
 
 #### Debugging
 
@@ -2785,7 +2838,7 @@ specified:
 * `\hfill` is a shortcut for `\hskip 0pt plus 1fill`
 * `\hfilneg` is a shortcut for `\hskip 0pt plus -1fil`
 * `\hrule` makes a horizontal rule
-* `\hskip` makes a horizontal space
+* `\hskip` makes a horizontal space (glue)
 * `\hss` is a shortcut for `\hskip 0pt plus 1fil minus 1fil`
 * `\hyphenation` defines a user-defined hyphenation of words
 * `\indent` starts the horizontal mode and inserts an empty box about
@@ -2820,7 +2873,7 @@ specified:
 * `\mathpunct` makes a Punct atom
 * `\mathrel` makes a Rel atom
 * `\mkern` makes a solid space in the math list
-* `\mskip` makes a space in the math list
+* `\mskip` makes a glue in the math list
 * `\nolimits` sets the *nolimits* flag to Op atom
 * `\nonscript` tells TeX that the following space can be used only in
   non-script styles
@@ -2886,14 +2939,14 @@ specified:
 
 * `\everycr` is a list of tokens inserted to the token list after `\cr` or
   `\crcr` that ends a line
-* `\tabskip` is a space between columns or rows
+* `\tabskip` is a space (glue) between columns or rows
 
 ##### Auxiliary Storage
 
 * `\count` gives the access to a register for an integer storage
 * `\dimen` gives the access to a register for a dimension storage
-* `\muskip` gives the access to a register for a math space storage
-* `\skip` gives the access to a register for a space storage
+* `\muskip` gives the access to a register for a math glue storage
+* `\skip` gives the access to a register for a glue storage
 * `\toks` gives the access to a register for a token sequence storage
 
 ##### Boxes
@@ -2991,13 +3044,14 @@ specified:
 ##### Horizontal Spaces
 
 * `\hangindent` is an indentation of lines given by `\hangafter`
-* `\leftskip` is a left space before each line of a paragraph
-* `\parfillskip` is a space inserted right to the last line of a paragraph
+* `\leftskip` is a left space (glue) before each line of a paragraph
+* `\parfillskip` is a space (glue) inserted right to the last line of a
+  paragraph
 * `\parindent` is an indentation added at the beginning of a paragraph
-* `\rightskip` is a right space after each line of a paragraph
+* `\rightskip` is a right space (glue) after each line of a paragraph
 * `\spacefactor` is a ratio for spaces multiplied by 1000
-* `\spaceskip` is a space between words, if non-zero
-* `\xspaceskip` is a space between sentences, if non-zero
+* `\spaceskip` is a space (glue) between words, if non-zero
+* `\xspaceskip` is a space (glue) between sentences, if non-zero
 
 ##### Input Processor
 
@@ -3029,12 +3083,12 @@ specified:
 * `\displayindent` is an indentation for lines in math displays
 * `\displaywidth` is the length of line in math displays
 * `\mathsurround` is the size of a solid space around `$...$`
-* `\medmuskip` is the size of the medium math space
+* `\medmuskip` is the size of the medium math space (glue)
 * `\nulldelimiterspace` is the width of a null delimiter
 * `\predisplaysize` is the length of text preceding a math display
 * `\scriptspace` is the space after superscript or subscript
-* `\thickmuskip` is the size of the thick math space
-* `\thinmuskip` is the size of the thin math space
+* `\thickmuskip` is the size of the thick math space (glue)
+* `\thinmuskip` is the size of the thin math space (glue)
 
 ##### Miscellaneous
 
@@ -3097,20 +3151,21 @@ specified:
 
 ##### Vertical Spaces
 
-* `\abovedisplayshortskip` is the space between a text and the top of the math
-  display if the last line of text do not collide with the equation
-* `\abovedisplayskip` is the space between a text and the top of the math
-  display
-* `\baselineskip` is the desired space between baselines
-* `\belowdisplayshortskip` is the space between a text and the bottom of the
-  math display if the last line of text do not collide with the equation
-* `\belowdisplayskip` is the space between a text and the bottom of the math
-  display
-* `\lineskip` is the space between two lines if `\baselineskip` cannot be used
+* `\abovedisplayshortskip` is the space (glue) between a text and the top of
+  the math display if the last line of text do not collide with the equation
+* `\abovedisplayskip` is the space (glue) between a text and the top of the
+  math display
+* `\baselineskip` is the desired space (glue) between baselines
+* `\belowdisplayshortskip` is the space (glue) between a text and the bottom of
+  the math display if the last line of text do not collide with the equation
+* `\belowdisplayskip` is the space (glue) between a text and the bottom of the
+  math display
+* `\lineskip` is the space (glue) between two lines if `\baselineskip` cannot
+  be used
 * `\lineskiplimit` is used to choose between `\lineskip` and `\baselineskip`
-* `\parskip` is the space at the top of a paragraph
+* `\parskip` is the space (glue) at the top of a paragraph
 * `\splittopskip` is like `\topskip` but for `\vsplit`ted boxes
-* `\topskip` is the space at the top of the current page
+* `\topskip` is the space (glue) at the top of the current page
 
 #### Vertical Contributions
 
@@ -3122,7 +3177,7 @@ specified:
 * `\vfill` is a shortcut for `\vskip 0pt plus 1fill`
 * `\vfilneg` is a shortcut for `\vskip 0pt plus -1fil`
 * `\vrule` makes a vertical rule
-* `\vskip` makes a vertical space
+* `\vskip` makes a vertical space (glue)
 * `\vsplit` splits a vertical box
 * `\vss` is a shortcut for `\vskip 0pt plus 1fil minus 1fil`
 * `\vtop` makes a vertical box with the reference point on the baseline of the
