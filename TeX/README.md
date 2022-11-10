@@ -2403,7 +2403,8 @@ specified:
 
 #### Auxiliary Algorithms
 
-* *Set box x to the y field in style z* algorithm:
+* *Set box x to the y field in style z* algorithm. In the conversion algorithm,
+  this will be referred as *field_to_box*(*y*, *z*):
   1. If *y* field is empty, *x* is set equal to a null (empty) `\hbox`.
   1. If *y* field contains a symbol `\Sym`:
      1. Set *x* to `\hbox{\Font\Sym}`, where `\Font` is the font associated
@@ -2419,7 +2420,8 @@ specified:
      1. Otherwise, set *x* to `\hbox{\Content}`.
      1. If *x* contains a single character, remove unneeded italic correction.
 * *Set box x to a variable delimiter d, having z minimum height plus depth*
-  algorithm (in C++ like pseudo-code):
+  algorithm (in C++ like pseudo-code). In the conversion algorithm, this will
+  be referred as *delimiter_to_box*(*d*, *s*, *z*):
   ```C++
   enum DelimiterVariant {
     SMALL_VARIANT,
@@ -2617,7 +2619,8 @@ specified:
     return symbol_to_box(best_delimiter);
   }
   ```
-* *Rebox a given box to a given width* algorithm (in C++ like pseudo-code):
+* *Rebox a given box to a given width* algorithm (in C++ like pseudo-code). In
+  the conversion algorithm, this will be referred as *rebox*(*b*, *w*):
   ```C++
   // Return true if `x` is `Symbol`.
   bool is_symbol(Node & x);
@@ -2663,9 +2666,32 @@ several auxiliary functions and macros:
   preceding *I*.
 * *next*(*I*) refers to the next item in the math list immediately following
   *I*.
+* *size*(*S*) maps the math font style *S* to the math font size as follows:
+  * *size*(*D*) = *size*(*D'*) = *size*(*T*) = *size*(*T'*) = `TEXT_SIZE`
+  * *size*(*S*) = *size*(*S'*) = `SCRIPT_SIZE`
+  * *size*(*SS*) = *size*(*SS'*) = `SCRIPT_SCRIPT_SIZE`
+* *get_family_font*(*ff*, *sz*) returns
+  * `\textfont`*ff* if *sz* is `TEXT_SIZE`
+  * `\scriptfont`*ff* if *sz* is `SCRIPT_SIZE`
+  * `\scriptscriptfont`*ff* if *sz* is `SCRIPT_SCRIPT_SIZE`
+* *symbol_exists*(*font*, *cp*) returns true if a symbol exists on a given
+  character position *cp* in a given *font*.
+* *is_symbol*(*x*) returns true if *x* is a single character.
+* `Font::kern_amount(CharPos cp1, CharPos cp2)` is a method of `Font` class
+  representing a TeX font. It returns a kern amount for a kerning pair (`cp1`,
+  `cp2`) if it is defined in the font's kerning table. Otherwise, it returns 0.
+  If `cp2` is `SKEWCHAR` it returns a kern amount between `cp1` and
+  `\skewchar`.
+* *char*(*font*, *cp*) returns a single character from *font* at *cp*.
+* *width*(*c*) returns the width of a single character *c*.
+* *has_successor*(*c*) returns true if *c* has a successor in a given font.
+* *successor*(*c*) returns the successor of *c*.
+* *min*(*a1*, *a2*, ..., *an*) returns the lesser of *a1*, *a2*, ..., *an*.
+* *max*(*a1*, *a2*, ..., *an*) returns the greater of *a1*, *a2*, ..., *an*.
 * `\Cfont` expands to `\textfont`, `\scriptfont`, or `\scriptscriptfont`
   depending on the current math font size used.
 
+The conversion algorithm:
 * **[Step 0.]** Let *I* be the current (initially the first) item in the math
   list.
 * **[Case 1.]** If *I* is a rule (`\hrule`, `\vrule`), `\discretionary`,
@@ -2678,7 +2704,7 @@ several auxiliary functions and macros:
   * Otherwise, if *I* is `\mskip` or `\mkern`:
     * Convert `\mskip` or `\mkern` to `\hskip` or `\kern`, respectively, by
       converting all measures in `mu` to `pt` using the following formula:
-      `units_in_pt = 1.0/18 * \fontdimen6\Cfont2 * units_in_mu`
+      *units_in_pt* = 1.0/18 * `\fontdimen6\Cfont2` * *units_in_mu*
   * Set *I* to *next*(*I*).
 * **[Case 3.]** If *I* is `\displaystyle`, `\textstyle`, `\scriptstyle`, or
   `\scriptscriptstyle`:
@@ -2701,12 +2727,120 @@ several auxiliary functions and macros:
 * **[Case 7.]** If *I* is `Atom(Open, ...)` or `Atom(Inner, ...)`:
   * Go to **Step 17**.
 * **[Case 8.]** If *I* is `Atom(Vcent, nucleus, ...)`:
-  * Let `nucleus` be \vbox with height plus depth equal to `v`.
+  * Let `nucleus` be `\vbox` with height plus depth equal to `v`.
   * Let `a` is `\fontdimen22\Cfont2`.
-  * Set `nucleus.height` to `0.5*v + a`.
-  * Set `nucleus.depth` to `0.5*v - a`.
+  * Set `nucleus.height` to 0.5*`v` + `a`.
+  * Set `nucleus.depth` to 0.5*`v` - `a`.
   * Change *I*'s type (`id`) to `Ord`.
   * Go to **Step 17**.
+* **[Case 9.]** If *I* is `Atom(Over, nucleus, ...)`:
+  * Set box `\x` to *field_to_box*(`nucleus`, *C'*).
+  * Set `\d` to `\fontdimen8\Cfont3`.
+  * Set box `\y` to `\vbox{\kern \d \hrule height \d \kern 3\d \copy \x}`.
+  * Replace `nucleus` with `\y`.
+  * Go to **Step 16**.
+* **[Case 10.]** If *I* is `Atom(Under, nucleus, ...)`:
+  * Set box `\x` to *field_to_box*(`nucleus`, *C*).
+  * Set `\d` to `\fontdimen8\Cfont3`.
+  * Set box `\y` to `\vtop{\copy \x \kern 3\d \hrule height \d}`.
+  * Do `\advance \dp\y by \d`.
+  * Replace `nucleus` with `\y`.
+  * Got to **Step 16**.
+* **[Case 11.]** If *I* is `Atom(Rad, nucleus, _, _, delimiter)`:
+  * Set box `\x` to *field_to_box*(`nucleus`, *C'*).
+  * Set `\d` to `\fontdimen8\Cfont3`.
+  * Set `\e` to
+    * `\fontdimen5\Cfont2` if *C* > *T*;
+    * `\d` otherwise.
+  * Set `\f` to `\d` + 0.25\**abs*(`\e`).
+  * Set box `\y` to *delimiter_to_box*(`delimiter`, *size*(*C*), `\ht\x` +
+    `\dp\x` + `\f` + `\d`).
+  * Set `\d` to `\ht\y`.
+  * If `\dp\y` > `\ht\x` + `\dp\x` + `\f`:
+    * Set `\f` to 0.5*(`\f` + `\dp\y` - `\ht\x` - `\dp\x`).
+  * Set box `\z` to `\vbox{\kern \d \hrule height \d \kern \f \copy \x}`.
+  * Set `\r` to `\ht\x` + `\f`.
+  * Replace `nucleus` with `\raise \r \box \y \box \z`.
+  * Go to **Step 16**.
+* **[Case 12.]** If *I* is `Atom(Acc, nucleus, superscript, subscript,
+    Symbol(ff, cp))`:
+  * Set `\af` to *get_family_font*(`ff`, *size*(*C*)).
+  * If not *symbol_exists*(`\af`, `cp`):
+    * Go to **Step 16**.
+  * Set box `\x` to *field_to_box*(`nucleus`, *C'*).
+  * Set `u` to `\wd\x`.
+  * Set `s` to
+    * 0 if not *is_symbol*(`nucleus`);
+    * `get_family_font(nucleus.ff, size(C)).kern_amount(nucleus.cp, SKEWCHAR)`
+      otherwise.
+  * Set `\ac` to *char*(`\af`, `cp`).
+  * While *has_successor*(`\ac`) and *width*(*successor*(`\ac`)) < `u`:
+    * Set `\ac` to *successor*(`\ac`).
+  * Set `\d` to *min*(`\ht\x`, `\fontdimen5\af`).
+  * If *is_symbol*(`nucleus`):
+    * Set `\c` to *char*(*get_family_font*(`nucleus.ff`, *size*(*C*)),
+      `nucleus.cp`).
+    * Set box `\y` to the `\vbox` with `superscript` and `subscript` in style
+      *C* (`superscript` is typeset in *C^* and `subscript` in *C_*).
+    * Set `t` to `\ht\x`.
+    * Set box `\x` to `\hbox{\c \copy \y}`.
+    * Set `\d` to `\d` + (`\ht\x` - `t`).
+    * Set both `superscript` and `subscript` to `None`.
+  * Set box `\y` to `\hbox{\ac}`.
+  * Set `\i` to `ac.italic_correction()`.
+  * Do `\advance \wd\y by \i`.
+  * Set `\t` to `s` + 0.5*(`u` - `\wd\y`).
+  * Set box `\z` to `\vbox{\moveright \t \copy \y \kern -\d \copy \x}`.
+  * If `\ht\z` < `\ht\x`:
+    * Set `\t` to `\ht\x` - `\ht\z`.
+    * Set box `\z` to `\vbox{\kern \t \unvbox \z}`.
+    * Set `\ht\z` to `\ht\x`.
+  * Set `\wd\z` to `\wd\x`.
+  * Replace `nucleus` with `\z`.
+  * Go to **Step 16**.
+* **[Case 13.]** If *I* is `Atom(Op, nucleus, superscript, subscript, limits)`:
+  * If `limits` is `DISPLAYLIMITS` and *C* > *T*:
+    * Set `limits` to `LIMITS`.
+  * If not *is_symbol*(`nucleus`):
+    * Set `\d` to 0.
+    * Go to **Step 13a**.
+  * Set `\c` to *char*(*get_family_font*(`nucleus.ff`, *size*(*C*)),
+    `nucleus.cp`).
+  * If *C* > *T* and *has_successor*(`\c`):
+    * Set `\c` to *successor*(`\c`).
+  * Set box `\x` to `\hbox{\c}`.
+  * Set `\d` to `c.italic_correction()`.
+  * If `limits` is `LIMITS` or `subscript` is `None`:
+    * Do `\advance \wd\x by \d`.
+  * Let `a` be `\fontdimen22\Cfont2`.
+  * Set `\t` to 0.5*(`\ht\x` - `\dp\x`) - `a`.
+  * Replace `nucleus` with `\lower \t \box \x`.
+* **[Step 13a.]**
+  * If `limits` is not `LIMITS`:
+    * Go to **Step 17**.
+  * Set box `\x` to *field_to_box*(`superscript`, *C^*).
+  * Set box `\y` to *field_to_box*(`nucleus`, *C*).
+  * Set box `\z` to *field_to_box*(`subscript`, *C_*).
+  * Set `w` to *max*(`\wd\x`, `\wd\y`, `\wd\z`).
+  * Set box `\x` to *rebox*(`\x`, `w`).
+  * Set box `\y` to *rebox*(`\y`, `w`).
+  * Set box `\z` to *rebox*(`\z`, `w`).
+  * Set box `\v` to `\vbox{\copy \y}`.
+  * If `superscript` is not `None`:
+    * Set `\k` to *max*(`\fontdimen9\Cfont3`, `\fontdimen11\Cfont3` - `\dp\x`).
+    * Set `\l` to `\fontdimen13\Cfont3`.
+    * Set `\t` to 0.5*`\d`.
+    * Set box `\v` to `\vbox{\kern \l \moveright \t \copy \x \kern \k \unvbox
+      \v}`.
+  * If `subscript` is not `None`:
+    * Set `\k` to *max*(`\fontdimen10\Cfont3`, `\fontdimen12\Cfont3` -
+      `\ht\z`).
+    * Set `\l` to `\fontdimen13\Cfont3`.
+    * Set `\t` to 0.5*`\d`.
+    * Set box `\v` to `\vbox{\unvbox \v \kern \k \moveleft \t \copy \z \kern
+      \l}`.
+  * Replace `nucleus` with `\v`.
+  * Set *I* to *next*(*I*).
 
 ### `\special`
 
