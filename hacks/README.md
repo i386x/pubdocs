@@ -43,16 +43,24 @@ $ git snapshot html gh-pages
 
 Exploring hardware capabilities.
 
-### CPU
+### Get details about graphics card
 
-* Print CPU HW capabilities:
-  ```
-  $ ld.so --help
-  ```
+```sh
+$ lspci -d ::0300 -v -nn
+```
 
-### GPU
+### Print CPU HW capabilities
 
-* Get details about graphics card:
-  ```
-  $ lspci -d ::0300 -v -nn
-  ```
+```sh
+$ ld.so --help
+```
+
+## Video
+
+A set of X/Wayland hacks.
+
+### Prefer X11 over Wayland
+
+```sh
+$ XDG_SESSION_TYPE=X11 command
+```
