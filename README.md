@@ -97,6 +97,7 @@ interested in. Maybe You find some of these interesting too.
 ### Articles
 
 * [9 Key Machine Learning Algorithms Explained in Plain English](https://www.freecodecamp.org/news/a-no-code-intro-to-the-9-most-important-machine-learning-algorithms-today/)
+* [A jeweller, sociologist, composer, a mum, go into cybersecurity…](https://thestack.technology/career-change-into-cybersecurity-cisos-capslock/)
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [An open letter to the Linux community](https://lore.kernel.org/lkml/CAK8KejpUVLxmqp026JY7x5GzHU2YJLPU8SzTZUNXU2OXC70ZQQ@mail.gmail.com/)
 * [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
@@ -371,6 +372,7 @@ interested in. Maybe You find some of these interesting too.
   * [Python](https://developer.fedoraproject.org/tech/languages/python/python-installation.html)
   * [Vagrant](https://developer.fedoraproject.org/tools/vagrant/about.html)
 * [rhbzquery](https://github.com/juhp/rhbzquery)
+* [Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/)
 
 ### ELN
 
@@ -503,6 +505,7 @@ interested in. Maybe You find some of these interesting too.
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
 * [Poetry](https://python-poetry.org/)
   * [The `pyproject.toml` file](https://python-poetry.org/docs/pyproject/)
+* [Prevent from building RPM packages providing `python3dist(...) = 0`](https://fedoraproject.org/wiki/Changes/Prevent-Providing-python3dist(pkg)=0)
 * [pytest](https://docs.pytest.org/) [[repo](https://github.com/pytest-dev/pytest)]
   * [Good Integration Practices](https://docs.pytest.org/en/stable/goodpractices.html)
   * [pytest-cov](https://pytest-cov.readthedocs.io/) [[repo](https://github.com/pytest-dev/pytest-cov/)]
@@ -638,15 +641,15 @@ interested in. Maybe You find some of these interesting too.
 * [Ansible Tower Lab (With Demos) Using Vagrant For Mac OS](https://github.com/m1820/atd)
 * [Good Practices for Ansible - GPA](https://redhat-cop.github.io/automation-good-practices/)
 
-Ansible modules
+##### Ansible modules
 
 * [A10 Networks](https://www.ansible.com/integrations/networks/a10)
 
-Ansible tips
+##### Ansible tips
 
 * [How to make Ansible execute a shell script if a package is not installed](https://stackoverflow.com/questions/21892603/how-to-make-ansible-execute-a-shell-script-if-a-package-is-not-installed/46630866#46630866)
 
-Ansible tools
+##### Ansible tools
 
 * [Ansible Molecule](https://molecule.readthedocs.io/en/latest/)
   * [Using Molecule V2 to test Ansible Roles](https://werner-dijkerman.nl/2017/09/05/using-molecule-v2-to-test-ansible-roles/)
@@ -655,16 +658,20 @@ Ansible tools
 * [Mastering Ansible lint](https://sbarnea.com/lint/ansible-lint/)
 * [Testing Ansible automation with molecule](https://redhatnordicssa.github.io/how-we-test-our-roles)
 
+#### Ansible Collections
+
+* [cloud.terraform](https://github.com/ansible-collections/cloud.terraform)
+
 #### Ansible Roles
 
-Docs
+##### Docs
 
 * [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
 * [Meta Best Practices (v1.0.0)](https://github.com/oasis-roles/meta_standards/tree/1.0.0)
 * [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 * [Roles (from Adfinis Sygroup Ansible Guide)](https://docs.adfinis-sygroup.ch/public/ansible-guide/roles.html)
 
-Projects
+##### Projects
 
 * [ansible-role-nodepool](https://opendev.org/windmill/ansible-role-nodepool)
 * [Cloud Alchemy Roles](https://github.com/cloudalchemy)
@@ -1152,6 +1159,7 @@ Projects
 
 #### C++
 
+* [A new constant expression interpreter for Clang](https://www.redhat.com/en/blog/new-constant-expression-interpreter-clang)
 * [C++ Coding Standard (SEI CERT)](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
 * [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
 * Error handling and exceptions
@@ -1215,6 +1223,7 @@ See [Caml](#caml).
 * [10 most common security bugs in Python and how to avoid them](https://sudonull.com/post/12399-10-most-common-security-bugs-in-Python-and-how-to-avoid-them)
 * [Constantly print Subprocess output while process is running](https://stackoverflow.com/questions/4417546/constantly-print-subprocess-output-while-process-is-running)
 * [Cryptography](https://cryptography.io/en/latest/) [[repo](https://github.com/pyca/cryptography)]
+* [Debug a Python reference leak](https://vstinner.github.io/debug-python-refleak.html)
 * [Debugging Python C extensions with GDB](https://developers.redhat.com/articles/2021/09/08/debugging-python-c-extensions-gdb)
 * [Fedora Loves Python](https://fedoralovespython.org/)
 * [GUI Programming in Python](https://wiki.python.org/moin/GuiProgramming)
@@ -1223,6 +1232,7 @@ See [Caml](#caml).
 * [Isolate Python Subinterpreters](https://vstinner.github.io/isolate-subinterpreters.html)
 * [Nauč se Python!](https://naucse.python.cz/)
 * [Providing Multiple Constructors in Your Python Classes](https://realpython.com/python-multiple-constructors/)
+* [PyCon PL 2022: Making sudo pip safe again](https://hroncok.cz/pyconpl22/) [[repo](https://github.com/hroncok/pyconpl22)]
 * [Python 3 documentation](https://docs.python.org/3/)
 * [Python 3: Using "yield from" in Generators - Part 1](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-1.html)
 * [Python 3: Using "yield from" in Generators - Part 2](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-2.html)
@@ -1243,6 +1253,16 @@ See [Caml](#caml).
 * [Python Curses Handling Window (Terminal) Resize](https://stackoverflow.com/questions/5161552/python-curses-handling-window-terminal-resize)
 * [Python Prompt Toolkit](https://python-prompt-toolkit.readthedocs.io/) [[repo](https://github.com/prompt-toolkit/python-prompt-toolkit)]
 * [Urwid](http://urwid.org/) [[repo](https://github.com/urwid/urwid)]
+
+##### Django
+
+* [Django Tutorials](https://realpython.com/tutorials/django/)
+  * [0 HTML and CSS for Python Developers](https://realpython.com/html-css-python/)
+  * [1 How to Write an Installable Django App](https://realpython.com/installable-django-app/)
+  * [2 Django Migrations: A Primer](https://realpython.com/django-migrations-a-primer/)
+  * [3 Digging Deeper Into Django Migrations](https://realpython.com/digging-deeper-into-migrations/)
+  * [4 Data Migrations](https://realpython.com/data-migrations/)
+  * [5 How to Provide Test Fixtures for Django Models in Pytest](https://realpython.com/django-pytest-fixtures/)
 
 ##### GUI Libraries
 
@@ -1327,6 +1347,7 @@ See [Caml](#caml).
 * [Brotli (C)](https://github.com/google/brotli)
   * [madler/brotli (C)](https://github.com/madler/brotli)
   * [RFC 7932](https://tools.ietf.org/html/rfc7932)
+* [Bulma (CSS/SASS)](https://github.com/jgthms/bulma) [[home](https://bulma.io/)]
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdemu (C)](https://github.com/cdemu/cdemu) [[doc](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
@@ -1556,10 +1577,13 @@ See [Caml](#caml).
   * [Tilix (D)](https://github.com/gnunn1/tilix)
   * [Xiki (Ruby)](https://github.com/trogdoro/xiki)
 * [tcllib (Tcl)](https://github.com/tcltk/tcllib)
+* [tfsec (Golang)](https://github.com/aquasecurity/tfsec)
 * [The LaTeX3 Project](https://github.com/latex3)
 * [thinbox (Python)](https://github.com/inknos/thinbox/)
 * [ticketutil (Python)](https://github.com/dmranck/ticketutil)
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
+* [toolbox (Bash/Golang)](https://github.com/containers/toolbox)
+* [toolbx images (Dockerfile)](https://github.com/toolbx-images/images)
 * [tre (C)](https://github.com/laurikari/tre)
 * [tup (C)](https://github.com/gittup/tup) [[homepage](http://gittup.org/tup/index.html)]
 * [Turtle (Haskell)](https://github.com/Gabriel439/Haskell-Turtle-Library)
@@ -1590,6 +1614,7 @@ See [Caml](#caml).
 * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
 * [whatpkgs (Python)](https://github.com/fedora-modularity/whatpkgs)
 * [wlroots (C)](https://github.com/swaywm/wlroots)
+* [woke (Golang)](https://github.com/get-woke/woke)
 * [XL - An extensible language (C++/XL)](https://github.com/c3d/xl)
 * [yajl (C)](https://github.com/lloyd/yajl)
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
@@ -1624,6 +1649,7 @@ See [Caml](#caml).
   * [PSIRT SIG](https://www.first.org/global/sigs/psirt/)
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
 * [FreeIPA](https://www.freeipa.org/) [[repo](https://github.com/freeipa/ansible-freeipa)]
+* [How static application security testing improves software security](https://developers.redhat.com/articles/2022/11/09/how-static-application-security-testing-improves-software-security)
 * [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
 * [Is your Go application FIPS compliant?](https://developers.redhat.com/articles/2022/05/31/your-go-application-fips-compliant)
 * Kerberos
@@ -1636,6 +1662,7 @@ See [Caml](#caml).
   * [Unlock Django Framework With Kerberos](https://systango.medium.com/unlock-django-framework-with-kerberos-92106035848b)
 * [Kubernetes Operators: good security practices](https://www.redhat.com/en/blog/kubernetes-operators-good-security-practices)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
+* [OpenSSL: Email address buffer overflow security flaws](https://www.redhat.com/en/blog/openssl-email-address-buffer-overflow-security-flaws)
 * [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
 * [Python Security](https://python-security.readthedocs.io/index.html)
@@ -1695,11 +1722,13 @@ See [Caml](#caml).
 * [rhts](https://github.com/beaker-project/rhts)
 * [Schedule tests the GitOps way with Testing Farm as GitHub Action](https://developers.redhat.com/articles/2022/05/04/schedule-tests-gitops-way-testing-farm-github-action#)
 * [Special Project Upstream Testing Repository](https://github.com/RedHat-SP-Security/tests)
+* [Store and analyze your test-suite logs with this open source tool](https://www.redhat.com/sysadmin/bunsen-test-suite-logs)
 * [Test container images in Red Hat OpenShift 4 with Ansible and CI/CD](https://developers.redhat.com/articles/2021/08/13/test-container-images-red-hat-openshift-4-ansible-and-cicd#)
 * [testing-cabal](https://github.com/testing-cabal)
-* [testing-farm](https://gitlab.com/testing-farm)
+* [testing-farm](https://gitlab.com/testing-farm) [[doc](https://docs.testing-farm.io/general/0.1/index.html)] [[api](https://testing-farm.gitlab.io/api/)]
   * [artemis](https://gitlab.com/testing-farm/artemis)
   * [cli](https://gitlab.com/testing-farm/cli)
+  * [gluetool-modules](https://gitlab.com/testing-farm/gluetool-modules)
   * [oculus](https://gitlab.com/testing-farm/oculus)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/teemtee/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
@@ -1736,6 +1765,7 @@ See [Caml](#caml).
 * [Awesome CSS Learning](https://github.com/micromata/awesome-css-learning)
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
 * [Browsers' default CSS for HTML elements](https://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements)
+* [Bulma](https://bulma.io/) [[repo](https://github.com/jgthms/bulma)]
 * Color schemes
   * [Paraíso for Pygments](https://github.com/idleberg/Paraiso-Pygments)
 * CSS browser reset
