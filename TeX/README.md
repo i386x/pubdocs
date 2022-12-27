@@ -2662,6 +2662,7 @@ specified:
 Here is the conversion algorithm itself. The algorithm uses auxiliary
 algorithms introduced in [Auxiliary Algorithms](#auxiliary-algorithms) and also
 several auxiliary functions and macros:
+* *deref*(*p*) returns the value which *p* points to.
 * *prev*(*I*) refers to the previous item in the math list immediately
   preceding *I*.
 * *next*(*I*) refers to the next item in the math list immediately following
@@ -2688,6 +2689,35 @@ several auxiliary functions and macros:
 * *successor*(*c*) returns the successor of *c*.
 * *min*(*a1*, *a2*, ..., *an*) returns the lesser of *a1*, *a2*, ..., *an*.
 * *max*(*a1*, *a2*, ..., *an*) returns the greater of *a1*, *a2*, ..., *an*.
+* *get_charinfo*(*font*, *cp*) returns *charinfo*[*cp*], where *charinfo* is an
+  array of character information of a given *font*. If *font* or *charinfo*[
+  *cp*] are undefined, issue an error. Character information is a 4 bytes
+  structure having the following layout:
+  * *width_index* (1 byte)
+  * *height_index* (4 bits)
+  * *depth_index* (4 bits)
+  * *italic_index* (6 bits)
+  * *tag* (2 bits)
+  * *remainder* (1 byte)
+* *has_ligkern_program*(*info*) returns true if *info.tag* is 1.
+* *get_ligkern_program*(*font*, *info*) returns pointer to *lig_kern* array of
+  *font*. Issue an error if the pointer cannot be computed or is not valid
+  (e.g. outside of *lig_kern* array). The pointer is computed as follows:
+  * Set *prog* to *lig_kern* + *info.remainder*.
+  * Set *inst* to *deref*(*prog*).
+  * If *inst.skip* <= 128, return *prog*.
+  * Otherwise, return *lig_kern* + (256 * *inst.op*) + *inst.rem*.
+
+  An item of *lig_kern* array has the following layout:
+  * *skip* (1 byte): the number of intervening steps to be skipped; if the
+    number is 128 or greater, it means that this step is final
+  * *next_char* (1 byte): do *op* and stop if *next_char* follows the current
+    character, continue otherwise
+  * *op* (1 byte): ligature step if less than 128, kern step otherwise
+  * *rem* (1 byte): remainder
+* *is_kern_op*(*inst*) returns true if *inst.op* >= 128.
+* *get_kern_from_kern_op*(*font*, *inst*) return a kern from *kern* array of
+  *font* at index 256 * (*inst.op* - 128) + *inst.rem*.
 * `\Cfont` expands to `\textfont`, `\scriptfont`, or `\scriptscriptfont`
   depending on the current math font size used.
 
@@ -2841,6 +2871,48 @@ The conversion algorithm:
       \l}`.
   * Replace `nucleus` with `\v`.
   * Set *I* to *next*(*I*).
+* **[Case 14.]** If *I* is `Atom(Ord, nucleus, superscript, subscript)`:
+  * Unless *is_symbol*(`nucleus`) and `superscript` is `None` and `subscript`
+    is `None` and *next*(*I*) is `Atom(X, nucleusA, superscriptA, subscriptA)`,
+    where `X` is `Ord`, `Op`, `Bin`, `Rel`, `Open`, `Close`, or `Punct`, and
+    *is_symbol*(`nucleusA`) and `nucleus.ff` is `nucleusA.ff`:
+    * Go to **Step 17**.
+  * Mark `nucleus` as a *text symbol*.
+  * Set *font* to *get_family_font*(`nucleus.ff`, *size*(*C*)).
+  * Set *info* to *get_charinfo*(*font*, `nucleus.cp`).
+  * If not *has_ligkern_program*(*info*):
+    * Go to **Step 17**.
+  * Set *c_next* to `nucleusA.cp`.
+  * Set *prog* to *get_ligkern_program*(*font*, *info*).
+  * Set *inst* to *deref*(*prog*).
+  * **[loop]** If *inst.next_char* is *c_next* and *inst.skip* <= 128:
+    * If *is_kern_op*(*inst*):
+      * Set *k* to *get_kern_from_kern_op*(*font*, *inst*).
+      * Insert `\kern` *k* between *I* and *next*(*I*).
+      * Go to **Step 17**.
+    * Otherwise:
+      * If *inst.op* is:
+        * 1 or 5, then set `nucleus.cp` to *inst.rem*.
+        * 2 or 6, then set `nucleusA.cp` to *inst.rem*.
+        * 3 or 7 or 11, then
+          * let `nucleusB` be `Symbol(nucleus.ff, inst.rem)`;
+          * let *R* be `Atom(Ord, nucleusB, None, None)`;
+          * if *inst.op* is 11, mark `nucleusB` as a *text symbol*;
+          * insert *R* between *I* and *next*(*I*).
+        * 0, then
+          * set `nucleus.cp` to *inst.rem*;
+          * set `superscript` to `superscriptA`;
+          * set `subscript` to `subscriptA`;
+          * remove *next*(*I*).
+      * If *inst.op* > 3:
+        * Go to **Step 17**.
+      * Unmark `nucleus` as *text symbol*.
+      * Go to **Case 14**.
+  * If *inst.skip* >= 128:
+    * Go to **Step 17**.
+  * Set *prog* to *prog* + *inst.skip* + 1.
+  * Set *inst* to *deref*(*prog*).
+  * Go to **loop**.
 
 ### `\special`
 
