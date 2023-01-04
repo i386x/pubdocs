@@ -2662,6 +2662,8 @@ specified:
 Here is the conversion algorithm itself. The algorithm uses auxiliary
 algorithms introduced in [Auxiliary Algorithms](#auxiliary-algorithms) and also
 several auxiliary functions and macros:
+* *abs*(*x*) returns the absolute value of *x*.
+* *floor*(*x*) returns the integral part of *x*.
 * *deref*(*p*) returns the value which *p* points to.
 * *prev*(*I*) refers to the previous item in the math list immediately
   preceding *I*.
@@ -2718,15 +2720,19 @@ several auxiliary functions and macros:
 * *is_kern_op*(*inst*) returns true if *inst.op* >= 128.
 * *get_kern_from_kern_op*(*font*, *inst*) return a kern from *kern* array of
   *font* at index 256 * (*inst.op* - 128) + *inst.rem*.
+* *italic_correction*(*font*, *cp*) returns italic correction for a character
+  at position *cp* in font *font*.
+* *italic_correction*(*c*) returns *italic_correction*(*font of c*, *character
+  position of c*).
 * `\Cfont` expands to `\textfont`, `\scriptfont`, or `\scriptscriptfont`
   depending on the current math font size used.
 
 The conversion algorithm:
 * **[Step 0.]** Let *I* be the current (initially the first) item in the math
-  list.
+  list. If *I* points behind the math list, go to **End of the first pass**.
 * **[Case 1.]** If *I* is a rule (`\hrule`, `\vrule`), `\discretionary`,
   `\penalty`, `\special`, `Left(d)`, or `Right(d)`:
-  * Set *I* to *next*(*I*).
+  * Set *I* to *next*(*I*) and go to **Step 0**.
 * **[Case 2.]** If *I* is a glue or kern:
   * If *I* is a glue that comes from `\nonscript` and *C* <= *S* and the
     *next*(*I*) is glue or kern:
@@ -2735,14 +2741,15 @@ The conversion algorithm:
     * Convert `\mskip` or `\mkern` to `\hskip` or `\kern`, respectively, by
       converting all measures in `mu` to `pt` using the following formula:
       *units_in_pt* = 1.0/18 * `\fontdimen6\Cfont2` * *units_in_mu*
-  * Set *I* to *next*(*I*).
+  * Set *I* to *next*(*I*) and go to **Step 0**.
 * **[Case 3.]** If *I* is `\displaystyle`, `\textstyle`, `\scriptstyle`, or
   `\scriptscriptstyle`:
   * Set *C* to *D*, *T*, *S*, or *SS*, respectively.
-  * Set *I* to *next*(*I*).
+  * Set *I* to *next*(*I*) and go to **Step 0**.
 * **[Case 4.]** If *I* is `Choice(a, b, c, d)`:
   * Replace *I* with `a`, `b`, `c`, or `d`, depending on *C*.
-  * Set *I* to the next unprocessed item (*next*(*prev*(*I*))).
+  * Set *I* to the next unprocessed item (*next*(*prev*(*I*))) and go to **Step
+    0**.
 * **[Case 5.]** If *I* is `Atom(Bin, ...)`:
   * If *I* is the first `Atom` or the previous `Atom` was `Bin`, `Op`, `Rel`,
     `Open`, or `Punct`:
@@ -2808,16 +2815,13 @@ The conversion algorithm:
     * Set `\ac` to *successor*(`\ac`).
   * Set `\d` to *min*(`\ht\x`, `\fontdimen5\af`).
   * If *is_symbol*(`nucleus`):
-    * Set `\c` to *char*(*get_family_font*(`nucleus.ff`, *size*(*C*)),
-      `nucleus.cp`).
-    * Set box `\y` to the `\vbox` with `superscript` and `subscript` in style
-      *C* (`superscript` is typeset in *C^* and `subscript` in *C_*).
-    * Set `t` to `\ht\x`.
-    * Set box `\x` to `\hbox{\c \copy \y}`.
-    * Set `\d` to `\d` + (`\ht\x` - `t`).
+    * Set `nucleus` to `[Atom(Ord, nucleus, superscript, subscript)]`.
     * Set both `superscript` and `subscript` to `None`.
+    * Set `t` to `\ht\x`.
+    * Set box `\x` to *field_to_box*(`nucleus`, *C*).
+    * Set `\d` to `\d` + (`\ht\x` - `\t`).
   * Set box `\y` to `\hbox{\ac}`.
-  * Set `\i` to `ac.italic_correction()`.
+  * Set `\i` to *italic_correction*(`\ac`).
   * Do `\advance \wd\y by \i`.
   * Set `\t` to `s` + 0.5*(`u` - `\wd\y`).
   * Set box `\z` to `\vbox{\moveright \t \copy \y \kern -\d \copy \x}`.
@@ -2834,12 +2838,12 @@ The conversion algorithm:
   * If not *is_symbol*(`nucleus`):
     * Set `\d` to 0.
     * Go to **Step 13a**.
-  * Set `\c` to *char*(*get_family_font*(`nucleus.ff`, *size*(*C*)),
-    `nucleus.cp`).
+  * Set `\f` to *get_family_font*(`nucleus.ff`, *size*(*C*)).
+  * Set `\c` to *char*(`\f`, `nucleus.cp`).
   * If *C* > *T* and *has_successor*(`\c`):
     * Set `\c` to *successor*(`\c`).
   * Set box `\x` to `\hbox{\c}`.
-  * Set `\d` to `c.italic_correction()`.
+  * Set `\d` to *italic_correction*(`\f`, `nucleus.cp`).
   * If `limits` is `LIMITS` or `subscript` is `None`:
     * Do `\advance \wd\x by \d`.
   * Let `a` be `\fontdimen22\Cfont2`.
@@ -2870,7 +2874,7 @@ The conversion algorithm:
     * Set box `\v` to `\vbox{\unvbox \v \kern \k \moveleft \t \copy \z \kern
       \l}`.
   * Replace `nucleus` with `\v`.
-  * Set *I* to *next*(*I*).
+  * Set *I* to *next*(*I*) and go to **Step 0**.
 * **[Case 14.]** If *I* is `Atom(Ord, nucleus, superscript, subscript)`:
   * Unless *is_symbol*(`nucleus`) and `superscript` is `None` and `subscript`
     is `None` and *next*(*I*) is `Atom(X, nucleusA, superscriptA, subscriptA)`,
@@ -2906,13 +2910,210 @@ The conversion algorithm:
           * remove *next*(*I*).
       * If *inst.op* > 3:
         * Go to **Step 17**.
-      * Unmark `nucleus` as *text symbol*.
+      * Unmark `nucleus` as a *text symbol*.
       * Go to **Case 14**.
   * If *inst.skip* >= 128:
     * Go to **Step 17**.
   * Set *prog* to *prog* + *inst.skip* + 1.
   * Set *inst* to *deref*(*prog*).
   * Go to **loop**.
+* **[Case 15.]** If *I* is `Fraction(numerator, denominator, \thickness, left,
+  right)`:
+  * If `\thickness` is `DEFAULT`:
+    * Set `\thickness` to `\fontdimen8\Cfont3`.
+* **[Step 15a.]**
+  * If *C* is *D*, set *s* to *T*.
+  * Otherwise, if *C* is *D'*, set *s* to *T'*.
+  * Otherwise, set *s* to *C^*.
+  * Set box `\x` to *field_to_box*(`numerator`, *s*).
+  * If *C* > *T*, set *s* to *T'*.
+  * Otherwise, set *s* to *C_*.
+  * Set box `\z` to *field_to_box*(`denominator`, *s*).
+  * If `\wd\x` < `\wd\z`, set box `\x` to *rebox*(`\x`, `\wd\z`).
+  * If `\wd\z` < `\wd\x`, set box `\z` to *rebox*(`\z`, `\wd\x`).
+* **[Step 15b.]**
+  * If *C* > *T*:
+    * Set `\u` to `\fontdimen8\Cfont2`.
+    * Set `\v` to `\fontdimen11\Cfont2`.
+  * Otherwise:
+    * If `\thickness` is not 0, set `\u` to `\fontdimen9\Cfont2`.
+    * If `\thickness` is 0, set `\u` to `\fontdimen10\Cfont2`.
+    * Set `\v` to `\fontdimen12\Cfont2`.
+* **[Step 15c.]** If `\thickness` is 0:
+  * If *C* > *T*, set `\f` to `7\fontdimen8\Cfont3`.
+  * If *C* <= *T*, set `\f` to `3\fontdimen8\Cfont3`.
+  * Set `\g` to (`\u` - `\dp\x`) - (`\ht\z` - `\v`).
+  * If `\g` < `\f`:
+    * Set `\u` to `\u` + 0.5\*(`\f` - `\g`).
+    * Set `\v` to `\v` + 0.5\*(`\f` - `\g`).
+  * Set `\k` to (`\u` + `\v`) - (`\dp\x` + `\ht\z`).
+  * Set box `\y` to `\vbox{\copy \x \kern \k \copy \z}`.
+  * Set `\ht\y` to `\ht\x` + `\u`.
+  * Set `\dp\y` to `\dp\z` + `\v`.
+* **[Step 15d.]** If `\thickness` is not 0:
+  * If *C* > *T*, set `\f` to 3\*`\thickness`.
+  * If *C* <= *T*, set `\f` to `\thickness`.
+  * Set `\a` to `\fontdimen22\Cfont2`.
+  * Set `\g` to (`\u` - `\dp\x`) - (`\a` + 0.5\*`\thickness`).
+  * If `\g` < `\f`, set `\u` to `\u` + (`\f` - `\g`).
+  * Set `\h` to (`\a` - 0.5\*`\thickness`) - (`\ht\z` - `\v`).
+  * If `\h` < `\f`, set `\v` to `\v` + (`\f` - `\h`).
+  * Set `\k` to `\u` - `\dp\x` - `\a` - 0.5\*`\thickness`.
+  * Set `\l` to `\v` - `\ht\z` + `\a` - 0.5\*`\thickness`.
+  * Set box `\y` to `\vbox{\copy \x \kern \k \hrule height \thickness \kern \l
+    \copy \z}`.
+  * Set `\ht\y` to `\ht\x` + `\u`.
+  * Set `\dp\y` to `\dp\z` + `\v`.
+* **[Step 15e.]**
+  * If *C* > *T*, set *h* to `\fontdimen20\Cfont2`.
+  * If *C* <= *T*, set *h* to `\fontdimen21\Cfont2`.
+  * Set box `\x` to *delimiter_to_box*(`left`, *size*(*C*), *h*).
+  * Set box `\z` to *delimiter_to_box*(`right`, *size*(*C*), *h*).
+  * Set `\r` to 0.5\*(`\dp\x` - `\ht\x`) + `\a`.
+  * Set `\s` to 0.5\*(`\dp\z` - `\ht\z`) + `\a`.
+  * Replace *I* with `Atom(Inner, \raise \r \box \x \box \y \raise \s \box \z,
+    None, None)`.
+  * Set *I* to *next*(*I*) and go to **Step 0**.
+* **[Step 16.]**
+  * Let *I* be `Atom(X, ...)`. Change `X` to `Ord`.
+* **[Step 17.]** Let *I* be `Atom(_, nucleus, superscript, subscript)`:
+  * If `nucleus` is a math list *L*:
+    * Convert *L* to a horizontal list *H* in style *C*.
+    * Set box `\x` to the `\hbox` containing *H*.
+    * Replace `nucleus` with `\x`.
+  * If not *is_symbol*(`nucleus`):
+    * Go to **Step 18**.
+  * Set `\f` to *get_family_font*(`nucleus.ff`, *size*(*C*)).
+  * Set `\c` to *char*(`\f`, `nucleus.cp`).
+  * If `nucleus` is not marked as a *text symbol* or `\fontdimen2\f` is 0:
+    * Set `\d` to *italic_correction*(`\f`, `nucleus.cp`).
+  * Otherwise, set `\d` to 0.
+  * If `\d` is not 0 and `subscript` is `None`:
+    * Replace `nucleus` with `\c \kern \d`.
+    * Set `\d` to 0.
+  * Otherwise, replace `nucleus` with `\c`.
+* **[Step 18.]**
+  * If `superscript` is `None` and `subscript` is `None`:
+    * Set *I* to *next*(*I*) and go to **Step 0**.
+* **[Step 18a.]**
+  * If `nucleus` is a character box optionally followed by a kern:
+    * Set `\u` to 0.
+    * Set `\v` to 0.
+  * Otherwise, `nucleus` is a box `\x`:
+    * Set `\qf` to *get_family_font*(2, *size*(*C^*)).
+    * Set `\rf` to *get_family_font*(2, *size*(*C_*)).
+    * Set `q` to `\fontdimen18\qf`.
+    * Set `r` to `\fontdimen19\rf`.
+    * Set `\u` to `\ht\x` - `q`.
+    * Set `\v` to `\dp\x` + `r`.
+* **[Step 18b.]** If `superscript` is `None`:
+  * Set box `\x` to *field_to_box*(`subscript`, *C_*).
+  * Set `\wd\x` to `\wd\x` + `\scriptspace`.
+  * Set `\s` to *max*(`\v`, `\fontdimen16\Cfont2`, `\ht\x` -
+    0.8\**abs*(`\fontdimen5\Cfont2`)).
+  * Append `\lower \s \box \x` to the horizontal list of `nucleus`.
+  * Set *I* to *next*(*I*) and go to **Step 0**.
+* **[Step 18c.]**
+  * Set box `\x` to *field_to_box*(`superscript`, *C^*).
+  * Set `\wd\x` to `\wd\x` + `\scriptspace`.
+  * Set `p` to
+    * `\fontdimen13\Cfont2` if *C* = *D*;
+    * `\fontdimen15\Cfont2` if *C* = *C'*;
+    * `\fontdimen14\Cfont2` otherwise.
+  * Set `\u` to *max*(`\u`, `p`, `\dp\x` + 0.25\**abs*(`\fontdimen5\Cfont2`)).
+* **[Step 18d.]**
+  * If `subscript` is `None`:
+    * Append `\raise \u \box \x` to the horizontal list of `nucleus`.
+    * Set *I* to *next*(*I*) and go to **Step 0**.
+  * Set box `\y` to *field_to_box*(`subscript`, *C_*).
+  * Set `\wd\y` to `\wd\y` + `\scriptspace`.
+  * Set `\v` to *max*(`\v`, `\fontdimen17\Cfont2`).
+* **[Step 18e.]**
+  * Set `\t` to `\fontdimen8\Cfont3`.
+  * If (`\u` - `\dp\x`) - (`\ht\y` - `\v`) >= 4\*`\t`:
+    * Go to **Step 18f**.
+  * Set `\v` to 4\*`\t` + `\ht\y` - (`\u` - `\dp\x`).
+  * Set `\p` to 0.8\**abs*(`\fontdimen5\Cfont2`) - (`\u` - `\dp\x`).
+  * If `\p` > 0:
+    * Set `\u` to `\u` + `\p`.
+    * Set `\v` to `\v` - `\p`.
+* **[Step 18f.]**
+  * If `\d` is not known from **Case 13** or **Step 17**:
+    * Set `\d` to 0.
+  * Set `\k` to (`\u` + `\v`) - (`\dp\x` + `\ht\y`).
+  * Set box `\z` to `\vbox{\moveright \d \box \x \kern \k \box \y}`.
+  * Set `\ht\z` to `\ht\x` + `\u`.
+  * Set `\dp\z` to `\dp\y` + `\v`.
+  * Append `\box \z` to the horizontal list of `nucleus`.
+  * Set *I* to *next*(*I*) and go to **Step 0**.
+* **[End of the first pass.]**
+  * Let `Atom(X, ...)` be the last atom.
+  * If `X` is `Bin`, then set `X` to `Ord`.
+  * Set *C* to the value that *C* had when first entering **Step 0**.
+* **[Step 19.]** If the math list begins with `Left(dl)` and ends with
+  `Right(dr)`:
+  * Let `\x` be a `\hbox` containing every box and rule found in the math list
+    or in the nucleus of an atom from the math list. The order of appearance of
+    boxes/rules is kept.
+  * Set `\hmax` to `\ht\x` and `\dmax` to `\dp\x`.
+  * Set `a` to `\fontdimen22\Cfont2`.
+  * Set `\d` to *max*(`\hmax` - `a`, `\dmax` + `a`).
+  * Set `g` to *max*(*floor*(`\d`/500)\*`\delimiterfactor`, 2\*`\d` -
+    `\delimitershortfall`).
+  * Set box `\x` to *delimiter_to_box*(`dl`, *size*(*C*), `g`).
+  * Set box `\z` to *delimiter_to_box*(`dr`, *size*(*C*), `g`).
+  * Set `\u` to 0.5\*(`\dp\x` - `\ht\x`) + `a`.
+  * Set `\v` to 0.5\*(`\dp\z` - `\ht\z`) + `a`.
+  * Replace `Left(dl)` with `Atom(Open, \raise \u \box \x, None, None)`.
+  * Replace `Right(dr)` with `Atom(Close, \raise \v \box \z, None, None)`.
+  * Let *L* be the current math list.
+  * Set *L* to `[Atom(Inner, L, None, None)]`.
+* **[Step 20.]** Iterate over the math list for the second time, denote the
+  current item as *I*:
+  * If *I* is `Atom(Y, ...)` and there exists an atom, `Atom(X, ...)`, that is
+    the closest predecessor of *I*:
+    * If `X` (`Y`) is not one of `Ord`, `Op`, `Bin`, `Rel`, `Open`, `Close`,
+      `Punct`, or `Inner`:
+      * Set `X` (`Y`) to `Ord`.
+    * Set `\s` to `None`.
+    * Let *Z* be a value selected from the following table at [`X`, `Y`]
+      ([row, column]):
+      | `X`/`Y` | `Ord` | `Op` | `Bin` | `Rel` | `Open` | `Close` | `Punct` | `Inner` |
+      | ------- | ----- | ---- | ----- | ----- | ------ | ------- | ------- | ------- |
+      | `Ord` | 0 | 1 | (2) | (3) | 0 | 0 | 0 | (1) |
+      | `Op` | 1 | 1 | \* | (3) | 0 | 0 | 0 | (1) |
+      | `Bin` | (2) | (2) | \* | \* | (2) | \* | \* | (2) |
+      | `Rel` | (3) | (3) | \* | 0 | (3) | 0 | 0 | (3) |
+      | `Open` | 0 | 0 | \* | 0 | 0 | 0 | 0 | 0 |
+      | `Close` | 0 | 1 | (2) | (3) | 0 | 0 | 0 | (1) |
+      | `Punct` | (1) | (1) | \* | (1) | (1) | (1) | (1) | (1) |
+      | `Inner` | (1) | 1 | (2) | (3) | (1) | 0 | (1) | (1) |
+    * If *Z* is 1, set `\s` to `\thinmuskip`.
+    * Otherwise, if *Z* is (1) and *C* > *S*, set `\s` to `\thinmuskip`.
+    * Otherwise, if *Z* is (2) and *C* > *S*, set `\s` to `\medmuskip`.
+    * Otherwise, if *Z* is (3) and *C* > *S*, set `\s` to `\thickmuskip`.
+    * If `\s` is not `None`:
+      * Set `\s` to `\s` * 1.0/18 * `\fontdimen6\Cfont2`.
+      * Insert `\hskip \s` right before *I*.
+  * Otherwise, if *I* is `\displaystyle`, `\textstyle`, `\scriptstyle`, or
+    `\scriptscriptstyle`:
+    * Set *C* to *D*, *T*, *S*, or *SS*, respectively.
+    * Remove *I* from the math list.
+* **[Step 21.]** If the math list is part of a paragraph, iterate over the math
+  list again, denote the current item as *I*:
+  * If *I* is `Atom(X, ...)`, where `X` is `Bin` or `Rel`:
+    * If `X` is `Bin`, set `\p` to `\binoppenalty`.
+    * Otherwise, set `\p` to `\relpenalty`.
+    * If *next*(*I*) and `\p` < 10000 and *next*(*I*) is not `\penalty` and
+      *next*(*I*) is not `Atom(Rel, ...)`:
+      * Insert `\penalty \p` right after *I*.
+* **[Step 22.]**
+  * Let *H* be empty horizontal list.
+  * For every item *I* in the math list:
+    * If *I* is not an atom, append *I* to *H*.
+    * Otherwise, *I* is `Atom(_, nucleus, ...)`, where `nucleus` must be a
+      horizontal list. Append the content of `nucleus` to *H*.
+  * Return *H*.
 
 ### `\special`
 
