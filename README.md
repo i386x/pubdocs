@@ -25,6 +25,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Simulation](#simulation)
    1. [Telephones](#telephones)
 1. [Fedora Project](#fedora-project)
+   1. [Compose](#compose)
    1. [Developer](#developer)
    1. [ELN](#eln)
    1. [FESCO](#fesco)
@@ -290,15 +291,20 @@ interested in. Maybe You find some of these interesting too.
 
 ## CentOS
 
+* [CentOS Composes](https://composes.stream.centos.org/)
+  * [development](https://composes.stream.centos.org/development/)
 * [CentOS Project](https://github.com/CentOS)
 * [CentOS Software Factory](https://centos.softwarefactory-project.io/)
 * [CentOS Stream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 * [CentOS Stream Feature Request SIG](https://wiki.centos.org/SpecialInterestGroup/StreamFeatureRequest)
+* [CentOS Stream Mirror](https://mirror.stream.centos.org/)
+* [`centpkg` repo](https://git.centos.org/centos/centpkg)
 * [Where can I report bugs/RFE for the CentOS Project ?](https://wiki.centos.org/ReportBugs)
 
 ## Debugging
 
 * [Add custom windows to GDB: Programming the TUI in Python](https://developers.redhat.com/articles/2022/08/03/add-custom-windows-gdb-programming-tui-python)
+* [Debugging binaries invoked from scripts with GDB](https://developers.redhat.com/articles/2022/12/27/debugging-binaries-invoked-scripts-gdb)
 * [How to Debug C Program using gdb in 6 Simple Steps](https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb)
 * [List of all function calls made in an application](https://stackoverflow.com/questions/9549693/list-of-all-function-calls-made-in-an-application)
 * [StackTraces](https://fedoraproject.org/wiki/StackTraces)
@@ -365,6 +371,10 @@ interested in. Maybe You find some of these interesting too.
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
 * [Using Fedora Accounts](https://docs.fedoraproject.org/en-US/fedora-accounts/user/)
 
+### Compose
+
+* [Compose Configuration Compare and Check tool](https://pagure.io/fedora-ci/cccc)
+
 ### Developer
 
 * [Fedora Developer](https://developer.fedoraproject.org/)
@@ -423,6 +433,8 @@ interested in. Maybe You find some of these interesting too.
     * [Koji Kerberos/GSSAPI debugging](https://docs.pagure.org/koji/kerberos_gssapi_debug/)
   * [koji-shadow (Python)](https://pagure.io/koji/blob/master/f/util/koji-shadow)
   * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
+  * [Wiki](https://fedoraproject.org/wiki/Koji)
+    * [Garbage Collection in Koji](https://fedoraproject.org/wiki/Koji/GarbageCollection)
 * [Licensing Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/)
 * [Licensing:FAQ](https://fedoraproject.org/wiki/Licensing:FAQ)
   * [AppStream metainfo license in package license](https://lists.fedoraproject.org/archives/list/legal@lists.fedoraproject.org/thread/W57JRNLWVOT55D7TDF7VYFMJT5QMBEGR/)
@@ -436,6 +448,7 @@ interested in. Maybe You find some of these interesting too.
 * [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
 * [Release Engineering Issue Requests](https://pagure.io/releng/issues)
 * [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)
+* [rpminspect](https://rpminspect.readthedocs.io/) [[copr](https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/)]
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
 * [Thousands of PyPI and RubyGems RPMs now available for RHEL 9](https://developers.redhat.com/articles/2022/06/07/thousands-pypi-and-rubygems-rpms-now-available-rhel-9)
@@ -693,6 +706,7 @@ interested in. Maybe You find some of these interesting too.
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
+* [Forensic container checkpointing in Kubernetes](https://kubernetes.io/blog/2022/12/05/forensic-container-checkpointing-alpha/)
 * [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
@@ -1010,10 +1024,14 @@ interested in. Maybe You find some of these interesting too.
 * [Asynchronous API in C++ and the Continuation Monad](https://www.fpcomplete.com/blog/2012/06/asynchronous-api-in-c-and-the-continuation-monad)
 * [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
 * [Comparing ABIs for Compatibility with libabigail - Part 1](https://developers.redhat.com/blog/2014/10/23/comparing-abis-for-compatibility-with-libabigail-part-1/)
+* [ELF section retrieval with `debuginfod`](https://www.redhat.com/en/blog/elf-section-retrieval-debuginfod)
+* [Frame pointers and other practical near-term solutions](https://blogs.gnome.org/chergert/2022/12/31/frame-pointers-and-other-practical-near-term-solutions/)
+* [How libabigail 2.2 supports multiple debugging formats](https://developers.redhat.com/articles/2023/01/05/libabigail-multiple-debugging-formats)
 * How to build terminal emulator
   * [Creating a Terminal Emulator from Scratch (where to start)](https://weblog.masukomi.org/2016/01/30/terminal_emulator_from_scratch/)
   * [lpty: pty control for lua](http://tset.de/lpty/index.html)
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
+* [How to use Valgrind to track file descriptors](https://developers.redhat.com/articles/2023/01/09/how-use-valgrind-track-file-descriptors)
 * [How to write an ABI compliance checker using Libabigail](https://developers.redhat.com/blog/2020/04/02/how-to-write-an-abi-compliance-checker-using-libabigail/)
 * [Memory access ordering - an introduction](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/memory-access-ordering---an-introduction)
 * [Memory access ordering part 2: Barriers and the Linux kernel](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/memory-access-ordering-part-2---barriers-and-the-linux-kernel)
@@ -1429,6 +1447,7 @@ See [Caml](#caml).
 * [ImageJ: An open platform for scientific image analysis (Java)](https://imagej.net/Welcome)
 * [immer (C++)](https://github.com/arximboldi/immer) [[doc](https://sinusoid.es/immer/#contents)]
 * [Insights Core (Python)](https://github.com/RedHatInsights/insights-core)
+* [ipa-tuura (Python)](https://github.com/freeipa/ipa-tuura)
 * [iPXE (C)](https://github.com/ipxe/ipxe) [[home](https://ipxe.org/)]
 * [ipyrad: interactive assembly and analysis of RAD-seq data sets (Python)](https://github.com/dereneaton/ipyrad)
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
@@ -1555,6 +1574,7 @@ See [Caml](#caml).
 * [Slides Code Highlighter (HTML/SCSS/JavaScript)](https://github.com/romannurik/SlidesCodeHighlighter)
 * [slop (C++)](https://github.com/naelstrof/slop)
 * [Software Collections](https://github.com/sclorg) [[home](https://www.softwarecollections.org/en/)]
+  * [testing-farm-as-github-action (YAML)](https://github.com/sclorg/testing-farm-as-github-action)
   * [The Build and Push GitHub Action (YAML)](https://github.com/sclorg/build-and-push-action)
 * [SoS (Python)](https://github.com/sosreport/sos) [[doc](https://sos.readthedocs.io/en/main/)]
 * [Spack (Python)](https://github.com/spack/spack) [[doc](https://spack.readthedocs.io/en/latest/index.html)]
@@ -1645,6 +1665,7 @@ See [Caml](#caml).
 * [Cryptographic signatures for zip distributions](https://www.redhat.com/en/blog/cryptographic-signatures-zip-distributions)
 * [CWE VIEW: Software Development](https://cwe.mitre.org/data/definitions/699.html)
 * [CWE/SANS TOP 25 Most Dangerous Software Errors](https://www.sans.org/top25-software-errors/)
+* [EntryBleed: Breaking KASLR under KPTI with Prefetch (CVE-2022-4543)](https://www.willsroot.io/2022/12/entrybleed.html)
 * [FIRST](https://www.first.org/)
   * [PSIRT SIG](https://www.first.org/global/sigs/psirt/)
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
@@ -1668,6 +1689,7 @@ See [Caml](#caml).
 * [Python Security](https://python-security.readthedocs.io/index.html)
   * [Prevent DoS by large str-int conversions](https://python-security.readthedocs.io/vuln/large-int-str-dos.html)
 * [Red Hat extends Common Vulnerabilities and Exposure Program expertise as newly-minted Root organization](https://www.redhat.com/en/blog/red-hat-extends-common-vulnerabilities-and-exposure-program-expertise-newly-minted-root-organization)
+* [Rosenbridge (older x86 CPUs vulnerabilities)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [Sec-certs](https://github.com/crocs-muni/sec-certs)
 * [Secure Development Guide](https://redhatproductsecurity.github.io/secure-development-guide/)
 * [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
@@ -1677,6 +1699,7 @@ See [Caml](#caml).
 
 ## Testing
 
+* [Automated testing of GNOME Shell](https://blogs.gnome.org/shell-dev/2022/12/02/automated-testing-of-gnome-shell/)
 * [beakerlib](https://github.com/beakerlib)
 * [Centos on dockerhub](https://hub.docker.com/_/centos)
 * [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
@@ -1696,6 +1719,7 @@ See [Caml](#caml).
   * [Red Hat Actions](https://github.com/marketplace?query=redhat)
   * [Release Action](https://github.com/ncipollo/release-action)
   * [Support legacy Python 2.6/3.3/3.4 for python-future](https://github.com/actions/setup-python/issues/102)
+  * [testing-farm-as-github-action](https://github.com/sclorg/testing-farm-as-github-action)
   * [The Build and Push GitHub Action](https://github.com/sclorg/build-and-push-action)
   * [Using Docker Containers In Jobs - GitHub Actions](https://dev.to/mihinduranasinghe/using-docker-containers-in-jobs-github-actions-3eof)
 * [gluetool](https://github.com/gluetool/gluetool)
@@ -1714,6 +1738,7 @@ See [Caml](#caml).
 * [PyAutoGUI](https://github.com/asweigart/pyautogui)
 * [Python-uinput](https://github.com/tuomasjjrasanen/python-uinput)
 * [Red Hat Quality Engineering](https://github.com/RedHatQE)
+  * [Cloudwash](https://github.com/RedHatQE/cloudwash)
   * [GitLab CI Openstack executor](https://github.com/RedHatQE/openstack-gitlab-executor)
 * [ReportPortal.io](https://reportportal.io/) [[repos](https://github.com/reportportal)]
 * [resalloc](https://github.com/praiskup/resalloc)
