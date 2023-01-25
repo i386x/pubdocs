@@ -2686,8 +2686,16 @@ several auxiliary functions and macros:
   If `cp2` is `SKEWCHAR` it returns a kern amount between `cp1` and
   `\skewchar`.
 * *char*(*font*, *cp*) returns a single character from *font* at *cp*.
+* *charpos*(*c*) returns the character position of *c* in the given font.
+* *charbox*(*c*) returns a character (horizontal) box for *c* with this
+  properties:
+  * the list of the box contains only one element, *c*, defined as
+    *char*(*font*, *cp*);
+  * the width of the box is the width of *c* plus *italic_correction*(*c*);
+  * the height of the box is the height of *c*;
+  * the depth of the box is the depth of *c*.
 * *width*(*c*) returns the width of a single character *c*.
-* *has_successor*(*c*) returns true if *c* has a successor in a given font.
+* *has_successor*(*c*) returns true if *c* has a successor in the given font.
 * *successor*(*c*) returns the successor of *c*.
 * *min*(*a1*, *a2*, ..., *an*) returns the lesser of *a1*, *a2*, ..., *an*.
 * *max*(*a1*, *a2*, ..., *an*) returns the greater of *a1*, *a2*, ..., *an*.
@@ -2820,9 +2828,7 @@ The conversion algorithm:
     * Set `t` to `\ht\x`.
     * Set box `\x` to *field_to_box*(`nucleus`, *C*).
     * Set `\d` to `\d` + (`\ht\x` - `\t`).
-  * Set box `\y` to `\hbox{\ac}`.
-  * Set `\i` to *italic_correction*(`\ac`).
-  * Do `\advance \wd\y by \i`.
+  * Set box `\y` to *charbox*(`\ac`).
   * Set `\t` to `s` + 0.5*(`u` - `\wd\y`).
   * Set box `\z` to `\vbox{\moveright \t \copy \y \kern -\d \copy \x}`.
   * If `\ht\z` < `\ht\x`:
@@ -2842,7 +2848,8 @@ The conversion algorithm:
   * Set `\c` to *char*(`\f`, `nucleus.cp`).
   * If *C* > *T* and *has_successor*(`\c`):
     * Set `\c` to *successor*(`\c`).
-  * Set box `\x` to `\hbox{\c}`.
+  * Set `nucleus.cp` to *charpos*(`\c`).
+  * Set box `\x` to *field_to_box*(`nucleus`, *C*).
   * Set `\d` to *italic_correction*(`\f`, `nucleus.cp`).
   * If `limits` is `LIMITS` or `subscript` is `None`:
     * Do `\advance \wd\x by \d`.
