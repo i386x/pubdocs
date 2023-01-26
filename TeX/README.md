@@ -2825,7 +2825,7 @@ The conversion algorithm:
   * If *is_symbol*(`nucleus`):
     * Set `nucleus` to `[Atom(Ord, nucleus, superscript, subscript)]`.
     * Set both `superscript` and `subscript` to `None`.
-    * Set `t` to `\ht\x`.
+    * Set `\t` to `\ht\x`.
     * Set box `\x` to *field_to_box*(`nucleus`, *C*).
     * Set `\d` to `\d` + (`\ht\x` - `\t`).
   * Set box `\y` to *charbox*(`\ac`).
@@ -3061,7 +3061,8 @@ The conversion algorithm:
   `Right(dr)`:
   * Let `\x` be a `\hbox` containing every box and rule found in the math list
     or in the nucleus of an atom from the math list. The order of appearance of
-    boxes/rules is kept.
+    boxes/rules is kept. Note that this procedure uses `\hbox{...}` algorithm
+    and hence rules gets their final dimensions.
   * Set `\hmax` to `\ht\x` and `\dmax` to `\dp\x`.
   * Set `a` to `\fontdimen22\Cfont2`.
   * Set `\d` to *max*(`\hmax` - `a`, `\dmax` + `a`).
