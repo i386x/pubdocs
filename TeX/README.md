@@ -2012,7 +2012,7 @@ When entering the display mode, do:
    * Set *s* to the indent of the *m*th item of `\parshape`.
 
    Otherwise, if `\hangindent` is not 0 and ((`\hangafter` >= 0 and `\prevgraf`
-   + 2 > `\hangafter`) or `\prevgraf` + 1 < -`\hangafter`):
+   \+ 2 > `\hangafter`) or `\prevgraf` + 1 < -`\hangafter`):
    * Set *l* to `\hsize` - *abs*(`\hangindent`).
    * Set *s* to `\hangindent` if `\hangindent` > 0. Otherwise, set *s* to 0.
 
