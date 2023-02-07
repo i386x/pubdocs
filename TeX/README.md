@@ -1988,17 +1988,124 @@ major differences:
 
 `\halign` and `\valign` may contain each other.
 
-### Entering the Math Mode or Display Mode
+### Entering/Leaving the Math Mode or Display Mode
 
-When entering the math/display mode, do:
+When entering the display mode, do:
+1. Break the current paragraph like in case of `\par` (append `\parfillskip` to
+   the last line and contribute so far paragraph lines to the vertical list).
+   Instead of `\widowpenalty`, use `\displaywidowpenalty`.
+1. If there is no paragraph so far (e.g. `\noindent $$ ...` or `$$ $$` case):
+   * Set *w* to `-\maxdimen`.
+
+   Otherwise:
+   * Let *w* is the natural width of the last line in the paragraph.
+   * Add the amount of left indentation of the last line to *w*.
+   * Add 2em to *w*.
+   * If the last line contains a glue that makes that line stretchable or
+     shrinkable:
+     * Set *w* to `\maxdimen`.
+1. If `\parshape` is defined:
+   * Let *n* be the number of items in `\parshape`.
+   * If `\prevgraf` + 2 < *n*, set *m* to `\prevgraf` + 2. Otherwise, set *m*
+     to *n*.
+   * Set *l* to the width of the *m*th item of `\parshape`.
+   * Set *s* to the indent of the *m*th item of `\parshape`.
+
+   Otherwise, if `\hangindent` is not 0 and ((`\hangafter` >= 0 and `\prevgraf`
+   + 2 > `\hangafter`) or `\prevgraf` + 1 < -`\hangafter`):
+   * Set *l* to `\hsize` - *abs*(`\hangindent`).
+   * Set *s* to `\hangindent` if `\hangindent` > 0. Otherwise, set *s* to 0.
+
+   Otherwise:
+   * Set *l* to `\hsize`.
+   * Set *s* to 0.
 1. Open a group.
-1. Sets `\fam` to -1.
-1. In math mode:
-   1. Insert tokens from `\everymath` to the token stream.
-   1. Set *C* to *T*.
-1. In display mode:
-   1. Insert tokens from `\everydisplay` to the token stream.
-   1. Set *C* to *D*.
+1. Set `\fam` to -1.
+1. Set `\predisplaysize` to *w*.
+1. Set `\displaywidth` to *l*.
+1. Set `\displayindent` to *s*.
+1. Insert tokens from `\everydisplay` to the token stream.
+1. Set *C* to *D*.
+1. Start [building a math list](#building-a-math-list).
+
+When entering the math mode, do:
+1. Open a group.
+1. Set `\fam` to -1.
+1. Insert tokens from `\everymath` to the token stream.
+1. Set *C* to *T*.
+1. Start [building a math list](#building-a-math-list).
+
+When leaving the display mode, do:
+1. End [building the math list](#building-a-math-list).
+1. Check whether we are at the same group level as when entering the display
+   mode.
+1. Close the group.
+1. [Convert the math list to the horizontal list](#converting-a-math-list-to-the-horizontal-list).
+1. Pack the horizontal list into the horizontal box, *b*.
+1. Set *w* to the width of *b*.
+1. If the `\hbox` with the equation number has been produced:
+   * Set *e* to the width of the `\hbox`.
+   * Set *q* to *e* + `\the\fontdimen6\textfont2` (the width of the `\hbox`
+     plus quad in text size).
+
+   Otherwise, set both *e* and *q* to 0.
+1. If *w* + *q* > `\displaywidth`:
+   * If *e* is not 0 and *b* can be shrunk to `\displaywidth` - *q*:
+     * Shrink *b* to `\displaywidth` - *q*.
+   * Otherwise:
+     * Set *e* to 0.
+     * If *w* > `\displaywidth`, shrink *b* to `\displaywidth`.
+   * Set *w* to the new width of *b*.
+1. Set *d* to 0.5\*(`\displaywidth` - *w*).
+1. If *e* > 0 and *d* < 2\**e*:
+   * Set *d* to 0.5\*(`\displaywidth` - *w* - *e*).
+   * If the horizontal list starts with a glue, set *d* to 0.
+1. If *d* + `\displayindent` <= `\predisplaysize` or `\leqno` is given:
+   * Set *ga* to `\abovedisplayskip`.
+   * Set *gb* to `\belowdisplayskip`.
+
+   Otherwise:
+   * Set *ga* to `\abovedisplayshortskip`.
+   * Set *gb* to `\belowdisplayshortskip`.
+1. Emit `\penalty \predisplaypenalty` to the vertical list.
+1. If *e* is 0 and `\leqno` is given:
+   * `\moveright \displayindent` the `\hbox` with the equation number.
+   * Add the `\hbox` to the vertical list.
+   * Emit `\penalty 10000` to the vertical list.
+
+   Otherwise, emit `\vskip` *ga* to the vertical list.
+1. If *e* is not 0:
+   * Set `\r` to `\displaywidth` - *w* - *e* - *d*.
+   * Set `\a` to the `\hbox` with the equation number.
+   * In case of `\leqno`:
+     * Set `\b` to `\hbox{\copy \a \kern \r \box \b}`.
+     * Set *d* to 0.
+   * In case of `\eqno`:
+     * Set `\b` to `\hbox{\box \b \kern \r \copy \a}`.
+1. `\moveright` the box `\b` about `\displayindent` + *d* and add `\b` to the
+   vertical list.
+1. If *e* is 0 and `\eqno` is given:
+   * Emit `\penalty 10000` to the vertical list.
+   * `\moveright` the `\hbox` with the equation number about `\displayindent`
+     plus `\displaywidth` minus the width of the `\hbox`.
+   * Add the `\hbox` to the vertical list.
+   * Set *gb* to 0.
+1. Emit `\penalty \postdisplaypenalty` to the vertical list.
+1. If *gb* > 0, emit `\vskip` *gb* to the vertical list.
+1. Set `\prevgraf` to `\prevgraf` + 3.
+1. Start a new empty horizontal list (like when starting a paragraph with
+   `\noindent`) and switch to the horizontal mode.
+1. Set `\spacefactor` to 1000.
+1. Skip space after `$$`.
+
+When leaving the math mode, do:
+1. End [building the math list](#building-a-math-list).
+1. Check whether we are at the same group level as when entering the math mode.
+1. Close the group.
+1. [Convert the math list to the horizontal list](#converting-a-math-list-to-the-horizontal-list).
+1. Add a space (a math node) of the width `\mathsurround` both at the beginning
+   and the end of the horizontal list.
+1. Set `\spacefactor` to 1000.
 
 For the meaning of *C*, *D*, and *T* see
 [Converting a Math List to the Horizontal List](#converting-a-math-list-to-the-horizontal-list).
@@ -2072,7 +2179,9 @@ A symbol with a positive `\delcode` assigned works, when associated with
 
 IniTeX assigns each ASCII character `\mathcode<ASCII>=<ASCII>`, except letters
 have `\mathcode<ASCII>="71<ASCII>` and digits have
-`\mathcode<ASCII>="70<ASCII>`.
+`\mathcode<ASCII>="70<ASCII>`. Furthermore, IniTeX assigns each ASCII character
+`\delcode<ASCII>=-1` (invalid delimiter), except `.` which has `\delcode` set
+to 0 (null delimiter).
 
 Atomic fields nucleus, superscript, and subscript are specified by *\<math
 field\>*. *\<math field\>* is converted to the atomic field following these
@@ -2280,7 +2389,7 @@ Now the method (all steps are done in the display/math mode):
    1. Enter the math mode.
    1. Convert *\<math mode material\>* to the horizontal list and store it to
       the `\hbox` `b` that will be used as the equation number of the current
-      display.
+      display. Do not add spaces implied by `\mathsurround`.
    1. Close the group.
    1. Insert `$` back to the token stream, where it will terminate the display
       mode.
@@ -2291,11 +2400,17 @@ Now the method (all steps are done in the display/math mode):
    1. If `}` is not followed by *\<assignment\>* commands except `\setbox` or
       `$$`, complain.
    1. Process optional *\<assignment\>* commands.
-   1. Process `$$` &ndash; close group, exit display mode.
-   1. Insert `\abovedisplayskip` to the vertical list.
+   1. Process `$$` &ndash; close group, exit display mode, skip the following
+      space.
+   1. Insert `\penalty \predisplaypenalty` to the vertical list.
+   1. Insert `\vskip \abovedisplayskip` to the vertical list.
    1. Insert lines resulted from the `\halign` to the vertical list, each line
       is shifted right about `\displayindent`.
-   1. Insert `\belowdisplayskip` to the vertical list.
+   1. Insert `\penalty \postdisplaypenalty` to the vertical list.
+   1. Insert `\vskip \belowdisplayskip` to the vertical list.
+   1. Set `\prevgraf` to `\prevgraf` + 3.
+   1. Set `\spacefactor` to 1000.
+   1. Continue in the horizontal mode.
 1. If `\vrule` *\<rule specification\>* is read, append it to the math list.
 1. If `\indent` is read, append `Atom(Ord, b, None, None)`, where `b` is an
    empty `\hbox` of the width `\parindent`, to the math list.
@@ -2356,10 +2471,11 @@ Furthermore, define *C^* and *C_* to be the superscript and subscript style for
 Math mode algorithms are dealing with up to 16 font families ranging from 0 to
 15 inclusive. Each font family contains three fonts:
 * `\textfont` for math formulas at ordinary level (not in subscripts and
-  superscripts)
+  superscripts, styles *D*, *D'*, *T*, and *T'*)
 * `\scriptfont` for math formulas at the first subscript and superscript level
+  (styles *S* and *S'*)
 * `\scriptscriptfont` for math formulas at the second and more subscript and
-  superscript level
+  superscript level (styles *SS* and *SS'*)
 
 Font families 0, 1, 2, and 3 follow these conventions:
 * Font family 0 is for roman letters used in math formulas.
