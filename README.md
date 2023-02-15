@@ -102,9 +102,11 @@ interested in. Maybe You find some of these interesting too.
 * [All You Need to Know About Red Hat Universal Base Image](http://crunchtools.com/all-you-need-to-know-about-red-hat-universal-base-image/)
 * [An open letter to the Linux community](https://lore.kernel.org/lkml/CAK8KejpUVLxmqp026JY7x5GzHU2YJLPU8SzTZUNXU2OXC70ZQQ@mail.gmail.com/)
 * [API Security 101](https://builtin.com/software-engineering-perspectives/api-security)
+* [Build a kiosk with Fedora Silverblue](https://fedoramagazine.org/build-a-kiosk-with-fedora-silverblue/)
 * [Data privacy: 5 mistakes you are probably making](https://enterprisersproject.com/article/2022/4/data-privacy-5-mistakes?sc_cid=70160000000eUoRAAU&elqTrackId=3c8663e165ce4d2cbbcca74cb1030885&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [Distributed transaction patterns for microservices compared](https://developers.redhat.com/articles/2021/09/21/distributed-transaction-patterns-microservices-compared#)
 * [Faster hardware through software](https://research.redhat.com/blog/article/faster-hardware-through-software/)
+* [gnome-info-collect: What we learned](https://blogs.gnome.org/aday/2023/01/18/gnome-info-collect-what-we-learned/)
 * [How Big Tech Runs Tech Projects and the Curious Absence of Scrum](https://blog.pragmaticengineer.com/project-management-at-big-tech/)
 * [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
 * [How to Become an Amazing OSS Project Maintainer, Survive, And Have Fun on The Way!](https://www.bwplotka.dev/2020/how-to-became-oss-maintainer/)
@@ -246,6 +248,7 @@ interested in. Maybe You find some of these interesting too.
 ### Blogs
 
 * [0x00sec](https://0x00sec.org/)
+* [Allan Day's GNOME Blog](https://blogs.gnome.org/aday/)
 * [Alexander Bokovoy](https://vda.li/en/)
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
@@ -362,10 +365,14 @@ interested in. Maybe You find some of these interesting too.
 * [Fedora Crypto Consolidation](https://fedoraproject.org/wiki/Fedora_Crypto_Consolidation?rd=FedoraCryptoConsolidation)
 * [Fedora Engineering Steering Committee](https://docs.fedoraproject.org/en-US/fesco/)
   * [pagure.io](https://pagure.io/fesco)
+* [Fedora Legal Resources](https://docs.fedoraproject.org/en-US/legal/)
+* [`fedora-license-data`](https://gitlab.com/fedora/legal/fedora-license-data)
 * [Fedora Minimization Objective](https://docs.fedoraproject.org/en-US/minimization/)
+* [Fedora Project Contributor Agreement](https://docs.fedoraproject.org/en-US/legal/fpca/)
+* [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
 * [Infrastructure/Kerberos](https://fedoraproject.org/wiki/Infrastructure/Kerberos)
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
-* [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
+* [License Review Process](https://docs.fedoraproject.org/en-US/legal/license-review-process/)
 * [Release Monitoring](https://release-monitoring.org/)
 * [RFC: Feature macros (aka USE flags)](https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/4DWDPKYBOXTCGKXJTOIVPO34A5BTOE3T/)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
@@ -435,7 +442,7 @@ interested in. Maybe You find some of these interesting too.
   * [Using the Koji build system](https://fedoraproject.org/wiki/Using_the_Koji_build_system)
   * [Wiki](https://fedoraproject.org/wiki/Koji)
     * [Garbage Collection in Koji](https://fedoraproject.org/wiki/Koji/GarbageCollection)
-* [Licensing Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/)
+* [Licensing Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/) [[old](https://fedoraproject.org/wiki/Packaging:LicensingGuidelines)]
 * [Licensing:FAQ](https://fedoraproject.org/wiki/Licensing:FAQ)
   * [AppStream metainfo license in package license](https://lists.fedoraproject.org/archives/list/legal@lists.fedoraproject.org/thread/W57JRNLWVOT55D7TDF7VYFMJT5QMBEGR/)
 * [Licensing:Main](https://fedoraproject.org/wiki/Licensing:Main)
@@ -447,7 +454,7 @@ interested in. Maybe You find some of these interesting too.
     * [Onboarding Guide](https://packit.dev/docs/guide/)
 * [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
 * [Release Engineering Issue Requests](https://pagure.io/releng/issues)
-* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)
+* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html) [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)]
 * [rpminspect](https://rpminspect.readthedocs.io/) [[copr](https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/)]
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
 * [Staying close to upstream projects](https://fedoraproject.org/wiki/Staying_close_to_upstream_projects)
@@ -486,6 +493,7 @@ interested in. Maybe You find some of these interesting too.
   * [coveralls](https://coveralls-python.readthedocs.io/) [[repo](https://github.com/coveralls-clients/coveralls-python)]
 * [Dead Simple Python: Project Structure and Imports](https://dev.to/codemouse92/dead-simple-python-project-structure-and-imports-38c6)
 * [Distributing Python Libraries with Type Annotations](https://blog.ian.stapletoncordas.co/2019/02/distributing-python-libraries-with-type-annotations.html)
+* [fedora-python-tox](https://github.com/fedora-python/fedora-python-tox)
 * [Less known packaging features and tricks](https://blog.ionelmc.ro/presentations/packaging/)
 * Linters
   * [bandit](https://bandit.readthedocs.io)
@@ -542,6 +550,7 @@ interested in. Maybe You find some of these interesting too.
   * [Getting the most out of tox](https://alexgaynor.net/2010/dec/17/getting-most-out-tox/)
   * [How can tox install the modules via the requirements file?](https://stackoverflow.com/questions/12258456/how-can-tox-install-the-modules-via-the-requirements-file)
   * [Tox-Driven Python Development](http://www.boronine.com/2012/11/15/Tox-Driven-Python-Development/)
+  * [Tox GitHub Action](https://github.com/fedora-python/tox-github-action)
   * [Tox tricks and patterns](https://blog.ionelmc.ro/2015/04/14/tox-tricks-and-patterns/)
 * [wheel](https://wheel.readthedocs.io)
 
@@ -628,6 +637,7 @@ interested in. Maybe You find some of these interesting too.
 * [LWN.net](https://lwn.net/)
   * [An introduction to compound pages](https://lwn.net/Articles/619514/)
 * [Making open source more inclusive by eradicating problematic language](https://www.redhat.com/en/blog/making-open-source-more-inclusive-eradicating-problematic-language)
+* [Red Hat Development Model](https://www.redhat.com/en/about/development-model)
 * [Referenced Specifications](https://refspecs.linuxfoundation.org/)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 * [Updates to using Ansible in RHEL 8.6 and 9.0](https://www.redhat.com/en/blog/updates-using-ansible-rhel-86-and-90)
@@ -708,9 +718,11 @@ interested in. Maybe You find some of these interesting too.
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
 * [Forensic container checkpointing in Kubernetes](https://kubernetes.io/blog/2022/12/05/forensic-container-checkpointing-alpha/)
 * [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
+* [KubeVirt](https://kubevirt.io/)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
+* [Orchestrating Windows containers on Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift/windows-containers-on-red-hat-openshift)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
 * [Podman container|image exists](https://podman.io/blogs/2018/11/27/podman-exists.html)
 * [Quay.io Status](https://status.quay.io/)
@@ -718,6 +730,7 @@ interested in. Maybe You find some of these interesting too.
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 * [Stolostron project](https://github.com/stolostron/stolostron)
+* [toolbx](https://containertoolbx.org/)
 * [Toolbx — running the same host binary on Arch Linux, Fedora, Ubuntu, etc. containers](https://debarshiray.wordpress.com/2022/10/02/toolbx-running-the-same-binary-on-arch-linux-fedora-ubuntu-etc-containers/)
 * [Using volumes with rootless podman, explained](https://www.tutorialworks.com/podman-rootless-volumes/)
 * [Why can’t rootless Podman pull my image?](https://www.redhat.com/sysadmin/rootless-podman)
@@ -994,6 +1007,7 @@ interested in. Maybe You find some of these interesting too.
 * [Software optimization resources](https://www.agner.org/optimize/)
 * [Sourcegraph](https://sourcegraph.com/search)
 * [strchr.com](https://www.strchr.com/)
+* [The Open Source Way](https://www.theopensourceway.org/)
 
 ### Algorithms & Data Structures
 
@@ -1033,6 +1047,7 @@ interested in. Maybe You find some of these interesting too.
   * [The very basics of a terminal emulator](https://www.uninformativ.de/blog/postings/2018-02-24/0/POSTING-en.html)
 * [How to use Valgrind to track file descriptors](https://developers.redhat.com/articles/2023/01/09/how-use-valgrind-track-file-descriptors)
 * [How to write an ABI compliance checker using Libabigail](https://developers.redhat.com/blog/2020/04/02/how-to-write-an-abi-compliance-checker-using-libabigail/)
+* [How we expanded GCC value range propagation to floats](https://developers.redhat.com/articles/2023/01/18/how-we-expanded-gcc-value-range-propagation-floats)
 * [Memory access ordering - an introduction](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/memory-access-ordering---an-introduction)
 * [Memory access ordering part 2: Barriers and the Linux kernel](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/memory-access-ordering-part-2---barriers-and-the-linux-kernel)
 * [Memory access ordering part 3: Memory access ordering in the Arm Architecture](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/memory-access-ordering-part-3---memory-access-ordering-in-the-arm-architecture)
@@ -1374,6 +1389,7 @@ See [Caml](#caml).
 * [click (Python)](https://github.com/pallets/click)
 * [cmdliner (OCaml)](https://github.com/dbuenzli/cmdliner)
 * [CodeQL (CodeQL)](https://github.com/github/codeql)
+* [Common Expression Language (Golang)](https://github.com/google/cel-spec)
 * ComplianceAsCode
   * [content (Bash/Python)](https://github.com/ComplianceAsCode/content)
 * [compose-utils (Python)](https://pagure.io/compose-utils)
@@ -1401,6 +1417,7 @@ See [Caml](#caml).
 * [EDK II - Altera (C)](https://github.com/altera-opensource/uefi-socfpga)
 * [EDK II - TianoCore (C)](https://github.com/tianocore/edk2)
 * [EfiFs - EFI File System Drivers (C)](https://github.com/pbatard/efifs)
+* [Electron (C++/TypeScript)](https://github.com/electron/electron) [[home](https://www.electronjs.org/)]
 * [errata-tool (Python)](https://github.com/red-hat-storage/errata-tool)
 * [ewig (C++)](https://github.com/arximboldi/ewig)
 * Expected `Type`
@@ -1410,6 +1427,7 @@ See [Caml](#caml).
   * [`std::expected` (C++)](https://github.com/ptal/expected)
 * [Fedora Infrastructure](https://github.com/fedora-infra)
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
+* [Ferdium (TypeScript)](https://github.com/ferdium/ferdium-app) [[home](https://ferdium.org/)]
 * [ferrypick (Python)](https://github.com/fedora-python/ferrypick)
 * [File Access Policy Daemon (C)](https://github.com/linux-application-whitelisting/fapolicyd)
 * [Fitcrack (Distributed password cracking system) (C/C++/PHP)](https://github.com/nesfit/fitcrack) [[home](https://fitcrack.fit.vutbr.cz/)]
@@ -1487,6 +1505,7 @@ See [Caml](#caml).
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
 * [Marshal parser (Python)](https://github.com/fedora-python/marshalparser/)
+* [matplotlib (Python)](https://github.com/matplotlib/matplotlib)
 * [Matrix (An open network for secure, decentralized communication) server setup using Ansible and Docker (Ansible)](https://github.com/spantaleev/matrix-docker-ansible-deploy/)
 * [memleax (C)](https://github.com/WuBingzheng/memleax)
 * [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
@@ -1506,10 +1525,13 @@ See [Caml](#caml).
 * [npyscreen (Python)](https://github.com/npcole/npyscreen) [[home](http://www.npcole.com/npyscreen/)] [[doc](https://npyscreen.readthedocs.io/)]
 * [NVIDIA Linux Open GPU Kernel Module Source (C)](https://github.com/NVIDIA/open-gpu-kernel-modules) [[blog](https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/)]
 * [odo (Golang)](https://github.com/redhat-developer/odo) [[home](https://odo.dev/)]
+* [opc (Golang)](https://github.com/openshift-pipelines/opc)
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
+  * [Enhancements Tracking and Backlog (Golang)](https://github.com/openshift/enhancements/)
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
   * [Cluster Monitoring Operator (Golang)](https://github.com/openshift/cluster-monitoring-operator)
   * [machine-config-operator (Golang)](https://github.com/openshift/machine-config-operator)
+  * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
 * [OS and Application Modernization Group](https://github.com/oamg)
   * [convert2rhel (Python)](https://github.com/oamg/convert2rhel)
   * [leapp (Python)](https://github.com/oamg/leapp)
@@ -1571,6 +1593,7 @@ See [Caml](#caml).
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [shim, a first-stage UEFI bootloader (C)](https://github.com/rhboot/shim)
 * [six (Python)](https://github.com/benjaminp/six)
+* [slack-libpurple (C)](https://github.com/dylex/slack-libpurple)
 * [Slides Code Highlighter (HTML/SCSS/JavaScript)](https://github.com/romannurik/SlidesCodeHighlighter)
 * [slop (C++)](https://github.com/naelstrof/slop)
 * [Software Collections](https://github.com/sclorg) [[home](https://www.softwarecollections.org/en/)]
@@ -1696,6 +1719,7 @@ See [Caml](#caml).
 * [The art and science of secure open source software development](https://www.redhat.com/en/blog/art-and-science-secure-open-source-software-development)
 * [The German cipher machine Enigma](https://www.matematiksider.dk/enigma_eng.html)
 * [What is GSSAPI?](http://www.faqs.org/faqs/kerberos-faq/general/section-84.html)
+* [Zero Day Initiative](https://www.zerodayinitiative.com/)
 
 ## Testing
 
@@ -1721,8 +1745,9 @@ See [Caml](#caml).
   * [Support legacy Python 2.6/3.3/3.4 for python-future](https://github.com/actions/setup-python/issues/102)
   * [testing-farm-as-github-action](https://github.com/sclorg/testing-farm-as-github-action)
   * [The Build and Push GitHub Action](https://github.com/sclorg/build-and-push-action)
+  * [Tox GitHub Action](https://github.com/fedora-python/tox-github-action)
   * [Using Docker Containers In Jobs - GitHub Actions](https://dev.to/mihinduranasinghe/using-docker-containers-in-jobs-github-actions-3eof)
-* [gluetool](https://github.com/gluetool/gluetool)
+* [How Fedora and tox make Python testing easier](https://developers.redhat.com/articles/2023/01/17/how-fedora-and-tox-make-python-testing-easier)
 * Jake Wernette's series on Jenkins Shared Libraries
   1. [What Are Jenkins Shared Libraries And Why You Should Use Them](https://itnext.io/jenkins-shared-libraries-part-1-5ba3d072536a)
   1. [How To Build Your Own Jenkins Shared Library](https://itnext.io/how-to-build-your-own-jenkins-shared-library-9dc129db260c)
@@ -1753,6 +1778,7 @@ See [Caml](#caml).
 * [testing-farm](https://gitlab.com/testing-farm) [[doc](https://docs.testing-farm.io/general/0.1/index.html)] [[api](https://testing-farm.gitlab.io/api/)]
   * [artemis](https://gitlab.com/testing-farm/artemis)
   * [cli](https://gitlab.com/testing-farm/cli)
+  * [gluetool](https://gitlab.com/testing-farm/gluetool)
   * [gluetool-modules](https://gitlab.com/testing-farm/gluetool-modules)
   * [oculus](https://gitlab.com/testing-farm/oculus)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/teemtee/tmt)]
