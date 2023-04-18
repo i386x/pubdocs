@@ -465,6 +465,8 @@ Switching between these modes are driven using the following rules:
    1. remember box specification
    1. enter a group
    1. enter the internal vertical mode
+      * set `\looseness=0`
+      * set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=0`
    1. assemble a vertical list for this box
    1. leave the group
    1. complete and adjust the vertical list
@@ -3238,6 +3240,206 @@ The conversion algorithm:
     * Otherwise, *I* is `Atom(_, nucleus, ...)`, where `nucleus` must be a
       horizontal list. Append the content of `nucleus` to *H*.
   * Return *H*.
+
+### Breaking Terminology
+
+*Discardable* and *nondiscardable* elements. Given the types of elements
+(nodes) that can appear in a horizontal or vertical list:
+* a box or a rule
+* a `\discretionary` node
+* a whatsit node (produced by `\special`)
+* vertical material (produced by `\mark` or `\vadjust` or `\insert`)
+* a glue or `\leaders`
+* a kern
+* a penalty
+* a math node (produced by `$...$` and `\mathsurround`)
+The last four elements are *discardable*, the rest is *non-discardable*.
+
+### `\discretionary` Breakpoints
+
+`\discretionary` has three parameters:
+```tex
+\discretionary{<pre-break>}{<post-break>}{<no-break>}
+```
+* all three parameters must contain only boxes, rules, and kerns
+* when a line/word is broken at discretionary
+  * `<pre-break>` goes to the end of the line
+  * `<post-break>` goes to the start of the next line
+* `<no-break>` goes to the place where `\discretionary` is used when there is
+  no break in that place
+
+`\-` is a shorthand for `\discretionary{<hyphenchar>}{}{}`:
+* `<hyphenchar>` is a hyphenation character of the current font
+  * for the font `\somefont` a hyphenation character is chosen by
+    `\hyphnechar\somefont=<hyphenchar>` assignment
+* if `<hyphenchar>` is -1, no hyphenation in the associated font is allowed
+
+TeX inserts `\discretionary{}{}{}` after every `<hyphenchar>` and after every
+ligature that ends with `<hyphenchar>`.
+
+### Hyphenation
+
+TeX hyphenates a word automatically by inserting `\-` into places chosen by the
+hyphenation algorithm.
+* If a word already contains `\discretionary`, the hyphenation algorithm leaves
+  this word intact.
+
+### Making Paragraphs
+
+In a horizontal list, a *break point*, or a *line break*, can occur at these
+five places:
+* **(a)** at glue (its left edge) that is immediately preceded by a
+  non-discardable element (penalty: 0)
+  * glues inside a math formula do not count
+* **(b)** at a kern that is immediately followed by glue (penalty: 0)
+  * kerns inside a math formula do not count
+* **(c)** at a math node that closes a math formula if the node is immediately
+  followed by glue (penalty: 0)
+* **(d)** at a penalty (penalty: explicitly given)
+* **(e)** at a discretionary node (penalty: `\hyphenpenalty` if the pre-break
+  text is nonempty, `\exhyphenpenalty` otherwise)
+
+Define the *width of the ith line* and the *indentation (left offset) of the
+ith line* of a paragraph as follows:
+* If `\parshape` is specified, then
+  * let *s[1] w[1] s[2] w[2] ... s[n] w[n]* be the `\parshape` specification
+    (see [Line Breaking Parameters Summary](#line-breaking-parameters-summary)
+    below);
+  * if 1 <= *i* <= *n*, then
+    * the indentation of the *i*th line is *s[i]*;
+    * the width of the *i*th line is *w[i]*;
+  * if *i* > *n*, then
+    * the indentation of the *i*th line is *s[n]*;
+    * the width of the *i*th line is *w[n]*.
+* Otherwise, if `\hangafter` < 0, then
+  * if 1 <= *i* <= *abs*(`\hangafter`), then
+    * the indentation of the *i*th line is *max*(`\hangindent`, 0);
+    * the width of the *i*th line is `\hsize` - *abs*(`\hangindent`);
+  * if *i* > *abs*(`\hangafter`), then
+    * the indentation of the *i*th line is 0;
+    * the width of the *i*th line is `\hsize`.
+* Otherwise,
+  * if 1 <= *i* <= `\hangafter`, then
+    * the indentation of the *i*th line is 0;
+    * the width of the *i*th line is `\hsize`;
+  * if *i* > `\hangafter`, then
+    * the indentation of the *i*th line is *max*(`\hangindent`, 0);
+    * the width of the *i*th line is `\hsize` - *abs*(`\hangindent`).
+
+Define a function *break*(*L*) returning a list of lines:
+* Let *L* be a horizontal list with *n+1* given breakpoints.
+* Let *L'* denote *L* where all discardable elements following the breakpoint
+  up to the next breakpoint or non-discardable element were removed.
+* Express *L'* as *b[0] a[1] b[1] a[2] b[2] ... a[n] b[n]*, where *b[i]* is
+  the *i*th breakpoint and *a[i]* is the *i*th chunk of horizontal material, 1
+  <= *i* <= *n*. Note that line breaking algorithm always ensures that *L'*
+  ends with a breakpoint. Line breaking algorithm also adds implicit breakpoint
+  *b[0]* to the beginning of *L'*.
+* If `\leftskip` is non-zero, set *a[i]* to `\hskip \leftskip` *a[i]* for every
+  1 <= *i* <= *n*.
+* For every 1 <= *i* <= *n*, append `\hskip \rightskip` to *a[i]*.
+* Let *l[i]*, the (`\prevgraf` + *i*)th line of the paragraph, be `\moveright
+  \s \hbox to \w {`*a[i]*`}`, where `\s` is the indentation and `\w` is the
+  width of the (`\prevgraf` + *i*)th line of the paragraph.
+* Return *l[1], l[2], ..., l[n]*.
+
+Recall the *badness*(*line*) function:
+* Let *we* be the expected width of *line* and *wn* be the natural width of
+  *line*.
+* Set *s* to *we* - *wn*.
+* Let *total_stretch[i]* be the sum of all stretch values of order *i* of all
+  glues inside *line*. Similarly for *total_shrink[i]*. Recall that order *i*
+  is:
+  * 0 if the value has a unit convertible to `pt`;
+  * 1 if the value has the `fil` unit;
+  * 2 if the value has the `fill` unit;
+  * 3 if the value has the `filll` unit.
+* Define *rank*(*x*) to be
+  * 3 if *x*[3] is not 0;
+  * otherwise, 2 if *x*[2] is not 0;
+  * otherwise, 1 if *x*[1] is not 0;
+  * otherwise, 0 if *x*[0] is not 0;
+  * otherwise, -1.
+* If *s* = 0, *badness*(*line*) is 0.
+* If *s* < 0 (shrinking), *badness*(*line*) is
+  * 0 if *rank*(*total_shrink*) > 0;
+  * otherwise, infinity if *rank*(*total_shrink*) < 0 or
+    *abs*(*s*) > *total_shrink*[0];
+  * otherwise, *min*(100|*s*/*total_shrink*[0]|^3, 10000).
+* If *s* > 0 (stretching), *badness*(*line*) is
+  * 0 if *rank*(*total_stretch*) > 0;
+  * otherwise, 10000 if *total_stretch*[0] <= 0;
+  * otherwise, *min*(100|*s*/*total_stretch*[0]|^3, 10000).
+
+Define a *fitness*(*line*) function as follows:
+* Set *b* to *badness*(*line*).
+* *fitness*(*line*) is
+  * 3 (tight) if *b* >= 13 while shrinking;
+  * 2 (decent) if *b* < 13;
+  * 1 (loose) if 13 <= *b* < 100 while stretching;
+  * 0 (very loose) if *b* >= 100 while stretching.
+
+Define *visually_incompatible*(*line1*, *line2*) as *abs*(*fitness*(*line1*) -
+*fitness*(*line2*)) > 1.
+
+Define *demerits*(*line*) function as follows:
+* Let *breakpoint* be the breakpoint associated (i.e. immediately after) with
+  *line*.
+* Let *p* be a penalty at *breakpoint*.
+* Set *b* to *badness*(*line*).
+* *demerits*(*line*) is
+  * (`\linepenalty` + *b*)^2 + *p*^2, if 0 <= *p* < 10000;
+  * (`\linepenalty` + *b*)^2 - *p*^2, if -10000 < *p* < 0;
+  * (`\linepenalty` + *b*)^2, if *p* <= -10000.
+
+Define *total_demerits*(*L*) function as follows:
+* Set *d* to 0.
+* For every *line* in *L*, add *demerits*(*line*) to *d*.
+* For every pair of consecutive lines, *line1* and *line2*, in *L*:
+  * If *visually_incompatible*(*line1*, *line2*), add `\adjdemerits` to *d*.
+  * If both *line1* and *line2* ends with discretionary breaks, add
+    `\doublehyphendemerits` to *d*.
+* If the second last line from *L* ends with a discretionary, add
+  `\finalhyphendemerits` to *d*.
+* Return *d*.
+
+When TeX processes `\par` primitive it converts the current horizontal list to
+the paragraph by following these steps:
+1. **[Prepare]** Let *L* be the current horizontal list.
+   * If *L* ends with a glue item, remove it.
+   * Append `\penalty 10000 \hskip \parfillskip \penalty -10000` to *L*.
+1. Define the initial width of each line of the paragraph to be the sum of
+   bases of `\leftskip` and `\rightskip`.
+1. **[Find Breakpoints (A)]** Find breakpoints in *L* such that:
+   * a breakpoint is not chosen at a discretionary node
+   * for every *line* in *break*(*L*), *badness*(*line*) <= `\pretolerance`
+1. If **Find Breakpoints (A)** succeeded, go to **Break**.
+1. Hyphenate *L* as described in [Hyphenation](#hyphenation).
+1. **[Find Breakpoints (B)]** Find breakpoints in *L* such that:
+   * for every *line* in *break*(*L*), *badness*(*line*) <= `\tolerance`
+1. **[Break]** Let *Ls* be set of *break*(*L*) results satisfying either (A) or
+   (B).
+   * Let *P* be an element of *Ls* such that *total_demerits*(*P*) <=
+     *total_demerits*(*X*) for all *X* in *Ls*. That is, *P* is an element from
+     *Ls* with the smallest total demerits.
+   * Then, *P* is the list of lines that will form a final paragraph.
+   * Increase `\prevgraf` about the number of elements (lines) in *P*.
+1. **[Finalize]**
+   * Set `\looseness=0`.
+   * Set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=1`.
+
+### Line Breaking Parameters Summary
+
+* `\hangafter=<number>` specifies the duration of `\hangindent`
+* `\hangindent=<dimen>` specifies the paragraph's hanging indentation
+* `\parshape=<n> <s1> <w1> <s2> <w2> ... <sn> <wn>` defines a shape of a
+  paragraph
+  * `<n>` (`<number>`) is the number (positive integer) of affected lines of
+    the paragraph
+  * `<si>` (`<dimen>`) is the indentation of the `i`th line of the paragraph
+  * `<wi>` (`<dimen>`) is the width of the `i`th line of the paragraph
+
+  `\parshape=0` cancels the previous `\parshape`
 
 ### `\special`
 
