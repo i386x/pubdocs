@@ -3403,27 +3403,73 @@ Define *total_demerits*(*L*) function as follows:
   `\finalhyphendemerits` to *d*.
 * Return *d*.
 
+Define *penalty*(*j*, *P*) function as follows:
+* Let *n* be the number of elements (lines) in *P*.
+* Set *p* to `\interlinepenalty`.
+* If *j* = 1, add `\clubpenalty` to *p*.
+* If *j* = *n* - 1 and the *n*th line immediately precedes the display, add
+  `\displaywidowpenalty` to *p*.
+* If *j* = *n* - 1 and the *n*th line does not immediately precede a display,
+  add `\widowpenalty` to *p*.
+* If the *j*th line in *P* ended at a discretionary break, add `\brokenpenalty`
+  to *p*.
+* Return *p*.
+
 When TeX processes `\par` primitive it converts the current horizontal list to
 the paragraph by following these steps:
-1. **[Prepare]** Let *L* be the current horizontal list.
+1. **[Prepare]** Let *L* be the current horizontal list and *V* be the current
+   vertical list.
+   * If *V* is not empty and `\parskip` is not zero, append `\vskip \parskip`
+     to *V*.
    * If *L* ends with a glue item, remove it.
    * Append `\penalty 10000 \hskip \parfillskip \penalty -10000` to *L*.
-1. Define the initial width of each line of the paragraph to be the sum of
-   bases of `\leftskip` and `\rightskip`.
+   * Set *nreq* to *unset*.
+1. **[Set Line Width]** Define the initial width of each line of the paragraph
+   to be the sum of bases of `\leftskip` and `\rightskip`.
 1. **[Find Breakpoints (A)]** Find breakpoints in *L* such that:
    * a breakpoint is not chosen at a discretionary node
+   * if *nreq* is not *unset*, *break*(*L*) has exactly *nreq* lines
    * for every *line* in *break*(*L*), *badness*(*line*) <= `\pretolerance`
 1. If **Find Breakpoints (A)** succeeded, go to **Break**.
 1. Hyphenate *L* as described in [Hyphenation](#hyphenation).
 1. **[Find Breakpoints (B)]** Find breakpoints in *L* such that:
+   * if *nreq* is not *unset*, *break*(*L*) has exactly *nreq* lines
    * for every *line* in *break*(*L*), *badness*(*line*) <= `\tolerance`
+1. If **Find Breakpoints (B)** succeeded, go to **Break**.
+1. **[Find Breakpoints (C)]** If `\emergencystretch` > 0, find breakpoints in
+   *L* such that:
+   * if *nreq* is not *unset*, *break*(*L*) has the number of lines as close to
+     *nreq* as possible
+   * the *total_stretch[i]*, 0 <= *i* <= 3, of every line in *break*(*L*) is
+     increased about `\emergencystretch`
+   * for every *line* in *break*(*L*), *badness*(*line*) <= `\tolerance`
+1. If **Find Breakpoints (C)**, or eventually **Find Breakpoints (B)** did not
+   succeed:
+   * some lines from *break*(*L*) may be overfull
+   * if *nreq* is not *unset*, *break*(*L*) has the number of lines as close to
+     *nreq* as possible
 1. **[Break]** Let *Ls* be set of *break*(*L*) results satisfying either (A) or
-   (B).
+   (B) or (C) or none of them.
    * Let *P* be an element of *Ls* such that *total_demerits*(*P*) <=
      *total_demerits*(*X*) for all *X* in *Ls*. That is, *P* is an element from
-     *Ls* with the smallest total demerits.
+     *Ls* with the smallest total demerits. If breakpoints were found using
+      (C), *total_demerits* are computed with `\emergencystretch` kept in mind.
+   * If `\looseness` is not 0 and *nreq* is *unset*:
+     * Set *nreq* to the number of elements (lines) in *P* increased about
+      `\looseness`.
+     * Go to **Find Breakpoints (X)**, where **(X)** is either (A) or (B) or
+       (C), depending in which pass the optimum breakpoints were found.
    * Then, *P* is the list of lines that will form a final paragraph.
    * Increase `\prevgraf` about the number of elements (lines) in *P*.
+1. **[Emit Lines]** Emit all lines from *P* to *V* using these rules:
+   * Insert a glue (`\vskip`) between two adjacent lines as described in
+     [How Spaces Are Inserted to the Vertical List](#how-spaces-are-inserted-to-the-vertical-list).
+   * Given that two adjacent lines are numbered *j* and (*j* + 1),
+     respectively, let *p* be *penalty*(*j*, *P*). If *p* is not 0, insert
+     `\penalty` *p* just before the glue (`\vskip`) that has been inserted
+     between lines *j* and (*j* + 1).
+   * If the *j*th line contains `\vadjust{`\<vertical list\>`}`, add \<vertical
+     list\> to *V* immediately after the *j*th line.
 1. **[Finalize]**
    * Set `\looseness=0`.
    * Set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=1`.
