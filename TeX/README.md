@@ -492,6 +492,7 @@ Switching between these modes are driven using the following rules:
    1. initialize an empty horizontal list for incoming material
    1. if the current token was distinct from `\noindent`, insert to the
       horizontal list an empty `\hbox` of the width `\parindent`
+   1. set *current_language* to 0
    1. insert the content of `\everypar` to the beginning of the token list
    1. contribute to the horizontal list with incoming material
       * note that `$$` in the vertical mode results in empty line (i.e. empty
@@ -3247,7 +3248,7 @@ The conversion algorithm:
 (nodes) that can appear in a horizontal or vertical list:
 * a box or a rule
 * a `\discretionary` node
-* a whatsit node (produced by `\special`)
+* a whatsit node (produced by `\special` or `\setlanguage`)
 * vertical material (produced by `\mark` or `\vadjust` or `\insert`)
 * a glue or `\leaders`
 * a kern
@@ -3268,21 +3269,156 @@ The last four elements are *discardable*, the rest is *non-discardable*.
 * `<no-break>` goes to the place where `\discretionary` is used when there is
   no break in that place
 
-`\-` is a shorthand for `\discretionary{<hyphenchar>}{}{}`:
-* `<hyphenchar>` is a hyphenation character of the current font
+`\-` is a shorthand for `\discretionary{\char <hyphenchar>}{}{}`:
+* `\char <hyphenchar>` is a hyphenation character of the current font
   * for the font `\somefont` a hyphenation character is chosen by
     `\hyphnechar\somefont=<hyphenchar>` assignment
-* if `<hyphenchar>` is -1, no hyphenation in the associated font is allowed
+* if `<hyphenchar>` is -1, no hyphenation in the associated font is allowed;
+  more precisely, if `<hyphenchar>` is outside of 0 to 255, `\-` is a shorthand
+  for `\discretionary{}{}{}`
 
-TeX inserts `\discretionary{}{}{}` after every `<hyphenchar>` and after every
-ligature that ends with `<hyphenchar>`.
+TeX inserts `\discretionary{}{}{}` after every `\char <hyphenchar>` and after
+every ligature that ends with `\char <hyphenchar>`.
 
 ### Hyphenation
 
-TeX hyphenates a word automatically by inserting `\-` into places chosen by the
-hyphenation algorithm.
-* If a word already contains `\discretionary`, the hyphenation algorithm leaves
-  this word intact.
+In (unrestricted) horizontal mode, whenever is a character to be added to the
+horizontal list:
+* Let *l* be `(\language <= 0 || \language > 255 ? 0 : \language)`.
+* If *current_language* is not equal to *l*:
+  * Set *current_language* to *l*.
+  * Insert a whatsit node `WhatsItNode(LANGUAGE, l, \lefthyphenmin,
+    \righthyphenmin)` to the horizontal list right before the just added
+    character.
+
+Using the `\setlanguage`\<number\> primitive, the `LANGUAGE` whatsit node can
+be inserted to the horizontal list explicitly, even in restricted horizontal
+mode. This command also set *current_language* to \<number\> (\<number\> is
+normalized in the same way as `\language`).
+
+Given a horizontal list, *H*, a word to be hyphenated is found following these
+steps:
+1. **[Find the Starting Letter]** Walk through *H* until a glue item that is
+   not in a math formula is encountered and call it *g*.
+   * From *g*, walk through *H* until an item which
+     * is not a character with the zero `\lccode`
+     * is not a ligature starting with a character with the zero `\lccode`
+     * is not a whatsit node
+     * is not an implicit kern
+
+     is encountered and call it *c*.
+   * If a `LANGUAGE` whatsit node has been walked through on the path to *c*,
+     update *current_language*, `\lefthyphenmin`, and `\righthyphenmin`
+     accordingly.
+   * If all of this is fulfilled:
+     * *c* is a character with a nonzero `\lccode` or a ligature starting with
+       such a character
+     * the `\lccode` of *c* is *c* or `\uchyph` is positive
+
+     then *c* is the *starting letter*.
+   * Otherwise, go to **Find the Starting Letter** and continue the journey
+     from *c*.
+1. **[Draft a Trial Word]** Let *c* be in font *f*.
+   * If the `\hyphenchar` of *f* is not in range from 0 to 255, inclusive, go
+     to **Find the Starting Letter** and continue the journey from *c*.
+   * From *c*, walk through *H* until none of these are encountered:
+     * (a) a character in font *f* with nonzero `\lccode`
+     * (b) a ligature formed entirely from characters of type (a)
+     * (c) an implicit kern
+   * Call *p* the recent position in *H*.
+   * The trial word *w* is a sequence of characters and implicit kerns in *H*
+     starting from *c*, inclusive, and ending at *p*, exclusive.
+1. **[Test the Trial Word]** Express the trial word *w* as *w*[1] *w*[2] ...
+   *w*[*n*], where *n* is the number of characters of *w* and *w*[*i*] is the
+   *i*th character of *w*.
+   * Let *l* is *max*(1, `\lefthyphenmin`) and *r* is *max*(1,
+     `\righthyphenmin`).
+   * If *n* < *l* + *r*, go to **Find the Starting Letter** and continue the
+     journey from *p*.
+   * Suppose that *x y* is a sequence of items immediately following *w*[*n*]
+     such that
+     * *x* consists of zero or more characters, ligatures, and implicit kerns;
+     * *y* is glue, explicit kern, penalty, whatsit, `\mark`, `\insert`, or
+       `\vadjust`.
+   * If such *x y* does not exist, go to **Find the Starting Letter** and
+     continue the journey from *p*.
+   * Otherwise, *w* is a word that can be hyphenated.
+
+The hyphenation is then made following these steps:
+1. Let *w* be a word to be hyphenated.
+1. Let *E* be the *exception dictionary* number *current_language*.
+1. Convert *w* using `\lccode` to *w'*.
+1. If *w'* matches any word in `\lccode` form from the *E*:
+   * Hyphenate *w* by inserting `\-` into places where `-` occurs in the
+     matching word, giving a special treatment to (implicit) kerns and
+     ligatures.
+1. Otherwise, hyphenate *w* using [Hyphenation
+   Algorithm](#hyphenation-algorithm).
+1. Finally, ensure that these parts of *w* does not contain `\-`:
+   * the prefix of *w* of the length *max*(1, `\lefthyphenmin`)
+   * the suffix of *w* of the length *max*(1, `\righthyphenmin`)
+
+#### `\hyphen`
+
+`\hyphen{`\<words\>`}` adds \<words\> to the *exception dictionary* whose
+number corresponds to *current_language*.
+* \<words\> is a sequence of \<word\> items separated by spaces.
+* A \<word\> is a sequence of \<hletter\> and \<hyphen\> items.
+* A \<hyphen\> is a token (`-`, 12).
+* A \<hletter\> is one of:
+  * a character token of category 11 or 12;
+  * a `\chardef` defined control sequence;
+  * a `\char`\<8-bit number\>;
+
+  such that the corresponding character has nonzero `\lccode`.
+* There can be up to 256 *exception dictionaries*, numbered from 0 to 255.
+* The `\language` register denotes which *exception dictionary* is currently in
+  use. Changing the value of this register picks up another *exception
+  dictionary*. Assigning a value outside of 0 to 255 to this register is the
+  same as assigning the zero.
+* The change is global.
+* If two or more same words are added, the hyphenation of the most recent one
+  is used.
+
+#### Hyphenation Algorithm
+
+1. Let `W` be a word to be hyphenated.
+1. Let `n` be the length of `W`. For `1 <= i <= n`, let `W[i]` be the `i`th
+   symbol of `W`.
+1. Let `W'` be a sequence `. I[1] W[1] I[2] W[2] ... I[n] W[n] I[n+1] .`, where
+   `I[i] = 0` is an interletter value meaning the desirability of hyphen on
+   the `I[i]`'s position, for all `1 <= i <= n+1`.
+1. Let `P` be the *pattern dictionary* whose number is *current_language*.
+1. For every pattern `Ip[1] Wp[1] Ip[2] Wp[2] ... Ip[m] Wp[m] Ip[m+1]` in `P`,
+   where `Wp[i]`, `1 <= i <= m`, is a symbol and `Ip[j]`, `1 <= j <= m+1`, is
+   an interletter value, for some `m >= 1`, do:
+   * If `Wp[i] = W[k+i-1]` for all `1 <= i <= m` and some `k >= 1` (that is,
+     the pattern is a subword of `W`), then:
+     * For all `1 <= i <= m+1`, if `Ip[i] > I[k+i-1]`, set `I[k+i-1]` to
+       `Ip[i]`.
+1. For all `1 <= i <= n+1`, if `I[i]` is odd, insert `\-` into `W` at the
+   position of `I[i]`, giving a special treatment to (implicit) kerns and
+   ligatures.
+
+#### `\patterns`
+
+`\patterns{`\<patterns\>`}` makes the *pattern dictionary*, whose number
+corresponds to *current_language*, from \<patterns\>.
+* The command is available only in IniTeX.
+* \<patterns\> is a sequence of \<pattern\> items separated by spaces.
+* A \<pattern\> is a sequence of one or more \<value\>\<pletter\>, followed by
+  \<value\>.
+* A \<value\> is either a digit ((`0`, 12) to (`9`, 12)) or empty. Empty
+  \<value\> stands for 0.
+* A \<pletter\> is a character token of category 11 or 12 with nonzero
+  `\lccode`.
+  * `.` (the dot character) is treated as \<pletter\> with code 0 (TeX uses
+    code 0 to represent the left or right edge of a word being hyphenated).
+* There can be up to 256 *pattern dictionaries*, numbered from 0 to 255.
+* The `\language` register denotes which *pattern dictionary* is currently in
+  use. Changing the value of this register picks up another *pattern
+  dictionary*. Assigning a value outside of 0 to 255 to this register is the
+  same as assigning the zero.
 
 ### Making Paragraphs
 
@@ -3415,8 +3551,8 @@ Define *penalty*(*j*, *P*) function as follows:
   to *p*.
 * Return *p*.
 
-When TeX processes `\par` primitive it converts the current horizontal list to
-the paragraph by following these steps:
+When TeX processes `\par` primitive or display appears in a horizontal mode it
+converts the current horizontal list to the paragraph by following these steps:
 1. **[Prepare]** Let *L* be the current horizontal list and *V* be the current
    vertical list.
    * If *V* is not empty and `\parskip` is not zero, append `\vskip \parskip`
