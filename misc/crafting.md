@@ -2,6 +2,7 @@
 
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
+* [IKAP OK II](https://www.youtube.com/@ikapokii5161/videos)
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
 * [КУЙ железо](https://www.youtube.com/channel/UCniZSLYkcEXtjGNpdU5lgCA/videos)
 * [Made by Madman](https://www.youtube.com/channel/UCjF5e5eQPCToV0UYB0P0dMg/videos)
@@ -10,6 +11,8 @@
 
 ## Bushcraft
 
+* [Cyprien Outdoor Adventures](https://www.youtube.com/@CyprienAdventures/videos)
+* [OUTDOORS55](https://www.youtube.com/@OUTDOORS55/videos)
 * [Vadim in the WILD](https://www.youtube.com/c/VadimintheWILD/videos)
 
 ## Forging
@@ -41,3 +44,7 @@
 ### Tools & Equipment
 
 * [Samostmívací svařovací kukla KWX730ARC+ 1/1/1/1 KOWAX](https://www.elektrody.cz/samostmivaci-svareci-kukla-kwx730arc-1-1-1-1?gclid=CjwKCAiAqIKNBhAIEiwAu_ZLDnVpcxcCZCNMehtjQX2ffKAwRVGz02SpFMbeHiFEy4345vfWqMN_ERoC_tUQAvD_BwE)
+
+## Woodworking
+
+* [Dan Santana Bows](https://www.youtube.com/@DanSantanaBows/videos)
