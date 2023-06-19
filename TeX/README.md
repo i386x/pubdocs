@@ -3254,7 +3254,10 @@ The conversion algorithm:
 * a kern
 * a penalty
 * a math node (produced by `$...$` and `\mathsurround`)
-The last four elements are *discardable*, the rest is *non-discardable*.
+
+The last four elements are *discardable*, the rest is *non-discardable*. The
+exception to this rule is a penalty with a value lesser or equal to -10000 is
+non-discardable in the horizontal list.
 
 ### `\discretionary` Breakpoints
 
@@ -3268,6 +3271,9 @@ The last four elements are *discardable*, the rest is *non-discardable*.
   * `<post-break>` goes to the start of the next line
 * `<no-break>` goes to the place where `\discretionary` is used when there is
   no break in that place
+* in math/display mode
+  * `<pre-break>` and `<post-break>` are interpreted in horizontal mode
+  * `<no-break>` must be empty
 
 `\-` is a shorthand for `\discretionary{\char <hyphenchar>}{}{}`:
 * `\char <hyphenchar>` is a hyphenation character of the current font
@@ -3432,6 +3438,8 @@ five places:
 * **(c)** at a math node that closes a math formula if the node is immediately
   followed by glue (penalty: 0)
 * **(d)** at a penalty (penalty: explicitly given)
+  * a penalty less or equal to -10000 forces a line break
+  * a penalty greater or equal to 10000 forbids a line break
 * **(e)** at a discretionary node (penalty: `\hyphenpenalty` if the pre-break
   text is nonempty, `\exhyphenpenalty` otherwise)
 
@@ -3589,7 +3597,9 @@ converts the current horizontal list to the paragraph by following these steps:
    * Let *P* be an element of *Ls* such that *total_demerits*(*P*) <=
      *total_demerits*(*X*) for all *X* in *Ls*. That is, *P* is an element from
      *Ls* with the smallest total demerits. If breakpoints were found using
-      (C), *total_demerits* are computed with `\emergencystretch` kept in mind.
+     (C), *total_demerits* are computed with `\emergencystretch` kept in mind.
+     Note that as a consequence, given a sequence of penalties, the line
+     breaking algorithm prefers the smallest one.
    * If `\looseness` is not 0 and *nreq* is *unset*:
      * Set *nreq* to the number of elements (lines) in *P* increased about
       `\looseness`.
