@@ -6,7 +6,9 @@
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
 * [КУЙ железо](https://www.youtube.com/channel/UCniZSLYkcEXtjGNpdU5lgCA/videos)
 * [Made by Madman](https://www.youtube.com/channel/UCjF5e5eQPCToV0UYB0P0dMg/videos)
+* [MateriályNaZakázku](https://www.materialynazakazku.cz/)
 * [Mekanik Mesin](https://www.youtube.com/channel/UCt44gY0CEaIsYygIwXxAHzw/videos)
+* [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
 
 ## Bushcraft
@@ -21,8 +23,11 @@
 
 ## Milling
 
+* [Filing metal to make it flat / level](https://www.youtube.com/watch?v=Vkw-fNuCktA)
 * [Open Source Machine Tools](https://www.youtube.com/channel/UC79QdJW2rayvCzqNq-SAM-g/videos)
 * [Vrtání děr](https://www.osu.cz/dokumenty/proportal/pdf/kpv/vrtani/index.html)
+* [Scraping basics - Scraping flat - Part 1](https://www.youtube.com/watch?v=QJXqHpSh3SE)
+* [Scraping basics - Scraping flat - Part 2](https://www.youtube.com/watch?v=S9N3Q8Qww2A)
 
 ## Plumbing
 

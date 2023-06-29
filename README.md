@@ -30,6 +30,7 @@ interested in. Maybe You find some of these interesting too.
    1. [ELN](#eln)
    1. [FESCO](#fesco)
    1. [GNOME](#gnome)
+   1. [KDE](#kde)
    1. [Packaging](#packaging)
    1. [System Management](#system-management)
 1. [Hardware](#hardware)
@@ -369,6 +370,8 @@ interested in. Maybe You find some of these interesting too.
 ### Simulation
 
 * [ngspice](http://ngspice.sourceforge.net/) [[repo](https://github.com/ngspice/ngspice)]
+* [SiliWiz (Silicon Layout Wizard)](https://app.siliwiz.com/) [[repo](https://github.com/wokwi/siliwiz)]
+* [Wokwi - Simulate IoT Projects in Your Browser](https://wokwi.com/)
 
 ### Telephones
 
@@ -381,6 +384,7 @@ interested in. Maybe You find some of these interesting too.
 ## Fedora Project
 
 * [Content Resolver](https://tiny.distro.builders/)
+  * [Configs](https://github.com/minimization/content-resolver-input/)
 * [Fedora Crypto Consolidation](https://fedoraproject.org/wiki/Fedora_Crypto_Consolidation?rd=FedoraCryptoConsolidation)
 * [Fedora Discussion](https://discussion.fedoraproject.org/)
 * [Fedora Engineering Steering Committee](https://docs.fedoraproject.org/en-US/fesco/)
@@ -442,6 +446,10 @@ interested in. Maybe You find some of these interesting too.
   * [TaskBar](https://extensions.gnome.org/extension/584/taskbar/)
 * [How to install a GNOME Shell extension](https://fedoramagazine.org/install-gnome-shell-extension/)
 * [Monospaced fonts in pidgin](https://gist.github.com/armonge/3909580)
+
+### KDE
+
+* [No custom Qt theming for Fedora Workstation](https://fedoraproject.org/wiki/Changes/NoCustomQtThemingForWorkstation)
 
 ### Packaging
 
@@ -761,6 +769,7 @@ interested in. Maybe You find some of these interesting too.
 * [Build a Container with a Dockerfile](https://docs.fedoraproject.org/en-US/iot/build-docker/)
 * [Build smaller container images using S2I](https://developers.redhat.com/articles/2023/02/15/build-smaller-container-images-using-s2i#)
 * [CentOS Containers on Quay.io Registry](https://quay.io/repository/centos/centos?tab=tags)
+* [Container Anatomy](https://nuvalence.io/insights/container-anatomy/) [[code](https://github.com/Nuvalence/diy-container)]
 * [Container permission denied: How to diagnose this error](https://www.redhat.com/sysadmin/container-permission-denied-errors)
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
@@ -942,6 +951,7 @@ interested in. Maybe You find some of these interesting too.
 * Bourne Again Shell
   * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html)
   * [Bash bang commands: A must-know trick for the Linux command line](https://www.redhat.com/sysadmin/bash-bang-commands)
+  * [Bash completion tutorial code](https://github.com/iridakos/bash-completion-tutorial)
   * [Bash Guide](http://mywiki.wooledge.org/BashGuide)
   * [Bash Guide for Beginners](http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
   * [Bash One-Liners Explained, Part I: Working with files](https://catonmat.net/bash-one-liners-explained-part-one)
@@ -1086,13 +1096,13 @@ interested in. Maybe You find some of these interesting too.
 * [API Catalog and Documentation](https://developers.redhat.com/api-catalog/)
 * [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 * [Design Patterns](http://www.vincehuston.org/dp/)
-* [Laws of UX](https://lawsofux.com/)
 * [Model Driven Design – theory to practice](https://www.todaysoftmag.com/article/1529/model-driven-design-theory-to-practice)
 * [Semantic Versioning](https://semver.org/)
 * [Serverless Workflow](https://serverlessworkflow.io/)
   * [specification](https://github.com/serverlessworkflow/specification/blob/main/specification.md)
 * [Software optimization resources](https://www.agner.org/optimize/)
 * [Sourcegraph](https://sourcegraph.com/search)
+* [Stack Overflow 2023 Developer Survey](https://survey.stackoverflow.co/2023/)
 * [strchr.com](https://www.strchr.com/)
 * [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 * [The Open Source Way](https://www.theopensourceway.org/)
@@ -1152,6 +1162,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Code Analysis
 
+* [A Journey Towards Efficient Software Profiling: Challenges and Solutions](https://research.redhat.com/events/a-journey-towards-efficient-software-profiling/)
 * [Automation of Formal Verification](https://github.com/aufover)
   * [aufover-benchmark](https://github.com/aufover/aufover-benchmark)
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
@@ -1163,6 +1174,7 @@ interested in. Maybe You find some of these interesting too.
 * [KLEE Symbolic Execution Engine](https://klee.github.io/) [[repo](https://github.com/klee/klee)]
   * [Testing a Small Function](https://klee.github.io/tutorials/testing-function/)
 * [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
+* [OpenScanHub](https://github.com/openscanhub/openscanhub)
 * [Runtime Verification](https://runtime-verification.github.io/) [[repos](https://github.com/runtime-verification)]
 * [Static Analysis of a Linux Distribution](https://kdudka.fedorapeople.org/muni23.pdf)
 * [TOP 40 Static Code Analysis Tools (Best Source Code Analysis Tools)](https://www.softwaretestinghelp.com/tools/top-40-static-code-analysis-tools/)
@@ -1381,6 +1393,7 @@ See [Caml](#caml).
 #### Python
 
 * [10 most common security bugs in Python and how to avoid them](https://sudonull.com/post/12399-10-most-common-security-bugs-in-Python-and-how-to-avoid-them)
+* [Annotations Best Practices](https://docs.python.org/3/howto/annotations.html)
 * [Constantly print Subprocess output while process is running](https://stackoverflow.com/questions/4417546/constantly-print-subprocess-output-while-process-is-running)
 * [Cryptography](https://cryptography.io/en/latest/) [[repo](https://github.com/pyca/cryptography)]
 * [Debug a Python reference leak](https://vstinner.github.io/debug-python-refleak.html)
@@ -1407,7 +1420,9 @@ See [Caml](#caml).
 * [Python Metaclasses](https://realpython.com/python-metaclasses/)
 * [Python Security](https://python-security.readthedocs.io/index.html)
   * [Prevent DoS by large str-int conversions](https://python-security.readthedocs.io/vuln/large-int-str-dos.html)
+* [Python’s super() considered super!](https://rhettinger.wordpress.com/2011/05/26/super-considered-super/)
 * [Python Tips](https://book.pythontips.com/en/latest/)
+* [Setting up pyenv in docker](https://gist.github.com/jprjr/7667947)
 
 ##### Console UI Libraries
 
@@ -1428,6 +1443,7 @@ See [Caml](#caml).
   * [3 Digging Deeper Into Django Migrations](https://realpython.com/digging-deeper-into-migrations/)
   * [4 Data Migrations](https://realpython.com/data-migrations/)
   * [5 How to Provide Test Fixtures for Django Models in Pytest](https://realpython.com/django-pytest-fixtures/)
+* [Testing a Django Web Application Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing)
 * [WSGI](https://wsgi.readthedocs.io/en/latest/) [[repo](https://github.com/GrahamDumpleton/wsgiorg)]
   * [PEP 3333 – Python Web Server Gateway Interface v1.0.1](https://peps.python.org/pep-3333/)
 
@@ -1475,6 +1491,8 @@ See [Caml](#caml).
 * [OpenDev Infrastructure](https://docs.opendev.org/opendev/system-config/latest/index.html)
 
 ### User Interface
+
+* [Laws of UX](https://lawsofux.com/)
 
 #### CLI
 
@@ -1575,6 +1593,7 @@ See [Caml](#caml).
   * [expected (C++)](https://github.com/TartanLlama/expected)
   * [LLVM `ErrorOr` (C++)](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Support/ErrorOr.h)
   * [`std::expected` (C++)](https://github.com/ptal/expected)
+* [factory_boy (Python)](https://github.com/FactoryBoy/factory_boy) [[doc](https://factoryboy.readthedocs.io/en/latest/index.html)]
 * [Fedora Infrastructure](https://github.com/fedora-infra)
   * [mbox (Ansible)](https://github.com/fedora-infra/mbbox)
 * [Ferdium (TypeScript)](https://github.com/ferdium/ferdium-app) [[home](https://ferdium.org/)]
@@ -1640,6 +1659,7 @@ See [Caml](#caml).
 * [libabigail (C++)](https://github.com/metti/libabigail)
 * [libao (C)](https://github.com/xiph/libao) [[doc](https://xiph.org/ao/doc/)]
 * [libcgroup (C)](https://github.com/libcgroup/libcgroup)
+* [libchrony (C)](https://gitlab.com/chrony/libchrony)
 * [libdaemon (C)](https://github.com/Distrotech/libdaemon)
 * [libdnet (C)](https://github.com/ofalk/libdnet)
 * [libevent (C)](https://github.com/libevent/libevent)
@@ -1658,6 +1678,7 @@ See [Caml](#caml).
 * [Lit (JavaScript/TypeScript)](https://github.com/lit/lit/) [[home](https://lit.dev/)]
 * [LL(k) Parsing Table Generator (JavaScript/Java)](https://github.com/rkocman/LLk-Parsing-Table-Generator)
 * [LLVM (C++)](https://github.com/llvm/llvm-project) [[home](https://llvm.org/)]
+* [lodash (JavaScript)](https://github.com/lodash/lodash) [[home](https://lodash.com/)]
 * [logiops (C++)](https://github.com/PixlOne/logiops)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
 * [Lua (C)](https://github.com/lua/lua) [[home](https://www.lua.org/)]
@@ -1672,7 +1693,9 @@ See [Caml](#caml).
 * [Matrix (An open network for secure, decentralized communication) server setup using Ansible and Docker (Ansible)](https://github.com/spantaleev/matrix-docker-ansible-deploy/)
 * [memleax (C)](https://github.com/WuBingzheng/memleax)
 * [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
+* [miniflac (C)](https://github.com/jprjr/miniflac)
 * [MkDocs (Python)](https://github.com/mkdocs/mkdocs) [[home](https://www.mkdocs.org/)]
+* [mkosi — Build Bespoke OS Images (Python)](https://github.com/systemd/mkosi)
 * [mock (Python)](https://github.com/rpm-software-management/mock)
 * [modulemd-tools (Python)](https://github.com/rpm-software-management/modulemd-tools)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
@@ -1699,6 +1722,8 @@ See [Caml](#caml).
   * [Cluster Monitoring Operator (Golang)](https://github.com/openshift/cluster-monitoring-operator)
   * [machine-config-operator (Golang)](https://github.com/openshift/machine-config-operator)
   * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
+* [OpenShift Toolkit - IntelliJ (Java)](https://github.com/redhat-developer/intellij-openshift-connector)
+* [OpenShift Toolkit - VSCode (TypeScript)](https://github.com/redhat-developer/vscode-openshift-tools)
 * [OS and Application Modernization Group](https://github.com/oamg)
   * [convert2rhel (Python)](https://github.com/oamg/convert2rhel)
   * [leapp (Python)](https://github.com/oamg/leapp)
@@ -1766,6 +1791,7 @@ See [Caml](#caml).
 * [Schematics (Python)](https://github.com/schematics/schematics)
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
 * [sh (Golang)](https://github.com/mvdan/sh)
+* [shadow-utils (C)](https://github.com/shadow-maint/shadow)
 * [Shake (Haskell)](https://github.com/ndmitchell/shake/) [[docs](https://shakebuild.com/)]
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [shim, a first-stage UEFI bootloader (C)](https://github.com/rhboot/shim)
