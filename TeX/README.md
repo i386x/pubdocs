@@ -487,6 +487,7 @@ Switching between these modes are driven using the following rules:
    `\discretionary`, `\-`, `\<space>`, `\noboundary`, `$`, `$$`, `\indent`, or
    `\noindent`:
    1. enter the horizontal mode
+   1. set `\prevgraf` to 0
    1. if the current token is distinct from `\indent` and `\noindent`, return
       it back to the token list
    1. initialize an empty horizontal list for incoming material
@@ -3364,9 +3365,9 @@ The hyphenation is then made following these steps:
    * the prefix of *w* of the length *max*(1, `\lefthyphenmin`)
    * the suffix of *w* of the length *max*(1, `\righthyphenmin`)
 
-#### `\hyphen`
+#### `\hyphenation`
 
-`\hyphen{`\<words\>`}` adds \<words\> to the *exception dictionary* whose
+`\hyphenation{`\<words\>`}` adds \<words\> to the *exception dictionary* whose
 number corresponds to *current_language*.
 * \<words\> is a sequence of \<word\> items separated by spaces.
 * A \<word\> is a sequence of \<hletter\> and \<hyphen\> items.
@@ -3377,12 +3378,14 @@ number corresponds to *current_language*.
   * a `\char`\<8-bit number\>;
 
   such that the corresponding character has nonzero `\lccode`.
+* A \<word\> is converted to its `\lccode` form before it is added to the
+  *exception dictionary*.
 * There can be up to 256 *exception dictionaries*, numbered from 0 to 255.
 * The `\language` register denotes which *exception dictionary* is currently in
   use. Changing the value of this register picks up another *exception
   dictionary*. Assigning a value outside of 0 to 255 to this register is the
   same as assigning the zero.
-* The change is global.
+* The change is global and additive.
 * If two or more same words are added, the hyphenation of the most recent one
   is used.
 
@@ -3410,7 +3413,7 @@ number corresponds to *current_language*.
 
 `\patterns{`\<patterns\>`}` makes the *pattern dictionary*, whose number
 corresponds to *current_language*, from \<patterns\>.
-* The command is available only in IniTeX.
+* The command is available only in IniTeX and it is not additive.
 * \<patterns\> is a sequence of \<pattern\> items separated by spaces.
 * A \<pattern\> is a sequence of one or more \<value\>\<pletter\>, followed by
   \<value\>.
@@ -3420,6 +3423,8 @@ corresponds to *current_language*, from \<patterns\>.
   `\lccode`.
   * `.` (the dot character) is treated as \<pletter\> with code 0 (TeX uses
     code 0 to represent the left or right edge of a word being hyphenated).
+* A \<pattern\> is converted to its `\lccode` form before it is added to the
+  *pattern dictionary*.
 * There can be up to 256 *pattern dictionaries*, numbered from 0 to 255.
 * The `\language` register denotes which *pattern dictionary* is currently in
   use. Changing the value of this register picks up another *pattern
@@ -3597,9 +3602,11 @@ converts the current horizontal list to the paragraph by following these steps:
    * Let *P* be an element of *Ls* such that *total_demerits*(*P*) <=
      *total_demerits*(*X*) for all *X* in *Ls*. That is, *P* is an element from
      *Ls* with the smallest total demerits. If breakpoints were found using
-     (C), *total_demerits* are computed with `\emergencystretch` kept in mind.
-     Note that as a consequence, given a sequence of penalties, the line
-     breaking algorithm prefers the smallest one.
+     (C), *total_demerits* are computed with `\emergencystretch` kept in mind
+     and after that computation the badness of each line is returned to its
+     pre-`\emergencystretch` value. Note that as a consequence, given a
+     sequence of penalties, the line breaking algorithm prefers the smallest
+     one.
    * If `\looseness` is not 0 and *nreq* is *unset*:
      * Set *nreq* to the number of elements (lines) in *P* increased about
       `\looseness`.
@@ -3622,8 +3629,11 @@ converts the current horizontal list to the paragraph by following these steps:
 
 ### Line Breaking Parameters Summary
 
-* `\hangafter=<number>` specifies the duration of `\hangindent`
+* `\hsize=<dimen>` specifies the line width in horizontal mode
+* `\leftskip=<glue>` specifies glue at left of justified lines
+* `\rightskip=<glue>` specifies glue at right of justified lines
 * `\hangindent=<dimen>` specifies the paragraph's hanging indentation
+* `\hangafter=<number>` specifies the duration of `\hangindent`
 * `\parshape=<n> <s1> <w1> <s2> <w2> ... <sn> <wn>` defines a shape of a
   paragraph
   * `<n>` (`<number>`) is the number (positive integer) of affected lines of
@@ -3632,6 +3642,31 @@ converts the current horizontal list to the paragraph by following these steps:
   * `<wi>` (`<dimen>`) is the width of the `i`th line of the paragraph
 
   `\parshape=0` cancels the previous `\parshape`
+* `\parindent=<dimen>` specifies the width of `\indent`
+* `\parfillskip=<glue>` specifies the additional `\rightskip` at end of
+  paragraphs
+* `\font` contains parameters that specify the inter-word space
+* `\pretolerance=<number>` specifies the badness tolerance before hyphenation
+* `\tolerance=<number>` specifies the badness tolerance after hyphenation
+* `\emergencystretch=<glue>` reduces badnesses on third pass of line-breaking
+* `\linepenalty=<number>` specifies the amount added to badness of every line
+  in a paragraph
+* `\patterns{<patterns>}` makes the *pattern dictionary*
+* `\hyphenation{<words>}` adds `<words>` to the *exception dictionary*
+* `\language=<number>` specifies the current set of hyphenation rules
+* `\hyphenpenalty=<number>` specifies the penalty for line break after
+  discretionary hyphen
+* `\exhyphenpenalty=<number>` specifies the penalty for line break after
+  explicit hyphen
+* `\hfuzz=<dimen>` specifies the maximum overrun before `Overfull \hbox`
+  message occur
+* `\hbadness=<number>` specifies the badness above which bad `\hbox`es will be
+  shown
+* `\adjdemerits=<number>` specifies demerits for adjacent incompatible lines
+* `\doublehyphendemerits=<number>` specifies demerits for consecutive broken
+  lines
+* `\finalhyphendemerits=<number>` specifies demerits for a penultimate broken
+  line
 
 ### `\special`
 
