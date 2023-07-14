@@ -466,7 +466,7 @@ Switching between these modes are driven using the following rules:
    1. enter a group
    1. enter the internal vertical mode
       * set `\looseness=0`
-      * set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=0`
+      * set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=1`
    1. assemble a vertical list for this box
    1. leave the group
    1. complete and adjust the vertical list
@@ -481,6 +481,8 @@ Switching between these modes are driven using the following rules:
    1. complete and adjust the horizontal list
    1. leave the restricted horizontal mode
    1. pass the box for further processing
+      * in any vertical mode, append the vertical material from the box right
+        after the box just appended to the outer-level vertical list
 1. Vertical or internal vertical mode plus category 11 token, category 12
    token, `\char`, `\chardef` defined constant, `\hskip`, `\hfil`, `\hfill`,
    `\hss`, `\hfilneg`, `\unhbox`, `\unhcopy`, `\vrule`, `\valign`, `\accent`,
@@ -834,11 +836,11 @@ which serves as an equivalent for `\char<number>`.
 #### Data Types
 
 A number register (`\count`) occupies 4 bytes. The range of stored number is
-`-2**31 + 1` (-2147483647) to `2**31 - 1` (2147483647).
+`-2^31 + 1` (-2147483647) to `2^31 - 1` (2147483647).
 
 A dimension register (`\dimen`) occupies 4 bytes. Dimensions are stored
-internally in `sp` units, the range of stored dimension is `(-2**30 + 1) sp`
-(-1073741823 `sp`) to `(2**30 - 1) sp` (1073741823 `sp`). When assigning a
+internally in `sp` units, the range of stored dimension is `(-2^30 + 1) sp`
+(-1073741823 `sp`) to `(2^30 - 1) sp` (1073741823 `sp`). When assigning a
 value to a dimension register, TeX supports various range of units:
 | Unit | Meaning |
 | ---- | ------- |
@@ -853,6 +855,9 @@ value to a dimension register, TeX supports various range of units:
 | `sp` | scaled point, base TeX precision unit (65536 `sp` = 1 `pt`) |
 | `em` | the width of a quad (the letter M) in the current font (`\fontdimen6\font`) |
 | `ex` | the height of the letter x in the current font (`\fontdimen5\font`) |
+
+All units except the `em` and `ex` can be prefixed with `true` keyword, which
+cancels the effect of `\mag` (multiplies the dimension by `1000 / \mag`).
 
 A glue register (`\skip`) has 3 dimension components: the base dimension, the
 stretch dimension, and the shrink dimension. Besides the standard units, the
@@ -907,8 +912,12 @@ performs `X += Y` as follows:
 1. do `X += Y'`, where `Y'` denotes the converted `Y` from step 1
    * if `X` is glue or math glue, then `X += Y'` is computed as
      * `X.base += Y'.base`
-     * `X.stretch += Y'.stretch`
-     * `X.shrink += Y'.shrink`
+     * `X.stretch += Y'.stretch` if stretch values are of the same order;
+       otherwise, if `Y'` has higher order and `Y'.stretch` is nonzero, do
+       `X.stretch = Y'.stretch`
+     * `X.shrink += Y'.shrink` if shrink values are of the same order;
+       otherwise, if `Y'` has higher order and `Y'.shrink` is nonzero, do
+       `X.shrink = Y'.shrink`
 
 `X Y`, where `X` is a floating-point number and `Y` is a dimension register
 evaluates to `X * Y`.
@@ -956,7 +965,7 @@ to do that:
      // note that the largest value that can be held in dimension registers is
      // 16383.9999pt. That is, we can choose K such that x*K will be as close
      // to 16383.9999pt as possible. Since 65536 is a power of 2, we choose K
-     // to be also a power of two, so we express K as 2**k. Now observe the
+     // to be also a power of two, so we express K as 2^k. Now observe the
      // following equality:
      //
      //   (x/y)*65536 = [(x*65536)/(y*65536)]*65536
@@ -3496,8 +3505,8 @@ Recall the *badness*(*line*) function:
 * Let *we* be the expected width of *line* and *wn* be the natural width of
   *line*.
 * Set *s* to *we* - *wn*.
-* Let *total_stretch[i]* be the sum of all stretch values of order *i* of all
-  glues inside *line*. Similarly for *total_shrink[i]*. Recall that order *i*
+* Let *total_stretch*[*i*] be the sum of all stretch values of order *i* of all
+  glues inside *line*. Similarly for *total_shrink*[*i*]. Recall that order *i*
   is:
   * 0 if the value has a unit convertible to `pt`;
   * 1 if the value has the `fil` unit;
@@ -3621,8 +3630,10 @@ converts the current horizontal list to the paragraph by following these steps:
      respectively, let *p* be *penalty*(*j*, *P*). If *p* is not 0, insert
      `\penalty` *p* just before the glue (`\vskip`) that has been inserted
      between lines *j* and (*j* + 1).
-   * If the *j*th line contains `\vadjust{`\<vertical list\>`}`, add \<vertical
-     list\> to *V* immediately after the *j*th line.
+   * If the *j*th line contains `\vadjust{`\<vertical mode material\>`}`, add
+     \<vertical mode material\> converted to vertical list to *V* immediately
+     after the *j*th line. Similarly for `\mark`, `\insert`, `\openout`,
+     `\closeout`, and `\write`.
 1. **[Finalize]**
    * Set `\looseness=0`.
    * Set `\parshape=0`, `\hangindent=0pt`, and `\hangafter=1`.
@@ -3641,7 +3652,8 @@ converts the current horizontal list to the paragraph by following these steps:
   * `<si>` (`<dimen>`) is the indentation of the `i`th line of the paragraph
   * `<wi>` (`<dimen>`) is the width of the `i`th line of the paragraph
 
-  `\parshape=0` cancels the previous `\parshape`
+  `\parshape=0` cancels the previous `\parshape`; when read, `\parshape`
+  returns the number of lines controlled
 * `\parindent=<dimen>` specifies the width of `\indent`
 * `\parfillskip=<glue>` specifies the additional `\rightskip` at end of
   paragraphs
@@ -3667,6 +3679,423 @@ converts the current horizontal list to the paragraph by following these steps:
   lines
 * `\finalhyphendemerits=<number>` specifies demerits for a penultimate broken
   line
+
+### Making Pages
+
+The *main vertical list* contains elements from which pages are build. The main
+vertical list is populated in vertical mode. Only these types of items can
+occur in a vertical list:
+* a box or a rule
+* a *whatsit*
+* a mark
+* an insertion
+* a glue item or `\leaders`
+* a kern
+* a penalty
+
+The last three types are *discardable*, the rest is *nondiscardable*.
+
+In a vertical list, *break point*, or *page break*, can occur in these places:
+* at glue which is immediately preceded by a nondiscardable item (penalty: 0)
+* at a kern which is immediately followed by glue (penalty: 0)
+* at a penalty (penalty: explicitly given)
+
+A penalty greater or equal to 10000 forbids a break, a penalty less or equal to
+-10000 forces a break.
+
+Recall the *badness*(*page*) function:
+* Let *he* be the expected height of *page* (`\pagegoal`) and *hn* be the
+  natural height of *page* (`\pagetotal`).
+* Set *s* to *he* - *hn*.
+* Let *total_stretch*[*i*] be the sum of all stretch values of order *i* of all
+  glues inside *page*. Similarly for *total_shrink*[*i*]. Recall that order *i*
+  is:
+  * 0 if the value has a unit convertible to `pt`;
+    * *total_stretch*[0] is referred as `\pagestretch`;
+    * *total_shrink*[0] is referred as `\pageshrink`;
+  * 1 if the value has the `fil` unit;
+    * *total_stretch*[1] is referred as `\pagefilstretch`;
+  * 2 if the value has the `fill` unit;
+    * *total_stretch*[2] is referred as `\pagefillstretch`;
+  * 3 if the value has the `filll` unit;
+    * *total_stretch*[3] is referred as `\pagefilllstretch`.
+* Define *rank*(*x*) to be
+  * 3 if *x*[3] is not 0;
+  * otherwise, 2 if *x*[2] is not 0;
+  * otherwise, 1 if *x*[1] is not 0;
+  * otherwise, 0 if *x*[0] is not 0;
+  * otherwise, -1.
+* If *s* = 0, *badness*(*page*) is 0.
+* If *s* < 0 (shrinking), *badness*(*page*) is
+  * error if *rank*(*total_shrink*) > 0;
+  * otherwise, infinity if *rank*(*total_shrink*) < 0 or
+    *abs*(*s*) > *total_shrink*[0];
+  * otherwise, *min*(100|*s*/*total_shrink*[0]|^3, 10000).
+* If *s* > 0 (stretching), *badness*(*page*) is
+  * 0 if *rank*(*total_stretch*) > 0;
+  * otherwise, 10000 if *total_stretch*[0] <= 0;
+  * otherwise, *min*(100|*s*/*total_stretch*[0]|^3, 10000).
+
+Analogously, recall the *vbadness*(*bp*) function:
+* Let *ch* be the current height and *h* be the expected height at *bp*,
+  excluding *bp*.
+* Set *s* to *h* - *ch*.
+* Let *total_stretch*[*i*] be the sum of all stretch values of order *i* of all
+  glues up to *bp*, exclusive. Similarly for *total_shrink*[*i*]. Recall that
+  order *i* is:
+  * 0 if the value has a unit convertible to `pt`;
+  * 1 if the value has the `fil` unit;
+  * 2 if the value has the `fill` unit;
+  * 3 if the value has the `filll` unit.
+* Define *rank*(*x*) to be
+  * 3 if *x*[3] is not 0;
+  * otherwise, 2 if *x*[2] is not 0;
+  * otherwise, 1 if *x*[1] is not 0;
+  * otherwise, 0 if *x*[0] is not 0;
+  * otherwise, -1.
+* If *s* = 0, *vbadness*(*bp*) is 0.
+* If *s* < 0 (shrinking), *vbadness*(*bp*) is
+  * error if *rank*(*total_shrink*) > 0;
+  * otherwise, infinity if *rank*(*total_shrink*) < 0 or
+    *abs*(*s*) > *total_shrink*[0];
+  * otherwise, *min*(100|*s*/*total_shrink*[0]|^3, 10000).
+* If *s* > 0 (stretching), *vbadness*(*bp*) is
+  * 0 if *rank*(*total_stretch*) > 0;
+  * otherwise, 10000 if *total_stretch*[0] <= 0;
+  * otherwise, *min*(100|*s*/*total_stretch*[0]|^3, 10000).
+
+Define *cost*(*pb*) function as follows:
+* Let *b* be the badness at the potential page break *pb*.
+* Let *p* be the penalty associated with *pb*.
+* Set *q* to `\insertpenalties`.
+* The value of *cost*(*pb*) is
+  * *p* if *b* < infinity and *p* <= -10000 and *q* < 10000;
+  * *b* + *p* + *q* if *b* < 10000 and -10000 < *p* < 10000 and *q* < 10000;
+  * 100000 if *b* = 10000 and -10000 < *p* < 10000 and *q* < 10000;
+  * infinity if (*b* = infinity or *q* >= 10000) and *p* < 10000.
+
+Analogously, define *vcost*(*bp*) function as follows:
+* Let *b* be the *vbadness*(*bp*) and *p* be the penalty associated with the
+  potential breakpoint *bp*.
+* The value of *vcost*(*bp*) is
+  * *p* if *b* < infinity and *p* <= -10000;
+  * *b* + *p* if *b* < 10000 and -10000 < *p* < 10000;
+  * 100000 if *b* = 10000 and -10000 < *p* < 10000;
+  * infinity if *b* = infinity and *p* < 10000.
+
+The main vertical list exists in two parts:
+1. *recent contributions*, containing items that will be moved to the current
+   page when the time comes up
+1. the *current page*, containing items that are candidates for the next page
+
+Insertion items are put to a vertical or horizontal list using `\insert` *n*
+`{` \<vertical mode material\> `}`. *n* is a \<number\> denoting an *insertion
+class*. There are 255 classes of insertions, 0 to 254. Each insertion class is
+tied with the four registers of the same number:
+* `\box` *n* is where the material appears when a page is shipped;
+* `\count` *n* is the magnification factor for page breaking (1000 times the
+  factor by which the natural height plus depth of `\insert` *n* affects the
+  page goal);
+* `\dimen` *n* is the maximum insertion size per page;
+* `\skip` *n* is the extra space to allocate on a page.
+
+Insertion classes do not collide with each other. The order of insertions is
+preserved within a class.
+
+`\mark {` \<balanced text\> `}` puts a mark item to the list that is just
+building.
+* \<balanced text\> is expanded before the mark item is put into the list.
+* Mark in the vertical mode goes to the main vertical list.
+* Mark in the horizontal mode goes to the main vertical list too. It is placed
+  right behind the box with a line where it appears.
+* Mark in a restricted horizontal mode may migrate to the enclosing vertical
+  list (like `\insert` or `\vadjust`). This happens when a `\hbox` enters a
+  vertical list: a vertical material from the horizontal list is appended to
+  the vertical list right after the `\hbox`. A vertical material also migrates
+  from displayed equations.
+* Mark that is buried to deeply in a box or mark in internal mode stays in a
+  box where it appears.
+
+Recall the functions used in the page building algorithm below:
+* *height*(*x*) returns the height of box or rule *x*
+* *depth*(*x*) returns the depth of box or rule *x*
+* *base*(*x*) returns the base dimension of glue *x* or the amount of kern *x*
+
+Define an auxiliary function *vert_break*(*V*, *h*, *d*):
+1. Let *V* is a vertical list, *h* is the expected height, and *d* is the
+   maximal depth.
+   * Set *best_vcost* to infinity.
+   * Set *best_vbreak* to null.
+   * Set *best_vsize* to 0.
+   * Set *ch* and *cd* to 0.
+   * Set all components of *total_stretch* and *total_shrink* to 0.
+1. Temporarily, for the scope of this function, append `\penalty -10000` to
+   *V*.
+1. For *I* in *V*:
+   * If *I* is a box or a rule:
+     * Add (*cd* + *height*(*I*)) to *ch*.
+     * Set *cd* to *depth*(*I*).
+     * If *cd* > *d*, add (*cd* - *d*) to *ch* and set *cd* to *d*.
+   * If *I* is a legitimate breakpoint:
+     * Set *c* to *vcost*(*I*).
+     * If *c* <= *best_vcost*, set *best_vcost* to *c*, *best_vbreak* to *I*,
+       and *best_vsize* to (*ch* + *cd*).
+     * If *c* is infinity or the penalty associated with *I* is less or equal
+       to -10000, return (*best_vbreak*, *best_vsize*).
+   * If *I* is glue or a kern:
+     * Add (*cd* + *base*(*I*)) to *ch*.
+     * Add stretch and shrink values from *I*, if any, to *total_stretch* and
+       *total_shrink*.
+     * Set *cd* to 0.
+
+The page building algorithm works as follows:
+1. Express the main vertical list, *V*, as *P C*, where *C* is the list of
+  recent contributions and *P* is the current page.
+  * If *P* is not empty (continuing in page building after new items arrive in
+    *C*), go to **Emptiness Test**.
+1. **[Start New Page]** *P* is empty, prepare to populate it:
+   * Set *best_cost* to infinity.
+   * Set *best_break* to null.
+   * Set *best_size* to 0.
+   * Set `\pagegoal` to `\vsize`.
+   * Set `\pagetotal` and `\pagedepth` to 0.
+   * Set `\pagestretch`, `\pagefilstretch`, `\pagefillstretch`,
+     `\pagefilllstretch`, and `\pageshrink` to 0.
+   * Set `\lastskip`, `\lastkern`, and `\lastpenalty` to 0.
+   * Set `\insertpenalties` to 0.
+   * Set all components of *page_ins_height* to 0.
+1. **[Emptiness Test]** If *C* is empty, terminate.
+1. Move the first (top) item from *C* and append it to *P*.
+   * If *C* does not contain any box or rule so far and the item is
+     discardable, discard the item and go to **Emptiness Test**.
+   * Call the item *I*.
+1. Update `\lastskip`, `\lastkern`, and `\lastpenalty` with respect to *I*.
+1. If *I* is a box or a rule:
+   * If *I* is the first box or rule that comes to *P* and the `\topskip` space
+     has not been made yet:
+     * Move *I* back to *C*.
+     * If `\topskip` > *height*(*I*):
+       * Insert `\vskip` (`\topskip` - *height*(*I*)) right before *I*.
+     * Otherwise, insert `\vskip 0pt plus \topskip stretch minus \topskip
+       shrink` right before *I*.
+     * Go to **Emptiness Test**.
+   * Add (`\pagedepth` + *height*(*I*)) to `\pagetotal`.
+   * Set `\pagedepth` to *depth*(*I*).
+   * If `\pagedepth` > `\maxdepth`:
+     * Add (`\pagedepth` - `\maxdepth`) to `\pagetotal`.
+     * Set `\pagedepth` to `\maxdepth`.
+1. If *I* is insertion:
+   * Let *f* be (`\count` *n* / 1000).
+   * Let *h* be (*height*(`\box` *n*) + *depth*(`\box` *n*)).
+   * If there is no previous `\insert` *n* in *P*:
+     * Let *w* be *base*(`\skip` *n*).
+     * Set *page_ins_height*[*n*] to *h*.
+     * Decrease `\pagegoal` by (*f h* + *w*).
+     * Add stretch and shrink values from `\skip` *n* to `\pagestretch`,
+       `\pagefilstretch`, `\pagefillstretch`, `\pagefilllstretch`, and
+       `\pageshrink`.
+   * If the previous `\insert` *n* in *P* has been split:
+     * Add `\floatingpenalty` associated with *I* to `\insertpenalties`.
+     * Skip the remaining steps.
+   * If (*h* + *page_ins_height*[*n*] <= `\dimen` *n*) and (*f h* <= 0 or
+     `\pagetotal` + `\pagedepth` + *f h* - `\pageshrink` <= `\pagegoal`):
+     * *I* will fit to *P* without splitting.
+     * Decrease `\pagegoal` by *f h*.
+     * Add *h* to *page_ins_height*[*n*].
+     * Skip the remaining steps.
+   * If *f* <= 0, set *v* to (`\dimen` *n* - *page_ins_height*[*n*]).
+     Otherwise, set *v* to 1/*f* (`\pagegoal` - `\pagetotal` - `\pagedepth`).
+   * If *v* + *page_ins_height*[*n*] > `\dimen` *n*, set *v* to (`\dimen` *n* -
+     *page_ins_height*[*n*]).
+   * Let *d* be `\splitmaxdepth` associated with `\insert` *n* right after the
+     main processor has processed `\insert` *n* `{...}` command.
+   * Let *U* be the vertical list of `\insert` *n*.
+   * Set (*best_vbreak*, *best_vsize*) to *vert_break*(*U*, *v*, *d*).
+   * Add *best_vsize* to *page_ins_height*[*n*].
+   * Decrease `\pagegoal` by (*f* times *best_vsize*).
+   * Add the penalty associated with *best_vbreak* to `\insertpenalties`.
+1. If *I* is a legitimate breakpoint:
+   * Set *c* to *cost*(*I*).
+   * If *c* <= *best_cost*, set *best_cost* to *c*, *best_break* to *I*, and
+     *best_size* to `\pagegoal`.
+   * If *c* is infinity or the penalty associated with *I* is less or equal to
+     -10000, go to **Ship the Page**.
+1. If *I* is glue or a kern:
+   * Add (`\pagedepth` + *base*(*I*)) to `\pagetotal`.
+   * Add stretch and shrink values from *I*, if any, to `\pagestretch`,
+     `\pagefilstretch`, `\pagefillstretch`, `\pagefilllstretch`, and
+     `\pageshrink`.
+   * Set `\pagedepth` to 0.
+1. Go to **Emptiness Test**.
+1. **[Ship the Page]** Express *P* as *Q best_break R*.
+   * If *best_break* is a `\penalty` *p*:
+     * Set `\outputpenalty` to *p*.
+     * Set *best_break* to `\penalty 10000`.
+   * Otherwise, set `\outputpenalty` to 10000.
+   * If `\botmark` is not empty:
+     * Set `\topmark` to `\botmark`.
+     * Clear `\firstmark`.
+   * Fail if `\box 255` is not void.
+   * Let *hold_ins_list* be the list of inserts to be held until the next page,
+     at this point empty.
+   * If `\holdinginserts` <= 0, then for every sequence *S* of `\insert` *n*
+     items in *Q*:
+     * Express *S* as *norm_ins split_ins wait_ins*, where *norm_ins* is a
+       sequence of `\insert` *n* items that fit on a page without splitting,
+       *split_ins* is an `\insert` *n* item that need to be split, and
+       *wait_ins* is a sequence of `\insert` *n* items that do not fit on a
+       page and will go back to recent contributions. Each of these three can
+       be empty.
+     * If *norm_ins* is not empty, append vertical material from inserts to
+       `\box` *n*.
+     * If *split_ins* is not empty:
+       * Express its vertical material as *Y best_vbreak Z*.
+       * Append *Y* to `\box` *n*.
+       * Remove all discardable items from the top of *Z*.
+       * Let `\splittopskip` has a value that `\splittopskip` have in time of
+         completing `\insert` *n* `{` ... `}`, which is now referred as
+         *split_ins*, by the main processor.
+       * Add a space based on `\splittopskip` right before the first box or
+         rule in *Z*.
+       * If *Z* is not empty, make `\insert` *n* `{` *Z `}` and append it to
+         *hold_ins_list*.
+     * If *wait_ins* is not empty, append its inserts to *hold_ins_list*.
+     * Recompute the `\box` *n* properties to reflect recent contributions, if
+       any.
+     * Remove *S* from *Q*.
+   * Set `\insertpenalties` to the number of items in *hold_ins_list*.
+   * For every mark node *M* in *Q*:
+     * If `\firstmark` is empty, set `\firstmark` to *M*.
+     * Set `\botmark` to *M*.
+   * Set *C* to *best_break R C*. Empty *R*.
+   * Pack *Q* into `\box 255` with the expected height set to *best_size*,
+     maximal depth set to `\maxdepth`, `\vbadness` set to 10000, and `\vfuzz`
+     set to maximal dimension. Empty *Q*.
+   * If `\firstmark` is empty and `\topmark` is not empty, set `\firstmark` to
+     `\topmark`.
+   * If `\output` is not empty:
+     * Fail if `\deadcycles` (no `\shipout` during `\output`) >=
+       `\maxdeadcycles`.
+     * Increase `\deadcycles` by one (reset back to zero during `\shipout`).
+     * Open a group.
+     * Set `\prevdepth` to -1000pt.
+     * Set `\looseness` to 0, `\hangindent` to 0, `\hangafter` to 1, and
+       `\parshape` to 0.
+     * Put the content of `\output` to the token stream.
+     * Enter the internal vertical mode.
+     * Process token stream until the matching end of group is hit. This may
+       produce a list of vertical mode contributions, let call them *T*.
+     * Leave the group and the internal vertical mode.
+     * Fail if `\box 255` is not void.
+     * Append *T* to *hold_ins_list*.
+   * Set *C* to *hold_ins_list C*.
+   * Empty *hold_ins_list*.
+   * If `\output` is empty, `\shipout\box255`.
+   * Go to **Start New Page**.
+
+Notes to the page building algorithm:
+* Changing the `\vsize` and `\maxdepth` takes effect on the next page, not on
+  the current one.
+* If the first item on the page is `\insert` followed by a box or a rule, the
+  space according to `\topskip` become a legitimate breakpoint.
+* Reading the value of `\pagegoal` when the current page is empty returns the
+  maximal dimension (16383.99998pt). This is handled by scanning routines, not
+  by algorithm itself.
+* The summary of when an output routine can be invoked:
+  * At the beginning or end of a paragraph that is being contributed to the
+    main vertical list.
+  * At the beginning or end of a displayed equation that is a part of such a
+    paragraph.
+  * After an `\halign` is completed in vertical mode.
+  * After a box, a rule, a penalty or an insertion is contributed to the main
+    vertical list.
+  * After an output routine has ended.
+* Before the first page, `\topmark`, `\botmark`, and `\firstmark` are empty.
+
+Summary of the page building algorithm parameters:
+* `\voffset` is a vertical offset in `\shipout`
+* `\hoffset` is a horizontal offset in `\shipout`
+* `\vsize` is a page height in vertical mode
+* `\maxdepth` is the maximum depth of boxes on main pages
+* `\topskip` is glue at top of main pages
+* `\floatingpenalty` is a penalty for insertions that are split
+* `\splitmaxdepth` is the maximum depth of boxes on split pages
+* `\holdinginserts` is positive if insertions are not discarded from the output
+  box
+* `\splittopskip` is glue at top of split pages
+* `\output` is the user's output routine
+* `\maxdeadcycles` is the upper bound on `\deadcycles`
+
+Summary of the page building algorithm registers:
+* `\pagegoal` is the desired height of the current page
+* `\pagetotal` is the recent height of the current page
+* `\pagedepth` is the depth of a box with a page material
+* `\pagestretch` is the sum of all `\vskip` stretches on the current page
+* `\pagefilstretch` is the sum of all `\vskip plus fil`s on the current page
+* `\pagefillstretch` is the sum of all `\vskip plus fill`s on the current page
+* `\pagefilllstretch` is the sum of all `\vskip plus filll`s on the current
+  page
+* `\pageshrink` is the sum of all `\vskip` shrinks on the current page
+* `\lastskip` is the last glue on the current page if the last item is glue,
+  otherwise it is zero
+* `\lastkern` is the last kern on the current page if the last item is kern,
+  otherwise it is zero
+* `\lastpenalty` is the last penalty on the current page if the last item is
+  penalty, otherwise it is zero
+* `\insertpenalties` is the sum of all penalties for split insertions on the
+  page or the number of held insertions when processing an `\output` routine
+* `\outputpenalty` is a penalty at the current page break
+* `\firstmark` expands to the first `\mark` on the current page
+* `\topmark` expands to the last `\mark` from the previous page
+* `\botmark` expands to the last `\mark` on the current page
+* `\deadcycles` holds the number of output routines that ship no pages to DVI
+
+#### `\shipout`
+
+`\shipout <box>` sends the contents of `<box>` to the DVI file. In particular:
+* When called for the first time, setup the DVI file header with the value of
+  `\mag` recorded.
+* Record `\count 0` to `\count 9` to the DVI file.
+* Perform all `\openout`, `\closeout`, and `\write` commands in their order of
+  appearance in `<box>`. At this point `\write` expands its *\<balanced text\>*
+  parameter. If `\openout`, `\closeout`, or `\write` are in a box that is a
+  part of `\leaders`, nothing happens.
+* Convert the contents of `<box>` to the DVI commands and write them into the
+  DVI file.
+* Reset `\deadcycles` to 0.
+
+The page is placed to (`\hoffset`, `\voffset`) relatively to the position of
+DVI reference point which itself has coordinates (1in, 1in) from (left, top) of
+paper margins/edges.
+
+#### `\vsplit`
+
+`\vsplit <number> to <dimen>` splits off a vertical material of natural height
+`<dimen>` from a `\vbox <number>`. In a greater detail:
+* Clear `\splitfirstmark` and `\splitbotmark`.
+* If `\box <number>` is void, return the void box.
+* Let *V* be the vertical list of `\vbox <number>`.
+* Find a *best_break* using *vert_break*(*V*, `<dimen>`, `\splitmaxdepth`).
+* Let *V* = *S best_break R*.
+* If *S* is not empty, then for every mark *M* in *S*:
+  * If `\splitfirstmark` is empty, set both `\splitfirstmark` and
+    `\splitbotmark` to *M*.
+  * Otherwise, set `\splitbotmark` to *M*.
+* Remove all discardable items from the top of *R*.
+* Add a space based on `\splittopskip` right before the first box or rule in
+  *R*.
+* If *R* is empty, make `\vbox <number>` void. Otherwise, make `\vbox <number>`
+  a `\vbox` with *R* as its content.
+* If *S* is empty, return the void box.
+* Otherwise, pack *S* into a `\vbox` with height `<dimen>` and maximal depth
+  `\splitmaxdepth`.
+* Return the box made in the previous step.
+
+Summary of `\vsplit` registers and parameters:
+* `\splittopskip` is glue at top of split pages
+* `\splitmaxdepth` is the maximum depth of boxes on split pages
+* `\splitfirstmark` expands the first `\mark` in the `\vsplit`ted box
+* `\splitbotmark` expands the last `\mark` in the `\vsplit`ted box
 
 ### `\special`
 
@@ -3875,9 +4304,9 @@ converts the current horizontal list to the paragraph by following these steps:
   * in the vertical mode
     * if the current page and the contributions list are empty and
       `\deadcycles` is zero it terminates TeX
-    * otherwise insert an empty box of `\hsize` width, `\vfill`, and
-      `\penalty-2^30` to the vertical list, which invokes the page completion
-      algorithm, and then `\end` is read again
+    * otherwise insert `\hbox to \hsize{}`, `\vfill`, and `\penalty-2^30` to
+      the main vertical list, which invokes the page building algorithm, and
+      then `\end` is read again
 * `\global` states that the following action (assignment, definition) will be
   done at the global level
 * `\ignorespaces` tells to the main processor to ignore all spaces until
@@ -4059,7 +4488,8 @@ converts the current horizontal list to the paragraph by following these steps:
 * `\deadcycles` holds the number of output routines that ship no pages to DVI
 * `\hoffset` is a horizontal offset in `\shipout`
 * `\hsize` determines the width of the box with a page material
-* `\mag` is a document magnification (1000 means 1)
+* `\mag` is a document magnification (1000 means 1); must be set before the
+  first `\shipout`
 * `\maxdeadcycles` is a maximal number of *dead cycles* (a call of the output
   routine where no page was shipped to DVI)
 * `\maxdepth` is the maximal depth of the page box
