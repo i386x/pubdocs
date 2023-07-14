@@ -3813,8 +3813,8 @@ building.
   vertical list: a vertical material from the horizontal list is appended to
   the vertical list right after the `\hbox`. A vertical material also migrates
   from displayed equations.
-* Mark that is buried to deeply in a box or mark in internal mode stays in a
-  box where it appears.
+* Mark that is buried to deeply in a box or mark in internal vertical mode
+  stays in a box where it appears.
 
 Recall the functions used in the page building algorithm below:
 * *height*(*x*) returns the height of box or rule *x*
@@ -3850,9 +3850,9 @@ Define an auxiliary function *vert_break*(*V*, *h*, *d*):
 
 The page building algorithm works as follows:
 1. Express the main vertical list, *V*, as *P C*, where *C* is the list of
-  recent contributions and *P* is the current page.
-  * If *P* is not empty (continuing in page building after new items arrive in
-    *C*), go to **Emptiness Test**.
+   recent contributions and *P* is the current page.
+   * If *P* is not empty (continuing in page building after new items arrive in
+     *C*), go to **Emptiness Test**.
 1. **[Start New Page]** *P* is empty, prepare to populate it:
    * Set *best_cost* to infinity.
    * Set *best_break* to null.
