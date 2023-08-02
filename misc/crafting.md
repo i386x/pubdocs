@@ -3,6 +3,7 @@
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
 * [IKAP OK II](https://www.youtube.com/@ikapokii5161/videos)
+* [Japanese Crafting (1)](https://www.youtube.com/@processx/videos)
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
 * [КУЙ железо](https://www.youtube.com/channel/UCniZSLYkcEXtjGNpdU5lgCA/videos)
 * [Made by Madman](https://www.youtube.com/channel/UCjF5e5eQPCToV0UYB0P0dMg/videos)
@@ -42,6 +43,7 @@
 
 ## Welding
 
+* [Asia Welder](https://www.youtube.com/@asiawelder/videos)
 * [iron](https://www.youtube.com/channel/UCCsAV2YzYn8ecnxBnWHzeNg/videos)
 * [TimWelds](https://www.youtube.com/c/TimWelds/videos)
 * [WeldTube](https://www.youtube.com/c/WeldTubeHouston/videos)
