@@ -47,6 +47,7 @@
 * [iron](https://www.youtube.com/channel/UCCsAV2YzYn8ecnxBnWHzeNg/videos)
 * [TimWelds](https://www.youtube.com/c/TimWelds/videos)
 * [WeldTube](https://www.youtube.com/c/WeldTubeHouston/videos)
+* [Základy ručního svařování obalenou elektrodou (MMA)](https://www.ewm-group.com/cs/fachwissen/e-hand-grundlagen.html)
 
 ### Tools & Equipment
 

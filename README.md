@@ -340,6 +340,7 @@ interested in. Maybe You find some of these interesting too.
 * [How to Debug C Program using gdb in 6 Simple Steps](https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb)
 * [How to debug C++ lambda expressions with GDB](https://developers.redhat.com/articles/2023/05/03/how-debug-c-lambda-expressions-gdb)
 * [List of all function calls made in an application](https://stackoverflow.com/questions/9549693/list-of-all-function-calls-made-in-an-application)
+* [Running a Debuginfod server alongside pulp](https://www.redhat.com/en/blog/running-debuginfod-server-alongside-pulp)
 * [StackTraces](https://fedoraproject.org/wiki/StackTraces)
 * [Tracing program/function execution on source line level](https://stackoverflow.com/questions/39602306/tracing-program-function-execution-on-source-line-level)
 * [Where is core dump located?](https://ask.fedoraproject.org/en/question/98776/where-is-core-dump-located/)
@@ -394,6 +395,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Fedora Project
 
+* [Change submission guidance](https://docs.fedoraproject.org/en-US/program_management/changes_guide/)
 * [Content Resolver](https://tiny.distro.builders/)
   * [Configs](https://github.com/minimization/content-resolver-input/)
 * [Fedora Crypto Consolidation](https://fedoraproject.org/wiki/Fedora_Crypto_Consolidation?rd=FedoraCryptoConsolidation)
@@ -411,9 +413,12 @@ interested in. Maybe You find some of these interesting too.
 * [Infrastructure/Kerberos](https://fedoraproject.org/wiki/Infrastructure/Kerberos)
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
 * [License Review Process](https://docs.fedoraproject.org/en-US/legal/license-review-process/)
+* [`license-validate`](https://pagure.io/copr/license-validate)
 * [Release Monitoring](https://release-monitoring.org/)
+* [Report from the Reproducible Builds Hackfest during Flock 2023](https://discussion.fedoraproject.org/t/report-from-the-reproducible-builds-hackfest-during-flock-2023/87469/1)
 * [RFC: Feature macros (aka USE flags)](https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/4DWDPKYBOXTCGKXJTOIVPO34A5BTOE3T/)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
+* [SPDX License Diff](https://github.com/spdx/spdx-license-diff)
 * [SPDX License Phase 1](https://fedoraproject.org/wiki/Changes/SPDX_Licenses_Phase_1)
 * [Updating License: field for Existing Packages](https://docs.fedoraproject.org/en-US/legal/update-existing-packages/)
 * [Using Fedora Accounts](https://docs.fedoraproject.org/en-US/fedora-accounts/user/)
@@ -551,6 +556,7 @@ interested in. Maybe You find some of these interesting too.
 * [Dead Simple Python: Project Structure and Imports](https://dev.to/codemouse92/dead-simple-python-project-structure-and-imports-38c6)
 * [Distributing Python Libraries with Type Annotations](https://blog.ian.stapletoncordas.co/2019/02/distributing-python-libraries-with-type-annotations.html)
 * [fedora-python-tox](https://github.com/fedora-python/fedora-python-tox)
+* [Further reduce Fedora-specific build flags in non-RPM Python extensions](https://fedoraproject.org/wiki/Changes/Python_Extension_Flags_Reduction)
 * [Less known packaging features and tricks](https://blog.ionelmc.ro/presentations/packaging/)
 * Linters
   * [bandit](https://bandit.readthedocs.io)
@@ -723,6 +729,7 @@ interested in. Maybe You find some of these interesting too.
 * [Miscellaneous stuff](https://github.com/myllynen/misc)
 * [pacman (Arch Linux)](https://wiki.archlinux.org/index.php/pacman)
 * [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
+* [Sysprof 45](https://blogs.gnome.org/chergert/2023/07/27/sysprof-45/)
 * [The Virtual Disk Guide](http://scribesguides.com/)
 * [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
 
@@ -846,6 +853,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Kernel
 
+* [Building A Full Linux Debug Kernel Optimized From 53GB To 25GB Heap Use](https://www.phoronix.com/news/Linux-6.5-Reduces-objtool-Bloat)
 * [Developing on a native Linux platform](https://kernelnewbies.org/OutreachyfirstpatchSetup)
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
 * [Kernel Development Learning Pipeline](https://kdlp.underground.software/)
@@ -905,6 +913,7 @@ interested in. Maybe You find some of these interesting too.
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
 * [how to connect multiple kvm/qemu VM guests in to a subnet](https://serverfault.com/questions/563682/how-to-connect-multiple-kvm-qemu-vm-guests-in-to-a-subnet)
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
+* [Introducing Passim](https://blogs.gnome.org/hughsie/2023/07/28/introducing-passim/)
 * [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)]
 
 #### RFCs
@@ -1063,6 +1072,7 @@ interested in. Maybe You find some of these interesting too.
 * [Project Euler](https://projecteuler.net/)
   * [Lambda Count](https://projecteuler.net/problem=623)
   * [Largest product in a series](https://projecteuler.net/problem=8)
+* [SageMath](https://www.sagemath.org/) [[repo](https://github.com/sagemath/sage)]
 * [Steven Roman - Mathematics](https://www.youtube.com/channel/UCalphvDmYSEzHchGFW8BxGg)
 * [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
 * [Topology (University of Toronto Course)](http://www.math.toronto.edu/ivan/mat327/?resources)
@@ -1198,6 +1208,7 @@ interested in. Maybe You find some of these interesting too.
   * [Testing a Small Function](https://klee.github.io/tutorials/testing-function/)
 * [lgtm.com help](https://lgtm.com/help/lgtm/about-lgtm)
 * [OpenScanHub](https://github.com/openscanhub/openscanhub)
+  * [OpenScanHub (blog post)](http://situ.im/posts/openscanhub)
 * [Runtime Verification](https://runtime-verification.github.io/) [[repos](https://github.com/runtime-verification)]
 * [Static Analysis of a Linux Distribution](https://kdudka.fedorapeople.org/muni23.pdf)
 * [TOP 40 Static Code Analysis Tools (Best Source Code Analysis Tools)](https://www.softwaretestinghelp.com/tools/top-40-static-code-analysis-tools/)
@@ -1313,6 +1324,7 @@ interested in. Maybe You find some of these interesting too.
 ### Graphics
 
 * [Michael Abrash's Graphics Programming Black Book Special Edition](http://www.phatcode.net/res/224/files/html/index.html)
+* [NICE DCV](https://aws.amazon.com/hpc/dcv/)
 
 ### Licensing
 
@@ -1333,10 +1345,11 @@ interested in. Maybe You find some of these interesting too.
 #### C
 
 * [C Coding Standard (SEI CERT)](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)
+* [Checking usage of realloc with Valgrind](https://developers.redhat.com/articles/2023/07/26/checking-usage-realloc-valgrind)
 * [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html)
-* [CScout](https://www2.dmst.aueb.gr/dds/pubs/jrnl/2010-SCP-CScout/html/cscout.html)
 * [Complete macro expansion algorithm](https://www.spinellis.gr/blog/20060626/x3J11-86-196.pdf)
 * [Complete macro expansion algorithm (annotated and corrected)](https://www.spinellis.gr/blog/20060626/cpp.algo.pdf)
+* [CScout](https://www2.dmst.aueb.gr/dds/pubs/jrnl/2010-SCP-CScout/html/cscout.html)
 * [glibc wiki](https://sourceware.org/glibc/wiki/HomePage) [[TitleIndex](https://sourceware.org/glibc/wiki/TitleIndex)]
   * [What is an indirect function (IFUNC)?](https://sourceware.org/glibc/wiki/GNU_IFUNC)
 * [ISO/IEC 9899:1999 (Draft)](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf)
@@ -1362,6 +1375,7 @@ interested in. Maybe You find some of these interesting too.
   * [Using the C++23 `std::expected` type](https://mariusbancila.ro/blog/2022/08/17/using-the-cpp23-expected-type/)
   * [why choose sum types over exceptions?](https://vittorioromeo.info/index/blog/adts_over_exceptions.html)
   * [Why is exception handling bad?](https://stackoverflow.com/questions/1736146/why-is-exception-handling-bad)
+* [Frame pointers: Untangling the unwinding](https://developers.redhat.com/articles/2023/07/31/frame-pointers-untangling-unwinding)
 * [Functional Programming in C++](https://github.com/graninas/cpp_functional_programming)
 * [GCC and MSVC C++ Demangler](http://demangler.com/)
 * [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html)
@@ -1599,6 +1613,8 @@ See [Caml](#caml).
 * [cryptography (Python)](https://github.com/pyca/cryptography) [[doc](https://cryptography.io/en/latest/)]
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [curtsies (Python)](https://github.com/thomasballinger/curtsies) [[doc](https://curtsies.readthedocs.io/)]
+* [cve-schema (JSON)](https://github.com/CVEProject/cve-schema)
+* [cvelib (Python)](https://github.com/RedHatProductSecurity/cvelib)
 * [cxxtools (C++)](https://github.com/maekitalo/cxxtools) [[home](http://www.tntnet.org/cxxtools.html)]
 * [Cython (C/Python/Cython)](https://github.com/cython/cython)
 * [dbox (Python)](https://github.com/dmach/dbox)
@@ -1612,6 +1628,7 @@ See [Caml](#caml).
 * [doit (Python)](https://github.com/pydoit/doit) [[doc](https://pydoit.org/contents.html)]
 * [dosfstools (C)](https://github.com/dosfstools/dosfstools)
 * [DropWatch (C)](https://github.com/nhorman/dropwatch)
+* [duktape (C/JavaScript)](https://github.com/svaarala/duktape) [[home](https://duktape.org/)]
 * [dune (OCaml)](https://github.com/ocaml/dune) [[home](https://dune.build/)]
 * [dxr (Python)](https://github.com/mozilla/dxr) [[doc](https://dxr.readthedocs.io)]
 * [Dyninst (C/C++)](https://github.com/dyninst/dyninst)
@@ -1656,6 +1673,7 @@ See [Caml](#caml).
 * [goals (OCaml)](http://git.annexia.org/?p=goals.git)
   * [fedora-ocaml-rebuild](http://git.annexia.org/?p=fedora-ocaml-rebuild.git) (example of use)
 * [Godot Engine (C++)](https://github.com/godotengine/godot)
+* [Google Group Crawler (Bash)](https://github.com/icy/google-group-crawler)
 * [gosu (Golang)](https://github.com/tianon/gosu)
 * [GridPlayer (Python)](https://github.com/vzhd1701/gridplayer)
 * [guac (Golang)](https://github.com/guacsec/guac) [[home](https://guac.sh/)]
@@ -1692,6 +1710,7 @@ See [Caml](#caml).
 * [lab (Golang)](https://github.com/zaquestion/lab) [[home](https://zaquestion.github.io/lab/)]
 * [lager (C++)](https://github.com/arximboldi/lager) [[doc](https://sinusoid.es/lager/#contents)]
 * [LanguageTool (Java)](https://github.com/languagetool-org/languagetool) [[home](https://languagetool.org/)]
+* [lark (Python)](https://github.com/lark-parser/lark) [[home](https://lark-parser.readthedocs.io/en/latest/index.html)]
 * [libabigail (C++)](https://github.com/metti/libabigail)
 * [libao (C)](https://github.com/xiph/libao) [[doc](https://xiph.org/ao/doc/)]
 * [libcgroup (C)](https://github.com/libcgroup/libcgroup)
@@ -1843,6 +1862,7 @@ See [Caml](#caml).
   * [The Build and Push GitHub Action (YAML)](https://github.com/sclorg/build-and-push-action)
 * [SoS (Python)](https://github.com/sosreport/sos) [[doc](https://sos.readthedocs.io/en/main/)]
 * [Spack (Python)](https://github.com/spack/spack) [[doc](https://spack.readthedocs.io/en/latest/index.html)]
+* [specfile (Python)](https://github.com/packit/specfile)
 * [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
 * [sphinx (Python)](https://github.com/sphinx-doc/sphinx) [[doc](https://www.sphinx-doc.org/en/master/index.html)]
   * [sphinx-autodoc-typehints (Python)](https://github.com/agronholm/sphinx-autodoc-typehints)
@@ -1915,7 +1935,9 @@ See [Caml](#caml).
 * [yajl (C)](https://github.com/lloyd/yajl)
 * [yamllint (Python)](https://github.com/adrienverge/yamllint)
 * [yapps (Python)](https://github.com/smurfix/yapps)
+* [yasm (C)](https://github.com/yasm/yasm) [[home](http://yasm.tortall.net/)]
 * [yodl (C)](https://gitlab.com/fbb-git/yodl) [[home](https://fbb-git.gitlab.io/yodl/)]
+* [youtube-dl (Python)](https://github.com/yt-dlp/yt-dlp)
 * [zchunk (C)](https://github.com/zchunk/zchunk)
 * [Ziglang (Zig)](https://github.com/ziglang/zig) [[home](https://ziglang.org/)]
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
@@ -1982,6 +2004,7 @@ See [Caml](#caml).
 * [Sec-certs](https://github.com/crocs-muni/sec-certs)
 * [Secure Development Guide](https://redhatproductsecurity.github.io/secure-development-guide/)
 * [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
+* [Secure Software Development Framework](https://csrc.nist.gov/Projects/ssdf)
 * [Securing open source development: A supply chain perspective](https://www.redhat.com/en/blog/securing-open-source-development-supply-chain-perspective)
 * [Security by design: Security principles and threat modeling](https://www.redhat.com/en/blog/security-design-security-principles-and-threat-modeling)
 * [The art and science of secure open source software development](https://www.redhat.com/en/blog/art-and-science-secure-open-source-software-development)
@@ -2002,10 +2025,11 @@ See [Caml](#caml).
 * [Containerized Testing with Kerberos and SSH](https://www.confluent.io/blog/containerized-testing-with-kerberos-and-ssh/)
 * [dbus test example (lvm2)](https://github.com/lvmteam/lvm2/blob/master/test/dbus/lvmdbustest.py)
 * [dogtail](https://gitlab.com/dogtail/dogtail)
-* [fmf](https://github.com/teemtee/fmf)
+* [fmf](https://github.com/teemtee/fmf) [[doc](https://fmf.readthedocs.io/en/stable/)]
 * [freedesktop.org CI templates](https://gitlab.freedesktop.org/freedesktop/ci-templates) [[docs](https://freedesktop.pages.freedesktop.org/ci-templates/)]
 * GitHub CI
   * [Differential ShellCheck](https://github.com/redhat-plumbers-in-action/differential-shellcheck)
+  * [End-to-end testing with self-hosted runners in GitHub Actions](https://developers.redhat.com/articles/2023/07/25/end-end-testing-self-hosted-runners-github-actions)
   * [Get Fedora Releases action](https://github.com/marketplace/actions/get-fedora-releases)
   * [GitHub Actions example](https://github.com/Apicurio/apicurio-data-models/tree/master/.github/workflows)
   * [Keeping your GitHub Actions and workflows secure Part 1: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
@@ -2048,20 +2072,23 @@ See [Caml](#caml).
 * [Schedule tests the GitOps way with Testing Farm as GitHub Action](https://developers.redhat.com/articles/2022/05/04/schedule-tests-gitops-way-testing-farm-github-action#)
 * [Special Project Upstream Testing Repository](https://github.com/RedHat-SP-Security/tests)
 * [Store and analyze your test-suite logs with this open source tool](https://www.redhat.com/sysadmin/bunsen-test-suite-logs)
+* [Stratis Storage CI](https://github.com/stratis-storage/ci/)
 * [Test container images in Red Hat OpenShift 4 with Ansible and CI/CD](https://developers.redhat.com/articles/2021/08/13/test-container-images-red-hat-openshift-4-ansible-and-cicd#)
 * [testing-cabal](https://github.com/testing-cabal)
-* [testing-farm](https://gitlab.com/testing-farm) [[doc](https://docs.testing-farm.io/general/0.1/index.html)] [[api](https://testing-farm.gitlab.io/api/)]
+* [testing-farm](https://gitlab.com/testing-farm) [[status](https://status.testing-farm.io/)] [[doc](https://docs.testing-farm.io/general/0.1/index.html)] [[api](https://testing-farm.gitlab.io/api/)]
   * [artemis](https://gitlab.com/testing-farm/artemis)
   * [cli](https://gitlab.com/testing-farm/cli)
   * [gluetool](https://gitlab.com/testing-farm/gluetool)
   * [gluetool-modules](https://gitlab.com/testing-farm/gluetool-modules)
   * [infrastructure](https://gitlab.com/testing-farm/infrastructure)
   * [oculus](https://gitlab.com/testing-farm/oculus)
+  * [tests](https://gitlab.com/testing-farm/tests)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/teemtee/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
   * [Known Issue: Travis CI reports “Expected - Waiting for status to be reported” on the GitHub Status API, but the status never arrives](https://travis-ci.community/t/known-issue-travis-ci-reports-expected-waiting-for-status-to-be-reported-on-the-github-status-api-but-the-status-never-arrives/1154)
 * [The log/event processing pipeline you can't have](https://apenwarr.ca/log/20190216)
+* [Uncover interesting test cases with AI/ML and Bunsen](https://developers.redhat.com/articles/2023/08/02/uncover-interesting-test-cases-aiml-and-bunsen)
 * [Unified upstream and downstream testing with tmt and Packit](https://cockpit-project.org/blog/fmf-unified-testing.html)
 * [umockdev](https://github.com/martinpitt/umockdev)
   * [example of use](https://gitlab.gnome.org/GNOME/gvfs/-/blob/master/test/gvfs-test)
@@ -2083,6 +2110,7 @@ See [Caml](#caml).
 * [libguestfs](http://libguestfs.org/)
   * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
   * [virt-sysprep(1)](http://libguestfs.org/virt-sysprep.1.html)
+* [PiKVM](https://pikvm.org/) [[repo](https://github.com/pikvm)]
 * [QEMU documentation](https://qemu.readthedocs.io/en/latest/)
 * [QEMU Guest Agent Protocol Reference](https://qemu.weilnetz.de/doc/qemu-ga-ref.html)
 * [QEmu-KVM: How to configure VMs without libvirt stuff?](https://serverfault.com/questions/807714/qemu-kvm-how-to-configure-vms-without-libvirt-stuff)
