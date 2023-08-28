@@ -548,7 +548,7 @@ The meaning and associativity of each operator (operators lower in the table
 have higher precedence):
 | **Operator** | **Meaning** | **Associativity** |
 | ------------ | ----------- | ----------------- |
-| `||` | logical or | left-to-right |
+| `\|\|` | logical or | left-to-right |
 | `&&` | logical and | left-to-right |
 
 `||` and `&&` differs from `|` and `&` in a way that the right-hand side
@@ -571,7 +571,7 @@ The meaning and associativity of each operator (operators lower in the table
 have higher precedence):
 | **Operator** | **Meaning** | **Associativity** |
 | ------------ | ----------- | ----------------- |
-| `|` | bitwise/logical or | left-to-right |
+| `\|` | bitwise/logical or | left-to-right |
 | `^` | bitwise/logical xor | left-to-right |
 | `&` | bitwise/logical and | left-to-right |
 | `<<`, `>>` | left shift, right shift | left-to-right |
