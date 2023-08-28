@@ -660,6 +660,7 @@ for greater detail.
 Grammar:
 ```
 atomic_expression:
+    literal_expression
     tuple
     array
 
