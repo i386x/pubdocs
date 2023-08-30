@@ -44,6 +44,7 @@
 * https://www.youtube.com/user/frontseatrailway/videos
 * https://www.youtube.com/user/lokuli2/videos
 * [German Express Driver](https://www.youtube.com/channel/UCgfJB0BN0x2qYqqpple5OOw/videos)
+* [LandscapeChannel](https://www.youtube.com/@LandscapeChan/videos)
 * https://www.youtube.com/user/Holzklotz/videos
 * [Friedrich List](https://www.youtube.com/channel/UCd2R7D4x2dCmgFcWOlt2J9g/videos)
 * https://www.youtube.com/user/mulda007/videos
@@ -79,6 +80,9 @@
 * https://www.youtube.com/c/CabViewsPT/videos
 * [Liono pointcom](https://www.youtube.com/channel/UCUKWZLzVbCes5AJm3f1m12g/videos)
 * [France Cab Ride](https://www.youtube.com/user/rumtex/videos)
+* [Trains en vue!](https://www.youtube.com/@Trains_en_vue/videos)
+* [Fretteux78](https://www.youtube.com/@Fretteux78/videos)
+* [Mickealkeal](https://www.youtube.com/@Mickealkeal/videos)
 * [ForwardUntoDawn](https://www.youtube.com/channel/UCU3LH764QyHzinwJsoCF0kw/videos)
 * https://www.youtube.com/c/AndreiP135/videos
 * https://www.youtube.com/user/emdiesel63/videos

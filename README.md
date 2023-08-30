@@ -23,6 +23,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Power Management](#power-management)
    1. [RC Circuits](#rc-circuits)
    1. [Simulation](#simulation)
+   1. [Synthesizers](#synthesizers)
    1. [Telephones](#telephones)
 1. [Fedora Project](#fedora-project)
    1. [Compose](#compose)
@@ -336,6 +337,7 @@ interested in. Maybe You find some of these interesting too.
 * [Add custom windows to GDB: Programming the TUI in Python](https://developers.redhat.com/articles/2022/08/03/add-custom-windows-gdb-programming-tui-python)
 * [Debugging binaries invoked from scripts with GDB](https://developers.redhat.com/articles/2022/12/27/debugging-binaries-invoked-scripts-gdb)
 * [Debugging in GDB: Create custom stack winders](https://developers.redhat.com/articles/2023/06/19/debugging-gdb-create-custom-stack-winders)
+* [Debugging with GDB](https://sourceware.org/gdb/onlinedocs/gdb/index.html)
 * [How do I analyze a program's core dump file with GDB when it has command-line parameters?](https://stackoverflow.com/questions/8305866/how-do-i-analyze-a-programs-core-dump-file-with-gdb-when-it-has-command-line-pa)
 * [How to Debug C Program using gdb in 6 Simple Steps](https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb)
 * [How to debug C++ lambda expressions with GDB](https://developers.redhat.com/articles/2023/05/03/how-debug-c-lambda-expressions-gdb)
@@ -384,6 +386,12 @@ interested in. Maybe You find some of these interesting too.
 * [ngspice](http://ngspice.sourceforge.net/) [[repo](https://github.com/ngspice/ngspice)]
 * [SiliWiz (Silicon Layout Wizard)](https://app.siliwiz.com/) [[repo](https://github.com/wokwi/siliwiz)]
 * [Wokwi - Simulate IoT Projects in Your Browser](https://wokwi.com/)
+
+### Synthesizers
+
+* [Digital Vintage Sound](https://blog.wolfram.com/2021/12/29/digital-vintage-sound-modeling-analog-drums-with-the-wolfram-language-and-system-modeler/)
+* [The mysterious heart of the Roland TR-808 drum machine](https://secretlifeofsynthesizers.com/the-strange-heart-of-the-roland-tr-808/)
+* [You Can’t Build A Roland TR-808 Because You Don’t Have Faulty Transistors](https://hackaday.com/2018/09/06/you-cant-build-a-roland-tr-808-because-you-dont-have-faulty-transistors/)
 
 ### Telephones
 
@@ -469,6 +477,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Packaging
 
+* [Allowed Licenses](https://docs.fedoraproject.org/en-US/legal/allowed-licenses/)
 * [Bodhi](https://fedoraproject.org/wiki/Bodhi)
 * [`check-missing`](https://pagure.io/fedora-comps/blob/main/f/check-missing)
 * [Creating RPM Packages with Fedora](https://fedoraproject.org/wiki/How_to_create_an_RPM_package)
@@ -1089,6 +1098,8 @@ interested in. Maybe You find some of these interesting too.
 
 ### Cryptography
 
+* [Cryptography notes and code](https://github.com/danbev/learning-crypto)
+* [cryptopals](https://cryptopals.com/)
 * [The German cipher machine Enigma](https://www.matematiksider.dk/enigma_eng.html)
 
 ### Set Theory
@@ -1112,12 +1123,14 @@ interested in. Maybe You find some of these interesting too.
 * [How disagreement creates unity in open source](https://opensource.com/article/21/10/disagreement-open-source)
 * [How open source leaders can foster an inclusive environment](https://opensource.com/article/23/2/open-source-leaders-inclusive-environment)
 * [How to create a Bash completion script](https://opensource.com/article/18/3/creating-bash-completion-script)
+* [Introduction to GNU Autotools](https://opensource.com/article/19/7/introduction-gnu-autotools)
 * [Manage your Gmail filters from the Linux command line](https://opensource.com/article/22/5/gmailctl-linux-command-line-tool?sc_cid=70160000000eUoRAAU&elqTrackId=db4d27b25a944d3ebad8c791e4ef03d0&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [My favorite Linux commands for optimizing web images](https://opensource.com/article/21/12/optimize-web-images-linux?sc_cid=70160000000eUoRAAU&elqTrackId=d146b4445f684c459ac361c22368ae25&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Open source file sharing with this Linux tool](https://opensource.com/article/21/12/file-sharing-linux-samba?sc_cid=70160000000eUoRAAU&elqTrackId=88ca563cc43542e1b5827e823fe1a43e&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable?sc_cid=70160000000eUoRAAU&elqTrackId=42b2e59ab6114554aba7d5405b88dae5&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
 * [Run your favorite Windows applications on Linux](https://opensource.com/article/21/2/linux-wine?sc_cid=70160000000eUoRAAU&elqTrackId=53197434c7ed4343a262dd78a8274f3f&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
 * [Send your scans to a Linux machine over your network](https://opensource.com/article/21/4/linux-scan-samba?sc_cid=70160000000eUoRAAU&elqTrackId=9909ed9e433d46dc943ee4ae16607de0&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+* [What is a Makefile and how does it work?](https://opensource.com/article/18/8/what-how-makefile)
 
 ## Operating Systems
 
@@ -1262,6 +1275,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### TeX
 
+* [Definition of the TEXINPUTS variable](https://tex.stackexchange.com/questions/93712/definition-of-the-texinputs-variable)
 * [Diagonal lines in table cell](https://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell)
   * [Diagonally divided table cell [duplicate]](https://tex.stackexchange.com/questions/7262/diagonally-divided-table-cell)
 * [Knuth's TeX (CTAN)](https://ctan.org/tex-archive/systems/knuth/dist/tex)
@@ -1749,6 +1763,7 @@ See [Caml](#caml).
 * [memleax (C)](https://github.com/WuBingzheng/memleax)
 * [Meson (Python)](https://github.com/mesonbuild/meson) [[doc](https://mesonbuild.com/)]
 * [miniflac (C)](https://github.com/jprjr/miniflac)
+* [minix (C)](https://github.com/Stichting-MINIX-Research-Foundation/minix)
 * [MkDocs (Python)](https://github.com/mkdocs/mkdocs) [[home](https://www.mkdocs.org/)]
 * [mkosi — Build Bespoke OS Images (Python)](https://github.com/systemd/mkosi)
 * [mock (Python)](https://github.com/rpm-software-management/mock)
@@ -1921,6 +1936,8 @@ See [Caml](#caml).
 * [whatpkgs (Python)](https://github.com/fedora-modularity/whatpkgs)
 * [wiggle (C)](https://github.com/neilbrown/wiggle)
 * Window managers
+  * [Awesome (Lua/C)](https://github.com/awesomeWM/awesome) [[home](https://awesomewm.org/)]
+    * [lain (Lua)](https://github.com/lcpz/lain)
   * [dwm (C)](https://git.suckless.org/dwm/files.html) [[home](https://dwm.suckless.org/)]
   * [Fluxbox (C++)](https://github.com/fluxbox/fluxbox)
   * [FVWM (C)](https://github.com/fvwmorg/fvwm3) [[home](https://www.fvwm.org/)]
