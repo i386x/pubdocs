@@ -62,6 +62,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Opensource.com Articles](#opensourcecom-articles)
 1. [Operating Systems](#operating-systems)
 1. [Programming](#programming)
+   1. [AI & ML](#ai--ml)
    1. [Algorithms & Data Structures](#algorithms--data-structures)
    1. [Articles (Programming)](#articles-programming)
    1. [Code Analysis](#code-analysis)
@@ -280,6 +281,7 @@ interested in. Maybe You find some of these interesting too.
 * [Ivan Velichko](https://iximiuz.com/en/)
 * [Jakub Kadlčík](http://frostyx.cz/)
 * [jamiebuilds](https://jamie.build/)
+* [Jan Grulich](https://jgrulich.cz/)
 * [Ken Shirriff's blog](http://www.righto.com/)
 * [Marius Bancila's Blog](https://mariusbancila.ro/blog/)
 * [Miroslav Suchý](http://miroslav.suchy.cz/blog/)
@@ -415,6 +417,7 @@ interested in. Maybe You find some of these interesting too.
   * [Make Koji Builders on Raw HW](https://pagure.io/fedora-infra/ansible/blob/main/f/playbooks/groups/buildhw.yml)
 * [Fedora Legal Resources](https://docs.fedoraproject.org/en-US/legal/)
 * [`fedora-license-data`](https://gitlab.com/fedora/legal/fedora-license-data)
+* [Fedora meets RHEL: upgrading UBI to RHEL](https://debarshiray.wordpress.com/2023/08/25/fedora-meets-rhel-upgrading-ubi-to-rhel/)
 * [Fedora Minimization Objective](https://docs.fedoraproject.org/en-US/minimization/)
 * [Fedora Project Contributor Agreement](https://docs.fedoraproject.org/en-US/legal/fpca/)
 * [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
@@ -426,6 +429,7 @@ interested in. Maybe You find some of these interesting too.
 * [Report from the Reproducible Builds Hackfest during Flock 2023](https://discussion.fedoraproject.org/t/report-from-the-reproducible-builds-hackfest-during-flock-2023/87469/1)
 * [RFC: Feature macros (aka USE flags)](https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/4DWDPKYBOXTCGKXJTOIVPO34A5BTOE3T/)
 * [rpms](https://src.fedoraproject.org/projects/rpms/%2A)
+* [Software Factory](https://softwarefactory-project.io/)
 * [SPDX License Diff](https://github.com/spdx/spdx-license-diff)
 * [SPDX License Phase 1](https://fedoraproject.org/wiki/Changes/SPDX_Licenses_Phase_1)
 * [Updating License: field for Existing Packages](https://docs.fedoraproject.org/en-US/legal/update-existing-packages/)
@@ -474,6 +478,7 @@ interested in. Maybe You find some of these interesting too.
 ### KDE
 
 * [No custom Qt theming for Fedora Workstation](https://fedoraproject.org/wiki/Changes/NoCustomQtThemingForWorkstation)
+* [Qt Theming In Fedora Workstation](https://jgrulich.cz/2023/08/22/qt-theming-in-fedora-workstation/)
 
 ### Packaging
 
@@ -517,6 +522,7 @@ interested in. Maybe You find some of these interesting too.
 * [Package Update Guide](https://docs.fedoraproject.org/en-US/package-maintainers/Package_Update_Guide/)
 * [Packaging Guidelines and Policies for EPEL](https://docs.fedoraproject.org/en-US/epel/epel-policy/)
 * [packit](https://packit.dev/)
+  * [Blog Posts](https://packit.dev/posts)
   * [Documentation](https://packit.dev/docs/)
     * [Onboarding Guide](https://packit.dev/docs/guide/)
 * [Prioritize BuildRequires from Copr](https://frostyx.cz/posts/prioritize-buildrequires-from-copr)
@@ -776,6 +782,7 @@ interested in. Maybe You find some of these interesting too.
 ##### Docs
 
 * [Ansible Roles Explained | Cheat Sheet](https://linuxacademy.com/blog/red-hat/ansible-roles-explained/)
+* [Introduction to RHEL system roles](https://www.redhat.com/en/blog/introduction-rhel-system-roles)
 * [Meta Best Practices (v1.0.0)](https://github.com/oasis-roles/meta_standards/tree/1.0.0)
 * [Roles (from Ansible User Guide)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 * [Roles (from Adfinis Sygroup Ansible Guide)](https://docs.adfinis-sygroup.ch/public/ansible-guide/roles.html)
@@ -783,6 +790,7 @@ interested in. Maybe You find some of these interesting too.
 ##### Projects
 
 * [ansible-role-nodepool](https://opendev.org/windmill/ansible-role-nodepool)
+* [ansible-role-nvidia-driver](https://github.com/NVIDIA/ansible-role-nvidia-driver)
 * [Cloud Alchemy Roles](https://github.com/cloudalchemy)
 * [FreeIPA Ansible Collection](https://github.com/freeipa/ansible-freeipa)
 * [geerlingguy's Ansible Roles](https://galaxy.ansible.com/geerlingguy) [[GitHub](https://github.com/geerlingguy)]
@@ -1072,6 +1080,12 @@ interested in. Maybe You find some of these interesting too.
 ## Math
 
 * [Aleph 0](https://www.youtube.com/c/Aleph0/videos)
+* [Lean (theorem prover)](https://leanprover.github.io/) [[repo](https://github.com/leanprover/lean4)]
+  * [Functional Programming in Lean](https://leanprover.github.io/functional_programming_in_lean/title.html)
+  * [Manual](https://leanprover.github.io/lean4/doc/)
+  * [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/index.html)
+  * [The mechanics of proof](https://hrmacbeth.github.io/math2001/)
+  * [Theorem Proving in Lean](https://leanprover.github.io/theorem_proving_in_lean4/)
 * [math.stackexchange.com](https://math.stackexchange.com/)
   * [downset](https://math.stackexchange.com/search?q=downset)
 * [Mathematics (bell0bytes)](https://bell0bytes.eu/mathematics/)
@@ -1152,6 +1166,10 @@ interested in. Maybe You find some of these interesting too.
 * [strchr.com](https://www.strchr.com/)
 * [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 * [The Open Source Way](https://www.theopensourceway.org/)
+
+### AI & ML
+
+* [Learning AI](https://github.com/danbev/learning-ai)
 
 ### Algorithms & Data Structures
 
@@ -1805,8 +1823,9 @@ See [Caml](#caml).
 * [oVirt](https://github.com/oVirt)
   * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
 * [packer (Go)](https://github.com/hashicorp/packer)
-* [packit-service](https://github.com/packit-service)
-  * [packit (Python)](https://github.com/packit-service/packit)
+* [packit](https://github.com/packit)
+  * [packit (Python)](https://github.com/packit/packit)
+  * [packit-service (Python)](https://github.com/packit/packit-service)
 * [PANDA (C)](https://github.com/panda-re/panda)
 * [passt (C)](https://passt.top/passt/tree/) [[home](https://passt.top/)]
 * [PCMemTest (C)](https://github.com/martinwhitaker/pcmemtest)
