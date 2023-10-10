@@ -5,6 +5,7 @@
 * https://www.youtube.com/user/Merond22/videos
 * [Na co zírá mašinfíra](https://tv.idnes.cz/porady/na-co-zira-masinfira.K913033)
 * [Vovlaku.sk](https://www.youtube.com/channel/UCRK0bjzf3Gf3Om03m4syzxw/videos)
+* [Perinakx Videos](https://www.youtube.com/@perinakx/videos)
 * [staroslav](https://www.youtube.com/user/277slovan/videos)
 * [Jiří Polášek](https://www.youtube.com/channel/UCempPZlZ55J1DLbSzVSw1LQ/videos)
 * [k venda](https://www.youtube.com/channel/UC4_Z_tFCUHgTWJuMNS6v3Wg/videos)
