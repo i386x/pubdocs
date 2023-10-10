@@ -1,6 +1,7 @@
 # The Rust Programming Language Notes
 
 * Rust is a compiled statically-typed language
+* [Exercism](https://exercism.org/tracks/rust)
 * [Home Page](https://www.rust-lang.org/)
   * [Book](https://doc.rust-lang.org/book/)
   * [Reference Guide](https://doc.rust-lang.org/reference/index.html)
@@ -121,12 +122,143 @@ into its binary representation.
 
 ## Lexical Elements
 
+Grammar:
+```
+token:
+    keyword
+    weak_keyword
+    identifier
+    char_literal
+    byte_literal
+    string_literal
+    raw_string_literal
+    byte_string_literal
+    raw_byte_string_literal
+    integer_literal
+    float_literal
+    lifetime_token
+    lifetime_or_label
+    punctuation
+    delimiters
+    reserved_token_double_quote
+    reserved_token_single_quote
+    reserved_token_pound
+
+lifetime_token:
+    "'" identifier_or_keyword
+    "'" "_"
+lifetime_or_label:
+    "'" non_keyword_identifier
+
+punctuation:
+    "+" | "-" | "*" | "/" | "%" | "^" | "!" | "&" | "|" | "&&" | "||" | "<<"
+    ">>" | "+=" | "-=" | "*=" | "/=" | "%=" | "^=" | "&=" | "|=" | "<<="
+    ">>=" | "=" | "==" | "!=" | ">" | "<" | ">=" | "<=" | "@" | "_" | "."
+    ".." | "..." | "..=" | "," | ";" | ":" | "::" | "->" | "=>" | "#" | "$"
+    "?" | "~"
+delimiters:
+    "(" | ")" | "[" | "]" | "{" | "}"
+
+reserved_token_double_quote:
+    ((identifier_or_keyword - ("b" | "r" | "br")) | "_") '"'
+reserved_token_single_quote:
+    ((identifier_or_keyword - "b") | "_") "'"
+reserved_token_pound:
+    ((identifier_or_keyword - ("r" | "br")) | "_") "#"
+
+reserved_number:
+    bin_literal ("2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")
+    oct_literal ("8" | "9")
+    (bin_literal | oct_literal | hex_literal)
+        "."{not-followed-by ("." | "_" | <XID start Unicode character>)}
+    (bin_literal | oct_literal) ("e" | "E")
+    "0b" "_"* (<end of input> | !bin_digit)
+    "0o" "_"* (<end of input> | !oct_digit)
+    "0x" "_"* (<end of input> | !hex_digit)
+    dec_literal ("." dec_literal)? ("e" | "E") ("+" | "-")?
+        (<end of input> | !dec_digit)
+
+suffix:
+    identifier_or_keyword
+suffix_no_e:
+    suffix - (("e" | "E").*)
+isolated_cr:
+    <a U+000D not followed by a U+000A>
+```
 * Rust input is viewed as a sequence of UTF-8 characters
+* a `reserved_number` is rejected by the tokenizer instead of tokenized to
+  separate tokens
+* see [Tokens](https://doc.rust-lang.org/reference/tokens.html) for greater
+  detail
+
+### Whitespace
+
+Grammar:
+```
+whitespace:
+    U+0009  # horizontal tab
+    U+000A  # line feed
+    U+000B  # vertical tab
+    U+000C  # form feed
+    U+000D  # carriage return
+    U+0020  # space
+    U+0085  # next line
+    U+200E  # left-to-right mark
+    U+200F  # right-to-left mark
+    U+2028  # line separator
+    U+2029  # paragraph separator
+    <unicode character that have the pattern white space property>
+```
+* `whitespace` characters are ignored
+* see [Whitespace](https://doc.rust-lang.org/reference/whitespace.html) for
+  greater detail
 
 ### Comments
 
+Grammar:
+```
+line_comment:
+    "//" (!("/" | "!" | U+000A) | "//") (!U+000A)*
+    "//"
+block_comment:
+    "/*" (!("*" | "!") | "**" | block_comment_or_doc)
+        (block_comment_or_doc | !"*/")*
+        "*/"
+    "/**/"
+    "/***/"
+inner_line_doc:
+    "//!" (!(U+000A | isolated_cr))*
+inner_block_doc:
+    "/*!" (block_comment_or_doc | !("*/" | isolated_cr))* "*/"
+outer_line_doc:
+    "///" (!"/" (!(U+000A | isolated_cr))*)?
+outer_block_doc:
+    "/**" (!"*" | block_comment_or_doc)
+        (block_comment_or_doc | !("*/" | isolated_cr))*
+        "*/"
+
+block_comment_or_doc:
+    block_comment
+    outer_block_doc
+    inner_block_doc
+```
+* comments are ignored by `rustc` but not by particular tools (`cargo doc`
+  etc.)
+
+Examples:
 ```rust
 // This is a single line comment.
+/*
+ * This is a block comment.
+ */
+//! This inner doc line comment.
+/*!
+ * This is inner doc block comment.
+ */
+/// This is outer doc line comment.
+/**
+ * This is outer doc block comment.
+ */
 ```
 
 See [Comments](https://doc.rust-lang.org/reference/comments.html) for greater
@@ -134,9 +266,50 @@ detail.
 
 ### Keywords
 
+Grammar:
+```
+keyword:
+    "as" | "break" | "const" | "continue" | "crate" | "else" | "enum"
+    "extern" | "false" | "fn" | "for" | "if" | "impl" | "in" | "let"
+    "loop" | "match" | "mod" | "move" | "mut" | "pub" | "ref" | "return"
+    "self" | "Self" | "static" | "struct" | "super" | "trait" | "true"
+    "type" | "unsafe" | "use" | "where" | "while"
+    # 2018+:
+    "async" | "await" | "dyn"
+    # Reserved:
+    "abstract" | "become" | "box" | "do" | "final" | "macro" | "override"
+    "priv" | "typeof" | "unsized" | "virtual" | "yield"
+    # 2018+:
+    "try"
+weak_keyword:
+    "macro_rules" | "union" | "'static"
+    # 2015:
+    "dyn"
+```
+
 See [Appendix A: Keywords](https://doc.rust-lang.org/book/appendix-01-keywords.html)
 from the [book](https://doc.rust-lang.org/book/) or [Keywords](https://doc.rust-lang.org/reference/keywords.html)
 for greater detail.
+
+### Identifiers
+
+Grammar:
+```
+identifier_or_keyword:
+    <XID start Unicode character> <XID continue Unicode character>*
+    "_" <XID continue Unicode character>+
+raw_identifier:
+    "r#" (identifier_or_keyword - ("crate" | "self" | "super" | "Self"))
+non_keyword_identifier:
+    identifier_or_keyword - keyword
+
+identifier:
+    non_keyword_identifier
+    raw_identifier
+```
+
+See [Identifiers](https://doc.rust-lang.org/reference/identifiers.html) for
+greater detail.
 
 ### Literals
 
@@ -148,18 +321,24 @@ for greater detail.
 
 Grammar:
 ```
-character_literal: "'" (CHAR | ESCAPE) "'"
+char_literal:
+    "'" (
+        !("'" | r"\" | U+000A | U+000D | U+0009)
+        | quote_escape | ascii_escape | unicode_escape
+    ) "'" suffix?
 
-CHAR: any Unicode Scalar Value (U+0000 to U+D7FF and U+E000 to U+10FFFF
-      inclusive) except single quote (U+0027), backslash (U+005C), new line
-      (U+000A), carriage return (U+000D), and tab character (U+0009)
-ESCAPE:
-    "\'" | "\""
-    "\x" ODIGIT XDIGIT
-    "\n" | "\r" | "\t" | "\\" | "\0"
-    "\u{" (XDIGIT "_"*){1,6} "}"
+quote_escape:
+    r"\'" | r'\"'
+ascii_escape:
+    r"\x" oct_digit hex_digit
+    r"\n" | r"\r" | r"\t" | r"\\" | r"\0"
+unicode_escape:
+    r"\u{" (hex_digit "_"*){1,6} "}"
 ```
-
+* a character between quotes is any Unicode Scalar Value (U+0000 to U+D7FF and
+  U+E000 to U+10FFFF inclusive) except single quote (U+0027), backslash
+  (U+005C), new line (U+000A), carriage return (U+000D), and tab character
+  (U+0009)
 * the type of character literal is `chr`
 * see [Character literals](https://doc.rust-lang.org/reference/tokens.html#character-literals)
   for greater detail
@@ -169,41 +348,46 @@ ESCAPE:
 Grammar:
 ```
 string_literal:
-    '"' (CHAR | ESCAPE)* '"'
-    "r" RAW_STRING
+    '"' (
+        !('"' | r"\" | isolated_cr)
+        | quote_escape | ascii_escape | unicode_escape | string_continue
+    )* '"' suffix?
+string_continue:
+    <r"\" followed by U+000A>
+
+raw_string_literal:
+    "r" raw_string_content suffix?
+raw_string_content:
+    '"' (!isolated_cr){non-greedy *} '"'
+    "#" raw_string_content "#"
+
 byte_string_literal:
-    'b"' (BCHAR | BESCAPE)* '"'
-    "br" RAW_BYTE_STRING
+    'b"' (
+        ascii_for_string | byte_escape | string_continue
+    )* '"' suffix?
+ascii_for_string:
+    <any ASCII (i.e. '\0' to '\x7f'), except '"', '\\' and isolated_cr>
 
-RAW_STRING:
-    '"' RAW_CHAR* '"'
-    "#" RAW_STRING "#"
-RAW_BYTE_STRING:
-    '"' ASCII* '"'
-    "#" RAW_BYTE_STRING "#"
-CHAR: any Unicode Scalar Value (U+0000 to U+D7FF and U+E000 to U+10FFFF
-      inclusive) except double quote (U+0022), backslash (U+005C), and sole
-      carriage return (U+000D); U+000D U+000A is translated to U+000A
-RAW_CHAR: any Unicode Scalar Value (U+0000 to U+D7FF and U+E000 to U+10FFFF
-          inclusive) except sole carriage return (U+000D)
-BCHAR: any ASCII (U+0000 to U+007F) except double quote (U+0022), backslash
-       (U+005C), and sole carriage return (U+000D)
-ASCII: any ASCII (U+0000 to U+007F)
-ESCAPE:
-    "\'" | "\""
-    "\x" ODIGIT XDIGIT
-    "\n" | "\r" | "\t" | "\\" | "\0"
-    "\u{" (XDIGIT "_"*){1,6} "}"
-    "\" (U+000A | U+000D U+000A) (U+0020 | U+000A | U+000D | U+0009)*
-BESCAPE:
-    "\x" XDIGIT XDIGIT | "\n" | "\r" | "\t" | "\\" | "\0" | "\'" | "\""
-    "\" (U+000A | U+000D U+000A) (U+0020 | U+000A | U+000D | U+0009)*
+raw_byte_string_literal:
+    "br" raw_byte_string_content suffix?
+raw_byte_string_content"
+    '"' ascii{non-greedy *} '"'
+    "#" raw_byte_string_content "#"
+ascii:
+    <any ASCII (i.e. '\0' to '\x7f')>
 ```
-
-* the last type of escape sequence (`"\" (U+000A ...) ...`) is removed from the
-  string literal (all its occurrences)
-* `RAW_CHAR` and `ASCII` are interpreted as is, escape sequences have no
-  meaning here
+* a character in a `string_literal` is any Unicode Scalar Value (U+0000 to
+  U+D7FF and U+E000 to U+10FFFF inclusive) except double quote (U+0022),
+  backslash (U+005C), and sole carriage return (U+000D); U+000D U+000A is
+  translated to U+000A
+* in a `string_literal`, if `(U+000D? U+000A)` immediatelly follows a backslash
+  character, then the backslash character, the `(U+000D? U+000A)` and the
+  following string containing only U+0020, U+000A, U+000D and U+0009 characters
+  are removed from the `string_literal`
+* a character in a `raw_string_literal` is any Unicode Scalar Value (U+0000 to
+  U+D7FF and U+E000 to U+10FFFF inclusive) except sole carriage return (U+000D)
+* `raw_string_literal` and `raw_byte_string_literal` do not process any escape
+  sequence
 * the type of string literal is `&'static str`
 * the type of byte string literal of the length `n` is `&'static [u8; n]`
 * see [String literals](https://doc.rust-lang.org/reference/tokens.html#string-literals),
@@ -216,36 +400,47 @@ BESCAPE:
 
 Grammar:
 ```
+byte_literal:
+    "b'" (ascii_for_char | byte_escape) "'" suffix?
+ascii_for_char:
+    <any ASCII (i.e. '\0' to '\x7f') except '\'', '\\', '\n', '\r' or '\t'>
+byte_escape:
+    r"\x" hex_digit hex_digit
+    r"\n" | r"\r" | r"\t" | r"\\" | r"\0" | r"\'" | r'\"'
+
 integer_literal:
-    decimal_integer type_suffix?
-    hexadecimal_integer type_suffix?
-    octal_integer type_suffix?
-    binary_integer type_suffix?
-    byte_integer "u8"?
+    dec_literal suffix_no_e?
+    bin_literal suffix_no_e?
+    oct_literal suffix_no_e?
+    hex_literal suffix_no_e?
 
-decimal_integer: DIGIT (DIGIT | "_")*
-hexadecimal_integer: "0x" (XDIGIT | "_")* XDIGIT (XDIGIT | "_")*
-octal_integer: "0o" (ODIGIT | "_")* ODIGIT (ODIGIT | "_")*
-binary_integer: "0b" (BDIGIT | "_")* BDIGIT (BDIGIT | "_")*
-byte_integer: "b'" (BYTE_CHAR | BYTE_ESC) "'"
+dec_literal:
+    dec_digit (dec_digit | "_")*
+bin_literal:
+    "0b" (bin_digit | "_")* bin_digit (bin_digit | "_")*
+oct_literal:
+    "0o" (oct_digit | "_")* oct_digit (oct_digit | "_")*
+hex_literal:
+    "0x" (hex_digit | "_")* hex_digit (hex_digit | "_")*
 
-type_suffix: "u8" | "i8" | "u16" | "i16" | "u32" | "i32" | "u64" | "i64" |
-             "u128" | "i128" | "usize" | "isize"
-
-BDIGIT: "0" | "1"
-ODIGIT: BDIGIT | "2".."7"
-DIGIT: ODIGIT | "8" | "9"
-XDIGIT: DIGIT | "a".."f" | "A".."F"
-
-BYTE_CHAR: any ASCII (U+0000 to U+007F) except single quote (U+0027), backslash
-           (U+005C), new line (U+000A), carriage return (U+000D), or tab
-           character (U+0009)
-BYTE_ESC: "\x" XDIGIT XDIGIT | "\n" | "\r" | "\t" | "\\" | "\0" | "\'" | "\""
+bin_digit:
+    "0" | "1"
+oct_digit:
+    bin_digit | "2" | "3" | "4" | "5" | "6" | "7"
+dec_digit:
+    oct_digit | "8" | "9"
+hex_digit:
+    dec_digit
+    "a" | "b" | "c" | "d" | "e" | "f"
+    "A" | "B" | "C" | "D" | "E" | "F"
 ```
-
-* "_" works as a digit separator and is ignored (increases number readability)
-* if there is no type suffix, "i32" is used
-* see [Integer literals](https://doc.rust-lang.org/reference/tokens.html#integer-literals)
+* `_` works as a digit separator and is ignored (increases number readability)
+* after macro expansion, `suffix` should be one of `u8`, `i8`, `u16`, `i16`,
+  `u32`, `i32`, `u64`, `i64`, `u128`, `i128`, `usize` or `isize`
+  * `byte_literal` `suffix` should be `u8`
+* if there is no type suffix, `i32` is used
+* see [Byte literals](https://doc.rust-lang.org/reference/tokens.html#byte-literals),
+  [Integer literals](https://doc.rust-lang.org/reference/tokens.html#integer-literals)
   and [Integer literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html#integer-literal-expressions)
   for greater detail
 
@@ -253,17 +448,16 @@ BYTE_ESC: "\x" XDIGIT XDIGIT | "\n" | "\r" | "\t" | "\\" | "\0" | "\'" | "\""
 
 Grammar:
 ```
-floating_point_literal:
-    decimal_integer "."
-    decimal_integer "." decimal_integer type_suffix?
-    decimal_integer ("." decimal_integer)? exponent type_suffix?
+float_literal:
+    dec_literal "."{not-followed-by ("." | "_" | <XID start Unicode character>)}
+    dec_literal "." dec_literal suffix_no_e?
+    dec_literal ("." dec_literal)? float_exponent suffix?
 
-exponent: ("e" | "E") ("+" | "-")? (DIGIT | "_")* DIGIT (DIGIT | "_")*
-
-type_suffix: "f32" | "f64"
+float_exponent:
+    ("e" | "E") ("+" | "-")? (dec_digit | "_")* dec_digit (dec_digit | "_")*
 ```
-
-* if there is no type suffix, "f64" is used
+* after macros are expanded, `suffix` should be either `f32` or `f64`
+* if there is no type suffix, `f64` is used
 * see [Floating-point literals](https://doc.rust-lang.org/reference/tokens.html#floating-point-literals)
   and [Floating-point literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html#floating-point-literal-expressions)
   for greater detail
@@ -430,6 +624,8 @@ for greater detail.
 * see [References (& and &mut)](https://doc.rust-lang.org/reference/types/pointer.html#references--and-mut)
   for greater detail
 
+#### Struct Types
+
 ## Declarations
 
 ### Variables
@@ -479,64 +675,33 @@ for greater detail.
 Grammar:
 ```
 function:
-    qualifiers "fn" identifier generic_params? "(" parameters ")"
-        return_type? where_clause?
+    function_qualifiers "fn" identifier generic_params?
+        "(" function_parameters? ")"
+        function_return_type? where_clause?
         (block_expression | ";")
 
-qualifiers:
-    "const"? "async"? "unsafe"? ("extern" ABI?)?
-ABI: string_literal
+function_qualifiers:
+    "const"? "async"? "unsafe"? ("extern" abi?)?
+abi:
+    string_literal
+    raw_string_literal
 
-generic_params:
-    "<" ">"
-    "<" (generic_param ",")* generic_param ","? ">"
-generic_param:
-    lifetime_param
-    type_param
-    const_param
-lifetime_param:
-    "'" identifier (":" lifetime_bounds)?
-lifetime_bounds:
-    (lifetime "+")* lifetime?
-lifetime:
-    "'" identifier
-    "'static"
-    "'_"
-type_param:
-    identifier (":" type_param_bounds?)? ("=" type)?
-type_param_bounds:
-    type_param_bound ("+" type_param_bound)* "+"?
-type_param_bound:
-    lifetime
-    trait_bound
-trait_bound:
-    _trait_bound
-    "(" _trait_bound ")"
-_trait_bound:
-    "?"? ("for" generic_params)? type_path
-const_param:
-    "const" identifier ":" type
-        ("=" block_expression | identifier | "-"? literal_expression)?
-
-parameters:
+function_parameters:
     self_param ","?
-    (self_param ",")? param ("," param)* ","?
+    (self_param ",")? function_param ("," function_param)* ","?
 self_param:
+    outer_attribute* (shorthand_self | typed_self)
+shorthand_self:
     ("&" lifetime?)? "mut"? "self"
+typed_self:
     "mut"? "self" ":" type
-param:
-    pattern ":" (type | "...")
-    "..."
-    type
+function_param:
+    outer_attribute* (function_param_pattern | "..." | type)
+function_param_pattern:
+    pattern_no_top_alt ":" (type | "...")
 
-return_type:
+function_return_type:
     "->" type
-
-where_clause:
-    "where" (where_clause_item ",")* where_clause_item?
-where_clause_item:
-    lifetime ":" lifetime_bounds
-    ("for" generic_params)? type ":" type_param_bounds?
 ```
 
 Simple function definition and simple call example:
@@ -579,6 +744,111 @@ fn main() {
 
 See [Functions](https://doc.rust-lang.org/reference/items/functions.html) for
 greater detail.
+
+### Structs
+
+Grammar:
+```
+struct:
+    "struct" identifier generic_params? where_clause?
+        ("{" struct_fields? "}" | ";")
+    "struct" identifier generic_params? "(" tuple_fields? ")" where_clause? ";"
+
+struct_fields:
+    struct_field ("," struct_field)* ","?
+struct_field:
+    outer_attribute* visibility? identifier ":" type
+
+tuple_fields:
+    tuple_field ("," tuple_field)* ","?
+tuple_field:
+    outer_attribute* visibility? type
+```
+
+#### Structs with Named Fields
+
+Declaration:
+```rust
+struct Point3D {
+    x: f64,
+    y: f64,
+    z: f64,
+}
+```
+* declare a new type `Point3D` as a struct containing three `f64` items named
+  `x`, `y` and `z`, respectively
+
+Making an instance:
+```rust
+let p1 = Point3D {x: 0.5, y: -1.2, z: 1.0};      // (1)
+let mut p2 = Point3D {z: 1.0, y: -1.2, x: 0.5};  // (2)
+```
+* at `(1)` an instance of `Point3D` is created and assigned to `p1`
+* at `(2)` happens the same but this time the instance is assigned to `p2`
+* the order of initializers does not matter in Rust, thus `p1` and `p2` are
+  equal
+
+Accessing an element:
+```rust
+p2.x += p1.x;
+```
+* an element of a struct is accessed by its name using dot operator (`.`)
+
+Field init shorthand:
+```rust
+fn x_axis_point(x: f64) -> Point3D {
+    Point {y: 0.0, z: 0.0, x}
+}
+```
+* if the name of a variable coincides with the name of a field then initializer
+  `name: name` can be shortened to just `name`
+
+Struct update syntax:
+```rust
+let origin = Point3D {x: 0.0, y: 0.0, z: 0.0};
+let z1 = Point3D {z: 1.0, ..origin};
+```
+* missing initializers are taken from `origin`, so the `z1` is equal to
+  `Point3D {x: 0.0, y: 0.0, z: 1.0}`
+* note that in case `Point3D` contains a field that can be only moved (e.g. a
+  field of `String` type), then `origin` cannot be used after the assignment to
+  `z1` is finished
+
+#### Tuple-like Structs
+
+Declaration:
+```rust
+struct Color(u8, u8, u8);
+```
+* declare a new type `Color` as a struct containing three `u8` elements
+
+Making an instance:
+```rust
+let red = Color(255, 0, 0);
+```
+* create an instance of `Color` and assign it to `red`
+
+Accessing an element:
+```rust
+let green = red.1;
+```
+* elements are accessed like in tuples
+
+#### Unit-like Structs
+
+Declaration:
+```rust
+struct Ground;
+struct Sink;
+```
+* declare two new distinct types, `Ground` and `Sink`, with no elements
+* unit-like structs become useful when used together with traits
+
+Making an instance:
+```rust
+let ground = Ground;
+```
+* create an instance of `Ground` and assign it to `ground`
 
 ## Ownership
 
@@ -716,20 +986,19 @@ Grammar:
 loop_expression:
     loop_label? (
         "loop" block_expression
-        "while" conditional_expression block_expression
-        "while" "let" pattern "=" scrutinee block_expression
-        "for" pattern "in" expression block_expression
+        "while" (expression - struct_expression) block_expression
+        "while" "let" pattern "=" (scrutinee - lazy_boolean_expression)
+            block_expression
+        "for" pattern "in" (expression - struct_expression) block_expression
         block_expression
     )
-loop_label: "'" identifier ":"
-
-conditional_expression: expression
-scrutinee: expression
+loop_label:
+    lifetime_or_label ":"
 
 break_expression:
-    "break" ("'" identifier)? expression?
+    "break" lifetime_or_label? expression?
 continue_expression:
-    "continue" ("'" identifier)?
+    "continue" lifetime_or_label?
 ```
 
 `loop { body }`:
@@ -741,7 +1010,7 @@ continue_expression:
 * the value of the expression is the value returned by a `break` expression
   from `body`
 
-`while conditional { body }`:
+`while condition { body }`:
 * if `condition` is true execute `body` and go to the next iteration
 * `condition` must not be `struct_expression`
 * the type and the value of the expression, `body` and the `break` expression
@@ -819,18 +1088,14 @@ for greater detail.
 Grammar:
 ```
 if_expression:
-    "if" conditional_expression block_expression
-        ("else" (block_expression | if_expression | iflet_expression))?
+    "if" (expression - struct_expression) block_expression
+        ("else" (block_expression | if_expression | if_let_expression))?
 
-iflet_expression:
-    "if" "let" pattern "=" scrutinee block_expression
-        ("else" (block_expression | if_expression | iflet_expression))?
-
-conditional_expression: expression
-scrutinee: expression
+if_let_expression:
+    "if" "let" pattern "=" (scrutinee - lazy_boolean_expression) block_expression
+        ("else" (block_expression | if_expression | if_let_expression))?
 ```
-
-* the `conditional_expression` must not be `struct_expression` and must be of
+* the conditional `expression` must not be `struct_expression` and must be of
   a type `bool`
 * the `scrutinee` must not be `lazy_boolean_expression`
 * all block expressions must have the same type
@@ -885,7 +1150,6 @@ range_expression:
     expression "..=" expression
     "..=" expression
 ```
-
 * `a..b` constructs [`std::ops::Range`](https://doc.rust-lang.org/std/ops/struct.Range.html)
   object; `(a..b).contains(&x)` is equivalent to `a <= x && x < b`
 * `a..` constructs [`std::ops::RangeFrom`](https://doc.rust-lang.org/std/ops/struct.RangeFrom.html)
@@ -907,9 +1171,8 @@ for greater detail.
 Grammar:
 ```
 lazy_boolean_expression:
-    expression OP expression
-
-OP: "&&" | "||"
+    expression "&&" expression
+    expression "||" expression
 ```
 
 The meaning and associativity of each operator (operators lower in the table
@@ -930,9 +1193,16 @@ for greater detail.
 Grammar:
 ```
 arithmetic_or_logical_expression:
-    expression OP expression
-
-OP: "+" | "-" | "*" | "/" | "%" | "&" | "|" | "^" | "<<" | ">>"
+    expression "+" expression
+    expression "-" expression
+    expression "*" expression
+    expression "/" expression
+    expression "%" expression
+    expression "&" expression
+    expression "|" expression
+    expression "^" expression
+    expression "<<" expression
+    expression ">>" expression
 ```
 
 The meaning and associativity of each operator (operators lower in the table
@@ -978,7 +1248,6 @@ Grammar:
 borrow_expression:
     ( "&" | "&&" ) "mut"? expression
 ```
-
 * `&a` produces a reference if `a` is an expression with an associated memory
   location
 * memory location associated with `a` is switched to a borrowed state for the
@@ -999,7 +1268,7 @@ for greater detail.
 
 Grammar:
 ```
-array_index_expression:
+index_expression:
     expression "[" expression "]"
 ```
 
@@ -1011,9 +1280,9 @@ for greater detail.
 Grammar:
 ```
 call_expression:
-    expression "(" arguments? ")"
+    expression "(" call_params? ")"
 
-arguments:
+call_params:
     expression ("," expression)* ","?
 ```
 
@@ -1024,21 +1293,27 @@ for greater detail.
 
 Grammar:
 ```
-field_access_expression:
+field_expression:
     expression "." identifier
-    expression "." decimal_integer
-```
 
-See [Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html)
-and [Tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html#tuple-indexing-expressions)
-for greater detail.
+tuple_indexing_expression:
+    expression "." integer_literal
+```
+* a tuple index is compared to the `integer_literal` directly
+  * that is, `t.0` is valid but `t.01` or `t.0o0` are invalid
+* see [Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html)
+  and [Tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html#tuple-indexing-expressions)
+  for greater detail
 
 ### Block Expressions
 
 Grammar:
 ```
 block_expression:
-    "{" statement* expression? "}"
+    "{" inner_attribute* statements? "}"
+statements:
+    statement+ expression_without_block?
+    expression_without_block
 ```
 
 The value and type of `block_expression` is the value and type of `expression`
@@ -1053,29 +1328,54 @@ Grammar:
 ```
 atomic_expression:
     literal_expression
-    tuple
-    array
+    tuple_expression
+    array_expression
+    struct_expression
 
 literal_expression:
-    character_literal
+    char_literal
     string_literal
+    raw_string_literal
+    byte_literal
     byte_string_literal
+    raw_byte_string_literal
     integer_literal
-    floating_point_literal
+    float_literal
     "true" | "false"
 
-tuple: "(" tuple_elements? ")"
-tuple_elements: (expression ",")+ expression?
+tuple_expression:
+    "(" tuple_elements? ")"
+tuple_elements:
+    (expression ",")+ expression?
 
-array: "[" array_elements? "]"
+array_expression:
+    "[" array_elements? "]"
 array_elements:
     expression ("," expression)* ","?
     expression ";" expression
+
+struct_expression:
+    path_in_expression "{" (struct_expr_fields | struct_base)? "}"
+    path_in_expression "(" (expression ("," expression)* "'"?)? ")"
+    path_in_expression
+
+struct_expr_fields:
+    struct_expr_field ("," struct_expr_field)* ("," struct_base | ","?)
+struct_expr_field:
+    outer_attribute* (
+        identifier
+        | (identifier | integer_literal) ":" expression
+    )
+struct_base:
+    ".." expression
 ```
+* for `integer_literal` in `struct_expr_field` hold same restriction as for
+  `integer_literal` in `tuple_indexing_expression`
 
 See [Literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html),
 [Tuple expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html#tuple-expressions),
-and [Array expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html#array-expressions)
+[Array expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html#array-expressions),
+and [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html)
 for greater detail.
 
 ## Statements
@@ -1094,30 +1394,270 @@ greater detail.
 Grammar:
 ```
 let_statement:
-    "let" pattern (":" type)? ("=" expression ("else" block_expression)?)? ";"
+    outer_attribute* "let" pattern_no_top_alt (":" type)?
+        ("=" expression ("else" block_expression)?)? ";"
 ```
-
-* introduces a new set of variables given by a `pattern`
-* `pattern` can be annotated with `type`
-* variables in `pattern` can be initialized by `expression`
-* if `else` is not present, `pattern` must be irrefutable
+* introduces a new set of variables given by a `pattern_no_top_alt`
+* `pattern_no_top_alt` can be annotated with `type`
+* variables in `pattern_no_top_alt` can be initialized by `expression`
+* if `else` is not present, `pattern_no_top_alt` must be irrefutable
 * if `else` is present
-  * `pattern` can be refutable
-  * `expression` must not be a lazy boolean expression or end with a `}`
+  * `pattern_no_top_alt` can be refutable
+  * `expression` must not be a `lazy_boolean_expression` or end with a `}`
   * `block_expression` must evaluate to never type
-* the semantics of `else` part is that if `pattern` fails to match then the
-  `block_expression` is executed
+* the semantics of `else` part is that if `pattern_no_top_alt` fails to match
+  then the `block_expression` is executed
 * see [`let` statements](https://doc.rust-lang.org/reference/statements.html#let-statements)
   for greater detail
 
+## Generics
+
+Grammar:
+```
+generic_params:
+    "<" ">"
+    "<" (generic_param ",")* generic_param ","? ">"
+generic_param:
+    outer_attribute* (lifetime_param | type_param | const_param)
+lifetime_param:
+    lifetime_or_label (":" lifetime_bounds)?
+type_param:
+    identifier (":" type_param_bounds?)? ("=" type)?
+const_param:
+    "const" identifier ":" type
+        ("=" block_expression | identifier | "-"? literal_expression)?
+
+where_clause:
+    "where" (where_clause_item ",")* where_clause_item?
+where_clause_item:
+    lifetime ":" lifetime_bounds
+    ("for" generic_params)? type ":" type_param_bounds?
+```
+
+## Traits
+
+Grammar:
+```
+type_param_bounds:
+    type_param_bound ("+" type_param_bound)* "+"?
+type_param_bound:
+    lifetime
+    trait_bound
+trait_bound:
+    "?"? ("for" generic_params)? type_path
+    "(" "?"? ("for" generic_params)? type_path ")"
+
+lifetime_bounds:
+    (lifetime "+")* lifetime?
+lifetime:
+    lifetime_or_label
+    "'static"
+    "'_"
+```
+
 ## Macros
+
+Grammar:
+```
+macro_invocation:
+    simple_path "!" delim_token_tree
+macro_invocation_semi:
+    simple_path "!" "(" token_tree* ")" ";"
+    simple_path "!" "[" token_tree* "]" ";"
+    simple_path "!" "{" token_tree* "}"
+
+delim_token_tree:
+    "(" token_tree* ")"
+    "[" token_tree* "]"
+    "{" token_tree* "}"
+token_tree:
+    token - delimiters
+    delim_token_tree
+```
+
+### Selected Macros from the Standard Library
+
+#### `format`
+
+Creates a [`String`](https://doc.rust-lang.org/std/string/struct.String.html)
+by the interpolation of format string literal. Example:
+```rust
+let (x, y) = (1, 2);
+
+format!("x = {x}, y = {y}");     // "x = 1, y = 2"
+format!("z = {z}", z = 3);       // "z = 3"
+format!("Hello, {}!", "World");  // "Hello, World!"
+```
+See [`std::format`](https://doc.rust-lang.org/std/macro.format.html) for
+greater detail.
+
+##### Format String
+
+A format string is a string containing markers with format specification. A
+marker is a string starting with `{` and ending with `}`. During interpolation,
+a marker is replaced by the string representation of the corresponding value.
+Additional characters between `{` and `}` specify a way of interpolating a
+value.
+
+Selected markers:
+| **Marker** | **Meaning** |
+| ---------- | ----------- |
+| `{}` | the value's type must implement [`std::fmt::Display`](https://doc.rust-lang.org/std/fmt/trait.Display.html) trait |
+| `{:?}` | the value's type must implement [`std::fmt::Debug`](https://doc.rust-lang.org/std/fmt/trait.Debug.html) trait |
+| `{:#?}` | `{:?}` with pretty print flag set |
+
+See [`std::fmt`](https://doc.rust-lang.org/std/fmt/index.html) for greater
+detail.
+
+Additional references:
+* [`std::fmt::Formatter`](https://doc.rust-lang.org/std/fmt/struct.Formatter.html)
+* [`std::fmt::Arguments`](https://doc.rust-lang.org/std/fmt/struct.Arguments.html)
+* [`std::fmt::DebugStruct`](https://doc.rust-lang.org/std/fmt/struct.DebugStruct.html)
+* [`std::fmt::DebugTuple`](https://doc.rust-lang.org/std/fmt/struct.DebugTuple.html)
+* [`std::fmt::DebugList`](https://doc.rust-lang.org/std/fmt/struct.DebugList.html)
+* [`std::fmt::DebugSet`](https://doc.rust-lang.org/std/fmt/struct.DebugSet.html)
+* [`std::fmt::DebugMap`](https://doc.rust-lang.org/std/fmt/struct.DebugMap.html)
+
+#### `format_args`
+
+Creates [`std::fmt::Arguments`](https://doc.rust-lang.org/std/fmt/struct.Arguments.html)
+object containing precompiled format string and its arguments. Examples:
+```rust
+let args = format_args!("{} + {} = {}", 1, 2, 3);
+
+println!("{:?}", args);
+```
+
+See [`std::format_args`](https://doc.rust-lang.org/std/macro.format_args.html)
+and [`std::fmt::Arguments`](https://doc.rust-lang.org/std/fmt/struct.Arguments.html)
+for greater detail.
+
+#### `println`
+
+Prints interpolated format string and the new line character to the standard
+output. Examples:
+```rust
+println!("Hello, World!");
+println!("Hello, {}!", "World");
+```
+
+See [`std::println`](https://doc.rust-lang.org/std/macro.println.html) for
+greater detail.
+
+#### `eprintln`
+
+Like `println` but prints the output to standard error output.
+
+See [`std::eprintln`](https://doc.rust-lang.org/std/macro.eprintln.html) for
+greater detail.
+
+#### `dbg`
+
+Prints to the standard error output and returns the value of given expression.
+The value is moved. The type of the value must implement
+[`std::fmt::Debug`](https://doc.rust-lang.org/std/fmt/trait.Debug.html) trait.
+Examples:
+```rust
+let a = dbg!(2 + 5);  // Prints: [src/main.rs:2] 2 + 5 = 7
+
+#[derive(Debug)]
+struct NoCopy(u32);
+
+let a = NoCopy(8);
+let _ = dbg!(a);
+let _ = dbg!(a);  // Error! (`a` was moved)
+```
+
+See [`std::dbg`](https://doc.rust-lang.org/std/macro.dbg.html) for greater
+detail.
+
+## Attributes
+
+Grammar:
+```
+inner_attribute:
+    "#" "!" "[" attr "]"
+
+outer_attribute:
+    "#" "[" attr "]"
+
+attr:
+    simple_path attr_input?
+attr_input:
+    delim_token_tree
+    "=" expression
+```
+
+### Selected Attributes Supported by Rust
+
+#### `derive`
+
+Allows new items to be automatically generated for data structures. Examples:
+```rust
+// Implement `std::fmt::Debug` trait for `Point`
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+let p = Point {x: 1, y: 2};
+
+println!("{p:#?}");  // Pretty print `p`
+```
+
+See [Derive](https://doc.rust-lang.org/reference/attributes/derive.html) for
+greater detail.
 
 ## Modules, Crates, and Name Spaces
 
 * a *crate* is viewed as a translation unit
 * function `main` is the program's entry point
 
+### Visibility
+
+Grammar:
+```
+visibility:
+    "pub"
+    "pub" "(" "crate" ")"
+    "pub" "(" "self" ")"
+    "pub" "(" "super" ")"
+    "pub" "(" "in" simple_path ")"
+```
+
 ### Paths
+
+#### Simple Paths
+
+Grammar:
+```
+simple_path:
+    "::"? simple_path_segment ("::" simple_path_segment)*
+simple_path_segment:
+    identifier | "super" | "self" | "crate" | "$crate"
+```
+
+#### Paths in Expressions
+
+Grammar:
+```
+path_in_expression:
+    "::"? path_expr_segment ("::" path_expr_segment)*
+path_expr_segment:
+    path_ident_segment ("::" generic_args)?
+path_ident_segment:
+    identifier | "super" | "self" | "Self" | "crate" | "$crate"
+generic_args:
+    "<" ((generic_arg ",")* generic_arg ","?)? ">"
+generic_arg:
+    lifetime
+    type
+    block_expression
+    "-"? literal_expression
+    simple_path_segment
+    identifier "=" type
+```
 
 #### Type Paths
 
@@ -1127,17 +1667,6 @@ type_path:
     "::"? type_path_segment ("::" type_path_segment)*
 type_path_segment:
     path_ident_segment ("::"? (generic_args | type_path_fn))?
-path_ident_segment:
-    identifier | "super" | "self" | "Self" | "crate" | "$crate"
-generic_args:
-    "<" ((generic_arg ",")* generic_arg ","?)? ">"
-generic_arg:
-    "'" identifier | "'static" | "'_"
-    type
-    block_expression
-    "-"? literal_expression
-    identifier | "super" | "self" | "crate" | "$crate"
-    identifier "=" type
 type_path_fn:
     "(" (type ("," type)* ","?)? ")" ("->" type)?
 ```
