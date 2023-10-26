@@ -34,6 +34,7 @@ interested in. Maybe You find some of these interesting too.
    1. [KDE](#kde)
    1. [Packaging](#packaging)
    1. [System Management](#system-management)
+1. [Games & Game Engines](#games--game-engines)
 1. [Hardware](#hardware)
    1. [BIOS/UEFI](#bios-uefi)
    1. [Networking (HW)](#networking-hw)
@@ -266,6 +267,7 @@ interested in. Maybe You find some of these interesting too.
 * [Bartosz Milewski](https://bartoszmilewski.com/)
 * [bell0bytes](https://bell0bytes.eu)
 * [Bob Nystrom](http://journal.stuffwithstuff.com/)
+* [BruXy.REGNET.CZ](http://bruxy.regnet.cz/web/)
 * [Catch22](http://www.catch22.net/)
 * [catonmat Articles Archive](https://catonmat.net/archive)
 * [Chris Kief](https://chriskief.com/)
@@ -365,6 +367,7 @@ interested in. Maybe You find some of these interesting too.
 * [All About Circuits](https://www.allaboutcircuits.com/)
 * [Creative Techos](https://www.youtube.com/c/CreativeTechos/videos)
 * [ElectroNoobs](https://electronoobs.com/index.php)
+* [PaJa](http://paja-trb.cz/)
 
 ### Beam Bots
 
@@ -710,6 +713,11 @@ interested in. Maybe You find some of these interesting too.
 * [DNF System Upgrade](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/)
 * [How to clean up PackageKit in Fedora OS the right way !](https://anglehit.com/how-to-clean-up-packagekit-in-fedora-os-the-right-way/)
 
+## Games & Game Engines
+
+* [MineClone2](https://content.minetest.net/packages/Wuzzy/mineclone2/) [[repo](https://git.minetest.land/MineClone2/MineClone2)]
+* [Minetest](https://www.minetest.net/) [[repo](https://github.com/minetest/minetest)]
+
 ## Hardware
 
 * [Empowering The Industry with Open System Firmware – AMD openSIL](https://community.amd.com/t5/business/empowering-the-industry-with-open-system-firmware-amd-opensil/ba-p/599644)
@@ -838,6 +846,7 @@ interested in. Maybe You find some of these interesting too.
 * [Hub for systemd-nspawn containers and images](https://nspawn.org/)
 * [KubeVirt](https://kubevirt.io/)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
+* [Network Observability Operator in OpenShift Container Platform](https://docs.openshift.com/container-platform/4.13/networking/network_observability/understanding-network-observability-operator.html)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
 * [Optimize container images for NGINX and Apache HTTPd](https://developers.redhat.com/articles/2023/04/25/optimize-container-images-nginx-and-apache-httpd)
@@ -943,6 +952,7 @@ interested in. Maybe You find some of these interesting too.
 ### Networking
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
+* [Architectural Styles and the Design of Network-based Software Architectures](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm)
 * [BPF Documentation](https://www.kernel.org/doc/html/next/bpf/index.html)
 * [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
 * [Building a virtual network with qemu](http://csortu.blogspot.com/2009/12/building-virtual-network-with-qemu.html)
@@ -1085,12 +1095,17 @@ interested in. Maybe You find some of these interesting too.
 
 ### X/Wayland
 
-* [freedesktop.org repositories (mirror)](https://github.com/freedesktop)
-  * [libX11](https://github.com/freedesktop/xorg-libX11)
-  * [libXaw](https://github.com/freedesktop/xorg-libXaw)
-  * [libXaw3d](https://github.com/freedesktop/xorg-libXaw3d)
-  * [libxcb](https://github.com/freedesktop/xcb-libxcb)
-  * [xorgproto](https://github.com/freedesktop/xorg-xorgproto)
+* [freedesktop.org repositories](https://gitlab.freedesktop.org/)
+  * [xorg](https://gitlab.freedesktop.org/xorg)
+    * [lib](https://gitlab.freedesktop.org/xorg/lib)
+      * [libX11](https://gitlab.freedesktop.org/xorg/lib/libx11)
+      * [libXaw](https://gitlab.freedesktop.org/xorg/lib/libxaw)
+      * [libXaw3d](https://gitlab.freedesktop.org/xorg/lib/libxaw3d)
+      * [libxcb](https://gitlab.freedesktop.org/xorg/lib/libxcb)
+    * [proto](https://gitlab.freedesktop.org/xorg/proto)
+      * [xorgproto](https://gitlab.freedesktop.org/xorg/proto/xorgproto)
+    * [xserver](https://gitlab.freedesktop.org/xorg/xserver)
+      * [Xvfb](https://gitlab.freedesktop.org/xorg/xserver/-/tree/master/hw/vfb?ref_type=heads) [[doc](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)]
 * [Motif](https://github.com/fjardon/motif)
 * [XCB](https://xcb.freedesktop.org/)
   * [API](https://xcb.freedesktop.org/XcbApi/): [public](https://xcb.freedesktop.org/PublicApi/), [protocol stub](https://xcb.freedesktop.org/ProtocolStubApi/), [protocol extension](https://xcb.freedesktop.org/ProtocolExtensionApi/)
@@ -1833,6 +1848,7 @@ See [Caml](#caml).
 * [neli (Rust)](https://github.com/jbaublitz/neli)
 * [neovim (C/Lua/Vim Script)](https://github.com/neovim/neovim) [[home](https://neovim.io/)]
   * [null-ls.nvim (Lua)](https://github.com/jose-elias-alvarez/null-ls.nvim/)
+* [NetObserv Operator (Golang)](https://github.com/netobserv/network-observability-operator)
 * [Ninja (C++)](https://github.com/ninja-build/ninja) [[doc](https://ninja-build.org/)]
 * [nix (C++)](https://github.com/NixOS/nix)
 * [nmstate (Python)](https://github.com/nmstate/nmstate)
@@ -2057,6 +2073,7 @@ See [Caml](#caml).
 * [Fixing Races for Fun and Profit: How to use access(2)](https://www.usenix.org/legacy/publications/library/proceedings/sec04/tech/full_papers/dean/dean_html/accessopen.html)
 * [FreeIPA](https://www.freeipa.org/) [[repo](https://github.com/freeipa/ansible-freeipa)]
 * [Glyph & Cog Added as CVE Numbering Authority (CNA)](https://www.cve.org/Media/News/item/news/2023/03/14/Glyph-Cog-Added-as-CNA)
+* [How it works: The novel HTTP/2 ‘Rapid Reset’ DDoS attack](https://cloud.google.com/blog/u/0/products/identity-security/how-it-works-the-novel-http2-rapid-reset-ddos-attack)
 * [How Red Hat Supports Open-Source Vulnerabilities Within the CVE Program](https://www.cve.org/Media/News/item/blog/2023/02/07/Open-Source-and-the-CVE-Program)
 * [How static application security testing improves software security](https://developers.redhat.com/articles/2022/11/09/how-static-application-security-testing-improves-software-security)
 * [How to add trusted CA certificate on CentOS/Fedora](https://www.devdungeon.com/content/how-add-trusted-ca-certificate-centosfedora)
@@ -2248,6 +2265,7 @@ See [Caml](#caml).
 * [Brno Observatory and Planetarium (mobile version, in Czech)](http://m.hvezdarna.cz/)
 * [Color Cards](https://www.mosaic-commons.org/colorcards)
 * [Comic Mono](https://dtinth.github.io/comic-mono-font/)
+* [dafilms](https://dafilms.cz/)
 * [Dálkový pochod Drahanskou vrchovinou](http://www.dpdv.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
