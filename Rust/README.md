@@ -120,6 +120,12 @@ into its binary representation.
   `main.rs`) and `rustc` will automatically gather all the necessary source
   files, compiles them and links them together.
 
+### Miri
+
+[Miri](https://github.com/rust-lang/miri) is a mid-level intermediate
+representation interpreter. It can run Rust programs and detect certain classes
+of undefined behavior.
+
 ## Lexical Elements
 
 Grammar:
@@ -626,6 +632,13 @@ for greater detail.
 
 #### Struct Types
 
+* a `struct` type is a heterogeneous product of other types
+* `struct`s have no specified memory layout
+  * to specify one, use [`repr`](https://doc.rust-lang.org/reference/type-layout.html#representations)
+    attribute
+* see [Struct types](https://doc.rust-lang.org/reference/types/struct.html) for
+  greater detail
+
 ## Declarations
 
 ### Variables
@@ -813,6 +826,7 @@ let z1 = Point3D {z: 1.0, ..origin};
 * note that in case `Point3D` contains a field that can be only moved (e.g. a
   field of `String` type), then `origin` cannot be used after the assignment to
   `z1` is finished
+* `z1` must be of the same type as `origin`
 
 #### Tuple-like Structs
 
@@ -825,14 +839,26 @@ struct Color(u8, u8, u8);
 Making an instance:
 ```rust
 let red = Color(255, 0, 0);
+let ctor = Color;
+let blue = ctor(0, 0, 255);
 ```
 * create an instance of `Color` and assign it to `red`
+* `Color` behaves like function/constructor
 
 Accessing an element:
 ```rust
 let green = red.1;
 ```
 * elements are accessed like in tuples
+
+Struct update:
+```rust
+let black = Color(0, 0, 0);
+let red = Color {0: 255, ..black};
+```
+* decimal integer literal as a field name specifies which field is updated
+* `..origin` sets the rest of fields from `origin` using the copy/borrow
+  strategy
 
 #### Unit-like Structs
 
@@ -847,8 +873,15 @@ struct Sink;
 Making an instance:
 ```rust
 let ground = Ground;
+let ground2 = Ground {};
 ```
 * create an instance of `Ground` and assign it to `ground`
+* `Ground` can be optionally followed by `{}` to explicitly denote there are no
+  fields
+
+See [Structs](https://doc.rust-lang.org/reference/items/structs.html) and
+[Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html)
+for greater detail.
 
 ## Ownership
 
@@ -1305,6 +1338,35 @@ tuple_indexing_expression:
   and [Tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html#tuple-indexing-expressions)
   for greater detail
 
+### Method-Call Expressions
+
+Grammar:
+```
+method_call_expression:
+    expression "." path_expr_segment "(" call_params? ")"
+```
+
+`expression` in the grammar above is called *receiver*.
+
+Here is how receiver and method are resolved:
+1. Build a list, *L*, of candidate receiver types.
+   1. Repeatedly [dereference](https://doc.rust-lang.org/reference/expressions/operator-expr.html#the-dereference-operator)
+      receiver's expression type, add each encountered type to *L*.
+   1. Let *T* be the last type in *L*. Apply [unsized coercion](https://doc.rust-lang.org/reference/type-coercions.html#unsized-coercions)
+      to *T* and add the result, if any, to *L*.
+1. For each `T` in *L*, add `&T` and `&mut T` to *L* immediately after `T`.
+1. For every *T* in *L*, search for a visible method with a receiver of type
+   *T* in these places:
+   1. Methods implemented directly on *T*.
+   1. Any of the methods provided by a visible trait implemented by *T*.
+      * If *T* is a type parameter, methods provided by trait bounds on *T* are
+        looked up first.
+      * Then all remaining methods in scope are looked up.
+1. If the look up failed or there are ambiguities an error is issued.
+
+See [Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html)
+for greater detail.
+
 ### Block Expressions
 
 Grammar:
@@ -1455,6 +1517,127 @@ lifetime:
     "'_"
 ```
 
+## Implementations
+
+Grammar:
+```
+implementation:
+    inherent_impl
+    trait_impl
+
+inherent_impl:
+    "impl" generic_params? type where_clause?
+        "{" inner_attribute* associated_item* "}"
+trait_impl:
+    "unsafe"? "impl" generic_params? "!"? type_path "for" type where_clause?
+        "{" inner_attribute* associated_item* "}"
+
+associated_item:
+    outer_attribute* (
+        macro_invocation_semi
+        | (visibility? (type_alias | constant_item | function))
+    )
+```
+
+An implementation associates an item definition with a concrete type.
+* this happens inside of `impl` block
+* multiple `impl` blocks per one implementing type are possible
+
+Inherent implementations:
+* can contain associated functions, including methods, and associated constants
+* a type can also have multiple inherent implementations
+* an implementing type must be defined within the same crate as the original
+  type definition
+
+See [Implementations](https://doc.rust-lang.org/reference/items/implementations.html)
+for greater detail.
+
+### Associated Functions and Methods
+
+Associated functions are functions associated with a type.
+
+Methods are associated functions with `self` as the first parameter. The type
+of `self`, `S`, can be specified, but it undergoes the following restrictions:
+* Let `T` be an implementing type and `'a` by an arbitrary lifetime.
+* Then `S` is one of `Self` or `P`, where
+  * `Self` refers to a type resolving to `T`, such as alias of `T`, `Self`, or
+    associated type projections resolving to `T`;
+  * `P` is one of `& 'a S`, `& 'a mut S`, `Box<S>`, `Rc<S>`, `Arc<S>`, or
+    `Pin<S>`.
+
+When `self` has no type specified, then
+* `self` is equivalent to `self: Self`
+* `& 'a self` is equivalent to `self: & 'a Self`
+* `& 'a mut self` is equivalent to `self: & 'a mut Self`
+
+Explanation on example:
+```rust
+#[derive(Debug)]
+struct FsItem {
+    name: String,
+    size: usize,
+}
+
+impl FsItem {
+    fn new() -> Self {
+        Self {
+            name: String::from(""),
+            size: 0usize,
+        }
+    }
+
+    fn create(name: String, size: usize) -> FsItem {
+        FsItem { name, size }
+    }
+
+    fn name(&self) -> String {
+        String::from(self.name.as_str())
+    }
+
+    fn size(&self) -> usize {
+        self.size
+    }
+
+    fn rename(&mut self, name: String) {
+        self.name = name;
+    }
+}
+
+fn main() {
+    let mut fsitem1 = FsItem::new();
+    let fsitem2 = FsItem::create(String::from("/etc/fsitem2"), 16);
+
+    println!("{fsitem1:#?}");
+    println!("{fsitem2:#?}");
+
+    println!("fsitem1 = {{ {}, {} }}", fsitem1.name(), fsitem1.size());
+
+    fsitem1.rename(String::from("/etc/fsitem1"));
+
+    println!("fsitem1 = {{ {}, {} }}", fsitem1.name(), fsitem1.size());
+}
+```
+* `impl FsItem` block encloses functions and methods definitions associated
+  with `struct FsItem`
+* `new()` and `create()` are associated functions of `struct FsItem` and as
+  such their path must be specified to call them: `FsItem::new()`,
+  `FsItem::create()`
+* `name()`, `size()`, and `rename()` are methods
+  * they are called using [method-call expression](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
+    e.g. `fsitem1.name()`
+* `Self` refers to the implementing type, here `struct FsItem`
+* `self` refers to the object of implementing type and it is an implicit
+  parameter to the method
+  * e.g. `x.f(a, b)` translates to `T::f(x, a, b)` where `T` is the type of the
+    receiver or trait and `x` matches with `self`
+* `mut` before `self` denotes that a method modifies the object referred by
+  `self`
+* `&` is necessary if the object referred by `self` is borrowed more than once
+  * e.g. `fsitem1` is borrowed by `name()` and by `size()`
+
+See [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
+for greater detail.
+
 ## Macros
 
 Grammar:
@@ -1488,6 +1671,7 @@ format!("x = {x}, y = {y}");     // "x = 1, y = 2"
 format!("z = {z}", z = 3);       // "z = 3"
 format!("Hello, {}!", "World");  // "Hello, World!"
 ```
+
 See [`std::format`](https://doc.rust-lang.org/std/macro.format.html) for
 greater detail.
 
@@ -1608,6 +1792,8 @@ println!("{p:#?}");  // Pretty print `p`
 
 See [Derive](https://doc.rust-lang.org/reference/attributes/derive.html) for
 greater detail.
+
+#### `repr`
 
 ## Modules, Crates, and Name Spaces
 
