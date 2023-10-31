@@ -35,6 +35,7 @@
 * https://www.youtube.com/user/Dieseltriebzug/videos
 * [DHLLAHNN](https://www.youtube.com/channel/UCwxAsFF7pN96Zpf7MLza7fw/videos)
 * https://www.youtube.com/c/vlexxGmbH/videos
+* [Arjen V Führerstand TV](https://www.youtube.com/@ArjenV/videos)
 * [Cabride Germany](https://www.youtube.com/user/MrBreak2fast/videos)
 * [bwegtBW](https://www.youtube.com/channel/UCzQWKkiN6MYgQsmOv7W-hPg/videos)
 * [Isar Rail](https://www.youtube.com/channel/UCpYDe5J-JkMyFWeV39EhnNQ/videos)
@@ -80,6 +81,7 @@
 * https://www.youtube.com/user/FaustoTz/videos
 * https://www.youtube.com/c/CabViewsPT/videos
 * [Liono pointcom](https://www.youtube.com/channel/UCUKWZLzVbCes5AJm3f1m12g/videos)
+* [Railtrotter](https://www.youtube.com/@Railtrotter/videos)
 * [France Cab Ride](https://www.youtube.com/user/rumtex/videos)
 * [Trains en vue!](https://www.youtube.com/@Trains_en_vue/videos)
 * [Fretteux78](https://www.youtube.com/@Fretteux78/videos)
@@ -108,6 +110,9 @@
 * [YusTren](https://www.youtube.com/channel/UCbsDr5W9mDkINjxuqnAUkfg/videos)
 * [Maquivia](https://www.youtube.com/channel/UCBbxtOvDira4bLyyB9v6TdQ/videos)
 * https://www.youtube.com/user/orezul/videos
+* https://www.youtube.com/@SitesandSounds/videos
 * [Taipei to Taipei](https://www.youtube.com/watch?v=ko_GG_ANBbA)
+* [ato5kgyasetaito](https://www.youtube.com/@ato5kgyasetaito/videos)
+* [CT hitorikamonen](https://www.youtube.com/@cthitorikamonen2874/videos)
 * [Takayama to Osaka](https://www.youtube.com/watch?v=tH3gJ1cWU-Y)
 * https://www.youtube.com/user/urbanbiobio/videos

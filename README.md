@@ -18,6 +18,7 @@ interested in. Maybe You find some of these interesting too.
 1. [Debugging](#debugging)
 1. [Dictionaries & Translators](#dictionaries--translators)
 1. [Electronics](#electronics)
+   1. [Basics](#basics)
    1. [Beam Bots](#beam-bots)
    1. [Game Consoles](#game-consoles)
    1. [Power Management](#power-management)
@@ -25,6 +26,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Simulation](#simulation)
    1. [Synthesizers](#synthesizers)
    1. [Telephones](#telephones)
+   1. [Tubes](#tubes)
 1. [Fedora Project](#fedora-project)
    1. [Compose](#compose)
    1. [Developer](#developer)
@@ -56,6 +58,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Utilities](#utilities)
    1. [X/Wayland](#x-wayland)
 1. [Math](#math)
+   1. [Calculus](#calculus)
    1. [Category Theory](#category-theory)
    1. [Computer Science](#computer-science)
    1. [Cryptography](#cryptography)
@@ -132,6 +135,7 @@ interested in. Maybe You find some of these interesting too.
 * [Red Hat’s commitment to open source: A response to the git.centos.org changes](https://www.redhat.com/en/blog/red-hats-commitment-open-source-response-gitcentosorg-changes)
 * [Red Hat's HDR Hackfest Sounds Like It Was A Success](https://www.phoronix.com/news/Red-Hat-HDR-Hackfest-Recap)
 * [Red Hat Storage strategy update](https://www.redhat.com/en/blog/red-hat-storage-strategy-update)
+* [RISC-V for FPGAs: benefits and opportunities](https://research.redhat.com/blog/article/risc-v-for-fpgas-benefits-and-opportunities/)
 * [Starting with an idea and building a community](https://github.com/readme/evan-you)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
@@ -289,6 +293,7 @@ interested in. Maybe You find some of these interesting too.
 * [Miroslav Suchý](http://miroslav.suchy.cz/blog/)
 * [Molo76 blog](https://molo76.github.io/blog/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
+* [Pradyun Gedam](https://pradyunsg.me/blog/)
 * [Radek Pazdera](https://radek.io/)
 * [Richard W.M. Jones](https://rwmj.wordpress.com/)
 * [Shefferding containers](https://mricher.fr/)
@@ -367,7 +372,14 @@ interested in. Maybe You find some of these interesting too.
 * [All About Circuits](https://www.allaboutcircuits.com/)
 * [Creative Techos](https://www.youtube.com/c/CreativeTechos/videos)
 * [ElectroNoobs](https://electronoobs.com/index.php)
+* [Harry's Homebrew Homepage](http://www.sm0vpo.com/) [[link2](http://sm0vpo.altervista.org/)]
 * [PaJa](http://paja-trb.cz/)
+* [Ronald's electronic Project Site](https://www.dos4ever.com/)
+* [Talking Electronics](https://www.talkingelectronics.com/te_interactive_index.html)
+
+### Basics
+
+* [Producing wound components (a.k.a. coils)](http://info.ee.surrey.ac.uk/Workshop/advice/coils/index.html)
 
 ### Beam Bots
 
@@ -406,6 +418,11 @@ interested in. Maybe You find some of these interesting too.
 * [How were four wires replaced with two wires in early telephones?](https://electronics.stackexchange.com/questions/543433/how-were-four-wires-replaced-with-two-wires-in-early-telephones)
 * [Modeling Telephony Hybrids using 2 x 2 Matrices](http://www.dougrice.plus.com/dougnapTheory/index.htm)
 * [The first one-piece telephone: type 330](http://www.johnhearfield.com/Telephone/One_piece.htm)
+
+### Tubes
+
+* [tubebooks.org](http://www.tubebooks.org/)
+* ["Tubes 201" - How Vacuum Tubes Really Work](https://www.john-a-harper.com/tubes201/)
 
 ## Fedora Project
 
@@ -720,6 +737,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Hardware
 
+* [CoDes : A co-design research lab to advance specialized hardware projects](https://research.redhat.com/blog/research_project/codes-a-co-design-research-lab-to-advance-specialized-hardware-projects/)
 * [Empowering The Industry with Open System Firmware – AMD openSIL](https://community.amd.com/t5/business/empowering-the-industry-with-open-system-firmware-amd-opensil/ba-p/599644)
 
 ### BIOS/UEFI
@@ -769,6 +787,7 @@ interested in. Maybe You find some of these interesting too.
 * [sudo (Arch Linux)](https://wiki.archlinux.org/index.php/sudo)
 * [Sysprof 45](https://blogs.gnome.org/chergert/2023/07/27/sysprof-45/)
 * [The Virtual Disk Guide](http://scribesguides.com/)
+* [Use Redfish to manage servers automatically](https://www.redhat.com/sysadmin/redfish-manage-servers-automatically)
 * [Users and groups (Arch Linux)](https://wiki.archlinux.org/index.php/users_and_groups)
 
 #### Ansible
@@ -798,6 +817,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### Ansible Collections
 
+* [ansible.posix](https://github.com/ansible-collections/ansible.posix)
 * [cloud.terraform](https://github.com/ansible-collections/cloud.terraform)
 
 #### Ansible Roles
@@ -840,15 +860,21 @@ interested in. Maybe You find some of these interesting too.
 * [From Docker Compose to Kubernetes with Podman](https://www.redhat.com/sysadmin/compose-kubernetes-podman)
 * [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
 * [How Podman can transfer container images without a registry](https://www.redhat.com/sysadmin/podman-transfer-container-images-without-registry)
+* [How the Kepler project is working to advance environmentally-conscious efforts](https://www.redhat.com/en/blog/how-kepler-project-working-advance-environmentally-conscious-efforts)
 * [How to create a workspace via Try in Dev Spaces extension](https://developers.redhat.com/articles/2023/06/22/how-create-workspace-try-dev-spaces-extension#)
 * [How to deploy the new Grafana Tempo operator on OpenShift](https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift)
 * [How to use Podman inside of a container](https://www.redhat.com/sysadmin/podman-inside-container)
 * [Hub for systemd-nspawn containers and images](https://nspawn.org/)
+* [Introducing Kepler: Efficient power monitoring for Kubernetes](https://next.redhat.com/2023/08/22/introducing-kepler-efficient-power-monitoring-for-kubernetes/)
 * [KubeVirt](https://kubevirt.io/)
 * [Managing Containers in Podman with Systemd Unit Files](https://www.youtube.com/watch?v=AGkM2jGT61Y)
-* [Network Observability Operator in OpenShift Container Platform](https://docs.openshift.com/container-platform/4.13/networking/network_observability/understanding-network-observability-operator.html)
+* [OpenShift Container Platform 4.13 Documentation](https://docs.openshift.com/container-platform/4.13/welcome/index.html)
+  * [Network Observability Operator in OpenShift Container Platform](https://docs.openshift.com/container-platform/4.13/networking/network_observability/understanding-network-observability-operator.html)
+  * [Understanding OperatorHub](https://docs.openshift.com/container-platform/4.13/operators/understanding/olm-understanding-operatorhub.html)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
+* [Operator SDK Documentation](https://sdk.operatorframework.io/docs/)
+  * [Operator Capability Levels](https://sdk.operatorframework.io/docs/overview/operator-capabilities/)
 * [Optimize container images for NGINX and Apache HTTPd](https://developers.redhat.com/articles/2023/04/25/optimize-container-images-nginx-and-apache-httpd)
 * [Orchestrating Windows containers on Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift/windows-containers-on-red-hat-openshift)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
@@ -863,6 +889,7 @@ interested in. Maybe You find some of these interesting too.
 * [Simplify managing Grafana Tempo instances in Kubernetes with the Tempo Operator](https://grafana.com/blog/2023/07/28/simplify-managing-grafana-tempo-instances-in-kubernetes-with-the-tempo-operator/)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 * [Stolostron project](https://github.com/stolostron/stolostron)
+* [Sustainability, the cloud native way](https://next.redhat.com/2023/02/21/sustainability-the-cloud-native-way/)
 * [toolbx](https://containertoolbx.org/)
 * [Toolbx — running the same host binary on Arch Linux, Fedora, Ubuntu, etc. containers](https://debarshiray.wordpress.com/2022/10/02/toolbx-running-the-same-binary-on-arch-linux-fedora-ubuntu-etc-containers/)
 * [Unraveling the Magic Behind Buildpacks](https://www.youtube.com/watch?v=Mi_fb5ToOa8)
@@ -953,6 +980,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [13 Linux Network Configuration and Troubleshooting Commands](https://www.tecmint.com/linux-network-configuration-and-troubleshooting-commands/)
 * [Architectural Styles and the Design of Network-based Software Architectures](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+* [Blocked by Cloudflare](https://jrhawley.ca/2023/08/07/blocked-by-cloudflare)
 * [BPF Documentation](https://www.kernel.org/doc/html/next/bpf/index.html)
 * [Build a network emulator using Libvirt and KVM](https://www.brianlinkletter.com/build-a-network-emulator-using-libvirt/)
 * [Building a virtual network with qemu](http://csortu.blogspot.com/2009/12/building-virtual-network-with-qemu.html)
@@ -1068,6 +1096,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Time
 
+* [What Is the Unix Epoch, and How Does Unix Time Work?](https://www.howtogeek.com/759337/what-is-the-unix-epoch-and-how-does-unix-time-work/)
 * [Y2038 and utmp/wtmp/lastlog on bi-arch systems like x86-64](https://github.com/thkukuk/utmpx/blob/main/Y2038.md)
 * [Y2038, glibc and utmp/utmpx on 64bit architectures](https://www.thkukuk.de/blog/Y2038_glibc_utmp_64bit/)
 * [Y2038, glibc and /var/log/lastlog on 64bit architectures](https://www.thkukuk.de/blog/Y2038_glibc_lastlog_64bit/)
@@ -1139,6 +1168,10 @@ interested in. Maybe You find some of these interesting too.
 * [Steven Roman - Mathematics](https://www.youtube.com/channel/UCalphvDmYSEzHchGFW8BxGg)
 * [The On-line Encyclopedia of Integer Sequences](https://oeis.org/)
 * [Topology (University of Toronto Course)](http://www.math.toronto.edu/ivan/mat327/?resources)
+
+### Calculus
+
+* [Morphocular (YouTube channel)](https://www.youtube.com/@morphocular/videos)
 
 ### Category Theory
 
@@ -1328,6 +1361,9 @@ interested in. Maybe You find some of these interesting too.
 * [Read the Docs](https://docs.readthedocs.io/en/stable/index.html)
 * [reStructuredText](https://docutils.sourceforge.io/rst.html)
 * [Sphinx](https://www.sphinx-doc.org/en/master/index.html)
+  * [Furo](https://github.com/pradyunsg/furo)
+  * [sphinx-basic-ng](https://github.com/pradyunsg/sphinx-basic-ng)
+  * [Sphinx Inline Tabs](https://github.com/pradyunsg/sphinx-inline-tabs)
 * [Type terms](https://www.supremo.co.uk/typeterms/)
 * [What should I put in header comments at the top of source files?](https://stackoverflow.com/questions/2036187/what-should-i-put-in-header-comments-at-the-top-of-source-files)
 * Writing manual pages
@@ -1515,6 +1551,8 @@ See [Caml](#caml).
 * [Fedora Loves Python](https://fedoralovespython.org/)
 * [GUI Programming in Python](https://wiki.python.org/moin/GuiProgramming)
 * [Hide implementation details from the Python C API](https://vstinner.github.io/hide-implementation-details-python-c-api.html)
+* [How Do I Get the Module Name of an Object's Class Definition Rather Than the Module Name of the Object's Instantiation?](https://stackoverflow.com/questions/2282369/how-do-i-get-the-module-name-of-an-objects-class-definition-rather-than-the-mod)
+* [How do you find python package metadata information given a module](https://stackoverflow.com/questions/60975090/how-do-you-find-python-package-metadata-information-given-a-module)
 * [How to load compiled python modules from memory?](https://stackoverflow.com/questions/1830727/how-to-load-compiled-python-modules-from-memory)
 * [Image Processing With the Python Pillow Library](https://realpython.com/image-processing-with-the-python-pillow-library/)
 * [Import Python module from memory](https://stackoverflow.com/questions/14191900/import-python-module-from-memory)
@@ -1672,6 +1710,7 @@ See [Caml](#caml).
 * [cdemu (C)](https://github.com/cdemu/cdemu) [[home](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
+* [Charcoal (Python)](https://github.com/charcoal-lang/Charcoal)
 * [Cheese (C)](https://github.com/GNOME/cheese)
 * [click (Python)](https://github.com/pallets/click)
 * [click-extra (Python)](https://github.com/kdeldycke/click-extra) [[doc](https://kdeldycke.github.io/click-extra/index.html)]
@@ -1688,6 +1727,7 @@ See [Caml](#caml).
 * [cppcheck (C++)](https://github.com/danmar/cppcheck)
 * [cpptex/TeX++ (C++)](https://github.com/syntheticpp/cpptex) [[home](https://kasper.phi-sci.com/tex++/)]
 * [criu - Checkpoint and Restore in Userspace (C)](https://github.com/checkpoint-restore/criu)
+* [Crosshatch (Python)](https://github.com/Vyxal/Crosshatch)
 * [cryptography (Python)](https://github.com/pyca/cryptography) [[doc](https://cryptography.io/en/latest/)]
 * [cscope (C)](https://github.com/nhorman/cscope)
 * [curtsies (Python)](https://github.com/thomasballinger/curtsies) [[doc](https://curtsies.readthedocs.io/)]
@@ -1737,6 +1777,7 @@ See [Caml](#caml).
 * [fmt (OCaml)](https://github.com/dbuenzli/fmt)
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
+* [Furo (SASS/HTML/JavaScript/Python)](https://github.com/pradyunsg/furo)
 * [fuse-overlayfs (C)](https://github.com/containers/fuse-overlayfs/)
 * [Generating code in M4 (M4)](https://github.com/jkubin/m4root)
 * [git absorb (Rust)](https://github.com/tummychow/git-absorb)
@@ -1781,6 +1822,8 @@ See [Caml](#caml).
 * [Janus](https://github.com/orgs/janus-idp/repositories) [[home](https://janus-idp.io/)]
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [jsonschema (Python)](https://github.com/python-jsonschema/jsonschema) [[doc](https://python-jsonschema.readthedocs.io/en/latest/)]
+* [Kepler (Golang)](https://github.com/sustainable-computing-io/kepler) [[home](https://sustainable-computing.io/)]
+* [kepler-operator (Golang)](https://github.com/sustainable-computing-io/kepler-operator)
 * [keycloak (Java)](https://github.com/keycloak/keycloak) [[home](https://www.keycloak.org/)]
 * [keylime (Python)](https://github.com/keylime/keylime)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
@@ -2011,6 +2054,7 @@ See [Caml](#caml).
 * [Vlang (V)](https://github.com/vlang/v) [[home](https://vlang.io/)]
 * [VLC-Qt Library (C++)](https://github.com/vlc-qt/vlc-qt)
 * [Volatility Framework (Python)](https://github.com/volatilityfoundation/volatility)
+* [Vyxal (Python)](https://github.com/Vyxal/Vyxal)
 * [WASI Libc (C)](https://github.com/WebAssembly/wasi-libc)
 * [wee-slack (Python)](https://github.com/wee-slack/wee-slack)
 * [Weldr](https://github.com/weldr)
@@ -2142,6 +2186,7 @@ See [Caml](#caml).
   * [Support legacy Python 2.6/3.3/3.4 for python-future](https://github.com/actions/setup-python/issues/102)
   * [Test GitHub projects with GitHub Actions and Testing Farm](https://fedoramagazine.org/test-github-projects-with-github-actions-and-testing-farm/)
   * [testing-farm-as-github-action](https://github.com/sclorg/testing-farm-as-github-action)
+  * [Testing Github actions locally](https://www.redhat.com/en/blog/testing-github-actions-locally)
   * [The Build and Push GitHub Action](https://github.com/sclorg/build-and-push-action)
   * [Tox GitHub Action](https://github.com/fedora-python/tox-github-action)
   * [Using Docker Containers In Jobs - GitHub Actions](https://dev.to/mihinduranasinghe/using-docker-containers-in-jobs-github-actions-3eof)
@@ -2267,6 +2312,8 @@ See [Caml](#caml).
 * [Comic Mono](https://dtinth.github.io/comic-mono-font/)
 * [dafilms](https://dafilms.cz/)
 * [Dálkový pochod Drahanskou vrchovinou](http://www.dpdv.cz/)
+* [Digitální Česko](https://digitalnicesko.gov.cz/)
+  * [Týden pro Digitální Česko](https://budoucnostjedigitalni.gov.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
 * [Hlídač státu](https://www.hlidacstatu.cz/) [[repos](https://github.com/HlidacStatu)]
