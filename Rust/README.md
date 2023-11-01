@@ -8,6 +8,7 @@
   * [RFC Book](https://rust-lang.github.io/rfcs/)
   * [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
   * [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
+  * [Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
 * [Learning Rust](https://github.com/danbev/learning-rust)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
@@ -119,6 +120,17 @@ into its binary representation.
   All you need is just to pass your project's root file to `rustc` (here
   `main.rs`) and `rustc` will automatically gather all the necessary source
   files, compiles them and links them together.
+
+#### Code Coverage
+
+Examples:
+* [fantoccini](https://github.com/jonhoo/fantoccini)
+* [Tantivy](https://github.com/quickwit-oss/tantivy)
+
+References:
+* [How to do code coverage in Rust](https://blog.rng0.io/how-to-do-code-coverage-in-rust)
+* [Instrumentation-based Code Coverage](https://doc.rust-lang.org/rustc/instrument-coverage.html)
+* [Source-based Code Coverage](https://blog.rust-lang.org/2022/04/07/Rust-1.60.0.html#source-based-code-coverage)
 
 ### Miri
 
@@ -1859,10 +1871,11 @@ type_path_fn:
 
 ## Libraries (Crates)
 
-* [`clap`](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
-* [`proc-macro2`](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2/) [[repo](https://github.com/dtolnay/proc-macro2)]
-* [`quote`](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote/)] [[repo](https://github.com/dtolnay/quote)]
+* [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
+* [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2/) [[repo](https://github.com/dtolnay/proc-macro2)]
+* [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote/)] [[repo](https://github.com/dtolnay/quote)]
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand/)] [[repo](https://github.com/rust-random/rand)]
+* [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai/)] [[repo](https://github.com/rhaiscript/rhai)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
   * [`std::io` - the I/O module](https://doc.rust-lang.org/std/io/index.html)
     * [`std::io::Stdin` - a handle to the standard input stream of a process](https://doc.rust-lang.org/std/io/struct.Stdin.html)
@@ -1871,4 +1884,5 @@ type_path_fn:
     * [`std::result::Result`](https://doc.rust-lang.org/std/result/enum.Result.html)
   * [`std::string` - a growable UTF-8 string module](https://doc.rust-lang.org/std/string/index.html)
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
-* [`syn`](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
+* [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
+* [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url/)] [[repo](https://github.com/servo/rust-url)]
