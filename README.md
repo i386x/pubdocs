@@ -114,6 +114,7 @@ interested in. Maybe You find some of these interesting too.
 * [Build a kiosk with Fedora Silverblue](https://fedoramagazine.org/build-a-kiosk-with-fedora-silverblue/)
 * [Data privacy: 5 mistakes you are probably making](https://enterprisersproject.com/article/2022/4/data-privacy-5-mistakes?sc_cid=70160000000eUoRAAU&elqTrackId=3c8663e165ce4d2cbbcca74cb1030885&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [Distributed transaction patterns for microservices compared](https://developers.redhat.com/articles/2021/09/21/distributed-transaction-patterns-microservices-compared#)
+* [Efficient Language and Library Use to Reduce Carbon](https://www.infoq.com/presentations/rust-java-app/)
 * [Faster hardware through software](https://research.redhat.com/blog/article/faster-hardware-through-software/)
 * [Fedora Project mulls 'privacy preserving' usage telemetry](https://www.theregister.com/2023/07/10/fedora_privacy_telemetry/)
 * [Fedora's RPM Fusion Adds Experimental Intel IPU6 Web Camera Support](https://www.phoronix.com/news/Fedora-Fusion-IPU6-Camera)
@@ -314,6 +315,7 @@ interested in. Maybe You find some of these interesting too.
 * [jamiebuilds](https://github.com/jamiebuilds)
 * [John Lamb](https://github.com/dobbymoodge)
 * [Radim Kocman](https://github.com/rkocman)
+* [Red Hat On GitHub](https://redhatofficial.github.io/)
 
 ## Books
 
@@ -732,6 +734,8 @@ interested in. Maybe You find some of these interesting too.
 
 ## Games & Game Engines
 
+* [ecstasy-of-gold](https://github.com/helio-frota/ecstasy-of-gold)
+* [eog-atari](https://github.com/helio-frota/eog-atari)
 * [MineClone2](https://content.minetest.net/packages/Wuzzy/mineclone2/) [[repo](https://git.minetest.land/MineClone2/MineClone2)]
 * [Minetest](https://www.minetest.net/) [[repo](https://github.com/minetest/minetest)]
 
@@ -856,6 +860,7 @@ interested in. Maybe You find some of these interesting too.
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
+* [For the Love of God, Stop Using CPU Limits on Kubernetes (Updated)](https://home.robusta.dev/blog/stop-using-cpu-limits)
 * [Forensic container checkpointing in Kubernetes](https://kubernetes.io/blog/2022/12/05/forensic-container-checkpointing-alpha/)
 * [From Docker Compose to Kubernetes with Podman](https://www.redhat.com/sysadmin/compose-kubernetes-podman)
 * [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
@@ -1227,6 +1232,7 @@ interested in. Maybe You find some of these interesting too.
 ## Programming
 
 * [API Catalog and Documentation](https://developers.redhat.com/api-catalog/)
+* [Continuous Delivery Events Common Specification](https://cdevents.dev/)
 * [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 * [Design Patterns](http://www.vincehuston.org/dp/)
 * [Model Driven Design – theory to practice](https://www.todaysoftmag.com/article/1529/model-driven-design-theory-to-practice)
@@ -1254,6 +1260,7 @@ interested in. Maybe You find some of these interesting too.
 * [JSON Schema](https://json-schema.org/)
   * [JSON Schema: A Media Type for Describing JSON Documents (2020-12 draft)](https://json-schema.org/draft/2020-12/json-schema-core.html)
   * [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/index.html)
+* [The TOML Schema Definition](https://github.com/brunoborges/toml-schema)
 
 #### Hashing
 
@@ -1504,6 +1511,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### Go
 
+* [Frequently Asked Questions (FAQ)](https://go.dev/doc/faq)
 * [Go Antipatterns](https://hackmongo.com/page/golang-antipatterns/)
 * [Go for C++ developers: A beginner's guide](https://developers.redhat.com/articles/2023/08/30/go-c-developers-beginners-guide)
 
@@ -1653,6 +1661,10 @@ See [Caml](#caml).
 
 * [Laws of UX](https://lawsofux.com/)
 
+#### Fonts
+
+* [PolarSys B612 font family](https://github.com/polarsys/b612)
+
 #### CLI
 
 * [Is there a "standard" format for command line/shell help text?](https://stackoverflow.com/questions/9725675/is-there-a-standard-format-for-command-line-shell-help-text)
@@ -1706,6 +1718,7 @@ See [Caml](#caml).
 * [build (Python)](https://github.com/pypa/build) [[doc](https://pypa-build.readthedocs.io/en/stable/)]
 * [Bulma (CSS/SASS)](https://github.com/jgthms/bulma) [[home](https://bulma.io/)]
 * [Capstone Engine (C)](https://github.com/capstone-engine/capstone) [[home](https://www.capstone-engine.org/)] [[doc](https://www.capstone-engine.org/documentation.html)]
+* [cc2600 (Rust/C)](https://github.com/steux/cc2600) [[crate](https://crates.io/crates/cc2600)]
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdemu (C)](https://github.com/cdemu/cdemu) [[home](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
@@ -1735,6 +1748,7 @@ See [Caml](#caml).
 * [cvelib (Python)](https://github.com/RedHatProductSecurity/cvelib)
 * [cxxtools (C++)](https://github.com/maekitalo/cxxtools) [[home](http://www.tntnet.org/cxxtools.html)]
 * [Cython (C/Python/Cython)](https://github.com/cython/cython)
+* [dasm (C)](https://github.com/dasm-assembler/dasm) [[home](https://dasm-assembler.github.io/)]
 * [dbox (Python)](https://github.com/dmach/dbox)
 * [defloc (Haskell)](https://github.com/lzaoral/defloc)
 * [delve (Golang)](https://github.com/go-delve/delve)
@@ -1779,6 +1793,7 @@ See [Caml](#caml).
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
 * [Furo (SASS/HTML/JavaScript/Python)](https://github.com/pradyunsg/furo)
 * [fuse-overlayfs (C)](https://github.com/containers/fuse-overlayfs/)
+* [gamma-ray (TypeScript)](https://github.com/obs-nebula/gamma-ray)
 * [Generating code in M4 (M4)](https://github.com/jkubin/m4root)
 * [git absorb (Rust)](https://github.com/tummychow/git-absorb)
 * [git-review (Python)](https://opendev.org/opendev/git-review)
@@ -1919,6 +1934,7 @@ See [Caml](#caml).
     * [Python Coding Guidelines](https://github.com/oamg/leapp-guidelines/blob/master/python-coding-guidelines.md)
   * [leapp-repository (Python)](https://github.com/oamg/leapp-repository)
 * [OSBuild Composer (Go)](https://github.com/osbuild/osbuild-composer)
+* [OtterDog (Python)](https://gitlab.eclipse.org/eclipsefdn/security/otterdog)
 * [oVirt](https://github.com/oVirt)
   * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
 * [packer (Go)](https://github.com/hashicorp/packer)
@@ -2211,6 +2227,7 @@ See [Caml](#caml).
 * [Red Hat Quality Engineering](https://github.com/RedHatQE)
   * [Cloudwash](https://github.com/RedHatQE/cloudwash)
   * [GitLab CI Openstack executor](https://github.com/RedHatQE/openstack-gitlab-executor)
+  * [Test Failure Classifier Connector](https://github.com/RedHatQE/tfacon) [[doc](https://redhatqe.github.io/tfacon/)]
 * [ReportPortal.io](https://reportportal.io/) [[repos](https://github.com/reportportal)]
 * [resalloc](https://github.com/praiskup/resalloc)
 * [`resalloc` Fedora Copr Repo](https://copr.fedorainfracloud.org/coprs/praiskup/resalloc/)
@@ -2278,6 +2295,7 @@ See [Caml](#caml).
 * [Awesome JavaScript Learning](https://github.com/micromata/awesome-javascript-learning)
 * [Browsers' default CSS for HTML elements](https://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements)
 * [Bulma](https://bulma.io/) [[repo](https://github.com/jgthms/bulma)]
+* [Bulma Jekyll theme](https://jekyllthemes.io/theme/bulma) [[repo](https://github.com/chrisrhymes/bulma-clean-theme)]
 * Color schemes
   * [Paraíso for Pygments](https://github.com/idleberg/Paraiso-Pygments)
 * CSS browser reset
@@ -2286,6 +2304,8 @@ See [Caml](#caml).
 * CSS examples
   * [Fedora docs](https://pagure.io/fedora-docs/fedora-docs-ui/blob/master/f/src/css)
 * [cssnano](https://cssnano.co/)
+* [Cypress (JavaScript Testing Framework)](https://www.cypress.io/) [[repo](https://github.com/cypress-io/cypress)]
+* [Guidelines for Visualizing Links](https://www.nngroup.com/articles/guidelines-for-visualizing-links/)
 * [How do I vertically align text in a div?](https://stackoverflow.com/questions/2939914/how-do-i-vertically-align-text-in-a-div?noredirect=1&lq=1)
 * [How do I vertically center text with CSS?](https://stackoverflow.com/questions/8865458/how-do-i-vertically-center-text-with-css)
 * [Jak psát web (in Czech)](https://www.jakpsatweb.cz/)
@@ -2293,6 +2313,7 @@ See [Caml](#caml).
 * [Lit](https://lit.dev/) [[repo](https://github.com/lit/lit/)]
 * [PatternFly](https://www.patternfly.org/) [[repo](https://github.com/patternfly/patternfly)]
 * [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
+* [Selenium](https://www.selenium.dev/) [[doc](https://www.selenium.dev/documentation/)] [[repo](https://github.com/SeleniumHQ/selenium)]
 * [The Beginner's Guide to Typography in Web Design](https://blog.hubspot.com/website/website-typography)
 * [Typography Handbook](https://typographyhandbook.com/)
 * [Typography: Spacing](https://blog.prototypr.io/typography-spacing-6b33dd1992a2)
@@ -2326,6 +2347,7 @@ See [Caml](#caml).
 * [Mimecast Service Status](https://status.mimecast.com/)
 * [MTB okruh severozápadně od Brna](https://www.czex.cz/zbartos/vbaba.htm)
 * [Open Railway Map](https://www.openrailwaymap.org/)
+* [Our Own Devices](https://www.youtube.com/@CanadianMacGyver/videos)
 * [Red Hat People team](https://github.com/red-hat-people-team)
 * [Rozbité prasátko](https://rozbiteprasatko.cz/)
 * [Rubens LP (Illustrator / Graphic Artist)](https://www.rubenslp.com.br/)
