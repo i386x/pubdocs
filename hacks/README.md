@@ -64,3 +64,23 @@ A set of X/Wayland hacks.
 ```sh
 $ XDG_SESSION_TYPE=X11 command
 ```
+
+### Tips of XWayland with Sway
+
+`.bashrc` from [Fedora Discussion](https://discussion.fedoraproject.org/t/tips-of-xwayland-with-sway/74757/11):
+```sh
+# Wayland
+# https://wiki.archlinux.org/title/Wayland
+# https://discussion.fedoraproject.org/t/tips-of-xwayland-with-sway/74757
+if [ "${XDG_SESSION_TYPE}" = wayland ]; then
+    export MOZ_ENABLE_WAYLAND=1
+    # For Gimp
+    export GDK_BACKEND=x11
+    # For Java application
+    export _JAVA_AWT_WM_NONREPARENTING=1
+else
+    unset MOZ_ENABLE_WAYLAND
+    unset GDK_BACKEND
+    unset _JAVA_AWT_WM_NONREPARENTING
+fi
+```
