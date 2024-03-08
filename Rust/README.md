@@ -1,32 +1,62 @@
 # The Rust Programming Language Notes
 
 * Rust is a compiled statically-typed language
+* [Being Rusty: Discovering Rust's design axioms](https://smallcultfollowing.com/babysteps/blog/2023/12/07/rust-design-axioms/)
+* [Dump C++ and in Rust you should trust, Five Eyes agencies urge](https://www.theregister.com/2023/12/07/memory_correction_five_eyes/)
 * [Exercism](https://exercism.org/tracks/rust)
 * [Home Page](https://www.rust-lang.org/)
   * [Book](https://doc.rust-lang.org/book/)
+  * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
+  * [Learn Rust](https://www.rust-lang.org/learn)
   * [Reference Guide](https://doc.rust-lang.org/reference/index.html)
   * [RFC Book](https://rust-lang.github.io/rfcs/)
   * [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
   * [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
+  * [Rust Conversions](https://nicholasbishop.github.io/rust-conversions/)
   * [Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
+  * [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
+  * [Secure Rust Guidelines](https://anssi-fr.github.io/rust-guide/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
+  * [The `rustup` book](https://rust-lang.github.io/rustup/)
+* [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
 * [Learning Rust](https://github.com/danbev/learning-rust)
+* [Memory safety for the Internet's most critical infrastructure](https://www.memorysafety.org/)
+  * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
 * [Source Code](https://github.com/rust-lang/rust)
 * [The Rust community’s crate registry](https://crates.io/)
 
 ## Installation
 
-To install the Rust programming language and the related tools, type:
+To install the Rust programming language and the related tools on Fedora, type:
 ```sh
 $ dnf install rust rust-doc cargo rustfmt
 ```
 
-On non-Fedora based systems:
+Using a distribution independent method:
 ```sh
 $ : "${RUST_PROFILE:=defualt}"  # Other possibilities: minimal, complete
-$ curl curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --profile ${RUST_PROFILE}
+$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --profile ${RUST_PROFILE}
 ```
+* this installs Rust under user's home directory, isolated from distribution installation
+* to use Rust tools installed this way, add `~/.cargo/bin` to `PATH`
+  ```sh
+  $ PATH=${HOME}/.cargo/bin:${PATH} rustc ...
+  ```
+* some components are installed via `rustup`:
+  ```sh
+  $ PATH=${HOME}/.cargo/bin:${PATH} rustup component add ...
+  ```
+* to use binaries installed using `rustup component add ...`, additional
+  location need to be added to `PATH`:
+  ```sh
+  $ X=$(PATH=${HOME}/.cargo/bin:${PATH} rustc --print target-libdir)
+  $ PATH=${HOME}/.cargo/bin:${X%/*}/bin:${PATH} ...
+  ```
+
+### GitHub Actions
+
+* [`actions-rust-lang/setup-rust-toolchain`](https://github.com/actions-rust-lang/setup-rust-toolchain)
 
 ## Tools
 
@@ -96,8 +126,27 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   `Cargo.lock`.
 * To launch the documentation of your project dependencies, type:
   ```sh
-  cargo doc --open
+  $ cargo doc --open
   ```
+* To find unused dependencies:
+  * using [`cargo machete`](https://github.com/bnjbvr/cargo-machete)
+  * using [`cargo +nightly udeps`](https://github.com/est31/cargo-udeps)
+  * using `RUSTFLAGS=-Wunused-crate-dependencies`:
+    ```sh
+    $ export RUSTFLAGS=-Wunused-crate-dependencies
+    $ cargo build
+    $ cargo check --all --all-targets
+    ```
+  * see more [here](https://gist.github.com/helio-frota/f6a48303aefdc22578661babacb153dd)
+* To run your custom command/task, see:
+  * [`cargo xtask`](https://github.com/matklad/cargo-xtask/)
+  * [Custom tasks in Cargo](http://aturon.github.io/tech/2018/04/05/workflows/)
+
+### Rust Analyzer
+
+[`rust-analyzer`](https://github.com/rust-lang/rust-analyzer)
+([home](https://rust-analyzer.github.io/)) is an implementation of Language
+Server Protocol for the Rust programming language.
 
 ### Rust Code Format Checker
 
@@ -132,11 +181,19 @@ References:
 * [Instrumentation-based Code Coverage](https://doc.rust-lang.org/rustc/instrument-coverage.html)
 * [Source-based Code Coverage](https://blog.rust-lang.org/2022/04/07/Rust-1.60.0.html#source-based-code-coverage)
 
+Tools:
+* [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov)
+
 ### Miri
 
 [Miri](https://github.com/rust-lang/miri) is a mid-level intermediate
 representation interpreter. It can run Rust programs and detect certain classes
 of undefined behavior.
+
+### Nextest
+
+[Nextest](https://github.com/nextest-rs/nextest)
+([documentation](https://nexte.st/)) is a next generation test runner for Rust.
 
 ## Lexical Elements
 
@@ -536,7 +593,7 @@ for greater detail.
 
 ### Compound Types
 
-#### Tuple Type
+#### Tuple Types
 
 * tuples are finite sequences of values, where two values may have distinct
   types
@@ -583,7 +640,7 @@ See [Tuple types](https://doc.rust-lang.org/reference/types/tuple.html) and
 [Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html)
 for greater detail.
 
-#### Array Type
+#### Array Types
 
 * arrays are finite sequences of values of same type
 * unlike in other programming languages arrays have fixed length
@@ -617,6 +674,14 @@ for greater detail.
 * indexing an array out of its bounds make a program panicking
 * see [Array types](https://doc.rust-lang.org/reference/types/array.html) and
   [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html)
+  for greater detail
+
+#### Enumerated Types
+
+* nominal, heterogeneous disjoint union types
+* any `enum` value consumes as much memory as the largest variant for its
+  corresponding `enum` type plus the size of discriminant
+* see [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html)
   for greater detail
 
 #### Reference Types
@@ -894,6 +959,231 @@ let ground2 = Ground {};
 See [Structs](https://doc.rust-lang.org/reference/items/structs.html) and
 [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html)
 for greater detail.
+
+### Enumerations
+
+Grammar:
+```
+enumeration:
+    "enum" identifier generic_params? where_clause? "{" enum_items? "}"
+
+enum_items:
+    enum_item ("," enum_item)* ","?
+enum_item:
+    outer_attribute* visibility?
+        identifier (enum_item_tuple | enum_item_struct)?
+        enum_item_discriminant?
+
+enum_item_tuple:
+    "(" tuple_fields? ")"
+enum_item_struct:
+    "{" struct_fields? "}"
+enum_item_discriminant:
+    "=" expression
+```
+
+Enumerations represent a sum of enumeration types distinguished by
+constructors.
+
+Definition and use of enumerations:
+```rust
+enum Animal {
+    // Enum variant:
+    Dog(String, f64),
+    // Struct-like enum variant:
+    Cat { name: String, weight: f64 },
+    // Unit variant:
+    Mouse,
+}
+
+let mut a: Animal = Animal::Dog("Sunny".to_string(), 13.5);
+a = Animal::Cat { name: "Ginger".to_string(), weight: 4.7 };
+a = Animal::Mouse;
+
+// Values are extracted using pattern matching:
+if let Animal::Cat { name, _ } == a {
+    println!("Cat's name is {name}");
+}
+```
+
+Syntactically, enumerations allow to use a visibility annotation of their
+variants but this is rejected during the validation:
+```rust
+// Syntactical macros can use the enum definition to generate a code and throw
+// out the old enum definition so it will not be analyzed by semantic analysis
+// (if so, it will be rejected)
+#[some_macro("foo")]
+enum Enum {
+    pub A,
+    pub(crate) B(),
+}
+```
+
+A *field-less enum* is an enum where no constructors contain field:
+```rust
+enum FieldLessEnum {
+    CtorA(),
+    CtorB{},
+    CtorC,
+}
+```
+
+A *unit-only enum* only contains unit variants:
+```rust
+enum UnitOnly {
+    UnitA,
+    UnitB,
+    UnitC,
+}
+```
+
+A *zero-variant enum* is an enum with no variants and thus it cannot be
+instantiated:
+```rust
+enum ZeroVariants {}
+```
+* zero-variant enums are equivalent to never type:
+  ```rust
+  let x: ZeroVariants = panic!();
+  ```
+* coercion into other types is not allowed:
+  ```rust
+  let y: u32 = x;  // type mismatch
+  ```
+
+#### Discriminants
+
+A discriminant is a number associated with a constructor used to distinguish
+between variants of one enum instance.
+* its type is `isize` under the [default representation](https://doc.rust-lang.org/reference/type-layout.html#the-default-representation)
+* however, compiler is allowed to use a smaller type in its actual memory
+  layout
+
+##### Discriminant Values
+
+A discriminant value can be set in two ways:
+1. **Implicitly**, if the value of the discriminant is not specified
+   explicitly:
+   * the value of the discriminant is the value of the discriminant of the
+     previous variant plus one
+   * if the value of the discriminant of the first variant is not specified
+     explicitly it is set to zero
+
+   Examples:
+   ```rust
+   // Unit only enumeration => setting discriminants explicitly is allowed
+   enum Example {
+       VarA,        // Implicitly set to 0
+       VarB = 123,  // Explicitly set to 123
+       VarC,        // Implicitly set to 124
+   }
+   ```
+1. **Explicitly**, using `=` followed by a [constant expression](https://doc.rust-lang.org/reference/const_eval.html#constant-expressions),
+   under these circumstances:
+   * the enumeration is unit-only
+   * a [primitive representation](https://doc.rust-lang.org/reference/type-layout.html#primitive-representations) is used
+
+   Examples:
+   ```rust
+   #[repr(u8)]      // A primitive (u8) representation (discriminant values ranges from 0 to 255)
+   enum Enum {
+       Unit = 3,    // Unit = 3 (set explicitly)
+       Tuple(u16),  // Tuple = 4 (set implicitly)
+       Struct {     // Struct = 1 (set explicitly)
+           a: u8,
+           b: u16,
+       } = 1,
+   }
+
+   enum Bad1 {
+       A = 1,
+       B = 1,   // ERROR: 1 is already used
+   }
+
+   enum Bad2 {
+       A,      // Implicitly set to 0
+       B,      // Implicitly set to 1
+       C = 1,  // ERROR: 1 is already used
+   }
+
+   #[repr(u8)]
+   enum Bad3 {
+       A = 255,  // Explicitly set to 255
+       B,        // ERROR: Implicitly set to 256 which cannot fit to u8 (overflow)
+   }
+   ```
+
+##### How to Get the Discriminant Value
+
+* using [`std::mem::discriminant`](https://doc.rust-lang.org/std/mem/fn.discriminant.html)
+  (can be used only for `==` and `!=` comparison)
+  ```rust
+  enum Enum {
+    VarA(&'static str),
+    VarB(i32),
+    VarC(i32),
+  }
+
+  assert_eq!(mem::discriminant(&Enum::VarA("abc")), mem::discriminant(&Enum::VarA("def")));
+  assert_ne!(mem::discriminant(&Enum::VarC(2)), mem::discriminant(&Enum::VarC(3)));
+  ```
+* via typecasting (can be used only for enums having only unit variants or for
+  field-less enums where only unit variants are explicit)
+  ```rust
+  enum Enum {
+      A,  // 0
+      B,  // 1
+      C,  // 2
+  }
+
+  assert_eq!(Enum::B as isize, 1);
+
+  #[repr(u8)]
+  enum FieldLess {
+      Tuple(),            // 0
+      Struct{},           // 1
+      Unit,               // 2
+      ExplicitUnit = 42,  // 42
+  }
+
+  assert_eq!(FieldLess::Tuple() as u8, 0);
+  assert_eq!(FieldLess::Struct{} as u8, 1);
+  assert_eq!(FieldLess::ExplicitUnit as u8, 42);
+
+  #[repr(u8)]
+  enum FieldLess2 {
+      Tuple() = 2,
+      Unit,
+  }
+
+  // ERROR: Typecast cannot be used as non-unit variant's discriminant has been
+  //        set explicitly
+  // assert_eq!(FieldLess2::Unit as u8, 3);
+  ```
+* via (unsafe) pointer casting (can be used only for enums using a primitive
+  representation)
+  ```rust
+  #[repr(u8)]
+  enum Foo {
+      A,                         // 0
+      B { a: i16, b: i16 } = 3,  // 3
+      C(i32) = 5,                // 5
+  }
+
+  impl Foo {
+      fn discriminant(&self) -> u8 {
+          unsafe { *(self as *const Self as *const u8) }
+      }
+  }
+
+  let a = Foo::A;
+  let b = Foo::B{a: -1, b: 4};
+  let c = Foo::C(3);
+
+  assert_eq!(a.discriminant(), 0);
+  assert_eq!(b.discriminant(), 3);
+  assert_eq!(c.discriminant(), 5);
+  ```
 
 ## Ownership
 
@@ -1871,18 +2161,63 @@ type_path_fn:
 
 ## Libraries (Crates)
 
+* [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick/)] [[repo](https://github.com/BurntSushi/aho-corasick)]
+* [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow/)] [[repo](https://github.com/dtolnay/anyhow)]
+* [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne/)] [[repo](https://github.com/zesterer/ariadne)]
+* [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo/)] [[repo](https://github.com/rust-lang/cargo)]
+* [`cargo-binutils` - proxy for LLVM tools](https://crates.io/crates/cargo-binutils) [[repo](https://github.com/rust-embedded/cargo-binutils)]
+* [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky/)] [[repo](https://github.com/zesterer/chumsky)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
+* [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor/)] [[repo](https://github.com/mmastrac/rust-ctor)]
+* [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct/)] [[repo](https://github.com/oconnor663/duct.rs)]
+* [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset/)] [[repo](https://github.com/Lymia/enumset)]
+* [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob/)] [[repo](https://github.com/rust-lang/glob)]
+* [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset/)] [[repo](https://github.com/BurntSushi/ripgrep)]
+* [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/crate/grcov/latest)] [[repo](https://github.com/mozilla/grcov)]
 * [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2/) [[repo](https://github.com/dtolnay/proc-macro2)]
 * [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote/)] [[repo](https://github.com/dtolnay/quote)]
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand/)] [[repo](https://github.com/rust-random/rand)]
 * [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai/)] [[repo](https://github.com/rhaiscript/rhai)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
+  * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
+    * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
+  * [`std::collections` - collection types](https://doc.rust-lang.org/std/collections/index.html)
+    * [`std::collections::HashSet` - a hash set](https://doc.rust-lang.org/std/collections/struct.HashSet.html)
+  * [`std::convert` - traits for conversions between types](https://doc.rust-lang.org/std/convert/index.html)
+    * [`std::convert::AsRef` - used to do a cheap reference-to-reference conversion](https://doc.rust-lang.org/std/convert/trait.AsRef.html)
+    * [`std::convert::From` - used to do value-to-value conversions while consuming the input value](https://doc.rust-lang.org/std/convert/trait.From.html)
+    * [`std::convert::Into` - a value-to-value conversion that consumes the input value](https://doc.rust-lang.org/std/convert/trait.Into.html)
+    * [`std::convert::TryFrom` - simple and safe type conversions that may fail in a controlled way](https://doc.rust-lang.org/std/convert/trait.TryFrom.html)
+  * [`std::env` - inspection and manipulation of the process’ environment](https://doc.rust-lang.org/std/env/index.html)
+  * [`std::error` - interfaces for working with errors](https://doc.rust-lang.org/std/error/index.html)
+    * [`std::error::Error` - a trait representing the basic expectations for error values](https://doc.rust-lang.org/std/error/trait.Error.html)
+  * [`std::ffi` - utilities related to FFI bindings](https://doc.rust-lang.org/std/ffi/index.html)
+    * [`std::ffi::OsStr` - borrowed reference to an OS string](https://doc.rust-lang.org/std/ffi/struct.OsStr.html)
+    * [`std::ffi::OsString` - owned mutable platform-native string](https://doc.rust-lang.org/std/ffi/struct.OsString.html)
+  * [`std::fmt` - utilities for formatting and printing `String`s](https://doc.rust-lang.org/std/fmt/)
+  * [`std::fs` - file system manipulation operations](https://doc.rust-lang.org/std/fs/index.html)
+    * [`std::fs::FileType` - a type of file with accessors for each file type](https://doc.rust-lang.org/nightly/std/fs/struct.FileType.html)
   * [`std::io` - the I/O module](https://doc.rust-lang.org/std/io/index.html)
     * [`std::io::Stdin` - a handle to the standard input stream of a process](https://doc.rust-lang.org/std/io/struct.Stdin.html)
+  * [`std::iter` - composable external iteration](https://doc.rust-lang.org/std/iter/index.html)
+    * [`std::iter::Extend` - extend a collection with the contents of an iterator](https://doc.rust-lang.org/std/iter/trait.Extend.html)
+    * [`std::iter::Iterator` - a trait for dealing with iterators](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
+  * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
+    * [`std::option::Option` - the `Option` type](https://doc.rust-lang.org/std/option/enum.Option.html)
+  * [`std::path` - cross-platform path manipulation](https://doc.rust-lang.org/std/path/index.html)
+    * [`std::path::Path` - a slice of a path](https://doc.rust-lang.org/std/path/struct.Path.html)
+    * [`std::path::PathBuf` - an owned, mutable path](https://doc.rust-lang.org/std/path/struct.PathBuf.html)
   * [`std::prelude` - the list of symbols which is preloaded](https://doc.rust-lang.org/std/prelude/index.html)
+  * [`std::process` - a module for working with processes](https://doc.rust-lang.org/std/process/index.html)
+    * [`std::process::Command` - a process builder](https://doc.rust-lang.org/std/process/struct.Command.html)
   * [`std::result` - error handling with the `Result` type](https://doc.rust-lang.org/std/result/index.html)
-    * [`std::result::Result`](https://doc.rust-lang.org/std/result/enum.Result.html)
+    * [`std::result::Result` - a type that represents either success (`Ok`) or failure (`Err`)](https://doc.rust-lang.org/std/result/enum.Result.html)
   * [`std::string` - a growable UTF-8 string module](https://doc.rust-lang.org/std/string/index.html)
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
+  * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
+    * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
 * [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
 * [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url/)] [[repo](https://github.com/servo/rust-url)]
+* [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir/)] [[repo](https://github.com/BurntSushi/walkdir)]
+* [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which/)] [[repo](https://github.com/harryfei/which-rs)]
+* [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell/)] [[repo](https://github.com/matklad/xshell)]
