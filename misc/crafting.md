@@ -6,6 +6,7 @@
 * [Japanese Crafting (1)](https://www.youtube.com/@processx/videos)
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
 * [КУЙ железо](https://www.youtube.com/channel/UCniZSLYkcEXtjGNpdU5lgCA/videos)
+* [Machine Thinking](https://www.youtube.com/@machinethinking/videos)
 * [Made by Madman](https://www.youtube.com/@madebymadman4640/videos)
 * [MateriályNaZakázku](https://www.materialynazakazku.cz/)
 * [Mekanik Mesin](https://www.youtube.com/channel/UCt44gY0CEaIsYygIwXxAHzw/videos)
@@ -15,8 +16,11 @@
 ## Bushcraft
 
 * [Cyprien Outdoor Adventures](https://www.youtube.com/@CyprienAdventures/videos)
+* [Karadenizli Maceracı](https://www.youtube.com/@KaradenizliMaceraci/videos)
+* [Lesnoy_Craft](https://www.youtube.com/@lesnoy_craft8607/videos)
 * [OUTDOORS55](https://www.youtube.com/@OUTDOORS55/videos)
-* [Vadim in the WILD](https://www.youtube.com/c/VadimintheWILD/videos)
+* [The Bear Essentials](https://www.youtube.com/@TheBearEssentials/videos)
+* [Vadim in the WILD](https://www.youtube.com/@vadiminthewild/videos)
 
 ## Forging
 
@@ -46,6 +50,7 @@
 
 * [Asia Welder](https://www.youtube.com/@asiawelder/videos)
 * [iron](https://www.youtube.com/channel/UCCsAV2YzYn8ecnxBnWHzeNg/videos)
+* [left hand weld](https://www.youtube.com/@lefthand_45171/videos)
 * [TimWelds](https://www.youtube.com/c/TimWelds/videos)
 * [WeldTube](https://www.youtube.com/c/WeldTubeHouston/videos)
 * [Základy ručního svařování obalenou elektrodou (MMA)](https://www.ewm-group.com/cs/fachwissen/e-hand-grundlagen.html)

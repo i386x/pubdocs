@@ -116,3 +116,5 @@
 * [CT hitorikamonen](https://www.youtube.com/@cthitorikamonen2874/videos)
 * [Takayama to Osaka](https://www.youtube.com/watch?v=tH3gJ1cWU-Y)
 * https://www.youtube.com/user/urbanbiobio/videos
+* [AUNZ RAILFAN](https://www.youtube.com/@AUNZRAILFAN/videos)
+* [Sydney Anonymous](https://www.youtube.com/@sydneyanonymous5660/videos)

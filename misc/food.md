@@ -1,5 +1,6 @@
 # Food
 
+* [Food Around The World](https://www.youtube.com/@foodaroundtheworld7320/videos)
 * [Přesolili jste pokrm? Zkuste jednoduché triky, které sůl z jídla vytáhnou](https://www.denik.cz/hobby/sul-presoleni-rady.html?utm_source=traqli&utm_medium=email&utm_content=-magazin-rodina-miminka-rady-tipy-miminka-zajimavosti&utm_campaign=newsletter&pnespid=WL91_BkB8CNJmUqT5o_MDBASukJixKtxrxgVGb0AL5LKv6BbOdfxltFzjRSjq5wcPbjGn_E)
 * [Špalda byla dříve zakázaná, nyní Češi objevují její unikátnost](https://www.denik.cz/gastronomie/spalda-recepty-zdravi-vareni.html)
 
@@ -9,8 +10,13 @@
 
 ## Recipes
 
+* [Cafe Delites](https://cafedelites.com/)
 * [Cuketka](https://www.cuketka.cz/)
   * [Hovězí vývar](https://recepty.cuketka.cz/hovezi-vyvar/)
+* Feijoada
+  * [Feijoada - Brazil's National Dish](https://www.youtube.com/watch?v=lABWCEfeEyw)
+  * [Guy Fieri Tries Brazilian Food Truck Recommended By Matthew McConaughey | Diners, Drive-Ins & Dives](https://www.youtube.com/watch?v=n9WwchF7HK8)
+  * [Making a Huge Brazilian Feijoada Feast All by Myself in One Day](https://www.youtube.com/watch?v=32Yhmmw7XxI)
 * [Hovězí vývar](https://www.angusfarm.cz/recepty/hovezi-vyvar-698/)
 * [Jedinečné recepty na ovocné knedlíky: těsto lze udělat z jogurtu i tvarohu](https://www.denik.cz/gastronomie/ovocne-knedliky-20210623.html)
 * [Kynuté borůvkové knedlíky: recept podle Markéty Chovancové](https://www.denik.cz/gastronomie/boruvkove-knedliky.html)
