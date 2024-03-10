@@ -1845,6 +1845,9 @@ await_expression:
     expression "." "await"
 ```
 
+See [Await expressions](https://doc.rust-lang.org/reference/expressions/await-expr.html)
+for greater detail.
+
 ### Path Expressions
 
 Grammar:
