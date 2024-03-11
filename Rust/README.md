@@ -259,6 +259,11 @@ suffix_no_e:
     suffix - (("e" | "E").*)
 isolated_cr:
     <a U+000D not followed by a U+000A>
+
+utf8bom:
+    U+FEFF
+shebang:
+    "#!" (!U+000A)+
 ```
 * Rust input is viewed as a sequence of UTF-8 characters
 * a `reserved_number` is rejected by the tokenizer instead of tokenized to
@@ -723,122 +728,127 @@ for greater detail.
 
 ## Declarations
 
+Grammar:
+```
+declaration:
+    let_statement
+    declaration_item
+
+declaration_item:
+    use_declaration
+    constant_item
+    static_item
+    type_alias
+    struct
+    union
+    enumeration
+    function
+    extern_block
+```
+
+### Use Declarations
+
+Grammar:
+```
+use_declaration:
+    "use" use_tree ";"
+
+use_tree:
+    (simple_path? "::")? ("*" | "{" (use_tree ("," use_tree)* ","?)? "}")
+    simple_path ("as" (identifier | "_"))?
+```
+
+See [Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html)
+for greater detail.
+
 ### Variables
 
-* variables are defined using the `let` keyword
-* by default, variables are defined as immutable
-  * to define a mutable variable use the `mut` keyword
-* variables are scoped
-* the variable definition statement:
-  ```
-  "let" "mut"? variable_identifier (":" type)? "=" expression ";"
-  ```
-* examples:
+Grammar:
+```
+let_statement:
+    outer_attribute* "let" pattern_no_top_alt (":" type)?
+        ("=" expression ("else" block_expression)?)? ";"
+```
+* introduces a new set of variables given by a `pattern_no_top_alt`
+* `pattern_no_top_alt` can be annotated with `type`
+* variables in `pattern_no_top_alt` can be initialized by `expression`
+* if `else` is not present, `pattern_no_top_alt` must be irrefutable
+* if `else` is present
+  * `pattern_no_top_alt` can be refutable
+  * `expression` must not be a `lazy_boolean_expression` or end with a `}`
+  * `block_expression` must evaluate to never type
+* the semantics of `else` part is that if `pattern_no_top_alt` fails to match
+  then the `block_expression` is executed
+
+Variables:
+* are allocated on stack frame, i.e. a variable can be
+  * a named local variable
+  * a named function parameter
+  * an anonymous temporary (e.g. created during an expression evaluation)
+* are defined as immutable by default
+  * to define a mutable variable, use the `mut` keyword
+
   ```rust
   let x = 5;      // immutable variable
   let mut y = 7;  // mutable variable
   ```
-* variables can be shadowed:
+* are scoped
+* are not initialized
+  * all variables must be initialized before their first use
+* can be shadowed:
   ```rust
   let x = "foo";    // x is immutable and str
   let x = x.len();  // x is shadowed - still immutable but integer
   ```
-* see [Identifiers](https://doc.rust-lang.org/reference/identifiers.html),
-  [`let` statements](https://doc.rust-lang.org/reference/statements.html#let-statements)
-  and [Variables](https://doc.rust-lang.org/reference/variables.html) for
-  greater detail
+
+See [Identifiers](https://doc.rust-lang.org/reference/identifiers.html),
+[`let` statements](https://doc.rust-lang.org/reference/statements.html#let-statements),
+[Variables](https://doc.rust-lang.org/reference/variables.html) and
+[Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries)
+for greater detail.
 
 ### Constants
 
-* always immutable
-* scoped
-* the constant definition statement:
-  ```
-  "const" constant_identifier ":" type "=" constant_expression ";"
-  ```
-* example:
-  ```rust
-  const THREE: u32 = 1 + 2;
-  ```
-* convention: use upper case and underscores for constant names
-* see [Constant items](https://doc.rust-lang.org/reference/items/constant-items.html)
-  and [Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html)
-  (explains `constant_expression`) for greater detail
+Grammar:
+```
+constant_item:
+    "const" (identifier | "_") ":" type ("=" expression)? ";"
+```
 
-### Functions
+Constants are scoped and always immutable.
+
+Example:
+```rust
+const THREE: u32 = 1 + 2;
+```
+* convention: use upper case and underscores for constant names
+
+See [Constant items](https://doc.rust-lang.org/reference/items/constant-items.html)
+and [Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html)
+for greater detail.
+
+### Statics
 
 Grammar:
 ```
-function:
-    function_qualifiers "fn" identifier generic_params?
-        "(" function_parameters? ")"
-        function_return_type? where_clause?
-        (block_expression | ";")
-
-function_qualifiers:
-    "const"? "async"? "unsafe"? ("extern" abi?)?
-abi:
-    string_literal
-    raw_string_literal
-
-function_parameters:
-    self_param ","?
-    (self_param ",")? function_param ("," function_param)* ","?
-self_param:
-    outer_attribute* (shorthand_self | typed_self)
-shorthand_self:
-    ("&" lifetime?)? "mut"? "self"
-typed_self:
-    "mut"? "self" ":" type
-function_param:
-    outer_attribute* (function_param_pattern | "..." | type)
-function_param_pattern:
-    pattern_no_top_alt ":" (type | "...")
-
-function_return_type:
-    "->" type
+static_item:
+    "static" "mut"? identifier ":" type ("=" expression)? ";"
 ```
 
-Simple function definition and simple call example:
-```rust
-fn main() {
-    simple_fun();
-}
+See [Static items](https://doc.rust-lang.org/reference/items/static-items.html)
+for greater detail.
 
-fn simple_fun() {
-    println!("Hello!");
-}
+### Type Aliases
+
+Grammar:
+```
+type_alias:
+    "type" identifier generic_params? (":" type_param_bounds)? where_clause?
+        ("=" type where_clause?)? ";"
 ```
 
-Function with parameters:
-```rust
-fn fun_with_params(x: i32, y: i32) {
-    println!("x: {x}, y: {y}");
-}
-
-fn main() {
-    fun_with_params(5, 3);
-}
-```
-
-Function returning value:
-```rust
-fn max(a: i32, b: i32) -> i32 {
-    if (a > b) {
-        return a;
-    }
-    b
-}
-
-fn main() {
-    let x = max(1, 2);
-
-    println!("max(1, 2): {x}");
-}
-```
-
-See [Functions](https://doc.rust-lang.org/reference/items/functions.html) for
-greater detail.
+See [Type aliases](https://doc.rust-lang.org/reference/items/type-aliases.html)
+for greater detail.
 
 ### Structs
 
@@ -965,6 +975,17 @@ See [Structs](https://doc.rust-lang.org/reference/items/structs.html) and
 [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html)
 for greater detail.
 
+### Unions
+
+Grammar:
+```
+union:
+    "union" identifier generic_params? where_clause? "{" struct_fields "}"
+```
+
+See [Unions](https://doc.rust-lang.org/reference/items/unions.html) for greater
+detail.
+
 ### Enumerations
 
 Grammar:
@@ -1008,6 +1029,25 @@ a = Animal::Mouse;
 // Values are extracted using pattern matching:
 if let Animal::Cat { name, _ } == a {
     println!("Cat's name is {name}");
+}
+```
+
+Like structs, also enumerations support defining methods on them:
+```rust
+enum FileError {
+    NotFound,
+    Read,
+    Write,
+}
+
+impl FileError {
+    fn detail(&self) -> String {
+        match self {
+            FileError::NotFound => String::from("File not found"),
+            FileError::Read => String::from("Error while reading"),
+            FileError::Write => String::from("Error while writing"),
+        }
+    }
 }
 ```
 
@@ -1195,6 +1235,98 @@ See [Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
 [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html),
 [The `Rust` Representation](https://doc.rust-lang.org/reference/type-layout.html#the-default-representation),
 and [Primitive representations](https://doc.rust-lang.org/reference/type-layout.html#primitive-representations)
+for greater detail.
+
+### Functions
+
+Grammar:
+```
+function:
+    function_qualifiers "fn" identifier generic_params?
+        "(" function_parameters? ")"
+        function_return_type? where_clause?
+        (block_expression | ";")
+
+function_qualifiers:
+    "const"? "async"? "unsafe"? ("extern" abi?)?
+abi:
+    string_literal
+    raw_string_literal
+
+function_parameters:
+    self_param ","?
+    (self_param ",")? function_param ("," function_param)* ","?
+self_param:
+    outer_attribute* (shorthand_self | typed_self)
+shorthand_self:
+    ("&" lifetime?)? "mut"? "self"
+typed_self:
+    "mut"? "self" ":" type
+function_param:
+    outer_attribute* (function_param_pattern | "..." | type)
+function_param_pattern:
+    pattern_no_top_alt ":" (type | "...")
+
+function_return_type:
+    "->" type
+```
+
+Simple function definition and simple call example:
+```rust
+fn main() {
+    simple_fun();
+}
+
+fn simple_fun() {
+    println!("Hello!");
+}
+```
+
+Function with parameters:
+```rust
+fn fun_with_params(x: i32, y: i32) {
+    println!("x: {x}, y: {y}");
+}
+
+fn main() {
+    fun_with_params(5, 3);
+}
+```
+
+Function returning value:
+```rust
+fn max(a: i32, b: i32) -> i32 {
+    if (a > b) {
+        return a;
+    }
+    b
+}
+
+fn main() {
+    let x = max(1, 2);
+
+    println!("max(1, 2): {x}");
+}
+```
+
+See [Functions](https://doc.rust-lang.org/reference/items/functions.html) for
+greater detail.
+
+### External Blocks
+
+Grammar:
+```
+extern_block:
+    "unsafe"? "extern" abi? "{" inner_attribute* external_item* "}"
+
+external_item:
+    outer_attribute* (
+        macro_invocation_semi |
+        (visibility? (static_item | function))
+    )
+```
+
+See [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html)
 for greater detail.
 
 ## Ownership
@@ -1979,64 +2111,50 @@ for greater detail.
 
 ## Statements
 
-Following list of rules summarizes what is considered a statement:
-* a sole `;` is a statement
-* a function definition is a statement
-* `let` statement
-* an expression followed by `;` is a statement
-
-See [Statements](https://doc.rust-lang.org/reference/statements.html) for
-greater detail.
-
-### `let` Statement
-
 Grammar:
 ```
-let_statement:
-    outer_attribute* "let" pattern_no_top_alt (":" type)?
-        ("=" expression ("else" block_expression)?)? ";"
-```
-* introduces a new set of variables given by a `pattern_no_top_alt`
-* `pattern_no_top_alt` can be annotated with `type`
-* variables in `pattern_no_top_alt` can be initialized by `expression`
-* if `else` is not present, `pattern_no_top_alt` must be irrefutable
-* if `else` is present
-  * `pattern_no_top_alt` can be refutable
-  * `expression` must not be a `lazy_boolean_expression` or end with a `}`
-  * `block_expression` must evaluate to never type
-* the semantics of `else` part is that if `pattern_no_top_alt` fails to match
-  then the `block_expression` is executed
-* see [`let` statements](https://doc.rust-lang.org/reference/statements.html#let-statements)
-  for greater detail
+statement:
+    ";"
+    item
+    let_statement
+    expression_statement
+    macro_invocation_semi
 
-## Generics
+item:
+    outer_attribute* vis_item
+    macro_item
 
-Grammar:
-```
-generic_params:
-    "<" ">"
-    "<" (generic_param ",")* generic_param ","? ">"
-generic_param:
-    outer_attribute* (lifetime_param | type_param | const_param)
-lifetime_param:
-    lifetime_or_label (":" lifetime_bounds)?
-type_param:
-    identifier (":" type_param_bounds?)? ("=" type)?
-const_param:
-    "const" identifier ":" type
-        ("=" block_expression | identifier | "-"? literal_expression)?
+vis_item:
+    visibility? (
+        declaration_item
+        trait
+        implementation
+        module
+        extern_crate
+    )
+macro_item:
+    macro_invocation_semi
+    macro_rules_definition
 
-where_clause:
-    "where" (where_clause_item ",")* where_clause_item?
-where_clause_item:
-    lifetime ":" lifetime_bounds
-    ("for" generic_params)? type ":" type_param_bounds?
+expression_statement:
+    expression_without_block ";"
+    expression_with_block ";"?
 ```
+
+See [Statements](https://doc.rust-lang.org/reference/statements.html),
+[Item declarations](https://doc.rust-lang.org/reference/statements.html#item-declarations)
+and [Items](https://doc.rust-lang.org/reference/items.html) for greater detail.
+
+## Patterns
 
 ## Traits
 
 Grammar:
 ```
+trait:
+    "unsafe"? "trait" identifier generic_params? (":" type_param_bounds?)?
+        where_clause? "{" inner_attribute* associated_item* "}"
+
 type_param_bounds:
     type_param_bound ("+" type_param_bound)* "+"?
 type_param_bound:
@@ -2053,6 +2171,11 @@ lifetime:
     "'static"
     "'_"
 ```
+
+See [Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
+and [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
+for greater detail.
 
 ## Implementations
 
@@ -2175,6 +2298,33 @@ fn main() {
 See [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
 for greater detail.
 
+## Generics
+
+Grammar:
+```
+generic_params:
+    "<" ">"
+    "<" (generic_param ",")* generic_param ","? ">"
+generic_param:
+    outer_attribute* (lifetime_param | type_param | const_param)
+lifetime_param:
+    lifetime_or_label (":" lifetime_bounds)?
+type_param:
+    identifier (":" type_param_bounds?)? ("=" type)?
+const_param:
+    "const" identifier ":" type
+        ("=" block_expression | identifier | "-"? literal_expression)?
+
+where_clause:
+    "where" (where_clause_item ",")* where_clause_item?
+where_clause_item:
+    lifetime ":" lifetime_bounds
+    ("for" generic_params)? type ":" type_param_bounds?
+```
+
+See [Generic parameters](https://doc.rust-lang.org/reference/items/generics.html)
+for greater detail.
+
 ## Macros
 
 Grammar:
@@ -2194,6 +2344,9 @@ token_tree:
     token - delimiters
     delim_token_tree
 ```
+
+See [Macros](https://doc.rust-lang.org/reference/macros.html) for greater
+detail.
 
 ### Selected Macros from the Standard Library
 
@@ -2309,6 +2462,9 @@ attr_input:
     "=" expression
 ```
 
+See [Attributes](https://doc.rust-lang.org/reference/attributes.html) for
+greater detail.
+
 ### Selected Attributes Supported by Rust
 
 #### `derive`
@@ -2332,10 +2488,58 @@ greater detail.
 
 #### `repr`
 
-## Modules, Crates, and Name Spaces
+Specifies the layout for user-defined composite types (structs, enums, unions).
+Possible representations are:
+* `Rust` (default)
+* `C`
+* primitive
+* `transparent`
 
+Example:
+```rust
+// Uses default (Rust) representation
+struct Foo {
+    bar: isize,
+    baz: u8,
+}
+
+// C representation
+#[repr(C)]
+struct Pixel {
+    x: u32,
+    y: u32,
+}
+```
+
+See [Representations](https://doc.rust-lang.org/reference/type-layout.html#representations)
+for greater detail.
+
+## Crates, Modules, and Name Spaces
+
+Grammar:
+```
+crate:
+    utf8bom? shebang? inner_attribute* item*
+
+module:
+    "unsafe"? "mod" identifier (";" | "{" inner_attribute* item* "}")
+
+extern_crate:
+    "extern" "crate" crate_ref as_clause? ";"
+
+crate_ref:
+    identifier
+    "self"
+as_clause:
+    "as" (identifier | "_")
+```
 * a *crate* is viewed as a translation unit
 * function `main` is the program's entry point
+
+See [Crates and source files](https://doc.rust-lang.org/reference/crates-and-source-files.html),
+[Modules](https://doc.rust-lang.org/reference/items/modules.html) and
+[Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html)
+for greater detail.
 
 ### Visibility
 
@@ -2348,6 +2552,9 @@ visibility:
     "pub" "(" "super" ")"
     "pub" "(" "in" simple_path ")"
 ```
+
+See [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html)
+for greater detail.
 
 ### Paths
 
@@ -2394,6 +2601,8 @@ type_path_fn:
     "(" (type ("," type)* ","?)? ")" ("->" type)?
 ```
 
+See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
+
 ## Libraries (Crates)
 
 * [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick/)] [[repo](https://github.com/BurntSushi/aho-corasick)]
@@ -2436,6 +2645,7 @@ type_path_fn:
     * [`std::io::Stdin` - a handle to the standard input stream of a process](https://doc.rust-lang.org/std/io/struct.Stdin.html)
   * [`std::iter` - composable external iteration](https://doc.rust-lang.org/std/iter/index.html)
     * [`std::iter::Extend` - extend a collection with the contents of an iterator](https://doc.rust-lang.org/std/iter/trait.Extend.html)
+    * [`std::iter::IntoIterator` - conversion into an `Iterator`](https://doc.rust-lang.org/std/iter/trait.IntoIterator.html)
     * [`std::iter::Iterator` - a trait for dealing with iterators](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
   * [`std::mem` - basic functions for dealing with memory](https://doc.rust-lang.org/std/mem/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
