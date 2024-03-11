@@ -2589,6 +2589,20 @@ generic_arg:
     identifier "=" type
 ```
 
+#### Qualified Paths
+
+Grammar:
+```
+qualified_path_in_expression:
+    qualified_path_type ("::" path_expr_segment)+
+
+qualified_path_type:
+    "<" type ("as" type_path)? ">"
+
+qualified_path_in_type:
+    qualified_path_type ("::" type_path_segment)+
+```
+
 #### Type Paths
 
 Grammar:
