@@ -100,6 +100,8 @@ interested in. Maybe You find some of these interesting too.
 
 ### Text Editors
 
+* Emacs
+  * [Emacs Configuration Repository](https://nullprogram.com/blog/2011/10/19/)
 * [Geany](https://www.geany.org/)
   * [plugins](https://plugins.geany.org/)
 
@@ -137,6 +139,8 @@ interested in. Maybe You find some of these interesting too.
 * [Knative accepted as a CNCF incubating project](https://www.cncf.io/blog/2022/03/02/knative-accepted-as-a-cncf-incubating-project/)
 * [Meeting-free days: 11 productivity tips from IT leaders](https://enterprisersproject.com/article/2022/2/meeting-free-days-11-productivity-tips-it-leaders?sc_cid=70160000000eUoRAAU&elqTrackId=549f2c2f7dcb44d0af8896e22a3f9fc5&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
 * [New normal is just normal](https://moozzaa.medium.com/new-normal-is-just-normal-1d623d710c93)
+* [Nginx core developer quits project in security dispute, starts “freenginx” fork](https://arstechnica.com/information-technology/2024/02/nginx-key-developer-starts-a-freenginx-fork-after-dispute-with-parent-firm/)
+* [OpenAI and Elon Musk](https://openai.com/blog/openai-elon-musk)
 * [Opening the doors of tech: why diversity is critical to the future of computing](https://research.redhat.com/blog/article/opening-the-doors-of-tech-why-diversity-is-critical-to-the-future-of-computing/)
 * [Questions for a new technology](https://kellanem.com/notes/new-tech)
 * [Rant about Github pull-request workflow implementation](https://julien.danjou.info/rant-about-github-pull-request-workflow-implementation/)
@@ -304,6 +308,7 @@ interested in. Maybe You find some of these interesting too.
 * [Marius Bancila's Blog](https://mariusbancila.ro/blog/)
 * [Miroslav Suchý](http://miroslav.suchy.cz/blog/)
 * [Molo76 blog](https://molo76.github.io/blog/)
+* [null program (Chris Wellons)](https://nullprogram.com/)
 * [Pavel Raiskup](https://pavel.raiskup.cz/blog/)
 * [Pradyun Gedam](https://pradyunsg.me/blog/)
 * [Radek Pazdera](https://radek.io/)
@@ -348,11 +353,12 @@ interested in. Maybe You find some of these interesting too.
 * [CentOS Project](https://github.com/CentOS)
 * [CentOS Software Factory](https://centos.softwarefactory-project.io/)
   * [Status](https://centos.softwarefactory-project.io/status/)
-* [CentOS Stream](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
+* [CentOS Stream](https://www.centos.org/centos-stream/)
 * [CentOS Stream Dist-Git](https://gitlab.com/redhat/centos-stream/rpms)
 * [CentOS Stream Feature Request SIG](https://wiki.centos.org/SpecialInterestGroup/StreamFeatureRequest)
 * [CentOS Stream Koji (public)](https://kojihub.stream.centos.org/koji/)
 * [CentOS Stream Mirror](https://mirror.stream.centos.org/)
+* [CentOS Stream Wiki](https://wiki.centos.org/Manuals/ReleaseNotes/CentOSStream)
 * [`centpkg` repo](https://git.centos.org/centos/centpkg)
 * [Where can I report bugs/RFE for the CentOS Project ?](https://wiki.centos.org/ReportBugs)
 
@@ -389,6 +395,7 @@ interested in. Maybe You find some of these interesting too.
 * [Creative Techos](https://www.youtube.com/c/CreativeTechos/videos)
 * [ElectroNoobs](https://electronoobs.com/index.php)
 * [Harry's Homebrew Homepage](http://www.sm0vpo.com/) [[link2](http://sm0vpo.altervista.org/)]
+* [Le labo de Michel](https://www.youtube.com/@lelabodemichel5162/videos)
 * [PaJa](http://paja-trb.cz/)
 * [Ronald's electronic Project Site](https://www.dos4ever.com/)
 * [Talking Electronics](https://www.talkingelectronics.com/te_interactive_index.html)
@@ -396,6 +403,8 @@ interested in. Maybe You find some of these interesting too.
 ### Basics
 
 * [Producing wound components (a.k.a. coils)](http://info.ee.surrey.ac.uk/Workshop/advice/coils/index.html)
+* [Red Hat Instrument Kit Hookup Guide](https://learn.sparkfun.com/tutorials/red-hat-instrument-kit-hookup-guide)
+* [Wheatstone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge)
 
 ### Beam Bots
 
@@ -429,11 +438,13 @@ interested in. Maybe You find some of these interesting too.
 
 ### Telephones
 
+* [Antiside Tone Circuit](http://electricaltopics.blogspot.com/2015/07/antiside-tone-circuit-telephone.html)
 * [Australian Post Office Telephone No. 1040](https://www.britishtelephones.com/aus/1040.htm)
 * [Eliminate back feeded Audio Signal](https://electronics.stackexchange.com/questions/318649/eliminate-back-feeded-audio-signal)
 * [How were four wires replaced with two wires in early telephones?](https://electronics.stackexchange.com/questions/543433/how-were-four-wires-replaced-with-two-wires-in-early-telephones)
 * [Modeling Telephony Hybrids using 2 x 2 Matrices](http://www.dougrice.plus.com/dougnapTheory/index.htm)
 * [The first one-piece telephone: type 330](http://www.johnhearfield.com/Telephone/One_piece.htm)
+* [The Papers of Thomas A. Edison: From Workshop to Laboratory, June 1873-March 1876](https://muse.jhu.edu/pub/1/oa_monograph/chapter/974334)
 
 ### Transceivers
 
@@ -448,6 +459,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [ARC notes](https://fedora-arc.readthedocs.io/en/latest/index.html)
 * [Change submission guidance](https://docs.fedoraproject.org/en-US/program_management/changes_guide/)
+* [Changes policy](https://docs.fedoraproject.org/en-US/program_management/changes_policy/)
 * [Content Resolver](https://tiny.distro.builders/)
   * [Configs](https://github.com/minimization/content-resolver-input/)
 * [Fedora Comps](https://pagure.io/fedora-comps)
@@ -679,8 +691,10 @@ interested in. Maybe You find some of these interesting too.
     * [The Comprehensive Guide to mypy](https://sadh.life/post/mypy-guide/)
     * [typeshed](https://github.com/python/typeshed)
     * [typing](https://docs.python.org/3/library/typing.html)
+  * [pip-audit](https://github.com/pypa/pip-audit)
   * [pydocstyle](http://www.pydocstyle.org) [[repo](https://github.com/PyCQA/pydocstyle)]
   * [pylint](http://pylint.pycqa.org/) [[repo](https://github.com/PyCQA/pylint)]
+  * [Pyright](https://microsoft.github.io/pyright) [[repo](https://github.com/microsoft/pyright)]
   * [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
 * [nox](https://nox.thea.codes/en/stable/) [[repo](https://github.com/wntrblm/nox)]
 * [Packaging a Python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/)
@@ -697,6 +711,7 @@ interested in. Maybe You find some of these interesting too.
 * [PEP 561 -- Distributing and Packaging Type Information](https://www.python.org/dev/peps/pep-0561/)
 * [pipenv](https://pipenv.pypa.io/) [[repo](https://github.com/pypa/pipenv)]
   * [Pipenv: A Guide to the New Python Packaging Tool](https://realpython.com/pipenv-guide/)
+* [pipx](https://pipx.pypa.io/stable/) [[repo](https://github.com/pypa/pipx)]
 * [pluggy](https://pluggy.readthedocs.io/) [[repo](https://github.com/pytest-dev/pluggy)]
 * [Poetry](https://python-poetry.org/)
   * [The `pyproject.toml` file](https://python-poetry.org/docs/pyproject/)
@@ -713,11 +728,12 @@ interested in. Maybe You find some of these interesting too.
 * [Python Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/)
 * [Python Packaging User Guide](https://packaging.python.org/)
   * [Including files in source distributions with `MANIFEST.in`](https://packaging.python.org/guides/using-manifest-in/)
+  * [Is `setup.py` deprecated?](https://packaging.python.org/en/latest/discussions/setup-py-deprecated/)
   * [Packaging Python Projects (tutorial)](https://packaging.python.org/tutorials/packaging-projects/)
 * [python-packaging](https://python-packaging.readthedocs.io)
 * [python-rpm-packaging](https://github.com/rpm-software-management/python-rpm-packaging/)
 * [Rehashing the src layout](https://blog.ionelmc.ro/2017/09/25/rehashing-the-src-layout/)
-* [setuptools](https://setuptools.readthedocs.io) [[pypa](https://setuptools.pypa.io/en/latest/index.html)]
+* [setuptools](https://setuptools.readthedocs.io) [[pypa](https://setuptools.pypa.io/en/latest/index.html)] [[repo](https://github.com/pypa/setuptools)] [[distutils repo](https://github.com/pypa/distutils)]
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
 * spec file examples
   * [python-elementpath.spec](https://src.fedoraproject.org/rpms/python-elementpath/blob/master/f/python-elementpath.spec)
@@ -729,6 +745,8 @@ interested in. Maybe You find some of these interesting too.
   * [Tox-Driven Python Development](http://www.boronine.com/2012/11/15/Tox-Driven-Python-Development/)
   * [Tox GitHub Action](https://github.com/fedora-python/tox-github-action)
   * [Tox tricks and patterns](https://blog.ionelmc.ro/2015/04/14/tox-tricks-and-patterns/)
+* [twine](https://twine.readthedocs.io/) [[repo](https://github.com/pypa/twine)]
+  * [Better `check`](https://github.com/pypa/twine/projects/2)
 * [Update python-packaging to version >= 22](https://fedoraproject.org/wiki/Changes/Update_python-packaging_to_version_22_plus)
 * [wheel](https://wheel.readthedocs.io)
 
@@ -938,6 +956,7 @@ interested in. Maybe You find some of these interesting too.
 * [Hello Kafka!](https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/hello-kafka)
 * [How Podman can transfer container images without a registry](https://www.redhat.com/sysadmin/podman-transfer-container-images-without-registry)
 * [How the Kepler project is working to advance environmentally-conscious efforts](https://www.redhat.com/en/blog/how-kepler-project-working-advance-environmentally-conscious-efforts)
+* [How to configure Podman 4.0 for IPv6](https://developers.redhat.com/articles/2022/08/10/how-conifgure-podman-40-ipv6)
 * [How to create a workspace via Try in Dev Spaces extension](https://developers.redhat.com/articles/2023/06/22/how-create-workspace-try-dev-spaces-extension)
 * [How to deploy the new Grafana Tempo operator on OpenShift](https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift)
 * [How to run Camel on Spring Boot in the Developer Sandbox](https://developers.redhat.com/articles/2023/02/10/how-run-camel-spring-boot-red-hat-developer-sandbox)
@@ -970,6 +989,7 @@ interested in. Maybe You find some of these interesting too.
 * [Optimising Docker Layers for Better Caching with Nix](https://grahamc.com/blog/nix-and-layered-docker-images/)
 * [Optimize container images for NGINX and Apache HTTPd](https://developers.redhat.com/articles/2023/04/25/optimize-container-images-nginx-and-apache-httpd)
 * [Orchestrating Windows containers on Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift/windows-containers-on-red-hat-openshift)
+* [Podman (from Docker Mailserver)](https://docker-mailserver.github.io/docker-mailserver/edge/config/advanced/podman/)
 * [Podman and Buildah for Docker users](https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users)
 * [Podman Compose or Docker Compose: Which should you use in Podman?](https://www.redhat.com/sysadmin/podman-compose-docker-compose)
 * [Podman container|image exists](https://podman.io/blogs/2018/11/27/podman-exists.html)
@@ -1004,6 +1024,7 @@ interested in. Maybe You find some of these interesting too.
 * [DBeaver Universal Database Tool](https://dbeaver.io/) [[repo](https://github.com/dbeaver/dbeaver)]
 * [Everything wrong with databases and why their complexity is now unnecessary](https://blog.redplanetlabs.com/2024/01/09/everything-wrong-with-databases-and-why-their-complexity-is-now-unnecessary/)
 * [How to configure GTID-based replication on MySQL servers](https://www.redhat.com/sysadmin/gtid-replication-mysql-servers)
+* [JSON and JSONB support in SQLite](https://fedoramagazine.org/json-and-jsonb-support-in-sqlite-3-45-0/)
 * Queries in PostgreSQL
   * [1. Query execution stages](https://postgrespro.com/blog/pgsql/5969262)
 * [What is a slow SQL query?](https://postgres.ai/blog/20210909-what-is-a-slow-sql-query)
@@ -1095,6 +1116,7 @@ interested in. Maybe You find some of these interesting too.
 * [Cloudflare, we have a problem](https://notabug.org/dCF/deCloudflare/src/master/PEOPLE.md)
 * [Computer Networking Fundamentals Learning Series](https://iximiuz.com/en/series/computer-networking-fundamentals/)
 * [Connecting two qemu VMs (Qemu-discuss)](https://lists.gnu.org/archive/html/qemu-discuss/2014-11/msg00020.html)
+* [dnsconfd: system integrated DNS cache](https://fosdem.org/2024/schedule/event/fosdem-2024-2906-dnsconfd-system-integrated-dns-cache/)
 * [DNSSEC algorithms for TLDs (and everyone else)](https://blog.apnic.net/2022/03/24/dnssec-algorithms-for-tlds-and-everyone-else/)
 * [hosts](https://github.com/StevenBlack/hosts)
 * [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
@@ -1115,6 +1137,7 @@ interested in. Maybe You find some of these interesting too.
 * [CUPSDriverlessPrinting](https://wiki.debian.org/CUPSDriverlessPrinting)
   * [IPP-over-USB (Short Version)](https://wiki.debian.org/CUPSDriverlessPrinting?action=show&redirect=DriverlessPrinting#IPP-over-USB_.28Short_Version.29)
 * [How to Make a Raspberry Pi-Powered Print Server](https://www.tomshardware.com/how-to/raspberry-pi-print-server)
+* [PAPPL Printer Application Framework](https://www.msweet.org/pappl/) [[repo](https://github.com/michaelrsweet/pappl)]
 * [Printing](https://fedoraproject.org/wiki/Printing)
   * [How to debug printing problems](https://fedoraproject.org/wiki/How_to_debug_printing_problems)
 * Printing and Scanning
@@ -1299,6 +1322,13 @@ interested in. Maybe You find some of these interesting too.
 ### Calculus
 
 * [Morphocular (YouTube channel)](https://www.youtube.com/@morphocular/videos)
+* [The Marvelous Leap From Factorial To The Gamma Function](https://www.youtube.com/watch?v=Wb6ZJc4yNZE)
+* [Why is Pi here? | Half factorial without Gamma function](https://www.youtube.com/watch?v=y-yb_EmVtg0)
+
+#### Physics
+
+* [A covariant form of Maxwell's equations](https://www.vttoth.com/CMS/physics-notes/289)
+* [How do you derive Maxwell's equations?](https://www.quora.com/How-do-you-derive-Maxwells-equations/answer/Viktor-T-Toth-1?ch=10&oid=154938896&share=fec2806c&srid=ubBUtP&target_type=answer)
 
 ### Category Theory
 
@@ -1388,6 +1418,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [Advanced Proactive Caching for Heterogeneous Storage Systems](https://research.redhat.com/blog/research_project/advanced-proactive-caching-for-heterogeneous-storage-systems/)
 * [Crit-bit trees](https://cr.yp.to/critbit.html)
+* [Dijkstra's Hidden Prime Finding Algorithm](https://www.youtube.com/watch?v=fwxjMKBMR7s)
 
 #### Data Interchange
 
@@ -1443,6 +1474,7 @@ interested in. Maybe You find some of these interesting too.
 ### Code Analysis
 
 * [A Journey Towards Efficient Software Profiling: Challenges and Solutions](https://research.redhat.com/events/a-journey-towards-efficient-software-profiling/)
+* [AnalysisTools](https://analysis-tools.dev/) [[repo](https://github.com/analysis-tools-dev/static-analysis)]
 * [Automation of Formal Verification](https://github.com/aufover)
   * [aufover-benchmark](https://github.com/aufover/aufover-benchmark)
 * [Awesome Static Analysis!](https://github.com/mre/awesome-static-analysis)
@@ -1521,6 +1553,7 @@ interested in. Maybe You find some of these interesting too.
   * [Diagonally divided table cell [duplicate]](https://tex.stackexchange.com/questions/7262/diagonally-divided-table-cell)
 * [Knuth's TeX (CTAN)](https://ctan.org/tex-archive/systems/knuth/dist/tex)
 * [Knuth-Plass Line Breaking Algorithm](http://litherum.blogspot.com/2015/07/knuth-plass-line-breaking-algorithm.html)
+* [LaTeX font encodings (PDF)](https://www.latex-project.org/help/documentation/encguide.pdf)
 * [OPmac - rozšiřující makra plain TeXu](http://petr.olsak.net/opmac.html)
   * [OPmac - tipy, triky, návody](http://petr.olsak.net/opmac-tricks.html)
 * [TeX's algorithms for "breaking paragraph into lines" and "setting the glue"](https://tex.stackexchange.com/questions/109764/texs-algorithms-for-breaking-paragraph-into-lines-and-setting-the-glue)
@@ -1575,6 +1608,7 @@ interested in. Maybe You find some of these interesting too.
 * [GitHub Pages Import](https://github.com/c-w/ghp-import)
 * [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
 * [github.com status](https://www.githubstatus.com/)
+* [Good First Issues](https://goodfirstissues.com/)
 
 ##### GitLab
 
@@ -1682,6 +1716,7 @@ interested in. Maybe You find some of these interesting too.
 * [Locknote: How JavaScript Happened: A Short History of Programming Languages - Mark Rendle](https://www.youtube.com/watch?v=hEdzaIa4Heg)
 * [Node.js](https://nodejs.org/)
   * [API Documentation](https://nodejs.org/api/)
+* [nvm](https://github.com/nvm-sh/nvm)
 * [The Modern JavaScript Tutorial](https://javascript.info/)
 * [TypeScript Home](https://www.typescriptlang.org/)
 * [Type Challenges](https://tsch.js.org/) [[repo](https://github.com/type-challenges/type-challenges)]
@@ -1725,6 +1760,7 @@ See [Caml](#caml).
 * [Hide implementation details from the Python C API](https://vstinner.github.io/hide-implementation-details-python-c-api.html)
 * [How Do I Get the Module Name of an Object's Class Definition Rather Than the Module Name of the Object's Instantiation?](https://stackoverflow.com/questions/2282369/how-do-i-get-the-module-name-of-an-objects-class-definition-rather-than-the-mod)
 * [How do you find python package metadata information given a module](https://stackoverflow.com/questions/60975090/how-do-you-find-python-package-metadata-information-given-a-module)
+* [How to find third-party vulnerabilities in your Python code](https://www.redhat.com/sysadmin/find-python-vulnerabilities)
 * [How to load compiled python modules from memory?](https://stackoverflow.com/questions/1830727/how-to-load-compiled-python-modules-from-memory)
 * [Image Processing With the Python Pillow Library](https://realpython.com/image-processing-with-the-python-pillow-library/)
 * [Import Python module from memory](https://stackoverflow.com/questions/14191900/import-python-module-from-memory)
@@ -1784,7 +1820,7 @@ See [Caml](#caml).
 
 #### Rust
 
-* More info [here](Rust)
+* Main document [here](Rust)
 
 #### Scheme
 
@@ -1839,6 +1875,7 @@ See [Caml](#caml).
 
 #### Fonts
 
+* [Intel One Mono Typeface](https://github.com/intel/intel-one-mono)
 * [Monocraft](https://github.com/IdreesInc/Monocraft)
 * [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
 * [PolarSys B612 font family](https://github.com/polarsys/b612)
@@ -1913,6 +1950,7 @@ See [Caml](#caml).
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
 * [Charcoal (Python)](https://github.com/charcoal-lang/Charcoal)
 * [Cheese (C)](https://github.com/GNOME/cheese)
+* [CJS Module Lexer (JavaScript/WebAssembly)](https://github.com/nodejs/cjs-module-lexer)
 * [click (Python)](https://github.com/pallets/click)
 * [click-extra (Python)](https://github.com/kdeldycke/click-extra) [[doc](https://kdeldycke.github.io/click-extra/index.html)]
 * [cloud-init (Python)](https://github.com/canonical/cloud-init)
@@ -1949,6 +1987,7 @@ See [Caml](#caml).
 * [defloc (Haskell)](https://github.com/lzaoral/defloc)
 * [delta (Rust)](https://github.com/dandavison/delta) [[home](https://dandavison.github.io/delta/)]
 * [delve (Golang)](https://github.com/go-delve/delve)
+* [Deno (Rust/JavaScript)](https://github.com/denoland/deno) [[home](https://deno.com/)]
 * [depict (Python)](https://pagure.io/depict/tree/main)
 * [devstack (Bash)](https://github.com/openstack/devstack)
 * [dhcpcd (C)](https://github.com/NetworkConfiguration/dhcpcd)
@@ -2041,6 +2080,7 @@ See [Caml](#caml).
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jaeger (Golang)](https://github.com/jaegertracing/jaeger) [[home](https://www.jaegertracing.io/)]
 * [Janus](https://github.com/orgs/janus-idp/repositories) [[home](https://janus-idp.io/)]
+* [JanusGraph (Java)](https://github.com/JanusGraph/janusgraph) [[home](https://janusgraph.org/)]
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
 * [jsonschema (Python)](https://github.com/python-jsonschema/jsonschema) [[doc](https://python-jsonschema.readthedocs.io/en/latest/)]
 * [Kepler (Golang)](https://github.com/sustainable-computing-io/kepler) [[home](https://sustainable-computing.io/)]
@@ -2053,6 +2093,9 @@ See [Caml](#caml).
 * [kind (Golang)](https://github.com/kubernetes-sigs/kind) [[home](https://kind.sigs.k8s.io/)]
 * [kivy (Python/Cython/C)](https://github.com/kivy/kivy)
 * [KLEE Symbolic Virtual Machine (C/C++)](https://github.com/klee/klee)
+* [Konveyor](https://github.com/konveyor) [[home](https://www.konveyor.io/)]
+  * [tackle-ui-tests (TypeScript)](https://github.com/konveyor/tackle-ui-tests)
+  * [tackle2-ui (TypeScript)](https://github.com/konveyor/tackle2-ui)
 * [Korrel8r (Golang)](https://github.com/korrel8r/korrel8r)
 * [Korrel8r Operator (Golang)](https://github.com/korrel8r/operator)
 * [Krita (C++)](https://invent.kde.org/graphics/krita) [[home](https://krita.org)] [[doc](https://docs.krita.org)]
@@ -2134,6 +2177,7 @@ See [Caml](#caml).
 * [nox (Python)](https://github.com/wntrblm/nox) [[home](https://nox.thea.codes/en/stable/)]
 * [npyscreen (Python)](https://github.com/npcole/npyscreen) [[home](http://www.npcole.com/npyscreen/)] [[doc](https://npyscreen.readthedocs.io/)]
 * [NVIDIA Linux Open GPU Kernel Module Source (C)](https://github.com/NVIDIA/open-gpu-kernel-modules) [[blog](https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/)]
+* [nvm (Bash)](https://github.com/nvm-sh/nvm)
 * [odo (Golang)](https://github.com/redhat-developer/odo) [[home](https://odo.dev/)]
 * [opc (Golang)](https://github.com/openshift-pipelines/opc)
 * [open-vm-tools (C)](https://github.com/vmware/open-vm-tools)
@@ -2166,9 +2210,11 @@ See [Caml](#caml).
   * [packit (Python)](https://github.com/packit/packit)
   * [packit-service (Python)](https://github.com/packit/packit-service)
 * [PANDA (C)](https://github.com/panda-re/panda)
+* [PAPPL - Printer Application Framework (C)](https://github.com/michaelrsweet/pappl) [[home](https://www.msweet.org/pappl/)]
 * [passt (C)](https://passt.top/passt/tree/) [[home](https://passt.top/)]
 * [PatternFly (SCSS/Handlebars/JavaScript)](https://github.com/patternfly/patternfly) [[home](https://www.patternfly.org/)]
 * [PCMemTest (C)](https://github.com/martinwhitaker/pcmemtest)
+* [pcre2 (C)](https://github.com/PCRE2Project/pcre2)
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [pdoc (Python)](https://github.com/pdoc3/pdoc)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
@@ -2202,6 +2248,7 @@ See [Caml](#caml).
 * [QuestDB (Java)](https://github.com/questdb/questdb)
 * [RE2 (C++)](https://github.com/google/re2)
 * [React Photobooth (JavaScript)](https://github.com/Outfitio/react-photobooth)
+* [react-print-pdf (TypeScript)](https://github.com/OnedocLabs/react-print-pdf) [[home](https://react.onedoclabs.com/)]
 * [rebase-helper (Python)](https://github.com/rebase-helper/rebase-helper)
 * [Red Hat](https://github.com/RedHatOfficial)
 * [Red Hat Bugzilla (Perl)](https://pagure.io/Red-Hat-Bugzilla/rh-bugzilla)
@@ -2390,6 +2437,7 @@ See [Caml](#caml).
 * [MSI and Insecure KMs](https://blogs.gnome.org/hughsie/2023/05/09/msi-and-insecure-kms/)
 * [National Vulnerability Database](https://nvd.nist.gov/)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
+* [NVIDIA Morpheus](https://docs.nvidia.com/morpheus/index.html)
 * [OpenSSL: Email address buffer overflow security flaws](https://www.redhat.com/en/blog/openssl-email-address-buffer-overflow-security-flaws)
 * [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Our CVE Story: Why Red Hat Became a Root](https://www.cve.org/Media/News/item/blog/2023/01/10/Why-Red-Hat-Became-Root)
@@ -2401,6 +2449,7 @@ See [Caml](#caml).
 * [Red Hat Trusted Software Supply Chain](https://developers.redhat.com/products/trusted-software-supply-chain/overview?source=sso)
 * [Rosenbridge (older x86 CPUs vulnerabilities)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [Sec-certs](https://github.com/crocs-muni/sec-certs)
+* [Secure by Design: Google's Perspective on Memory Safety](https://research.google/pubs/secure-by-design-googles-perspective-on-memory-safety/)
 * [Secure Development Guide](https://redhatproductsecurity.github.io/secure-development-guide/)
 * [Secure Programming HOWTO](https://dwheeler.com/secure-programs/Secure-Programs-HOWTO/index.html)
 * [Secure Software Development Framework](https://csrc.nist.gov/Projects/ssdf)

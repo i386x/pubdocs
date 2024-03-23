@@ -44,6 +44,7 @@
 * [Broušení vrtáku a vrták do plechu](https://www.youtube.com/watch?v=KTKZssHUAn0)
 * [Bruska na vrtáky a broušení vrtáků s Tomášem](https://www.youtube.com/watch?v=gQwVNIpPoi8)
 * [Diamantový brusný arch 60x110 P60 X](https://eshop.abrasiv.cz/diamantovy-brusny-arch-60x110-p60-x)
+* [How to sharpen drill bits in 5 seconds. Ancient secret!](https://www.youtube.com/watch?v=wVVjxW3BGLI)
 * [Kleště pro Elektrikáře - průvodce Štípáním, Odholováním a Krimpováním](https://www.youtube.com/watch?v=o5jpmV6jxGE)
 
 ## Welding
@@ -62,3 +63,4 @@
 ## Woodworking
 
 * [Dan Santana Bows](https://www.youtube.com/@DanSantanaBows/videos)
+* [Japan Woodcraft Association](https://japanwoodcraftassociation.com/)

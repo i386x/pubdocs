@@ -24,6 +24,7 @@
 * [Peter Hudec](https://www.youtube.com/channel/UCDzrCs8cHBZUX49oXTF7WxQ/videos)
 * https://www.youtube.com/c/Kolej%C4%85zMateuszem/videos
 * https://www.youtube.com/user/mkkrzysztof/videos
+* https://www.youtube.com/@provaghu/videos
 * [KIWI RAILTV](https://www.youtube.com/channel/UC8L0FiD3Znju_qEwlCXybSw/videos)
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
 * https://www.youtube.com/c/JanKivisaar/videos
@@ -91,6 +92,7 @@
 * https://www.youtube.com/user/emdiesel63/videos
 * https://www.youtube.com/user/mika67407/videos
 * https://www.youtube.com/user/joro1407/videos
+* https://www.youtube.com/@NikolaiKozarski/videos
 * https://www.youtube.com/c/GeorgePenelov/videos
 * https://www.youtube.com/user/dulevoz/videos
 * https://www.youtube.com/user/diiselrong/videos
