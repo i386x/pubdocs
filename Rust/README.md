@@ -28,30 +28,24 @@
 
 ## Installation
 
-To install the Rust programming language and the related tools on Fedora, type:
+Using a distribution independent method (recommended):
 ```sh
-$ dnf install rust rust-doc cargo rustfmt
-```
-
-Using a distribution independent method:
-```sh
-$ : "${RUST_PROFILE:=defualt}"  # Other possibilities: minimal, complete
+$ : "${RUST_PROFILE:=default}"  # Other possibilities: minimal, complete
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --profile ${RUST_PROFILE}
 ```
-* this installs Rust under user's home directory, isolated from distribution installation
-* to use Rust tools installed this way, add `~/.cargo/bin` to `PATH`
-  ```sh
-  $ PATH=${HOME}/.cargo/bin:${PATH} rustc ...
-  ```
+* this installs Rust under user's home directory, isolated from distribution
+  installation
+  * `PATH` environment variable is updated to include `~/.cargo/bin`
+  * needs a shell to be restarted or `source ~/.cargo/env` to be run
 * some components are installed via `rustup`:
   ```sh
-  $ PATH=${HOME}/.cargo/bin:${PATH} rustup component add ...
+  rustup component add ...
   ```
 * to use binaries installed using `rustup component add ...`, additional
   location need to be added to `PATH`:
   ```sh
-  $ X=$(PATH=${HOME}/.cargo/bin:${PATH} rustc --print target-libdir)
-  $ PATH=${HOME}/.cargo/bin:${X%/*}/bin:${PATH} ...
+  $ X=$(rustc --print target-libdir)
+  $ PATH=${X%/*}/bin:${PATH} ...
   ```
 
 ### GitHub Actions
@@ -138,9 +132,24 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
     $ cargo check --all --all-targets
     ```
   * see more [here](https://gist.github.com/helio-frota/f6a48303aefdc22578661babacb153dd)
+* To DRY up `Cargo.toml` manifests:
+  * [`cargo autoinherit`](https://github.com/mainmatter/cargo-autoinherit)
 * To run your custom command/task, see:
   * [`cargo xtask`](https://github.com/matklad/cargo-xtask/)
   * [Custom tasks in Cargo](http://aturon.github.io/tech/2018/04/05/workflows/)
+* To install a crate from its source, type:
+  ```sh
+  $ cargo install
+  ```
+  * to download and install binary build of crate use
+    [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) extension:
+    ```sh
+    $ cargo binstall
+    ```
+* To prune crate dependencies in target folder:
+  * [`cargo prune`](https://github.com/ustulation/cargo-prune) [[crate](https://crates.io/crates/cargo-prune)]
+* To cleanup `${CARGO_HOME}` cache:
+  * [`cargo trim`](https://github.com/iamsauravsharma/cargo-trim) [[crate](https://crates.io/crates/cargo-trim)]
 
 ### Rust Analyzer
 
@@ -170,19 +179,38 @@ into its binary representation.
   `main.rs`) and `rustc` will automatically gather all the necessary source
   files, compiles them and links them together.
 
-#### Code Coverage
+#### Caching
+
+* [Is a shared build cache a good fit for Cargo?](https://internals.rust-lang.org/t/is-a-shared-build-cache-a-good-fit-for-cargo/)
+* [`sccache` - shared compilation cache](https://github.com/mozilla/sccache) [[doc](https://docs.rs/sccache/latest/sccache/)] [[crate](https://crates.io/crates/sccache)]
+
+#### CI & Code Coverage
 
 Examples:
+* [atty](https://github.com/softprops/atty)
 * [fantoccini](https://github.com/jonhoo/fantoccini)
+* [Rust CI with GitHub Actions](https://github.com/BamPeers/rust-ci-github-actions-workflow)
 * [Tantivy](https://github.com/quickwit-oss/tantivy)
 
 References:
 * [How to do code coverage in Rust](https://blog.rng0.io/how-to-do-code-coverage-in-rust)
 * [Instrumentation-based Code Coverage](https://doc.rust-lang.org/rustc/instrument-coverage.html)
 * [Source-based Code Coverage](https://blog.rust-lang.org/2022/04/07/Rust-1.60.0.html#source-based-code-coverage)
+  * [LLVM Source-Based Code Coverage](https://rustc-dev-guide.rust-lang.org/llvm-coverage-instrumentation.html)
+* [Upstream Issues](https://github.com/rust-lang/rust/labels/A-code-coverage)
 
 Tools:
-* [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov)
+* [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov) [[doc](https://docs.rs/cargo-llvm-cov/latest/cargo_llvm_cov/)] [[crate](https://crates.io/crates/cargo-llvm-cov)]
+* [grcov](https://github.com/mozilla/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[crate](https://crates.io/crates/grcov)]
+* [kcov](https://github.com/SimonKagstrom/kcov)
+
+#### Dynamic Linking
+
+* [Is there a way to dynamic link with all dependencies?](https://www.reddit.com/r/rust/comments/11xc6c4/is_there_a_way_to_dynamic_link_with_all/)
+
+#### GitHub Actions
+
+* [Rust Cache Action](https://github.com/Swatinem/rust-cache)
 
 ### Miri
 
@@ -2011,7 +2039,49 @@ match_arm_guard:
     "if" expression
 ```
 
-See [`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html)
+A `match` expression branches on a pattern.
+* a `scrutinee` expression and patterns must have the same type
+* all match arms must have also the same type and this type is the type of the
+  whole `match` expression
+
+If a `scrutinee` expression is a value expression:
+1. it is first evaluated into a temporary location
+1. the resulting value is sequentially (left-to-right, down-to-bottom) compared
+   to the patterns until a match is found
+   * if the pattern has a match guard associated with it and the pattern
+     matches, the match guard is evaluated
+     * if it is true, we have a match
+     * otherwise, we have no match and the match-finding process continues
+       (note that in `p1 | p2 if g`, match guard `if g` is applied to both `p1`
+       and `p2`)
+     * if the match guard refers to the variables bound within the pattern
+       1. a shared reference is taken to the part of the `scrutinee` the
+          variable matches on (this prevents mutation inside guards)
+       1. this shared reference is then used when accessing the variable during
+          the match guard evaluation
+       1. if guard evaluates to true, the value is moved or copied from the
+          `scrutinee` into the variable
+   * every binding in each `|` separated pattern must appear in all of the
+     patterns in the arm
+1. any variables bound by the first matching pattern are assigned to local
+   variables in the arm's block
+   * variables are scoped to the match guard and the arm's expression
+   * the binding mode (copy, move or reference) depends on the pattern
+   * every binding of the same name must have the same type and have the same
+     binding mode
+1. control enters the block
+1. the value returned by the block is the value of the `match` expression
+
+If a `scrutinee` expression is a place expression the same logic as before is
+applied with these differences:
+* a temporary location is not allocated
+* a by-value binding may copy or move from the memory location
+* lifetime of a match inherits the lifetime of the place expression
+
+See [`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[Place Expressions and Value Expressions](https://doc.rust-lang.org/reference/expressions.html#place-expressions-and-value-expressions),
+and [Binding modes](https://doc.rust-lang.org/reference/patterns.html#binding-modes)
 for greater detail.
 
 ### Block Expressions
@@ -2146,6 +2216,120 @@ See [Statements](https://doc.rust-lang.org/reference/statements.html),
 and [Items](https://doc.rust-lang.org/reference/items.html) for greater detail.
 
 ## Patterns
+
+Grammar:
+```
+pattern:
+    "|"? pattern_no_top_alt ("|" pattern_no_top_alt)*
+
+pattern_no_top_alt:
+    pattern_without_range
+    range_pattern
+
+pattern_without_range:
+    literal_pattern
+    identifier_pattern
+    wildcard_pattern
+    rest_pattern
+    reference_pattern
+    struct_pattern
+    tuple_struct_pattern
+    tuple_pattern
+    grouped_pattern
+    slice_pattern
+    path_pattern
+    macro_invocation
+
+literal_pattern:
+    "true" | "false"
+    char_literal
+    byte_literal
+    string_literal
+    raw_string_literal
+    byte_string_literal
+    raw_byte_string_literal
+    "-"? integer_literal
+    "-"? float_literal
+
+identifier_pattern:
+    "ref"? "mut"? identifier ("@" pattern_no_top_alt)?
+
+wildcard_pattern:
+    "_"
+
+rest_pattern:
+    ".."
+
+range_pattern:
+    range_inclusive_pattern
+    range_from_pattern
+    range_to_inclusive_pattern
+    obsolete_range_pattern
+
+range_inclusive_pattern:
+    range_pattern_bound "..=" range_pattern_bound
+range_from_pattern:
+    range_pattern_bound ".."
+range_to_inclusive_pattern:
+    "..=" range_pattern_bound
+obsolete_range_pattern:
+    range_pattern_bound "..." range_pattern_bound
+
+range_pattern_bound:
+    char_literal
+    byte_literal
+    "-"? integer_literal
+    "-"? float_literal
+    path_expression
+
+reference_pattern:
+    ("&" | "&&") "mut"? pattern_without_range
+
+struct_pattern:
+    path_in_expression "{" struct_pattern_elements? "}"
+
+struct_pattern_elements:
+    struct_pattern_fields ("," struct_pattern_et_cetera?)?
+    struct_pattern_et_cetera
+
+struct_pattern_fields:
+    struct_pattern_field ("," struct_pattern_field)*
+struct_pattern_field:
+    outer_attribute* (
+        integer_literal ":" pattern |
+        identifier ":" pattern |
+        "ref"? "mut"? identifier
+    )
+
+struct_pattern_et_cetera:
+    outer_attribute* ".."
+
+tuple_struct_pattern:
+    path_in_expression "(" tuple_struct_items? ")"
+tuple_struct_items:
+    pattern ("," pattern)* ","?
+
+tuple_pattern:
+    "(" tuple_pattern_items? ")"
+tuple_pattern_items:
+    pattern ","
+    rest_pattern
+    pattern ("," pattern)+ ","?
+
+grouped_pattern:
+    "(" pattern ")"
+
+slice_pattern:
+    "[" slice_pattern_items? "]"
+slice_pattern_items:
+    pattern ("," pattern)* ","?
+
+path_pattern:
+    path_expression
+```
+
+See [Patterns](https://doc.rust-lang.org/reference/patterns.html) for greater
+detail.
 
 ## Traits
 
@@ -2541,6 +2725,14 @@ See [Crates and source files](https://doc.rust-lang.org/reference/crates-and-sou
 [Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html)
 for greater detail.
 
+### Preludes
+
+A *prelude* is a collection of names that are automatically brought into scope
+of every module in a crate.
+
+See [Preludes](https://doc.rust-lang.org/reference/names/preludes.html) for
+greater detail.
+
 ### Visibility
 
 Grammar:
@@ -2552,6 +2744,16 @@ visibility:
     "pub" "(" "super" ")"
     "pub" "(" "in" simple_path ")"
 ```
+
+Examples:
+* re-importing names into the current scope:
+  ```rust
+  // From the standard library: brings `Option`, `None`, and `Some` to the
+  // current scope and makes them publicly visible
+  pub use crate::option::Option;
+  pub use crate::option::Option::None;
+  pub use crate::option::Option::Some;
+  ```
 
 See [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html)
 for greater detail.
@@ -2617,25 +2819,50 @@ type_path_fn:
 
 See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
 
-## Libraries (Crates)
+## Libraries (Crates) and Tools
 
 * [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick/)] [[repo](https://github.com/BurntSushi/aho-corasick)]
 * [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow/)] [[repo](https://github.com/dtolnay/anyhow)]
 * [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne/)] [[repo](https://github.com/zesterer/ariadne)]
+* [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty/)] [[repo](https://github.com/softprops/atty)]
+* [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat/)] [[repo](https://github.com/sharkdp/bat)]
 * [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo/)] [[repo](https://github.com/rust-lang/cargo)]
 * [`cargo-binutils` - proxy for LLVM tools](https://crates.io/crates/cargo-binutils) [[repo](https://github.com/rust-embedded/cargo-binutils)]
 * [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky/)] [[repo](https://github.com/zesterer/chumsky)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
+* [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored/)] [[repo](https://github.com/colored-rs/colored)]
+* [`crossbeam` - tools for concurrent programming](https://crates.io/crates/crossbeam) [[doc](https://docs.rs/crossbeam/latest/crossbeam/)] [[repo](https://github.com/crossbeam-rs/crossbeam)]
 * [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor/)] [[repo](https://github.com/mmastrac/rust-ctor)]
+* [`cve-rs` - blazingly fast memory vulnerabilities](https://crates.io/crates/cve-rs) [[doc](https://docs.rs/cve-rs/latest/cve_rs/)] [[repo](https://github.com/Speykious/cve-rs)]
 * [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct/)] [[repo](https://github.com/oconnor663/duct.rs)]
 * [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset/)] [[repo](https://github.com/Lymia/enumset)]
+* [`env_logger` - a simple logger that can be configured via environment variables](https://crates.io/crates/env_logger) [[doc](https://docs.rs/env_logger/latest/env_logger/)] [[repo](https://github.com/rust-cli/env_logger)]
+  * `RUST_LOG=[target][=][level][,...]` controls logging, examples (considering a Rust application `log_demo`):
+    * `RUST_LOG=log_demo` turns on all logging for `log_demo`
+    * `RUST_LOG=none` turns off all logging (`none` is unknown target)
+    * `RUST_LOG=OFF` turns off all logging (`off` is pseudo level made for this purpose)
+    * `RUST_LOG=info` turns on all info logging
+    * `RUST_LOG=log_demo=debug` turns on all debug logging for `log_demo`
+    * `RUST_LOG=off,log_demo::foo=info` turn off all logging but keep all info logging for `log_demo::foo`
+    * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off all logging for `log_demo::foo`
 * [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob/)] [[repo](https://github.com/rust-lang/glob)]
 * [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset/)] [[repo](https://github.com/BurntSushi/ripgrep)]
-* [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/crate/grcov/latest)] [[repo](https://github.com/mozilla/grcov)]
+* [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[repo](https://github.com/mozilla/grcov)]
+* [`hyperfine` - a command-line benchmarking tool](https://crates.io/crates/hyperfine) [[doc](https://docs.rs/crate/hyperfine/latest)] [[repo](https://github.com/sharkdp/hyperfine)]
+* [`image` - an image processing library](https://crates.io/crates/image) [[doc](https://docs.rs/image/latest/image/)] [[repo](https://github.com/image-rs/image)]
+* [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static/)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
+* [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc/)] [[repo](https://github.com/rust-lang/libc)]
+* [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log/)] [[repo](https://github.com/rust-lang/log)]
+* [`memchr` - heavily optimized routines for string search primitives](https://crates.io/crates/memchr) [[doc](https://docs.rs/memchr/latest/memchr/)] [[repo](https://github.com/BurntSushi/memchr)]
+* [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num/)] [[repo](https://github.com/rust-num/num)]
+* [`num_cpus` - get the number of CPUs on a machine](https://crates.io/crates/num_cpus) [[doc](https://docs.rs/num_cpus/latest/num_cpus/)] [[repo](https://github.com/seanmonstar/num_cpus)]
 * [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2/) [[repo](https://github.com/dtolnay/proc-macro2)]
 * [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote/)] [[repo](https://github.com/dtolnay/quote)]
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand/)] [[repo](https://github.com/rust-random/rand)]
+* [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex/)] [[repo](https://github.com/rust-lang/regex)]
 * [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai/)] [[repo](https://github.com/rhaiscript/rhai)]
+* [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version/)] [[repo](https://github.com/djc/rustc-version-rs)]
+* [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde/)] [[repo](https://github.com/serde-rs/serde)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
     * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
@@ -2647,6 +2874,7 @@ See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
     * [`std::convert::Into` - a value-to-value conversion that consumes the input value](https://doc.rust-lang.org/std/convert/trait.Into.html)
     * [`std::convert::TryFrom` - simple and safe type conversions that may fail in a controlled way](https://doc.rust-lang.org/std/convert/trait.TryFrom.html)
   * [`std::env` - inspection and manipulation of the process’ environment](https://doc.rust-lang.org/std/env/index.html)
+    * [`std::env::join_paths` - joins a collection of `Path`s appropriately for the `PATH` environment variable](https://doc.rust-lang.org/std/env/fn.join_paths.html)
   * [`std::error` - interfaces for working with errors](https://doc.rust-lang.org/std/error/index.html)
     * [`std::error::Error` - a trait representing the basic expectations for error values](https://doc.rust-lang.org/std/error/trait.Error.html)
   * [`std::ffi` - utilities related to FFI bindings](https://doc.rust-lang.org/std/ffi/index.html)
@@ -2656,12 +2884,14 @@ See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
   * [`std::fs` - file system manipulation operations](https://doc.rust-lang.org/std/fs/index.html)
     * [`std::fs::FileType` - a type of file with accessors for each file type](https://doc.rust-lang.org/nightly/std/fs/struct.FileType.html)
   * [`std::io` - the I/O module](https://doc.rust-lang.org/std/io/index.html)
+    * [`std::io::Result` - a specialized `Result` type for I/O operations](https://doc.rust-lang.org/std/io/type.Result.html)
     * [`std::io::Stdin` - a handle to the standard input stream of a process](https://doc.rust-lang.org/std/io/struct.Stdin.html)
   * [`std::iter` - composable external iteration](https://doc.rust-lang.org/std/iter/index.html)
     * [`std::iter::Extend` - extend a collection with the contents of an iterator](https://doc.rust-lang.org/std/iter/trait.Extend.html)
     * [`std::iter::IntoIterator` - conversion into an `Iterator`](https://doc.rust-lang.org/std/iter/trait.IntoIterator.html)
     * [`std::iter::Iterator` - a trait for dealing with iterators](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
   * [`std::mem` - basic functions for dealing with memory](https://doc.rust-lang.org/std/mem/index.html)
+  * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
     * [`std::ops::Drop` - custom code within a destructor](https://doc.rust-lang.org/std/ops/trait.Drop.html)
   * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
@@ -2672,13 +2902,20 @@ See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
   * [`std::prelude` - the list of symbols which is preloaded](https://doc.rust-lang.org/std/prelude/index.html)
   * [`std::process` - a module for working with processes](https://doc.rust-lang.org/std/process/index.html)
     * [`std::process::Command` - a process builder](https://doc.rust-lang.org/std/process/struct.Command.html)
+    * [`std::process::Output` - the output of a finished process](https://doc.rust-lang.org/std/process/struct.Output.html)
   * [`std::result` - error handling with the `Result` type](https://doc.rust-lang.org/std/result/index.html)
     * [`std::result::Result` - a type that represents either success (`Ok`) or failure (`Err`)](https://doc.rust-lang.org/std/result/enum.Result.html)
+  * [`std::str` - utilities for the `str` primitive type](https://doc.rust-lang.org/std/str/index.html) [[`str` primitive type](https://doc.rust-lang.org/std/primitive.str.html)]
   * [`std::string` - a growable UTF-8 string module](https://doc.rust-lang.org/std/string/index.html)
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
   * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
     * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
 * [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
+* [`tao` - cross-platform window manager library](https://crates.io/crates/tao) [[doc](https://docs.rs/tao/latest/tao/)] [[repo](https://github.com/tauri-apps/tao)]
+* [`tauri` - a framework for building tiny, blazing fast binaries for all major desktop platforms](https://crates.io/crates/tauri) [[home](https://tauri.app/)] [[doc](https://docs.rs/tauri/latest/tauri/)] [[repo](https://github.com/tauri-apps/tauri)]
+* [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local/)] [[repo](https://github.com/Amanieu/thread_local-rs)]
+* [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar/)] [[repo](https://github.com/rust-analyzer/ungrammar)]
+  * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
 * [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url/)] [[repo](https://github.com/servo/rust-url)]
 * [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir/)] [[repo](https://github.com/BurntSushi/walkdir)]
 * [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which/)] [[repo](https://github.com/harryfei/which-rs)]
