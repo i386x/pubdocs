@@ -944,6 +944,7 @@ interested in. Maybe You find some of these interesting too.
 * [Build multi-architecture container images on GitHub Actions](https://developers.redhat.com/articles/2023/12/08/build-multi-architecture-container-images-github-actions)
 * [Build smaller container images using S2I](https://developers.redhat.com/articles/2023/02/15/build-smaller-container-images-using-s2i#)
 * [CentOS Containers on Quay.io Registry](https://quay.io/repository/centos/centos?tab=tags)
+* [Changing shmem size of a docker container](https://www.deepanseeralan.com/tech/changing-shmem-size-of-docker-container/)
 * [Compose Specification](https://compose-spec.io/) [[repos](https://github.com/compose-spec/)]
 * [Container Anatomy](https://nuvalence.io/insights/container-anatomy/) [[code](https://github.com/Nuvalence/diy-container)]
 * [Container permission denied: How to diagnose this error](https://www.redhat.com/sysadmin/container-permission-denied-errors)
@@ -1124,6 +1125,7 @@ interested in. Maybe You find some of these interesting too.
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
 * [Introducing Passim](https://blogs.gnome.org/hughsie/2023/07/28/introducing-passim/)
 * [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)]
+* [The case of the 500-mile email](https://www.ibiblio.org/harris/500milemail.html)
 
 #### RFCs
 
@@ -1254,6 +1256,8 @@ interested in. Maybe You find some of these interesting too.
   * [The Thorny Problem of Keeping the Internet’s Time](https://www.newyorker.com/tech/annals-of-technology/the-thorny-problem-of-keeping-the-internets-time)
 * `chroot`
   * [How to Use the chroot Command on Linux](https://www.howtogeek.com/441534/how-to-use-the-chroot-command-on-linux/)
+* `find`
+  * [Find command Exclude or Ignore Files (e.g. Ignore All Hidden .dot Files )](https://www.cyberciti.biz/faq/find-command-exclude-ignore-files/)
 * `gcc`
   * [An Introduction to GCC](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/index.html)
     * [Link order of libraries](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/gccintro_18.html)
@@ -1401,6 +1405,7 @@ interested in. Maybe You find some of these interesting too.
 * [Serverless Workflow](https://serverlessworkflow.io/)
   * [specification](https://github.com/serverlessworkflow/specification/blob/main/specification.md)
 * [Software optimization resources](https://www.agner.org/optimize/)
+* [SOLID](https://en.wikipedia.org/wiki/SOLID)
 * [Source Making](https://sourcemaking.com/)
   * [Refactoring](https://sourcemaking.com/refactoring)
 * [Sourcegraph](https://sourcegraph.com/search)
@@ -1556,9 +1561,16 @@ interested in. Maybe You find some of these interesting too.
 * [LaTeX font encodings (PDF)](https://www.latex-project.org/help/documentation/encguide.pdf)
 * [OPmac - rozšiřující makra plain TeXu](http://petr.olsak.net/opmac.html)
   * [OPmac - tipy, triky, návody](http://petr.olsak.net/opmac-tricks.html)
+* [Springer Monograph Template (old)](https://www.cs.vu.nl/~jansa/ftp/BK0/mono/templates/) [[example](https://www.cs.vu.nl/~jansa/ftp/BK0/mono/example.pdf)]
 * [TeX's algorithms for "breaking paragraph into lines" and "setting the glue"](https://tex.stackexchange.com/questions/109764/texs-algorithms-for-breaking-paragraph-into-lines-and-setting-the-glue)
 * [TeX line breaking algorithm in JavaScript](https://github.com/bramstein/typeset)
 * [TeXbook naruby errata](http://petr.olsak.net/ftp/olsak/tbn/errata.txt)
+
+##### Fonts
+
+* [FontPro (Adobe Myriad Pro, Adobe Minion Pro, Adobe Cronos Pro)](https://github.com/sebschub/FontPro) [[example](https://tex.stackexchange.com/questions/291024/myriad-pro-condensed-undefined)]
+  * [Minion Plus S](https://eng.fontke.com/family/776039/)
+  * [Myriad Pro Semibold Condensed](https://freefonts.co/fonts/myriad-pro-semibold-condensed)
 
 ### Git
 
@@ -1603,12 +1615,21 @@ interested in. Maybe You find some of these interesting too.
 
 ##### GitHub
 
+* [Deploying to GitHub Pages using gh-pages](https://blog.seancoughlin.me/deploying-to-github-pages-using-gh-pages)
+  * [gh-pages](https://github.com/tschaub/gh-pages)
 * [GitHub Community Discussions](https://github.com/orgs/community/discussions) [[repo](https://github.com/community/community)]
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 * [GitHub Pages Import](https://github.com/c-w/ghp-import)
 * [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
 * [github.com status](https://www.githubstatus.com/)
 * [Good First Issues](https://goodfirstissues.com/)
+
+###### Actions
+
+* [actions/cache](https://github.com/actions/cache)
+* [actions/upload-artifact](https://github.com/actions/upload-artifact)
+* [Caching dependencies to speed up workflows](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+* [easimon/maximize-build-space](https://github.com/easimon/maximize-build-space)
 
 ##### GitLab
 
@@ -1771,6 +1792,7 @@ See [Caml](#caml).
 * [PEP 706 – Filter for `tarfile.extractall`](https://peps.python.org/pep-0706/)
 * [Providing Multiple Constructors in Your Python Classes](https://realpython.com/python-multiple-constructors/)
 * [PyCon PL 2022: Making sudo pip safe again](https://hroncok.cz/pyconpl22/) [[repo](https://github.com/hroncok/pyconpl22)]
+* [Python (The Blue Book)](https://lyz-code.github.io/blue-book/python/)
 * [Python 3 documentation](https://docs.python.org/3/)
 * [Python 3: Using "yield from" in Generators - Part 1](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-1.html)
 * [Python 3: Using "yield from" in Generators - Part 2](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-2.html)
@@ -1951,6 +1973,7 @@ See [Caml](#caml).
 * [Charcoal (Python)](https://github.com/charcoal-lang/Charcoal)
 * [Cheese (C)](https://github.com/GNOME/cheese)
 * [CJS Module Lexer (JavaScript/WebAssembly)](https://github.com/nodejs/cjs-module-lexer)
+* [cli (Golang)](https://github.com/cli/cli) [[home](https://cli.github.com/)]
 * [click (Python)](https://github.com/pallets/click)
 * [click-extra (Python)](https://github.com/kdeldycke/click-extra) [[doc](https://kdeldycke.github.io/click-extra/index.html)]
 * [cloud-init (Python)](https://github.com/canonical/cloud-init)
@@ -2667,4 +2690,5 @@ See [Caml](#caml).
   * [Oriental](https://www.oriental.cz/)
     * [Bylinný čaj Ginkgo - 1Kg](https://www.oriental.cz/bylinny-caj-ginkgo-1kg/)
   * [TAOCAJOVNA.CZ](https://www.taocajovna.cz/)
+* [The Blue Book](https://lyz-code.github.io/blue-book/)
 * [Vylepši si imunitu s Wim Hofem](https://codeoflife.cz/telo/vylepsi-si-imunitu/)
