@@ -17,6 +17,7 @@
   * [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
   * [Secure Rust Guidelines](https://anssi-fr.github.io/rust-guide/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
+  * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
   * [The `rustup` book](https://rust-lang.github.io/rustup/)
 * [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
 * [Learning Rust](https://github.com/danbev/learning-rust)
@@ -785,8 +786,52 @@ use_tree:
     (simple_path? "::")? ("*" | "{" (use_tree ("," use_tree)* ","?)? "}")
     simple_path ("as" (identifier | "_"))?
 ```
+* a `use` declaration creates one or more local name bindings synonymous with
+  some other path
+* `use` declarations may appear in modules or blocks
+* `use` declarations are resolved after macro expansion, e.g. this will not
+  produce an error:
+  ```rust
+  macro_rules! m {
+      ($x: item) => { $x $x }
+  }
 
-See [Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html)
+  m!(use std as _;);
+  ```
+
+Forms of a `use` declaration:
+* `use a::b::c;` makes `c` to be an alias for `a::b::c` in the current scope
+* `use a::b::c as foo;` makes `foo` to be an alias for `a::b::c` in the current
+  scope
+* `use a::b::*;` brings all the items defined under the `a::b` in the current
+  scope
+* `use a::{self, b::c, d, e::*, f::g as h};` is the equivalent of
+  ```rust
+  // `self` refers to the common parent module, hence `use a;`
+  use a;
+  use a::b::c;
+  use a::d;
+  use a::e::*;
+  use a::f::g as h;
+  ```
+* nesting is also supported, e.g. `use a::b::{self as c, d::{self, *}};` is the
+  equivalent of
+  ```rust
+  use a::b as c;
+  use a::b::d;
+  use a::b::d::*;
+  ```
+* `use path as _;` imports `path` without binding it to a name
+  * `use path::to::trait as _;` imports trait's methods but not the `trait`
+    symbol itself (recall that that to use trait's method it must be first
+    imported)
+* `use path::* as _;` imports all the items under the `path` in their
+  unnameable form
+
+See [Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Modules](https://doc.rust-lang.org/reference/items/modules.html), and
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html)
 for greater detail.
 
 ### Variables
@@ -1142,7 +1187,7 @@ A discriminant value can be set in two ways:
    * if the value of the discriminant of the first variant is not specified
      explicitly it is set to zero
 
-   Examples:
+   Example:
    ```rust
    // Unit only enumeration => setting discriminants explicitly is allowed
    enum Example {
@@ -1670,8 +1715,7 @@ if_let_expression:
     ```rust
     if let PATTERN = EXPRESSION {
         then_branch
-    }
-    else {
+    } else {
         else_branch
     }
     ```
@@ -1682,6 +1726,28 @@ if_let_expression:
         _ => { else_branch },
     }
     ```
+
+Example:
+```rust
+fn decide(x: u8, y: &Option<u8>, z: u8) -> u8 {
+    if x > 127 {
+        x
+    } else if let Some(x) = *y {
+        x
+    } else {
+        z
+    }
+}
+
+fn main() {
+    let a = Some(8);
+    let b = None;
+
+    println!("{}", decide(200, &a, 42));  // prints "200"
+    println!("{}", decide(20, &a, 42));   // prints "8"
+    println!("{}", decide(20, &b, 42));   // prints "42"
+}
+```
 
 See [`if` and `if let` expressions](https://doc.rust-lang.org/reference/expressions/if-expr.html)
 for greater detail.
@@ -2077,6 +2143,46 @@ applied with these differences:
 * a temporary location is not allocated
 * a by-value binding may copy or move from the memory location
 * lifetime of a match inherits the lifetime of the place expression
+
+Example:
+```rust
+#[derive(Clone, Debug)]
+enum Foo {
+    A,
+    B(u8),
+    C(u8, u8),
+}
+
+use crate::Foo::{A, B, C};
+
+fn test_match(obj: &Object) -> (u8, u8) {
+    match *obj {
+        A => (0, 0),
+        B(x @ 1) | B(x @ 2) => (1, x),
+        B(x) | C(_, x) if x >= 3 => (2, x),
+        B(x) => (3, x),
+        C(x, _) => (4, x),
+    }
+}
+
+fn main() {
+    let objs = vec![
+        A,        // prints "(0, 0)"
+        B(0),     // prints "(3, 0)"
+        B(1),     // prints "(1, 1)"
+        B(2),     // prints "(1, 2)"
+        B(3),     // prints "(2, 3)"
+        B(4),     // prints "(2, 4)"
+        C(0, 0),  // prints "(4, 0)"
+        C(1, 3),  // prints "(2, 3)"
+        C(3, 1),  // prints "(4, 3)"
+    ];
+
+    for x in objs {
+        println!("{:#?}", test_match(&x));
+    }
+}
+```
 
 See [`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html),
 [Patterns](https://doc.rust-lang.org/reference/patterns.html),
@@ -2579,7 +2685,7 @@ Additional references:
 #### `format_args`
 
 Creates [`std::fmt::Arguments`](https://doc.rust-lang.org/std/fmt/struct.Arguments.html)
-object containing precompiled format string and its arguments. Examples:
+object containing precompiled format string and its arguments. Example:
 ```rust
 let args = format_args!("{} + {} = {}", 1, 2, 3);
 
@@ -2653,7 +2759,7 @@ greater detail.
 
 #### `derive`
 
-Allows new items to be automatically generated for data structures. Examples:
+Allows new items to be automatically generated for data structures. Example:
 ```rust
 // Implement `std::fmt::Debug` trait for `Point`
 #[derive(Debug)]
@@ -2698,7 +2804,7 @@ struct Pixel {
 See [Representations](https://doc.rust-lang.org/reference/type-layout.html#representations)
 for greater detail.
 
-## Crates, Modules, and Name Spaces
+## Rust's Module System
 
 Grammar:
 ```
@@ -2717,20 +2823,370 @@ crate_ref:
 as_clause:
     "as" (identifier | "_")
 ```
-* a *crate* is viewed as a translation unit
-* function `main` is the program's entry point
 
-See [Crates and source files](https://doc.rust-lang.org/reference/crates-and-source-files.html),
-[Modules](https://doc.rust-lang.org/reference/items/modules.html) and
-[Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html)
-for greater detail.
+A module system of Rust consists of these features: packages, crates, modules
+and `use`, and paths.
+
+### Packages
+
+A package is a feature of Cargo that allows to build, test, and share crates.
+It is a bundle of one or more crates, specifically:
+* a package must contain at least one crate
+* a package can contain as many binary crates as needed, but at most only one
+  library crate
+
+New package can be created using `cargo new` command. The layout of a package
+directory:
+```
+foopkg/
+    Cargo.toml
+    /src
+        lib.rs
+        main.rs
+        /bin
+            prog1.rs
+            prog2.rs
+            /prog3
+                main.rs
+                foomod.rs
+    /benches
+        bench1.rs
+        /bench2
+            main.rs
+            benchmod.rs
+    /examples
+        example1.rs
+        /example2
+            main.rs
+            barmod.rs
+    /tests
+        test1.rs
+        /test2
+            main.rs
+            testmod.rs
+```
+* `Cargo.toml` is a manifest that tells `cargo` how to build crates in a
+  package
+  * defaults can be override here
+* the `src` directory contains source code of package crates
+  * the default library crate is `lib.rs` (`cargo` produces a library with the
+    same name as the package)
+  * the default executable is `main.rs` (`cargo` produces an executable with
+    the same name as the package)
+  * the `bin` directory is a place for other executables
+* the `benches` directory contains benchmarks
+* the `examples` directory contains examples
+* the `tests` directory contains integration tests
+* if a binary executable, bench, example, or test consists of multiple source
+  files (in our case `src/bin/prog3`, `benches/bench2`, `examples/example2` and
+  `tests/test2`), put them into a directory:
+  * `main.rs` fine determine the crate root
+  * other files are considered as modules
+  * the name of a directory becomes the name of the executable
+
+### Crates
+
+A *crate* is a smallest compilation unit, a tree of modules. There are two
+types of crates:
+1. A *binary crate*, which when compiles produces an executable. A binary crate
+   must contain the `main` function serving as its entry point. The `main`
+   function must fulfill these requirements:
+   * must take no arguments
+   * must not declare any trait or lifetime bounds
+   * must not have any where clauses
+   * its return type must implement the `Termination` trait (types from the
+     standard library implementing the `Termination` trait are `()`, `!`,
+     `Infallible`, `ExitCode`, `Result<T, E> where T: Termination, E: Debug`)
+1. A *library crate* is a crate without `main` function. When compiled, it
+   produces a library (by default statically linked) that exposes publicly
+   visible items as a part of its API.
+
+Attributes that can be applied at the crate level:
+* `#![no_main]` &ndash; emit no `main` for an executable binary
+* `#![crate_name = "my_crate"]` &ndash; set the name of a crate to `my_crate`
+  * hyphens are disallowed in crate names
+    * if the crate name is resolved from the package name, Cargo will replace
+      all hyphens with underscores
+* `#![no_std]`
+  * prevents `std` from being added to the extern prelude
+    * note that this does not prevent `std` from being linked in using
+      `extern crate std;`
+  * affects which module is used to make up the standard library prelude (see
+    [Preludes](#preludes))
+  * injects the `core` crate into the crate root instead of `std`
+  * pulls in all macros exported from `core` in the `macro_use` prelude
+
+A source file from which the Rust compiler starts and makes up the root module
+of the crate is called the *crate root*.
+* the contents of the source file forms a module named `crate` which sits at
+  the root of the crate's module structure, known as the module tree
+
+The root module of a crate is the top-level of the crate's module tree.
+* the root module is anonymous (from the point of view of paths within the
+  module) and it is accessible via `crate` path
+
+Any item within a crate has a canonical module path denoting its location
+within the crate's module tree.
+
+Handling the standard library:
+* automatically included in the crate root module
+* the `std` crate is added to the root
+* implicit `macro_use` attribute pulls in all macros exported in `std` into the
+  `macro_use` prelude
+* `core` and `std` are added to the extern prelude
+
+#### Extern Crates
+
+An extern crate declaration specifies a dependency on an external crate:
+* the external crate is bound into the declaring scope as the identifier
+  provided in the declaration
+* if the declaration appears in the crate root, the crate name is also added to
+  the extern prelude so it will be automatically available in scope in all
+  modules
+* the `as` clause can be used to bind the imported crate to a different name
+* the `self` crate may be imported
+  * a binding to the current crate is created
+  * `as` clause is mandatory in this case
+* `extern crate foo as _;` specifies a dependency on an external crate without
+  binding its name in scope
+  * useful for crates that only need to be linked
+* `no_link` attribute prevents a crate to be linked
+  * useful to load a crate to only access its macros
+
+During compile time and runtime linkage:
+1. If the `extern crate` declaration has a `crate_name` attribute, let NAME be
+   the value of this attribute. Otherwise, let NAME be from
+   `extern crate NAME`.
+1. From the compiler's library path and NAME resolve SONAME.
+1. At runtime, pass a runtime linkage requirement SONAME have to the linker for
+   loading.
+
+Example:
+```rust
+extern crate pcre;
+extern crate std;             // Same as `extern crate std as std;`
+extern crate std as ruststd;  // Linking to `std` under `ruststd`
+```
+
+### Modules
+
+A module is a container of zero or more items.
+* `mod foo { ... }` introduces a new named module, `foo`, into the tree of
+  modules making up a crate.
+* Modules can nest arbitrarily.
+* Modules and types share the same name space.
+* In `unsafe mod foo { ... }`, `unsafe` is rejected at a semantic level (that
+  is, it has use only when feed into a macro).
+
+Every source file is a module, but not every module needs its own source file.
+
+A module without body, i.e. `mod foo;` statement, is loaded from an external
+file.
+* The path to the file mirrors the logical module path, unless the module does
+  have a `path` attribute.
+* Ancestor module path components are directories.
+* The module's contents are in a file with the name of the module plus the
+  `.rs` extension.
+  * If the file name containing the module's contents is `mod.rs`, the module
+    file name is the name of the directory containing this `mod.rs` file.
+  * For `crate::foo`, it is not allowed to have both `foo.rs` and `foo/mod.rs`.
+  * Since `rustc` 1.30, using `mod.rs` files is considered obsolete.
+* If a `path` attribute is given, it specifies the location of an external file
+  with the module's content to be loaded. There are three ways of handling
+  `path` attributes:
+  1. A `path` attribute is not inside inline module block, e.g.
+     ```rust
+     // File `src/a/b.rs` (1) or `src/a/mod.rs` (2):
+     #[path = "foo.rs"]
+     mod c;
+     // The path to the `c` module is:
+     //   - `crate::a::b::c` in case of (1)
+     //   - `crate::a::c` in case of (2)
+     ```
+     * the file path is relative to the directory the source file is located,
+       e.g. the external file with the `c` module's content is located at
+       `src/a/foo.rs`
+  1. A `path` attribute is inside inline module block and the source file where
+     the `path` attribute is located is the root module (like `lib.rs` or
+     `main.rs`) or `mod.rs`, e.g.
+     ```rust
+     // File `src/lib.rs` (1) or `src/a/mod.rs` (2):
+     mod inline {
+         #[path = "other.rs"]
+         mod inner;
+     }
+     // The `other.rs` file will be searched at:
+     //   - `src/inline/other.rs` in case of (1)
+     //       * the path to the `inner` module is `crate::inline::inner`
+     //   - `src/a/inline/other.rs` in case of (2)
+     //       * the path to the `inner` module is `crate::a::inline::inner`
+     ```
+     * the file path is relative to the directory of root module file or
+       `mod.rs` file including the inline module components as directories
+  1. A `path` attribute is inside inline module block and the source file where
+     the `path` attribute is located is neither the root module nor `mod.rs`,
+     e.g.
+     ```rust
+     // File `src/a/b.rs`:
+     mod inline {
+         #[path = "other.rs"]
+         mod inner;
+     }
+     // The `other.rs` file will be searched at `src/a/b/inline/other.rs`.
+     // The path to the `inner` module is `crate::a::b::inline::inner`.
+     ```
+     * the file path is relative to the directory of the source file with the
+       `path` attribute, including the directory with the same name as the
+       module that corresponds to the source file and the inline module
+       components as directories
+     * rules can be combined:
+       ```rust
+       // File `src/main.rs`:
+       mod a;
+
+       fn main() {
+           crate::a::b::thread::thread_local::join();
+       }
+
+       // File `src/a.rs`:
+       pub mod b;
+
+       // File `src/a/b.rs`:
+       #[path = "threads"]
+       pub mod thread {
+           #[path = "tls.rs"]
+           pub mod thread_local;
+       }
+       // The `tls.rs` file will be searched at `src/a/threads/tls.rs`.
+       // The path to the `thread_local` module is `crate::a::b::thread::thread_local`.
+
+       // File `src/a/threads/tls.rs`:
+       pub fn join() {}
+       ```
+
+A module can have attributes.
+* attributes in a source file applies to the containing module
+* attributes applied to the anonymous root module apply also to the crate as a
+  whole
+* the built-in attributes that have meaning on modules: `cfg`, `deprecated`,
+  `doc`, `allow`, `warn`, `deny`, `forbid`, `path`, and `no_implicit_prelude`
+
+Example:
+```rust
+// File `src/lib.rs`:
+//   - this is the crate root
+//   - the path accessing this module is `crate` (this module is the root
+//     module)
+// This module is loaded from the external file, `src/util.rs`. The effect is
+// the same as `mod util { /* contents of src/util.rs */ }`:
+//   - the path to the `util` module is `crate::util`
+mod util;
+// Like `util` module. The path to the `lexer` module is `crate::lexer`:
+mod lexer;
+
+// File `src/util.rs`:
+//   - the path accessing this module is `crate::util`
+//   - the path to the just loaded `config` module is `crate::util::config`
+mod config;
+
+// File `src/util/config.rs`:
+//   - the path accessing this module is `crate::util::config`
+struct Config {
+    pub (crate) vmem_limit: usize,
+    pub (crate) stack_limit: usize,
+    pub (crate) nfiles_limit: usize,
+}
+
+// File `src/lexer/mod.rs`:
+//   - the path accessing this module is `crate::lexer`
+//   - the path to the `token` module is `crate::lexer::token`
+mod token;
+
+//   - the path to the `scan` function is `crate::lexer::scan`
+pub fun scan() -> token::Token {
+    token::Token(42)
+}
+
+// File `src/lexer/token.rs`:
+//   - the path accessing this module is `crate::lexer::token`
+//   - the path to the `Token` struct is `crate::lexer::token::Token`
+struct Token(u8);
+```
+
+See [Package Layout](https://doc.rust-lang.org/cargo/guide/project-layout.html),
+[The Manifest Format](https://doc.rust-lang.org/cargo/reference/manifest.html),
+[Cargo Targets](https://doc.rust-lang.org/cargo/reference/cargo-targets.html),
+[Crates and source files](https://doc.rust-lang.org/reference/crates-and-source-files.html),
+[Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
+[Where clauses](https://doc.rust-lang.org/reference/items/generics.html#where-clauses),
+[Trait std::process::Termination](https://doc.rust-lang.org/std/process/trait.Termination.html),
+[Never type](https://doc.rust-lang.org/reference/types/never.html),
+[Enum std::convert::Infallible](https://doc.rust-lang.org/std/convert/enum.Infallible.html),
+[Struct std::process::ExitCode](https://doc.rust-lang.org/std/process/struct.ExitCode.html),
+[Modules](https://doc.rust-lang.org/reference/items/modules.html),
+[Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html),
+[Diagnostic attributes](https://doc.rust-lang.org/reference/attributes/diagnostics.html),
+[The `#[doc]` attribute](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html),
+[Preludes](https://doc.rust-lang.org/reference/names/preludes.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html),
+[Macros By Example](https://doc.rust-lang.org/reference/macros-by-example.html),
+and [Attributes](https://doc.rust-lang.org/reference/attributes.html) for
+greater detail.
 
 ### Preludes
 
 A *prelude* is a collection of names that are automatically brought into scope
 of every module in a crate.
+* these prelude names are not part of the module itself
+  * they are implicitly queried during name resolution
+  * e.g. `Box` is valid but `self::Box` is not because `Box` is not a member of
+    the current module
+* the `no_implicit_prelude` attribute
+  * applicable at the crate level (root module) or on a module
+  * indicates that it should not automatically bring the standard library
+    prelude, extern prelude, `macro_use` prelude, or tool prelude into scope
+    for that module or any of its descendants
 
-See [Preludes](https://doc.rust-lang.org/reference/names/preludes.html) for
+There are several kinds of preludes:
+* **Standard library prelude**
+  * each crate has it
+  * consists of the names from a single standard library module
+    * if `no_std` attribute is applied, this module is
+      `core::prelude::rust_EDITION`
+    * otherwise, this module is `std::prelude::rust_EDITION`
+* **Extern prelude**
+  * consists of these crates:
+    * external crates imported with `extern crate` in the root module
+      * if `extern crate foo as bar` is used, the external crate `foo` is added
+        to the extern prelude under the name `bar`
+    * external crates provided to the compiler (`rustc --extern`)
+    * the `core` crate
+    * the `std` crate as long as the `no_std` attribute is not specified in the
+      crate root
+  * Cargo does bring in `proc_macro` to the extern prelude for proc-macro
+    crates only
+* **Language prelude**
+  * is always in scope
+  * includes names of types and attributes that are built-in to the language
+* **`macro_use` prelude**
+  * macros from external crates, imported by the `macro_use` attribute applied
+    to an `extern crate`, are included into the `macro_use` prelude
+* **Tool prelude**
+  * includes tool names for external tools in the type name space
+  * in the tool prelude, each tool resides in its own name space
+  * when a tool attribute is recognized by the compiler (i.e. when a tool is
+    found in the tool prelude), the compiler accepts it without any warning
+    * `rustc` currently recognizes the tools `rustfmt` and `clippy`
+  * when a tool attribute is recognized by a tool, the tool is responsible for
+    further processing and interpretation of the attribute
+
+See [Preludes](https://doc.rust-lang.org/reference/names/preludes.html),
+[Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html),
+[Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html),
+[Macros By Example](https://doc.rust-lang.org/reference/macros-by-example.html),
+[Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
+and [Attributes](https://doc.rust-lang.org/reference/attributes.html) for
 greater detail.
 
 ### Visibility
@@ -2744,9 +3200,108 @@ visibility:
     "pub" "(" "super" ")"
     "pub" "(" "in" simple_path ")"
 ```
+* everything in Rust is private by default except
+  * associated item in a `pub` trait
+  * enum variants in a `pub` enum
+  * items marked with `pub`
+* an item is accessible in two cases:
+  1. a public (`pub`) item can be accessed externally from some module `m` only
+     if all the item's ancestors from `m` can also be accessed externally
+  1. a private item can be accessed by the current module and its descendants
+* availability of public items can be further restricted:
+  * `pub(crate)` makes an item visible within the current crate
+  * `pub(self)` is equivalent to `pub(in self)` or not using `pub` at all
+  * `pub(super)` is equivalent to `pub(in super)`
+  * `pub(in path)` makes an item visible within the provided `path`
+    * `path` must be an ancestor module of the item whose visibility is being
+      declared
+    * `pub(in self)` makes an item visible to the current module
+    * `pub(in super)` makes an item visible to the parent module
+* `pub` together with `use` can be used for re-exporting items
+  * `use` brings items to the current scope as usual
+  * `pub` makes them public
 
 Examples:
-* re-importing names into the current scope:
+* accessibility of items demonstration:
+  ```rust
+  // `foo` is private, so no external crate can access it (rule #1).
+  // Any module in this crate can access `foo`'s public interface since `foo`
+  // lays in the root module of this crate (rule #2).
+  mod foo {
+      // Can be used by anything in the current crate (rule #1).
+      pub fn f() {}
+
+      // Can be accessed only by this module and its descendants (rule #2).
+      fn g() {}
+  }
+
+  // Public to the root module, available to external crates (rule #1).
+  pub fn h() {}
+
+  // Public to the root module, available to external crates (rule #1).
+  pub mod bar {
+      // This is legal since `bar` is a descendant of the root module (rule #2).
+      use crate::foo;
+
+      // Available to external crates (rule #1).
+      pub fn x() {
+          // This is legal (rule #2).
+          foo::f();
+      }
+
+      // Available only to this module and its descendants (rule #2).
+      fn y() {}
+
+      #[cfg(test)]
+      mod test {
+          #[test]
+          fn test_y() {
+              // This is legal since this module is a descendant of the module
+              // `bar` (rule #2).
+              super::y();
+          }
+      }
+  }
+  ```
+* accessibility with restrictions:
+  ```rust
+  pub mod a {
+      pub mod b {
+          // Visible within `a`.
+          pub (in crate::a) fn fa() {}
+
+          // Visible to entire crate.
+          pub (crate) fn fb() {}
+
+          // Visible within `a`.
+          pub (super) fn fc() {
+              // Visible since we are in the same module.
+              fd();
+          }
+
+          // Visible only within `b` (same as leaving `fd` private).
+          pub (self) fn fd() {}
+      }
+
+      pub fn ga() {
+          b::fa();
+          b::fb();
+          b::fc();
+          //b::fd();  // Error
+      }
+  }
+
+  fn ha() {
+      // Still visible (we are in the same crate).
+      a::b::fb();
+      //a::b::fc();  // Error (we are outside of `a`)
+      //a::b::fa();  // Error (we are outside of `a`)
+      a::ga();
+  }
+
+  fn main() { ha() }
+  ```
+* re-importing/re-exporting names into the current scope:
   ```rust
   // From the standard library: brings `Option`, `None`, and `Some` to the
   // current scope and makes them publicly visible
@@ -2754,11 +3309,131 @@ Examples:
   pub use crate::option::Option::None;
   pub use crate::option::Option::Some;
   ```
+* another example of re-exporting:
+  ```rust
+  pub use self::a::b;
+
+  mod a {
+      pub mod b {
+          pub fn f() {}
+      }
+  }
+
+  b::f();       // Valid (`b` is public in this scope, `f` is public in `b`)
+  //a::b::f();  // Invalid (`a` is private)
+  ```
 
 See [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html)
+and [Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html)
 for greater detail.
 
 ### Paths
+
+A path refers to:
+* item or variable if it has only one component
+* item if it has more than one component
+
+Path qualifiers:
+* `::`
+  * paths starting with `::` are considered to be *global paths*
+  * segments of the path start being resolved from a place which differs based
+    on edition
+    * in the 2015 Edition, identifiers resolve from the crate root, i.e.
+      `::foo` in the 2015 Edition is the same as `crate::foo` in the 2018 and
+      newer Edition
+    * in the 2018 and newer Edition, identifiers resolve from crates in the
+      extern prelude, i.e. they must be followed by the name of a crate, e.g.
+      `::core` resolves to the `core` crate which is always added to the extern
+      prelude
+      * `::` is necessary if a name from to root module collide with the name
+        from the extern prelude, e.g.
+        ```rust
+        //use std::fs;                // Error, ambiguity
+        use ::std::fs;                // Imports `fs` from the standard `std` crate
+        use self::std::fs as std_fs;  // Imports `fs` from the `std` module below
+
+        mod std {
+            pub mod fs {}
+        }
+        ```
+* `self`
+  * resolves to the current module
+  * a single `self` in a method body resolves to the method's `self` parameter
+* `Self`
+  * refers to the implementing type within traits and implementations
+* `super`
+  * resolves to the parent module
+* `crate`
+  * refers to the root module of the current crate
+* `$crate`
+  * allowed only inside macro transcribers
+  * refers to the root module of the crate where the macro is defined
+
+Canonical paths:
+* only items defined in a module or implementation have a canonical path
+* a canonical path reflects the location of the item relatively to the root
+  module of its crate, e.g.
+  ```rust
+  // File `src/lib.rs`:
+  mod foo {
+      // Canonical path to this struct is `crate::foo::Foo`
+      pub struct Foo;
+  }
+  ```
+  * it is meaningful only within a given crate (there is no global namespace
+    across crates)
+* a canonical path consists of a *path prefix* and an item appended to it
+  * for modules, the path prefix is the canonical path to that module, e.g.
+    ```rust
+    // File `src/lib.rs`:
+    mod foo {        // `crate::foo` (the canonical path to the module `foo`)
+        struct Bar;  // `crate::foo::Bar` (the canonical path to the `struct Bar`)
+    }
+    ```
+  * for bare implementations, the path prefix has the form `<P>`, where `P` is
+    the canonical path of the item being implemented, e.g.
+    ```rust
+    // File `src/lib.rs`:
+    mod foo {
+        struct Bar;
+
+        impl Bar {
+            // The canonical path to the method `f` implemented here is
+            // `<crate::foo::Bar>::f`.
+            fn f(&self) {}
+        }
+    }
+    ```
+  * for trait implementations, the path prefix has the form `<P as T>`, where
+    `P` is the canonical path of the item being implemented and `T` is the
+    canonical path to the trait, e.g.
+    ```rust
+    // File `src/lib.rs`:
+    mod a {
+        struct S;
+
+        trait T {
+            fn f(&self);
+        }
+
+        impl T for S {
+            // The canonical path to the method `f` implemented here is
+            // `<crate::a::S as crate::a::T>::f`.
+            fn f(&self) {}
+        }
+
+        impl S {
+            fn g(&self) {}
+        }
+    }
+    ```
+* items which do not have canonical paths:
+  * implementations
+  * use declarations
+  * items defined in block expressions
+  * items defined in a module that does not have a canonical path
+  * associated items defined in an implementation that refers to an item
+    without a canonical path
 
 #### Simple Paths
 
@@ -2769,6 +3444,7 @@ simple_path:
 simple_path_segment:
     identifier | "super" | "self" | "crate" | "$crate"
 ```
+* used in visibility markers, attributes, macros and, `use` items
 
 #### Paths in Expressions
 
@@ -2790,6 +3466,16 @@ generic_arg:
     simple_path_segment
     identifier "=" type
 ```
+* allow for paths with generic arguments to be specified
+* used in expressions and patterns
+* *turbofish* (`::<`) syntax:
+  * `Vec<u8>::with_capacity(1024)` &ndash; wrong (ambiguity with `<`)
+  * `Vec::<u8>::with_capacity(1024)` &ndash; correct
+* the order of generic arguments is restricted to:
+  1. lifetime arguments, then
+  1. type arguments, then
+  1. const arguments, then
+  1. equality constraints
 
 #### Qualified Paths
 
@@ -2804,6 +3490,37 @@ qualified_path_type:
 qualified_path_in_type:
     qualified_path_type ("::" type_path_segment)+
 ```
+* allow paths for trait implementations to be unambiguous
+* allow canonical paths to be specified
+* example:
+  ```rust
+  struct S;
+
+  // Implementation of `struct S`:
+  impl S {
+      fn f() {}
+  }
+
+  trait T1 {
+      fn f() {}
+  }
+
+  // Implementation of `trait T1` for `struct S`:
+  impl T1 for S {}
+
+  trait T2 {
+      fn f() {}
+  }
+
+  // Implementation of `trait T2` for `struct S`:
+  impl T2 for S {}
+
+  // Which `f` is called? `S` implements both `T1` and `T2` so we use type cast
+  // to resolve ambiguity:
+  S::f();          // `S::f` is called
+  <S as T1>::f();  // `T1::f` is called
+  <S as T2>::f();  // `T2::f` is called
+  ```
 
 #### Type Paths
 
@@ -2816,8 +3533,22 @@ type_path_segment:
 type_path_fn:
     "(" (type ("," type)* ","?)? ")" ("->" type)?
 ```
+* used within type definitions, trait bounds, type parameter bounds, and
+  qualified paths
+* turbofish notation (`::<`) is not required here as there is no danger of
+  ambiguity like in expressions
 
-See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
+See [Paths](https://doc.rust-lang.org/reference/paths.html),
+[Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[Macros By Example](https://doc.rust-lang.org/reference/macros-by-example.html),
+[Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html),
+[Expressions](https://doc.rust-lang.org/reference/expressions.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+and [Preludes](https://doc.rust-lang.org/reference/names/preludes.html) for
+greater detail.
 
 ## Libraries (Crates) and Tools
 
@@ -2837,14 +3568,18 @@ See [Paths](https://doc.rust-lang.org/reference/paths.html) for greater detail.
 * [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct/)] [[repo](https://github.com/oconnor663/duct.rs)]
 * [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset/)] [[repo](https://github.com/Lymia/enumset)]
 * [`env_logger` - a simple logger that can be configured via environment variables](https://crates.io/crates/env_logger) [[doc](https://docs.rs/env_logger/latest/env_logger/)] [[repo](https://github.com/rust-cli/env_logger)]
-  * `RUST_LOG=[target][=][level][,...]` controls logging, examples (considering a Rust application `log_demo`):
+  * `RUST_LOG=[target][=][level][,...]` controls logging, examples (considering
+    a Rust application `log_demo`):
     * `RUST_LOG=log_demo` turns on all logging for `log_demo`
     * `RUST_LOG=none` turns off all logging (`none` is unknown target)
-    * `RUST_LOG=OFF` turns off all logging (`off` is pseudo level made for this purpose)
+    * `RUST_LOG=OFF` turns off all logging (`off` is pseudo level made for this
+      purpose)
     * `RUST_LOG=info` turns on all info logging
     * `RUST_LOG=log_demo=debug` turns on all debug logging for `log_demo`
-    * `RUST_LOG=off,log_demo::foo=info` turn off all logging but keep all info logging for `log_demo::foo`
-    * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off all logging for `log_demo::foo`
+    * `RUST_LOG=off,log_demo::foo=info` turn off all logging but keep all info
+      logging for `log_demo::foo`
+    * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off
+      all logging for `log_demo::foo`
 * [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob/)] [[repo](https://github.com/rust-lang/glob)]
 * [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset/)] [[repo](https://github.com/BurntSushi/ripgrep)]
 * [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[repo](https://github.com/mozilla/grcov)]
