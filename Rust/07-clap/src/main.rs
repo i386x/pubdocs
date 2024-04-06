@@ -1,5 +1,5 @@
-use enumset::{EnumSet, EnumSetType};
 use clap::{ArgAction, Parser, ValueEnum};
+use enumset::{EnumSet, EnumSetType};
 
 #[derive(EnumSetType, ValueEnum, Debug)]
 enum TestSet {
@@ -51,13 +51,19 @@ impl TryFrom<&Args> for Context {
     fn try_from(args: &Args) -> anyhow::Result<Self> {
         let mut context = Self::new();
 
-        args.testset.iter().for_each(|v| { context.testset.insert(*v); });
+        args.testset.iter().for_each(|v| {
+            context.testset.insert(*v);
+        });
         if context.testset.is_empty() {
             context.testset.insert_all(EnumSet::<TestSet>::ALL);
         }
-        args.exclude.iter().for_each(|v| { context.testset.remove(*v); });
+        args.exclude.iter().for_each(|v| {
+            context.testset.remove(*v);
+        });
 
-        context.opts.extend(["--foo".to_string(), "bar".to_string()]);
+        context
+            .opts
+            .extend(["--foo".to_string(), "bar".to_string()]);
 
         Ok(context)
     }
