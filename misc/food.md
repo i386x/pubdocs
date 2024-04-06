@@ -4,8 +4,9 @@
 * [Přesolili jste pokrm? Zkuste jednoduché triky, které sůl z jídla vytáhnou](https://www.denik.cz/hobby/sul-presoleni-rady.html?utm_source=traqli&utm_medium=email&utm_content=-magazin-rodina-miminka-rady-tipy-miminka-zajimavosti&utm_campaign=newsletter&pnespid=WL91_BkB8CNJmUqT5o_MDBASukJixKtxrxgVGb0AL5LKv6BbOdfxltFzjRSjq5wcPbjGn_E)
 * [Špalda byla dříve zakázaná, nyní Češi objevují její unikátnost](https://www.denik.cz/gastronomie/spalda-recepty-zdravi-vareni.html)
 
-## Goods
+## Shops & Goods
 
+* [Carlini (Italian bakery in Brno)](https://carlini.cz/)
 * [Treperendy (jams)](https://www.treperendy.cz/)
 
 ## Recipes

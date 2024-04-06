@@ -841,6 +841,7 @@ interested in. Maybe You find some of these interesting too.
 * [An update on Red Hat's conscious language efforts](https://www.redhat.com/en/blog/update-red-hats-conscious-language-efforts)
 * [Building Red Hat Enterprise Linux 9 for the x86-64-v2 microarchitecture level](https://developers.redhat.com/blog/2021/01/05/building-red-hat-enterprise-linux-9-for-the-x86-64-v2-microarchitecture-level)
 * [Destination Linux](https://tuxdigital.com/podcasts/destination-linux/)
+* [Exploring x86-64-v3 for Red Hat Enterprise Linux 10](https://developers.redhat.com/articles/2024/01/02/exploring-x86-64-v3-red-hat-enterprise-linux-10)
 * [Further simplifying the move to Red Hat Enterprise Linux with convert2RHEL enhancements](https://www.redhat.com/en/blog/move-to-red-hat-enterprise-linux-convert2rhel)
 * [Furthering the evolution of CentOS Stream](https://www.redhat.com/en/blog/furthering-evolution-centos-stream)
 * [Getting Red Hat Developer Subscription: What RHEL users need to know](https://developers.redhat.com/articles/getting-red-hat-developer-subscription-what-rhel-users-need-know)
@@ -2249,7 +2250,7 @@ See [Caml](#caml).
 * [Podman (Golang)](https://github.com/containers/podman)
 * [Podman Desktop (TypeScript)](https://github.com/containers/podman-desktop) [[home](https://podman-desktop.io/)]
 * [podman-py (Python)](https://github.com/containers/podman-py)
-* [polkit (C)](https://gitlab.freedesktop.org/polkit/polkit)
+* [polkit (C)](https://github.com/polkit-org/polkit)
 * [popt (C)](https://github.com/rpm-software-management/popt)
 * [Portable Test Execution Framework (C)](https://github.com/comps/ptef)
 * [power-gzip (C)](https://github.com/libnxz/power-gzip)
