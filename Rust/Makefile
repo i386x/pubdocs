@@ -9,5 +9,6 @@ all check clean:
 	$(MAKE) -C 08-enum_demo x$@
 	$(MAKE) -C 09-log_demo x$@
 	$(MAKE) -C 10-modules_demo x$@
+	$(MAKE) -C 11-collections x$@
 
 include ./common.mk

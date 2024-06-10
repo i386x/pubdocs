@@ -17,6 +17,7 @@
   * [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
   * [Secure Rust Guidelines](https://anssi-fr.github.io/rust-guide/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
+  * [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
   * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
   * [The `rustup` book](https://rust-lang.github.io/rustup/)
 * [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
@@ -151,6 +152,11 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   * [`cargo prune`](https://github.com/ustulation/cargo-prune) [[crate](https://crates.io/crates/cargo-prune)]
 * To cleanup `${CARGO_HOME}` cache:
   * [`cargo trim`](https://github.com/iamsauravsharma/cargo-trim) [[crate](https://crates.io/crates/cargo-trim)]
+
+### Clippy
+
+[`clippy`](https://doc.rust-lang.org/clippy/) is a tool for linting a source
+code written in Rust.
 
 ### Rust Analyzer
 
@@ -603,7 +609,13 @@ float_exponent:
 #### Character Type
 
 * `char`
-* 4 bytes in size
+* a value of type `char` is a Unicode scalar value
+  * 32-bit unsigned word
+    * have the same size and alignment as `u32`
+  * range `0x0000` to `0xD7FF` or `0xE000` to `0x10FFFF`
+    * `char` outside of this range has undefined behavior
+* every byte of a `char` is guaranteed to be initialized
+* a `[char]` is effectively a UCS-4/UTF-32 string of length 1
 * see [Textual types](https://doc.rust-lang.org/reference/types/textual.html)
   for greater detail
 
@@ -631,6 +643,25 @@ for greater detail.
   for greater detail
 
 ### Compound Types
+
+#### String Type
+
+* `str`
+* dynamically sized type
+* a value of type `str` has the same representation as `[u8]`
+* methods working on `str` ensure and assume that the data in there is valid
+  UTF-8
+  * calling a `str` method with a non-UTF-8 buffer can cause undefined behavior
+* `&str` is not indexable
+* a slice of `&str` outside of character boundaries make a Rust program to
+  panic
+  * a slice operation is performed over bytes, not characters
+  * a character boundary is where the last byte of the character ends and the
+    first byte of the next character begins (recall that characters are UTF-8
+    encoded)
+* see [Textual types](https://doc.rust-lang.org/reference/types/textual.html)
+  and [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html)
+  for greater detail
 
 #### Tuple Types
 
@@ -803,8 +834,8 @@ Forms of a `use` declaration:
 * `use a::b::c;` makes `c` to be an alias for `a::b::c` in the current scope
 * `use a::b::c as foo;` makes `foo` to be an alias for `a::b::c` in the current
   scope
-* `use a::b::*;` brings all the items defined under the `a::b` in the current
-  scope
+* `use a::b::*;` brings all public items defined under the `a::b` in the
+  current scope
 * `use a::{self, b::c, d, e::*, f::g as h};` is the equivalent of
   ```rust
   // `self` refers to the common parent module, hence `use a;`
@@ -1802,6 +1833,99 @@ compound_assignment_expression:
     expression ">>=" expression
 ```
 
+#### Operators Overloading
+
+* `a += b` is a syntactical sugar for `AddAssign::add_assign(&mut a, b)` (see
+  [`std::ops::AddAssign`](https://doc.rust-lang.org/std/ops/trait.AddAssign.html)
+  trait)
+  ```rust
+  pub trait AddAssign<Rhs = Self> {
+      // Required method
+      fn add_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a -= b` is a syntactical sugar for `SubAssign::sub_assign(&mut a, b)` (see
+  [`std::ops::SubAssign`](https://doc.rust-lang.org/std/ops/trait.SubAssign.html)
+  trait)
+  ```rust
+  pub trait SubAssign<Rhs = Self> {
+      // Required method
+      fn sub_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a *= b` is a syntactical sugar for `MulAssign::mul_assign(&mut a, b)` (see
+  [`std::ops::MulAssign`](https://doc.rust-lang.org/std/ops/trait.MulAssign.html)
+  trait)
+  ```rust
+  pub trait MulAssign<Rhs = Self> {
+      // Required method
+      fn mul_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a /= b` is a syntactical sugar for `DivAssign::div_assign(&mut a, b)` (see
+  [`std::ops::DivAssign`](https://doc.rust-lang.org/std/ops/trait.DivAssign.html)
+  trait)
+  ```rust
+  pub trait DivAssign<Rhs = Self> {
+      // Required method
+      fn div_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a %= b` is a syntactical sugar for `RemAssign::rem_assign(&mut a, b)` (see
+  [`std::ops::RemAssign`](https://doc.rust-lang.org/std/ops/trait.RemAssign.html)
+  trait)
+  ```rust
+  pub trait RemAssign<Rhs = Self> {
+      // Required method
+      fn rem_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a &= b` is a syntactical sugar for `BitAndAssign::bitand_assign(&mut a, b)`
+  (see [`std::ops::BitAndAssign`](https://doc.rust-lang.org/std/ops/trait.BitAndAssign.html)
+  trait)
+  ```rust
+  pub trait BitAndAssign<Rhs = Self> {
+      // Required method
+      fn bitand_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a |= b` is a syntactical sugar for `BitOrAssign::bitor_assign(&mut a, b)`
+  (see [`std::ops::BitOrAssign`](https://doc.rust-lang.org/std/ops/trait.BitOrAssign.html)
+  trait)
+  ```rust
+  pub trait BitOrAssign<Rhs = Self> {
+      // Required method
+      fn bitor_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a ^= b` is a syntactical sugar for `BitXorAssign::bitxor_assign(&mut a, b)`
+  (see [`std::ops::BitXorAssign`](https://doc.rust-lang.org/std/ops/trait.BitXorAssign.html)
+  trait)
+  ```rust
+  pub trait BitXorAssign<Rhs = Self> {
+      // Required method
+      fn bitxor_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a <<= b` is a syntactical sugar for `ShlAssign::shl_assign(&mut a, b)` (see
+  [`std::ops::ShlAssign`](https://doc.rust-lang.org/std/ops/trait.ShlAssign.html)
+  trait)
+  ```rust
+  pub trait ShlAssign<Rhs = Self> {
+      // Required method
+      fn shl_assign(&mut self, rhs: Rhs);
+  }
+  ```
+* `a >>= b` is a syntactical sugar for `ShrAssign::shr_assign(&mut a, b)` (see
+  [`std::ops::ShrAssign`](https://doc.rust-lang.org/std/ops/trait.ShrAssign.html)
+  trait)
+  ```rust
+  pub trait ShrAssign<Rhs = Self> {
+      // Required method
+      fn shr_assign(&mut self, rhs: Rhs);
+  }
+  ```
+
 See [Assignment expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html#assignment-expressions)
 and [Compound assignment expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html#compound-assignment-expressions)
 for greater detail.
@@ -1869,6 +1993,46 @@ comparison_expression:
     expression "<=" expression
 ```
 
+#### Operators Overloading
+
+* `a == b` is equivalent to `::std::cmp::PartialEq::eq(&a, &b)`
+* `a != b` is equivalent to `::std::cmp::PartialEq::ne(&a, &b)`
+  * see [`std::cmp::PartialEq`](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html)
+    trait
+    ```rust
+    pub trait PartialEq<Rhs = Self>
+    where
+        Rhs: ?Sized,
+    {
+        // Required method
+        fn eq(&self, other: &Rhs) -> bool;
+
+        // Provided method
+        fn ne(&self, other: &Rhs) -> bool { ... }
+    }
+    ```
+* `a > b` is equivalent to `::std::cmp::PartialOrd::gt(&a, &b)`
+* `a < b` is equivalent to `::std::cmp::PartialOrd::lt(&a, &b)`
+* `a >= b` is equivalent to `::std::cmp::PartialOrd::ge(&a, &b)`
+* `a <= b` is equivalent to `::std::cmp::PartialOrd::le(&a, &b)`
+  * see [`std::cmp::PartialOrd`](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html)
+    trait
+    ```rust
+    pub trait PartialOrd<Rhs = Self>: PartialEq<Rhs>
+    where
+        Rhs: ?Sized,
+    {
+        // Required method
+        fn partial_cmp(&self, other: &Rhs) -> Option<Ordering>;
+
+        // Provided methods
+        fn lt(&self, other: &Rhs) -> bool { ... }
+        fn le(&self, other: &Rhs) -> bool { ... }
+        fn gt(&self, other: &Rhs) -> bool { ... }
+        fn ge(&self, other: &Rhs) -> bool { ... }
+    }
+    ```
+
 See [Comparison Operators](https://doc.rust-lang.org/reference/expressions/operator-expr.html#comparison-operators)
 for greater detail.
 
@@ -1899,6 +2063,112 @@ have higher precedence):
 | `<<`, `>>` | left shift, right shift | left-to-right |
 | `+`, `-` | addition, subtraction | left-to-right |
 | `*`, `/`, `%` | multiplication, division, remainder | left-to-right |
+
+#### Operators Overloading
+
+* `a | b` is a syntactical sugar for `BitOr::bitor(a, b)` (see
+  [`std::ops::BitOr`](https://doc.rust-lang.org/std/ops/trait.BitOr.html)
+  trait)
+  ```rust
+  pub trait BitOr<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn bitor(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a ^ b` is a syntactical sugar for `BitXor::bitxor(a, b)` (see
+  [`std::ops::BitXor`](https://doc.rust-lang.org/std/ops/trait.BitXor.html)
+  trait)
+  ```rust
+  pub trait BitXor<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn bitxor(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a & b` is a syntactical sugar for `BitAnd::bitand(a, b)` (see
+  [`std::ops::BitAnd`](https://doc.rust-lang.org/std/ops/trait.BitAnd.html)
+  trait)
+  ```rust
+  pub trait BitAnd<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn bitand(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a << b` is a syntactical sugar for `Shl::shl(a, b)` (see
+  [`std::ops::Shl`](https://doc.rust-lang.org/std/ops/trait.Shl.html) trait)
+  ```rust
+  pub trait Shl<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn shl(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a >> b` is a syntactical sugar for `Shr::shr(a, b)` (see
+  [`std::ops::Shr`](https://doc.rust-lang.org/std/ops/trait.Shr.html) trait)
+  ```rust
+  pub trait Shr<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn shr(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a + b` is a syntactical sugar for `Add::add(a, b)` (see
+  [`std::ops::Add`](https://doc.rust-lang.org/std/ops/trait.Add.html) trait)
+  ```rust
+  pub trait Add<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn add(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a - b` is a syntactical sugar for `Sub::sub(a, b)` (see
+  [`std::ops::Sub`](https://doc.rust-lang.org/std/ops/trait.Sub.html) trait)
+  ```rust
+  pub trait Sub<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn sub(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a * b` is a syntactical sugar for `Mul::mul(a, b)` (see
+  [`std::ops::Mul`](https://doc.rust-lang.org/std/ops/trait.Mul.html) trait)
+  ```rust
+  pub trait Mul<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn mul(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a / b` is a syntactical sugar for `Div::div(a, b)` (see
+  [`std::ops::Div`](https://doc.rust-lang.org/std/ops/trait.Div.html) trait)
+  ```rust
+  pub trait Div<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn div(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
+* `a % b` is a syntactical sugar for `Rem::rem(a, b)` (see
+  [`std::ops::Rem`](https://doc.rust-lang.org/std/ops/trait.Rem.html) trait)
+  ```rust
+  pub trait Rem<Rhs = Self> {
+      type Output;
+
+      // Required method
+      fn rem(self, rhs: Rhs) -> Self::Output;
+  }
+  ```
 
 See [Arithmetic and Logical Binary Operators](https://doc.rust-lang.org/reference/expressions/operator-expr.html#arithmetic-and-logical-binary-operators)
 for greater detail.
@@ -1945,6 +2215,29 @@ negation_expression:
     "!" expression
 ```
 
+#### Operators Overloading
+
+* `-a` is a syntactical sugar for `Neg::neg(a)` (see
+  [`std::ops::Neg`](https://doc.rust-lang.org/std/ops/trait.Neg.html) trait)
+  ```rust
+  pub trait Neg {
+      type Output;
+
+      // Required method
+      fn neg(self) -> Self::Output;
+  }
+  ```
+* `!a` is a syntactical sugar for `Not::not(a)` (see
+  [`std::ops::Not`](https://doc.rust-lang.org/std/ops/trait.Not.html) trait)
+  ```rust
+  pub trait Not {
+      type Output;
+
+      // Required method
+      fn not(self) -> Self::Output;
+  }
+  ```
+
 See [Negation operators](https://doc.rust-lang.org/reference/expressions/operator-expr.html#negation-operators)
 for greater detail.
 
@@ -1955,6 +2248,39 @@ Grammar:
 dereference_expression:
     "*" expression
 ```
+
+#### Deref Coercion
+
+* If `T` implements `Deref<Target = U>`, and `v` is a value of type `T`, then:
+  * In immutable contexts, `*v` (where `T` is neither a reference nor a raw
+    pointer) is equivalent to `*Deref::deref(&v)`.
+  * Values of type `&T` are coerced to values of type `&U`.
+  * `T` implicitly implements all the methods of the type `U` which take the
+    `&self` receiver.
+  * See [`std::ops::Deref`](https://doc.rust-lang.org/std/ops/trait.Deref.html)
+    trait:
+    ```rust
+    pub trait Deref {
+        type Target: ?Sized;
+
+        // Required method
+        fn deref(&self) -> &Self::Target;
+    }
+    ```
+* If `T` implements `DerefMut<Target = U>`, and `v` is a value of type `T`,
+  then:
+  * In mutable contexts, `*v` (where `T` is neither a reference nor a raw
+    pointer) is equivalent to `*DerefMut::deref_mut(&mut v)`.
+  * Values of type `&mut T` are coerced to values of type `&mut U`.
+  * `T` implicitly implements all the (mutable) methods of the type `U`.
+  * See [`std::ops::DerefMut`](https://doc.rust-lang.org/std/ops/trait.DerefMut.html)
+    trait:
+    ```rust
+    pub trait DerefMut: Deref {
+        // Required method
+        fn deref_mut(&mut self) -> &mut Self::Target;
+    }
+    ```
 
 See [The dereference operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#the-dereference-operator)
 for greater detail.
@@ -2651,6 +2977,10 @@ format!("x = {x}, y = {y}");     // "x = 1, y = 2"
 format!("z = {z}", z = 3);       // "z = 3"
 format!("Hello, {}!", "World");  // "Hello, World!"
 ```
+
+> [!NOTE]
+> `format!` macro takes references, i.e. `format!("{x}")` will take a reference
+> of `x`. References are taken also by other macros using format string.
 
 See [`std::format`](https://doc.rust-lang.org/std/macro.format.html) for
 greater detail.
@@ -3559,6 +3889,7 @@ greater detail.
 * [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat/)] [[repo](https://github.com/sharkdp/bat)]
 * [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo/)] [[repo](https://github.com/rust-lang/cargo)]
 * [`cargo-binutils` - proxy for LLVM tools](https://crates.io/crates/cargo-binutils) [[repo](https://github.com/rust-embedded/cargo-binutils)]
+* [`chrono` - date and time library](https://crates.io/crates/chrono) [[doc](https://docs.rs/chrono/latest/chrono/)] [[repo](https://github.com/chronotope/chrono)]
 * [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky/)] [[repo](https://github.com/zesterer/chumsky)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
 * [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored/)] [[repo](https://github.com/colored-rs/colored)]
@@ -3585,6 +3916,7 @@ greater detail.
 * [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[repo](https://github.com/mozilla/grcov)]
 * [`hyperfine` - a command-line benchmarking tool](https://crates.io/crates/hyperfine) [[doc](https://docs.rs/crate/hyperfine/latest)] [[repo](https://github.com/sharkdp/hyperfine)]
 * [`image` - an image processing library](https://crates.io/crates/image) [[doc](https://docs.rs/image/latest/image/)] [[repo](https://github.com/image-rs/image)]
+* [`kellnr` - the registry for Rust crates](https://kellnr.io/) [[repo](https://github.com/kellnr/kellnr)]
 * [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static/)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
 * [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc/)] [[repo](https://github.com/rust-lang/libc)]
 * [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log/)] [[repo](https://github.com/rust-lang/log)]
@@ -3596,6 +3928,7 @@ greater detail.
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand/)] [[repo](https://github.com/rust-random/rand)]
 * [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex/)] [[repo](https://github.com/rust-lang/regex)]
 * [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai/)] [[repo](https://github.com/rhaiscript/rhai)]
+* [`rust-script` - run Rust "scripts"](https://crates.io/crates/rust-script) [[home](https://rust-script.org/)] [[doc](https://docs.rs/crate/rust-script/latest)] [[repo](https://github.com/fornwall/rust-script)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version/)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde/)] [[repo](https://github.com/serde-rs/serde)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
@@ -3618,6 +3951,9 @@ greater detail.
   * [`std::fmt` - utilities for formatting and printing `String`s](https://doc.rust-lang.org/std/fmt/)
   * [`std::fs` - file system manipulation operations](https://doc.rust-lang.org/std/fs/index.html)
     * [`std::fs::FileType` - a type of file with accessors for each file type](https://doc.rust-lang.org/nightly/std/fs/struct.FileType.html)
+  * [`std::hash` - generic hashing support](https://doc.rust-lang.org/std/hash/index.html)
+    * [`std::hash::BuildHasher` - a trait for creating instances of `Hasher`](https://doc.rust-lang.org/std/hash/trait.BuildHasher.html)
+    * [`std::hash::Hasher` - a trait for hashing an arbitrary stream of bytes](https://doc.rust-lang.org/std/hash/trait.Hasher.html)
   * [`std::io` - the I/O module](https://doc.rust-lang.org/std/io/index.html)
     * [`std::io::Result` - a specialized `Result` type for I/O operations](https://doc.rust-lang.org/std/io/type.Result.html)
     * [`std::io::Stdin` - a handle to the standard input stream of a process](https://doc.rust-lang.org/std/io/struct.Stdin.html)
@@ -3648,6 +3984,7 @@ greater detail.
 * [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
 * [`tao` - cross-platform window manager library](https://crates.io/crates/tao) [[doc](https://docs.rs/tao/latest/tao/)] [[repo](https://github.com/tauri-apps/tao)]
 * [`tauri` - a framework for building tiny, blazing fast binaries for all major desktop platforms](https://crates.io/crates/tauri) [[home](https://tauri.app/)] [[doc](https://docs.rs/tauri/latest/tauri/)] [[repo](https://github.com/tauri-apps/tauri)]
+* [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time/)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
 * [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local/)] [[repo](https://github.com/Amanieu/thread_local-rs)]
 * [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar/)] [[repo](https://github.com/rust-analyzer/ungrammar)]
   * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
