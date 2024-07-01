@@ -7,6 +7,7 @@
 ## Shops & Goods
 
 * [Carlini (Italian bakery in Brno)](https://carlini.cz/)
+* [PAYDAY Peanut Caramel Bar](https://www.hersheyland.com/payday)
 * [Treperendy (jams)](https://www.treperendy.cz/)
 
 ## Recipes
@@ -25,9 +26,12 @@
 * [Orman Lezzetleri](https://www.youtube.com/@orman_lezzetleri/videos)
 * [Potato Soup](https://www.the-girl-who-ate-everything.com/creamy-potato-soup)
 * [Recept na koblížky bez kynutí. Příprava je snadná, výsledek skvostný](https://www.denik.cz/gastronomie/koblizky-bez-kynuti.html)
+* [Seek wonder](https://www.youtube.com/@seekwonderr)
+* [Zach Choi ASMR](https://www.youtube.com/@ZachChoi/videos)
 
 ### Shorts
 
+* [Gani Çağlar SANDIKKAYA](https://www.youtube.com/@chefganicaglar/shorts) [[shop](https://www.chefganicaglar.com/)]
 * [Karadenizli Maceracı](https://www.youtube.com/@KaradenizliMaceraci/shorts)
 * [Orman Lezzetleri](https://www.youtube.com/@orman_lezzetleri/shorts)
 
