@@ -1,10 +1,19 @@
 # The Rust Programming Language Notes
 
 * Rust is a compiled statically-typed language
+* [5 ways to instantiate Rust structs in tests](https://jmmv.dev/2023/10/rust-test-structs.html)
+* [999 crates of Rust on the wall](https://lawngno.me/blog/2024/06/10/divine-provenance.html)
+* [Async fn in trait, for real this time](https://fasterthanli.me/series/updating-fasterthanli-me-for-2022/part-7)
+* [Asynchronous Destructors](https://boats.gitlab.io/blog/post/poll-drop/)
 * [Being Rusty: Discovering Rust's design axioms](https://smallcultfollowing.com/babysteps/blog/2023/12/07/rust-design-axioms/)
+* [Code Like a Pro in Rust book code](https://github.com/brndnmtthws/code-like-a-pro-in-rust-book)
+* [Data Parallelism with Rust and Rayon](https://www.shuttle.rs/blog/2024/04/11/using-rayon-rust)
+* [Developer-first diagnostics for Rust applications](https://kodraus.github.io/rust/2024/06/13/introducing-emit.html)
 * [Dump C++ and in Rust you should trust, Five Eyes agencies urge](https://www.theregister.com/2023/12/07/memory_correction_five_eyes/)
+* [Everything you need to know about testing in Rust](https://www.shuttle.rs/blog/2024/03/21/testing-in-rust)
 * [Exercism](https://exercism.org/tracks/rust)
 * [Home Page](https://www.rust-lang.org/)
+  * [Asynchronous Programming in Rust](https://rust-lang.github.io/async-book/)
   * [Book](https://doc.rust-lang.org/book/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
   * [Learn Rust](https://www.rust-lang.org/learn)
@@ -21,12 +30,18 @@
   * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
   * [The `rustup` book](https://rust-lang.github.io/rustup/)
 * [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
+* [How to initialize the logger for integration tests?](https://stackoverflow.com/questions/30177845/how-to-initialize-the-logger-for-integration-tests)
+* [Karol Kuczmarski's Blog](http://xion.io/)
+  * [Better location for unit tests in Rust](http://xion.io/post/code/rust-unit-test-placement.html)
 * [Learning Rust](https://github.com/danbev/learning-rust)
 * [Memory safety for the Internet's most critical infrastructure](https://www.memorysafety.org/)
   * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
 * [Source Code](https://github.com/rust-lang/rust)
+* [Swatinem Blog](https://swatinem.de/blog/)
+  * [The magic of scope guards](https://swatinem.de/blog/magic-scope-guards/)
 * [The Rust community’s crate registry](https://crates.io/)
+* [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
 
 ## Installation
 
@@ -105,6 +120,8 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   ```
   This will build your project with enabled optimizations and put the resultant
   executable inside `./target/release` directory.
+* To pre-build your project's dependencies as a container layer:
+  * [`cargo-chef`](https://github.com/LukeMathWalker/cargo-chef) [[crate](https://crates.io/crates/cargo-chef)] [[howto](https://www.lpalmieri.com/posts/fast-rust-docker-builds/)]
 * To build and run the project, type:
   ```sh
   $ cargo run
@@ -124,6 +141,8 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   ```sh
   $ cargo doc --open
   ```
+* To generate a dependency graph:
+  * [`cargo depgraph`](https://sr.ht/~jplatte/cargo-depgraph/) [[crate](https://crates.io/crates/cargo-depgraph)]
 * To find unused dependencies:
   * using [`cargo machete`](https://github.com/bnjbvr/cargo-machete)
   * using [`cargo +nightly udeps`](https://github.com/est31/cargo-udeps)
@@ -148,10 +167,20 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
     ```sh
     $ cargo binstall
     ```
+* To clean up unused build files:
+  * [`cargo sweep`](https://github.com/holmgr/cargo-sweep) [[crate](https://crates.io/crates/cargo-sweep)]
 * To prune crate dependencies in target folder:
   * [`cargo prune`](https://github.com/ustulation/cargo-prune) [[crate](https://crates.io/crates/cargo-prune)]
 * To cleanup `${CARGO_HOME}` cache:
   * [`cargo trim`](https://github.com/iamsauravsharma/cargo-trim) [[crate](https://crates.io/crates/cargo-trim)]
+
+#### Issues
+
+* [Disabled optional weak dependencies end up in `Cargo.lock`](https://github.com/rust-lang/cargo/issues/10801)
+* [Have an option to make Cargo attempt to clean up after itself.](https://github.com/rust-lang/cargo/issues/6229)
+* [Support for pre-built dependencies](https://github.com/rust-lang/cargo/issues/1139)
+* [Tracking Issue for garbage collection](https://github.com/rust-lang/cargo/issues/12633)
+  * [Add cache garbage collection](https://github.com/rust-lang/cargo/pull/12634)
 
 ### Clippy
 
@@ -173,6 +202,9 @@ Server Protocol for the Rust programming language.
   $ rustfmt --check file.rs
   ```
 
+> [!NOTE]
+> `rustfmt` is deprecated. Use `cargo fmt` instead.
+
 ### Rust Compiler
 
 [`rustc`](https://doc.rust-lang.org/rustc/index.html) compiles a rust project
@@ -188,6 +220,7 @@ into its binary representation.
 
 #### Caching
 
+* [[Idea] Precompiled dependencies](https://internals.rust-lang.org/t/idea-precompiled-dependencies/15602)
 * [Is a shared build cache a good fit for Cargo?](https://internals.rust-lang.org/t/is-a-shared-build-cache-a-good-fit-for-cargo/)
 * [`sccache` - shared compilation cache](https://github.com/mozilla/sccache) [[doc](https://docs.rs/sccache/latest/sccache/)] [[crate](https://crates.io/crates/sccache)]
 
@@ -200,11 +233,19 @@ Examples:
 * [Tantivy](https://github.com/quickwit-oss/tantivy)
 
 References:
+* [Can I include debug information only for my code without packages?](https://stackoverflow.com/questions/58627230/can-i-include-debug-information-only-for-my-code-without-packages)
+* [Can tests be built in release mode using Cargo?](https://stackoverflow.com/questions/29818084/can-tests-be-built-in-release-mode-using-cargo)
+* [Demystifying the profraw format](https://leodido.dev/demystifying-profraw/)
 * [How to do code coverage in Rust](https://blog.rng0.io/how-to-do-code-coverage-in-rust)
 * [Instrumentation-based Code Coverage](https://doc.rust-lang.org/rustc/instrument-coverage.html)
+* [LLVM-COV - Warnings of "X functions have mismatched data" and missing coverage data in reports](https://github.com/llvm/llvm-project/issues/72786)
+* ["Mismatched function data" warnings when collecting profiles for clang](https://github.com/llvm/llvm-project/issues/32849)
+* [Rust profiling in Red Hat Enterprise Linux 9.3 and 8.9](https://www.redhat.com/en/blog/rust-profiling-in-rhel)
 * [Source-based Code Coverage](https://blog.rust-lang.org/2022/04/07/Rust-1.60.0.html#source-based-code-coverage)
   * [LLVM Source-Based Code Coverage](https://rustc-dev-guide.rust-lang.org/llvm-coverage-instrumentation.html)
 * [Upstream Issues](https://github.com/rust-lang/rust/labels/A-code-coverage)
+  * [coverage: Don't instrument `#[automatically_derived]` functions](https://github.com/rust-lang/rust/pull/120185)
+* [Which files from the target directory are actually required by the executable?](https://stackoverflow.com/questions/47528244/which-files-from-the-target-directory-are-actually-required-by-the-executable)
 
 Tools:
 * [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov) [[doc](https://docs.rs/cargo-llvm-cov/latest/cargo_llvm_cov/)] [[crate](https://crates.io/crates/cargo-llvm-cov)]
@@ -1809,6 +1850,10 @@ closure_parameters:
 closure_param:
     outer_attribute* pattern_no_top_alt (":" type)?
 ```
+
+#### Hints
+
+* [How do I store a closure in a struct in Rust?](https://stackoverflow.com/questions/27831944/how-do-i-store-a-closure-in-a-struct-in-rust)
 
 See [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html)
 for greater detail.
@@ -3882,23 +3927,29 @@ greater detail.
 
 ## Libraries (Crates) and Tools
 
-* [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick/)] [[repo](https://github.com/BurntSushi/aho-corasick)]
-* [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow/)] [[repo](https://github.com/dtolnay/anyhow)]
-* [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne/)] [[repo](https://github.com/zesterer/ariadne)]
-* [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty/)] [[repo](https://github.com/softprops/atty)]
-* [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat/)] [[repo](https://github.com/sharkdp/bat)]
-* [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo/)] [[repo](https://github.com/rust-lang/cargo)]
+Pinned: [[Lib.rs](https://lib.rs/)]
+* [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick)] [[repo](https://github.com/BurntSushi/aho-corasick)]
+* [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow)] [[repo](https://github.com/dtolnay/anyhow)]
+* [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://github.com/zesterer/ariadne)]
+* [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty)] [[repo](https://github.com/softprops/atty)]
+* [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat)] [[repo](https://github.com/sharkdp/bat)]
+* [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo)] [[repo](https://github.com/rust-lang/cargo)]
 * [`cargo-binutils` - proxy for LLVM tools](https://crates.io/crates/cargo-binutils) [[repo](https://github.com/rust-embedded/cargo-binutils)]
-* [`chrono` - date and time library](https://crates.io/crates/chrono) [[doc](https://docs.rs/chrono/latest/chrono/)] [[repo](https://github.com/chronotope/chrono)]
-* [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky/)] [[repo](https://github.com/zesterer/chumsky)]
-* [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap/)] [[repo](https://github.com/clap-rs/clap)]
-* [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored/)] [[repo](https://github.com/colored-rs/colored)]
-* [`crossbeam` - tools for concurrent programming](https://crates.io/crates/crossbeam) [[doc](https://docs.rs/crossbeam/latest/crossbeam/)] [[repo](https://github.com/crossbeam-rs/crossbeam)]
-* [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor/)] [[repo](https://github.com/mmastrac/rust-ctor)]
-* [`cve-rs` - blazingly fast memory vulnerabilities](https://crates.io/crates/cve-rs) [[doc](https://docs.rs/cve-rs/latest/cve_rs/)] [[repo](https://github.com/Speykious/cve-rs)]
-* [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct/)] [[repo](https://github.com/oconnor663/duct.rs)]
-* [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset/)] [[repo](https://github.com/Lymia/enumset)]
-* [`env_logger` - a simple logger that can be configured via environment variables](https://crates.io/crates/env_logger) [[doc](https://docs.rs/env_logger/latest/env_logger/)] [[repo](https://github.com/rust-cli/env_logger)]
+* [`chrono` - date and time library](https://crates.io/crates/chrono) [[doc](https://docs.rs/chrono/latest/chrono)] [[repo](https://github.com/chronotope/chrono)]
+* [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky)] [[repo](https://github.com/zesterer/chumsky)]
+* [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap)] [[repo](https://github.com/clap-rs/clap)]
+* [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored)] [[repo](https://github.com/colored-rs/colored)]
+* [`crates-index` - interacting with the `crates.io` index](https://crates.io/crates/crates-index) [[doc](https://docs.rs/crates-index/latest/crates_index)] [[repo](https://github.com/frewsxcv/rust-crates-index)]
+* [`crossbeam` - tools for concurrent programming](https://crates.io/crates/crossbeam) [[doc](https://docs.rs/crossbeam/latest/crossbeam)] [[repo](https://github.com/crossbeam-rs/crossbeam)]
+* [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor)] [[repo](https://github.com/mmastrac/rust-ctor)]
+* [`cve-rs` - blazingly fast memory vulnerabilities](https://crates.io/crates/cve-rs) [[doc](https://docs.rs/cve-rs/latest/cve_rs)] [[repo](https://github.com/Speykious/cve-rs)]
+* [Development tools :: Testing](https://crates.io/categories/development-tools::testing)
+* [`dotenvy` - supply environment variables, load them from `.env`](https://crates.io/crates/dotenvy) [[doc](https://docs.rs/dotenvy/latest/dotenvy)] [[repo](https://github.com/allan2/dotenvy)]
+* [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct)] [[repo](https://github.com/oconnor663/duct.rs)]
+* [`emit` - structured diagnostic](https://crates.io/crates/emit) [[doc](https://docs.rs/emit/latest/emit)] [[repo](https://github.com/emit-rs/emit)]
+* [`emit_term` - emit diagnostic events to the console](https://crates.io/crates/emit_term) [[doc](https://docs.rs/emit_term/latest/emit_term/)] [[repo](https://github.com/emit-rs/emit)]
+* [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset)] [[repo](https://github.com/Lymia/enumset)]
+* [`env_logger` - a simple logger that can be configured via environment variables](https://crates.io/crates/env_logger) [[doc](https://docs.rs/env_logger/latest/env_logger)] [[repo](https://github.com/rust-cli/env_logger)]
   * `RUST_LOG=[target][=][level][,...]` controls logging, examples (considering
     a Rust application `log_demo`):
     * `RUST_LOG=log_demo` turns on all logging for `log_demo`
@@ -3911,27 +3962,36 @@ greater detail.
       logging for `log_demo::foo`
     * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off
       all logging for `log_demo::foo`
-* [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob/)] [[repo](https://github.com/rust-lang/glob)]
-* [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset/)] [[repo](https://github.com/BurntSushi/ripgrep)]
-* [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[repo](https://github.com/mozilla/grcov)]
+* [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob)] [[repo](https://github.com/rust-lang/glob)]
+* [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset)] [[repo](https://github.com/BurntSushi/ripgrep)]
+* [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov)] [[repo](https://github.com/mozilla/grcov)]
 * [`hyperfine` - a command-line benchmarking tool](https://crates.io/crates/hyperfine) [[doc](https://docs.rs/crate/hyperfine/latest)] [[repo](https://github.com/sharkdp/hyperfine)]
-* [`image` - an image processing library](https://crates.io/crates/image) [[doc](https://docs.rs/image/latest/image/)] [[repo](https://github.com/image-rs/image)]
+* [`image` - an image processing library](https://crates.io/crates/image) [[doc](https://docs.rs/image/latest/image)] [[repo](https://github.com/image-rs/image)]
+* [`jaro_winkler` - Jaro-Winkler string distance comparison](https://crates.io/crates/jaro_winkler) [[doc](https://docs.rs/jaro_winkler/latest/jaro_winkler)] [[repo](https://docs.rs/jaro_winkler/latest/jaro_winkler/)]
+* [`jsn` - queryable, streaming, JSON pull parser](https://crates.io/crates/jsn) [[doc](https://docs.rs/jsn/latest/jsn)] [[repo](https://git.sr.ht/~eanyanwu/jsn)]
+* [`just` - a `make`-like tool](https://crates.io/crates/just) [[home](https://just.systems/)] [[doc](https://docs.rs/just/latest/just/)] [[repo](https://github.com/casey/just)]
 * [`kellnr` - the registry for Rust crates](https://kellnr.io/) [[repo](https://github.com/kellnr/kellnr)]
-* [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static/)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
-* [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc/)] [[repo](https://github.com/rust-lang/libc)]
-* [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log/)] [[repo](https://github.com/rust-lang/log)]
-* [`memchr` - heavily optimized routines for string search primitives](https://crates.io/crates/memchr) [[doc](https://docs.rs/memchr/latest/memchr/)] [[repo](https://github.com/BurntSushi/memchr)]
-* [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num/)] [[repo](https://github.com/rust-num/num)]
-* [`num_cpus` - get the number of CPUs on a machine](https://crates.io/crates/num_cpus) [[doc](https://docs.rs/num_cpus/latest/num_cpus/)] [[repo](https://github.com/seanmonstar/num_cpus)]
-* [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2/) [[repo](https://github.com/dtolnay/proc-macro2)]
-* [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote/)] [[repo](https://github.com/dtolnay/quote)]
-* [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand/)] [[repo](https://github.com/rust-random/rand)]
-* [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex/)] [[repo](https://github.com/rust-lang/regex)]
-* [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai/)] [[repo](https://github.com/rhaiscript/rhai)]
+* [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
+* [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc)] [[repo](https://github.com/rust-lang/libc)]
+* [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log)] [[repo](https://github.com/rust-lang/log)]
+* [`memchr` - heavily optimized routines for string search primitives](https://crates.io/crates/memchr) [[doc](https://docs.rs/memchr/latest/memchr)] [[repo](https://github.com/BurntSushi/memchr)]
+* [`nu` - a new type of shell](https://crates.io/crates/nu) [[home](https://www.nushell.sh/)] [[book](https://www.nushell.sh/book/)] [[doc](https://docs.rs/crate/nu/latest)] [[repo](https://github.com/nushell/nushell)]
+* [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num)] [[repo](https://github.com/rust-num/num)]
+* [`num_cpus` - get the number of CPUs on a machine](https://crates.io/crates/num_cpus) [[doc](https://docs.rs/num_cpus/latest/num_cpus)] [[repo](https://github.com/seanmonstar/num_cpus)]
+* [`openssl` - bindings to OpenSSL](https://crates.io/crates/openssl) [[doc](https://docs.rs/openssl/latest/openssl)] [[repo](https://github.com/sfackler/rust-openssl)]
+* [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2) [[repo](https://github.com/dtolnay/proc-macro2)]
+* [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote)] [[repo](https://github.com/dtolnay/quote)]
+* [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand)] [[repo](https://github.com/rust-random/rand)]
+* [`rayon` - simple work-stealing parallelism](https://crates.io/crates/rayon) [[doc](https://docs.rs/rayon/latest/rayon)] [[repo](https://github.com/rayon-rs/rayon)]
+* [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex)] [[repo](https://github.com/rust-lang/regex)]
+* [`reqwest` - higher level HTTP client library](https://crates.io/crates/reqwest) [[doc](https://docs.rs/reqwest/latest/reqwest)] [[repo](https://github.com/seanmonstar/reqwest)]
+* [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai)] [[repo](https://github.com/rhaiscript/rhai)]
 * [`rust-script` - run Rust "scripts"](https://crates.io/crates/rust-script) [[home](https://rust-script.org/)] [[doc](https://docs.rs/crate/rust-script/latest)] [[repo](https://github.com/fornwall/rust-script)]
-* [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version/)] [[repo](https://github.com/djc/rustc-version-rs)]
-* [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde/)] [[repo](https://github.com/serde-rs/serde)]
+* [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
+* [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
+  * [`std::borrow` - a module for working with borrowed data](https://doc.rust-lang.org/std/borrow/index.html)
+    * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
     * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
   * [`std::collections` - collection types](https://doc.rust-lang.org/std/collections/index.html)
@@ -3941,6 +4001,8 @@ greater detail.
     * [`std::convert::From` - used to do value-to-value conversions while consuming the input value](https://doc.rust-lang.org/std/convert/trait.From.html)
     * [`std::convert::Into` - a value-to-value conversion that consumes the input value](https://doc.rust-lang.org/std/convert/trait.Into.html)
     * [`std::convert::TryFrom` - simple and safe type conversions that may fail in a controlled way](https://doc.rust-lang.org/std/convert/trait.TryFrom.html)
+  * [`std::default` - the `Default` trait for types with a default value](https://doc.rust-lang.org/std/default/index.html)
+    * [`std::default::Default` - a trait for giving a type a useful default value](https://doc.rust-lang.org/std/default/trait.Default.html)
   * [`std::env` - inspection and manipulation of the process’ environment](https://doc.rust-lang.org/std/env/index.html)
     * [`std::env::join_paths` - joins a collection of `Path`s appropriately for the `PATH` environment variable](https://doc.rust-lang.org/std/env/fn.join_paths.html)
   * [`std::error` - interfaces for working with errors](https://doc.rust-lang.org/std/error/index.html)
@@ -3961,6 +4023,12 @@ greater detail.
     * [`std::iter::Extend` - extend a collection with the contents of an iterator](https://doc.rust-lang.org/std/iter/trait.Extend.html)
     * [`std::iter::IntoIterator` - conversion into an `Iterator`](https://doc.rust-lang.org/std/iter/trait.IntoIterator.html)
     * [`std::iter::Iterator` - a trait for dealing with iterators](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
+  * [`std::marker` - primitive traits and types representing basic properties of types](https://doc.rust-lang.org/std/marker/index.html)
+    * [`std::marker::Copy` - types whose values can be duplicated simply by copying bits](https://doc.rust-lang.org/std/marker/trait.Copy.html)
+    * [`std::marker::Send` - types that can be transferred across thread boundaries](https://doc.rust-lang.org/std/marker/trait.Send.html)
+    * [`std::marker::Sized` - types with a constant size known at compile time](https://doc.rust-lang.org/std/marker/trait.Sized.html)
+    * [`std::marker::Sync` - types for which it is safe to share references between threads](https://doc.rust-lang.org/std/marker/trait.Sync.html)
+    * [`std::marker::Unpin` - types that do not require any pinning guarantees](https://doc.rust-lang.org/std/marker/trait.Unpin.html)
   * [`std::mem` - basic functions for dealing with memory](https://doc.rust-lang.org/std/mem/index.html)
   * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
@@ -3981,14 +4049,17 @@ greater detail.
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
   * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
     * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
-* [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn/)] [[repo](https://github.com/dtolnay/syn)]
-* [`tao` - cross-platform window manager library](https://crates.io/crates/tao) [[doc](https://docs.rs/tao/latest/tao/)] [[repo](https://github.com/tauri-apps/tao)]
-* [`tauri` - a framework for building tiny, blazing fast binaries for all major desktop platforms](https://crates.io/crates/tauri) [[home](https://tauri.app/)] [[doc](https://docs.rs/tauri/latest/tauri/)] [[repo](https://github.com/tauri-apps/tauri)]
-* [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time/)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
-* [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local/)] [[repo](https://github.com/Amanieu/thread_local-rs)]
-* [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar/)] [[repo](https://github.com/rust-analyzer/ungrammar)]
+* [`strsim` - string similarity metrics](https://crates.io/crates/strsim) [[doc](https://docs.rs/strsim/latest/strsim)] [[repo](https://github.com/rapidfuzz/strsim-rs)]
+* [`syn` - parser for Rust source code](https://crates.io/crates/syn) [[doc](https://docs.rs/syn/latest/syn)] [[repo](https://github.com/dtolnay/syn)]
+* [`tao` - cross-platform window manager library](https://crates.io/crates/tao) [[doc](https://docs.rs/tao/latest/tao)] [[repo](https://github.com/tauri-apps/tao)]
+* [`tauri` - a framework for building tiny, blazing fast binaries for all major desktop platforms](https://crates.io/crates/tauri) [[home](https://tauri.app/)] [[doc](https://docs.rs/tauri/latest/tauri)] [[repo](https://github.com/tauri-apps/tauri)]
+* [`test-context` - custom setup/teardown without test harness](https://crates.io/crates/test-context) [[doc](https://docs.rs/test-context/latest/test_context)] [[repo](https://github.com/JasterV/test-context)]
+* [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
+* [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local)] [[repo](https://github.com/Amanieu/thread_local-rs)]
+* [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar)] [[repo](https://github.com/rust-analyzer/ungrammar)]
   * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
-* [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url/)] [[repo](https://github.com/servo/rust-url)]
-* [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir/)] [[repo](https://github.com/BurntSushi/walkdir)]
-* [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which/)] [[repo](https://github.com/harryfei/which-rs)]
-* [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell/)] [[repo](https://github.com/matklad/xshell)]
+* [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url)] [[repo](https://github.com/servo/rust-url)]
+* [`urlencoding` - URL percentage encoding and decoding library](https://crates.io/crates/urlencoding) [[doc](https://docs.rs/urlencoding/latest/urlencoding)] [[repo](https://github.com/kornelski/rust_urlencoding)]
+* [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir)] [[repo](https://github.com/BurntSushi/walkdir)]
+* [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which)] [[repo](https://github.com/harryfei/which-rs)]
+* [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell)] [[repo](https://github.com/matklad/xshell)]
