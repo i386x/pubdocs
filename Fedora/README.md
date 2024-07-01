@@ -289,4 +289,11 @@ $ koji list-history --build <NVR>
 
 ### Doing a Scratch Build
 
+### Latest Build
+
+```bash
+$ koji latest-build <TAG> <PACKAGE-NAME>
+$ koji buildinfo <NVR>
+```
+
 ### `rpminspect`
