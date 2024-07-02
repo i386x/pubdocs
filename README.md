@@ -538,6 +538,7 @@ interested in. Maybe You find some of these interesting too.
 * [Optimized Binaries for the AMD64 / x86_64 Architecture](https://fedoraproject.org/wiki/Changes/Optimized_Binaries_for_the_AMD64_Architecture)
 * [Ostree Native Container (Phase 2, stable)](https://fedoraproject.org/wiki/Changes/OstreeNativeContainerStable)
 * [ostree native containers (Preview) / CoreOS layering](https://fedoraproject.org/wiki/Changes/OstreeNativeContainer)
+* [Python built with `gcc -O3`](https://fedoraproject.org/wiki/Changes/Python_built_with_gcc_O3)
 * [Register EC2 Cloud Images with uefi-preferred AMI flag](https://fedoraproject.org/wiki/Changes/CloudEC2UEFIPreferred)
 * [systemd-resolved](https://fedoraproject.org/wiki/Changes/systemd-resolved)
 * [Transitioning to Zlib-ng as compatible replacement for Zlib](https://fedoraproject.org/wiki/Changes/ZlibNGTransition)
@@ -1002,8 +1003,9 @@ interested in. Maybe You find some of these interesting too.
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Customize AWS cloud images with RHEL image builder and Packit](https://developers.redhat.com/articles/2024/04/02/customize-aws-cloud-images-rhel-image-builder-and-packit)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
-* [Fedora `bootc` Examples](https://gitlab.com/fedora/bootc/examples)
+* [Fedora `bootc` Base Images](https://gitlab.com/fedora/bootc/base-images)
 * [Fedora `bootc` Docs](https://gitlab.com/fedora/bootc/docs)
+* [Fedora `bootc` Examples](https://gitlab.com/fedora/bootc/examples)
 * [Fedora Container Registry](https://registry.fedoraproject.org/)
 * [For the Love of God, Stop Using CPU Limits on Kubernetes (Updated)](https://home.robusta.dev/blog/stop-using-cpu-limits)
 * [Forensic container checkpointing in Kubernetes](https://kubernetes.io/blog/2022/12/05/forensic-container-checkpointing-alpha/)
@@ -2070,6 +2072,7 @@ See [Caml](#caml).
 * [cereal (C++)](https://github.com/arximboldi/cereal) [[doc](http://uscilab.github.io/cereal/)]
 * [Charcoal (Python)](https://github.com/charcoal-lang/Charcoal)
 * [Cheese (C)](https://github.com/GNOME/cheese)
+* [chroma (Golang)](https://github.com/alecthomas/chroma)
 * [CJS Module Lexer (JavaScript/WebAssembly)](https://github.com/nodejs/cjs-module-lexer)
 * [cli (Golang)](https://github.com/cli/cli) [[home](https://cli.github.com/)]
 * [click (Python)](https://github.com/pallets/click)
@@ -2219,7 +2222,9 @@ See [Caml](#caml).
 * [keylime (Python)](https://github.com/keylime/keylime)
 * [kcov (C++)](https://github.com/SimonKagstrom/kcov)
 * [kdenlive (C++)](https://github.com/KDE/kdenlive)
+* [kdump-utils (Bash)](https://github.com/rhkdump/kdump-utils)
 * [keda (Golang)](https://github.com/kedacore/keda) [[home](https://keda.sh/)]
+* [kexec-tools (C)](https://github.com/horms/kexec-tools) [[git.kernel.org](https://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git/tree/)]
 * [kind (Golang)](https://github.com/kubernetes-sigs/kind) [[home](https://kind.sigs.k8s.io/)]
 * [kivy (Python/Cython/C)](https://github.com/kivy/kivy)
 * [KLEE Symbolic Virtual Machine (C/C++)](https://github.com/klee/klee)
@@ -2279,6 +2284,7 @@ See [Caml](#caml).
 * [lunit (Lua)](https://github.com/mrothNET/lunit) [[home](https://mroth.net/lunit)]
 * [lunr.js (JavaScript)](https://github.com/olivernn/lunr.js)
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
+* [makedumpfile (C)](https://github.com/makedumpfile/makedumpfile)
 * [Marshal parser (Python)](https://github.com/fedora-python/marshalparser/)
 * [matplotlib (Python)](https://github.com/matplotlib/matplotlib)
 * [Matrix (An open network for secure, decentralized communication) server setup using Ansible and Docker (Ansible)](https://github.com/spantaleev/matrix-docker-ansible-deploy/)
@@ -2762,6 +2768,7 @@ See [Caml](#caml).
 * [Bulma Jekyll theme](https://jekyllthemes.io/theme/bulma) [[repo](https://github.com/chrisrhymes/bulma-clean-theme)]
 * Color schemes
   * [a11y-dark (highlight.js)](https://github.com/highlightjs/highlight.js/blob/main/src/styles/a11y-dark.css)
+  * [Chroma Style Gallery](https://xyproto.github.io/splash/docs/) [[chroma repo](https://github.com/alecthomas/chroma)]
   * [Paraíso for Pygments](https://github.com/idleberg/Paraiso-Pygments)
 * CSS browser reset
   * [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
