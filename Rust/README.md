@@ -34,12 +34,16 @@
 * [Karol Kuczmarski's Blog](http://xion.io/)
   * [Better location for unit tests in Rust](http://xion.io/post/code/rust-unit-test-placement.html)
 * [Learning Rust](https://github.com/danbev/learning-rust)
+* [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
 * [Memory safety for the Internet's most critical infrastructure](https://www.memorysafety.org/)
   * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
+* [Review of RustRover: A New IDE for Rust developers by JetBrains](https://linuxel.com/review-of-rustrover-a-new-ide-for-rust-developers-by-jetbrains/)
+* [Rust Maintenance Checklist](https://corrode.notion.site/Rust-Maintenance-Checklist-3fa116db4c6149cbacbe3c16f81c6bb0)
 * [Source Code](https://github.com/rust-lang/rust)
 * [Swatinem Blog](https://swatinem.de/blog/)
   * [The magic of scope guards](https://swatinem.de/blog/magic-scope-guards/)
+* [The Four Horsemen of Bad Rust Code](https://fosdem.org/2024/schedule/event/fosdem-2024-2434-the-four-horsemen-of-bad-rust-code/) [[slides](https://speakerdeck.com/mre/the-4-horsemen-of-bad-rust-code)]
 * [The Rust community’s crate registry](https://crates.io/)
 * [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
 
@@ -68,6 +72,7 @@ $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --prof
 ### GitHub Actions
 
 * [`actions-rust-lang/setup-rust-toolchain`](https://github.com/actions-rust-lang/setup-rust-toolchain)
+* [`dtolnay/rust-toolchain`](https://github.com/dtolnay/rust-toolchain)
 
 ## Tools
 
@@ -131,6 +136,10 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   $ cargo check
   ```
   This will produce no executable.
+* To check the project with various options:
+  * [`cargo hack`](https://github.com/taiki-e/cargo-hack) [[doc](https://docs.rs/crate/cargo-hack/latest)] [[crate](https://crates.io/crates/cargo-hack)]
+* To build and test with all feature flag combinations:
+  * [`cargo {build,check,test}-all-features`](https://github.com/frewsxcv/cargo-all-features) [[doc](https://docs.rs/cargo-all-features/latest/cargo_all_features/)] [[crate](https://crates.io/crates/cargo-all-features)]
 * To update the project dependencies, type:
   ```sh
   $ cargo update
@@ -143,6 +152,8 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   ```
 * To generate a dependency graph:
   * [`cargo depgraph`](https://sr.ht/~jplatte/cargo-depgraph/) [[crate](https://crates.io/crates/cargo-depgraph)]
+* To visualize/analyze crate's internal structure:
+  * [`cargo modules`](https://github.com/regexident/cargo-modules) [[doc](https://docs.rs/cargo-modules/latest/cargo_modules/)] [[crate](https://crates.io/crates/cargo-modules/)]
 * To find unused dependencies:
   * using [`cargo machete`](https://github.com/bnjbvr/cargo-machete)
   * using [`cargo +nightly udeps`](https://github.com/est31/cargo-udeps)
@@ -173,10 +184,14 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   * [`cargo prune`](https://github.com/ustulation/cargo-prune) [[crate](https://crates.io/crates/cargo-prune)]
 * To cleanup `${CARGO_HOME}` cache:
   * [`cargo trim`](https://github.com/iamsauravsharma/cargo-trim) [[crate](https://crates.io/crates/cargo-trim)]
+* To watch over your project's source for changes:
+  * [`cargo watch`](https://github.com/watchexec/cargo-watch) [[home](https://watchexec.github.io/)] [[doc](https://docs.rs/crate/cargo-watch/latest)] [[doc2](https://watchexec.github.io/docs/cargo-watch/)] [[crate](https://crates.io/crates/cargo-watch)]
 
 #### Issues
 
+* [`default-features = false` not working for dependency inside workspace.](https://github.com/rust-lang/cargo/issues/8366)
 * [Disabled optional weak dependencies end up in `Cargo.lock`](https://github.com/rust-lang/cargo/issues/10801)
+* [Environment variable for Cargo Workspace](https://github.com/rust-lang/cargo/issues/3946)
 * [Have an option to make Cargo attempt to clean up after itself.](https://github.com/rust-lang/cargo/issues/6229)
 * [Support for pre-built dependencies](https://github.com/rust-lang/cargo/issues/1139)
 * [Tracking Issue for garbage collection](https://github.com/rust-lang/cargo/issues/12633)
@@ -251,6 +266,7 @@ Tools:
 * [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov) [[doc](https://docs.rs/cargo-llvm-cov/latest/cargo_llvm_cov/)] [[crate](https://crates.io/crates/cargo-llvm-cov)]
 * [grcov](https://github.com/mozilla/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[crate](https://crates.io/crates/grcov)]
 * [kcov](https://github.com/SimonKagstrom/kcov)
+* [rust-ci-conf](https://github.com/jonhoo/rust-ci-conf)
 
 #### Dynamic Linking
 
@@ -270,6 +286,17 @@ of undefined behavior.
 
 [Nextest](https://github.com/nextest-rs/nextest)
 ([documentation](https://nexte.st/)) is a next generation test runner for Rust.
+
+### Rudra
+
+[Rudra](https://github.com/sslab-gatech/Rudra) is a static analyzer to detect
+common undefined behaviors in Rust programs.
+
+### Yuga
+
+[Yuga](https://github.com/vnrst/Yuga) is an automatic lifetime annotation bugs
+detector
+([article](https://research.redhat.com/blog/article/yuga-a-tool-to-help-rust-developers-write-unsafe-code-more-safely/)).
 
 ## Lexical Elements
 
@@ -826,6 +853,322 @@ for greater detail.
   corresponding `enum` type plus the size of discriminant
 * see [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html)
   for greater detail
+
+### Subtyping
+
+`T_a` is a subtype of `T_b` if and only if:
+* without lifetimes, `T_a` is equal to `T_b`
+* `T_a` is not a high-ranked function pointer and `T_a` is not a trait object
+  and
+  * the lifetime of `T_a` outlives the lifetime of `T_b`
+* `T_a` is a high-ranked function pointer or `T_a` is a trait object, and
+  * `T_b` is given by a substitution of the high-ranked lifetimes in `T_a`
+
+Some examples:
+```rust
+fn bar<'a>() {
+    // `&'static str` is a subtype of `&'a str` because `'static` outlives `'a`
+    let s: &'static str = "hi";
+    let t: &'a str = s;
+}
+
+// `for<'a> fn(&'a i32) -> &'a i32` is a subtype of `fn(&'static i32) -> &'static i32`
+// because:
+//   * `for<'a> fn(&'a i32) -> &'a i32` is a high-ranked function pointer
+//   * `fn(&'static i32) -> &'static i32` is derived from `for<'a> fn(&'a i32) -> &'a i32`
+//     via substituting of `'a` with `'static`
+let subtype: &(for<'a> fn(&'a i32) -> &'a i32) = &((|x| x) as fn(&_) -> &_);
+let supertype: &(fn(&'static i32) -> &'static i32) = subtype;
+
+// `dyn for<'a> Fn(&'a i32) -> &'a i32` is a subtype of `dyn Fn(&'static i32) -> &'static i32`
+// because:
+//   * `dyn for<'a> Fn(&'a i32) -> &'a i32` is a trait object
+//   * `dyn Fn(&'static i32) -> &'static i32` is derived from `dyn for<'a> Fn(&'a i32) -> &'a i32`
+//     via substituting of `'a` with `'static`
+let subtype: &(dyn for<'a> Fn(&'a i32) -> &'a i32) = &|x| x;
+let supertype: &(dyn Fn(&'static i32) -> &'static i32) = subtype;
+
+// `for<'a, 'b> fn(&'a i32, &'b i32)` is a subtype of `for<'c> fn(&'c i32, &'c i32)`
+// because:
+//   * `for<'a, 'b> fn(&'a i32, &'b i32)` is a high-ranked function pointer
+//   * `for<'c> fn(&'c i32, &'c i32)` is derived from `for<'a, 'b> fn(&'a i32, &'b i32)`
+//     via substituting of both `'a` and `'b` with `'c`
+let subtype: &(for<'a, 'b> fn(&'a i32, &'b i32)) = &((|x, y| {}) as fn(&_, &_));
+let supertype: &for<'c> fn(&'c i32, &'c i32) = subtype;
+```
+
+Variance:
+* property that generic types have with respect to their arguments
+* a generic type's *variance* in a parameter is how the subtyping of the
+  parameter affects the subtyping of the type:
+  * `F<T>` is *covariant* over `T` if `T` being a subtype of `U` implies that
+    `F<T>` is a subtype of `F<U>`
+  * `F<T>` is *contravariant* over `T` if `T` being a subtype of `U` implies
+    that `F<U>` is a subtype of `F<T>`
+  * `F<T>` is *invariant* over `T` otherwise
+* determining variance of types:
+  * let `F<'a>` be `&'a T` and let `'a` be a subtype of `'b` (that is `'a`
+    outlives `'b`)
+    * then also `&'a T` is a subtype of `&'b T`, meaning that `F<'a>` is
+      **covariant** over `'a`
+  * let `F<T>` be `&'a T` and let `T` be a subtype of `U`
+    * then also `&'a T` is a subtype of `&'a U` since `&'a T` outlives `&'a U`,
+      meaning that `F<T>` is **covariant** over `T`
+  * let `F<'a>` be `&'a mut T` and let `'a` be a subtype of `'b`
+    * then also `&'a mut T` is a subtype of `&'b mut T`, meaning that `F<'a>`
+      is **covariant** over `'a`
+  * let `F<T>` be `&'a mut T` and let `T` be a subtype of `U`
+    * `&'a mut T` is not a subtype of `&'a mut U`
+      * `&'a mut T` can be promoted to `&'a mut U` since `T` is a subtype of
+        `U`
+      * now the value of type `&'a mut T` can be changed to some value of type
+        `&'a mut U`
+      * that is, `&'a mut T` can refer to a value with shorter lifetime than
+        the original `&'a mut T` value
+      * hence, there is no guarantee that `&'a mut T` outlives `&'a mut U`
+      * hence, `&'a mut T` is not a subtype of `&'a mut U`
+    * conversely, `&'a mut U` is not a subtype of `&'a mut T`
+    * thus, `F<T>` is **invariant** over `T`
+  * let `F<T>` be `*const T` and let `T` be a subtype of `U`
+    * then also `*const T` is a subtype of `*const U`, meaning that `F<T>` is
+      **covariant** over `T`
+  * let `F<T>` be `*mut T` and let `T` be a subtype of `U`
+    * `*mut T` can be promoted to `*mut U`
+    * then a value of type `*mut U` can be changed due to mutability
+    * thus, there is no guarantee that a value of type `*mut T` outlives a
+      value of type `*mut U`
+    * hence, `*mut T` is not a subtype of `*mut U`, meaning that `F<T>` is
+      **invariant** over `T`
+  * let `F<T>` be `[T]` and let `T` be a subtype of `U`
+    * then also `[T]` is a subtype of `[U]`, meaning that `F<T>` is
+      **covariant** over `T`
+  * let `F<T>` be `[T; n]` and let `T` be a subtype of `U`
+    * then also `[T; n]` is a subtype of `[U; n]`, meaning that `F<T>` is
+      **covariant** over `T`
+  * let `F<T>` be `fn() -> T` and let `T` be a subtype of `U`
+    * then also `fn() -> T` is a subtype of `fn() -> U`, meaning that `F<T>` is
+      **covariant** over `T`
+  * let `F<T>` be `fn(T) -> ()` and let `T` be a subtype of `U`
+    * `f: fn(T) -> ()` cannot be used in a place where `fn(U) -> ()` is used
+      since `f` expect an argument that outlives `U`
+    * on the other hand, `g: fn(U) -> ()` can be used in a place where
+      `fn(T) -> ()` is used since a provided argument of type `T` lives longer
+      than an expected argument of type `U`
+    * thus, `fn(U) -> ()` is a subtype of `fn(T) -> ()`, meaning that `F<T>` is
+      **contravariant** over `T`
+  * let `F<T>` be `std::cell::UnsafeCell<T>` and let `T` be a subtype of `U`
+    * then `F<T>` is **invariant** over `T` due to interior mutability of
+      `std::cell::UnsafeCell<T>`
+  * let `F<T>` be `std::marker::PhantomData<T>` and let `T` be a subtype of `U`
+    * then also `std::marker::PhantomData<T>` is a subtype of
+      `std::marker::PhantomData<U>`, meaning that `F<T>` is **covariant** over
+      `T`
+  * let `F<'a>` be `dyn Trait<T> + 'a` and let `'a` be a subtype of `'b`
+    * then also `dyn Trait<T> + 'a` is a subtype of `dyn Trait<T> + 'b`,
+      meaning that `F<'a>` is **covariant** over `'a`
+  * let `F<T>` be `dyn Trait<T> + 'a` and let `T` be a subtype of `U`
+    * like in the mutability case, `dyn Trait<T> + 'a` cannot be a subtype of
+      `dyn Trait<U> + 'a` or vice versa since, due to dynamic manner, there is
+      no guarantee that `dyn Trait<T> + 'a` data outlives `dyn Trait<U> + 'a`
+      data (or vice versa)
+    * thus, `F<T>` is **invariant** over `T`
+  * let `F<T>` be `struct`, `enum`, or `union`
+    * `F<T>` is **covariant** over `T` if and only if all its fields involving
+      `T` are also **covariant** over `T`
+    * `F<T>` is **contravariant** over `T` if and only if all its fields
+      involving `T` are also **contravariant** over `T`
+    * `F<T>` is **invariant** over `T` if and only if any of these cases holds:
+      * a `F<T>` field is **invariant** over `T`
+      * `T` is used in positions with different variances
+  * outside of an `struct`, `enum`, or `union`, the variance for parameters is
+    checked at each location separately
+
+Some examples of variance:
+```rust
+use std::cell::UnsafeCell;
+struct Variance<'a, 'b, 'c, 'd, T, U: 'a> {
+    x: &'a U,
+    y: *const T,
+    z: UnsafeCell<&'b f64>,
+    v: &'d T,
+    w: *mut U,
+    f: fn(&'c ()) -> &'c (),
+    g: fn(&'d ()) -> (),
+}
+```
+* `struct Variance` is **covariant** in `'a` because
+  * `x: &'a U` is **covariant** in `'a`
+* `struct Variance` is **invariant** in `'b` because
+  * `z: UnsafeCell<&'b f64>` is **invariant** over `&'b f64`
+* `struct Variance` is **invariant** in `'c` because
+  * `f: fn(&'c ()) -> &'c ()` is **contravariant** over `&'c ()`
+  * `f: fn(&'c ()) -> &'c ()` is **covariant** over `&'c ()`
+* `struct Variance` is **invariant** in `'d` because
+  * `v: &'d T` is **covariant** in `'d`
+  * `g: fn(&'d ()) -> ()` is **contravariant** over `&'d ()`
+* `struct Variance` is **covariant** in `T` because
+  * `y: *const T` is **covariant** in `T`
+  * `v: &'d T` is **covariant** in `T`
+* `struct Variance` is **invariant** in `U` because
+  * `w: *mut U` is **invariant** in `U`
+
+```rust
+use std::cell::UnsafeCell;
+fn generic_tuple<'short, 'long: 'short>(
+    x: (&'long u32, UnsafeCell<&'long u32>),
+) {
+    let _: (&'short u32, UnsafeCell<&'long u32>) = x;
+}
+```
+* `x`'s type is a tuple and hence the variance for parameters is checked at
+  each location inside of the tuple separately
+  * `'long` outlives `'short` and hence `&'long u32` is a subtype of
+    `&'short u32`, meaning that `&'long u32` is **covariant** in `'long`
+  * `UnsafeCell<&'long u32>` is **invariant** in `'long`
+  * thus, `(&'long u32, UnsafeCell<&'long u32>)` is a subtype of
+    `(&'short u32, UnsafeCell<&'long u32>)`
+
+```rust
+fn takes_fn_ptr<'short, 'middle: 'short>(
+    f: fn(&'middle ()) -> &'middle (),
+) {
+    let _: fn(&'static ()) -> &'short () = f;
+}
+```
+* `f`'s type is a function pointer and hence the variance for parameters is
+  checked at both argument and return type location separately
+  * at the argument type location, `fn(&'middle ()) -> &'middle ()` is
+    **contravariant** in `'middle`
+  * at the return type location, `fn(&'middle ()) -> &'middle ()` is
+    **covariant** in `'middle`
+  * thus, `fn(&'middle ()) -> &'middle ()` is a subtype of
+    `fn(&'static ()) -> &'short ()`
+    * `'static` outlives `'middle`
+    * `'middle` outlives `'short`
+
+See [Subtyping and Variance](https://doc.rust-lang.org/reference/subtyping.html),
+[Lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html#lifetime-bounds),
+[Higher-ranked trait bounds](https://doc.rust-lang.org/reference/trait-bounds.html#higher-ranked-trait-bounds),
+[Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+[Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html),
+[`std::cell::UnsafeCell`](https://doc.rust-lang.org/stable/std/cell/struct.UnsafeCell.html),
+and [`std::marker::PhantomData`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html)
+for greater detail.
+
+### Type Coercions
+
+Type coercions are implicit type casts.
+* are done automatically at specific locations
+* any conversion allowed by coercion can also be performed explicitly via `as`
+  (type cast) operator
+
+Coercions can occur at these locations, called *coercion sites*:
+* `let` statements
+* `static` and `const` item declarations
+* arguments for function calls
+* instantiations of struct, union, or enum variant fields
+* function results
+
+Recursive propagation of coercion sites:
+* if the expression on a coercion site is an array literal, where the array has
+  type `[U; n]`, then
+  * each sub-expression in the array literal is a coercion site for coercion to
+    type `U`
+* if the expression on a coercion site is an array literal with repeating
+  syntax, where the array has type `[U; n]`, then
+  * the repeated sub-expression is a coercion site for coercion to type `U`
+* if the expression on a coercion site is a tuple that is a coercion site to
+  type `(U_0, U_1, ..., U_n)`, then
+  * each sub-expression is a coercion site to the respective type, e.g. the 0th
+    sub-expression is a coercion site to type `U_0`
+* if the expression on a coercion site is a parenthesized sub-expression `(e)`,
+  then
+  * if `(e)` has type `U`, then `e` is a coercion site to `U`
+* if the expression on a coercion site is a block that has type `U`, then
+  * the last expression in the block, if it is not semicolon-terminated, is a
+    coercion site to `U` (this includes blocks which are part of control flow
+    statements, if the block has a known type)
+
+Coercion is allowed between the following types:
+* `T` can be coerced to `U` if
+  * `T` is a [subtype](https://doc.rust-lang.org/reference/subtyping.html) of
+    `U`
+* `T` can be coerced to `V` if
+  1. `T` can be coerced to `U` and
+  1. `U` can be coerced to `V`
+* `&mut T` can be coerced to `&T`
+* `*mut T` can be coerced to `*const T`
+* `&T` can be coerced to `*const T`
+* `&mut T` can be coerced to `*mut T`
+* `&T` or `&mut T` can be coerced to `&U` if
+  * `T` implements `Deref<Target = U>`
+* `&mut T` can be coerced to `&mut U` if
+  * `T` implements `DerefMut<Target = U>`
+* `type_constructor(T)` can be coerced to `type_constructor(U)` if
+  1. `type_constructor(T)` is one of
+     * `&T`
+     * `&mut T`
+     * `*const T`
+     * `*mut T`
+     * `Box<T>`
+  1. `U` can be obtained from `T` by
+     [unsized coercion](https://doc.rust-lang.org/reference/type-coercions.html#unsized-coercions)
+* function item types can be coerced to `fn` pointers
+* non capturing closures can be coerced to `fn` pointers
+* `!` can be coerced to any `T`
+
+Unsized coercions:
+* conversions of sized types to unsized ones
+* if `T` can be coerced to `U` by unsized coercion, then
+  * an implementation of `Unsize<U>` for `T` will be provided
+* `[T; n]` can be coerced to `[T]`
+* `T` can be coerced to `dyn U` if
+  1. `T` implements `U + Sized`
+  1. `U` is
+     [object safe](https://doc.rust-lang.org/reference/items/traits.html#object-safety)
+* `Foo<..., T, ...>` can be coerced to `Foo<..., U, ...>` if
+  1. `Foo` is a struct
+  1. `T` implements `Unsize<U>`
+  1. the last field of `Foo` has a type involving `T`
+     * if this field has type `Bar<T>`, then
+       * `Bar<T>` implements `Unsize<Bar<U>>`
+  1. `T` is not part of the type of any other fields
+* a type `Foo<T>` can implement `CoerceUnsized<Foo<U>>` if
+  * `T` implements `Unsize<U>` or `CoerceUnsized<Foo<U>>`
+    * this allows `Foo<T>` to be coerced to `Foo<U>`
+
+Least upper bound coercions:
+* only used in the following situations:
+  * to find the common type for a series of `if` branches
+  * to find the common type for a series of `match` arms
+  * to find the common type for array elements
+  * to find the type for the return type of a closure with multiple return
+    statements
+  * to check the type for the return type of a function with multiple return
+    statements
+* algorithm:
+  * input: types `T_0`, `T_1`, ..., `T_n`
+  * output: type `T_t`
+  * method:
+    * set `T_t` to `T_0`
+    * for `i` in `1..n`:
+      * if `T_i` can be coerced to `T_t`
+        * no change is made
+      * otherwise, if `T_t` can be coerced to `T_i`
+        * set `T_t` to `T_i`
+      * otherwise
+        * set `T_t` to mutual supertype of `T_t` and `T_i`
+
+See [Type coercions](https://doc.rust-lang.org/reference/type-coercions.html),
+[Type cast expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions),
+[Subtyping and Variance](https://doc.rust-lang.org/reference/subtyping.html),
+[Object Safety](https://doc.rust-lang.org/reference/items/traits.html#object-safety),
+[RFC 255](https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md),
+[RFC 546](https://github.com/rust-lang/rfcs/blob/master/text/0546-Self-not-sized-by-default.md),
+[`std::marker::Unsize`](https://doc.rust-lang.org/std/marker/trait.Unsize.html),
+[`std::ops::CoerceUnsized`](https://doc.rust-lang.org/std/ops/trait.CoerceUnsized.html),
+and [`std::marker::Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html)
+for greater detail.
 
 ## Declarations
 
@@ -3971,6 +4314,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`jsn` - queryable, streaming, JSON pull parser](https://crates.io/crates/jsn) [[doc](https://docs.rs/jsn/latest/jsn)] [[repo](https://git.sr.ht/~eanyanwu/jsn)]
 * [`just` - a `make`-like tool](https://crates.io/crates/just) [[home](https://just.systems/)] [[doc](https://docs.rs/just/latest/just/)] [[repo](https://github.com/casey/just)]
 * [`kellnr` - the registry for Rust crates](https://kellnr.io/) [[repo](https://github.com/kellnr/kellnr)]
+* [`ktra` - little cargo registry](https://crates.io/crates/ktra) [[book](https://book.ktra.dev/)] [[doc](https://docs.rs/crate/ktra/latest)] [[repo](https://github.com/moriturus/ktra)]
 * [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
 * [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc)] [[repo](https://github.com/rust-lang/libc)]
 * [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log)] [[repo](https://github.com/rust-lang/log)]
@@ -3994,6 +4338,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
     * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
+  * [`std::cell` - shareable mutable containers](https://doc.rust-lang.org/stable/std/cell/index.html)
+    * [`std::cell::UnsafeCell` - the core primitive for interior mutability in Rust](https://doc.rust-lang.org/stable/std/cell/struct.UnsafeCell.html)
   * [`std::collections` - collection types](https://doc.rust-lang.org/std/collections/index.html)
     * [`std::collections::HashSet` - a hash set](https://doc.rust-lang.org/std/collections/struct.HashSet.html)
   * [`std::convert` - traits for conversions between types](https://doc.rust-lang.org/std/convert/index.html)
@@ -4025,13 +4371,16 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::iter::Iterator` - a trait for dealing with iterators](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
   * [`std::marker` - primitive traits and types representing basic properties of types](https://doc.rust-lang.org/std/marker/index.html)
     * [`std::marker::Copy` - types whose values can be duplicated simply by copying bits](https://doc.rust-lang.org/std/marker/trait.Copy.html)
+    * [`std::marker::PhantomData` - zero-sized type used to mark things that "act like" they own a `T`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html)
     * [`std::marker::Send` - types that can be transferred across thread boundaries](https://doc.rust-lang.org/std/marker/trait.Send.html)
     * [`std::marker::Sized` - types with a constant size known at compile time](https://doc.rust-lang.org/std/marker/trait.Sized.html)
     * [`std::marker::Sync` - types for which it is safe to share references between threads](https://doc.rust-lang.org/std/marker/trait.Sync.html)
     * [`std::marker::Unpin` - types that do not require any pinning guarantees](https://doc.rust-lang.org/std/marker/trait.Unpin.html)
+    * [`std::marker::Unsize` - types that can be "unsized" to a dynamically-sized type](https://doc.rust-lang.org/std/marker/trait.Unsize.html)
   * [`std::mem` - basic functions for dealing with memory](https://doc.rust-lang.org/std/mem/index.html)
   * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
+    * [`std::ops::CoerceUnsized` - trait that indicates that this is a pointer or a wrapper for one, where unsizing can be performed on the pointee](https://doc.rust-lang.org/std/ops/trait.CoerceUnsized.html)
     * [`std::ops::Drop` - custom code within a destructor](https://doc.rust-lang.org/std/ops/trait.Drop.html)
   * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
     * [`std::option::Option` - the `Option` type](https://doc.rust-lang.org/std/option/enum.Option.html)
