@@ -13,6 +13,7 @@
 ## Recipes
 
 * [Cafe Delites](https://cafedelites.com/)
+* [Chef Jean-Pierre](https://www.youtube.com/@ChefJeanPierre/videos)
 * [Cuketka](https://www.cuketka.cz/)
   * [Hovězí vývar](https://recepty.cuketka.cz/hovezi-vyvar/)
 * Feijoada
