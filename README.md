@@ -158,8 +158,10 @@ interested in. Maybe You find some of these interesting too.
 * [RISC-V for FPGAs: benefits and opportunities](https://research.redhat.com/blog/article/risc-v-for-fpgas-benefits-and-opportunities/)
 * [Share team responsibilities efficiently](https://medium.com/@laura.barcziova/share-team-responsibilities-efficiently-9a202aad7bd0)
 * [Starting with an idea and building a community](https://github.com/readme/evan-you)
+* [Switzerland federal government requires releasing its software as open source](https://www.zdnet.com/article/switzerland-now-requires-all-government-software-to-be-open-source/)
 * [The Craftsman 62, The Dark Path](http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html)
 * [The Cruelty of Meritocracy](https://medium.com/words-of-tomorrow/the-cruelty-of-meritocracy-542b78f75790)
+* [The future of AI is predicated on trust](https://brand-studio.fortune.com/red-hat/the-future-of-ai-is-predicated-on-trust/?prx_t=LdkIAAAAAAovEQA)
 * [What are OKRs? Objectives and Key Results Explained.](https://gtmhub.com/resources/articles/okr-meaning)
 * [Why introverts are ignored and often overlooked](https://www.raconteur.net/hr/introverts-workplace)
 * [Why Is Apple’s M1 Chip So Fast?](https://debugger.medium.com/why-is-apples-m1-chip-so-fast-3262b158cba2)
@@ -170,6 +172,7 @@ interested in. Maybe You find some of these interesting too.
 * [3 essential soft skills IT pros need](https://enterprisersproject.com/article/2021/11/it-career-3-essential-soft-skills)
 * [4 Reasons Why AWS Could Lose Its Dominant Cloud Market Share](https://www.itprotoday.com/iaas-and-paas/4-reasons-why-aws-could-lose-its-dominant-cloud-market-share)
 * [5 Kubernetes trends to watch in 2022](https://enterprisersproject.com/article/2022/1/5-kubernetes-trends-watch-2022)
+* [10+ years on the Red Pill](https://dandreadis.blogspot.com/2014/10/10-years-on-red-pill.html)
 * [50+ Useful Kubernetes Tools for 2020](https://caylent.com/50-useful-kubernetes-tools-for-2020)
 * [5G must go cloud-native from edge to core](https://www.5gradar.com/features/5g-must-go-cloud-native-from-edge-to-core)
 * [A First Look At The Podman 2.0 API](http://crunchtools.com/a-first-look-at-the-podman-2-0-api/)
@@ -487,6 +490,7 @@ interested in. Maybe You find some of these interesting too.
   * [pagure.io](https://pagure.io/fesco)
 * [Fedora Home](https://fedoraproject.org/)
 * [Fedora Infrastructure Ansible Playbooks](https://pagure.io/fedora-infra/ansible)
+  * [Greenwave Fedora Policies](https://pagure.io/fedora-infra/ansible/blob/main/f/roles/openshift-apps/greenwave/templates/fedora.yaml)
   * [Make Koji Builders](https://pagure.io/fedora-infra/ansible/blob/main/f/playbooks/groups/buildvm.yml)
   * [Make Koji Builders on Raw HW](https://pagure.io/fedora-infra/ansible/blob/main/f/playbooks/groups/buildhw.yml)
 * [Fedora Legal Documentation (repo)](https://gitlab.com/fedora/legal/fedora-legal-docs)
@@ -498,6 +502,7 @@ interested in. Maybe You find some of these interesting too.
 * [Fedora Project Contributor Agreement](https://docs.fedoraproject.org/en-US/legal/fpca/)
 * [Fedora Project schedules](https://fedorapeople.org/groups/schedule/)
 * [Fedora SPDX Reports](http://miroslav.suchy.cz/fedora/spdx-reports/)
+* [Greenwave](https://pagure.io/greenwave)
 * [Infra Tickets](https://pagure.io/fedora-infrastructure/issues)
 * [Infrastructure/Kerberos](https://fedoraproject.org/wiki/Infrastructure/Kerberos)
 * [Legal:Export](https://fedoraproject.org/wiki/Legal:Export)
@@ -529,6 +534,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Changes
 
+* [Build Fedora Cloud Edition Images Using Kiwi in Koji](https://fedoraproject.org/wiki/Changes/KiwiBuiltCloudImages)
 * [Build Fedora with DNF 5](https://fedoraproject.org/wiki/Changes/BuildWithDNF5)
 * [Deprecating libuser and removing passwd package from Fedora](https://fedoraproject.org/wiki/Changes/LibuserDeprecation)
 * [Disable Openssl engine support](https://fedoraproject.org/wiki/Changes/OpensslNoEngine)
@@ -611,6 +617,7 @@ interested in. Maybe You find some of these interesting too.
   * [Listing Shared Library Files](https://docs.fedoraproject.org/en-US/packaging-guidelines/#_listing_shared_library_files)
 * [Fedora Rawhide Gating](https://docs.fedoraproject.org/en-US/rawhide-gating/)
   * [Multi-Build Updates](https://docs.fedoraproject.org/en-US/rawhide-gating/multi-builds/)
+* [Fedora rawhide RPM Graph](https://rpmgraph.pythonanywhere.com/) [[repo](https://github.com/frenzymadness/RPMGraph)]
 * [fedora-packager (Python)](https://pagure.io/fedora-packager/tree/main)
 * [fedpkg HOWTO](fedpkg-HOWTO.md)
 * [Flatpaks without Modules](https://fedoraproject.org/wiki/Changes/FlatpaksWithoutModules)
@@ -646,6 +653,7 @@ interested in. Maybe You find some of these interesting too.
 * [Package Review Process](https://fedoraproject.org/wiki/Package_Review_Process)
 * [Package Update Guide](https://docs.fedoraproject.org/en-US/package-maintainers/Package_Update_Guide/)
 * [Packaging Guidelines and Policies for EPEL](https://docs.fedoraproject.org/en-US/epel/epel-policy/)
+* [Packaging Guidelines for MinGW Cross Compilers](https://docs.fedoraproject.org/en-US/packaging-guidelines/MinGW/)
 * [packit](https://packit.dev/)
   * [Blog Posts](https://packit.dev/posts)
   * [Documentation](https://packit.dev/docs/)
@@ -655,7 +663,7 @@ interested in. Maybe You find some of these interesting too.
 * [Release Engineering Issue Requests](https://pagure.io/releng/issues)
 * [Retire Modularity](https://fedoraproject.org/wiki/Changes/RetireModularity)
 * [rpkg](https://docs.pagure.org/rpkg/) [[repo](https://pagure.io/rpkg)]
-* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html) [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)]
+* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html) [[doc #2](https://fedora-infra.github.io/rpmautospec-docs/)] [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)]
   * [Use rpmautospec in Fedora Linux](https://fedoramagazine.org/use-rpmautospec-in-fedora-linux/)
 * [rpminspect](https://rpminspect.readthedocs.io/) [[copr](https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/)]
 * [Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/)
@@ -754,6 +762,7 @@ interested in. Maybe You find some of these interesting too.
 * [pytest](https://docs.pytest.org/) [[repo](https://github.com/pytest-dev/pytest)]
   * [Good Integration Practices](https://docs.pytest.org/en/stable/goodpractices.html)
   * [pytest-cov](https://pytest-cov.readthedocs.io/) [[repo](https://github.com/pytest-dev/pytest-cov/)]
+  * [pytest-mh](https://pytest-mh.readthedocs.io/en/latest/) [[repo](https://github.com/next-actions/pytest-mh)]
 * [Pytest 8](https://fedoraproject.org/wiki/Changes/Pytest_8)
 * [Python 2 Dropping Database for Fedora](https://fedora.portingdb.xyz/)
 * [Python 3.13](https://fedoraproject.org/wiki/Changes/Python3.13)
@@ -828,10 +837,12 @@ interested in. Maybe You find some of these interesting too.
 
 * [CI](https://docs.fedoraproject.org/en-US/ci/)
   * [`gating.yaml` for multiple systems example](https://src.fedoraproject.org/rpms/gcc//blob/rawhide/f/gating.yaml)
-* [Fedora CI pipeline library](https://github.com/fedora-ci/jenkins-pipeline-library)
+* [Fedora CI General Issues](https://pagure.io/fedora-ci/general)
+* [Fedora CI Pipeline Library](https://github.com/fedora-ci/jenkins-pipeline-library)
 * [Fedora QA Issues](https://pagure.io/fedora-qa/issues)
 * [Flexible Metadata Format](https://fedoraproject.org/wiki/Flexible_Metadata_Format)
   * [Metadata](https://pagure.io/fedora-ci/metadata)
+* [Greenwave](https://pagure.io/greenwave)
 * [How to test updates](https://fedoraproject.org/wiki/How_to_test_updates)
 * [QA:Updates Testing](https://fedoraproject.org/wiki/QA:Updates_Testing)
 * [Standard Discovery, Staging and Invocation of Integration Tests](https://fedoraproject.org/wiki/Changes/InvokingTests)
@@ -839,6 +850,7 @@ interested in. Maybe You find some of these interesting too.
   * [pagure.io](https://pagure.io/group/taskotron)
 * [Test Management Tool](https://docs.fedoraproject.org/en-US/ci/tmt/)
 * [Using Mock to test package builds](https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds)
+* [Zuul Based CI](https://fedoraproject.org/wiki/Zuul-based-ci)
 
 ##### Beaker
 
@@ -873,6 +885,7 @@ interested in. Maybe You find some of these interesting too.
 
 ### Graphics
 
+* [CUDA vs. ROCm: A case study](https://news.ycombinator.com/item?id=38700060)
 * [ligra](https://github.com/Jana-Marie/ligra)
 
 ### Networking
@@ -900,7 +913,6 @@ interested in. Maybe You find some of these interesting too.
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [How to use RHEL application compatibility guidelines](https://developers.redhat.com/articles/2023/05/18/how-use-rhel-application-compatibility-guidelines#)
 * [Install Arch Linux with Full Disk Encryption (LVM on LUKS)](https://gist.github.com/mjnaderi/28264ce68f87f52f2cabb823a503e673)
-* [Linux Vendor Firmware Service](https://fwupd.org/)
 * [LWN.net](https://lwn.net/)
   * [An introduction to compound pages](https://lwn.net/Articles/619514/)
 * [Making open source more inclusive by eradicating problematic language](https://www.redhat.com/en/blog/making-open-source-more-inclusive-eradicating-problematic-language)
@@ -1083,15 +1095,19 @@ interested in. Maybe You find some of these interesting too.
 ### Databases
 
 * [Common DB schema change mistakes](https://postgres.ai/blog/20220525-common-db-schema-change-mistakes)
+* [DB-Engines Ranking of Graph DBMS](https://db-engines.com/en/ranking/graph+dbms)
 * [DBeaver Universal Database Tool](https://dbeaver.io/) [[repo](https://github.com/dbeaver/dbeaver)]
+* [EdgeDB](https://www.edgedb.com/) [[repo](https://github.com/edgedb/edgedb)]
 * [Everything wrong with databases and why their complexity is now unnecessary](https://blog.redplanetlabs.com/2024/01/09/everything-wrong-with-databases-and-why-their-complexity-is-now-unnecessary/)
 * [How to configure GTID-based replication on MySQL servers](https://www.redhat.com/sysadmin/gtid-replication-mysql-servers)
 * [JSON and JSONB support in SQLite](https://fedoramagazine.org/json-and-jsonb-support-in-sqlite-3-45-0/)
 * [PostgreSQL](https://www.postgresql.org/) [[doc](https://www.postgresql.org/docs/current/index.html)]
   * [Commitfests](https://commitfest.postgresql.org/)
   * [Foreign keys + table inheritance in PostgreSQL?](https://stackoverflow.com/questions/24360312/foreign-keys-table-inheritance-in-postgresql)
+  * [`pg_top`](https://pg_top.gitlab.io/) [[repo](https://gitlab.com/pg_top/pg_top)]
   * Queries in PostgreSQL
     * [1. Query execution stages](https://postgrespro.com/blog/pgsql/5969262)
+  * [The Magic of VACUUM: Keeping Your PostgreSQL Database in Top Shape](https://levelup.gitconnected.com/the-magic-of-vacuum-keeping-your-postgresql-database-in-top-shape-991a40ae101)
   * [Unlock the Power of PostgreSQL: A Comprehensive Guide to pg_stat_statements](https://thinhdanggroup.github.io/pg-stat-statements/)
   * [What is a slow SQL query?](https://postgres.ai/blog/20210909-what-is-a-slow-sql-query)
 
@@ -1110,6 +1126,7 @@ interested in. Maybe You find some of these interesting too.
 * [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
 * [ISO 9660](https://wiki.osdev.org/ISO_9660)
 * [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
+* [Mirror, mirror on the wall, which image building tool is the fairest of them all?](https://pretalx.com/devconf-cz-2024/talk/ZB9NCL/)
 * [Partition and Format Drive With NTFS](https://relentlesscoding.com/2019/01/05/partition-and-format-drive-with-ntfs/)
 * [Scsi_debug adapter driver for Linux](http://sg.danny.cz/sg/sdebug26.html)
 * [Turn off (spin down) external (USB) HDD on Linux](https://superuser.com/questions/1138498/turn-off-spin-down-external-usb-hdd-on-linux)
@@ -1138,6 +1155,7 @@ interested in. Maybe You find some of these interesting too.
 #### Booting
 
 * [Boot from an EFI Shell](https://mricher.fr/post/boot-from-an-efi-shell/)
+* [boot.ipxe.org (downloadable files)](https://boot.ipxe.org/)
 * [Bootable CDs for BIOS and UEFI](https://fedoraproject.org/wiki/User:Pjones/BootableCDsForBIOSAndUEFI)
 * [Booting CentOS from UEFI](https://www.gslab.com/blogs/booting-centos-from-uefi)
 * [booting vmlinuz/initrd from a bootloader](https://www.linuxquestions.org/questions/linux-general-1/booting-vmlinuz-initrd-from-a-bootloader-166873/)
@@ -1156,6 +1174,7 @@ interested in. Maybe You find some of these interesting too.
 
 #### Firmware
 
+* [Linux Vendor Firmware Service](https://fwupd.org/)
 * [Reducing the bandwidth needs for fwupd](https://lwn.net/Articles/943498/)
 
 #### Graphics
@@ -1202,8 +1221,9 @@ interested in. Maybe You find some of these interesting too.
 * [RFC 5234 -- Augmented BNF for Syntax Specifications: ABNF](https://tools.ietf.org/html/rfc5234.html)
   * [example](https://github.com/toml-lang/toml/blob/master/toml.abnf)
 * [RFC 7519 -- JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
-* [RFC 8801 -- Discovering Provisioning Domain Names and Data](https://datatracker.ietf.org/doc/html/rfc8801.html)
 * [RFC 8098 -- Message Disposition Notification](https://datatracker.ietf.org/doc/html/rfc8098.html)
+* [RFC 8624 -- Algorithm Implementation Requirements and Usage Guidance for DNSSEC](https://datatracker.ietf.org/doc/html/rfc8624.html)
+* [RFC 8801 -- Discovering Provisioning Domain Names and Data](https://datatracker.ietf.org/doc/html/rfc8801.html)
 * [RFC 8952 -- Captive Portal Architecture](https://datatracker.ietf.org/doc/html/rfc8952.html)
 * [RFC 9462 -- Discovery of Designated Resolvers](https://datatracker.ietf.org/doc/html/rfc9462.html)
 * [RFC 9463 -- DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)](https://datatracker.ietf.org/doc/html/rfc9463.html)
@@ -1341,6 +1361,8 @@ interested in. Maybe You find some of these interesting too.
   * [Makefiles: What is an order-only prerequisite?](https://stackoverflow.com/questions/58039810/makefiles-what-is-an-order-only-prerequisite/58040049)
   * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/make.html)
   * [Self-Documented Makefile](https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html)
+* `ptrace`
+  * [Evolution of `ptrace` from `strace`'s perspective](https://pretalx.com/devconf-cz-2024/talk/HSELWM/)
 * `sox`
   * [normalize the volume level of an mp3 file with sox using maximum bitrate for the new file](https://unix.stackexchange.com/questions/544365/normalize-the-volume-level-of-an-mp3-file-with-sox-using-maximum-bitrate-for-the)
   * [Reduce volume of audio file by percentage value using SOX](https://stackoverflow.com/questions/21776073/reduce-volume-of-audio-file-by-percentage-value-using-sox)
@@ -1362,6 +1384,7 @@ interested in. Maybe You find some of these interesting too.
     * [xserver](https://gitlab.freedesktop.org/xorg/xserver)
       * [Xvfb](https://gitlab.freedesktop.org/xorg/xserver/-/tree/master/hw/vfb?ref_type=heads) [[doc](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)]
 * [Motif](https://github.com/fjardon/motif)
+* [Red Hat Enterprise Linux 10 plans for Wayland and Xorg server](https://www.redhat.com/en/blog/rhel-10-plans-wayland-and-xorg-server)
 * [XCB](https://xcb.freedesktop.org/)
   * [API](https://xcb.freedesktop.org/XcbApi/): [public](https://xcb.freedesktop.org/PublicApi/), [protocol stub](https://xcb.freedesktop.org/ProtocolStubApi/), [protocol extension](https://xcb.freedesktop.org/ProtocolExtensionApi/)
   * [Basic Graphics Programming With The XCB Library](https://www.x.org/releases/current/doc/libxcb/tutorial/index.html)
@@ -1504,7 +1527,9 @@ interested in. Maybe You find some of these interesting too.
 
 ### AI & ML
 
+* [Apply generative AI to app modernization with Konveyor AI](https://developers.redhat.com/articles/2024/05/07/modernize-apps-konveyor-ai)
 * [Learning AI](https://github.com/danbev/learning-ai)
+* [NVIDIA Generative AI Examples](https://github.com/NVIDIA/GenerativeAIExamples)
 
 ### Algorithms & Data Structures
 
@@ -1889,6 +1914,7 @@ See [Caml](#caml).
 * [Python 3 documentation](https://docs.python.org/3/)
 * [Python 3: Using "yield from" in Generators - Part 1](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-1.html)
 * [Python 3: Using "yield from" in Generators - Part 2](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-2.html)
+* [Python C API](https://github.com/vstinner/talks/blob/main/2024-PyconUS-LangSummit/c-api.pdf)
 * [Python Developer’s Guide](https://devguide.python.org/)
   * [Status of Python versions](https://devguide.python.org/versions/)
 * [Python Development (Victor’s notes)](https://pythondev.readthedocs.io/)
@@ -2134,6 +2160,7 @@ See [Caml](#caml).
 * [Dyninst (C/C++)](https://github.com/dyninst/dyninst)
 * [ebiso (C)](https://github.com/gozora/ebiso)
 * [Eclipse Che (TypeScript)](https://github.com/eclipse/che)
+* [EdgeDB (Python)](https://github.com/edgedb/edgedb) [[home](https://www.edgedb.com/)]
 * [EDK II - Altera (C)](https://github.com/altera-opensource/uefi-socfpga)
 * [EDK II - TianoCore (C)](https://github.com/tianocore/edk2)
 * [EfiFs - EFI File System Drivers (C)](https://github.com/pbatard/efifs)
@@ -2192,7 +2219,6 @@ See [Caml](#caml).
 * [HyperShift (Golang)](https://github.com/openshift/hypershift)
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [Hyprland (C++)](https://github.com/hyprwm/Hyprland) [[home](https://hyprland.org/)]
-* [i3: A tiling window manager (C)](https://github.com/i3/i3) [[home](https://i3wm.org/)]
 * [icmake (C)](https://gitlab.com/fbb-git/icmake/) [[home](https://fbb-git.gitlab.io/icmake/)]
 * [IGT GPU Tools (C)](https://gitlab.freedesktop.org/drm/igt-gpu-tools) [[doc](https://drm.pages.freedesktop.org/igt-gpu-tools/)]
 * [ILua (Lua)](https://github.com/guysv/ilua)
@@ -2276,6 +2302,7 @@ See [Caml](#caml).
 * [lodash (JavaScript)](https://github.com/lodash/lodash) [[home](https://lodash.com/)]
 * [logiops (C++)](https://github.com/PixlOne/logiops)
 * [lolcat (Ruby)](https://github.com/busyloop/lolcat)
+* [lpc10 (Fortran/C)](https://github.com/jafingerhut/lpc10)
 * [Lua (C)](https://github.com/lua/lua) [[home](https://www.lua.org/)]
 * [luafun (Lua)](https://github.com/luafun/luafun) [[home](https://luafun.github.io/)]
 * [LuaJIT (C)](https://github.com/LuaJIT/LuaJIT) [[home](https://luajit.org/)]
@@ -2361,6 +2388,7 @@ See [Caml](#caml).
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [pdoc (Python)](https://github.com/pdoc3/pdoc)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
+* [pg_top (C)](https://gitlab.com/pg_top/pg_top) [[home](https://pg_top.gitlab.io/)]
 * [Pipeless (Python)](https://github.com/pipeless-ai/pipeless) [[home](https://www.pipeless.ai/)]
 * [pkcs11-provider (C)](https://github.com/latchset/pkcs11-provider)
 * [Playwright (TypeScript)](https://github.com/microsoft/playwright) [[home](https://playwright.dev/)]
@@ -2377,6 +2405,7 @@ See [Caml](#caml).
 * [pping (C++)](https://github.com/pollere/pping)
 * [Primaza (Golang)](https://github.com/primaza/primaza) [[book](https://www.primaza.io/)]
 * [proselint (Python)](https://github.com/amperser/proselint) [[home](http://proselint.com/)]
+* [ptyxis (C)](https://gitlab.gnome.org/chergert/ptyxis)
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
 * [pyenv (Bash)](https://github.com/pyenv/pyenv) [[wiki](https://github.com/pyenv/pyenv/wiki)]
@@ -2455,11 +2484,13 @@ See [Caml](#caml).
 * [stratisd (Rust)](https://github.com/stratis-storage/stratisd) [[home](https://stratis-storage.github.io/)]
 * [Strimzi Kafka operator (Java)](https://github.com/strimzi/strimzi-kafka-operator) [[home](https://strimzi.io/)]
 * [stubby (C)](https://github.com/getdnsapi/stubby)
+* [Sushy (Python)](https://opendev.org/openstack/sushy)
 * [sway (C)](https://github.com/swaywm/sway) [[home](https://swaywm.org/)]
 * [syslinux (C)](https://git.kernel.org/pub/scm/boot/syslinux/syslinux.git/tree/) [[mirror](https://github.com/TritonDataCenter/syslinux)]
 * [systemd (C)](https://github.com/systemd/systemd)
 * [tailwindcss (JavaScript)](https://github.com/tailwindlabs/tailwindcss) [[home](https://tailwindcss.com/)]
 * [tarantool (Lua/C)](https://github.com/tarantool/tarantool) [[home](https://www.tarantool.io/en/)]
+* [temporal.io](https://github.com/temporalio) [[home](https://temporal.io/)]
 * Terminal emulators
   * [Alacritty (Rust)](https://github.com/alacritty/alacritty)
   * [Eterm (C)](https://github.com/mej/Eterm)
@@ -2515,6 +2546,8 @@ See [Caml](#caml).
   * [dwm (C)](https://git.suckless.org/dwm/files.html) [[home](https://dwm.suckless.org/)]
   * [Fluxbox (C++)](https://github.com/fluxbox/fluxbox)
   * [FVWM (C)](https://github.com/fvwmorg/fvwm3) [[home](https://www.fvwm.org/)]
+  * [i3: A tiling window manager (C)](https://github.com/i3/i3) [[home](https://i3wm.org/)]
+    * [My favorite i3wm config | Linux for Newbs 3](https://www.youtube.com/watch?v=wXZgUudR41I)
   * [kotatko (C)](https://github.com/contyk/kotatko)
   * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
@@ -2607,6 +2640,7 @@ See [Caml](#caml).
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
 * [Python Security](https://python-security.readthedocs.io/index.html)
   * [Prevent DoS by large str-int conversions](https://python-security.readthedocs.io/vuln/large-int-str-dos.html)
+* [Red Hat Enterprise Linux security](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/security)
 * [Red Hat extends Common Vulnerabilities and Exposure Program expertise as newly-minted Root organization](https://www.redhat.com/en/blog/red-hat-extends-common-vulnerabilities-and-exposure-program-expertise-newly-minted-root-organization)
 * [Red Hat Product Security risk report 2022](https://www.redhat.com/en/resources/product-security-risk-report-2022?sc_cid=701f2000000tyBjAAI)
 * [Red Hat Trusted Software Supply Chain](https://developers.redhat.com/products/trusted-software-supply-chain/overview?source=sso)
@@ -2620,6 +2654,7 @@ See [Caml](#caml).
 * [Secure Software Development Framework](https://csrc.nist.gov/Projects/ssdf)
 * [Securing open source development: A supply chain perspective](https://www.redhat.com/en/blog/securing-open-source-development-supply-chain-perspective)
 * [Security by design: Security principles and threat modeling](https://www.redhat.com/en/blog/security-design-security-principles-and-threat-modeling)
+* [SHA-1 is a Shambles](https://sha-mbles.github.io/)
 * [The art and science of secure open source software development](https://www.redhat.com/en/blog/art-and-science-secure-open-source-software-development)
 * [The experience of bringing OpenSSL 3.0 into Red Hat Enterprise Linux and Fedora](https://www.redhat.com/en/blog/experience-bringing-openssl-30-rhel-and-fedora)
 * [The future of Red Hat security data](https://www.redhat.com/en/blog/future-red-hat-security-data)
@@ -2629,6 +2664,7 @@ See [Caml](#caml).
 * XZ Backdoor
   * [Everything I Know About the XZ Backdoor](https://boehs.org/node/everything-i-know-about-the-xz-backdoor)
   * [Jonnathan Blow Predicts xz Years Ago..](https://www.youtube.com/watch?v=_dXNFrSxgoI)
+  * [The hack that almost broke the internet](https://www.npr.org/2024/05/17/1197959102/open-source-xz-hack)
   * [The Mystery of ‘Jia Tan,’ the XZ Backdoor Mastermind](https://www.wired.com/story/jia-tan-xz-backdoor/)
   * [Timeline of the xz open source attack](https://research.swtch.com/xz-timeline)
 * [Zero Day Initiative](https://www.zerodayinitiative.com/)
@@ -2718,6 +2754,7 @@ See [Caml](#caml).
   * [infrastructure](https://gitlab.com/testing-farm/infrastructure)
   * [oculus](https://gitlab.com/testing-farm/oculus)
   * [tests](https://gitlab.com/testing-farm/tests)
+* [The Test Trove Repositories](https://github.com/orgs/the-test-trove/repositories)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/teemtee/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
 * [Travis CI](https://travis-ci.org/) [[docs](https://docs.travis-ci.com/)]
@@ -2825,6 +2862,8 @@ See [Caml](#caml).
   * [Týden pro Digitální Česko](https://budoucnostjedigitalni.gov.cz/)
 * [Facebook and Instagram login popup remover](https://greasyfork.org/cs/scripts/395497-facebook-and-instagram-login-popup-remover)
   * [patch](https://greasyfork.org/cs/forum/discussion/69794/please-support-national-facebook-sub-domains/p1?new=1)
+* [Final Round AI](https://www.finalroundai.com/)
+* [Fotori](https://www.fotori.cz/)
 * [Framework Laptop](https://frame.work/)
 * [Hlídač státu](https://www.hlidacstatu.cz/) [[repos](https://github.com/HlidacStatu)]
   * [UZIS_COVID_DATA](https://github.com/HlidacStatu/UZIS_COVID_DATA)
@@ -2846,6 +2885,7 @@ See [Caml](#caml).
 * [Organizujeme sprinty. A ty můžeš taky!](https://blog.python.cz/organizujeme-sprinty-a-ty-muzes-taky)
 * [Our Own Devices](https://www.youtube.com/@CanadianMacGyver/videos)
 * [Patagonia](https://www.patagonia.com/home/)
+* [Polagraph Brno](https://www.polagraph.cz/brno/)
 * [Programmers are also human](https://www.youtube.com/@programmersarealsohuman5909/videos)
 * [Red Hat People team](https://github.com/red-hat-people-team)
 * [Report ze Sprintu na východě](https://blog.python.cz/Report-ze-sprintu-na-vychode)
