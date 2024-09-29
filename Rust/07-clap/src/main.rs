@@ -28,6 +28,12 @@ struct Args {
     /// list)
     #[arg(long, short = 'x', value_delimiter = ',', action = ArgAction::Append, verbatim_doc_comment)]
     exclude: Vec<TestSet>,
+
+    /// Specify additional flags
+    ///
+    /// Specify additional flags that would be passed to tests.
+    #[arg(long, short = 'f', env = "TEST_FLAGS", verbatim_doc_comment)]
+    test_flags: Vec<String>,
 }
 
 #[derive(Debug)]
@@ -59,6 +65,9 @@ impl TryFrom<&Args> for Context {
         }
         args.exclude.iter().for_each(|v| {
             context.testset.remove(*v);
+        });
+        args.test_flags.iter().for_each(|v| {
+            context.opts.extend(["--flag".to_string(), v.clone()]);
         });
 
         context
