@@ -3,6 +3,8 @@
 * Rust is a compiled statically-typed language
 * [5 ways to instantiate Rust structs in tests](https://jmmv.dev/2023/10/rust-test-structs.html)
 * [999 crates of Rust on the wall](https://lawngno.me/blog/2024/06/10/divine-provenance.html)
+* [Aquascope Playground](https://cel.cs.brown.edu/aquascope/)
+  * [Aquascope](https://github.com/cognitive-engineering-lab/aquascope)
 * [Async fn in trait, for real this time](https://fasterthanli.me/series/updating-fasterthanli-me-for-2022/part-7)
 * [Asynchronous Destructors](https://boats.gitlab.io/blog/post/poll-drop/)
 * [Being Rusty: Discovering Rust's design axioms](https://smallcultfollowing.com/babysteps/blog/2023/12/07/rust-design-axioms/)
@@ -12,6 +14,7 @@
 * [Dump C++ and in Rust you should trust, Five Eyes agencies urge](https://www.theregister.com/2023/12/07/memory_correction_five_eyes/)
 * [Everything you need to know about testing in Rust](https://www.shuttle.rs/blog/2024/03/21/testing-in-rust)
 * [Exercism](https://exercism.org/tracks/rust)
+* [`fp-core.rs`](https://github.com/JasonShin/fp-core.rs)
 * [Home Page](https://www.rust-lang.org/)
   * [Asynchronous Programming in Rust](https://rust-lang.github.io/async-book/)
   * [Book](https://doc.rust-lang.org/book/)
@@ -29,6 +32,7 @@
   * [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
   * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
   * [The `rustup` book](https://rust-lang.github.io/rustup/)
+* [How can I deserialize an optional field with custom functions using Serde?](https://stackoverflow.com/questions/44301748/how-can-i-deserialize-an-optional-field-with-custom-functions-using-serde)
 * [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
 * [How to initialize the logger for integration tests?](https://stackoverflow.com/questions/30177845/how-to-initialize-the-logger-for-integration-tests)
 * [Karol Kuczmarski's Blog](http://xion.io/)
@@ -39,13 +43,23 @@
   * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
 * [Review of RustRover: A New IDE for Rust developers by JetBrains](https://linuxel.com/review-of-rustrover-a-new-ide-for-rust-developers-by-jetbrains/)
+* [Rust 1.80.0: Top 10 Most Interesting Things & Blog Highlights](https://www.youtube.com/watch?v=iwV-T5yHJQw)
+* [Rust Compiler Explorer](https://rust.godbolt.org/)
+* [Rust Language Cheat Sheet](https://cheats.rs/)
 * [Rust Maintenance Checklist](https://corrode.notion.site/Rust-Maintenance-Checklist-3fa116db4c6149cbacbe3c16f81c6bb0)
+* [Rust Trends](https://rust-trends.com/)
+  * [Emulators and memory management visualization](https://rust-trends.com/newsletter/emulators-and-memory-management-visualization/)
+* [RustConf](https://rustconf.com/)
+* [rust-learning](https://github.com/ctjhoa/rust-learning)
+* [Shipyard.rs (Private Cargo Registry Service)](https://shipyard.rs/) [[book](https://docs.shipyard.rs/)]
 * [Source Code](https://github.com/rust-lang/rust)
 * [Swatinem Blog](https://swatinem.de/blog/)
   * [The magic of scope guards](https://swatinem.de/blog/magic-scope-guards/)
-* [The Four Horsemen of Bad Rust Code](https://fosdem.org/2024/schedule/event/fosdem-2024-2434-the-four-horsemen-of-bad-rust-code/) [[slides](https://speakerdeck.com/mre/the-4-horsemen-of-bad-rust-code)]
+* [The Four Horsemen of Bad Rust Code](https://fosdem.org/2024/schedule/event/fosdem-2024-2434-the-four-horsemen-of-bad-rust-code/) [[slides](https://speakerdeck.com/mre/the-4-horsemen-of-bad-rust-code)] [[repo](https://github.com/corrode/four-horsemen-talk)]
 * [The Rust community’s crate registry](https://crates.io/)
+* [The Story of Tail Call Optimizations in Rust](https://dev.to/seanchen1991/the-story-of-tail-call-optimizations-in-rust-35hf)
 * [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
+* [Translating All C to Rust (TRACTOR)](https://www.darpa.mil/program/translating-all-c-to-rust)
 
 ## Installation
 
@@ -81,6 +95,11 @@ $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --prof
 [Cargo](https://doc.rust-lang.org/cargo/index.html) ([source code](https://github.com/rust-lang/cargo))
 is a package manager for Rust. A package in the Rust world is called *crate*.
 Using `cargo` is a recommended way how to create and maintain Rust projects.
+
+Tips, tricks, and hacks:
+* [Cargo `--offline`](https://www.ncameron.org/blog/cargo-offline/)
+* [How do I pin indirect dependencies of a crate?](https://stackoverflow.com/questions/27770031/how-do-i-pin-indirect-dependencies-of-a-crate)
+* [Nine Rust Cargo.toml Wats and Wat Nots](https://towardsdatascience.com/nine-rust-cargo-toml-wats-and-wat-nots-1e5e02e41648)
 
 * To create a new project in Rust, type:
   ```sh
@@ -152,6 +171,8 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
   ```
 * To generate a dependency graph:
   * [`cargo depgraph`](https://sr.ht/~jplatte/cargo-depgraph/) [[crate](https://crates.io/crates/cargo-depgraph)]
+* To generate a flame graph:
+  * [`cargo flamegraph`](https://github.com/flamegraph-rs/flamegraph) [[crate](https://crates.io/crates/flamegraph)]
 * To visualize/analyze crate's internal structure:
   * [`cargo modules`](https://github.com/regexident/cargo-modules) [[doc](https://docs.rs/cargo-modules/latest/cargo_modules/)] [[crate](https://crates.io/crates/cargo-modules/)]
 * To find unused dependencies:
@@ -199,8 +220,12 @@ Using `cargo` is a recommended way how to create and maintain Rust projects.
 
 ### Clippy
 
-[`clippy`](https://doc.rust-lang.org/clippy/) is a tool for linting a source
-code written in Rust.
+[`clippy`](https://doc.rust-lang.org/clippy/)
+([repo](https://github.com/rust-lang/rust-clippy)) is a tool for linting a
+source code written in Rust.
+
+Tips, tricks, and hacks:
+* [Mastering Clippy: Elevating Your Rust Code Quality](https://rust-trends.com/posts/mastering-clippy-elevating-your-rust-code-quality/)
 
 ### Rust Analyzer
 
@@ -652,15 +677,48 @@ float_exponent:
 
 ## Data Types
 
+Grammar:
+```
+type:
+    type_no_bounds
+    impl_trait_type
+    trait_object_type
+
+type_no_bounds:
+    parenthesized_type
+    impl_trait_type_one_bound
+    trait_object_type_one_bound
+    type_path
+    tuple_type
+    never_type
+    raw_pointer_type
+    reference_type
+    array_type
+    slice_type
+    inferred_type
+    qualified_path_in_type
+    bare_function_type
+    macro_invocation
+
+parenthesized_type:
+    "(" type ")"
+```
 * Rust can infer a variable's data type
   * in case of more than one possible data types, a variable must be annotated
     with a data type
 
 ### Never Type
 
+Grammar:
+```
+never_type:
+    "!"
+```
 * `!`
 * has no values
 * represent the result of computations that never complete
+* can be coerced into any other type
+* can only appear in function return types
 * see [Never type](https://doc.rust-lang.org/reference/types/never.html) for
   greater detail
 
@@ -670,7 +728,28 @@ float_exponent:
 
 * `bool`
 * one byte in size
-* two possible values: `true` and `false`
+  * the single byte of a `bool` is guaranteed to be initialized
+* alignment on one byte boundary
+* two possible values: `true` (bit pattern `0x01`) and `false` (bit pattern
+  `0x00`)
+  * other values (bit patterns) may result in undefined behavior
+* implements [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
+* operations table:
+  | `a` | `b` | `!b` | `a \| b` | `a & b` | `a ^ b` | `a == b` | `a > b` |
+  | --- | --- | ---- | -------- | ------- | ------- | -------- | ------- |
+  | `false` | `false` | `true` | `false` | `false` | `false` | `true` | `false` |
+  | `false` | `true` | `false` | `true` | `false` | `true` | `false` | `false` |
+  | `true` | `false` | `true` | `true` | `false` | `true` | `false` | `true` |
+  | `true` | `true` | `false` | `true` | `true` | `false` | `true` | `false` |
+* other operations:
+  * `a != b` is defined as `!(a == b)`
+  * `a >= b` is defined as `a == b | a > b`
+  * `a < b` is defined as `!(a >= b)`
+  * `a <= b` is defined as `a == b | a < b`
 * see [Boolean type](https://doc.rust-lang.org/reference/types/boolean.html)
   for greater detail
 
@@ -684,6 +763,11 @@ float_exponent:
     * `char` outside of this range has undefined behavior
 * every byte of a `char` is guaranteed to be initialized
 * a `[char]` is effectively a UCS-4/UTF-32 string of length 1
+* implements [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 * see [Textual types](https://doc.rust-lang.org/reference/types/textual.html)
   for greater detail
 
@@ -698,6 +782,30 @@ float_exponent:
 | `i128` | `u128` | 128 bits |
 | `isize` | `usize` | machine specific |
 
+* `usize` has the same number of bits as the platform's pointer type
+  * at least 16 bits wide
+* `isize` has the same number of bits as the platform's pointer type
+  * at least 16 bits wide
+  * maximum `isize` value is the theoretical upper bound on object and array
+    size
+* range (`2**x` means `1 << x`):
+  * `iN` (`N` bits, signed):
+    * minimum: `-(2**(N-1))`
+    * maximum: `2**(N-1) - 1`
+  * `uN` (`N` bits, unsigned):
+    * minimum: `0`
+    * maximum: `2**N - 1`
+* for every integer type `T`
+  * the bit validity of `T` is equivalent to the bit validity of
+    `[u8; size_of::<T>()]`
+* an uninitialized byte is not a valid `u8`
+* every integer type implements
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
+
 See [Integer types](https://doc.rust-lang.org/reference/types/numeric.html#integer-types)
 and [Machine-dependent integer types](https://doc.rust-lang.org/reference/types/numeric.html#machine-dependent-integer-types)
 for greater detail.
@@ -705,8 +813,17 @@ for greater detail.
 #### Floating Point Types
 
 * `f32` and `f64` with 32 bits and 64 bits in size, respectively
-* IEEE-754
+* IEEE 754-2008
 * default is `f64`
+* for every floating point type `T`
+  * the bit validity of `T` is equivalent to the bit validity of
+    `[u8; size_of::<T>()]`
+* every floating point type implements
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 * see [Floating-point types](https://doc.rust-lang.org/reference/types/numeric.html#floating-point-types)
   for greater detail
 
@@ -716,6 +833,7 @@ for greater detail.
 
 * `str`
 * dynamically sized type
+  * it can only be instantiated through a pointer type, such as `&str`
 * a value of type `str` has the same representation as `[u8]`
 * methods working on `str` ensure and assume that the data in there is valid
   UTF-8
@@ -727,19 +845,25 @@ for greater detail.
   * a character boundary is where the last byte of the character ends and the
     first byte of the next character begins (recall that characters are UTF-8
     encoded)
+* implements [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 * see [Textual types](https://doc.rust-lang.org/reference/types/textual.html)
   and [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html)
   for greater detail
 
 #### Tuple Types
 
+Grammar:
+```
+tuple_type:
+    "(" ")"
+    "(" (type ",")+ type? ")"
+```
 * tuples are finite sequences of values, where two values may have distinct
   types
-* at the syntactical level, a tuple is a comma-separated list of elements
-  (items) enclosed between parentheses:
-  ```
-  "(" ((item ",")+ item?)? ")"
-  ```
 * an item can be either type or expression or identifier
 * an example of assigning a tuple to the variable:
   ```rust
@@ -766,6 +890,13 @@ for greater detail.
 
   let (x, y) = point;
   ```
+* a tuple type implements
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits if its
+  underlying types implement these
 
 ##### Unit
 
@@ -773,6 +904,11 @@ for greater detail.
 * both unit type and unit value are written as `()`
 * represent an empty value or an empty return type
 * empty value is returned implicitly by an expression
+* implements [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 
 See [Tuple types](https://doc.rust-lang.org/reference/types/tuple.html) and
 [Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html)
@@ -780,20 +916,22 @@ for greater detail.
 
 #### Array Types
 
+Grammar:
+```
+array_type:
+    "[" type ";" expression "]"
+```
 * arrays are finite sequences of values of same type
 * unlike in other programming languages arrays have fixed length
+  * the size of an array is specified by `expression`, which must be a constant
+    expression that evaluates to `usize`
 * in Rust, array are allocated on stack
-* at the syntactical level, an array is a comma-separated list of elements
-  (items) enclosed between brackets:
-  ```
-  "[" (item ("," item)*)? "]"
-  ```
+* all elements of an array are always initialized
 * an example of an array assigned to the variable:
   ```rust
   let arr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   ```
-* an array annotation consists of a type and the number of elements in the
-  array; the exact notation is `"[" type ";" size "]"`, example:
+* with type annotation specified:
   ```rust
   let arr: [u8; 4] = [1, 2, 4, 8];
   ```
@@ -814,28 +952,20 @@ for greater detail.
   [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html)
   for greater detail
 
-#### Reference Types
+#### Slice Types
 
-* a general signature for a reference types is
-  ```
-  "&" ("'" identifier | "'" "static" | "'" "_")? "mut"? type_no_bounds
-  ```
-* if `mut` is not present, a refernce is called a *shared* reference
-  * it points to a memory location owned by other value
-  * prevents direct mutation of the value (exception to this rule is interior
-    mutability)
-  * there can be any number of shared references to a value
-  * a reference type implements `Copy`
-  * referencing a temporal value keeps it alive during the lifetime of the
-    reference itself
-* if `mut` is present, a reference is called a *mutable* reference
-  * like shared reference, it also points to a memory location owned by other
-    value
-  * allows direct mutation of the value
-    * the value must not be borrowed yet
-  * only one mutable reference per value can exists
-* see [References (& and &mut)](https://doc.rust-lang.org/reference/types/pointer.html#references--and-mut)
-  for greater detail
+Grammar:
+```
+slice_type:
+    "[" type "]"
+```
+* dynamically sized type
+* represents a view into a sequence of elements of some type
+* generally used through pointer types
+* all elements of a slice are always initialized
+* access to a slice is always bounds-checked in safe methods and operators
+* see [Slice types](https://doc.rust-lang.org/reference/types/slice.html) for
+  greater detail
 
 #### Struct Types
 
@@ -843,15 +973,307 @@ for greater detail.
 * `struct`s have no specified memory layout
   * to specify one, use [`repr`](https://doc.rust-lang.org/reference/type-layout.html#representations)
     attribute
-* see [Struct types](https://doc.rust-lang.org/reference/types/struct.html) for
-  greater detail
+* visibility of a `struct`'s fields can be specified
+* a tuple `struct` type has anonymous fields
+* a unit-like `struct` type has no fields
+* a `struct` type can implement
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits if
+  types of its fields implement these
+  * a unit-like `struct` type can implement all of these
+* see [Struct types](https://doc.rust-lang.org/reference/types/struct.html) and
+  [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html)
+  for greater detail
 
 #### Enumerated Types
 
 * nominal, heterogeneous disjoint union types
 * any `enum` value consumes as much memory as the largest variant for its
   corresponding `enum` type plus the size of discriminant
+* must be denoted by named reference to an `enum` item
+* an `enum` type can implement
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits if
+  types of its variants implement these
+  * an `enum` type with no variants or only with unit-like variants can
+    implement all of these
 * see [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html)
+  for greater detail
+
+#### Union Types
+
+* nominal, heterogeneous C-like union
+* no notion of an *active field*
+  * reading from a `union` field requires `unsafe`
+    * since data type transmutation between read/write may result in unexpected
+      or undefined behavior
+* only types that never need to be dropped can be used for `union` fields
+* by default the memory layout of a `union` is undefined
+  * the memory layout can be specified by `#[repr(...)]`
+* see [Union types](https://doc.rust-lang.org/reference/types/union.html),
+  [Unions](https://doc.rust-lang.org/reference/items/unions.html), and
+  [Representations](https://doc.rust-lang.org/reference/type-layout.html#representations)
+  for greater detail
+
+#### Function Item Types
+
+* zero-sized
+* yielded by:
+  * a function item
+  * a tuple-like `struct` constructor
+  * an `enum` variant constructor
+* explicitly identifies the function
+  * its name
+  * its type arguments
+  * its early-bound lifetime arguments
+* a function item can be coerced to the function pointer with the same
+  signature
+* implements
+  [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
+  [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
+  [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
+* see [Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+  [Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+  and [Type coercions](https://doc.rust-lang.org/reference/type-coercions.html)
+  for greater detail
+
+#### Closure Types
+
+* a closure type is unique for every closure value produced by a closure
+  expression
+  * a closure type is anonymous and cannot be written out
+* how a compiler defines a new closure type:
+  * parse and analyze a closure expression
+    * record which and how (mutably/immutably) are the closed-over variables
+      used
+      * do not take surrounding code into account, that is
+        * ignore the lifetimes of involved variables
+        * ignore the lifetime of the closure itself
+      * are there no closed-over variables?
+        * the closure is *non-capturing*
+          * can be coerced to the function pointer type with the same signature
+    * does it have the `move` keyword?
+  * no `move` keyword present
+    * try to capture a closed-over variable by immutable borrow first
+    * try to capture a closed-over variable by unique immutable borrow, if
+      the previous fails
+      * special case which occurs when modifying the referent of a mutable
+        reference
+      * cannot be used anywhere else in the language
+      * cannot be written out explicitly
+    * try to capture a closed-over variable by mutable borrow, if the previous
+      fails
+    * finally, try to capture a closed-over variable by move, if all of the
+      previous capturing attempts had failed
+      * compiler usually complains about missing `move` keyword
+    * note that the decision on which capture mode has to be chosen is made on
+      how the captured variable is used inside the closure body
+  * the `move` keyword is present
+    * all closed-over variables are captured by move or copy
+      * a copy capture is preferred if a type implements the `Copy` trait
+    * this allows the closure to outlive the captured values
+  * note that composite types such as structs, tuples, and enums are always
+    captured entirely
+  * make a new anonymous struct-like type
+    * fields of this new struct-like type are captured variables
+    * implement [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html)
+      trait for this type
+    * implement [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html)
+      trait for this type
+      * indicates that the closure can be called once by consuming ownership of
+        the closure
+    * does the closure of this type not move out of any captured variables?
+      * implement [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html)
+        trait for this type
+        * indicates that the closure can be called by mutable reference
+    * does the closure of this type not mutate or move out of any captured
+      variables?
+      * implement [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html) trait
+        for this type
+        * indicates that the closure can be called by shared reference
+    * no variable/value captured by unique immutable or mutable reference?
+      * all variables/values captured by copy or move implement
+        [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) trait?
+        * implement [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html)
+          trait for this type
+      * all variables/values captured by copy or move implement
+        [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html) trait?
+        * implement [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html)
+          trait for this type
+          * the order of cloning of the captured variables is left unspecified
+    * all captured variables implement
+      [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) trait?
+      * implement [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html)
+        trait for this type
+    * all variables captured by non-unique immutable reference implement
+      [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) trait?
+      * all variables/values captured by unique immutable or mutable reference,
+        copy, or move implement
+        [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html) trait?
+        * implement [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html)
+          trait for this type
+* examples:
+  ```rust
+  let mut v = vec![1, 2, 3];
+
+  // Implement `Fn` (capture by reference):
+  let f_a = || { println!("{v}"); };
+  // Also implement `Fn` (capture by move, but the immutable reference is used
+  // inside the closure's body):
+  let f_b = move || { println!("{v}"); };
+
+  // Implement `FnMut` (capture by mutable reference):
+  let g_a = || { v.push(4); };
+  // Also implement `FnMut` (capture by move, but the mutable reference is used
+  // inside the closure's body):
+  let g_b = move || { v.push(4); };
+
+  // Implement `FnOnce` (closure uses operation that takes ownership over the
+  // borrowed value):
+  let h_a = || { drop(v); };
+  // Also implement `FnOnce` (capture by move, but the important is what the
+  // closure do with the captured value in the closure's body):
+  let h_b = move || { drop(v); };
+
+  // Non-capturing closures can be coerced to function pointers:
+  let inc: fn(i32) -> i32 = |x| x + 1;
+
+  let mut b = false;
+  let mrb = &mut b;
+
+  // Unique immutable capture:
+  let mut f = || { *mrb = true; };
+  ```
+* see [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+  [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+  [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
+  [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
+  and [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html) for greater
+  detail
+
+#### Reference Types
+
+Grammar:
+```
+reference_type:
+    "&" lifetime? "mut"? type_no_bounds
+```
+* if `mut` is not present, a reference is called a *shared* reference
+  * it points to a memory location owned by some other value
+  * prevents direct mutation of the value (exception to this rule is interior
+    mutability)
+  * there can be any number of shared references to a value
+  * a reference type implements `Copy` trait
+  * referencing a temporal value keeps it alive during the lifetime of the
+    reference itself
+* if `mut` is present, a reference is called a *mutable* reference
+  * like shared reference, it also points to a memory location owned by some
+    other value
+  * allows direct mutation of the value
+    * the value must not be borrowed yet
+  * only one mutable reference per value can exists
+  * a mutable reference type does not implement `Copy` trait
+* transmutation of a reference type, `R`, to a `[u8; size_of::<R>()]` is not
+  valid
+* see [References (`&` and `&mut`)](https://doc.rust-lang.org/reference/types/pointer.html#references--and-mut),
+  [Interior Mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
+  and [Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries)
+  for greater detail
+
+#### Raw Pointer Types
+
+Grammar:
+```
+raw_pointer_type:
+    "*" ("mut" | "const") type_no_bounds
+```
+* a raw pointer has no safety or liveness guarantees
+* `*const T` is an immutable raw pointer to `T`
+* `*mut T` is a mutable raw pointer to `T`
+* a raw pointer can be copied or dropped
+  * these operations have no effect on the life cycle of any other value
+* dereferencing a raw pointer is an `unsafe` operation
+  * reborrowing: `&*`, `&mut *`
+* a raw pointer, `P`, where `P = *const T` or `P = *mut T`, is said
+  * *thin* if `T: Sized`
+  * *fat* otherwise
+    * this is the case for dynamically sized objects, where the raw pointer
+      contains additional data, like a slot to a virtual method table
+* raw pointers are compared by their address
+  * additional data are included into comparison in case of fat raw pointers
+* `*const` raw pointers can be created directly by
+  [`core::ptr::addr_of`](https://doc.rust-lang.org/core/ptr/macro.addr_of.html)
+* `*mut` raw pointers can be created directly by
+  [`core::ptr::addr_of_mut`](https://doc.rust-lang.org/core/ptr/macro.addr_of_mut.html)
+* transmutation of a raw pointer type, `P`, to a `[u8; size_of::<P>()]` is not
+  valid
+* transmutation of an integer or array of integers to a thin raw pointer is
+  always valid
+  * the pointer produced by this transmutation may not be dereferenced
+* see [Raw pointers (`*const` and `*mut`)](https://doc.rust-lang.org/reference/types/pointer.html#raw-pointers-const-and-mut),
+  [Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+  [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
+  [`core::ptr::addr_of`](https://doc.rust-lang.org/core/ptr/macro.addr_of.html),
+  and [`core::ptr::addr_of_mut`](https://doc.rust-lang.org/core/ptr/macro.addr_of_mut.html)
+  for greater detail
+
+#### Function Pointer Types
+
+Grammar:
+```
+bare_function_type:
+    for_lifetimes? function_type_qualifiers
+        "fn" "(" function_parameters_maybe_named_variadic? ")"
+        bare_function_return_type?
+
+function_type_qualifiers:
+    "unsafe"? ("extern" abi?)?
+
+bare_function_return_type:
+    "->" type_no_bounds
+
+function_parameters_maybe_named_variadic:
+    maybe_named_function_parameters
+    maybe_named_function_parameters_variadic
+
+maybe_named_function_parameters:
+    maybe_named_param ("," maybe_named_param)* ","?
+
+maybe_named_function_parameters_variadic:
+    (maybe_named_param ",")* maybe_named_param "," outer_attribute* "..."
+
+maybe_named_param:
+    outer_attribute* ((identifier | "_") ":")? type
+```
+* a function pointer type
+  * refers to a function whose identity is not necessarily known at compile
+    time
+  * can be created via a type coercion from
+    * a function item
+    * a non-capturing closure
+* `unsafe` qualifier denotes an unsafe function
+* `extern` qualifier denotes an extern function
+  * only extern function types with `C` or `cdecl` calling convention allow
+    variadic parameters
+* attributes on function pointer parameters have the same rules and
+  restrictions like regular function parameters
+* see [Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+  [Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+  [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+  [The `unsafe` keyword](https://doc.rust-lang.org/reference/unsafe-keyword.html),
+  [Extern function qualifier](https://doc.rust-lang.org/reference/items/functions.html#extern-function-qualifier),
+  [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
+  and [Attributes on function parameters](https://doc.rust-lang.org/reference/items/functions.html#attributes-on-function-parameters)
   for greater detail
 
 ### Subtyping
@@ -3349,6 +3771,10 @@ token_tree:
     delim_token_tree
 ```
 
+Examples:
+* [`lisp-in-rs-macros`](https://github.com/RyanWelly/lisp-in-rs-macros)
+* [macro-lisp](https://github.com/JunSuzukiJapan/macro-lisp) [[doc](https://docs.rs/macro_lisp/latest/macro_lisp)] [[crate](https://crates.io/crates/macro_lisp)]
+
 See [Macros](https://doc.rust-lang.org/reference/macros.html) for greater
 detail.
 
@@ -4282,6 +4708,10 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky)] [[repo](https://github.com/zesterer/chumsky)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap)] [[repo](https://github.com/clap-rs/clap)]
 * [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored)] [[repo](https://github.com/colored-rs/colored)]
+* [`core` - the Rust core (i.e. dependency free) library](https://doc.rust-lang.org/core/index.html)
+  * [`core::ptr` - manually manage memory through raw pointers](https://doc.rust-lang.org/core/ptr/index.html)
+    * [`core::ptr::addr_of` - create a `const` raw pointer to a place, without creating an intermediate reference](https://doc.rust-lang.org/core/ptr/macro.addr_of.html)
+    * [`core::ptr::addr_of_mut` - create a `mut` raw pointer to a place, without creating an intermediate reference](https://doc.rust-lang.org/core/ptr/macro.addr_of_mut.html)
 * [`crates-index` - interacting with the `crates.io` index](https://crates.io/crates/crates-index) [[doc](https://docs.rs/crates-index/latest/crates_index)] [[repo](https://github.com/frewsxcv/rust-crates-index)]
 * [`crossbeam` - tools for concurrent programming](https://crates.io/crates/crossbeam) [[doc](https://docs.rs/crossbeam/latest/crossbeam)] [[repo](https://github.com/crossbeam-rs/crossbeam)]
 * [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor)] [[repo](https://github.com/mmastrac/rust-ctor)]
@@ -4305,6 +4735,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
       logging for `log_demo::foo`
     * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off
       all logging for `log_demo::foo`
+* [`git2` - bindings to `libgit2` C library](https://crates.io/crates/git2) [[doc](https://docs.rs/git2/latest/git2)] [[repo](https://github.com/rust-lang/git2-rs)]
 * [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob)] [[repo](https://github.com/rust-lang/glob)]
 * [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset)] [[repo](https://github.com/BurntSushi/ripgrep)]
 * [`grcov` - Rust tool to collect and aggregate code coverage data for multiple source files](https://crates.io/crates/grcov) [[doc](https://docs.rs/grcov/latest/grcov)] [[repo](https://github.com/mozilla/grcov)]
@@ -4323,6 +4754,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num)] [[repo](https://github.com/rust-num/num)]
 * [`num_cpus` - get the number of CPUs on a machine](https://crates.io/crates/num_cpus) [[doc](https://docs.rs/num_cpus/latest/num_cpus)] [[repo](https://github.com/seanmonstar/num_cpus)]
 * [`openssl` - bindings to OpenSSL](https://crates.io/crates/openssl) [[doc](https://docs.rs/openssl/latest/openssl)] [[repo](https://github.com/sfackler/rust-openssl)]
+* [`parking_lot` - more compact and efficient implementations of the standard synchronization primitives](https://crates.io/crates/parking_lot) [[doc](https://docs.rs/parking_lot/latest/parking_lot)] [[repo](https://github.com/Amanieu/parking_lot)]
+* [`peak_alloc` - an allocator to keep track of (the max) allocated memory](https://crates.io/crates/peak_alloc) [[doc](https://docs.rs/peak_alloc/latest/peak_alloc)] [[repo](https://github.com/xgillard/peak_alloc)]
 * [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2) [[repo](https://github.com/dtolnay/proc-macro2)]
 * [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote)] [[repo](https://github.com/dtolnay/quote)]
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand)] [[repo](https://github.com/rust-random/rand)]
@@ -4333,6 +4766,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`rust-script` - run Rust "scripts"](https://crates.io/crates/rust-script) [[home](https://rust-script.org/)] [[doc](https://docs.rs/crate/rust-script/latest)] [[repo](https://github.com/fornwall/rust-script)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
+* [`serial_test` - allows for the creation of serialised Rust tests](https://crates.io/crates/serial_test) [[doc](https://docs.rs/serial_test/latest/serial_test)] [[repo](https://github.com/palfrey/serial_test/)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
   * [`std::borrow` - a module for working with borrowed data](https://doc.rust-lang.org/std/borrow/index.html)
     * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
