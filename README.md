@@ -887,8 +887,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Games & Game Engines
 
-* [ecstasy-of-gold](https://github.com/helio-frota/ecstasy-of-gold)
-* [eog-atari](https://github.com/helio-frota/eog-atari)
+* [tuco](https://github.com/martelinho-de-ouro/tuco) -> [play here -- h,j,k,l keys...](https://martelinho-de-ouro.github.io/tuco) 
 * [MineClone2](https://content.minetest.net/packages/Wuzzy/mineclone2/) [[repo](https://git.minetest.land/MineClone2/MineClone2)]
 * [Minetest](https://www.minetest.net/) [[repo](https://github.com/minetest/minetest)]
 
