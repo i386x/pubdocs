@@ -6,6 +6,62 @@
 
 ### Doing Ordinary Builds and Updates
 
+### Building for EPEL
+
+1. Get the latest repo snapshot:
+   ```bash
+   $ git fetch
+   $ git checkout rawhide
+   $ git pull
+   ```
+1. From `rawhide`:
+   1. Do a scratch build against `epel<N>` target
+   1. Test the package against the `epel<N>` content
+1. Request the EPEL branch if there is no one:
+   ```bash
+   $ fedpkg request-branch epel<N>
+   ```
+1. If the previous step has been executed, put the link of the branch request
+   ticket into the Bugzilla
+1. Switch to the `epel<N>` branch:
+   ```bash
+   $ git fetch
+   $ git checkout epel<N>
+   $ git pull
+   ```
+1. Backport changes from `rawhide`:
+   ```bash
+   $ git merge --ff-only rawhide
+   $ git push
+   ```
+1. Build the package:
+   ```bash
+   $ fedpkg build
+   ```
+1. If there are errors, fix them in `rawhide` (use `%if ...` when needed) and
+   backport fixes to `epel<N>` (keep `rawhide` and `epel<N>` in sync):
+   ```bash
+   $ git checkout rawhide
+   $ # Fix errors
+   $ git add ...
+   $ git commit
+   # Do scratch build for `epel<N>`, test the package, repeat until everything
+   # is fixed
+   $ git push
+   $ git fetch
+   $ git checkout epel<N>
+   $ git merge --ff-only rawhide
+   $ git push
+   $ fedpkg build
+   ```
+1. Create an update in [Bodhi](https://bodhi.fedoraproject.org/):
+   1. Login
+   1. Click `New Update`
+   1. Add the build to `Builds`
+   1. Fill `Description`
+   1. Add bugs to `Bugs`
+   1. Click `Submit`
+
 ### Doing a Rebase
 
 1. Fetch the latest `rawhide`:
@@ -289,6 +345,21 @@ $ koji list-history --build <NVR>
 
 ### Doing a Scratch Build
 
+### Installing `fedpkg` via `pip`
+
+```bash
+$ git clone https://pagure.io/fedpkg.git
+$ cd fedpkg
+$ mkdir -p ~/.myvenvs
+$ python -m venv ~/.myvenvs/fedpkg
+$ source ~/.myvenvs/fedpkg/bin/activate
+$ pip install -U pip
+$ sudo dnf install -y krb5-devel
+$ pip install rpm
+$ pip install -e .
+$ deactivate
+```
+
 ### Latest Build
 
 ```bash
@@ -297,3 +368,22 @@ $ koji buildinfo <NVR>
 ```
 
 ### `rpminspect`
+
+### Token Refresh
+
+#### `fedpkg` and `pagure.io`
+
+1. Login to [pagure.io](https://pagure.io/)
+1. Under your avatar icon on the upper right corner menu, choose `My Settings`
+1. Go to `API Keys`
+1. Click on `Create new API Key`
+1. Fill `description` (e.g. `all in one`)
+1. Set `expiration date` (format `YYYY-MM-DD`) or leave the default one
+1. Toggle `ACLs` (you can `Toggle all`)
+1. Click on `Create`
+1. Copy the API key
+1. Edit `~/.config/rpkg/fedpkg.conf`:
+   ```ini
+   [fedpkg.pagure]
+   token = XXX-YOUR-API-KEY-XXX
+   ```
