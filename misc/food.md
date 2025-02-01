@@ -21,6 +21,8 @@
   * [Guy Fieri Tries Brazilian Food Truck Recommended By Matthew McConaughey | Diners, Drive-Ins & Dives](https://www.youtube.com/watch?v=n9WwchF7HK8)
   * [Making a Huge Brazilian Feijoada Feast All by Myself in One Day](https://www.youtube.com/watch?v=32Yhmmw7XxI)
 * [Hovězí vývar](https://www.angusfarm.cz/recepty/hovezi-vyvar-698/)
+* [How to make Chile con Carne (aka Chile Colorado)](https://www.youtube.com/shorts/oRmBFi5EcWo)
+* [Italian Chef shares easy "Spaghetti alle Vongole" Recipe - Food in Florence](https://www.youtube.com/watch?v=ltb27_0PiS4)
 * [Jedinečné recepty na ovocné knedlíky: těsto lze udělat z jogurtu i tvarohu](https://www.denik.cz/gastronomie/ovocne-knedliky-20210623.html)
 * [Kynuté borůvkové knedlíky: recept podle Markéty Chovancové](https://www.denik.cz/gastronomie/boruvkove-knedliky.html)
 * [Lecker Schnell (meat recipes)](https://www.youtube.com/@leckerschnell/videos)

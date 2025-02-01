@@ -2,6 +2,7 @@
 
 * [Amperak](https://www.youtube.com/@amperak/videos)
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
+* [ElektroMaster](https://www.youtube.com/@Petr-bakom/videos)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
 * [IKAP OK II](https://www.youtube.com/@ikapokii5161/videos)
 * [Japanese Crafting (1)](https://www.youtube.com/@processx/videos)
@@ -20,6 +21,7 @@
 * [Karadenizli Maceracı](https://www.youtube.com/@KaradenizliMaceraci/videos)
 * [Lesnoy_Craft](https://www.youtube.com/@lesnoy_craft8607/videos)
 * [OUTDOORS55](https://www.youtube.com/@OUTDOORS55/videos)
+* [Polissya Bushcraft](https://www.youtube.com/@PolissyaBushcraft/videos)
 * [The Bear Essentials](https://www.youtube.com/@TheBearEssentials/videos)
 * [Vadim in the WILD](https://www.youtube.com/@vadiminthewild/videos)
 
