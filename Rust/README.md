@@ -6,6 +6,8 @@
 * [Aquascope Playground](https://cel.cs.brown.edu/aquascope/)
   * [Aquascope](https://github.com/cognitive-engineering-lab/aquascope)
 * [Async fn in trait, for real this time](https://fasterthanli.me/series/updating-fasterthanli-me-for-2022/part-7)
+* [Async Rust in Practice: Performance, Pitfalls, Profiling](https://www.scylladb.com/2022/01/12/async-rust-in-practice-performance-pitfalls-profiling/)
+* [Async: What is blocking?](https://ryhl.io/blog/async-what-is-blocking/)
 * [Asynchronous Destructors](https://boats.gitlab.io/blog/post/poll-drop/)
 * [Being Rusty: Discovering Rust's design axioms](https://smallcultfollowing.com/babysteps/blog/2023/12/07/rust-design-axioms/)
 * [Code Like a Pro in Rust book code](https://github.com/brndnmtthws/code-like-a-pro-in-rust-book)
@@ -17,6 +19,11 @@
 * [`fp-core.rs`](https://github.com/JasonShin/fp-core.rs)
 * [Home Page](https://www.rust-lang.org/)
   * [Asynchronous Programming in Rust](https://rust-lang.github.io/async-book/)
+  * [Blog](https://blog.rust-lang.org/)
+    * [Announcing Rust 1.80.0](https://blog.rust-lang.org/2024/07/25/Rust-1.80.0.html)
+    * [Announcing Rust 1.80.1](https://blog.rust-lang.org/2024/08/08/Rust-1.80.1.html)
+    * [Announcing Rust 1.81.0](https://blog.rust-lang.org/2024/09/05/Rust-1.81.0.html)
+    * [Announcing Rust 1.82.0](https://blog.rust-lang.org/2024/10/17/Rust-1.82.0.html)
   * [Book](https://doc.rust-lang.org/book/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
   * [Learn Rust](https://www.rust-lang.org/learn)
@@ -39,27 +46,37 @@
   * [Better location for unit tests in Rust](http://xion.io/post/code/rust-unit-test-placement.html)
 * [Learning Rust](https://github.com/danbev/learning-rust)
 * [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
+* [Long-Term Rust Project Maintenance](https://corrode.dev/blog/long-term-rust-maintenance/)
 * [Memory safety for the Internet's most critical infrastructure](https://www.memorysafety.org/)
+  * [Rustls Outperforms OpenSSL and BoringSSL](https://www.memorysafety.org/blog/rustls-performance-outperforms/)
   * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
+* [Pin and suffering](https://fasterthanli.me/articles/pin-and-suffering)
+* [Pretty State Machine Patterns in Rust](https://hoverbear.org/blog/rust-state-machine-pattern/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
+* [Profiling async applications in Rust (video)](https://www.youtube.com/watch?v=8FAdY_0DpkM)
 * [Review of RustRover: A New IDE for Rust developers by JetBrains](https://linuxel.com/review-of-rustrover-a-new-ide-for-rust-developers-by-jetbrains/)
 * [Rust 1.80.0: Top 10 Most Interesting Things & Blog Highlights](https://www.youtube.com/watch?v=iwV-T5yHJQw)
 * [Rust Compiler Explorer](https://rust.godbolt.org/)
+* [Rust Data Modelling Without Classes (video)](https://www.youtube.com/watch?v=z-0-bbc80JM)
+* [Rust Foundation](https://foundation.rust-lang.org/)
 * [Rust Language Cheat Sheet](https://cheats.rs/)
 * [Rust Maintenance Checklist](https://corrode.notion.site/Rust-Maintenance-Checklist-3fa116db4c6149cbacbe3c16f81c6bb0)
 * [Rust Trends](https://rust-trends.com/)
   * [Emulators and memory management visualization](https://rust-trends.com/newsletter/emulators-and-memory-management-visualization/)
-* [RustConf](https://rustconf.com/)
 * [rust-learning](https://github.com/ctjhoa/rust-learning)
+* [RustConf](https://rustconf.com/)
 * [Shipyard.rs (Private Cargo Registry Service)](https://shipyard.rs/) [[book](https://docs.shipyard.rs/)]
 * [Source Code](https://github.com/rust-lang/rust)
 * [Swatinem Blog](https://swatinem.de/blog/)
   * [The magic of scope guards](https://swatinem.de/blog/magic-scope-guards/)
 * [The Four Horsemen of Bad Rust Code](https://fosdem.org/2024/schedule/event/fosdem-2024-2434-the-four-horsemen-of-bad-rust-code/) [[slides](https://speakerdeck.com/mre/the-4-horsemen-of-bad-rust-code)] [[repo](https://github.com/corrode/four-horsemen-talk)]
 * [The Rust community’s crate registry](https://crates.io/)
+* [The Rust Performance Book](https://nnethercote.github.io/perf-book/)
 * [The Story of Tail Call Optimizations in Rust](https://dev.to/seanchen1991/the-story-of-tail-call-optimizations-in-rust-35hf)
 * [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
 * [Translating All C to Rust (TRACTOR)](https://www.darpa.mil/program/translating-all-c-to-rust)
+* [Understanding the `AtomicUsize` in `std::sync::atomic`](https://medium.com/@teamcode20233/understanding-the-atomicusize-in-std-sync-atomic-rust-tutorial-b3b43c77a2b)
+* [What it takes to keep Tokio running (video)](https://www.youtube.com/watch?v=Lc3aw_NIOt0)
 
 ## Installation
 
@@ -159,6 +176,8 @@ Tips, tricks, and hacks:
   * [`cargo hack`](https://github.com/taiki-e/cargo-hack) [[doc](https://docs.rs/crate/cargo-hack/latest)] [[crate](https://crates.io/crates/cargo-hack)]
 * To build and test with all feature flag combinations:
   * [`cargo {build,check,test}-all-features`](https://github.com/frewsxcv/cargo-all-features) [[doc](https://docs.rs/cargo-all-features/latest/cargo_all_features/)] [[crate](https://crates.io/crates/cargo-all-features)]
+* To run tests with injected bugs:
+  * [`cargo mutants`](https://github.com/sourcefrog/cargo-mutants) [[book](https://mutants.rs/)] [[doc](https://docs.rs/crate/cargo-mutants/latest)] [[crate](https://crates.io/crates/cargo-mutants)]
 * To update the project dependencies, type:
   ```sh
   $ cargo update
@@ -169,6 +188,9 @@ Tips, tricks, and hacks:
   ```sh
   $ cargo doc --open
   ```
+* To audit dependencies for crates with security vulnerabilities reported to
+  the [RustSec Advisory Database](https://github.com/RustSec/advisory-db/):
+  * [`cargo audit`](https://github.com/rustsec/rustsec) [[doc](https://docs.rs/cargo-audit/latest/cargo_audit/)] [[crate](https://crates.io/crates/cargo-audit)]
 * To generate a dependency graph:
   * [`cargo depgraph`](https://sr.ht/~jplatte/cargo-depgraph/) [[crate](https://crates.io/crates/cargo-depgraph)]
 * To generate a flame graph:
@@ -257,6 +279,27 @@ into its binary representation.
   All you need is just to pass your project's root file to `rustc` (here
   `main.rs`) and `rustc` will automatically gather all the necessary source
   files, compiles them and links them together.
+* To demangle Rust symbol names, use
+  [`rustfilt`](https://github.com/luser/rustfilt)
+  ([documentation](https://docs.rs/crate/rustfilt/latest),
+  [crate](https://crates.io/crates/rustfilt)).
+
+Useful compiler configuration:
+* `cargo` release profile (see [this comment](https://github.com/tauri-apps/tauri/issues/6538#issue-1638776512)):
+  ```toml
+  [profile.release]
+  panic = "abort"   # Strip expensive panic clean-up logic
+  codegen-units = 1 # Compile crates one after another so the compiler can optimize better
+  lto = true        # Enables link to optimizations
+  # opt-level = "s"   # Optimize for binary size (may produce slower binaries)
+  strip = true      # Remove debug symbols
+  ```
+* stripping local user name (see [this comment](https://github.com/tauri-apps/tauri/issues/6538#issuecomment-1482634473)):
+  ```bash
+  RUSTFLAGS+=" --remap-path-prefix=${HOME}/my_projects/my_rust_project=my_rust_project"
+  RUSTFLAGS+=" --remap-path-prefix=${HOME}/.cargo={HOME}/.cargo"
+  RUSTFLAGS+=" --remap-path-prefix=${HOME}/.rustup={HOME}/.rustup"
+  ```
 
 #### Caching
 
@@ -311,6 +354,15 @@ of undefined behavior.
 
 [Nextest](https://github.com/nextest-rs/nextest)
 ([documentation](https://nexte.st/)) is a next generation test runner for Rust.
+
+### `rstest`
+
+[`rstest`](https://github.com/la10736/rstest/)
+([documentation](https://docs.rs/rstest/latest/rstest/),
+[crate](https://crates.io/crates/rstest)) is a fixture-based test
+framework for Rust.
+
+Video: [Mastering Testing in Rust Using Rstest](https://www.youtube.com/watch?v=w10ndWcuflo)
 
 ### Rudra
 
@@ -1158,7 +1210,12 @@ slice_type:
   [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
   [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
   [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
-  and [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html) for greater
+  [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
+  [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html),
+  [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html),
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+  [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html), and
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html) for greater
   detail
 
 #### Reference Types
@@ -3581,15 +3638,21 @@ trait:
     "unsafe"? "trait" identifier generic_params? (":" type_param_bounds?)?
         where_clause? "{" inner_attribute* associated_item* "}"
 
+trait_object_type:
+    "dyn"? type_param_bounds
+trait_object_type_one_bound:
+    "dyn"? trait_bound
+
 type_param_bounds:
     type_param_bound ("+" type_param_bound)* "+"?
 type_param_bound:
     lifetime
     trait_bound
 trait_bound:
-    "?"? ("for" generic_params)? type_path
-    "(" "?"? ("for" generic_params)? type_path ")"
-
+    ("?" | for_lifetimes)? type_path
+    "(" ("?" | for_lifetimes)? type_path ")"
+for_lifetimes:
+    "for" generic_params
 lifetime_bounds:
     (lifetime "+")* lifetime?
 lifetime:
@@ -3598,10 +3661,456 @@ lifetime:
     "'_"
 ```
 
+A *trait*:
+* describes an abstract interface that types can implement in a separate
+  implementation
+  * consists of associated functions, types, and constants
+    * associated types are members of the trait in the type name space
+    * associated functions and constants are members of the trait in the value
+      name space
+* its declaration defines the trait in the type name space of the trait's
+  location
+* defines an implicit type parameter `Self` that refers to the type
+  implementing this trait
+* allows also additional type parameters
+  * these type parameters, including `Self`, can be further constrained by
+    other traits
+* associated functions
+  * are not allowed to be `const`
+  * if a body is missing, it must be provided by an implementation
+  * if a body is present, the associated function's definition is considered as
+    default unless overridden by an implementation
+  * parameter patterns
+    * a parameter pattern can be one of `identifier`, `"mut" identifier`
+      (deprecated), `"_"`, `"&" identifier`, or `"&&" identifier`
+    * if a body is missing only `identifier` or `"_"` wildcard patterns are
+      allowed
+    * irrefutable patterns are allowed only if there is a body
+* associated constants
+  * if a value is missing, it must be provided by an implementation
+  * if a value is present, the associated constant's value is considered as
+    default unless overridden by an implementation
+* associated types
+  * must be provided by an implementation
+* a visibility annotation is allowed on the syntactical level only
+  * it is rejected when the trait is validated
+* the `unsafe` keyword at the beginning of a trait item indicates that
+  *implementing* the trait may be unsafe
+  * the trait implementation must also begin with the `unsafe` keyword
+  * correctly implemented unsafe trait is safe to use
+  * examples of unsafe traits: `Sync` and `Send`
+
+A *generic trait*:
+  * is a trait with type parameters specified (the same syntax as in *generic
+    functions* is used)
+
+A *super trait*:
+* is declared by trait bounds on the `Self` type of a trait
+  * this applies transitively also on the traits and super traits declared in
+    those trait bounds
+  * a trait cannot be its own super trait
+* is required to be implemented for a type to implement a specific trait
+* anywhere a generic or trait object is bounded by a trait
+  * it has access to the associated items of its super traits
+* a trait with a super trait is its super trait's *sub trait*
+
+Example of traits:
+```rust
+trait Trait {
+    fn fn_no_default();
+    fn fn_with_default() {}
+    fn method_no_default(&self);
+    fn method_with_default(&self) {}
+    type TypeNoDefault;
+    const CONST_NO_DEFAULT: i32;
+    const CONST_WITH_DEFAULT: i32 = 42;
+}
+
+// Generic trait
+trait Seq<T> {
+    fn len(&self) -> u32;
+    fn elt_at(&self, n: u32) -> T;
+    fn iter<F>(&self, f: F) where F: Fn(T);
+}
+
+// Super trait
+//   - `Shape` is a super trait of `Circle`
+trait Shape { fn area(&self) -> f64; }
+trait Circle : Shape { fn radius(&self) -> f64; }
+
+// The same as above, but using `where` clause
+trait Shape { fn area(&self) -> f64; }
+trait Circle where Self: Shape { fn radius(&self) -> f64; }
+
+// Default implementation of `Circle::radius()`
+trait Circle where Self: Shape {
+    fn radius(&self) -> f64 {
+        // A = pi * r^2 => r = (A / pi)^0.5
+        (self.area() / std::f64::consts::PI).sqrt()
+    }
+}
+
+// Super trait method called on a generic parameter
+fn print_area_and_radius<C: Circle>(c: C) {
+    // Here we call the area method from the super trait `Shape` of `Circle`
+    println!("Area: {}", c.area());
+    println!("Radius: {}", c.radius());
+}
+
+// Super trait method called on a trait object
+let circle = Box::new(circle) as Box<dyn Circle>;
+let nonsense = circle.radius() * circle.area();
+```
+
+Trait and lifetime bounds:
+* restrict types and lifetimes of parameters of generic items
+  * `+` operator is used to specify more than one bound, for example:
+    * `T: Copy + Send + 'static` restrict `T` to satisfy `Copy` and `Send`
+      traits and to have `'static` lifetime
+* are also used to name trait objects
+* can be provided on any type in a `where` clause
+  * shortcuts:
+    * `fn f<A: Copy>() {}` is the same as `fn f<A>() where A: Copy {}` (bounds
+      written after declaring a generic parameter)
+    * `trait Circle: Shape {}` is equivalent to `trait Circle where Self: Shape
+      {}` (bounds as super traits)
+    * `trait A { type B: Copy; }` is equivalent to `trait A where Self::B: Copy
+      { type B; }` (bounds on associated types)
+* bounds on an item must be satisfied when using the item
+* bounds can be used to determine that a trait is implemented for a type
+* bounds that don't use the item's parameter or higher-ranked lifetimes are
+  checked when the item is defined
+* `Copy` and `Clone` cannot be used as bounds on a mutable reference, trait
+  object, or slice
+* `Sized` cannot be used as a bound on a trait object or a slice
+* `?Sized` relax the implicit `Sized` trait bound
+  * can only be used for type parameters or associated types
+  * for now, `?` can only be used together with `Sized`
+* lifetime bounds
+  * can be applied to types or to other lifetimes
+  * the bound `'a: 'b`
+    * is read as `'a` *outlives* `'b`
+    * means that `'a` lasts at least as long as `'b`, e.g. `&'a ()` is valid
+      whenever `&'b ()` is valid
+  * `T: 'a` means that all lifetime parameters of `T` outlive `'a`, for example
+    (`'a` is unconstrained lifetime parameter):
+    * `i32: 'static` is satisfied (`i32` lives as long as `'static`)
+    * `&'static str: 'a` is satisfied (`'static` outlives `'a`)
+    * `Vec<&'a ()>: 'static` is not satisfied (elements of the vector may live
+      shorter than `'static`)
+  * sometimes, lifetime bounds can be inferred (see examples below)
+    * implied/inferred bounds are added for all parameters and outputs of a
+      function
+    * lifetime bounds are also inferred for type definitions and `impl` blocks
+      for any type
+* higher-ranked trait bounds (over lifetimes)
+  * specify a bound that is true for all lifetimes
+
+Example of trait bounds:
+```rust
+trait GObject {
+    const PATTERN: u32;
+    type BrushType;
+    fn name() -> &'static str;
+    fn draw(&self, surface: Surface);
+}
+
+fn render<T: GObject>(surface: Surface, obj: T) {
+    // `T` can use `GObject`'s constants and types
+    let brush = create_brush::<T::BrushType>(T::PATTERN);
+    // `obj` can invoke `GObject`'s methods
+    obj.draw(surface.with_brush(brush));
+}
+
+fn copy_and_render<T: Copy>(surface: Surface, obj: T) where T: GObject {
+    // Copy `obj` because `T: Copy`
+    let cobj = obj;
+    // Can use `render` because `T: GObject`
+    render(surface, cobj);
+}
+
+struct Image<T: GObject>(T, T);
+
+fn render_image<U: GObject>(surface: Surface, img: Image<U>) {
+    // `Image<U>` is well-formed because `U: GObject`
+    render(surface, img.0);
+    // `render` can use `img.1` because `U: GObject`
+    render(surface, img.1);
+}
+```
+
+Example of lifetime bounds:
+```rust
+fn f<'a, 'b>(x: &'a i32, mut y: &'b i32) where 'a: 'b {
+    // Since `'a: 'b`, `&'a i32` is a subtype of `&'b i32` so the assignment
+    // is ok
+    y = x;
+    // This is ok since `'a` outlives `'b` and hence `r` will be no referring
+    // to possibly invalid and outdated data
+    let r: &'b &'a i32 = &&0;
+}
+```
+
+Examples of inferred lifetime bounds:
+* `&'a T` is valid if and only if `T: 'a`, so the lifetime bound of `T` is `'a`
+  ```rust
+  fn requires_t_outlives_a<'a, T>(x: &'a T) {}
+  ```
+* inside `requires_t_outlives_a` it is assumed that `T: 'a` even this is not
+  explicitly specified
+  ```rust
+  fn requires_t_outlives_a_not_implied<'a, T: 'a>() {}
+
+  fn requires_t_outlives_a<'a, T>(x: &'a T) {
+      // This compiles, because `T: 'a` is implied by
+      // the reference type `&'a T`
+      requires_t_outlives_a_not_implied::<'a, T>();
+  }
+
+  fn not_implied<'a, T>() {
+      // This errors, because `T: 'a` is not implied by
+      // the function signature
+      requires_t_outlives_a_not_implied::<'a, T>();
+  }
+  ```
+* trait bounds still have to be added explicitly
+  ```rust
+  use std::fmt::Debug;
+  struct IsDebug<T: Debug>(T);
+  // Error: `T` doesn't implement `Debug`
+  fn doesnt_specify_t_debug<T>(x: IsDebug<T>) {}
+  ```
+* type definitions and `impl` blocks
+  ```rust
+  struct Struct<'a, T> {
+      // Here it is inferred that `T: 'a`
+      field: &'a T,
+  }
+
+  enum Enum<'a, T> {
+      // Same here. `T: 'a` is inferred for the whole `enum` and thus it must
+      // be satisfied for all its variants
+      SomeVariant(&'a T),
+      OtherVariant,
+  }
+
+  trait Trait<'a, T: 'a> {}
+
+  // This would error because `T: 'a` is not implied by any type
+  // in the `impl` header
+  impl<'a, T> Trait<'a, T> for () {}
+
+  // This compiles as `T: 'a` is implied by the self type `&'a T`
+  impl<'a, T> Trait<'a, T> for &'a T {}
+  ```
+
+Examples of higher-ranked lifetime bounds:
+```rust
+fn compare<T>(x: i32) where for<'a> &'a T: PartialEq<i32> {
+    // ...
+}
+
+// In order to compare `&'a T` with any lifetime with `i32`, `PartialEq<i32>`
+// must be implemented for `&'a T`:
+impl<'a> PartialEq<i32> for &'a T {
+    // ...
+}
+
+fn call_on_ref_zero<F>(f: F) where for<'a> F: Fn(&'a i32) {
+    let zero = 0;
+    // `&zero` has shorter lifetime than any possible lifetime parameter on the
+    // function and hence only higher-ranked lifetime bounds can be used here
+    f(&zero);
+}
+
+// This function is equivalent to the last one, except that the scope of the
+// lifetime parameter extends only to the end of the `Fn(&'a i32)` trait (in
+// the previous example the scope of the lifetime parameter was the whole
+// `F: Fn(&'a i32)` bound)
+fn call_on_ref_zero<F>(f: F) where F: for<'a> Fn(&'a i32) {
+    let zero = 0;
+    f(&zero);
+}
+```
+
+A `dyn` compatible trait:
+* formerly known as an *object safe* trait (see
+  [RFC 255](https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md)
+  and [RFC 546](https://github.com/rust-lang/rfcs/blob/master/text/0546-Self-not-sized-by-default.md))
+* can be the base trait of a trait object
+* has the following qualities:
+  * all super traits must also be `dyn` compatible
+  * `Sized` must not be a super trait (it must not require `Self: Sized`)
+  * associated constants are not allowed
+  * associated types with generics are not allowed
+  * all associated functions must
+    * either be dispatchable from a trait object
+    * or be explicitly non-dispatchable
+  * a dispatchable associated function
+    * must not have any type parameters
+      * lifetime parameters are allowed
+    * must be a method that does not use `Self` except in the type of the
+      receiver
+    * must have a receiver with one of the following types: `&Self` (i.e.
+      `&self`), `&mut Self` (i.e. `&mut self`), `Box<Self>`, `Rc<Self>`,
+      `Arc<Self>`, `Pin<P>` where `P` is one of the previous types
+    * must not have an opaque return type, that is
+      * it must not be an `async fn` (has a hidden `Future` return type)
+      * it must not have a return position `impl Trait` type (e.g. `fn
+        example(&self) -> impl Trait`)
+    * must not have a `where Self: Sized` bound (receiver type of `Self` (i.e.
+      `self`) implies this)
+  * an explicitly non-dispatchable associated function
+    * must have a `where Self: Sized` bound (receiver type of `Self` (i.e.
+      `self`) implies this)
+
+Examples of `dyn` compatible traits:
+```rust
+// `dyn` compatible trait - all associated functions are dispatchable
+trait TraitMethods {
+    fn by_ref(self: &Self) {}
+    fn by_ref_mut(self: &mut Self) {}
+    fn by_box(self: Box<Self>) {}
+    fn by_rc(self: Rc<Self>) {}
+    fn by_arc(self: Arc<Self>) {}
+    fn by_pin(self: Pin<&Self>) {}
+    fn with_lifetime<'a>(self: &'a Self) {}
+    fn nested_pin(self: Pin<Arc<Self>>) {}
+}
+
+// `dyn` compatible trait - all associated functions are explicitly
+// non-dispatchable (recall that an associated function that is not
+// dispatchable must have a `where Self: Sized` bound)
+trait NonDispatchable {
+    // Non-dispatchable (not a method)
+    fn foo() where Self: Sized {}
+    // Non-dispatchable (use `Self`, which is not known until runtime)
+    fn returns(&self) -> Self where Self: Sized;
+    // Non-dispatchable (use `Self` in `other`, which may be a different
+    // concrete type of the receiver)
+    fn param(&self, other: Self) where Self: Sized {}
+    // Non-dispatchable (has a type parameter, `T`; generics are not compatible
+    // with virtual tables)
+    fn typed<T>(&self, x: T) where Self: Sized {}
+}
+```
+
+Examples of `dyn` non-compatible traits:
+```rust
+trait DynIncompatible {
+    // Error: have associated constant
+    const CONST: i32 = 1;
+
+    // Error: associated function is not a method and thus it is not
+    // dispatchable which means that a `where Self: Sized` bound is required,
+    // which is missing
+    fn foo() {}
+    // Error: `Self` used in return type implies non-dispatchable method, but a
+    // `where Self: Sized` bound is missing
+    fn returns(&self) -> Self;
+    // Error: a generic type parameter implies non-dispatchable method, but a
+    // `where Self: Sized` bound is missing
+    fn typed<T>(&self, x: T) {}
+    // Error: only `Rc<Self>` is supported at now, which implies that the
+    // method is non-dispatchable and hence a `where Self: Sized` bound is
+    // required
+    fn nested(self: Rc<Box<Self>>) {}
+}
+
+// `Sized is a super trait
+trait TraitWithSize where Self: Sized {}
+
+// `Self` as a type parameter in the super trait confuses the compiler:
+//   * `Self` is not known until runtime and thus a virtual table cannot be
+//     build
+// Hence the super trait is not `dyn` compatible
+trait Super<A> {}
+trait WithSelf: Super<Self> where Self: Sized {}
+```
+
+### Trait Objects
+
+A *trait object*:
+* an opaque value of another type that implements a set of traits consisting
+  of:
+  * a `dyn` compatible base trait
+  * any number of its auto traits
+  * any super traits of the base trait
+* is written as the keyword `dyn` followed by a set of trait bounds with the
+  following restrictions:
+  * no more than one non-auto trait is allowed
+  * no more than one lifetime is allowed
+    * a lifetime is sometimes required when a trait object contains references
+    * in some cases, a lifetime can be inferred
+  * no opt-out bounds (e.g. `?Sized`) are allowed
+  * paths to traits may be parenthesized
+* two trait objects alias each other if:
+  * the base traits alias each other
+  * the sets of auto traits are the same
+  * the lifetime bounds are the same
+* is a dynamically sized type (DST)
+  * it is used behind some type of pointer, e.g. `&dyn Trait` or `Box<dyn
+    Trait>`
+* permits late binding of methods
+  * an instance of a pointer to a trait object includes:
+    * a pointer to an instance of a type `T` that implements `SomeTrait`
+    * a *virtual method table* (*vtable*), which contains, for each method of
+      `SomeTrait` and its super traits that `T` implements, a pointer to `T`'s
+      implementation (i.e. a function pointer)
+
+Examples of trait objects:
+```rust
+// These are all valid trait object signatures:
+// * `dyn Trait`
+// * `dyn Trait + Send`
+// * `dyn Trait + Send + Sync`
+// * `dyn Trait + 'static`
+// * `dyn Trait + Send + 'static`
+// * `dyn Trait +`
+// * `dyn 'static + Trait`
+// * `dyn (Trait)`
+
+trait Printable {
+    fn stringify(&self) -> String;
+}
+
+impl Printable for i32 {
+    fn stringify(&self) -> String { self.to_string() }
+}
+
+fn print(a: Box<dyn Printable>) {
+    println!("{}", a.stringify());
+}
+
+fn main() {
+    print(Box::new(10) as Box<dyn Printable>);
+}
+```
+
 See [Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html),
 [Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
-and [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
-for greater detail.
+[Lifetime elision](https://doc.rust-lang.org/reference/lifetime-elision.html),
+[Special types and traits](https://doc.rust-lang.org/reference/special-types-and-traits.html),
+[Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
+[Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
+[Scopes](https://doc.rust-lang.org/reference/names/scopes.html),
+[Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html),
+[Type parameters](https://doc.rust-lang.org/reference/types/parameters.html),
+[Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+[`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+[`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
+[`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
+[`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html),
+[`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
+[`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html), and
+[`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html) for greater
+detail.
 
 ## Implementations
 
@@ -4702,6 +5211,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://github.com/zesterer/ariadne)]
 * [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty)] [[repo](https://github.com/softprops/atty)]
 * [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat)] [[repo](https://github.com/sharkdp/bat)]
+* [`bzip2-rs` - Rust bzip2 decompressor](https://crates.io/crates/bzip2-rs) [[doc](https://docs.rs/bzip2-rs/latest/bzip2_rs)] [[repo](https://github.com/paolobarbolini/bzip2-rs)]
 * [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo)] [[repo](https://github.com/rust-lang/cargo)]
 * [`cargo-binutils` - proxy for LLVM tools](https://crates.io/crates/cargo-binutils) [[repo](https://github.com/rust-embedded/cargo-binutils)]
 * [`chrono` - date and time library](https://crates.io/crates/chrono) [[doc](https://docs.rs/chrono/latest/chrono)] [[repo](https://github.com/chronotope/chrono)]
@@ -4735,6 +5245,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
       logging for `log_demo::foo`
     * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off
       all logging for `log_demo::foo`
+* [`eyre` - flexible concrete Error Reporting type built on `std::error::Error` with customizable Reports](https://crates.io/crates/eyre) [[doc](https://docs.rs/eyre/latest/eyre)] [[repo](https://github.com/eyre-rs/eyre)]
 * [`git2` - bindings to `libgit2` C library](https://crates.io/crates/git2) [[doc](https://docs.rs/git2/latest/git2)] [[repo](https://github.com/rust-lang/git2-rs)]
 * [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob)] [[repo](https://github.com/rust-lang/glob)]
 * [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset)] [[repo](https://github.com/BurntSushi/ripgrep)]
@@ -4764,9 +5275,11 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`reqwest` - higher level HTTP client library](https://crates.io/crates/reqwest) [[doc](https://docs.rs/reqwest/latest/reqwest)] [[repo](https://github.com/seanmonstar/reqwest)]
 * [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai)] [[repo](https://github.com/rhaiscript/rhai)]
 * [`rust-script` - run Rust "scripts"](https://crates.io/crates/rust-script) [[home](https://rust-script.org/)] [[doc](https://docs.rs/crate/rust-script/latest)] [[repo](https://github.com/fornwall/rust-script)]
+* [`rustc-demangle` - Rust compiler symbol demangling](https://crates.io/crates/rustc-demangle) [[doc](https://docs.rs/rustc-demangle/latest/rustc_demangle)] [[repo](https://github.com/rust-lang/rustc-demangle)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
 * [`serial_test` - allows for the creation of serialised Rust tests](https://crates.io/crates/serial_test) [[doc](https://docs.rs/serial_test/latest/serial_test)] [[repo](https://github.com/palfrey/serial_test/)]
+* [`state` - a library for safe and effortless global and thread-local state management](https://crates.io/crates/state) [[doc](https://docs.rs/state/latest/state)] [[repo](https://github.com/SergioBenitez/state/)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
   * [`std::borrow` - a module for working with borrowed data](https://doc.rust-lang.org/std/borrow/index.html)
     * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
