@@ -55,6 +55,18 @@ $ lspci -d ::0300 -v -nn
 $ ld.so --help
 ```
 
+## Network
+
+### Probe Network Interfaces
+
+* `ip link`
+* `/sys/class/net`
+
+```sh
+$ nmcli --fields device,type d status
+$ nmcli --fields device,type d status | sed -n '/ethernet/{s/\s.*//;p;q}'
+```
+
 ## Video
 
 A set of X/Wayland hacks.
