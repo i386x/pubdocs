@@ -13,9 +13,11 @@
 * [Code Like a Pro in Rust book code](https://github.com/brndnmtthws/code-like-a-pro-in-rust-book)
 * [Data Parallelism with Rust and Rayon](https://www.shuttle.rs/blog/2024/04/11/using-rayon-rust)
 * [Developer-first diagnostics for Rust applications](https://kodraus.github.io/rust/2024/06/13/introducing-emit.html)
+* [Don't Use Preludes And Globs](https://corrode.dev/blog/dont-use-preludes-and-globs/)
 * [Dump C++ and in Rust you should trust, Five Eyes agencies urge](https://www.theregister.com/2023/12/07/memory_correction_five_eyes/)
 * [Everything you need to know about testing in Rust](https://www.shuttle.rs/blog/2024/03/21/testing-in-rust)
 * [Exercism](https://exercism.org/tracks/rust)
+* [Fast Rust Builds](https://matklad.github.io/2021/09/04/fast-rust-builds.html)
 * [`fp-core.rs`](https://github.com/JasonShin/fp-core.rs)
 * [Home Page](https://www.rust-lang.org/)
   * [Asynchronous Programming in Rust](https://rust-lang.github.io/async-book/)
@@ -24,6 +26,9 @@
     * [Announcing Rust 1.80.1](https://blog.rust-lang.org/2024/08/08/Rust-1.80.1.html)
     * [Announcing Rust 1.81.0](https://blog.rust-lang.org/2024/09/05/Rust-1.81.0.html)
     * [Announcing Rust 1.82.0](https://blog.rust-lang.org/2024/10/17/Rust-1.82.0.html)
+    * [Announcing Rust 1.83.0](https://blog.rust-lang.org/2024/11/28/Rust-1.83.0.html)
+    * [Announcing Rust 1.84.0](https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html)
+    * [Announcing Rust 1.85.0 and Rust 2024](https://blog.rust-lang.org/2025/02/20/Rust-1.85.0.html)
   * [Book](https://doc.rust-lang.org/book/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
   * [Learn Rust](https://www.rust-lang.org/learn)
@@ -44,6 +49,8 @@
 * [How to initialize the logger for integration tests?](https://stackoverflow.com/questions/30177845/how-to-initialize-the-logger-for-integration-tests)
 * [Karol Kuczmarski's Blog](http://xion.io/)
   * [Better location for unit tests in Rust](http://xion.io/post/code/rust-unit-test-placement.html)
+* [Large Rust Workspaces](https://matklad.github.io/2021/08/22/large-rust-workspaces.html)
+* [Learning Material for Idiomatic Rust](https://corrode.dev/blog/idiomatic-rust-resources/)
 * [Learning Rust](https://github.com/danbev/learning-rust)
 * [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
 * [Long-Term Rust Project Maintenance](https://corrode.dev/blog/long-term-rust-maintenance/)
@@ -74,6 +81,7 @@
 * [The Rust Performance Book](https://nnethercote.github.io/perf-book/)
 * [The Story of Tail Call Optimizations in Rust](https://dev.to/seanchen1991/the-story-of-tail-call-optimizations-in-rust-35hf)
 * [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
+* [Tips For Faster Rust Compile Times](https://corrode.dev/blog/tips-for-faster-rust-compile-times/)
 * [Translating All C to Rust (TRACTOR)](https://www.darpa.mil/program/translating-all-c-to-rust)
 * [Understanding the `AtomicUsize` in `std::sync::atomic`](https://medium.com/@teamcode20233/understanding-the-atomicusize-in-std-sync-atomic-rust-tutorial-b3b43c77a2b)
 * [What it takes to keep Tokio running (video)](https://www.youtube.com/watch?v=Lc3aw_NIOt0)
@@ -248,6 +256,16 @@ source code written in Rust.
 
 Tips, tricks, and hacks:
 * [Mastering Clippy: Elevating Your Rust Code Quality](https://rust-trends.com/posts/mastering-clippy-elevating-your-rust-code-quality/)
+* pedantic `clippy` checks:
+  ```sh
+  cargo clippy -- \
+    -W clippy::single_match \
+    -W clippy::needless_match \
+    -W clippy::needless_late_init \
+    -W clippy::redundant_pattern_matching \
+    -W clippy::redundant_pattern \
+    -W clippy::redundant_guards
+  ```
 
 ### Rust Analyzer
 
@@ -257,7 +275,9 @@ Server Protocol for the Rust programming language.
 
 ### Rust Code Format Checker
 
-`rustfmt` formats a Rust code using the Rust code style conventions.
+[`rustfmt`](https://rust-lang.github.io/rustfmt/)
+([repo](https://github.com/rust-lang/rustfmt)) formats a Rust code using the
+Rust code style conventions.
 
 * To check the code style of one file, type:
   ```sh
@@ -326,6 +346,7 @@ References:
 * [Rust profiling in Red Hat Enterprise Linux 9.3 and 8.9](https://www.redhat.com/en/blog/rust-profiling-in-rhel)
 * [Source-based Code Coverage](https://blog.rust-lang.org/2022/04/07/Rust-1.60.0.html#source-based-code-coverage)
   * [LLVM Source-Based Code Coverage](https://rustc-dev-guide.rust-lang.org/llvm-coverage-instrumentation.html)
+* [Tips for Faster Rust CI Builds](https://corrode.dev/blog/tips-for-faster-ci-builds/)
 * [Upstream Issues](https://github.com/rust-lang/rust/labels/A-code-coverage)
   * [coverage: Don't instrument `#[automatically_derived]` functions](https://github.com/rust-lang/rust/pull/120185)
 * [Which files from the target directory are actually required by the executable?](https://stackoverflow.com/questions/47528244/which-files-from-the-target-directory-are-actually-required-by-the-executable)
@@ -4136,34 +4157,177 @@ associated_item:
 
 An implementation associates an item definition with a concrete type.
 * this happens inside of `impl` block
+* contain functions that belong
+  * to an instance of the type that is being implemented
+  * or to the type statically
 * multiple `impl` blocks per one implementing type are possible
+* attributes (both inner and outer) are allowed
+  * inner attributes that have meaning here are `cfg`, `deprecated`, `doc`, and
+    the lint check attributes
+
+An associated item:
+* is an item declared in a trait or defined in an implementation
+* can be an associated type, an associated constant, or an associated function
+  or method
+* comes in two varieties: declaration or definition
 
 Inherent implementations:
+* the nominal type is called the *implementing type*
+* the associable items are the *associated items* to the implementing type
+* associate the contained items to the implementing type
 * can contain associated functions, including methods, and associated constants
+* cannot contain associated type aliases
+* the path to an associated item = a path to the implementing type + the
+  associated item's identifier
 * a type can also have multiple inherent implementations
 * an implementing type must be defined within the same crate as the original
   type definition
 
-See [Implementations](https://doc.rust-lang.org/reference/items/implementations.html)
-for greater detail.
+Trait implementations:
+* the trait is known as the *implemented trait*
+* must define all non-default associated items declared by the implemented
+  trait
+* may redefine default associated items defined by the implemented trait
+* cannot define any other items
+* the path to an associated item = `<` + a path to the implementing type + `as`
+  + a path to the trait + `>` + the associated item's path
+* unsafe traits require the trait implementation to begin with the `unsafe`
+  keyword
+* **orphan rules check:**
+  * given `impl<P1..=Pn> Trait<T1..=Tn> for T0`
+  * an `impl` is valid only if at least one of the following is true:
+    1. `Trait` is a *local trait*
+    1. all of:
+       1. at least one of the types `T0..=Tn` must be a *local type*; let `Ti`
+          be the first such type
+       1. no *uncovered type* parameters `P1..=Pn` may appear in `T0..Ti`
+          (excluding `Ti`)
+  * fundamental types are special:
+    * the `T` in `Box<T>` is not considered covered
+    * `Box<LocalType>` is considered local
+* two trait implementations *overlap* when:
+  * there is a non-empty intersection of the traits the implementation is for
+  * the implementations can be instantiated with the same type
+* a trait implementation is considered *incoherent* if
+  * either the orphan rules check fails
+  * or there are overlapping implementation instances
+* **glossary**
+  * a **local trait** is a trait which was defined in the current crate
+    * applied type arguments do not affect locality
+  * a **local type** is a `struct`, `enum`, or `union` which was defined in the
+    current crate
+    * this is not affected by applied type arguments
+      * `struct Foo` is considered local, but `Vec<Foo>` is not
+      * `LocalType<ForeignType>` is local
+    * type aliases do not affect locality
+  * an **uncovered type** is a type which does not appear as an argument to
+    another type, e.g. `T` is uncovered, but `T` in `Vec<T>` is covered by
+    `Vec`
+  * a **blanket implementation** is any implementation where a type appears
+    uncovered, e.g. `impl<T> Bar<T> for Vec<T>` is a blanket implementation
+    whereas `impl<T> Bar<Vec<T>> for Vec<T>` is not (all instances of `T` are
+    covered by `Vec`)
+  * a **fundamental type constructor** is a type where implementing a blanket
+    implementation over it is a breaking change
+    * `&`, `&mut`, `Box`, and `Pin` are fundamental
+    * if `T` is local, `&T`, `&mut T`, `Box<T>`, and `Pin<T>` are also local
+    * fundamental type constructors cannot cover other types, i.e. `T` in `&T`,
+      `&mut T`, `Box<T>`, and `Pin<T>` is not considered covered
+
+Generic implementations:
+* an implementation can take generic parameters, which can be used in the rest
+  of the implementation
+* generic parameters *constrain* an implementation if the parameter appears at
+  least once in one of:
+  * the implemented trait, if it has one
+    * in `impl<T> GenericTrait<T> for i32 {}`, `T` appears in the implemented
+      trait
+  * the implementing type
+    * in `impl<T> Trait for GenericStruct<T> {}`, `T` appears in the
+      implementing type
+  * as an associated type in the bounds of a type that contains another
+    parameter that constrains the implementation
+    * in `impl<T, U> GenericTrait<U> for u32 where U: HasAssocType<Ty = T> {}`,
+      `T` is used as an associated type in a bound for type `U`, which itself
+      constrains the implementation (i.e. appears in the implemented trait)
+    * in `impl<T, U> GenericStruct<U> where (U, isize): HasAssocType<Ty = T>
+      {}`, `T` is used as an associated type in a bound for type `(U, isize)`
+      which contains `U` that constrains the implementation (appears in
+      `GenericStruct<U>`)
+* type and `const` parameters must always constrain the implementation
+  * error in `impl<T> Struct {}`: `T` does not constrain `Struct`
+  * error in `impl<const N: usize> Struct {}`: `T` does not constrain `Struct`
+  * error in `impl<T, U> Struct where U: HasAssocType<Ty = T> {}`: `T` is used
+    as an associated type in the bounds for `U`, but `U` does not constrain
+    `Struct`
+  * error in `impl<T, U> GenericTrait<U> for u32 where U: GenericTrait<T> {}`:
+    `T` is used in the bounds, but not as an associated type
+* lifetimes must constrain the implementation if the lifetime is used in an
+  associated type
+  * in `impl<'a> Struct {}`: lifetime is not used in an associated type
+  * error in `impl<'a> HasAssocType for Struct { type Ty = &'a Struct; }`: `'a`
+    is used in an associated type, but it does not constrain the implementation
+    (does not appear neither in `HasAssocType` nor in `Struct`)
+
+See [Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
+[Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[Diagnostic attributes](https://doc.rust-lang.org/reference/attributes/diagnostics.html),
+[The `#[doc]` attribute](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html),
+[Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html),
+[`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html) for greater
+detail.
 
 ### Associated Functions and Methods
 
 Associated functions are functions associated with a type.
 
+When the associated function `function_name` is declared on a trait `Trait`:
+* it can be called with a path `Trait::function_name`
+  * this is substituted for `<_ as Trait>::function_name`
+* given
+  ```rust
+  trait Num {
+      fn from_i32(n: i32) -> Self;
+  }
+
+  impl Num for f64 {
+      fn from_i32(n: i32) -> f64 { n as f64 }
+  }
+  ```
+  the following are equivalent:
+  ```rust
+  let _: f64 = Num::from_i32(42);
+  let _: f64 = <_ as Num>::from_i32(42);
+  let _: f64 = <f64 as Num>::from_i32(42);
+  let _: f64 = f64::from_i32(42);
+  ```
+
 Methods are associated functions with `self` as the first parameter. The type
 of `self`, `S`, can be specified, but it undergoes the following restrictions:
-* Let `T` be an implementing type and `'a` by an arbitrary lifetime.
+* Let `T` be an implementing type and `'a` be an arbitrary lifetime.
 * Then `S` is one of `Self` or `P`, where
   * `Self` refers to a type resolving to `T`, such as alias of `T`, `Self`, or
     associated type projections resolving to `T`;
   * `P` is one of `& 'a S`, `& 'a mut S`, `Box<S>`, `Rc<S>`, `Arc<S>`, or
     `Pin<S>`.
 
+Methods can be invoked:
+* using method call operator, e.g. `x.foo()`
+* using usual function call notation
+
 When `self` has no type specified, then
 * `self` is equivalent to `self: Self`
 * `& 'a self` is equivalent to `self: & 'a Self`
 * `& 'a mut self` is equivalent to `self: & 'a mut Self`
+* lifetime is usually elided with this shorthand notation
+
+Like functions, method parameters can have attributes.
 
 Explanation on example:
 ```rust
@@ -4230,8 +4394,24 @@ fn main() {
 * `&` is necessary if the object referred by `self` is borrowed more than once
   * e.g. `fsitem1` is borrowed by `name()` and by `size()`
 
-See [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
-for greater detail.
+### Associated Types
+
+Associated types:
+* are type aliases associated with another type
+* cannot be defined in inherent implementations
+* cannot have default implementation in traits
+
+See [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+[`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
+[`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
+and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html), for greater
+detail.
 
 ## Generics
 
@@ -5210,6 +5390,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow)] [[repo](https://github.com/dtolnay/anyhow)]
 * [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://github.com/zesterer/ariadne)]
 * [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty)] [[repo](https://github.com/softprops/atty)]
+* [`backon` - make retry like a built-in feature provided by Rust](https://crates.io/crates/backon) [[doc](https://docs.rs/backon/latest/backon)] [[repo](https://github.com/Xuanwo/backon)]
 * [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat)] [[repo](https://github.com/sharkdp/bat)]
 * [`bzip2-rs` - Rust bzip2 decompressor](https://crates.io/crates/bzip2-rs) [[doc](https://docs.rs/bzip2-rs/latest/bzip2_rs)] [[repo](https://github.com/paolobarbolini/bzip2-rs)]
 * [`cargo` - package manager for Rust](https://crates.io/crates/cargo) [[doc](https://docs.rs/cargo/latest/cargo)] [[repo](https://github.com/rust-lang/cargo)]
@@ -5226,6 +5407,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`crossbeam` - tools for concurrent programming](https://crates.io/crates/crossbeam) [[doc](https://docs.rs/crossbeam/latest/crossbeam)] [[repo](https://github.com/crossbeam-rs/crossbeam)]
 * [`ctor` - `__attribute__((constructor))` for Rust](https://crates.io/crates/ctor) [[doc](https://docs.rs/ctor/latest/ctor)] [[repo](https://github.com/mmastrac/rust-ctor)]
 * [`cve-rs` - blazingly fast memory vulnerabilities](https://crates.io/crates/cve-rs) [[doc](https://docs.rs/cve-rs/latest/cve_rs)] [[repo](https://github.com/Speykious/cve-rs)]
+* [`deepsize` - measuring the total size of object on the stack and heap](https://crates.io/crates/deepsize) [[doc](https://docs.rs/deepsize/latest/deepsize)] [[repo](https://github.com/Aeledfyr/deepsize)]
 * [Development tools :: Testing](https://crates.io/categories/development-tools::testing)
 * [`dotenvy` - supply environment variables, load them from `.env`](https://crates.io/crates/dotenvy) [[doc](https://docs.rs/dotenvy/latest/dotenvy)] [[repo](https://github.com/allan2/dotenvy)]
 * [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct)] [[repo](https://github.com/oconnor663/duct.rs)]
@@ -5274,11 +5456,13 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex)] [[repo](https://github.com/rust-lang/regex)]
 * [`reqwest` - higher level HTTP client library](https://crates.io/crates/reqwest) [[doc](https://docs.rs/reqwest/latest/reqwest)] [[repo](https://github.com/seanmonstar/reqwest)]
 * [`rhai` - embedded scripting for Rust](https://crates.io/crates/rhai) [[home](https://rhai.rs/)] [[book](https://rhai.rs/book/)] [[doc](https://docs.rs/rhai/latest/rhai)] [[repo](https://github.com/rhaiscript/rhai)]
+* [`rust-lzma` - simple interface for LZMA compression and decompression](https://crates.io/crates/rust-lzma) [[doc](https://docs.rs/rust-lzma/latest/lzma)] [[repo](https://github.com/fpgaminer/rust-lzma)]
 * [`rust-script` - run Rust "scripts"](https://crates.io/crates/rust-script) [[home](https://rust-script.org/)] [[doc](https://docs.rs/crate/rust-script/latest)] [[repo](https://github.com/fornwall/rust-script)]
 * [`rustc-demangle` - Rust compiler symbol demangling](https://crates.io/crates/rustc-demangle) [[doc](https://docs.rs/rustc-demangle/latest/rustc_demangle)] [[repo](https://github.com/rust-lang/rustc-demangle)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
 * [`serial_test` - allows for the creation of serialised Rust tests](https://crates.io/crates/serial_test) [[doc](https://docs.rs/serial_test/latest/serial_test)] [[repo](https://github.com/palfrey/serial_test/)]
+* [`stacker` - a stack growth library](https://crates.io/crates/stacker) [[doc](https://docs.rs/stacker/latest/stacker)] [[repo](https://github.com/rust-lang/stacker)]
 * [`state` - a library for safe and effortless global and thread-local state management](https://crates.io/crates/state) [[doc](https://docs.rs/state/latest/state)] [[repo](https://github.com/SergioBenitez/state/)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
   * [`std::borrow` - a module for working with borrowed data](https://doc.rust-lang.org/std/borrow/index.html)
@@ -5359,3 +5543,4 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir)] [[repo](https://github.com/BurntSushi/walkdir)]
 * [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which)] [[repo](https://github.com/harryfei/which-rs)]
 * [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell)] [[repo](https://github.com/matklad/xshell)]
+* [`xz2` - binding to `liblzma` providing read/write access to `xz` streams](https://crates.io/crates/xz2) [[doc](https://docs.rs/xz2/latest/xz2)] [[repo](https://github.com/alexcrichton/xz2-rs)]
