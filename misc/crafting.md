@@ -4,6 +4,7 @@
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
 * [ElektroMaster](https://www.youtube.com/@Petr-bakom/videos)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
+* [Essential Craftsman](https://www.youtube.com/@essentialcraftsman)
 * [IKAP OK II](https://www.youtube.com/@ikapokii5161/videos)
 * [Japanese Crafting (1)](https://www.youtube.com/@processx/videos)
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
@@ -12,13 +13,16 @@
 * [Made by Madman](https://www.youtube.com/@madebymadman4640/videos)
 * [MateriályNaZakázku](https://www.materialynazakazku.cz/)
 * [Mekanik Mesin](https://www.youtube.com/channel/UCt44gY0CEaIsYygIwXxAHzw/videos)
+* [Persian Hand Crafts](https://www.youtube.com/@PersianHandCraftsP/videos)
 * [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
 
 ## Bushcraft
 
+* [Bogdan in the forest](https://www.youtube.com/@bogdanintheforest4382/videos)
 * [Cyprien Outdoor Adventures](https://www.youtube.com/@CyprienAdventures/videos)
 * [Karadenizli Maceracı](https://www.youtube.com/@KaradenizliMaceraci/videos)
+* [Life and Craft in wilderess](https://www.youtube.com/@ShevaBushcraft)
 * [Lesnoy_Craft](https://www.youtube.com/@lesnoy_craft8607/videos)
 * [OUTDOORS55](https://www.youtube.com/@OUTDOORS55/videos)
 * [Polissya Bushcraft](https://www.youtube.com/@PolissyaBushcraft/videos)
@@ -27,6 +31,7 @@
 
 ## Forging
 
+* [Building a Medieval Forge and Blacksmith Shop by Hand](https://www.youtube.com/watch?v=AALf5ADejS8)
 * [Kovárna Duben](https://www.youtube.com/channel/UCFBLSwd5kqr7KCuX5mtYH9w/videos)
 
 ## Milling
@@ -50,6 +55,7 @@
 * [How to sharpen drill bits in 5 seconds. Ancient secret!](https://www.youtube.com/watch?v=wVVjxW3BGLI)
 * [Kleště pro Elektrikáře - průvodce Štípáním, Odholováním a Krimpováním](https://www.youtube.com/watch?v=o5jpmV6jxGE)
 * [LockPickingLawyer](https://www.youtube.com/@lockpickinglawyer/videos)
+* [The Easy Way to Replace Hammer Handles](https://www.youtube.com/watch?v=mGeZGC7P3OQ)
 
 ## Welding
 
@@ -67,5 +73,7 @@
 ## Woodworking
 
 * [Dan Santana Bows](https://www.youtube.com/@DanSantanaBows/videos)
+* [H Carpenter](https://www.youtube.com/@HCarpenter/videos)
 * [Japan Woodcraft Association](https://japanwoodcraftassociation.com/)
+* [Organic Archery](https://www.youtube.com/@organicarchery/videos)
 * [Woodpeckers](https://www.youtube.com/@WoodpeckersLLC)
