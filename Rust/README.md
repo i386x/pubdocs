@@ -108,6 +108,18 @@ $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --prof
   $ PATH=${X%/*}/bin:${PATH} ...
   ```
 
+### Removal
+
+First:
+```sh
+$ rm -rf ~/.cargo ~/.rustup
+```
+
+Then remove any mention of `. "$HOME/.cargo/env"` from:
+* `~/.bash_profile`
+* `~/.profile`
+* `~/.zshenv`
+
 ### GitHub Actions
 
 * [`actions-rust-lang/setup-rust-toolchain`](https://github.com/actions-rust-lang/setup-rust-toolchain)
@@ -5452,6 +5464,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`proc-macro2` - a substitute implementation of `proc_macro` API](https://crates.io/crates/proc-macro2) [[doc]](https://docs.rs/proc-macro2/latest/proc_macro2) [[repo](https://github.com/dtolnay/proc-macro2)]
 * [`quote` - quasi-quoting](https://crates.io/crates/quote) [[doc](https://docs.rs/quote/latest/quote)] [[repo](https://github.com/dtolnay/quote)]
 * [`rand` - random number generators](https://crates.io/crates/rand) [[doc](https://docs.rs/rand/latest/rand)] [[repo](https://github.com/rust-random/rand)]
+* [`ratatui` - cooking up terminal user interfaces](https://crates.io/crates/ratatui) [[home](https://ratatui.rs/)] [[doc](https://docs.rs/ratatui/latest/ratatui)] [[repo](https://github.com/ratatui/ratatui)]
 * [`rayon` - simple work-stealing parallelism](https://crates.io/crates/rayon) [[doc](https://docs.rs/rayon/latest/rayon)] [[repo](https://github.com/rayon-rs/rayon)]
 * [`regex` - regular expressions](https://crates.io/crates/regex) [[doc](https://docs.rs/regex/latest/regex)] [[repo](https://github.com/rust-lang/regex)]
 * [`reqwest` - higher level HTTP client library](https://crates.io/crates/reqwest) [[doc](https://docs.rs/reqwest/latest/reqwest)] [[repo](https://github.com/seanmonstar/reqwest)]
