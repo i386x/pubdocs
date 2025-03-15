@@ -1680,6 +1680,7 @@ interested in. Maybe You find some of these interesting too.
 ### Set Theory
 
 * [A well-order on a uncountable set](https://math.stackexchange.com/questions/1833322/a-well-order-on-a-uncountable-set)
+* [Alternative Axiomatic Set Theories](https://plato.stanford.edu/entries/settheory-alternative/)
 * [Equivalents of a Failure of the Axiom of Choice](https://sites.dartmouth.edu/dujs/2010/03/24/equivalents-of-a-failure-of-the-axiom-of-choice/)
 * [Is there a known well ordering of the reals?](https://math.stackexchange.com/questions/6501/is-there-a-known-well-ordering-of-the-reals)
 * [Russell's Paradox: myth and fact](https://lawrencecpaulson.github.io/2024/01/31/Russells_Paradox.html)
@@ -1781,6 +1782,7 @@ interested in. Maybe You find some of these interesting too.
 * [Learning AI](https://github.com/danbev/learning-ai)
 * [NVIDIA Generative AI Examples](https://github.com/NVIDIA/GenerativeAIExamples)
 * [PyTorch Community Blog](https://pytorch.org/community-blog)
+  * [Powering AI with PyTorch, Fedora, and Open Source Communities](https://pytorch.org/blog/pt-fedora-os-communities/)
 * [Teens in AI](https://www.teensinai.com/)
 
 ### Algorithms & Data Structures
@@ -2851,6 +2853,7 @@ See [Caml](#caml).
 * [rpm-showme (Python)](https://pagure.io/minimization/rpm-showme)
 * [rpminspect (C)](https://github.com/rpminspect/rpminspect)
 * [RSpec (Ruby)](https://github.com/rspec/rspec-core) [[home](https://rspec.info/)]
+* [Ruffle (Rust)](https://github.com/ruffle-rs/ruffle) [[home](https://ruffle.rs/)]
 * [rvm (Bash)](https://github.com/rvm/rvm)
 * [Sanos OS (C)](http://www.jbox.dk/sanos/) ([github](https://github.com/ringgaard/sanos))
 * [Sass (TypeScript)](https://github.com/sass/sass) [[home](https://sass-lang.com/)]
