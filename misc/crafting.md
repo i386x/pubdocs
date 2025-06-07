@@ -15,7 +15,10 @@
 * [Mekanik Mesin](https://www.youtube.com/channel/UCt44gY0CEaIsYygIwXxAHzw/videos)
 * [Persian Hand Crafts](https://www.youtube.com/@PersianHandCraftsP/videos)
 * [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
+* [The Forbidden Knowledge of Washers](https://www.youtube.com/watch?v=F4EvMVpx1Pw)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
+* [Whispering Roots](https://www.youtube.com/@Whisperingroots/shorts)
+* [Wild Roots](https://www.youtube.com/@WildRoots00/shorts)
 
 ## Bushcraft
 
@@ -33,11 +36,13 @@
 
 * [Building a Medieval Forge and Blacksmith Shop by Hand](https://www.youtube.com/watch?v=AALf5ADejS8)
 * [Kovárna Duben](https://www.youtube.com/channel/UCFBLSwd5kqr7KCuX5mtYH9w/videos)
+* [Torbjörn Åhman](https://www.youtube.com/@torbjornahman/videos)
 
 ## Milling
 
 * [Filing metal to make it flat / level](https://www.youtube.com/watch?v=Vkw-fNuCktA)
 * [Inheritance Machining](https://www.youtube.com/@InheritanceMachining/videos)
+* [Mastering Metal Machining | Shell Historical Film Archive](https://www.youtube.com/watch?v=YinS03voTwc)
 * [Open Source Machine Tools](https://www.youtube.com/channel/UC79QdJW2rayvCzqNq-SAM-g/videos)
 * [Scraping basics - Scraping flat - Part 1](https://www.youtube.com/watch?v=QJXqHpSh3SE)
 * [Scraping basics - Scraping flat - Part 2](https://www.youtube.com/watch?v=S9N3Q8Qww2A)
@@ -65,6 +70,7 @@
 * [TimWelds](https://www.youtube.com/c/TimWelds/videos)
 * [WeldTube](https://www.youtube.com/c/WeldTubeHouston/videos)
 * [Základy ručního svařování obalenou elektrodou (MMA)](https://www.ewm-group.com/cs/fachwissen/e-hand-grundlagen.html)
+* [ZONA welder](https://www.youtube.com/@ZonaWelder89/videos)
 
 ### Tools & Equipment
 
@@ -72,6 +78,7 @@
 
 ## Woodworking
 
+* [Andi's workshop](https://www.youtube.com/@andiswerkstatt-ow4uw/videos)
 * [Dan Santana Bows](https://www.youtube.com/@DanSantanaBows/videos)
 * [H Carpenter](https://www.youtube.com/@HCarpenter/videos)
 * [Japan Woodcraft Association](https://japanwoodcraftassociation.com/)

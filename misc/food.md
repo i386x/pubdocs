@@ -8,6 +8,7 @@
 
 * [Carlini (Italian bakery in Brno)](https://carlini.cz/)
 * [PAYDAY Peanut Caramel Bar](https://www.hersheyland.com/payday)
+* [Sujuk Sausage](https://en.wikipedia.org/wiki/Sujuk)
 * [Treperendy (jams)](https://www.treperendy.cz/)
 
 ## Recipes
@@ -30,12 +31,13 @@
 * [Potato Soup](https://www.the-girl-who-ate-everything.com/creamy-potato-soup)
 * [Recept na koblížky bez kynutí. Příprava je snadná, výsledek skvostný](https://www.denik.cz/gastronomie/koblizky-bez-kynuti.html)
 * [Seek wonder](https://www.youtube.com/@seekwonderr)
+* [Šlehačková roláda bez mouky](https://www.toprecepty.cz/recept/18936-slehackova-rolada-bez-mouky/)
 * [Zach Choi ASMR](https://www.youtube.com/@ZachChoi/videos)
 
 ### Shorts
 
 * [Gani Çağlar SANDIKKAYA](https://www.youtube.com/@chefganicaglar/shorts) [[shop](https://www.chefganicaglar.com/)]
-* [Karadenizli Maceracı](https://www.youtube.com/@KaradenizliMaceraci/shorts)
+* [black sea adventurer](https://www.youtube.com/c/KaradenizliMacerac%C4%B1/shorts)
 * [Orman Lezzetleri](https://www.youtube.com/@orman_lezzetleri/shorts)
 
 ## Restaurants
