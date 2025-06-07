@@ -57,6 +57,8 @@
 * [Memory safety for the Internet's most critical infrastructure](https://www.memorysafety.org/)
   * [Rustls Outperforms OpenSSL and BoringSSL](https://www.memorysafety.org/blog/rustls-performance-outperforms/)
   * [What is memory safety and why does it matter?](https://www.memorysafety.org/docs/memory-safety/)
+* [Minimizing Rust Binary Size](https://github.com/johnthagen/min-sized-rust)
+  * [151-byte static Linux binary in Rust](https://mainisusuallyafunction.blogspot.com/2015/01/151-byte-static-linux-binary-in-rust.html)
 * [Pin and suffering](https://fasterthanli.me/articles/pin-and-suffering)
 * [Pretty State Machine Patterns in Rust](https://hoverbear.org/blog/rust-state-machine-pattern/)
 * [Procedural Macros Workshop](https://github.com/dtolnay/proc-macro-workshop)
@@ -4412,17 +4414,276 @@ Associated types:
 * are type aliases associated with another type
 * cannot be defined in inherent implementations
 * cannot have default implementation in traits
+* has implicit `Sized` bound
+  * can be relaxed using the special `?Sized` bound
+* can be used in function signatures inside the trait
+  * besides the associated type, an implementation of the trait must also
+    provide definitions of these functions
+    ```rust
+    // Associated type is used in `insert`
+    trait Container {
+        type E;
+        fn empty() -> Self;
+        fn insert(&mut self, elem: Self::E);
+    }
+
+    // Implementation
+    impl<T> Container for Vec<T> {
+        type E = T;
+        fn empty() -> Vec<T> { Vec::new() }
+        fn insert(&mut self, x: T) { self.push(x); }
+    }
+    ```
+
+An associated type declaration:
+* declares a signature for associated type definitions
+* it is written in one of the following forms:
+  ```rust
+  // `Assoc`       - the name of the associated type
+  // `Params`      - a comma-separated list of type, lifetime or `const`
+  //                 parameters
+  // `Bounds`      - a plus-separated list of trait bounds that the associated
+  //                 type must meet
+  // `WhereBounds` - a comma-separated list of bounds that the parameters must
+  //                 meet
+  type Assoc;
+  type Assoc: Bounds;
+  type Assoc<Params>;
+  type Assoc<Params>: Bounds;
+  type Assoc<Params> where WhereBounds;
+  type Assoc<Params>: Bounds where WhereBounds;
+  ```
+* the optional trait bounds must be fulfilled by the implementations of the
+  type alias
+
+An associated type definition:
+* defines a type alias for the implementation of a trait on a type
+* it is written in one of the following forms:
+  ```rust
+  type Assoc = Type;
+  // `Type` here may reference `Params`
+  type Assoc<Params> = Type;
+  type Assoc<Params> = Type where WhereBounds;
+  // Deprecated, prefer the form above
+  type Assoc<Params> where WhereBounds = Type;
+  ```
+
+Type referencing:
+* given
+  ```rust
+  trait Trait {
+      // Associated type declaration
+      type Assoc;
+  }
+
+  struct Item;
+
+  struct OtherItem;
+
+  impl Trait for Item {
+      // Associated type definition
+      type Assoc = OtherItem;
+  }
+  ```
+  * then `<Item as Trait>::Assoc` is an alias of `OtherItem`
+  * note that if `Item` is a type parameter then also `Item::Assoc` can be used
+    in type parameters
+* with generics:
+  ```rust
+  struct ArrayLender<'a, T>(&'a mut [T; 16]);
+
+  trait Lend {
+      // Generic parameters and `where` clauses are allowed. Such an associated
+      // types are often referred to as generic associated types, or GATs
+      type Lender<'a> where Self: 'a;
+
+      fn lend<'a>(&'a mut self) -> Self::Lender<'a>;
+  }
+
+  impl<T> Lend for [T; 16] {
+      // GAT definition
+      type Lender<'a> = ArrayLender<'a, T> where Self: 'a;
+
+      fn lend<'a>(&'a mut self) -> Self::Lender<'a> {
+          ArrayLender(self)
+      }
+  }
+
+  // If the type `Thing` has an associated type `Item` from a trait `Trait`
+  // with the generics `<'a>`, then the type can be named like
+  // `<Thing as Trait>::Item<'x>`, where `'x` is some lifetime in scope. In
+  // this case, `'x` will be used wherever `'a` appears in the associated type
+  // definitions on `impl`s. In the example below:
+  //
+  //   * `T` has an associated type, `Lender`
+  //   * `Lender` is from `Lend` trait
+  //   * `Lender` has the generics `<'a>`
+  //   * the lifetime in scope is `'a`
+  //   * the `Lender` associated type can be then named as
+  //     `<T as Lend>::Lender<'a>`; `'a` from `borrow` is used via `Lender<'a>`
+  //     as the lifetime bound for `Lend` and also for `T`
+  //
+  fn borrow<'a, T: Lend>(array: &'a mut T) -> <T as Lend>::Lender<'a> {
+      array.lend()
+  }
+
+  fn main() {
+      let mut array = [0usize; 16];
+      let lender = borrow(&mut array);
+  }
+  ```
+* given
+  ```rust
+  trait Example {
+      type Output<T>: Ord where T: Debug;
+  }
+  ```
+  and the reference `<X as Example>::Output<Y>`, then
+  * the associated type itself must be `Ord`
+  * the type `Y` must be `Debug`
+
+Required `where` clauses on GATs:
+* see [Required bounds](https://rust-lang.github.io/generic-associated-types-initiative/explainer/required_bounds.html)
+* reason: to maximize the allowed definitions of the associated type in `impl`s
+* the rule of thumb: any clauses that *can be proven to hold* on functions
+  (using the parameters of the function or trait) where a GAT appears as an
+  input or output must also be written on the GAT itself
+  * when there are multiple functions in a trait that use the GAT, then the
+    *intersection* of the bounds from the different functions are used
+  * the bounds on associated types also propagate required `where` clauses
+  * any explicit uses of `'static` on GATs in the trait do not count towards
+    the required bounds
+* examples:
+  ```rust
+  // Example 1
+  //
+  // From `&'a mut self` at (2), it is inferred that `Self: 'a`. Therefore,
+  // `Item` at (1) must be provided with the bound `where Self: 'x`
+  trait LendingIterator {
+      type Item<'x> where Self: 'x;                 // (1)
+      fn next<'a>(&'a mut self) -> Self::Item<'a>;  // (2)
+  }
+
+  // Example 2
+  //
+  // From `&'a T` at (2), it is inferred that `T: 'a`. From (3), nothing is
+  // inferred. The intersection of bounds from (2) and (3) is then the empty
+  // set and hence no bounds at (1) are required
+  trait Check<T> {
+      type Checker<'x>;                                         // (1)
+      fn create_checker<'a>(item: &'a T) -> Self::Checker<'a>;  // (2)
+      fn do_check(checker: Self::Checker<'_>);                  // (3)
+  }
+
+  // Example 3
+  //
+  // From `&'a T` at (2), it is inferred that `T: 'a`. Therefore, `Checker` at
+  // (1) must be provided with the bound `where T: 'x`
+  trait Check<T> {
+      type Checker<'x> where T: 'x;                             // (1)
+      fn create_checker<'a>(item: &'a T) -> Self::Checker<'a>;  // (2)
+  }
+
+  // Example 4
+  //
+  // From `&'a self` at (3), it is inferred that `Self: 'a`. Therefore, `Item`
+  // at (1) must be provided with the bound `where Self: 'a`. Since `Item` is
+  // used in the `Iterator` bounds at (2), `where Self: 'a` is also required
+  // there
+  trait Iterable {
+      type Item<'a> where Self: 'a;                                       // (1)
+      type Iterator<'a>: Iterator<Item = Self::Item<'a>> where Self: 'a;  // (2)
+      fn iter<'a>(&'a self) -> Self::Iterator<'a>;                        // (3)
+  }
+
+  // Example 5
+  //
+  // Explicit use of `'static` at (2) does not count towards the required
+  // bounds
+  trait StaticReturn {
+      type Y<'a>;                         // (1)
+      fn foo(&self) -> Self::Y<'static>;  // (2)
+  }
+  ```
+
+### Associated Constants
+
+* constants associated with a type
+* a declaration declares a signature for associated constant definitions
+  * it can provide the default value
+* a definition defines a constant associated with a type
+  * undergoes constant evaluation only when referenced
+  * if it contains generic parameters, the evaluation is done after
+    monomorphization
+* examples:
+  ```rust
+  struct StructA;
+  struct StructB;
+  struct StructC;
+  struct StructD;
+  struct GenericStruct<const ID: i32>;
+
+  trait ConstantId {
+      const ID: i32;
+  }
+
+  trait ConstantIdDefault {
+      const ID: i32 = 1;
+  }
+
+  impl ConstantId for StructA {
+      const ID: i32 = 1;
+  }
+
+  impl ConstantIdDefault for StructB {}
+
+  impl ConstantIdDefault for StructC {
+      const ID: i32 = 5;
+  }
+
+  impl StructD {
+      // Definition not immediately evaluated
+      const PANIC: () = panic!("compile-time panic");
+  }
+
+  impl<const ID: i32> GenericStruct<ID> {
+      // Definition not immediately evaluated
+      const NON_ZERO: () = if ID == 0 {
+          panic!("contradiction")
+      };
+  }
+
+  fn main() {
+      assert_eq!(StructA::ID, 1);
+      assert_eq!(StructB::ID, 1);
+      assert_eq!(StructC::ID, 5);
+
+      // Referencing `Struct::PANIC` causes compilation error
+      let _ = Struct::PANIC;
+
+      // Fine, `ID` is not 0
+      let _ = GenericStruct::<1>::NON_ZERO;
+
+      // Compilation error from evaluating `NON_ZERO` with `ID = 0`
+      let _ = GenericStruct::<0>::NON_ZERO;
+  }
+  ```
 
 See [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+[Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html),
 [Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
 [Functions](https://doc.rust-lang.org/reference/items/functions.html),
 [Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
 [Paths](https://doc.rust-lang.org/reference/paths.html),
 [Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Type aliases](https://doc.rust-lang.org/reference/items/type-aliases.html),
+[`Sized`](https://doc.rust-lang.org/core/marker/trait.Sized.html),
 [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
 [`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
 [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
-and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html), for greater
+and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html) for greater
 detail.
 
 ## Generics
@@ -5547,8 +5808,9 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`tao` - cross-platform window manager library](https://crates.io/crates/tao) [[doc](https://docs.rs/tao/latest/tao)] [[repo](https://github.com/tauri-apps/tao)]
 * [`tauri` - a framework for building tiny, blazing fast binaries for all major desktop platforms](https://crates.io/crates/tauri) [[home](https://tauri.app/)] [[doc](https://docs.rs/tauri/latest/tauri)] [[repo](https://github.com/tauri-apps/tauri)]
 * [`test-context` - custom setup/teardown without test harness](https://crates.io/crates/test-context) [[doc](https://docs.rs/test-context/latest/test_context)] [[repo](https://github.com/JasterV/test-context)]
-* [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
+* [`thiserror` - `derive(Error)`](https://crates.io/crates/thiserror) [[doc](https://docs.rs/thiserror/latest/thiserror)] [[repo](https://github.com/dtolnay/thiserror)]
 * [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local)] [[repo](https://github.com/Amanieu/thread_local-rs)]
+* [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
 * [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar)] [[repo](https://github.com/rust-analyzer/ungrammar)]
   * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
 * [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url)] [[repo](https://github.com/servo/rust-url)]
