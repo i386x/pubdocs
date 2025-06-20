@@ -370,6 +370,7 @@ Tools:
 * [grcov](https://github.com/mozilla/grcov) [[doc](https://docs.rs/grcov/latest/grcov/)] [[crate](https://crates.io/crates/grcov)]
 * [kcov](https://github.com/SimonKagstrom/kcov)
 * [rust-ci-conf](https://github.com/jonhoo/rust-ci-conf)
+* [Tarpaulin](https://github.com/xd009642/tarpaulin) [[doc](https://docs.rs/cargo-tarpaulin/latest/cargo_tarpaulin/)] [[crate](https://crates.io/crates/cargo-tarpaulin)]
 
 #### Dynamic Linking
 
@@ -794,6 +795,43 @@ parenthesized_type:
   * in case of more than one possible data types, a variable must be annotated
     with a data type
 
+### Layout
+
+* the layout of a type consists of
+  * its size
+  * its alignment
+  * the relative offsets of its fields
+  * the layout and interpretation of discriminant (`enum`s only)
+* types with the same layout can still differ in how they are passed across
+  function boundaries
+* the *alignment* of a value specifies what addresses are valid to store the
+  value at
+  * a value of alignment `n` must only be stored at an address that is a
+    multiple of `n`
+  * measured in bytes
+  * must be a power of 2 and at least 1
+  * the function `align_of_val` returns the minimum alignment required for the
+    type of the given value
+* the *size* of a value is the offset in bytes between successive elements in
+  an array with that item type including alignment padding
+  * always a multiple of value's alignment
+  * some types are zero-sized
+  * the function `size_of_val` returns the size of a value in bytes
+* a type where all its values have the same size and same alignment
+  * implements the `Sized` trait
+  * the size in bytes of such a type can be obtained via the `size_of` function
+  * the minimum alignment required for such a type can be obtained via the
+    `align_of` function
+* see [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
+  [ABI compatibility](https://doc.rust-lang.org/core/primitive.fn.html#abi-compatibility),
+  [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
+  [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
+  [`align_of`](https://doc.rust-lang.org/std/mem/fn.align_of.html),
+  [`align_of_val`](https://doc.rust-lang.org/std/mem/fn.align_of_val.html),
+  [`size_of`](https://doc.rust-lang.org/std/mem/fn.size_of.html), and
+  [`size_of_val`](https://doc.rust-lang.org/std/mem/fn.size_of_val.html) for
+  greater detail
+
 ### Never Type
 
 Grammar:
@@ -875,6 +913,8 @@ never_type:
   * at least 16 bits wide
   * maximum `isize` value is the theoretical upper bound on object and array
     size
+* alignment of integer types is platform-specific
+  * in most cases, their alignment is equal to their size, but it may be less
 * range (`2**x` means `1 << x`):
   * `iN` (`N` bits, signed):
     * minimum: `-(2**(N-1))`
@@ -893,13 +933,16 @@ never_type:
   [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
   [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 
-See [Integer types](https://doc.rust-lang.org/reference/types/numeric.html#integer-types)
-and [Machine-dependent integer types](https://doc.rust-lang.org/reference/types/numeric.html#machine-dependent-integer-types)
+See [Integer types](https://doc.rust-lang.org/reference/types/numeric.html#integer-types),
+[Type Layout](https://doc.rust-lang.org/reference/type-layout.html), and
+[Machine-dependent integer types](https://doc.rust-lang.org/reference/types/numeric.html#machine-dependent-integer-types)
 for greater detail.
 
 #### Floating Point Types
 
 * `f32` and `f64` with 32 bits and 64 bits in size, respectively
+* alignment of floating point types is platform-specific
+  * in most cases, their alignment is equal to their size, but it may be less
 * IEEE 754-2008
 * default is `f64`
 * for every floating point type `T`
@@ -912,16 +955,100 @@ for greater detail.
   [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
   [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 * see [Floating-point types](https://doc.rust-lang.org/reference/types/numeric.html#floating-point-types)
-  for greater detail
+  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html) for
+  greater detail
 
 ### Compound Types
+
+* a user-defined compound type, that is an `enum`, `struct`, or `union`, has
+  the layout specified by a *representation*
+  * the representation of a type can change the padding between fields, but
+    does not change the layout of the fields themselves
+* there are four kinds of representations:
+  * the `Rust` representation (default)
+  * the `C` representation
+  * the primitive representations
+  * the `transparent` representation
+* the `repr` attribute
+  * changes the representation
+  * can only be applied on `enum`, `struct`, or `union`
+  * when missing, the default (`Rust`) is used
+* the `repr` attribute's alignment modifiers
+  * usage: `#[repr(C, align(8))]`, `#[repr(packed)]`
+  * for `struct`s and `union`s only
+    * `align` can also be applied on an `enum`
+  * `align` and `packed`
+    * may only be applied to the `Rust` and `C` representations
+    * cannot be applied on the same type
+    * `packed` type cannot transitively contain another `align`ed type
+  * argument to `align` and `packed` must be a power of two from 1 up to
+    `2**29`
+  * `align(n)` raises the alignment to `n` bytes
+    * if `n` is less than the alignment of the type without the `align`
+      modifier, then the alignment is unaffected
+    * alignment of `#[repr(..., align(n))] enum X { ... }` is the same as the
+      alignment of `enum X { ... } #[repr(..., align(n))] struct Y(X)`
+  * `packed(n)` lowers the alignment to `n` bytes
+    * `packed` is the shorthand for `packed(1)`
+    * may alter the padding between fields
+      * will not alter the padding inside of any field
+    * if `n` is greater than the type's alignment without the `packed`
+      modifier, then the alignment and layout is unaffected
+    * references to `packed` (unaligned) fields are not allowed due to
+      undefined behavior
+  * the alignments of each field, for the purpose of positioning fields, is the
+    smaller of the specified alignment and the alignment of the field's type
+  * inter-field padding is guaranteed to be the minimum required in order to
+    satisfy each field's (possibly altered) alignment
+    * as a consequence, `packed(1)` will have no inter-field padding
+* the `Rust` representation provides only these data layout guarantees:
+  * the fields are properly aligned
+    * the offset of any field is divisible by that field's alignment
+  * the fields do not overlap
+    * the fields can be ordered such that the offset plus the size of any field
+      is less than or equal to the offset of the next field in the ordering
+    * the ordering may differ from the order of the fields in the type's
+      declaration
+    * zero-sized types may have the same address as other fields in the same
+      `struct`
+  * the alignment of the type is at least the maximum alignment of its fields
+* the `C` representation serves dual purpose:
+  * creating types that are interoperable with the C Language
+  * to create types on which operations that rely on data layout can be soundly
+    performed
+    * such operations could be for example reinterpreting values as a different
+      type
+    * note that it is possible to create types that are not useful for
+      interfacing with the C programming language
+  * cannot be applied to zero-variant `enum`s
+* the primitive representations
+  * have the same names as the primitive integer types: `i8`, `u8`, `i16`,
+    `u16`, `i32`, `u32`, `i64`, `u64`, `i128`, `u128`, `isize`, and `usize`
+  * can only be applied to `enum`s, except zero-variant `enum`s
+  * a primitive representation cannot be combined together with another
+    primitive representation
+* the `transparent` representation
+  * delegates type layout to another type
+  * cannot be used with any other representation
+  * can only be used on a `struct` or an `enum` with a single variant that has
+    * any number of fields with size 0 and alignment 1, and
+    * at most one other field
+  * impose the same layout and ABI as the only non-size 0 non-alignment 1
+    field, if present, or unit otherwise
+    * e.g. a `struct` with the `transparent` representation with a primitive
+      field will have the ABI of the primitive field
+* see [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
+  [Structs](https://doc.rust-lang.org/reference/items/structs.html),
+  [Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
+  and [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html)
+  for greater detail
 
 #### String Type
 
 * `str`
 * dynamically sized type
   * it can only be instantiated through a pointer type, such as `&str`
-* a value of type `str` has the same representation as `[u8]`
+* a value of type `str` has the same representation and layout as `[u8]`
 * methods working on `str` ensure and assume that the data in there is valid
   UTF-8
   * calling a `str` method with a non-UTF-8 buffer can cause undefined behavior
@@ -937,7 +1064,8 @@ for greater detail.
   [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
   [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
   [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
-* see [Textual types](https://doc.rust-lang.org/reference/types/textual.html)
+* see [Textual types](https://doc.rust-lang.org/reference/types/textual.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
   and [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html)
   for greater detail
 
@@ -951,6 +1079,8 @@ tuple_type:
 ```
 * tuples are finite sequences of values, where two values may have distinct
   types
+* tuple types, except the unit, have layout according to the Rust
+  representation
 * an item can be either type or expression or identifier
 * an example of assigning a tuple to the variable:
   ```rust
@@ -988,6 +1118,8 @@ tuple_type:
 ##### Unit
 
 * *empty tuple*
+* zero-sized type
+  * has a size of 0 and an alignment of 1
 * both unit type and unit value are written as `()`
 * represent an empty value or an empty return type
 * empty value is returned implicitly by an expression
@@ -997,9 +1129,10 @@ tuple_type:
   [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
   [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits
 
-See [Tuple types](https://doc.rust-lang.org/reference/types/tuple.html) and
-[Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html)
-for greater detail.
+See [Tuple types](https://doc.rust-lang.org/reference/types/tuple.html),
+[Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
+and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html) for
+greater detail.
 
 #### Array Types
 
@@ -1009,6 +1142,11 @@ array_type:
     "[" type ";" expression "]"
 ```
 * arrays are finite sequences of values of same type
+* an array of `[T; N]`
+  * has a size of `size_of::<T>() * N`
+  * has the same alignment of `T`
+  * the zero-based `n`th element of the array is offset from the start of the
+    array by `n * size_of::<T>()` bytes
 * unlike in other programming languages arrays have fixed length
   * the size of an array is specified by `expression`, which must be a constant
     expression that evaluates to `usize`
@@ -1035,9 +1173,10 @@ array_type:
   ```
 * like tuples, array indices are zero-based
 * indexing an array out of its bounds make a program panicking
-* see [Array types](https://doc.rust-lang.org/reference/types/array.html) and
-  [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html)
-  for greater detail
+* see [Array types](https://doc.rust-lang.org/reference/types/array.html),
+  [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html) for
+  greater detail
 
 #### Slice Types
 
@@ -1047,19 +1186,63 @@ slice_type:
     "[" type "]"
 ```
 * dynamically sized type
+* a slice `[T]` has the same layout as the section of the array it slices
 * represents a view into a sequence of elements of some type
 * generally used through pointer types
 * all elements of a slice are always initialized
 * access to a slice is always bounds-checked in safe methods and operators
-* see [Slice types](https://doc.rust-lang.org/reference/types/slice.html) for
+* see [Slice types](https://doc.rust-lang.org/reference/types/slice.html)
+  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html) for
   greater detail
 
 #### Struct Types
 
 * a `struct` type is a heterogeneous product of other types
-* `struct`s have no specified memory layout
+* `struct`s have no specified memory layout, the default is `Rust`
   * to specify one, use [`repr`](https://doc.rust-lang.org/reference/type-layout.html#representations)
     attribute
+  * the size, alignment, and layout of a `struct` under `#[repr(C)]` is given
+    by the following algorithm (can produce a zero-sized `struct`s which are
+    illegal in the C programming language):
+    ```js
+    function padding(offset, alignment) {
+        return (alignment - (offset % alignment)) % alignment;
+    }
+
+    // Adjust the size, the alignment, and the offset of the fields of
+    // `struct`.
+    //
+    // Members of `struct`:
+    //   * `fields` - the list of `struct` fields in order as they appear in
+    //                the `struct` declaration
+    //   * `alignment` - the `struct`'s alignment
+    //   * `size` - the `struct`'s size
+    //
+    // Members of an item from `struct.fields`:
+    //   * `alignment` - the `struct` field alignment
+    //   * `offset` - the `struct` field offset within the `struct`
+    //   * `size` - the `struct` field size
+    //
+    // The alignment of `struct` is the alignment of one of its fields with the
+    // biggest alignment. The offset of each field is adjusted so that the
+    // offset of a field is a multiple of the field's alignment. The size of
+    // `struct` is the size of all its fields, including padding, plus
+    // additional padding needed to make the size of `struct` to be a multiple
+    // of `struct`'s alignment.
+    function adjust_struct(struct) {
+        let offset = 0;
+
+        struct.alignment = Math.max(
+            1, ...struct.fields.map((field) => field.alignment)
+        );
+        for (let field of struct.fields) {
+            offset += padding(offset, field.alignment);
+            field.offset = offset;
+            offset += field.size;
+        }
+        struct.size = offset + padding(offset, struct.alignment);
+    }
+    ```
 * visibility of a `struct`'s fields can be specified
 * a tuple `struct` type has anonymous fields
 * a unit-like `struct` type has no fields
@@ -1071,7 +1254,8 @@ slice_type:
   [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) traits if
   types of its fields implement these
   * a unit-like `struct` type can implement all of these
-* see [Struct types](https://doc.rust-lang.org/reference/types/struct.html) and
+* see [Struct types](https://doc.rust-lang.org/reference/types/struct.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html), and
   [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html)
   for greater detail
 
@@ -1080,6 +1264,33 @@ slice_type:
 * nominal, heterogeneous disjoint union types
 * any `enum` value consumes as much memory as the largest variant for its
   corresponding `enum` type plus the size of discriminant
+* the layout under `#[repr(C)]`
+  * field-less `enum`s
+    * have the size and alignment of the default `enum` size and alignment for
+      the target platform's C ABI
+    * the `enum` representation in C is implementation defined and can be
+      influenced by compiler flags, which may cause ABI break
+    * using a field-less `enum` in FFI to model a C `enum` is often wrong
+  * an `enum` with fields has the same layout as a `struct` with two fields
+    under `#[repr(C)]`, a.k.a. *tagged union* in C
+    * the first field is the *tag*: a `#[repr(C)]` version of the `enum` with
+      all fields removed
+    * the second field is the *payload*: a `#[repr(C)]` union of `#[repr(C)]`
+      `struct`s for the fields of each variant that had them
+* the layout under `#[repr(x)]`, where `x` is a primitive integer type
+  * field-less `enum`s
+    * the size and alignment of the field-less `enum` is the same as the size
+      and the alignment of `x`
+  * an `enum` with fields has the same layout as a union under `#[repr(C)]`
+    with `struct`s under `#[repr(C)]` as its fields
+    * each `struct`-like field reflects the corresponding `enum` variant
+      * the first field of the `struct` is the `enum` under `#[repr(x)]` with
+        all fields removed (the *tag*)
+      * the next fields are the fields of that variant
+* the layout under `#[repr(C, x)]`, where `x` is the primitive integer type
+  * an `enum` with fields has the same layout as the `enum` under `#[repr(C)]`
+    with the same fields, except that the discriminant (the *tag*) is under
+    `#[repr(x)]`
 * must be denoted by named reference to an `enum` item
 * an `enum` type can implement
   [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
@@ -1090,7 +1301,9 @@ slice_type:
   types of its variants implement these
   * an `enum` type with no variants or only with unit-like variants can
     implement all of these
-* see [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html)
+* see [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html), and
+  [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html)
   for greater detail
 
 #### Union Types
@@ -1103,10 +1316,19 @@ slice_type:
 * only types that never need to be dropped can be used for `union` fields
 * by default the memory layout of a `union` is undefined
   * the memory layout can be specified by `#[repr(...)]`
+  * with `#[repr(C)]`
+    * unions will have the same size and alignment as their C language
+      equivalents for the target platform
+    * the alignment of the union will be the alignment of its field with the
+      biggest alignment
+    * the size of the union will be the size of its biggest field plus the
+      padding to make the size a multiple of the union alignment
+* `union`s with non-`Copy` fields are unstable
 * see [Union types](https://doc.rust-lang.org/reference/types/union.html),
-  [Unions](https://doc.rust-lang.org/reference/items/unions.html), and
-  [Representations](https://doc.rust-lang.org/reference/type-layout.html#representations)
-  for greater detail
+  [Unions](https://doc.rust-lang.org/reference/items/unions.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html), and
+  [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) for greater
+  detail
 
 #### Function Item Types
 
@@ -1139,6 +1361,7 @@ slice_type:
 * a closure type is unique for every closure value produced by a closure
   expression
   * a closure type is anonymous and cannot be written out
+* a closure type has no layout guarantees
 * how a compiler defines a new closure type:
   * parse and analyze a closure expression
     * record which and how (mutably/immutably) are the closed-over variables
@@ -1243,6 +1466,7 @@ slice_type:
   ```
 * see [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
   [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
   [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
   [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
   [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
@@ -1260,6 +1484,7 @@ Grammar:
 reference_type:
     "&" lifetime? "mut"? type_no_bounds
 ```
+* have same layout as pointer types
 * if `mut` is not present, a reference is called a *shared* reference
   * it points to a memory location owned by some other value
   * prevents direct mutation of the value (exception to this rule is interior
@@ -1279,8 +1504,9 @@ reference_type:
   valid
 * see [References (`&` and `&mut`)](https://doc.rust-lang.org/reference/types/pointer.html#references--and-mut),
   [Interior Mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
-  and [Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries)
-  for greater detail
+  [Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries),
+  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html), for
+  greater detail
 
 #### Raw Pointer Types
 
@@ -1298,9 +1524,12 @@ raw_pointer_type:
   * reborrowing: `&*`, `&mut *`
 * a raw pointer, `P`, where `P = *const T` or `P = *mut T`, is said
   * *thin* if `T: Sized`
+    * has the same size and alignment as `usize`
   * *fat* otherwise
     * this is the case for dynamically sized objects, where the raw pointer
       contains additional data, like a slot to a virtual method table
+    * the size and alignment of a fat pointer type is guaranteed to be at least
+      equal to the size and alignment of a thin pointer type
 * raw pointers are compared by their address
   * additional data are included into comparison in case of fat raw pointers
 * `*const` raw pointers can be created directly by
@@ -1314,6 +1543,7 @@ raw_pointer_type:
   * the pointer produced by this transmutation may not be dereferenced
 * see [Raw pointers (`*const` and `*mut`)](https://doc.rust-lang.org/reference/types/pointer.html#raw-pointers-const-and-mut),
   [Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
   [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
   [`core::ptr::addr_of`](https://doc.rust-lang.org/core/ptr/macro.addr_of.html),
   and [`core::ptr::addr_of_mut`](https://doc.rust-lang.org/core/ptr/macro.addr_of_mut.html)
@@ -1348,6 +1578,7 @@ maybe_named_param:
     outer_attribute* ((identifier | "_") ":")? type
 ```
 * a function pointer type
+  * has the same size and alignment as `usize`
   * refers to a function whose identity is not necessarily known at compile
     time
   * can be created via a type coercion from
@@ -1362,11 +1593,27 @@ maybe_named_param:
 * see [Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
   [Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
   [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+  [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
   [The `unsafe` keyword](https://doc.rust-lang.org/reference/unsafe-keyword.html),
   [Extern function qualifier](https://doc.rust-lang.org/reference/items/functions.html#extern-function-qualifier),
   [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
   and [Attributes on function parameters](https://doc.rust-lang.org/reference/items/functions.html#attributes-on-function-parameters)
   for greater detail
+
+#### Type Parameters
+
+If an item has type parameters:
+* within the item body, every type parameter acts as a type
+
+#### Inferred Type
+
+Grammar:
+```
+inferred_type:
+    "_"
+```
+* asks the compiler to infer the type if possible
+* cannot be used in item signatures
 
 ### Subtyping
 
@@ -4071,6 +4318,7 @@ A *trait object*:
   * a `dyn` compatible base trait
   * any number of its auto traits
   * any super traits of the base trait
+* the layout of a trait object is same as the layout of its value
 * is written as the keyword `dyn` followed by a set of trait bounds with the
   following restrictions:
   * no more than one non-auto trait is allowed
@@ -4122,22 +4370,61 @@ fn main() {
 }
 ```
 
+### Dynamically Sized Types
+
+A dynamically sized type (DST):
+* has a size known only during run-time
+* can only be used
+  * in pointer types
+    * a pointer to a DST is sized but has twice the size of a pointer to a
+      sized types
+    * a pointer to a slice consists of a pointer to the array and the number of
+      elements of the slice
+    * a pointer to a trait object consists of a pointer to its data and a
+      pointer to a virtual table
+  * as type arguments to generic type parameters having the special `?Sized`
+    bound
+  * for associated type definitions when the corresponding associated type
+    declaration has a `?Sized` bound
+  * as `T` in `impl Trait for T`
+    * in this case, `Self: ?Sized` is the default in trait definitions, unlike
+      with generic type parameters
+  * in `struct`s as the last field
+    * this turns `struct` itself into a DST
+* variables, function parameters, `const` items, and `static` items must be
+  `Sized`
+* examples: slices, trait objects
+
+### `Sized` Trait
+
+* indicates that the size of the implementing type is known at compile-type
+* is implemented by all types with a fixed size automatically by the compiler
+* any type parameter (except `Self` in traits) or associated type has the
+  `Sized` bound by default
+* implicit `Sized` bounds may be relaxed by using the special `?Sized` bound
+
 See [Traits](https://doc.rust-lang.org/reference/items/traits.html),
 [Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html),
+[Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
 [Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
 [Lifetime elision](https://doc.rust-lang.org/reference/lifetime-elision.html),
 [Special types and traits](https://doc.rust-lang.org/reference/special-types-and-traits.html),
 [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
 [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+[Static items](https://doc.rust-lang.org/reference/items/static-items.html),
 [Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
 [Scopes](https://doc.rust-lang.org/reference/names/scopes.html),
 [Visibility and Privacy](https://doc.rust-lang.org/reference/visibility-and-privacy.html),
 [Type parameters](https://doc.rust-lang.org/reference/types/parameters.html),
 [Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
 [Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Variables](https://doc.rust-lang.org/reference/variables.html),
 [Functions](https://doc.rust-lang.org/reference/items/functions.html),
 [Patterns](https://doc.rust-lang.org/reference/patterns.html),
 [Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+[Slice types](https://doc.rust-lang.org/reference/types/slice.html),
+[Pointer types](https://doc.rust-lang.org/reference/types/pointer.html),
 [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
 [`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
 [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
@@ -4167,6 +4454,12 @@ associated_item:
         macro_invocation_semi |
         (visibility? (type_alias | constant_item | function))
     )
+
+impl_trait_type:
+    "impl" type_param_bounds
+
+impl_trait_type_one_bound:
+    "impl" trait_bound
 ```
 
 An implementation associates an item definition with a concrete type.
@@ -4685,6 +4978,102 @@ See [Associated Items](https://doc.rust-lang.org/reference/items/associated-item
 [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
 and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html) for greater
 detail.
+
+### `impl` Traits
+
+`impl Trait`:
+* provides ways to specify unnamed but concrete types that implement a specific
+  trait
+* it can appear both as argument/parameter and return type
+  * in an parameter/argument position acts as an anonymous type parameter
+  * in the return position acts as an abstract return type
+* it can only appear as a parameter or return type of a non-`extern`
+  * it cannot be the type of
+    * a `let` binding
+    * a field type
+  * it cannot appear inside a type alias
+
+An anonymous type parameter:
+* provides trait bounds that must be satisfied by a caller
+  * the function can only use the methods available through the trait bounds of
+    the anonymous type parameter
+* is a very similar to a generic type parameter, except
+  * its type is anonymous
+  * it does not appear in the `generic_params` list
+  * caller has no option to explicitly specify a type as in case of generic
+    type parameters
+* example:
+  ```rust
+  // Almost equivalent to `fn foo<T: Trait>(x: T) {}`
+  fn foo(x: impl Trait) {}
+  ```
+
+An abstract return type:
+* stands in for another concrete type where the caller may only use the methods
+  declared by the specified `Trait`
+* each possible return value from the function must resolve to the same
+  concrete type
+  * unlike generic parameters, a concrete type is chosen by a function, not by
+    the caller
+    ```rust
+    // `T` is chosen be the caller
+    fn foo<T: Trait>() -> T { ... }
+
+    // A concrete return type is chosen by the function
+    fn bar() -> impl Trait { ... }
+    ```
+* allows a function to return an unboxed abstract type
+  * `impl Iterator`
+  * compare
+    ```rust
+    fn foo() -> Box<dyn Fn(i32) -> i32> {
+        Box::new(|x| x + 1)
+    }
+    ```
+    with
+    ```rust
+    fn foo() -> impl Fn(i32) -> i32 {
+        |x| x + 1
+    }
+    ```
+* can be also used inside trait declarations as a return type of associated
+  functions
+  * `impl Trait` is desugared into anonymous associated type
+  * the return type that appears in the implementation's function signature is
+    used to determine the value of the associated type
+* capturing
+  * any generic parameter in the scope can be *captured* by an abstract return
+    type
+    * this means that a generic parameter and the abstract return type are tied
+      together, that is they made some kind of contract between each other
+    * once a generic parameter is captured, a concrete type, hidden behind the
+      abstract return type, can use it
+  * abstract return types automatically capture all in-scope generic
+    parameters, including:
+    * generic type parameters
+    * generic `const` parameters
+    * generic lifetime parameters, including higher-ranked ones
+  * example:
+    ```rust
+    fn foo<T: Clone>(t: T) -> impl Clone {
+        // 1. `T` is captured by `impl Clone` so any concrete type
+        //    can now use it
+        // 2. `Some(t)` implies `Option<T>` as a concrete type; `T` can be
+        //    referenced (used) in `Option<T>` because `T` has been captured
+        //    before
+        Some(t)
+    }
+    ```
+
+See [Impl trait](https://doc.rust-lang.org/reference/types/impl-trait.html),
+[Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+[Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html),
+[`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+[`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
+and [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html) for
+greater detail.
 
 ## Generics
 
@@ -5716,6 +6105,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc)] [[repo](https://github.com/rust-lang/libc)]
 * [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log)] [[repo](https://github.com/rust-lang/log)]
 * [`memchr` - heavily optimized routines for string search primitives](https://crates.io/crates/memchr) [[doc](https://docs.rs/memchr/latest/memchr)] [[repo](https://github.com/BurntSushi/memchr)]
+* [`nom` - a byte-oriented, zero-copy, parser combinators library](https://crates.io/crates/nom) [[doc](https://docs.rs/nom/latest/nom)] [[repo](https://github.com/rust-bakery/nom)]
 * [`nu` - a new type of shell](https://crates.io/crates/nu) [[home](https://www.nushell.sh/)] [[book](https://www.nushell.sh/book/)] [[doc](https://docs.rs/crate/nu/latest)] [[repo](https://github.com/nushell/nushell)]
 * [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num)] [[repo](https://github.com/rust-num/num)]
 * [`num_cpus` - get the number of CPUs on a machine](https://crates.io/crates/num_cpus) [[doc](https://docs.rs/num_cpus/latest/num_cpus)] [[repo](https://github.com/seanmonstar/num_cpus)]
@@ -5739,6 +6129,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`stacker` - a stack growth library](https://crates.io/crates/stacker) [[doc](https://docs.rs/stacker/latest/stacker)] [[repo](https://github.com/rust-lang/stacker)]
 * [`state` - a library for safe and effortless global and thread-local state management](https://crates.io/crates/state) [[doc](https://docs.rs/state/latest/state)] [[repo](https://github.com/SergioBenitez/state/)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
+  * [`std::alloc` - memory allocation APIs](https://doc.rust-lang.org/std/alloc/index.html)
+    * [`std::alloc::Layout` - layout of a block of memory](https://doc.rust-lang.org/std/alloc/struct.Layout.html)
   * [`std::borrow` - a module for working with borrowed data](https://doc.rust-lang.org/std/borrow/index.html)
     * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
