@@ -74,6 +74,7 @@
 * https://www.youtube.com/c/AlexF%C3%BChrerstandmitfahrten/videos
 * https://www.youtube.com/user/lorirocks777/videos
 * [Railway Emotions](https://www.youtube.com/channel/UCRYl1C12IXPs2Uo_25OdrPA/videos)
+* [Hugo Bazin](https://www.youtube.com/@hugobazin8052/videos)
 * https://www.youtube.com/user/Bindschi1/videos
 * [Associazione Verbano Express](https://www.youtube.com/channel/UC3-diLH1e2WCceg4_E7Vq-g/videos)
 * [Theitaliantraindrivers](https://www.youtube.com/c/Theitaliantraindrivers/videos)

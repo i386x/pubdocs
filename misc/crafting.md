@@ -2,6 +2,7 @@
 
 * [Amperak](https://www.youtube.com/@amperak/videos)
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
+* [Earth Uncovered](https://www.youtube.com/@EarthUncoveredonyoutube/videos)
 * [ElektroMaster](https://www.youtube.com/@Petr-bakom/videos)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
 * [Essential Craftsman](https://www.youtube.com/@essentialcraftsman)
@@ -16,6 +17,7 @@
 * [Persian Hand Crafts](https://www.youtube.com/@PersianHandCraftsP/videos)
 * [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
 * [The Forbidden Knowledge of Washers](https://www.youtube.com/watch?v=F4EvMVpx1Pw)
+* [The Whitworth Three Plates Method](https://ericweinhoffer.com/blog/2017/7/30/the-whitworth-three-plates-method)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
 * [Whispering Roots](https://www.youtube.com/@Whisperingroots/shorts)
 * [Wild Roots](https://www.youtube.com/@WildRoots00/shorts)
@@ -36,13 +38,17 @@
 
 * [Building a Medieval Forge and Blacksmith Shop by Hand](https://www.youtube.com/watch?v=AALf5ADejS8)
 * [Kovárna Duben](https://www.youtube.com/channel/UCFBLSwd5kqr7KCuX5mtYH9w/videos)
+* [Ore Dog Productions](https://www.youtube.com/@oredogproductions1630/videos)
+  * [Ore to Axe. The Complete Movie.](https://www.youtube.com/watch?v=2M4FZn7xwcg)
 * [Torbjörn Åhman](https://www.youtube.com/@torbjornahman/videos)
 
 ## Milling
 
 * [Filing metal to make it flat / level](https://www.youtube.com/watch?v=Vkw-fNuCktA)
+* [High precision air bearing CNC lathe and grinder](https://www.youtube.com/watch?v=sFrVdoOhu1Q)
 * [Inheritance Machining](https://www.youtube.com/@InheritanceMachining/videos)
 * [Mastering Metal Machining | Shell Historical Film Archive](https://www.youtube.com/watch?v=YinS03voTwc)
+* [Monarch Machine Tool Company - THE TURNING POINT - 1950s Promotional 16mm Film](https://www.youtube.com/watch?v=5qlS_944oZE)
 * [Open Source Machine Tools](https://www.youtube.com/channel/UC79QdJW2rayvCzqNq-SAM-g/videos)
 * [Scraping basics - Scraping flat - Part 1](https://www.youtube.com/watch?v=QJXqHpSh3SE)
 * [Scraping basics - Scraping flat - Part 2](https://www.youtube.com/watch?v=S9N3Q8Qww2A)
@@ -60,6 +66,7 @@
 * [How to sharpen drill bits in 5 seconds. Ancient secret!](https://www.youtube.com/watch?v=wVVjxW3BGLI)
 * [Kleště pro Elektrikáře - průvodce Štípáním, Odholováním a Krimpováním](https://www.youtube.com/watch?v=o5jpmV6jxGE)
 * [LockPickingLawyer](https://www.youtube.com/@lockpickinglawyer/videos)
+* [oxtoolco](https://www.youtube.com/@oxtoolco/videos)
 * [The Easy Way to Replace Hammer Handles](https://www.youtube.com/watch?v=mGeZGC7P3OQ)
 
 ## Welding
@@ -83,4 +90,5 @@
 * [H Carpenter](https://www.youtube.com/@HCarpenter/videos)
 * [Japan Woodcraft Association](https://japanwoodcraftassociation.com/)
 * [Organic Archery](https://www.youtube.com/@organicarchery/videos)
+* [What Pros Know About Screws. That Beginners Don't.](https://www.youtube.com/watch?v=SMYbr93rsCE)
 * [Woodpeckers](https://www.youtube.com/@WoodpeckersLLC)
