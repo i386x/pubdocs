@@ -14,13 +14,20 @@
    $ git checkout rawhide
    $ git pull
    ```
+1. Since EPEL 10, branches and dist tags are as follows:
+   * `epel<N>` points to the active development EPEL `<N>` branch
+     * this can be `epel<N>.0`, `epel<N>.1`, `epel<N>.2`, etc.
+     * the corresponding dist tags are: `.el<N>_0`, `.el<N>_1`, `.el<N>_2`,
+       etc.
 1. From `rawhide`:
    1. Do a scratch build against `epel<N>` target
    1. Test the package against the `epel<N>` content
+   1. If necessary, repeat also for older EPEL 10+ branches
 1. Request the EPEL branch if there is no one:
    ```bash
    $ fedpkg request-branch epel<N>
    ```
+   * In case of EPEL 10+, also older `epel<N>.x` may be requested
 1. If the previous step has been executed, put the link of the branch request
    ticket into the Bugzilla
 1. Switch to the `epel<N>` branch:
@@ -61,6 +68,7 @@
    1. Fill `Description`
    1. Add bugs to `Bugs`
    1. Click `Submit`
+1. Repeat for other requested branches
 
 ### Doing a Rebase
 
@@ -345,16 +353,33 @@ $ koji list-history --build <NVR>
 
 ### Doing a Scratch Build
 
+* For `rawhide`:
+  ```bash
+  $ fedpkg srpm
+  $ fedpkg scratch-build --srpm <source RPM>
+  ```
+* For the specific release:
+  ```bash
+  $ fedpkg --release <release> srpm
+  $ fedpkg --release <release> scratch-build --srpm <source RPM>
+  ```
+* For the selected architectures:
+  ```bash
+  $ fedpkg --release <release> scratch-build --arches x86_64,s390x --srpm <source RPM>
+  ```
+
 ### Installing `fedpkg` via `pip`
 
 ```bash
 $ git clone https://pagure.io/fedpkg.git
+$ git checkout <latest stable tag>
 $ cd fedpkg
 $ mkdir -p ~/.myvenvs
 $ python -m venv ~/.myvenvs/fedpkg
 $ source ~/.myvenvs/fedpkg/bin/activate
 $ pip install -U pip
 $ sudo dnf install -y krb5-devel
+$ pip install packaging
 $ pip install rpm
 $ pip install -e .
 $ deactivate
@@ -368,6 +393,13 @@ $ koji buildinfo <NVR>
 ```
 
 ### `rpminspect`
+
+### SSH Keys
+
+#### Updating `~/.ssh/known_hosts`
+
+Copy the content of https://admin.fedoraproject.org/ssh_known_hosts to your
+`~/.ssh/known_hosts` file. Eventually remove old hosts.
 
 ### Token Refresh
 
