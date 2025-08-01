@@ -32,6 +32,8 @@
   * [Book](https://doc.rust-lang.org/book/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
   * [Learn Rust](https://www.rust-lang.org/learn)
+  * [Performance Data](https://perf.rust-lang.org)
+    * [Dashboard](https://perf.rust-lang.org/dashboard.html)
   * [Reference Guide](https://doc.rust-lang.org/reference/index.html)
   * [RFC Book](https://rust-lang.github.io/rfcs/)
   * [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
@@ -269,6 +271,7 @@ Tips, tricks, and hacks:
 source code written in Rust.
 
 Tips, tricks, and hacks:
+* [Clippy Lints](https://rust-lang.github.io/rust-clippy/stable/index.html)
 * [Mastering Clippy: Elevating Your Rust Code Quality](https://rust-trends.com/posts/mastering-clippy-elevating-your-rust-code-quality/)
 * pedantic `clippy` checks:
   ```sh
@@ -346,7 +349,9 @@ Useful compiler configuration:
 Examples:
 * [atty](https://github.com/softprops/atty)
 * [fantoccini](https://github.com/jonhoo/fantoccini)
+* [Hurl](https://github.com/Orange-OpenSource/hurl)
 * [Rust CI with GitHub Actions](https://github.com/BamPeers/rust-ci-github-actions-workflow)
+* [speculoos](https://github.com/oknozor/speculoos)
 * [Tantivy](https://github.com/quickwit-oss/tantivy)
 
 References:
@@ -2634,6 +2639,402 @@ operations:
 * `function(x)` moves/copies `x` to its parameter
 * `return x` moves/copies `x` outside of function as its return value
 
+#### Dropping and Destructors
+
+* a *destructor* is run, or a value is *dropped*
+  * when the initialized variable or temporary goes out of its scope
+    * note that a variable is initialized if it has been assigned a value and
+      hasn't since been moved from
+  * during an assignment if the left-hand operand is initialized
+* partially initialized variables
+  * only initialized fields are dropped
+* how a destructor is run on `T`:
+  * if `T: Drop`, `<T as std::ops::Drop>::drop` is called
+  * recursively running the destructor of all of `T`'s fields
+    * if `T` is a `struct`, its fields are dropped in declaration order
+    * if `T` is an `enum`, the fields of its active variant are dropped in
+      declaration order
+    * if `T` is a tuple, its fields are dropped in order
+    * if `T` is an array or owned slice, its elements are dropped from the
+      first element to the last
+    * if `T` is a closure, its variables captured by move are dropped in an
+      unspecified order
+    * if `T` is a trait object, the destructor of the underlying type is run
+    * other types don't result in any further drops
+* to run a destructor manually, `std::ptr::drop_in_place` can be used
+  * useful for custom user-defined smart pointers
+* to not run a destructor
+  * use `std::mem::forget` or `std::mem::ManuallyDrop`
+  * terminate the process without unwinding
+    * use `std::process::exit` or `std::process::abort`
+    * set the panic handler to `abort`
+  * note that preventing a destructor from being run is safe since types may
+    *not* safely rely on a destructor being run for soundness
+* when a panic reaches a non-unwinding ABI boundary
+  * either no destructors will run
+  * or all destructors up until the ABI boundary will run
+* each variable or temporary is associated to a drop scope
+  * when the drop scope is leaved during control flow, all the associated
+    variables/temporaries are dropped in reverse order of declaration/creation
+* how a drop scope is determined:
+  * first, replace `for`, `if let`, and `while let` expressions with the
+    equivalent expressions using `match`:
+    ```rust
+    // Expression:
+    'label: for PATTERN in iter_expr {
+        /* loop body */
+    }
+
+    // is transformed to:
+    {
+        let result = match IntoIterator::into_iter(iter_expr) {
+            mut iter => 'label: loop {
+                let mut next;
+                match Iterator::next(&mut iter) {
+                    Option::Some(val) => next = val,
+                    Option::None => break,
+                };
+                let PATTERN = next;
+                let () = { /* loop body */ };
+            },
+        };
+        result
+    }
+
+    // Expression:
+    if let PATTERN = EXPRESSION {
+        /* then branch */
+    }
+
+    // is transformed to:
+    match EXPRESSION {
+        PATTERN => { /* then branch */ },
+        _ => (),
+    }
+
+    // Expression:
+    if let PATTERN = EXPRESSION {
+        /* then branch */
+    } else {
+        /* else branch */
+    }
+
+    // is transformed to:
+    match EXPRESSION {
+        PATTERN => { /* then branch */ },
+        _ => { /* else branch */ },
+    }
+
+    // Expression:
+    'label: while let PATS = EXPR {
+        /* loop body */
+    }
+
+    // is transformed to:
+    'label: loop {
+        match EXPR {
+            PATS => { /* loop body */ },
+            _ => break,
+        }
+    }
+    ```
+  * overloaded operators are not distinguished from built-in operators
+  * binding modes (in patterns) are not considered
+  * in a function or a closure, drop scopes are:
+    * the entire function
+    * each statement
+    * each expression
+    * each block, including the function body
+      * in the case of a block expression, the scope for the block is the same
+        as for the expression
+    * each arm of a `match` expression
+* drop scopes nesting rules
+  * the entire function scope is the outer most scope
+  * the function body block is contained within the scope of the entire
+    function
+    ```rust
+       fn f() { }
+    // ^^^^^^^^^^ (the `f`'s scope)
+    //        ^^^ (the `f`'s body block scope)
+    ```
+  * all function parameters are in the scope of the entire function body
+    * each actual function parameter is dropped after any bindings introduced
+      in that parameter's pattern
+
+    ```rust
+    fn f<T: Drop>((x, _): (T, T), (_, y): (T, T)) {}
+    //             1  2            3  4
+    // Drop order: 4, 3, 1, 2
+    ```
+  * the parent of the expression in an expression statement is the scope of the
+    statement
+    ```rust
+    // (1) is the parent of (2)
+       a + b;
+    // ^^^^^^ (1)
+    // ^^^^^  (2)
+    ```
+  * the parent of the initializer of a `let` statement is the let statement's
+    scope
+    ```rust
+    // (1) is the parent of (2)
+       let x = a + b;
+    // ^^^^^^^^^^^^^^ (1)
+    //         ^^^^^  (2)
+    ```
+    * local variables declared in a `let` statement are associated to the scope
+      of the block that contains the `let` statement
+      ```rust
+      { statement; let x = 0; statement; }
+      //                      ^^^^^^^^^^^^ the scope of `x`
+      ```
+  * the parent of a statement scope is the scope of the block that contains the
+    statement
+    ```rust
+    // (1) is the parent of (2)
+       { statement; }
+    // ^^^^^^^^^^^^^^ (1)
+    //   ^^^^^^^^^^   (2)
+    ```
+  * the parent of the expression for a `match` guard is the scope of the arm
+    that the guard is for
+    ```rust
+    // (1) is the parent of (2)
+    match scrutinee {
+        pattern if expression => expression,
+    //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ (1)
+    //             ^^^^^^^^^^                (2)
+    }
+    ```
+  * the parent of the expression after the `=>` in a `match` expression is the
+    scope of the arm that it's in
+    ```rust
+    // (1) is the parent of (2)
+    match scrutinee {
+        pattern => expression,
+    //  ^^^^^^^^^^^^^^^^^^^^^^ (1)
+    //             ^^^^^^^^^^  (2)
+    }
+    ```
+  * the parent of the arm scope is the scope of the `match` expression that it
+    belongs to
+    ```rust
+    // (1) is the parent of (2)
+       match scrutinee { pattern => expression, }
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ (1)
+    //                   ^^^^^^^^^^^^^^^^^^^^^^   (2)
+    ```
+    * local variables declared in a `match` expression are associated to the
+      arm scope of the `match` arm that they are declared in
+    * if multiple patterns are used in the same arm for a `match` expression,
+      then an unspecified pattern will be used to determine the drop order
+      ```rust
+      match scrutinee {
+          (x, _) | (_, x, _) => expression,
+      //                        ^^^^^^^^^^^ the scope of `x`
+      // Drop order determined by an unspecified pattern
+      }
+      ```
+  * the parent of all other scopes is the scope of the immediately enclosing
+    expression
+    ```rust
+    // (1) is the parent of (2) and (3)
+    // (3) is the parent of (4)
+    // (4) is the parent of (5) and (6)
+       (a + b) + c
+    // ^^^^^^^^^^^ (1)
+    //           ^ (2)
+    // ^^^^^^^     (3)
+    //  ^^^^^      (4)
+    //      ^      (5)
+    //  ^          (6)
+    ```
+  * when multiple scopes are left at once, variables are dropped from the
+    inside outwards
+    * example: `return`
+* a temporary scope
+  * only in an expression
+  * the smallest scope that contains the expression
+  * used for the temporary variable that holds the result of that expression
+    when used in a place context, unless it is promoted
+  * it is a one of the following:
+    * the entire function
+      ```rust
+         fn f() {}
+      // ^^^^^^^^^ a temporary scope
+      ```
+    * a statement
+      ```rust
+         statement;
+      // ^^^^^^^^^^ a temporary scope
+      ```
+    * the body of an `if`, `while`, or `loop` expression
+      ```rust
+      if expression {}
+      //            ^^    (1)
+      while expression {}
+      //               ^^ (2)
+      loop {}
+      //   ^^             (3)
+      // (1), (2), and (3) are temporary scopes
+      ```
+    * the `else` block of an `if` expression
+      ```rust
+      if expression {} else {}
+      //                    ^^ a temporary scope
+      ```
+    * the non-pattern matching condition expression of an `if` or `while`
+      expression, or a `match` guard
+    * the body expression for a `match` arm
+    * each operand of a lazy boolean expression
+    * the pattern-matching condition(s) and consequent body of `if`
+    * the entirety of the tail expression of a block
+  * examples:
+    ```rust
+    if A { B } else { unreachable!() };
+    // A is dropped once it is evaluated
+    // B is dropped at the end of its enclosing block
+
+    if let pattern = X { Y /* (1) */ } /* (2) */ else { Z /* (3) */ };
+    // X is dropped at (2)
+    // Y is dropped at (1)
+    // Z is dropped at (3)
+
+    (X /* (1) */ || Y /* (2) */) || Z /* (3) */;
+    // X is dropped at (1)
+    // Y is dropped at (2)
+    // Z is dropped at (3)
+
+    // Let this be the tail expression of the function body block:
+    match A { _ if B => (), _ => (), } /* [1] */
+    // B is dropped after it is evaluated
+    // A is dropped at the end of the function (at [1]), before local variables
+    ```
+* temporaries
+  * created to hold the result of operands to an expression while the other
+    operands are evaluated
+    * associated to the scope of the expression with that operand
+  * once the expression is evaluated, temporaries are moved from
+    * that means they are not dropped unless one of the operands to an
+      expression breaks out of the expression, returns, or panics
+  * example:
+    ```rust
+    loop { (a, b, (c, d, break), e); }
+    // `a` is evaluated
+    // `b` is evaluated
+    // `c` is evaluated
+    // `d` is evaluated
+    // `break` jumps out of the `loop`:
+    //   - evaluation of `(a, b, (c, d, break), e) is canceled (note that `e`
+    //     is never evaluated)
+    //   - this results in dropping `d`, `c`, `b`, and `a`, respectively
+    ```
+* temporary lifetime extension
+  * in `let`-like statements
+  * the scope is extended to the scope of the block containing the `let`-like
+    statement
+    * in case of `static` and `const` statements, the scope is extended to the
+      end of the program
+  * when the usual temporary scope would be to small (based on certain
+    syntactic rules)
+  * if a borrow, dereference, field, or tuple indexing expression has an
+    extended temporary scope then so does its operand
+  * if an indexing expression has an extended temporary scope then the indexed
+    expression also has an extended temporary scope
+  * an extending pattern
+    * when it occurs in a `let`-like statement, the temporary scope of the
+      initializer expression is extended
+    * can be either
+      * an identifier pattern that binds by reference or mutable reference
+      * a `struct`, tuple, tuple `struct`, or slice pattern where at least one
+        of the direct subpatterns is an extending pattern
+    * extending patterns: `ref x`, `V(ref x)`, `[ref x, y]`
+    * patterns that are not extending: `x`, `&ref x`, `&(ref x,)`
+  * an extending expression
+    * when it occurs as the initializer in a `let`-like statement, its
+      temporary scope is extended
+    * can be one of
+      * the initializer expression
+      * the operand of an extending borrow expression
+        * the operand of any extending borrow expression has its temporary
+          scope extended
+      * the operand(s) of an extending array, cast, braced `struct`, or tuple
+        expression
+      * the final expression of any extending block expression
+    * borrow expressions in `&mut 0`, `(&1, &mut 2)`, and `Some { 0: &mut 3 }`
+      are all extending expressions
+    * the borrows in `&0 + &1` and `Some(&mut 0)` are not (the latter is
+      syntactically a function call expression)
+  * examples:
+    ```rust
+    fn temp() {}
+    trait Use { fn use_temp(&self) -> &Self { self } }
+    impl Use for () {}
+
+    {
+        let x = &mut 0;
+        //      ^^^^^^  usually a temporary dropped here, but the temporary for
+        //              `0` lives to the end of the block
+
+        println!("{}", x);
+    }
+
+    const C: &Vec<i32> = &Vec::new();
+    //                   ^^^^^^^^^^^  usually a dangling reference as the `Vec`
+    //                                would only exist here, but the borrow is
+    //                                extended to have `'static` lifetime
+
+    println!("{:?}", C);
+
+    // Expressions that have extended temporary scopes (the temporary that
+    // stores the result of `temp()` lives in the same scope as `x` in these
+    // cases):
+    let x = &temp();
+    let x = &temp() as &dyn Send;
+    let x = (&*&temp(),);
+    let x = { [Some { 0: &temp(), }] };
+    let ref x = temp();
+    let ref x = *&temp();
+
+    // Expressions that don't have extended temporary scopes (the temporary
+    // that stores the result of `temp()` only lives until the end of the `let`
+    // statement in these cases):
+    //
+    // let x = Some(&temp());        // ERROR
+    // let x = (&temp()).use_temp(); // ERROR
+    ```
+
+* see [Destructors](https://doc.rust-lang.org/reference/destructors.html),
+  [Functions](https://doc.rust-lang.org/reference/items/functions.html),
+  [Variables](https://doc.rust-lang.org/reference/variables.html),
+  [Expressions](https://doc.rust-lang.org/reference/expressions.html),
+  [Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
+  [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+  [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html),
+  [Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html),
+  [Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
+  [`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html),
+  [`if` expressions](https://doc.rust-lang.org/reference/expressions/if-expr.html),
+  [Loops and other breakable expressions](https://doc.rust-lang.org/reference/expressions/loop-expr.html),
+  [Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+  [Statements](https://doc.rust-lang.org/reference/statements.html),
+  [Patterns](https://doc.rust-lang.org/reference/patterns.html),
+  [Struct types](https://doc.rust-lang.org/reference/types/struct.html),
+  [Enumerated types](https://doc.rust-lang.org/reference/types/enum.html),
+  [Tuple types](https://doc.rust-lang.org/reference/types/tuple.html),
+  [Array types](https://doc.rust-lang.org/reference/types/array.html),
+  [Slice types](https://doc.rust-lang.org/reference/types/slice.html),
+  [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+  [Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html),
+  [Panic](https://doc.rust-lang.org/reference/panic.html),
+  [`std::mem::forget`](https://doc.rust-lang.org/std/mem/fn.forget.html),
+  [`std::mem::ManuallyDrop`](https://doc.rust-lang.org/std/mem/struct.ManuallyDrop.html),
+  [`std::ops::Drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html),
+  [`std::ptr::drop_in_place`](https://doc.rust-lang.org/std/ptr/fn.drop_in_place.html),
+  [`std::process::abort`](https://doc.rust-lang.org/std/process/fn.abort.html),
+  and [`std::process::exit`](https://doc.rust-lang.org/std/process/fn.exit.html)
+  for greater detail
+
 ### References and Borrowing
 
 * a reference is holding an address to some kind of data/value
@@ -2655,6 +3056,28 @@ operations:
 * a mutable reference allows to change the value it is referring to
   * no other references to that value are allowed to exist during the mutable
     reference lifetime
+
+#### Interior Mutability
+
+* is a pattern that allows to change an object's state while simultaneously
+  having multiple shared references on it
+* `std::cell::UnsafeCell<T>` is the only type with interior mutability
+  * a basic building block for other types with interior mutability
+  * `UnsafeCell<T>` can return a mutable reference to `T`
+  * a value of the type `T` can be safely changed via a shared reference to
+    `UnsafeCell<T>`
+  * multiple `&mut UnsafeCell<T>` aliases lead to undefined behavior
+* examples of types with safe interior mutability APIs provided by the standard
+  library:
+  * `std::cell::RefCell<T>`
+  * `std::sync::atomic`
+* see [Interior Mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
+  [Pointer types](https://doc.rust-lang.org/reference/types/pointer.html),
+  [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html),
+  [`std::cell::UnsafeCell`](https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html),
+  [`std::cell::RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html),
+  and [`std::sync::atomic`](https://doc.rust-lang.org/std/sync/atomic/index.html)
+  for greater detail
 
 ### Dangling Pointers
 
@@ -2753,11 +3176,173 @@ operator_expression:
     borrow_expression
     error_propagation_expression
 ```
+* many of the operators and expressions can be overloaded for other types using
+  traits
+* outer attributes are allowed before
+  * an expression used as a statement
+  * elements of array expressions, tuple expressions, call expressions, and
+    tuple-style `struct` expressions
+  * the tail expression of block expressions
+* outer attributes are not allowed before
+  * range expressions
+  * binary operator expressions (`arithmetic_or_logical_expression`,
+    `comparison_expression`, `lazy_boolean_expression`, `type_cast_expression`,
+    `assignment_expression`, `compound_assignment_expression`)
 
-References:
-* [Expressions reference](https://doc.rust-lang.org/reference/expressions.html)
-* [Operators and symbols list](https://doc.rust-lang.org/book/appendix-02-operators.html) (see also [here](https://doc.rust-lang.org/reference/tokens.html#punctuation))
-* [Operator precedence](https://doc.rust-lang.org/reference/expressions.html#expression-precedence)
+Evaluation of operands:
+* operands of an expression are evaluated prior to applying the effects of the
+  expression
+* they are evaluated from the left to the right, as written in the source code,
+  and this is also done recursively for subexpressions
+* an operand may likewise occur in either place context or value context
+
+Expressions kinds:
+* a place expression (lvalue)
+  * is an expression that represents a memory location
+  * one of
+    * a path referring to a local variable
+    * a static variable
+    * a dereference (`*expr`)
+    * an array indexing expression (`expr[expr]`)
+    * a field reference (`expr.f`)
+    * a parenthesized place expression
+  * one of that can be moved out of:
+    * a variable which is not currently borrowed
+    * a temporary value
+    * a field of a place expression which can be moved out of and don't
+      implement `Drop`
+    * the result of dereferencing an expression with type `Box<T>` and that can
+      also be moved out of
+  * place expression contexts:
+    * the left operand of a compound assignment expression
+    * the operand of a unary borrow, raw borrow, or dereference operator
+    * the operand of a field expression
+    * the indexed operand of an array indexing expression
+    * the operand of any implicit borrow
+    * the initializer of a `let` statement
+    * the scrutinee of an `if let`, `match`, or `while let` expression
+    * the base of a functional update `struct` expression (`..`)
+* a mutable place expression
+  * is a place expression that can be
+    * assigned to
+    * mutably, or implicitly mutably, borrowed
+    * bound to a pattern containing `ref mut`
+  * mutable place expression contexts:
+    * mutable variables which are not currently borrowed
+    * mutable static items
+    * temporary values
+    * fields (this evaluates the subexpression in a mutable place expression
+      context)
+    * dereferences of a `*mut T` pointer
+    * dereference of a variable, or field of a variable, with type `&mut T`
+      (this is an exception to the requirement of the next rule)
+    * dereferences of a type that implements `DerefMut` (this then requires
+      that the value being dereferenced is evaluated in a mutable place
+      expression context)
+    * array indexing of a type that implements `IndexMut` (this then evaluates
+      the value being indexed, but not the index, in mutable place expression
+      context)
+* a value expression (rvalue)
+  * is an expression that represents an actual value
+  * any expression except place expressions
+  * can be promoted to a `static` slot (a.k.a. constant promotion) under these
+    circumstances:
+    * the expression could be written in a constant and borrowed, and
+    * that borrow could be dereferenced where the expression was originally
+      written,
+    * without changing the runtime behavior
+  * an expression promoted to a `static` slot
+    * can be evaluated at compile time
+    * the resulting value does not contain interior mutability or destructors
+    * these properties are determined based on the value where possible
+      * example: `&None` always has the type `&'static Option<_>`, as it
+        contains nothing disallowed
+* an assignee expression
+  * is an expression that appears in the left operand of an assignment
+    expression
+  * one of
+    * a place expression
+    * the underscore
+    * a tuple of assignee expressions
+    * a slice of assignee expressions
+    * a tuple `struct` of assignee expressions
+    * a `struct` of assignee expressions (with optionally named fields)
+    * a unit `struct`
+
+Evaluation of expressions:
+* a place expression evaluated in a value expression context, or bound by value
+  in a pattern
+  * denotes the value held in that memory location
+  * if the type of that value implements `Copy`
+    * the value will be copied
+  * otherwise, if that type is `Sized`
+    * the value can be moved, if it is possible
+    * after moving out of a place expression that evaluates to a local variable
+      * the location is deinitialized and cannot be read from again until it is
+        reinitialized
+  * trying to use a place expression in a value expression context in all other
+    cases is an error
+
+Temporaries:
+* a temporary unnamed memory location
+  * is created when using a value expression in most place expression contexts
+    * the expression evaluates to that location, except if promoted to a
+      `static`
+  * is initialized to the value of that value expression
+* the drop scope of the temporary is usually the end of the enclosing statement
+* promotion of a value expression
+
+Implicit borrows:
+* happen in certain expressions that will treat an expression as a place
+  expression by implicitly borrowing it
+  * for example, it is possible to compare two unsized slices for equality
+    directly, because the `==` operator implicitly borrows its operands:
+    ```rust
+    *a == *b;
+    // is equivalent to:
+    ::std::cmp::PartialEq::eq(&*a, &*b);
+    ```
+* may be taken in the following expressions:
+  * left operand in method-call expressions
+  * left operand in field expressions
+  * left operand in call expressions
+  * left operand in array indexing expressions
+  * operand of the dereference operator (`*`)
+  * operands of comparison
+  * left operands of the compound assignment
+
+See [Expressions](https://doc.rust-lang.org/reference/expressions.html),
+[Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html),
+[Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
+[Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
+[Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+[Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html),
+[Path expressions](https://doc.rust-lang.org/reference/expressions/path-expr.html),
+[`if` expressions](https://doc.rust-lang.org/reference/expressions/if-expr.html),
+[`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html),
+[Loops and other breakable expressions](https://doc.rust-lang.org/reference/expressions/loop-expr.html),
+[Call expressions](https://doc.rust-lang.org/reference/expressions/call-expr.html),
+[Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Range expressions](https://doc.rust-lang.org/reference/expressions/range-expr.html),
+[`_` expressions](https://doc.rust-lang.org/reference/expressions/underscore-expr.html),
+[Variables](https://doc.rust-lang.org/reference/variables.html),
+[Structs](https://doc.rust-lang.org/reference/items/structs.html),
+[Statements](https://doc.rust-lang.org/reference/statements.html),
+[Static items](https://doc.rust-lang.org/reference/items/static-items.html),
+[Operators and symbols list](https://doc.rust-lang.org/book/appendix-02-operators.html)
+(see also [here](https://doc.rust-lang.org/reference/tokens.html#punctuation)),
+[Slice types](https://doc.rust-lang.org/reference/types/slice.html),
+[Interior mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
+[Destructors](https://doc.rust-lang.org/reference/destructors.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+[`Drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html),
+[`DerefMut`](https://doc.rust-lang.org/std/ops/trait.DerefMut.html),
+[`IndexMut`](https://doc.rust-lang.org/std/ops/trait.IndexMut.html),
+[`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html), and
+[`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) for greater
+detail.
 
 ### Loop Expressions
 
@@ -6101,6 +6686,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`just` - a `make`-like tool](https://crates.io/crates/just) [[home](https://just.systems/)] [[doc](https://docs.rs/just/latest/just/)] [[repo](https://github.com/casey/just)]
 * [`kellnr` - the registry for Rust crates](https://kellnr.io/) [[repo](https://github.com/kellnr/kellnr)]
 * [`ktra` - little cargo registry](https://crates.io/crates/ktra) [[book](https://book.ktra.dev/)] [[doc](https://docs.rs/crate/ktra/latest)] [[repo](https://github.com/moriturus/ktra)]
+* [`lalrpop` - convenient LR(1) parser generator](https://crates.io/crates/lalrpop) [[book](https://lalrpop.github.io/lalrpop/)] [[doc](https://docs.rs/lalrpop/latest/lalrpop)] [[repo](https://github.com/lalrpop/lalrpop)]
 * [`lazy_static` - a macro for declaring lazily evaluated statics](https://crates.io/crates/lazy_static) [[doc](https://docs.rs/lazy_static/latest/lazy_static)] [[repo](https://github.com/rust-lang-nursery/lazy-static.rs)]
 * [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc)] [[repo](https://github.com/rust-lang/libc)]
 * [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log)] [[repo](https://github.com/rust-lang/log)]
@@ -6126,6 +6712,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
 * [`serial_test` - allows for the creation of serialised Rust tests](https://crates.io/crates/serial_test) [[doc](https://docs.rs/serial_test/latest/serial_test)] [[repo](https://github.com/palfrey/serial_test/)]
+* [`speculoos` - fluent test assertions](https://crates.io/crates/speculoos) [[doc](https://docs.rs/speculoos/latest/speculoos)] [[repo](https://github.com/oknozor/speculoos)]
 * [`stacker` - a stack growth library](https://crates.io/crates/stacker) [[doc](https://docs.rs/stacker/latest/stacker)] [[repo](https://github.com/rust-lang/stacker)]
 * [`state` - a library for safe and effortless global and thread-local state management](https://crates.io/crates/state) [[doc](https://docs.rs/state/latest/state)] [[repo](https://github.com/SergioBenitez/state/)]
 * [`std` - the Rust standard library](https://doc.rust-lang.org/std/index.html)
@@ -6136,6 +6723,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
     * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
   * [`std::cell` - shareable mutable containers](https://doc.rust-lang.org/stable/std/cell/index.html)
+    * [`std::cell::RefCell` - a mutable memory location with dynamically checked borrow rules](https://doc.rust-lang.org/std/cell/struct.RefCell.html)
     * [`std::cell::UnsafeCell` - the core primitive for interior mutability in Rust](https://doc.rust-lang.org/stable/std/cell/struct.UnsafeCell.html)
   * [`std::collections` - collection types](https://doc.rust-lang.org/std/collections/index.html)
     * [`std::collections::HashSet` - a hash set](https://doc.rust-lang.org/std/collections/struct.HashSet.html)
@@ -6175,10 +6763,15 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::marker::Unpin` - types that do not require any pinning guarantees](https://doc.rust-lang.org/std/marker/trait.Unpin.html)
     * [`std::marker::Unsize` - types that can be "unsized" to a dynamically-sized type](https://doc.rust-lang.org/std/marker/trait.Unsize.html)
   * [`std::mem` - basic functions for dealing with memory](https://doc.rust-lang.org/std/mem/index.html)
+    * [`std::mem::drop` - disposes of a value](https://doc.rust-lang.org/std/mem/fn.drop.html)
+    * [`std::mem::forget` - takes ownership and "forgets" about the value without running its destructor](https://doc.rust-lang.org/std/mem/fn.forget.html)
+    * [`std::mem::ManuallyDrop` - a zero-cost wrapper to inhibit the compiler from automatically calling type's destructor](https://doc.rust-lang.org/std/mem/struct.ManuallyDrop.html)
   * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
     * [`std::ops::CoerceUnsized` - trait that indicates that this is a pointer or a wrapper for one, where unsizing can be performed on the pointee](https://doc.rust-lang.org/std/ops/trait.CoerceUnsized.html)
+    * [`std::ops::DerefMut` - used for mutable dereferencing operations](https://doc.rust-lang.org/std/ops/trait.DerefMut.html)
     * [`std::ops::Drop` - custom code within a destructor](https://doc.rust-lang.org/std/ops/trait.Drop.html)
+    * [`std::ops::IndexMut` - used for indexing operations in mutable contexts](https://doc.rust-lang.org/std/ops/trait.IndexMut.html)
   * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
     * [`std::option::Option` - the `Option` type](https://doc.rust-lang.org/std/option/enum.Option.html)
   * [`std::path` - cross-platform path manipulation](https://doc.rust-lang.org/std/path/index.html)
@@ -6186,13 +6779,19 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::path::PathBuf` - an owned, mutable path](https://doc.rust-lang.org/std/path/struct.PathBuf.html)
   * [`std::prelude` - the list of symbols which is preloaded](https://doc.rust-lang.org/std/prelude/index.html)
   * [`std::process` - a module for working with processes](https://doc.rust-lang.org/std/process/index.html)
+    * [`std::process::abort` - terminates the process in an abnormal fashion](https://doc.rust-lang.org/std/process/fn.abort.html)
     * [`std::process::Command` - a process builder](https://doc.rust-lang.org/std/process/struct.Command.html)
+    * [`std::process::exit` - terminates the current process with the specified exit code](https://doc.rust-lang.org/std/process/fn.exit.html)
     * [`std::process::Output` - the output of a finished process](https://doc.rust-lang.org/std/process/struct.Output.html)
+  * [`std::ptr` - manually manage memory through raw pointers](https://doc.rust-lang.org/std/ptr/index.html)
+    * [`std::ptr::drop_in_place` - executes the destructor (if any) of the pointed-to value](https://doc.rust-lang.org/std/ptr/fn.drop_in_place.html)
   * [`std::result` - error handling with the `Result` type](https://doc.rust-lang.org/std/result/index.html)
     * [`std::result::Result` - a type that represents either success (`Ok`) or failure (`Err`)](https://doc.rust-lang.org/std/result/enum.Result.html)
   * [`std::str` - utilities for the `str` primitive type](https://doc.rust-lang.org/std/str/index.html) [[`str` primitive type](https://doc.rust-lang.org/std/primitive.str.html)]
   * [`std::string` - a growable UTF-8 string module](https://doc.rust-lang.org/std/string/index.html)
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
+  * [`std::sync` - useful synchronization primitives](https://doc.rust-lang.org/std/sync/index.html)
+    * [`std::sync::atomic` - atomic types](https://doc.rust-lang.org/std/sync/atomic/index.html)
   * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
     * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
 * [`strsim` - string similarity metrics](https://crates.io/crates/strsim) [[doc](https://docs.rs/strsim/latest/strsim)] [[repo](https://github.com/rapidfuzz/strsim-rs)]
