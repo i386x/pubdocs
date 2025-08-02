@@ -594,8 +594,9 @@ weak_keyword:
 ```
 
 See [Appendix A: Keywords](https://doc.rust-lang.org/book/appendix-01-keywords.html)
-from the [book](https://doc.rust-lang.org/book/) or [Keywords](https://doc.rust-lang.org/reference/keywords.html)
-for greater detail.
+from the [book](https://doc.rust-lang.org/book/) or
+[Keywords](https://doc.rust-lang.org/reference/keywords.html) for greater
+detail.
 
 ### Identifiers
 
@@ -746,7 +747,7 @@ hex_digit:
   * `byte_literal` `suffix` should be `u8`
 * if there is no type suffix, `i32` is used
 * see [Byte literals](https://doc.rust-lang.org/reference/tokens.html#byte-literals),
-  [Integer literals](https://doc.rust-lang.org/reference/tokens.html#integer-literals)
+  [Integer literals](https://doc.rust-lang.org/reference/tokens.html#integer-literals),
   and [Integer literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html#integer-literal-expressions)
   for greater detail
 
@@ -1510,7 +1511,7 @@ reference_type:
 * see [References (`&` and `&mut`)](https://doc.rust-lang.org/reference/types/pointer.html#references--and-mut),
   [Interior Mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
   [Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries),
-  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html), for
+  and [Type Layout](https://doc.rust-lang.org/reference/type-layout.html) for
   greater detail
 
 #### Raw Pointer Types
@@ -1936,6 +1937,137 @@ See [Type coercions](https://doc.rust-lang.org/reference/type-coercions.html),
 and [`std::marker::Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html)
 for greater detail.
 
+### Lifetime Elision
+
+In general, where a lifetime can be inferred, it can be elided.
+
+In functions and methods:
+* lifetime arguments can be elided from function item, function pointer, and
+  closure trait signatures
+* eliding lifetime parameters that cannot be inferred is an error
+* the placeholder lifetime, `'_`
+  * tells the compiler to infer a lifetime in the same way as during a lifetime
+    elision
+  * using `'_` is preferred for lifetimes in paths
+* rules used to infer lifetime parameters for elided lifetimes:
+  * each elided lifetime in the parameters becomes a distinct lifetime
+    parameter
+  * if there is exactly one lifetime used in the parameters (elided or not),
+    that lifetime is assigned to all elided output lifetimes
+  * if the receiver has type `&Self` or `&mut Self`, then the lifetime of that
+    reference to `Self` is assigned to all elided output lifetime parameters
+* examples:
+  ```rust
+  // Elided:
+  fn print1(s: &str);
+  // Elided:
+  fn print2(s: &'_ str);
+  // Expanded:
+  fn print3<'a>(s: &'a str);
+
+  // Elided:
+  fn debug1(lvl: usize, s: &str);
+  // Expanded:
+  fn debug2<'a>(lvl: usize, s: &'a str);
+
+  // Elided:
+  fn substr1(s: &str, until: usize) -> &str;
+  // Expanded:
+  fn substr2<'a>(s: &'a str, until: usize) -> &'a str;
+
+  // Elided:
+  fn get_mut1(&mut self) -> &mut dyn T;
+  // Expanded:
+  fn get_mut2<'a>(&'a mut self) -> &'a mut dyn T;
+
+  // Elided:
+  fn args1<T: ToCStr>(&mut self, args: &[T]) -> &mut Command;
+  // Expanded:
+  fn args2<'a, 'b, T: ToCStr>(&'a mut self, args: &'b [T]) -> &'a mut Command;
+
+  // Elided:
+  fn other_args1<'a>(arg: &str) -> &'a str;
+  // Expanded:
+  fn other_args2<'a, 'b>(arg: &'b str) -> &'a str;
+
+  // Elided (preferred):
+  fn new1(buf: &mut [u8]) -> Thing<'_>;
+  // Elided:
+  fn new2(buf: &mut [u8]) -> Thing;
+  // Expanded:
+  fn new3<'a>(buf: &'a mut [u8]) -> Thing<'a>;
+
+  // Elided:
+  type FunPtr1 = fn(&str) -> &str;
+  // Expanded:
+  type FunPtr2 = for<'a> fn(&'a str) -> &'a str;
+
+  // Elided:
+  type FunTrait1 = dyn Fn(&str) -> &str;
+  // Expanded:
+  type FunTrait2 = dyn for<'a> Fn(&'a str) -> &'a str;
+  ```
+* examples of where lifetime elision is not allowed:
+  ```rust
+  // Cannot infer, because there are no parameters to infer from:
+  //
+  // fn get_str() -> &str;  // ILLEGAL
+
+  // Cannot infer, ambiguous if it is borrowed from the first or second
+  // parameter:
+  //
+  // fn frob(s: &str, t: &str) -> &str;  // ILLEGAL
+  ```
+
+In `const` and `static` declarations of reference types:
+* both declarations have implicit `'static` lifetimes unless an explicit
+  lifetime is specified
+  * in case of implicit `'static`, declarations may be written without the
+    lifetimes
+* if the `static` or `const` items include function or closure references,
+  which themselves include references
+  * the compiler will first try the standard elision rules
+* if it is unable to resolve the lifetimes by its usual rules, then it will
+  error
+* examples:
+  ```rust
+  // STRING: &'static str
+  const STRING: &str = "bitstring";
+
+  struct BitsNStrings<'a> {
+      mybits: [u32; 2],
+      mystring: &'a str,
+  }
+
+  // BITS_N_STRINGS: BitsNStrings<'static>
+  const BITS_N_STRINGS: BitsNStrings<'_> = BitsNStrings {
+      mybits: [1, 2],
+      mystring: STRING,
+  };
+
+  // Resolved as `for<'a> fn(&'a str) -> &'a str`:
+  const RESOLVED_SINGLE: fn(&str) -> &str = |x| x;
+
+  // Resolved as `for<'a, 'b, 'c> Fn(&'a Foo, &'b Bar, &'c Baz) -> usize`:
+  const RESOLVED_MULTIPLE: &dyn Fn(&Foo, &Bar, &Baz) -> usize = &somefunc;
+
+  // There is insufficient information to bound the return reference lifetime
+  // relative to the argument lifetimes, so this is an error:
+  //
+  // const RESOLVED_STATIC: &dyn Fn(&Foo, &Bar) -> &Baz = &somefunc;
+  //                                               ^
+  // This function's return type contains a borrowed value, but the signature
+  // does not say whether it is borrowed from argument 1 or argument 2
+  ```
+
+See [Lifetime elision](https://doc.rust-lang.org/reference/lifetime-elision.html),
+[Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+[Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+[Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+and [Static items](https://doc.rust-lang.org/reference/items/static-items.html)
+for greater detail.
+
 ## Declarations
 
 Grammar:
@@ -2057,7 +2189,7 @@ Variables:
 
 See [Identifiers](https://doc.rust-lang.org/reference/identifiers.html),
 [`let` statements](https://doc.rust-lang.org/reference/statements.html#let-statements),
-[Variables](https://doc.rust-lang.org/reference/variables.html) and
+[Variables](https://doc.rust-lang.org/reference/variables.html), and
 [Temporaries](https://doc.rust-lang.org/reference/expressions.html#temporaries)
 for greater detail.
 
@@ -4378,7 +4510,7 @@ expression_statement:
 ```
 
 See [Statements](https://doc.rust-lang.org/reference/statements.html),
-[Item declarations](https://doc.rust-lang.org/reference/statements.html#item-declarations)
+[Item declarations](https://doc.rust-lang.org/reference/statements.html#item-declarations),
 and [Items](https://doc.rust-lang.org/reference/items.html) for greater detail.
 
 ## Patterns
@@ -4925,6 +5057,24 @@ A *trait object*:
     * a *virtual method table* (*vtable*), which contains, for each method of
       `SomeTrait` and its super traits that `T` implements, a pointer to `T`'s
       implementation (i.e. a function pointer)
+* a default trait object lifetime bound
+  * is the assumed lifetime of references held by a trait object
+  * used instead of the lifetime parameter elision rules when the lifetime
+    bound is omitted entirely
+  * if `'_` is used as the lifetime bound then the bound follows the usual
+    elision rules
+  * if the trait object is used as a type argument of a generic type then the
+    containing type is first used to try to infer a bound
+    * if there is a unique bound from the containing type then that is the
+      default
+    * if there is more than one bound from the containing type then an explicit
+      bound must be specified
+  * if neither of those rules apply, then the bounds on the trait are used:
+    * if the trait is defined with a single lifetime bound then that bound is
+      used
+    * if `'static` is used for any lifetime bound then `'static` is used
+    * if the trait has no lifetime bounds, then the lifetime is inferred in
+      expressions and is `'static` outside of expressions
 
 Examples of trait objects:
 ```rust
@@ -4953,6 +5103,54 @@ fn print(a: Box<dyn Printable>) {
 fn main() {
     print(Box::new(10) as Box<dyn Printable>);
 }
+```
+
+Examples of default trait object lifetime bounds:
+```rust
+// For the following trait:
+trait Foo {}
+
+// These two are the same because `Box<T>` has no lifetime bound on `T`:
+type T1 = Box<dyn Foo>;
+type T2 = Box<dyn Foo + 'static>;
+
+// And so are these:
+impl dyn Foo {}
+impl dyn Foo + 'static {}
+
+// So are these, because `&'a T` requires `T: 'a`:
+type T3<'a> = &'a dyn Foo;
+type T4<'a> = &'a (dyn Foo + 'a);
+
+// `std::cell::Ref<'a, T>` also requires `T: 'a`, so these are the same:
+type T5<'a> = std::cell::Ref<'a, dyn Foo>;
+type T6<'a> = std::cell::Ref<'a, dyn Foo + 'a>;
+
+// This is an example of an error:
+struct TwoBounds<'a, 'b, T: ?Sized + 'a + 'b> {
+    f1: &'a i32,
+    f2: &'b i32,
+    f3: T,
+}
+
+// type T7<'a, 'b> = TwoBounds<'a, 'b, dyn Foo>;
+//                                     ^^^^^^^
+// Error: the lifetime bound for this object type cannot be deduced from
+// context
+
+// Note that the innermost object sets the bound, so `&'a Box<dyn Foo>` is
+// still `&'a Box<dyn Foo + 'static>`
+
+// For the following trait:
+trait Bar<'a>: 'a {}
+
+// These two are the same:
+type T1<'a> = Box<dyn Bar<'a>>;
+type T2<'a> = Box<dyn Bar<'a> + 'a>;
+
+// And so are these:
+impl<'a> dyn Bar<'a> {}
+impl<'a> dyn Bar<'a> + 'a {}
 ```
 
 ### Dynamically Sized Types
@@ -4993,6 +5191,8 @@ See [Traits](https://doc.rust-lang.org/reference/items/traits.html),
 [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
 [Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
 [Lifetime elision](https://doc.rust-lang.org/reference/lifetime-elision.html),
+[RFC 599](https://github.com/rust-lang/rfcs/blob/master/text/0599-default-object-bound.md),
+[RFC 1156](https://github.com/rust-lang/rfcs/blob/master/text/1156-adjust-default-object-bounds.md),
 [Special types and traits](https://doc.rust-lang.org/reference/special-types-and-traits.html),
 [Dynamically Sized Types](https://doc.rust-lang.org/reference/dynamically-sized-types.html),
 [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
