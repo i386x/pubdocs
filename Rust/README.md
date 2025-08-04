@@ -800,6 +800,8 @@ parenthesized_type:
 * Rust can infer a variable's data type
   * in case of more than one possible data types, a variable must be annotated
     with a data type
+* see [Types](https://doc.rust-lang.org/reference/types.html) for greater
+  detail
 
 ### Layout
 
@@ -1611,6 +1613,9 @@ maybe_named_param:
 If an item has type parameters:
 * within the item body, every type parameter acts as a type
 
+See [Type parameters](https://doc.rust-lang.org/reference/types/parameters.html)
+for greater detail.
+
 #### Inferred Type
 
 Grammar:
@@ -1620,6 +1625,48 @@ inferred_type:
 ```
 * asks the compiler to infer the type if possible
 * cannot be used in item signatures
+
+See [Inferred type](https://doc.rust-lang.org/reference/types/inferred.html)
+for greater details.
+
+#### Special Types
+
+* are types from the standard library that are known to the compiler
+* have features that are not allowed for user defined types
+* `Box<T>`
+  * the `*` operator and the destructor of `Box<T>` are built-in to the
+    language (the dereference operator for `Box<T>` produces a place which can
+    be moved from)
+  * a trait may be implemented for `Box<T>` in the same crate as `T` (this is
+    prevented for other generic types via the orphan rules)
+* `Box<T>`, `Rc<T>`, `Arc<T>`, and `Pin<T>` can be taken by methods as
+  receivers
+* `UnsafeCell<T>`
+  * used for interior mutability
+  * ensures that the compiler doesn't perform optimizations that are incorrect
+    for such types
+  * also ensures that `static` items which have a type with interior mutability
+    aren't placed in memory marked as read only
+* `PhantomData<T>`
+  * zero-sized, minimum alignment type
+  * considered to own a `T` for the purposes of variance, drop check, and auto
+    traits
+* see [Special types and traits](https://doc.rust-lang.org/reference/special-types-and-traits.html),
+  [Subtyping and Variance](https://doc.rust-lang.org/reference/subtyping.html),
+  [Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
+  [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+  [Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+  [Interior Mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
+  [Static items](https://doc.rust-lang.org/reference/items/static-items.html),
+  [Drop Check](https://doc.rust-lang.org/nomicon/dropck.html),
+  [Crate `std`](https://doc.rust-lang.org/std/index.html),
+  [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
+  [`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
+  [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
+  [`Pin`](https://doc.rust-lang.org/std/pin/struct.Pin.html),
+  [`UnsafeCell`](https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html),
+  and [`PhantomData`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html)
+  for greater detail
 
 ### Subtyping
 
@@ -5027,6 +5074,85 @@ trait Super<A> {}
 trait WithSelf: Super<Self> where Self: Sized {}
 ```
 
+Special traits:
+* exist in the standard library
+* are known to the compiler for their special features
+* operator traits
+  * defined in `std::ops` and `std::cmp`
+  * used to overload operators, indexing expressions, and call expressions
+* `Deref` and `DerefMut`
+  * used to overload the unary `*` operator
+  * also used in method resolution and dereference coercions
+* `Drop`
+  * provides a destructor
+* `Copy`
+  * changes the semantics of a type implementing it
+    * values whose type implements `Copy` are copied rather than moved upon
+      assignment
+  * `Copy` can only be implemented for types which do not implement `Drop`, and
+    whose fields are all `Copy`
+    * for `enum`s, this means all fields of all variants have to be `Copy`
+    * for unions, this means all variants have to be `Copy`
+  * the compiler implements `Copy` for:
+    * tuples of `Copy` types
+    * function pointers
+    * function items
+    * closures that capture no values or that only capture values of `Copy`
+      types
+* `Clone`
+  * a supertrait of `Copy`
+    * needs compiler generated implementations
+  * the compiler implements `Clone` for:
+    * types with a built-in `Copy` implementation
+    * tuples of `Clone` types
+    * closures that only capture values of `Clone` types or capture no values
+      from the environment
+* `Send`
+  * indicates that a value of this type is safe to send from one thread to
+    another
+* `Sync`
+  * indicates that a value of this type is safe to share between multiple
+    threads
+  * it must be implemented for all types used in immutable static items
+* `Termination`
+  * indicates the acceptable return types for the `main` function and test
+    functions
+
+Auto traits:
+* are `Send`, `Sync`, `Unpin`, `UnwindSafe`, and `RefUnwindSafe`
+* may be added as an additional bound to any trait object, even though normally
+  only one trait is allowed
+  * e.g. `Box<dyn Debug + Send + UnwindSafe>` is a valid type
+* have special properties:
+  * if no explicit implementation or negative implementation is written out for
+    an auto trait for a given type
+    * the compiler implements it automatically according to the following
+      rules:
+      * `&T`, `&mut T`, `*const T`, `*mut T`, `[T; n]`, and `[T]` implement the
+        trait if `T` does
+      * function item types and function pointers automatically implement the
+        trait
+      * `struct`s, `enum`s, unions, and tuples implement the trait if all of
+        their fields do
+      * closures implement the trait if the types of all of their captures do
+        * a closure that captures a `T` by shared reference and a `U` by value
+          implements any auto traits that both `&T` and `U` do
+  * for generic types (counting the built-in types above as generic over `T`)
+    * if a generic implementation is available
+      * the compiler does not automatically implement it for types that could
+        use the implementation except that they do not meet the requisite trait
+        bounds
+        * e.g. the standard library implements `Send` for all `&T` where `T` is
+          `Sync` (this means that the compiler will not implement `Send` for
+          `&T` if `T` is `Send` but not `Sync`)
+* negative implementations
+  * override the automatic implementations
+  * cannot be specified by user
+  * exist only in the standard library
+    * shown as `impl !AutoTrait for T` in the documentation
+  * example: `*mut T` has a negative implementation of `Send`, thus `*mut T` is
+    not `Send`, even if `T` is
+
 ### Trait Objects
 
 A *trait object*:
@@ -5208,16 +5334,39 @@ See [Traits](https://doc.rust-lang.org/reference/items/traits.html),
 [Functions](https://doc.rust-lang.org/reference/items/functions.html),
 [Patterns](https://doc.rust-lang.org/reference/patterns.html),
 [Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+[Tuple types](https://doc.rust-lang.org/reference/types/tuple.html),
 [Slice types](https://doc.rust-lang.org/reference/types/slice.html),
 [Pointer types](https://doc.rust-lang.org/reference/types/pointer.html),
+[Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+[Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+[Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+[Type coercions](https://doc.rust-lang.org/reference/type-coercions.html),
+[Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+[Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
+[Call expressions](https://doc.rust-lang.org/reference/expressions/call-expr.html),
+[Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
+[Destructors](https://doc.rust-lang.org/reference/destructors.html),
+[Crates and source files](https://doc.rust-lang.org/reference/crates-and-source-files.html),
+[Testing attributes](https://doc.rust-lang.org/reference/attributes/testing.html),
+[`std::ops`](https://doc.rust-lang.org/std/ops/index.html),
+[`std::cmp`](https://doc.rust-lang.org/std/cmp/index.html),
 [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
 [`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
 [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
-[`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html),
+[`Pin`](https://doc.rust-lang.org/std/pin/struct.Pin.html),
+[`Deref`](https://doc.rust-lang.org/std/ops/trait.Deref.html),
+[`DerefMut`](https://doc.rust-lang.org/std/ops/trait.DerefMut.html),
+[`Drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html),
 [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html),
-[`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html), and
-[`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html) for greater
-detail.
+[`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html),
+[`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html),
+[`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html),
+[`Termination`](https://doc.rust-lang.org/std/process/trait.Termination.html),
+[`Unpin`](https://doc.rust-lang.org/std/marker/trait.Unpin.html),
+[`UnwindSafe`](https://doc.rust-lang.org/std/panic/trait.UnwindSafe.html),
+[`RefUnwindSafe`](https://doc.rust-lang.org/std/panic/trait.RefUnwindSafe.html),
+and [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html) for
+greater detail.
 
 ## Implementations
 
@@ -5372,7 +5521,7 @@ See [Implementations](https://doc.rust-lang.org/reference/items/implementations.
 [The `#[doc]` attribute](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html),
 [Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html),
 [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
-and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html) for greater
+and [`Pin`](https://doc.rust-lang.org/std/pin/struct.Pin.html) for greater
 detail.
 
 ### Associated Functions and Methods
@@ -5757,11 +5906,11 @@ See [Associated Items](https://doc.rust-lang.org/reference/items/associated-item
 [Paths](https://doc.rust-lang.org/reference/paths.html),
 [Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
 [Type aliases](https://doc.rust-lang.org/reference/items/type-aliases.html),
-[`Sized`](https://doc.rust-lang.org/core/marker/trait.Sized.html),
+[`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html),
 [`Box`](https://doc.rust-lang.org/alloc/boxed/struct.Box.html),
 [`Rc`](https://doc.rust-lang.org/alloc/rc/struct.Rc.html),
 [`Arc`](https://doc.rust-lang.org/alloc/sync/struct.Arc.html),
-and [`Pin`](https://doc.rust-lang.org/core/pin/struct.Pin.html) for greater
+and [`Pin`](https://doc.rust-lang.org/std/pin/struct.Pin.html) for greater
 detail.
 
 ### `impl` Traits
@@ -6922,6 +7071,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::borrow::Cow` - a clone-on-write smart pointer](https://doc.rust-lang.org/std/borrow/enum.Cow.html)
   * [`std::boxed` - the `Box<T>` type for heap allocation](https://doc.rust-lang.org/std/boxed/index.html)
     * [`std::boxed::Box` - a pointer type that uniquely owns a heap allocation of type `T`](https://doc.rust-lang.org/std/boxed/struct.Box.html)
+  * [`std::cmp` - utilities for comparing and ordering values](https://doc.rust-lang.org/std/cmp/index.html)
   * [`std::cell` - shareable mutable containers](https://doc.rust-lang.org/stable/std/cell/index.html)
     * [`std::cell::RefCell` - a mutable memory location with dynamically checked borrow rules](https://doc.rust-lang.org/std/cell/struct.RefCell.html)
     * [`std::cell::UnsafeCell` - the core primitive for interior mutability in Rust](https://doc.rust-lang.org/stable/std/cell/struct.UnsafeCell.html)
@@ -6969,22 +7119,31 @@ Pinned: [[Lib.rs](https://lib.rs/)]
   * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
     * [`std::ops::CoerceUnsized` - trait that indicates that this is a pointer or a wrapper for one, where unsizing can be performed on the pointee](https://doc.rust-lang.org/std/ops/trait.CoerceUnsized.html)
+    * [`std::ops::Deref` - used for immutable dereferencing operations](https://doc.rust-lang.org/std/ops/trait.Deref.html)
     * [`std::ops::DerefMut` - used for mutable dereferencing operations](https://doc.rust-lang.org/std/ops/trait.DerefMut.html)
     * [`std::ops::Drop` - custom code within a destructor](https://doc.rust-lang.org/std/ops/trait.Drop.html)
     * [`std::ops::IndexMut` - used for indexing operations in mutable contexts](https://doc.rust-lang.org/std/ops/trait.IndexMut.html)
   * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
     * [`std::option::Option` - the `Option` type](https://doc.rust-lang.org/std/option/enum.Option.html)
+  * [`std::panic` - panic support in the standard library](https://doc.rust-lang.org/std/panic/index.html)
+    * [`std::panic::RefUnwindSafe` - a marker trait representing types where a shared reference is considered unwind safe](https://doc.rust-lang.org/std/panic/trait.RefUnwindSafe.html)
+    * [`std::panic::UnwindSafe` - a marker trait which represents "panic safe" types in Rust](https://doc.rust-lang.org/std/panic/trait.UnwindSafe.html)
   * [`std::path` - cross-platform path manipulation](https://doc.rust-lang.org/std/path/index.html)
     * [`std::path::Path` - a slice of a path](https://doc.rust-lang.org/std/path/struct.Path.html)
     * [`std::path::PathBuf` - an owned, mutable path](https://doc.rust-lang.org/std/path/struct.PathBuf.html)
+  * [`std::pin` - types that pin data to a location in memory](https://doc.rust-lang.org/std/pin/index.html)
+    * [`std::pin::Pin` - a pointer which pins its pointee in place](https://doc.rust-lang.org/std/pin/struct.Pin.html)
   * [`std::prelude` - the list of symbols which is preloaded](https://doc.rust-lang.org/std/prelude/index.html)
   * [`std::process` - a module for working with processes](https://doc.rust-lang.org/std/process/index.html)
     * [`std::process::abort` - terminates the process in an abnormal fashion](https://doc.rust-lang.org/std/process/fn.abort.html)
     * [`std::process::Command` - a process builder](https://doc.rust-lang.org/std/process/struct.Command.html)
     * [`std::process::exit` - terminates the current process with the specified exit code](https://doc.rust-lang.org/std/process/fn.exit.html)
     * [`std::process::Output` - the output of a finished process](https://doc.rust-lang.org/std/process/struct.Output.html)
+    * [`std::process::Termination` - a trait for implementing arbitrary return types in the `main` function](https://doc.rust-lang.org/std/process/trait.Termination.html)
   * [`std::ptr` - manually manage memory through raw pointers](https://doc.rust-lang.org/std/ptr/index.html)
     * [`std::ptr::drop_in_place` - executes the destructor (if any) of the pointed-to value](https://doc.rust-lang.org/std/ptr/fn.drop_in_place.html)
+  * [`std::rc` - single-threaded reference-counting pointers](https://doc.rust-lang.org/std/rc/index.html)
+    * [`std::rc::Rc` - a single-threaded reference-counting pointer](https://doc.rust-lang.org/std/rc/struct.Rc.html)
   * [`std::result` - error handling with the `Result` type](https://doc.rust-lang.org/std/result/index.html)
     * [`std::result::Result` - a type that represents either success (`Ok`) or failure (`Err`)](https://doc.rust-lang.org/std/result/enum.Result.html)
   * [`std::str` - utilities for the `str` primitive type](https://doc.rust-lang.org/std/str/index.html) [[`str` primitive type](https://doc.rust-lang.org/std/primitive.str.html)]
@@ -6992,6 +7151,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::string::String` - a growable UTF-8 string](https://doc.rust-lang.org/std/string/struct.String.html)
   * [`std::sync` - useful synchronization primitives](https://doc.rust-lang.org/std/sync/index.html)
     * [`std::sync::atomic` - atomic types](https://doc.rust-lang.org/std/sync/atomic/index.html)
+    * [`std::sync::Arc` - a thread-safe reference-counting pointer](https://doc.rust-lang.org/std/sync/struct.Arc.html)
   * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
     * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
 * [`strsim` - string similarity metrics](https://crates.io/crates/strsim) [[doc](https://docs.rs/strsim/latest/strsim)] [[repo](https://github.com/rapidfuzz/strsim-rs)]
