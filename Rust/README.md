@@ -1370,78 +1370,468 @@ slice_type:
   expression
   * a closure type is anonymous and cannot be written out
 * a closure type has no layout guarantees
+* terminology:
+  * a *capture mode*
+    * determines how a place expression from the environment is borrowed or
+      moved into the closure
+    * there are four types
+      * immutable borrow (the place expression is captured as a shared
+        reference)
+      * unique immutable borrow (similar to an immutable borrow, but must be
+        unique)
+        * occurs when modifying the referent of a mutable reference
+        * cannot be used anywhere else in the language
+        * cannot be written out explicitly
+      * mutable borrow (the place expression is captured as a mutable
+        reference)
+      * move (the place expression is captured by moving the value into the
+        closure)
+  * a *place projection*
+    * is a field access, tuple index, dereference (and automatic dereferences),
+      or array or slice index expression applied to a variable
+      * `v.f`, `v.0`, `*v`, `v[i]`
+  * a *capture path*
+    * is a sequence starting with a variable from the environment followed by
+      zero or more place projections that were applied to that variable
+      * `v`, `*v`, `(*v.f)[1]`
+* capture rules
+  * closures only capture data that needs to be read
+  * the closure borrows or moves the capture path based on the following rules
+  * *shared prefix*
+    * used when a capture path and one of the ancestor's of that path are both
+      captured by a closure
+    * the ancestor path is captured with the highest capture mode among the two
+      captures, i.e. the ancestor capture mode and the descendant capture mode,
+      using this capture mode ordering:
+      * immutable borrow < unique immutable borrow < mutable borrow < move
+    * might need to be applied recursively
+  * *rightmost shared reference truncation*
+    * used when the dereference is applied to a shared reference
+    * the capture path is truncated at the rightmost dereference
+      * allowed because fields that are read through a shared reference will
+        always be read via a shared reference or a copy
+    * helps to avoid a shorter lifetime than is necessary
+  * *wildcard pattern bindings*
+    * binding a value with a wildcard pattern does not count as a read, and
+      thus won't be captured
+    * partial captures of arrays and slices are not supported
+      * the entire slice or array is always captured even if used with wildcard
+        pattern matching, indexing, or sub-slicing
+    * values that are matched with wildcards must still be initialized
+  * *capturing references in move contexts*
+    * `move` closures will only capture the prefix of a capture path that runs
+      up to, but not including, the first dereference of a reference
+      * it is not allowed to move fields out of a reference
+      * the reference itself will be moved into the closure
+  * *raw pointer dereference*
+    * when a raw pointer is dereferenced (`unsafe` operation)
+    * only the prefix of the capture path that runs up to, but not including,
+      the first dereference of the raw pointer is captured
+  * *union fields*
+    * when an union field is accessed (`unsafe` operation)
+    * only the prefix of the capture path that runs up to the union itself is
+      captured
+  * *reference into unaligned `struct`s*
+    * when a reference to an potential unaligned field in a structure is about
+      to be created (this operation leads to undefined behavior)
+      * this rule include all fields, even those that are aligned
+        * the decision maker whether to apply this rule is a representation of
+          a structure
+        * the reason is to protect against compatibility concerns should any of
+          the fields in the structure change in the future
+      * also includes taking the address of an unaligned field
+    * only the prefix of the capture path that runs up to, but not including,
+      the first field access into a structure that uses the `packed`
+      representation is captured
+  * *`Box` vs other `Deref` implementations*
+    * the implementation of the `Deref` trait for `Box` is treated differently
+      from other `Deref` implementations
+    * `Box` with non-`move` closure
+      * if the contents of the `Box` are not moved into the closure body
+        * the contents of the `Box` are precisely captured
+      * otherwise, if the contents of the `Box` are moved into the closure
+        * the `Box` is entirely captured (this is done so the amount of data
+          that needs to be moved into the closure is minimized)
+    * `Box` with `move` closure
+      * the `Box` is entirely captured
 * how a compiler defines a new closure type:
   * parse and analyze a closure expression
-    * record which and how (mutably/immutably) are the closed-over variables
-      used
+    * record which and how (mutably/immutably) are the closed-over place
+      expressions (e.g. variables) used
       * do not take surrounding code into account, that is
-        * ignore the lifetimes of involved variables
+        * ignore the lifetimes of involved place expressions
         * ignore the lifetime of the closure itself
-      * are there no closed-over variables?
-        * the closure is *non-capturing*
-          * can be coerced to the function pointer type with the same signature
+      * are there no closed-over place expressions?
+        * the closure is *non-capturing*, and if it is also non-`async`
+          * it can be coerced to the function pointer type with the same
+            signature
     * does it have the `move` keyword?
   * no `move` keyword present
-    * try to capture a closed-over variable by immutable borrow first
-    * try to capture a closed-over variable by unique immutable borrow, if
-      the previous fails
-      * special case which occurs when modifying the referent of a mutable
-        reference
-      * cannot be used anywhere else in the language
-      * cannot be written out explicitly
-    * try to capture a closed-over variable by mutable borrow, if the previous
-      fails
-    * finally, try to capture a closed-over variable by move, if all of the
-      previous capturing attempts had failed
+    * try to capture a closed-over place expression by immutable borrow first
+    * try to capture a closed-over place expression by unique immutable borrow,
+      if the previous fails
+    * try to capture a closed-over place expression by mutable borrow, if the
+      previous fails
+    * finally, try to capture a closed-over place expression by move, if all of
+      the previous capturing attempts had failed
       * compiler usually complains about missing `move` keyword
+    * when capturing place expressions, take the capture rules specified
+      earlier into account
     * note that the decision on which capture mode has to be chosen is made on
-      how the captured variable is used inside the closure body
+      how the captured place expression is used inside the closure's body
+      * values that implement `Copy` that are moved into the closure are
+        captured by immutable borrow
   * the `move` keyword is present
-    * all closed-over variables are captured by move or copy
+    * all closed-over place expressions are captured by move or copy, except
+      situations where it is safe to borrow them immutably
       * a copy capture is preferred if a type implements the `Copy` trait
     * this allows the closure to outlive the captured values
-  * note that composite types such as structs, tuples, and enums are always
-    captured entirely
+  * note that composite types such as structs, tuples, and enums can be
+    captured partially via capturing their fields
+    * if captured by move, the lifetime of the captured field would now be tied
+      to the closure
+      * thus it is possible for disjoint fields of a composite types to be
+        dropped at different times
+  * `async` closures always capture all input arguments, regardless of whether
+    or not they are used within the body
+  * the `async` closure is said to be *lending* to its `Future` if it has
+    either of the following properties:
+    * the `Future` includes a mutable capture
+    * the `async` closure captures by move, except when the value is accessed
+      with a dereference projection
   * make a new anonymous struct-like type
-    * fields of this new struct-like type are captured variables
+    * fields of this new struct-like type are captured place expressions
     * implement [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html)
       trait for this type
     * implement [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html)
       trait for this type
       * indicates that the closure can be called once by consuming ownership of
         the closure
-    * does the closure of this type not move out of any captured variables?
+      * if the closure is `async`, also implement
+        [`AsyncFnOnce`](https://doc.rust-lang.org/std/ops/trait.AsyncFnOnce.html)
+    * does the closure of this type not move out of any captured place
+      expressions?
       * implement [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html)
         trait for this type
         * indicates that the closure can be called by mutable reference
+      * if the closure is `async` and lending to its `Future`, do not implement
+        `FnMut`
+      * if the closure is `async`, also implement
+        [`AsyncFnMut`](https://doc.rust-lang.org/std/ops/trait.AsyncFnMut.html)
     * does the closure of this type not mutate or move out of any captured
-      variables?
+      place expressions?
       * implement [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html) trait
         for this type
         * indicates that the closure can be called by shared reference
-    * no variable/value captured by unique immutable or mutable reference?
-      * all variables/values captured by copy or move implement
+      * if the closure is `async` and lending to its `Future`, do not implement
+        `Fn`
+      * if the closure is `async`, also implement
+        [`AsyncFn`](https://doc.rust-lang.org/std/ops/trait.AsyncFn.html)
+    * no place expression or value captured by unique immutable or mutable
+      reference?
+      * all place expressions or values captured by copy or move implement
         [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) trait?
         * implement [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html)
           trait for this type
-      * all variables/values captured by copy or move implement
+      * all place expressions or values captured by copy or move implement
         [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html) trait?
         * implement [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html)
           trait for this type
-          * the order of cloning of the captured variables is left unspecified
-    * all captured variables implement
+          * the order of cloning of the captured place expressions is left
+            unspecified
+    * all captured place expressions implement
       [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) trait?
       * implement [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html)
         trait for this type
-    * all variables captured by non-unique immutable reference implement
-      [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) trait?
-      * all variables/values captured by unique immutable or mutable reference,
-        copy, or move implement
+    * all place expressions captured by non-unique immutable reference
+      implement [`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html)
+      trait?
+      * all place expressions or values captured by unique immutable or mutable
+        reference, copy, or move implement
         [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html) trait?
         * implement [`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html)
           trait for this type
 * examples:
   ```rust
+  //
+  // Desugaring
+  //
+  #[derive(Debug)]
+  struct X { x: i32, y: i32 }
+  struct Y { u: X, v: X }
+
+  fn f<F: FnOnce() -> String>(g: F) {
+      g();
+  }
+
+  let mut z = Y {
+      u: X { x: 1, y: 1 },
+      v: X { x: 0, y: 0 }
+  };
+
+  let c = || {
+      z.u.x += 1;
+      z.v.x += 1;
+      format!("{:?}", z.u)
+  };
+
+  // The above translates approximately to:
+  //
+  // struct Closure<'a> {
+  //     z_u: &'a mut X,
+  //     z_v_x: &'a mut i32,
+  // }
+  //
+  // impl<'a> FnOnce<()> for Closure<'a> {
+  //     type Output = String;
+  //
+  //     extern "rust-call" fn call_once(self, args: ()) -> String {
+  //         self.z_u.x += 1;
+  //         *self.z_v_x += 1;
+  //         format!("{:?}", self.z_u)
+  //     }
+  // }
+
+  f(c);
+  // Approximately translates to:
+  //
+  // f(Closure { z_u: &mut z.u, z_v_x: &mut z.v.x });
+
+  //
+  // Capture rules
+  //
+  {
+      // Shared prefix
+
+      fn move_value<T>(_: T) {}
+
+      // Three different capture paths with a shared ancestor:
+      let s = String::from("S");
+      let t = (s, String::from("T"));
+      let mut u = (t, String::from("U"));
+
+      let c = || {
+          println!("{:?}", u); // `u` captured by immutable borrow
+          u.1.truncate(0); // `u.1` captured by mutable borrow
+          move_value(u.0.0); // `u.0.0` captured by move
+      };
+      // Overall this closure will capture `u` by move
+      c();
+  }
+  {
+      // Rightmost shared reference truncation
+
+      struct Int(i32);
+      struct B<'a>(&'a i32);
+
+      struct MyStruct<'a> {
+          a: &'static Int,
+          b: B<'a>,
+      }
+
+      fn foo<'a, 'b>(m: &'a MyStruct<'b>) -> impl FnMut() + 'static {
+          // - `m.a.0` translates to `(*(*m).a).0`
+          // - the rightmost dereference is `(*(*m).a)`
+          // - `m.a` is a shared reference
+          // - therefore, the capture path `m.a.0` can be truncated to `m.a`,
+          //   and `*m.a`, a.k.a. `(*(*m).a)`, is captured by immutable borrow
+          // - note that `m` cannot be captured since `'a` does not outlive
+          //   `'static`
+          let c = || drop(&m.a.0);
+          c
+      }
+  }
+  {
+      // Capturing references in move contexts
+
+      struct T(String, String);
+
+      let mut t = T(String::from("foo"), String::from("bar"));
+      let t_mut_ref = &mut t;
+
+      let mut c = move || {
+          // - it is not allowed to move a field out of a reference, so
+          //   `t_mut_ref.0` cannot be captured by move
+          // - `t_mut_ref.0` translates to `(*t_mut_ref).0`
+          // - the first dereference of the reference is `.0` so this will not
+          //   be captured
+          // - the reference itself, `t_mut_ref`, will be then captured by move
+          t_mut_ref.0.push_str("123");
+      };
+
+      c();
+  }
+  {
+      // Raw pointer dereference
+
+      struct T(String, String);
+
+      let t = T(String::from("foo"), String::from("bar"));
+      let t_ptr = &t as *const T;
+
+      let c = || unsafe {
+          // - the capture path is `(*t_ptr).0`
+          // - `t_ptr` is a raw pointer
+          // - dereferencing of a raw pointer is unsafe
+          // - the first dereference of the raw pointer in the capture path is
+          //   `(*t_ptr)`
+          // - the new capture path is then `t_ptr` and it is captured by
+          //   immutable borrow
+          println!("{}", (*t_ptr).0);
+      };
+
+      c();
+  }
+  {
+      // Union fields
+
+      union U {
+          a: (i32, i32),
+          b: bool,
+      }
+
+      let u = U { a: (123, 456) };
+
+      let c = || {
+          // - the capture path is `u.a.0`
+          // - accessing union fields is unsafe
+          // - thus the capture path is truncated to `u`
+          // - since the closure only reads from `u` and `U` implements `Copy`,
+          //   `u` is captured by move
+          let x = unsafe { u.a.0 };
+      };
+
+      c();
+
+      let mut u = U { a: (123, 456) };
+
+      let mut c = || {
+          // - the rule also applies to writing
+          // - the capture path `u.b` is truncated to `u` which is then
+          //   captured by mutable borrow
+          u.b = true;
+      };
+
+      c();
+  }
+  {
+      // Reference into unaligned `struct`s
+
+      #[repr(packed)]
+      struct T(i32, i32);
+
+      let t = T(2, 5);
+
+      let c = || {
+          // - the capture path is `t.0`
+          // - `t.0` is an unaligned field
+          // - creating a reference to an unaligned field leads to undefined
+          //   behavior
+          // - the capture path is thus truncated to `t`, since `t.0` is the
+          //   first field access into a structure that uses the `packed`
+          //   representation
+          // - `t` is then captured by immutable borrow
+          let a = t.0;
+      };
+
+      // Copies out of `t` are ok
+      let (a, b) = (t.0, t.1);
+
+      c();
+
+      #[repr(packed)]
+      struct U(String, String);
+
+      let mut u = U(String::new(), String::new());
+
+      let d = || {
+          // - the capture path is `u.1`
+          // - `u.1` is an unaligned field
+          // - taking the address of `u.1` requires creating a reference to
+          //   `u.1` first (i.e. to capture `u.1` by immutable borrow)
+          // - as demonstrated earlier, `u.1` is truncated to `u` and `u` is
+          //   captured by immutable borrow
+          let a = std::ptr::addr_of!(u.1);
+      };
+
+      let s = u.0;  // Error: cannot move out of `u.0` because it is borrowed
+
+      c();
+  }
+  {
+      // `Box` with non-`move` closure
+
+      struct S(String);
+
+      let b = Box::new(S(String::new()));
+
+      let c_box = || {
+          // - the capture path is `(*b).0`
+          // - `&(*b).0` crates a reference to the contents of the `Box`
+          // - hence the contents of the `Box` are not moved
+          // - hence `(*b).0` is captured by immutable borrow
+          let x = &(*b).0;
+      };
+
+      c_box();
+
+      // Contrast `Box` with another type that implements `Deref`:
+      let r = std::rc::Rc::new(S(String::new()));
+
+      let c_rc = || {
+          // - the capture path here is `r` and hence `r` is captured by
+          //   immutable borrow
+          // - note that `*r` is not considered a place projection since it
+          //   invokes `Deref` which may have side effects in user-defined
+          //   types implementations (contrary to `Box` where `*b` is treated
+          //   as the place projection)
+          let x = &(*r).0;
+      };
+
+      c_rc();
+
+      // This is the same as the example above except the closure moves the
+      // value instead of taking a reference to it
+      let bb = Box::new(S(String::new()));
+
+      let cc_box = || {
+          // - the capture path is `(*bb).0`
+          // - this capture is seen, in the context of this rule, as an attempt
+          //   to move and thus `bb` is captured by move
+          let x = (*bb).0;
+      };
+
+      cc_box();
+  }
+  {
+      // `Box` with `move` closure
+
+      struct S(i32);
+
+      let b = Box::new(S(10));
+
+      let c_box = move || {
+          // - the capture path `(*b).0` is seen as an attempt to read the
+          //   content of the `Box`
+          // - by this rule, in the context of a `move` closure, this means
+          //   that `b` will be captured by move
+          let x = (*b).0;
+      };
+  }
+
+  //
+  // Capture modes
+  //
+  {
+      // Implements `Copy`:
+      let x = [0; 1024];
+
+      let c = || {
+          // `x` is captured by immutable borrow
+          let y = x;
+      };
+  }
+
   let mut v = vec![1, 2, 3];
 
   // Implement `Fn` (capture by reference):
@@ -1470,11 +1860,117 @@ slice_type:
   let mrb = &mut b;
 
   // Unique immutable capture:
-  let mut f = || { *mrb = true; };
+  let mut f = || {
+      // - borrowing `mrb` mutably is not possible, because `mrb` is not `mut`
+      // - borrowing `mrb` immutably would make the assignment illegal, because
+      //   a `&&mut` reference might not be unique, so it cannot safely be
+      //   used to modify a value
+      // - therefore a unique immutable borrow is used: `mrb` is borrowed
+      //   immutably, but like a mutable borrow, it must be unique
+      *mrb = true;
+  };
+
+  // Error:
+  //   - violates the uniqueness of the `f`'s borrow of `mrb`
+  // let y = &mrb;
+
+  f();
+
+  // Ok:
+  //   - the `f`'s lifetime has expired here, releasing the borrow
+  let z = &mrb;
+
+  //
+  // `async` closures
+  //
+  {
+      fn takes_callback<Fut: Future>(c: impl FnMut() -> Fut) {}
+
+      fn f() {
+          let mut x = 1i32;
+
+          let c = async || {
+              // - `x` is captured by mutable borrow
+              // - hence the `Future` includes the mutable capture
+              // - hence the closure is lending to its `Future`
+              // - hence the closure does not implement `FnMut`
+              x = 2;
+          };
+
+          // Error: `c` does not implement `FnMut`
+          takes_callback(c);
+      }
+  }
+  {
+      fn takes_callback<Fut: Future>(c: impl Fn() -> Fut) {}
+
+      fn f() {
+          let x = &1i32;
+
+          let c = async move || {
+              // - `x` is captured by move
+              // - hence the closure is lending to its `Future`
+              // - hence the closure does not implement `Fn`
+              let a = x + 2;
+          };
+
+          // Error: `c` does not implement `Fn`
+          takes_callback(c);
+      }
+  }
+  {
+      fn takes_callback<Fut: Future>(c: impl Fn() -> Fut) {}
+
+      fn f() {
+          let x = &1i32;
+
+          let c = async move || {
+              // - the capture path is `*x`
+              // - it is not allowed to move a field out of a reference, so
+              //   the capture path, `*x`, is truncated to `x`
+              // - `x` is captured by move, but its value is accessed with the
+              //   dereference projection
+              // - hence the closure is not lending to its `Future`
+              // - hence the closure implements `Fn`
+              let a = *x + 2;
+          };
+
+          // Ok: `c` implements `Fn`
+          takes_callback(c);
+      }
+  }
+
+  //
+  // Drop order demonstration
+  //
+  {
+      let tuple = (String::from("foo"), String::from("bar"));
+      {
+          let c = || {
+              // `tuple.0` captured here into the closure
+              drop(tuple.0);
+          };
+      }  // `c` and `tuple.0` dropped here
+  }  // `tuple.1` dropped here
   ```
 * see [Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+  [Expressions](https://doc.rust-lang.org/reference/expressions.html),
+  [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+  [Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
+  [Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html),
+  [Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
   [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+  [Pointer types](https://doc.rust-lang.org/reference/types/pointer.html),
   [Type Layout](https://doc.rust-lang.org/reference/type-layout.html),
+  [Patterns](https://doc.rust-lang.org/reference/patterns.html),
+  [Derive](https://doc.rust-lang.org/reference/attributes/derive.html),
+  [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html),
+  [`Box`](https://doc.rust-lang.org/std/boxed/struct.Box.html),
+  [`Deref`](https://doc.rust-lang.org/std/ops/trait.Deref.html),
+  [`AsyncFnOnce`](https://doc.rust-lang.org/std/ops/trait.AsyncFnOnce.html),
+  [`AsyncFnMut`](https://doc.rust-lang.org/std/ops/trait.AsyncFnMut.html),
+  [`AsyncFn`](https://doc.rust-lang.org/std/ops/trait.AsyncFn.html),
+  [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html),
   [`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
   [`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
   [`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
@@ -2135,6 +2631,96 @@ declaration_item:
     extern_block
 ```
 
+Namespaces:
+* every declared name has its own namespace
+* the same names from different namespaces do not conflict with each other
+* given a name, a namespace for that name is determined based on the context in
+  which the name is used
+* as for now there are five namespaces:
+  * the type namespace, in which the following entities belong:
+    * module declarations
+    * external crate declarations
+    * external crate prelude items
+    * `struct`, union, `enum`, and `enum` variant declarations
+    * trait item declarations
+    * type aliases
+    * associated type declarations
+    * built-in types (boolean, numeric, and textual)
+    * generic type parameters
+    * `Self` type
+    * tool attribute modules
+  * the value namespace, in which the following entities belong:
+    * function declarations
+    * constant item declarations
+    * static item declarations
+    * `struct` constructors
+    * `enum` variant constructors
+    * `Self` constructors
+    * generic `const` parameters
+    * associated `const` declarations
+    * associated function declarations
+    * local bindings (`let`, `if let`, `while let`, `for`, `match` arms,
+      function parameters, closure parameters)
+    * captured closure variables
+  * the macro namespace, in which the following entities belong:
+    * `macro_rules` declarations
+    * built-in attributes
+    * tool attributes
+    * function-like procedural macros
+    * derive macros
+    * derive macro helpers
+    * attribute macros
+  * the macro namespace is further divided into two sub-namespaces (this
+    prevents one style from shadowing another, but it is still an error for a
+    `use` import to shadow another macro):
+    * the bang-style macros sub-namespace
+      * when a bang-style macro is resolved, any attribute macros in scope will
+        be ignored
+    * the attributes sub-namespace
+      * when an attribute is resolved, any bang-style macros in scope will be
+        ignored
+  * the lifetime namespace, in which the following entities belong:
+    * generic lifetime parameters
+  * the labels namespace, in which the following entities belong:
+    * loop labels
+    * block labels
+* named entities without a namespace
+  * fields
+  * `use` declarations (they may introduce aliases into multiple namespaces)
+* see [Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
+  [Names](https://doc.rust-lang.org/reference/names.html),
+  [Name resolution](https://doc.rust-lang.org/reference/names/name-resolution.html),
+  [Use declarations](https://doc.rust-lang.org/reference/items/use-declarations.html),
+  [Structs](https://doc.rust-lang.org/reference/items/structs.html),
+  [Unions](https://doc.rust-lang.org/reference/items/unions.html),
+  [Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
+  [Type aliases](https://doc.rust-lang.org/reference/items/type-aliases.html),
+  [Functions](https://doc.rust-lang.org/reference/items/functions.html),
+  [Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+  [Static items](https://doc.rust-lang.org/reference/items/static-items.html),
+  [Boolean type](https://doc.rust-lang.org/reference/types/boolean.html),
+  [Numeric types](https://doc.rust-lang.org/reference/types/numeric.html),
+  [Textual types](https://doc.rust-lang.org/reference/types/textual.html),
+  [Field access expressions](https://doc.rust-lang.org/reference/expressions/field-expr.html),
+  [`if` expressions](https://doc.rust-lang.org/reference/expressions/if-expr.html),
+  [Loops and other breakable expressions](https://doc.rust-lang.org/reference/expressions/loop-expr.html),
+  [`match` expressions](https://doc.rust-lang.org/reference/expressions/match-expr.html),
+  [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+  [Statements](https://doc.rust-lang.org/reference/statements.html),
+  [Traits](https://doc.rust-lang.org/reference/items/traits.html),
+  [Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+  [Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+  [Paths](https://doc.rust-lang.org/reference/paths.html),
+  [Attributes](https://doc.rust-lang.org/reference/attributes.html),
+  [Macros](https://doc.rust-lang.org/reference/macros.html),
+  [Procedural Macros](https://doc.rust-lang.org/reference/procedural-macros.html),
+  [Macros By Example](https://doc.rust-lang.org/reference/macros-by-example.html),
+  [Modules](https://doc.rust-lang.org/reference/items/modules.html),
+  [Preludes](https://doc.rust-lang.org/reference/names/preludes.html),
+  [Extern crate declarations](https://doc.rust-lang.org/reference/items/extern-crates.html),
+  and [Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html)
+  for greater detail
+
 ### Use Declarations
 
 Grammar:
@@ -2703,6 +3289,55 @@ function_param_pattern:
 function_return_type:
     "->" type
 ```
+* when a function is declared its name is stored in the value namespace of the
+  module or block where it is located
+* if the return type is not explicitly stated, it is the unit type
+* a function, when referred to, yields a first-class value of the corresponding
+  zero-sized function item type
+  * when called, this value evaluates to a direct call to the function
+* function parameters
+  * are irrefutable patterns
+  * `self_param` as the first parameter indicates that the function is a method
+    (associated function)
+  * `...` indicates that the function is a variadic function
+    * `...` must be the last parameter with optional identifier, e.g.
+      `args: ...`
+    * the function must be an external block function
+* the body block of a function is conceptually wrapped in another block that
+  first binds the argument patterns and then `return`s the value of the
+  function's body
+* the `extern` function qualifier
+  * allows providing function definitions that can be called with a particular
+    ABI
+    * useful when a foreign code needs to call a Rust function
+  * often used in combination with external block items
+  * when the `extern` qualifier is omitted, `extern "Rust"` is used by default
+  * when the `extern` qualifier with no ABI is used, the ABI will default to
+    `"C"`
+* attributes on functions (both inner and outer, outer variants are preferred):
+  * `cfg`
+  * `cfg_attr`
+  * `deprecated`
+  * `doc`
+  * `export_name`
+  * `link_section`
+  * `no_mangle`
+  * the lint check attributes
+  * `must_use`
+  * the procedural macro attributes
+  * the testing attributes
+  * the optimization hint attributes
+  * attributes macros
+* attributes on function parameters:
+  * `cfg`
+  * `cfg_attr`
+  * `allow`
+  * `warn`
+  * `deny`
+  * `forbid`
+  * inert helper attributes used by procedural macro attributes applied to
+    items
+    * these inert attributes must not be included in the final `TokenStream`
 
 Simple function definition and simple call example:
 ```rust
@@ -2726,7 +3361,7 @@ fn main() {
 }
 ```
 
-Function returning value:
+Function returning a value:
 ```rust
 fn max(a: i32, b: i32) -> i32 {
     if (a > b) {
@@ -2742,7 +3377,150 @@ fn main() {
 }
 ```
 
-See [Functions](https://doc.rust-lang.org/reference/items/functions.html) for
+Functions with the `extern` qualifier:
+```rust
+// Equivalent to `extern "Rust" fn foo() {}`:
+fn foo() {}
+
+// Declares a function with the "C" ABI:
+extern "C" fn new_i32() -> i32 { 0 }
+
+// Declares a function with the "stdcall" ABI:
+extern "stdcall" fn new_i32_stdcall() -> i32 { 0 }
+
+// Equivalent to `extern "C" fn new_i8() -> i8 { 0 }`:
+extern fn new_i8() -> i8 { 0 }
+
+// Equivalent to `let fptr: extern "C" fn() -> i8 = new_i8`:
+let fptr: extern fn() -> i8 = new_i8;
+```
+
+Generic functions:
+* one or more parameterized types are allowed in their signatures
+  * each of type parameters must be explicitly declared between angle brackets
+  * the name of a type parameter serve as a type name inside the function
+    signature and body
+  * type parameters can have trait bounds specified using the `where` clause
+  * turbo fish notation (`::<>`)
+    * used to explicitly supply type parameters when the function name is a
+      part of a path
+    * might be necessary if there is not sufficient context to determine the
+      type parameters
+    * example: `mem::size_of::<u32>() == 4`
+* when a generic function is referenced, its type is instantiated based on the
+  context of the reference
+* example:
+  ```rust
+  use std::fmt::Debug;
+
+  fn foo<T>(x: &[T]) where T: Debug {}
+
+  // `T` is instantiated with `i32`
+  foo(&[1, 2]);
+  ```
+
+`const` functions:
+* a function with `const` qualifier
+* a tuple `struct` constructor
+* a tuple variant constructor
+* can be called from within `const` contexts
+  * in this case, a function is interpreted by the compiler at compile time
+    * the interpretation happens in the environment of the compilation target,
+      not the host
+* restrict types of arguments and the type of a value to be returned
+* restrict a function body to constant expressions
+* may use the `extern` function qualifier
+* are not allowed to be `async`
+
+`async` functions:
+* functions with the `async` qualifier
+  * the `unsafe` qualifier can be also present
+* when called, their arguments are captured into a `Future`
+  * that `Future` will execute the function's body when polled (`await`ed)
+* desugaring `async`:
+  * let `async fn afunc<'lifetimes>(params) -> R { body }`
+  * the return type must capture all lifetime parameters from the `afunc`'s
+    declaration
+    * logically, `params` must live at least as long as a context in which the
+      `afunc`'s `body` will be executed
+  * the `body` is wrapped into `async move` block
+    * the value returned is `async move { body }`
+    * the return type is then `impl Future<Output = R> + 'lifetimes`
+    * the `async move { body }` captures all `params`, including those that are
+      unused or bound to a `_` pattern
+      * this ensures that `params` are dropped in the same order as they would
+        be if the function were not `async`, except that the drop occurs when
+        the returned `Future` has been fully `await`ed
+* examples:
+  ```rust
+  async fn example(x: &str) -> usize {
+      x.len()
+  }
+
+  // Roughly equivalent to:
+  //
+  // fn example<'a>(x: &'a str) -> impl Future<Output = usize> + 'a {
+  //     async move { x.len() }
+  // }
+
+  // Returns a `Future` that, when awaited, dereferences `x`
+  //
+  // Soundness condition: `x` must be safe to dereference until the resulting
+  // `Future` is complete
+  async unsafe fn unsafe_example(x: *const i32) -> i32 {
+      *x
+  }
+
+  // Roughly desugars to:
+  //
+  // unsafe fn unsafe_example(x: *const i32) -> impl Future<Output = i32> {
+  //     async move { *x }
+  // }
+
+  async fn safe_example() {
+      let p = 22;
+      // An `unsafe` block is required to invoke the function initially; note
+      // that `future.await` later in the code is a safe operation since
+      // `future` is the value returned without further restrictions imposed on
+      // it
+      let future = unsafe { unsafe_example(&p) };
+
+      // Any `unsafe` function may have its soundness conditions extended
+      // beyond its call; in this case, `unsafe_example` expects `p` lives at
+      // least until `future.await` finishes and it is the caller's
+      // responsibility to ensure this
+
+      // No `unsafe` block required here (this will read the value of `p`)
+      let q = future.await;
+  }
+  ```
+
+See [Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Structs](https://doc.rust-lang.org/reference/items/structs.html),
+[Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
+[Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html),
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
+[Variables](https://doc.rust-lang.org/reference/variables.html),
+[Types](https://doc.rust-lang.org/reference/types.html),
+[Tuple types](https://doc.rust-lang.org/reference/types/tuple.html),
+[Function item types](https://doc.rust-lang.org/reference/types/function-item.html),
+[External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Impl trait](https://doc.rust-lang.org/reference/types/impl-trait.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Procedural Macros](https://doc.rust-lang.org/reference/procedural-macros.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[Code generation attributes](https://doc.rust-lang.org/reference/attributes/codegen.html),
+[Diagnostic attributes](https://doc.rust-lang.org/reference/attributes/diagnostics.html),
+[Testing attributes](https://doc.rust-lang.org/reference/attributes/testing.html),
+[The `#[doc]` attribute](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html),
+[Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html),
+[Application Binary Interface (ABI)](https://doc.rust-lang.org/reference/abi.html),
+and [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) for
 greater detail.
 
 ### External Blocks
@@ -2758,8 +3536,216 @@ external_item:
         (visibility? (static_item | function))
     )
 ```
+* provide declarations of items that are not defined in the current crate and
+  are the basis of Rust's foreign function interface
+* the `unsafe` keyword is semantically required
+* only function and static item declarations are allowed inside external blocks
+  * using such a declared item is allowed only in an `unsafe` context
+  * declarations are stored in the value namespace of the module or block where
+    the external block is located
+* a function item declaration inside an external block
+  * declared without body and terminated by `;`
+  * parameters must not contain patterns
+    * only identifiers and `_` are allowed
+  * attributes on parameters are allowed
+    * follow the same rules and restrictions as attributes on parameters of
+      regular functions
+  * only `safe` and `unsafe` function qualifiers are allowed
+    * in an external block, `unsafe` is added implicitly
+  * specifies ABI boundary between Rust and foreign ABI
+  * has type `extern "abi" for<'l1, 'l2, ..., 'lm> func(T1, T2, ..., Tn) -> R`
+    when coerced to a function pointer
+  * can be variadic
+    * only inside an external block
+    * the last parameter is `...` with optional identifier (e.g. `args: ...`)
+    * the `safe` qualifier should not be used on a variadic function unless the
+      function guarantees that it will not access the variadic arguments at all
+      * passing an unexpected number of arguments or arguments of unexpected
+        type to a variadic function may lead to undefined behavior
+* a static item declaration inside an external block
+  * declared without an expression initializing its value
+  * it is `unsafe` to access such a declared item, unless the item is qualified
+    as `safe` (mutability has no effect)
+    * there is nothing guaranteeing that the bit pattern at the static's memory
+      is valid for the type it is declared with, since some arbitrary (e.g. C)
+      code is in charge of initializing the static
+  * an immutable static must be initialized before any Rust code is executed
+    * it is not enough for the static to be initialized before Rust code reads
+      from it
+    * once Rust code runs, mutating an immutable static (from inside or outside
+      Rust) is undefined behavior, except if the mutation happens to bytes
+      inside of an `UnsafeCell`
+* the default ABI for external blocks is C ABI
+  * this may be changed via ABI string at `abi`
+* can have attributes
+  * `link`, `link_name`, `link_ordinal` (Windows only)
 
-See [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html)
+ABI strings supported on all platforms:
+* `"Rust"`
+  * the default ABI when you write a normal `fn foo()` in any Rust code
+* `"C"`
+  * this is the same as `extern fn foo()` (whatever the default involved C
+    compiler supports)
+* `"system"`
+  * usually the same as `extern "C"`, except on Win32
+  * on Win32, this is usually `"stdcall"`, or whatever used to link to the
+    Windows API itself
+* `"C-unwind"` and `"system-unwind"`
+  * identical to `"C"` and `"system"`, respectively, but with different
+    behavior when the callee unwinds (by panicking or throwing a C++ style
+    exception)
+
+ABI strings that are platform-specific:
+* `"cdecl"` (`"cdecl-unwind"`)
+  * the default for x86_32 C code
+* `"stdcall"` (`"stdcall-unwind"`)
+  * the default for the Win32 API on x86_32
+* `"win64"` (`"win64-unwind"`)
+  * the default for C code on x86_64 Windows
+* `"sysv64"` (`"sysv64-unwind"`)
+  * the default for C code on non-Windows x86_64
+* `"aapcs"` (`"aapcs-unwind"`)
+  * the default for ARM
+* `"fastcall"` (`"fastcall-unwind"`)
+  * the fastcall ABI (corresponds to MSVC's `__fastcall` and GCC and clang's
+    `__attribute__((fastcall))`)
+* `"thiscall"` (`"thiscall-unwind"`)
+  * the default for C++ member functions on x86_32 MSVC (corresponds to MSVC's
+    `__thiscall` and GCC and clang's `__attribute__((thiscall))`)
+* `"efiapi"`
+  * the ABI used for UEFI functions
+
+Attributes on external blocks:
+* the `link` attribute
+  * specifies the name of a native library that the compiler should link with
+    for the items within an external block
+  * can be used on an empty external block
+    * to satisfy the linking requirements of external blocks elsewhere in the
+      code (including upstream crates) instead of adding the attribute to each
+      external block
+  * synopsis: `#[link(key = "value", ...)]`
+  * keys: `name`, `kind`, `modifiers`, `wasm_import_module`, `import_name_type`
+  * the `name` key
+    * the name of the native library to link
+    * required if `kind` is specified
+  * the `kind` key
+    * optional
+    * specifies the kind of library with the following possible values:
+      * `dylib`
+        * indicates a dynamic library
+        * default if `kind` is not specified
+      * `static`
+        * indicates a static library
+      * `framework`
+        * indicates a macOS framework
+        * only valid for macOS targets
+      * `raw-dylib`
+        * indicates a dynamic library where the compiler will generate an
+          import library to link against
+        * only valid for Windows targets
+    * on Windows:
+      * linking against a dynamic library requires that an import library is
+        provided to the linker
+        * this is a special static library that declares all of the symbols
+          exported by the dynamic library in such a way that the linker knows
+          that they have to be dynamically loaded at runtime
+      * `dylib` instructs the Rust compiler to link an import library based on
+        the `name` key (the linker will then use its normal library resolution
+        logic to find that import library)
+  * the `modifiers` key
+    * optional
+    * synopsis: `{+|-}modifier1, {+|-}modifier2, ...`
+      * `+` means enabled, `-` means disabled
+    * multiple `modifiers` keys or multiple modifiers with the same value is
+      not supported
+    * `bundle`
+      * only compatible with the `static` linking `kind`
+      * the default is `+bundle`
+      * when building rlib or staticlib
+        * `+bundle` means that the native static library will be packed into
+          the rlib or staticlib archive, and then retrieved from there during
+          linking of the final binary
+      * when building a rlib
+        * `-bundle` means that the native static library is registered as a
+          dependency of that rlib "by name", and object files from it are
+          included only during linking of the final binary (the file search by
+          that name is also performed during final linking)
+      * when building a staticlib
+        * `-bundle` means that the native static library is simply not included
+          into the archive and some higher level build system will need to add
+          it later during linking of the final binary
+      * when building other targets it has no effect
+    * `whole-archive`
+      * only compatible with the `static` linking `kind`
+      * the default is `-whole-archive`
+      * `+whole-archive` means that the static library is linked as a whole
+        archive without throwing any object files away
+    * `verbatim`
+      * the default is `-verbatim`
+      * `+verbatim` means that `rustc` itself won't add any target-specified
+        library prefixes or suffixes (like `lib` or `.a`) to the library name,
+        and will try its best to ask for the same thing from the linker
+      * `-verbatim` means that `rustc` will either add a target-specific prefix
+        and suffix to the library name before passing it to linker, or won't
+        prevent linker from implicitly adding it
+  * the `wasm_import_module` key
+    * optional
+    * used to specify the WebAssembly module name for the items within an
+      external block when importing symbols from the host environment
+      * the default module name is `env`
+  * the `import_name_type` key
+    * optional
+    * only valid for x86 Windows
+    * have sense only with `raw-dylib` linking `kind`
+    * a function name is *decorated* to indicate its calling convention
+      * the PE format does also permit names to have no prefix or be
+        undecorated
+      * the MSVC and GNU toolchains use different decorations for the same
+        calling conventions
+        * some Win32 functions cannot be called using the `raw-dylib` link
+          `kind` via the GNU toolchain
+    * changes how functions are named in the generated import library based on
+      the following values:
+      * `decorated` means that the function name will be fully-decorated using
+        the MSVC toolchain format
+      * `noprefix` means that the function name will be decorated using the
+        MSVC toolchain format, but skipping the leading `?`, `@`, or optionally
+        `_`
+      * `undecorated` means that the function name will not be decorated
+    * when not specified, the function name will be fully-decorated using the
+      target toolchain's format
+    * note that variables are never decorated and hence this key has no effect
+      on their names in the generated import library
+* the `link_name` attribute
+  * may be specified on declarations inside an external block
+  * indicates the symbol to import for the given function or static
+  * synopsis: `#[link_name = "actual_symbol_name"]`
+  * must not be used together with the `link_ordinal` attribute
+* the `link_ordinal` attribute
+  * only valid with `raw-dylib` linking `kind`
+  * can be applied on declarations inside an external block to indicate the
+    numeric ordinal to use when generating the import library to link against
+    * an ordinal is a unique number per symbol exported by a dynamic library
+      and can be used when the library is being loaded to find that symbol
+      rather than having to look it up by name
+  * should only be used in cases where the ordinal of the symbol is known to be
+    stable
+    * if the ordinal of a symbol is not explicitly set when its containing
+      binary is built then one will be automatically assigned to it, and that
+      assigned ordinal may change between builds of the binary
+  * synopsis: `#[link_ordinal(42)]`
+  * must not be used together with the `link_name` attribute
+
+See [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Static items](https://doc.rust-lang.org/reference/items/static-items.html),
+[Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[Panic](https://doc.rust-lang.org/reference/panic.html),
+[Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html),
+[Command-line Arguments](https://doc.rust-lang.org/rustc/command-line-arguments.html),
+and [`UnsafeCell`](https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html)
 for greater detail.
 
 ## Ownership
@@ -3490,7 +4476,81 @@ Implicit borrows:
   * operands of comparison
   * left operands of the compound assignment
 
+Constant expressions:
+* are kind of expressions than can be evaluated during compile time
+* an operand of a constant expression is also a constant expression
+* a constant expression do not cause any destructors to be run
+* a `const` context
+  * is a context where only constant expressions are allowed and these are
+    always evaluated during compile time
+    * behaviors like out of bounds array indexing or overflow are transformed
+      to compiler errors
+  * is one of the following:
+    * an array type length expression
+    * an array repeat length expression
+    * the initializer of
+      * a `const` item
+      * a `static` item
+      * an `enum` discriminant
+    * a `const` generic argument
+    * a `const` block
+  * `const` contexts that are used as parts of types (array type and repeat
+    length expressions as well as `const` generic arguments) can only make
+    restricted use of surrounding generic parameters: such an expression must
+    either be
+    * a single bare `const` generic parameter, or
+    * an arbitrary expression not making use of any generics
+* in other contexts an evaluation of constant expressions during compile time
+  is not guaranteed
+* the following expressions are constant expressions if the conditions above
+  are met:
+  * literals
+  * `const` parameters
+  * paths to functions and constants
+    * recursively defining constants is not allowed
+  * paths to `static`s with these restrictions:
+    * writes to `static` items are not allowed in any constant evaluation
+      context
+    * reads from `extern static`s are not allowed in any constant evaluation
+      context
+    * if the evaluation is not carried out in an initializer of a `static`
+      item, then reads from any mutable `static` are not allowed
+      * a mutable `static` is a `static mut` item, or a `static` item with an
+        interior-mutable type
+    * these three requirements are checked only when the constant is evaluated
+      (that is, having such accesses syntactically occur in `const` contexts is
+      allowed as long as they never get executed)
+  * tuple expressions
+  * array expressions
+  * `struct` expressions
+  * block expressions (including `unsafe` and `const` blocks) containing
+    * `let` statements
+    * irrefutable patterns, including mutable bindings
+    * assignment expressions
+    * compound assignment expressions
+    * expression statements
+  * field expressions
+  * index expressions, array indexing or slice with a `usize`
+  * range expressions
+  * closure expressions which don't capture variables from the environment
+  * built-in negation, arithmetic, logical, comparison or lazy boolean
+    operators used on integer and floating point types, `bool`, and `char`
+  * all forms of borrows, including raw borrows, with one limitation:
+    * mutable borrows and shared borrows to values with interior mutability are
+      only allowed to refer to transient places
+      * a place is transient if its lifetime is strictly contained inside the
+        current `const` context
+  * the dereference operator except for raw pointers
+  * grouped expressions
+  * cast expressions, except
+    * pointer to address casts
+    * function pointer to address casts
+  * calls of `const` functions and `const` methods
+  * `loop` and `while` expressions
+  * `if` and `match` expressions
+
 See [Expressions](https://doc.rust-lang.org/reference/expressions.html),
+[Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html),
 [Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html),
 [Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
 [Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
@@ -3502,16 +4562,25 @@ See [Expressions](https://doc.rust-lang.org/reference/expressions.html),
 [Loops and other breakable expressions](https://doc.rust-lang.org/reference/expressions/loop-expr.html),
 [Call expressions](https://doc.rust-lang.org/reference/expressions/call-expr.html),
 [Method-call expressions](https://doc.rust-lang.org/reference/expressions/method-call-expr.html),
+[Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+[Grouped expressions](https://doc.rust-lang.org/reference/expressions/grouped-expr.html),
 [Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
 [Range expressions](https://doc.rust-lang.org/reference/expressions/range-expr.html),
 [`_` expressions](https://doc.rust-lang.org/reference/expressions/underscore-expr.html),
+[Literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html),
 [Variables](https://doc.rust-lang.org/reference/variables.html),
 [Structs](https://doc.rust-lang.org/reference/items/structs.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
 [Statements](https://doc.rust-lang.org/reference/statements.html),
+[Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
 [Static items](https://doc.rust-lang.org/reference/items/static-items.html),
 [Operators and symbols list](https://doc.rust-lang.org/book/appendix-02-operators.html)
 (see also [here](https://doc.rust-lang.org/reference/tokens.html#punctuation)),
+[Array types](https://doc.rust-lang.org/reference/types/array.html),
 [Slice types](https://doc.rust-lang.org/reference/types/slice.html),
+[Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
 [Interior mutability](https://doc.rust-lang.org/reference/interior-mutability.html),
 [Destructors](https://doc.rust-lang.org/reference/destructors.html),
 [Attributes](https://doc.rust-lang.org/reference/attributes.html),
@@ -3719,12 +4788,88 @@ closure_param:
     outer_attribute* pattern_no_top_alt (":" type)?
 ```
 
+A closure expression:
+* defines a closure type and evaluates to a value of that type
+  * each closure expression has a unique, anonymous type
+  * which traits the closure type implements depends on
+    * how variables are captured
+    * the types of the captured variables
+    * the presence of `async`
+  * the closure type implements `Send` and `Sync` if the type of every captured
+    variable also implements the trait
+* if there is a return type, the closure body must be a block
+* the closure parameters are irrefutable patterns
+  * attributes on parameters are allowed and follow the same rules and
+    restrictions as attributes on regular function parameters
+  * type annotations are optional
+    * will be inferred from context if not given
+* captures its environment
+  * without the `move` keyword, the closure expression infers how it captures
+    each variable from its environment, preferring to capture by shared
+    reference, effectively borrowing all outer variables mentioned inside the
+    closure's body
+  * if needed, the compiler will infer that instead mutable references should
+    be taken, or that the values should be moved or copied (depending on their
+    type) from the environment
+  * with the `move` keyword, a closure is forced to capture its environment by
+    copying or moving values
+    * this is often used to ensure that the closure's lifetime is `'static`
+* example:
+  ```rust
+  fn ten_times<F>(f: F) where F: Fn(i32) {
+      for index in 0..10 {
+          f(index);
+      }
+  }
+
+  ten_times(|j| println!("hello, {}", j));
+
+  // With type annotations
+  ten_times(|j: i32| -> () { println!("hello, {}", j) });
+
+  let word = "konnichiwa".to_owned();
+  ten_times(move |j| println!("{}, {}", word, j));
+  ```
+
+An `async` closure:
+* is analogous to an `async` function
+* calling it evaluates to a value that implements `Future` that corresponds to
+  the computation of the body of the closure
+* example:
+  ```rust
+  async fn takes_async_callback(f: impl AsyncFn(u64)) {
+      f(0).await;
+      f(1).await;
+  }
+
+  async fn example() {
+      takes_async_callback(async |i| {
+          core::future::ready(i).await;
+          println!("done with {i}.");
+      }).await;
+  }
+  ```
+
 #### Hints
 
 * [How do I store a closure in a struct in Rust?](https://stackoverflow.com/questions/27831944/how-do-i-store-a-closure-in-a-struct-in-rust)
 
-See [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html)
-for greater detail.
+See [Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Statements](https://doc.rust-lang.org/reference/statements.html),
+[Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Patterns](https://doc.rust-lang.org/reference/patterns.html),
+[`Fn`](https://doc.rust-lang.org/std/ops/trait.Fn.html),
+[`FnMut`](https://doc.rust-lang.org/std/ops/trait.FnMut.html),
+[`FnOnce`](https://doc.rust-lang.org/std/ops/trait.FnOnce.html),
+[`Future`](https://doc.rust-lang.org/std/future/trait.Future.html),
+[`AsyncFn`](https://doc.rust-lang.org/std/ops/trait.AsyncFn.html),
+[`AsyncFnMut`](https://doc.rust-lang.org/std/ops/trait.AsyncFnMut.html),
+[`AsyncFnOnce`](https://doc.rust-lang.org/std/ops/trait.AsyncFnOnce.html),
+[`Send`](https://doc.rust-lang.org/std/marker/trait.Send.html), and
+[`Sync`](https://doc.rust-lang.org/std/marker/trait.Sync.html) for greater
+detail.
 
 ### Assignment Expressions
 
@@ -4310,8 +5455,59 @@ await_expression:
     expression "." "await"
 ```
 
-See [Await expressions](https://doc.rust-lang.org/reference/expressions/await-expr.html)
-for greater detail.
+An `await` expression:
+* is a syntactic construct for suspending a computation provided by an
+  implementation of `IntoFuture` until the given `Future` is ready to produce a
+  value
+* is only legal within an `async` context, like an `async` function, `async`
+  associated function, `async` closure, or `async` block expression
+* `expression`
+  * is called the *future operand*
+  * must have a type that implements the `IntoFuture` trait
+* the task context
+  * refers to the `Context` which was supplied to the current `async` context
+    when the `async` context itself was polled
+* evaluation details:
+  1. create a `Future` by calling `IntoFuture::into_future` on the future
+     operand
+  1. evaluate the `Future` to a `Future` temporary
+  1. pin the `Future` temporary using `Pin::new_unchecked`
+  1. this pinned `Future` is then polled by calling the `Future::poll` method
+     and passing it the current task context
+  1. if the call to `poll` returns `Poll::Pending`
+     * the `Future` returns `Poll::Pending`, suspending its state so that, when
+       the surrounding `async` context is re-polled, execution returns to step
+       three
+  1. otherwise the call to `poll` must have returned `Poll::Ready`, in which
+     case the value contained in the `Poll::Ready` variant is used as the
+     result of the `await` expression itself
+* `operand.await` roughly desugared (pseudo code):
+  ```rust
+  match operand.into_future() {
+      mut pinned => loop {
+          let mut pin = unsafe { Pin::new_unchecked(&mut pinned) };
+          // `current_context` refers to the context taken from the `async`
+          // environment
+          match Pin::future::poll(Pin::borrow(&mut pin), &mut current_context) {
+              Poll::Ready(r) => break r,
+              // `yield expr` pseudo code:
+              // * returns `expr` and, when re-invoked, resumes execution from
+              //   that point
+              Poll::Pending => yield Poll::Pending,
+          }
+      }
+  }
+  ```
+
+See [Await expressions](https://doc.rust-lang.org/reference/expressions/await-expr.html),
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Closure expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[`IntoFuture`](https://doc.rust-lang.org/std/future/trait.IntoFuture.html),
+[`Future`](https://doc.rust-lang.org/std/future/trait.Future.html),
+[`Context`](https://doc.rust-lang.org/std/task/struct.Context.html),
+[`Poll`](https://doc.rust-lang.org/std/task/enum.Poll.html), and
+[`Pin`](https://doc.rust-lang.org/std/pin/struct.Pin.html) for greater detail.
 
 ### Path Expressions
 
@@ -4446,11 +5642,155 @@ unsafe_block_expression:
     "unsafe" block_expression
 ```
 
-The value and type of `block_expression` is the value and type of `expression`
-if it is present. Otherwise the value and type of `block_expression` is `()`.
+A block expression:
+* is a sequence of statements followed by the final optional expression
+* in loops and other breakable expressions, it can be also labeled
+* always a value expression
+  * evaluates the last operand in value expression context
+    * this can be used to enforce a move:
+      ```rust
+      struct Struct;
 
-See [Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html)
-for greater detail.
+      impl Struct {
+          fn consume_self(self) {}
+          fn borrow_self(&self) {}
+      }
+
+      fn move_by_block_expression() {
+          let s = Struct;
+
+          // Move the value out of `s` in the block expression
+          (&{ s }).borrow_self();
+
+          // Fails to execute because `s` is moved out of
+          s.consume_self();
+      }
+      ```
+* is a control flow expression
+  * sequentially executes its component non-item declaration statements and
+    then its final optional expression
+* provides anonymous namespace scope for items and variable declarations
+  * item declarations are only in scope inside the block itself
+  * variables declared by `let` statements are in scope from the next statement
+    until the end of the block
+* the value and type of a block is the value and type of the final operand, if
+  present, or `()` if omitted
+* the `unsafe` keyword prefix permits unsafe operations inside the block
+  expression
+* inner attributes are allowed:
+  * in function and method bodies
+  * in loop bodies (`loop`, `while`, and `for`)
+  * in block expressions used as a statement
+  * in block expressions as elements of array expressions, tuple expressions,
+    call expressions, and tuple-style `struct` expressions
+  * in a block expression as the tail expression of another block expression
+* the attributes that have meaning on a block expression are `cfg` and the lint
+  check attributes
+
+An `async` block expression:
+* like ordinary block expression, but evaluates to `Future`
+  * the final expression of the block, if present, determines the result value
+    of the `Future`
+* captures variables from their environment using the same capture modes as
+  closures
+  * for `async { ... }`, the capture mode for each variable will be inferred
+    from the content of the block
+  * `async move { ... }` moves all referenced variables into the resulting
+    `Future`
+* executing an `async` block immediately produces and returns an anonymous type
+  which implements the `Future` trait
+  * the actual data format for this type is unspecified
+    * the `Future` type that `rustc` generates is roughly equivalent to an
+      `enum` with one variant per `await` point, where each variant stores the
+      data needed to resume from its corresponding point
+* acts like a function boundary
+  * the `?` operator and `return` expressions both affect the output of the
+    `Future`, not the enclosing function or other context
+    * `return <expr>` from within an `async` block will return the result of
+      `<expr>` as the output of the `Future`
+    * if `<expr>?` propagates an error, that error is propagated as the result
+      of the `Future`
+* the `break` and `continue` keywords cannot be used to branch out from an
+  `async` block
+* an `async` context
+  * determines the context in which `Future` is executed
+  * established by an `async` block or the `async` function's body
+  * contains `await` expressions
+
+A `const` block expression:
+* its body can evaluate at compile time
+  * when executed at runtime, the constant is guaranteed to be evaluated
+  * when not executed at runtime, it may or may not be evaluated
+* sometimes referred as *inline* `const`
+  * allows to define a constant value without having to define new constant
+    items
+* supports type inference
+  * no need to specify the type, unlike constant items
+* has the ability to reference generic parameters in scope
+  * not possible with free (not a member of an implementation) constant items
+  * desugared to constant items with generic parameters in scope
+    * similar to associated constants, but without a trait or type they are
+      associated with
+* examples:
+  ```rust
+  // Referencing a generic parameter in scope
+  fn foo<T>() -> usize {
+      // A `const` block
+      const { std::mem::size_of::<T>() + 1 }
+
+      // Desugared:
+      //
+      // {
+      //     struct Const<T>(T);
+      //
+      //     impl<T> Const<T> {
+      //         const CONST: usize = std::mem::size_of::<T>() + 1;
+      //     }
+      //
+      //     Const::<T>::CONST
+      // }
+  }
+
+  // Runtime execution
+  fn bar<T>() -> usize {
+      // If this code ever gets executed, then the assertion has definitely
+      // been evaluated at compile time, and the resulting constant value is
+      // evaluated once the control flow reaches it
+      const { assert!(std::mem::size_of::<T>() > 0); }
+
+      // Other statements
+
+      42
+  }
+
+  // Not executed at runtime
+  if false {
+      // The `panic` may or may not occur when the program is built
+      const { panic!(); }
+  }
+  ```
+
+See [Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Expressions](https://doc.rust-lang.org/reference/expressions.html),
+[Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+[Tuple and tuple indexing expressions](https://doc.rust-lang.org/reference/expressions/tuple-expr.html),
+[Struct expressions](https://doc.rust-lang.org/reference/expressions/struct-expr.html),
+[Call expressions](https://doc.rust-lang.org/reference/expressions/call-expr.html),
+[Await expressions](https://doc.rust-lang.org/reference/expressions/await-expr.html),
+[Loops and other breakable expressions](https://doc.rust-lang.org/reference/expressions/loop-expr.html),
+[Statements](https://doc.rust-lang.org/reference/statements.html),
+[Closure types](https://doc.rust-lang.org/reference/types/closure.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+[Scopes](https://doc.rust-lang.org/reference/names/scopes.html),
+[Attributes](https://doc.rust-lang.org/reference/attributes.html),
+[Diagnostic attributes](https://doc.rust-lang.org/reference/attributes/diagnostics.html),
+[Unsafety](https://doc.rust-lang.org/reference/unsafety.html),
+[The `unsafe` keyword](https://doc.rust-lang.org/reference/unsafe-keyword.html),
+[Conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html),
+and [`Future`](https://doc.rust-lang.org/core/future/trait.Future.html) for
+greater detail.
 
 ### Atomic Expressions
 
@@ -4711,10 +6051,10 @@ A *trait*:
 * describes an abstract interface that types can implement in a separate
   implementation
   * consists of associated functions, types, and constants
-    * associated types are members of the trait in the type name space
+    * associated types are members of the trait in the type namespace
     * associated functions and constants are members of the trait in the value
-      name space
-* its declaration defines the trait in the type name space of the trait's
+      namespace
+* its declaration defines the trait in the type namespace of the trait's
   location
 * defines an implicit type parameter `Self` that refers to the type
   implementing this trait
@@ -6032,9 +7372,147 @@ where_clause_item:
     lifetime ":" lifetime_bounds
     ("for" generic_params)? type ":" type_param_bounds?
 ```
+* types, constants, and lifetimes can be used as parameters in
+  * functions
+  * type aliases
+  * `struct`s
+  * `enum`s
+  * unions
+  * traits
+  * implementations
+* the order of generic parameters:
+  * first come lifetime parameters
+  * then type and `const` parameters follow (intermixed)
+* duplicit (with the same name) generic parameters in a `generic_params` list
+  are not allowed
+* generic parameters are in scope within the item definition where they are
+  declared
+  * they are not in scope for items declared within the body of a function
+* references, raw pointers, arrays, slices, tuples, and function pointers have
+  lifetime or type parameters as well
+  * they are not referred to with path syntax
+* `'_` and `'static` are not valid lifetime parameter names
+* attributes are allowed on generic type and lifetime parameters
+  * as for now only custom derive attributes can be used in this way since
+    there are no built-in ones
 
-See [Generic parameters](https://doc.rust-lang.org/reference/items/generics.html)
-for greater detail.
+`where` clauses:
+* provide another way to specify bounds on type and lifetime parameters
+  * also provide a way to specify bounds on types that aren't type parameters
+* the `for` keyword
+  * can be used to introduce higher-ranked lifetimes
+  * it only allows `lifetime_param` parameters
+
+`const` generic parameters:
+* allow items to be generic over constant values
+  * all instances of the item must be instantiated with a value of the given
+    type
+* the only allowed types are `u8`, `u16`, `u32`, `u64`, `u128`, `usize`, `i8`,
+  `i16`, `i32`, `i64`, `i128`, `isize`, `char`, and `bool`
+* the name of a `const` generic parameter is stored in the value namespace
+* can be declared without being used inside of a parameterized item
+  * this does not include implementations, where the `const` generic parameter
+    still must be used
+* are allowed in the following places:
+  * as an applied `const` to any type which forms a part of the signature of
+    the item in question
+    ```rust
+    fn foo<const N: u8>(x: [u8; N]) { ... }
+    ```
+  * as part of a `const` expression used to define an associated constant, or
+    as a parameter to an associated type
+    ```rust
+    impl<const N: u8> Foo<N> {
+        const ASSOCIATED_CONSTANT: usize = N * 32;
+    }
+
+    impl<const N: u8> Trait for Foo<N> {
+        type AssociatedType = [i32; N];
+    }
+    ```
+  * as a value in any runtime expression in the body of any functions in the
+    item
+    ```rust
+    fn foo<const N: u8>() {
+        N * 16;
+    }
+    ```
+  * as a parameter to any type used in the body of any functions in the item
+    ```rust
+    fn foo<const N: u8>() {
+        let x: [usize; N];
+    }
+    ```
+  * as a part of the type of any fields in the item
+    ```rust
+    struct Foo<const N: u8>([usize; N]);
+    ```
+* are not allowed:
+  * in item definitions within a function body
+* further restrictions:
+  * inside of a type or array repeat expression
+    * `const` parameters may only appear as a standalone argument
+      * that is as a single segment path expression (`N`), possibly inside a
+        block (`{ N }`)
+      * they cannot be combined with other expressions
+  * in a path
+    * a `const` argument specifies the `const` value to use for that item
+    * the argument must either be an inferred `const` or be a `const`
+      expression of the type ascribed to the `const` parameter
+    * the inferred `const`
+      * an `_` optionally surrounding by any number of matching parentheses
+      * is not semantically an expression and so is not accepted within braces
+      * cannot be used in item signatures
+      * can be used where a `const` argument is expected
+      * asks the compiler to infer the `const` argument if possible based on
+        surrounding information
+    * the `const` expression must be a block expression (surrounded with
+      braces) unless it is a single path segment (an identifier) or a literal
+      (with a possibly leading `-` token)
+      * this syntactic restriction is necessary to avoid requiring infinite
+        lookahead when parsing an expression inside of a type
+    * in a generic argument list, an inferred `const` is parsed as an inferred
+      type but then semantically treated as a separate kind of `const` generic
+      argument
+  * trait bound obligations
+    * exhaustiveness of all implementations of `const` parameters is not
+      considered when determining if the bound is satisfied
+* ambiguity resolution
+  * type argument versus `const` argument
+    * always resolved as a type argument
+    * to enforce `const` argument, block expression must be used, e.g.
+      `Foo<{ N }>`
+
+See [Generic parameters](https://doc.rust-lang.org/reference/items/generics.html),
+[Types](https://doc.rust-lang.org/reference/types.html),
+[Array types](https://doc.rust-lang.org/reference/types/array.html),
+[Slice types](https://doc.rust-lang.org/reference/types/slice.html),
+[Tuple types](https://doc.rust-lang.org/reference/types/tuple.html),
+[Pointer types](https://doc.rust-lang.org/reference/types/pointer.html),
+[Function pointer types](https://doc.rust-lang.org/reference/types/function-pointer.html),
+[Inferred type](https://doc.rust-lang.org/reference/types/inferred.html),
+[Expressions](https://doc.rust-lang.org/reference/expressions.html),
+[Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+[Path expressions](https://doc.rust-lang.org/reference/expressions/path-expr.html),
+[Block expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html),
+[Literal expressions](https://doc.rust-lang.org/reference/expressions/literal-expr.html),
+[Constant evaluation](https://doc.rust-lang.org/reference/const_eval.html),
+[Statements](https://doc.rust-lang.org/reference/statements.html),
+[Structs](https://doc.rust-lang.org/reference/items/structs.html),
+[Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html),
+[Unions](https://doc.rust-lang.org/reference/items/unions.html),
+[Constant items](https://doc.rust-lang.org/reference/items/constant-items.html),
+[Type aliases](https://doc.rust-lang.org/reference/items/type-aliases.html),
+[Functions](https://doc.rust-lang.org/reference/items/functions.html),
+[Traits](https://doc.rust-lang.org/reference/items/traits.html),
+[Trait and lifetime bounds](https://doc.rust-lang.org/reference/trait-bounds.html),
+[Implementations](https://doc.rust-lang.org/reference/items/implementations.html),
+[Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html),
+[Paths](https://doc.rust-lang.org/reference/paths.html),
+[Scopes](https://doc.rust-lang.org/reference/names/scopes.html),
+[Namespaces](https://doc.rust-lang.org/reference/names/namespaces.html), and
+[Attributes](https://doc.rust-lang.org/reference/attributes.html) for greater
+detail.
 
 ## Macros
 
@@ -6403,7 +7881,7 @@ A module is a container of zero or more items.
 * `mod foo { ... }` introduces a new named module, `foo`, into the tree of
   modules making up a crate.
 * Modules can nest arbitrarily.
-* Modules and types share the same name space.
+* Modules and types share the same namespace.
 * In `unsafe mod foo { ... }`, `unsafe` is rejected at a semantic level (that
   is, it has use only when feed into a macro).
 
@@ -6602,8 +8080,8 @@ There are several kinds of preludes:
   * macros from external crates, imported by the `macro_use` attribute applied
     to an `extern crate`, are included into the `macro_use` prelude
 * **Tool prelude**
-  * includes tool names for external tools in the type name space
-  * in the tool prelude, each tool resides in its own name space
+  * includes tool names for external tools in the type namespace
+  * in the tool prelude, each tool resides in its own namespace
   * when a tool attribute is recognized by the compiler (i.e. when a tool is
     found in the tool prelude), the compiler accepts it without any warning
     * `rustc` currently recognizes the tools `rustfmt` and `clippy`
@@ -6979,6 +8457,158 @@ See [Paths](https://doc.rust-lang.org/reference/paths.html),
 and [Preludes](https://doc.rust-lang.org/reference/names/preludes.html) for
 greater detail.
 
+## Runtime
+
+### Panicking
+
+* a *panic* is a way how to return from a function abnormally, i.e. not using
+  the `return` keyword or the `?` operator
+* it is used as a way to response on unrecoverable errors
+* what can cause a panic
+  * a panic is a part of some language constructs, like out-of-bounds array
+    indexing, so violating restrictions imposed by these constructs may cause
+    a program or thread to panic
+  * an explicit use of the `panic!` macro
+* how a panic is handled
+  * when a panic happens, the panic handler is called
+  * if the panic handler is `unwind` or `abort` from the `std` library
+    * invoke the panic hook, if set
+      * the default panic hook prints a message to the standard error output
+        and generates a backtrace if requested
+    * then invoke the panic runtime
+      * if the panic handler is `unwind`
+        * unwind the stack
+        * when possible and if requested, recover from the error (e.g. using
+          `std::panic::catch_unwind` in the panicking thread or using
+          `std::thread::spawn` which automatically sets up panic recovery for
+          the spawned thread so that other threads may continue running)
+      * if the panic handler is `abort`, the process is aborted
+* a panic handler
+  * is a function with the signature `fn(&PanicInfo) -> !`
+    * the `PanicInfo` `struct` contains information about the location of the
+      panic
+  * there must be a single panic handler function in the dependency graph
+  * the `std` library provides two panic handlers: `unwind` and `abort`
+    * which of these two is in charge depends on the compiler environment
+      settings and the target platform
+      * can be set via `-C panic={unwind,abort}` `rustc` CLI option
+      * if not specified, the default depends on the target
+      * not all targets support the `unwind` handler
+    * if any crate in the crate graph uses `abort`, the final binary (`bin`,
+      `dylib`, `cdylib`, `staticlib`) must also use `abort`
+    * if `std` is used as a `dylib` with `unwind`, the final binary must also
+      use `unwind`
+  * a custom panic handler
+    * defined by adding the `#[panic_handler]` attribute to a function
+      implementing the desired panic handler behavior
+    * as a panic handler is a non-returning function, it may (based on the
+      desired behavior):
+      * abort the process
+      * unwind the stack
+      * halt the thread using constructs like `loop {}`
+  * setting the panic handler
+    * when generating a binary, `dylib`, `cdylib`, or `staticlib` and linking
+      with `std`, the panic handler (`abort` or `unwind`) can be set via the
+      `-C panic` `rustc` CLI option
+      * on most platforms, the default panic handler is `unwind`
+    * a custom panic handler must be only used and it is required when linking
+      a `#![no_std]` binary, `dylib`, `cdylib`, or `staticlib`
+    * setting the panic handler may also influence how crates are build to
+      support the specific kind of panic behavior
+      * this is referred to as the *panic strategy*
+      * with `-C panic=abort`, the compiler may assume that the unwinding
+        across Rust frames is impossible and hence it may optimize the code in
+        both the code size and the runtime speed
+      * linking crates with different panic strategies
+        * crates built with `-C panic=unwind` can use the `abort` panic handler
+        * crates build with `-C panic=abort` cannot use the `unwind` panic
+          handler
+* controlling the behavior of a panic
+  * by setting the panic handler (at compile time)
+    * via `-C panic` `rustc` CLI option (`std` only)
+    * via the `#[panic_handler]` attribute (`#![no_std]` only)
+  * by setting the panic hook (at runtime)
+    * via the `std::panic::set_hook` function (`std` only)
+* altering the behavior of a panic
+  * when unwinding across FFI boundaries, `unwind` may be altered to `abort` or
+    the behavior may be undefined
+* see [Panic](https://doc.rust-lang.org/reference/panic.html),
+  [Never type](https://doc.rust-lang.org/reference/types/never.html),
+  [Array and array index expressions](https://doc.rust-lang.org/reference/expressions/array-expr.html),
+  [Operator expressions](https://doc.rust-lang.org/reference/expressions/operator-expr.html),
+  [`return` expressions](https://doc.rust-lang.org/reference/expressions/return-expr.html),
+  [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
+  [Functions](https://doc.rust-lang.org/reference/items/functions.html),
+  [Attributes](https://doc.rust-lang.org/reference/attributes.html),
+  [Preludes](https://doc.rust-lang.org/reference/names/preludes.html),
+  [Linkage](https://doc.rust-lang.org/reference/linkage.html),
+  [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html),
+  [Codegen Options](https://doc.rust-lang.org/rustc/codegen-options/index.html),
+  [`unwinding`](https://docs.rs/unwinding/latest/unwinding),
+  [`panic!`](https://doc.rust-lang.org/std/macro.panic.html),
+  [`PanicInfo`](https://doc.rust-lang.org/core/panic/struct.PanicInfo.html),
+  [`set_hook`](https://doc.rust-lang.org/std/panic/fn.set_hook.html),
+  [`catch_unwind`](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html),
+  [`spawn`](https://doc.rust-lang.org/std/thread/fn.spawn.html),
+  and [`abort`](https://doc.rust-lang.org/std/process/fn.abort.html) for
+  greater detail
+
+### Unwinding
+
+* unwinding is a process of traversing Rust frames and releasing live objects
+  by invoking their destructors until the point of recovery (e.g. at a thread
+  boundary) is reached
+  * an implementation of unwinding must ensure that this resource-cleanup is
+    preserved and guaranteed
+* the choice of ABI, together with the runtime panic handler, determines the
+  behavior when unwinding out of a function
+* unwinding ABIs are `"Rust"`, `"C-unwind"`, and any other ABI with `-unwind`
+  in its name
+* non-unwinding ABIs are all other ABIs, like `"C"`, `"stdcall"`, etc.
+* unwinding operations across ABI boundaries:
+  * unwinding with the wrong ABI is undefined behavior
+    * Rust code compiled or linked with a different instance of the Rust
+      standard library counts as a "foreign exception"
+  * runtime panic behavior is set to `panic=unwind`
+    * an ABI boundary is unwinding
+      * both a Rust and a native code unwinds
+    * an ABI boundary is non-unwinding
+      * when a panicking Rust code reaches the non-unwinding boundary, a panic
+        is turned into abort and either no destructors will run or all
+        destructors up until the ABI boundary will run (which of those two
+        behaviors will happen is unspecified)
+      * when a native code reaches the non-unwinding boundary, the behavior is
+        undefined
+    * catching a foreign unwinding operation using `std::panic::catch_unwind`,
+      `std::thread::JoinHandle::join`, or by letting it propagate beyond the
+      Rust `main` function or thread root will have one of two behaviors, and
+      it is unspecified which will occur:
+      * the process aborts
+      * the function returns a `Result::Err` containing an opaque type
+  * runtime panic behavior is set to `panic=abort`
+    * an ABI boundary is unwinding
+      * a panicking Rust code aborts without unwinding
+      * unwinding from a native code makes the process to abort at the ABI
+        boundary
+    * an ABI boundary is non-unwinding
+      * a panicking Rust code aborts without unwinding
+      * unwinding from a native code leads to undefined behavior
+  * there are currently no guarantees about the behavior that occurs when a
+    foreign runtime attempts to dispose of, or rethrow, a Rust `panic` payload
+    * that is, an unwind originated from a Rust runtime must either lead to
+      termination of the process or be caught by the same runtime
+* see [Functions](https://doc.rust-lang.org/reference/items/functions.html),
+  [External blocks](https://doc.rust-lang.org/reference/items/external-blocks.html),
+  [Destructors](https://doc.rust-lang.org/reference/destructors.html),
+  [Panic](https://doc.rust-lang.org/reference/panic.html),
+  [RFC 2945](https://rust-lang.github.io/rfcs/2945-c-unwind-abi.html),
+  [Behavior considered undefined](https://doc.rust-lang.org/reference/behavior-considered-undefined.html),
+  [`Result`](https://doc.rust-lang.org/std/result/enum.Result.html),
+  [`Drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html),
+  [`catch_unwind`](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html),
+  and [`JoinHandle`](https://doc.rust-lang.org/std/thread/struct.JoinHandle.html)
+  for greater detail
+
 ## Libraries (Crates) and Tools
 
 Pinned: [[Lib.rs](https://lib.rs/)]
@@ -6996,6 +8626,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap)] [[repo](https://github.com/clap-rs/clap)]
 * [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored)] [[repo](https://github.com/colored-rs/colored)]
 * [`core` - the Rust core (i.e. dependency free) library](https://doc.rust-lang.org/core/index.html)
+  * [`core::panic` - panic support in the Rust core library](https://doc.rust-lang.org/core/panic/index.html)
+    * [`core::panic::PanicInfo` - a `struct` providing information about a panic](https://doc.rust-lang.org/core/panic/struct.PanicInfo.html)
   * [`core::ptr` - manually manage memory through raw pointers](https://doc.rust-lang.org/core/ptr/index.html)
     * [`core::ptr::addr_of` - create a `const` raw pointer to a place, without creating an intermediate reference](https://doc.rust-lang.org/core/ptr/macro.addr_of.html)
     * [`core::ptr::addr_of_mut` - create a `mut` raw pointer to a place, without creating an intermediate reference](https://doc.rust-lang.org/core/ptr/macro.addr_of_mut.html)
@@ -7094,6 +8726,9 @@ Pinned: [[Lib.rs](https://lib.rs/)]
   * [`std::fmt` - utilities for formatting and printing `String`s](https://doc.rust-lang.org/std/fmt/)
   * [`std::fs` - file system manipulation operations](https://doc.rust-lang.org/std/fs/index.html)
     * [`std::fs::FileType` - a type of file with accessors for each file type](https://doc.rust-lang.org/nightly/std/fs/struct.FileType.html)
+  * [`std::future` - asynchronous basic functionality](https://doc.rust-lang.org/std/future/index.html)
+    * [`std::future::Future` - represents an asynchronous computation obtained by use of `async`](https://doc.rust-lang.org/std/future/trait.Future.html)
+    * [`std::future::IntoFuture` - conversion into a `Future`](https://doc.rust-lang.org/std/future/trait.IntoFuture.html)
   * [`std::hash` - generic hashing support](https://doc.rust-lang.org/std/hash/index.html)
     * [`std::hash::BuildHasher` - a trait for creating instances of `Hasher`](https://doc.rust-lang.org/std/hash/trait.BuildHasher.html)
     * [`std::hash::Hasher` - a trait for hashing an arbitrary stream of bytes](https://doc.rust-lang.org/std/hash/trait.Hasher.html)
@@ -7118,16 +8753,25 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * [`std::mem::ManuallyDrop` - a zero-cost wrapper to inhibit the compiler from automatically calling type's destructor](https://doc.rust-lang.org/std/mem/struct.ManuallyDrop.html)
   * [`std::net` - networking primitives for TCP/UDP communication](https://doc.rust-lang.org/std/net/index.html)
   * [`std::ops` - overloadable operators](https://doc.rust-lang.org/std/ops/index.html)
+    * [`std::ops::AsyncFn` - an `async`-aware version of the `Fn` trait](https://doc.rust-lang.org/std/ops/trait.AsyncFn.html)
+    * [`std::ops::AsyncFnMut` - an `async`-aware version of the `FnMut` trait](https://doc.rust-lang.org/std/ops/trait.AsyncFnMut.html)
+    * [`std::ops::AsyncFnOnce` - an `async`-aware version of the `FnOnce` trait](https://doc.rust-lang.org/std/ops/trait.AsyncFnOnce.html)
     * [`std::ops::CoerceUnsized` - trait that indicates that this is a pointer or a wrapper for one, where unsizing can be performed on the pointee](https://doc.rust-lang.org/std/ops/trait.CoerceUnsized.html)
     * [`std::ops::Deref` - used for immutable dereferencing operations](https://doc.rust-lang.org/std/ops/trait.Deref.html)
     * [`std::ops::DerefMut` - used for mutable dereferencing operations](https://doc.rust-lang.org/std/ops/trait.DerefMut.html)
     * [`std::ops::Drop` - custom code within a destructor](https://doc.rust-lang.org/std/ops/trait.Drop.html)
+    * [`std::ops::Fn` - the version of the call operator that takes an immutable receiver](https://doc.rust-lang.org/std/ops/trait.Fn.html)
+    * [`std::ops::FnMut` - the version of the call operator that takes a mutable receiver](https://doc.rust-lang.org/std/ops/trait.FnMut.html)
+    * [`std::ops::FnOnce` - the version of the call operator that takes a by-value receiver](https://doc.rust-lang.org/std/ops/trait.FnOnce.html)
     * [`std::ops::IndexMut` - used for indexing operations in mutable contexts](https://doc.rust-lang.org/std/ops/trait.IndexMut.html)
   * [`std::option` - optional values](https://doc.rust-lang.org/std/option/index.html)
     * [`std::option::Option` - the `Option` type](https://doc.rust-lang.org/std/option/enum.Option.html)
   * [`std::panic` - panic support in the standard library](https://doc.rust-lang.org/std/panic/index.html)
+    * [`std::panic::catch_unwind` - invokes a closure, capturing the cause of an unwinding panic if one occurs](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html)
     * [`std::panic::RefUnwindSafe` - a marker trait representing types where a shared reference is considered unwind safe](https://doc.rust-lang.org/std/panic/trait.RefUnwindSafe.html)
+    * [`std::panic::set_hook` - registers a custom panic hook, replacing the previously registered hook](https://doc.rust-lang.org/std/panic/fn.set_hook.html)
     * [`std::panic::UnwindSafe` - a marker trait which represents "panic safe" types in Rust](https://doc.rust-lang.org/std/panic/trait.UnwindSafe.html)
+  * [`std::panic!` - panics the current thread](https://doc.rust-lang.org/std/macro.panic.html)
   * [`std::path` - cross-platform path manipulation](https://doc.rust-lang.org/std/path/index.html)
     * [`std::path::Path` - a slice of a path](https://doc.rust-lang.org/std/path/struct.Path.html)
     * [`std::path::PathBuf` - an owned, mutable path](https://doc.rust-lang.org/std/path/struct.PathBuf.html)
@@ -7152,6 +8796,12 @@ Pinned: [[Lib.rs](https://lib.rs/)]
   * [`std::sync` - useful synchronization primitives](https://doc.rust-lang.org/std/sync/index.html)
     * [`std::sync::atomic` - atomic types](https://doc.rust-lang.org/std/sync/atomic/index.html)
     * [`std::sync::Arc` - a thread-safe reference-counting pointer](https://doc.rust-lang.org/std/sync/struct.Arc.html)
+  * [`std::task` - types and traits for working with asynchronous tasks](https://doc.rust-lang.org/std/task/index.html)
+    * [`std::task::Context` - the context of an asynchronous task](https://doc.rust-lang.org/std/task/struct.Context.html)
+    * [`std::task::Poll` - indicates whether a value is available or if the current task has been scheduled to receive a wakeup instead](https://doc.rust-lang.org/std/task/enum.Poll.html)
+  * [`std::thread` - native threads](https://doc.rust-lang.org/std/thread/index.html)
+    * [`std::thread::JoinHandle` - an owned permission to join on a thread (block on its termination)](https://doc.rust-lang.org/std/thread/struct.JoinHandle.html)
+    * [`std::thread::spawn` - spawns a new thread, returning a `JoinHandle` for it](https://doc.rust-lang.org/std/thread/fn.spawn.html)
   * [`std::vec` - a contiguous growable array type with heap-allocated contents](https://doc.rust-lang.org/std/vec/index.html)
     * [`std::vec::Vec` - a contiguous growable array type](https://doc.rust-lang.org/std/vec/struct.Vec.html)
 * [`strsim` - string similarity metrics](https://crates.io/crates/strsim) [[doc](https://docs.rs/strsim/latest/strsim)] [[repo](https://github.com/rapidfuzz/strsim-rs)]
@@ -7164,6 +8814,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
 * [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar)] [[repo](https://github.com/rust-analyzer/ungrammar)]
   * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
+* [`unwinding` - unwinding library in Rust and for Rust](https://crates.io/crates/unwinding) [[doc](https://docs.rs/unwinding/latest/unwinding)] [[repo](https://github.com/nbdd0121/unwinding)]
 * [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url)] [[repo](https://github.com/servo/rust-url)]
 * [`urlencoding` - URL percentage encoding and decoding library](https://crates.io/crates/urlencoding) [[doc](https://docs.rs/urlencoding/latest/urlencoding)] [[repo](https://github.com/kornelski/rust_urlencoding)]
 * [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir)] [[repo](https://github.com/BurntSushi/walkdir)]
