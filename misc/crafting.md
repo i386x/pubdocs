@@ -2,6 +2,7 @@
 
 * [Amperak](https://www.youtube.com/@amperak/videos)
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
+* [Deep in the Undergrowth](https://www.youtube.com/@deepintheundergrowth3877/playlists)
 * [Earth Uncovered](https://www.youtube.com/@EarthUncoveredonyoutube/videos)
 * [ElektroMaster](https://www.youtube.com/@Petr-bakom/videos)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
@@ -20,6 +21,7 @@
 * [The Whitworth Three Plates Method](https://ericweinhoffer.com/blog/2017/7/30/the-whitworth-three-plates-method)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
 * [Whispering Roots](https://www.youtube.com/@Whisperingroots/shorts)
+* [Why Roman CONCRETE Lasts 2000 Years While Ours Dies in 50](https://www.youtube.com/watch?v=lJdNvX8WTVs)
 * [Wild Roots](https://www.youtube.com/@WildRoots00/shorts)
 
 ## Bushcraft
@@ -44,6 +46,7 @@
 
 ## Milling
 
+* [Clickspring](https://www.youtube.com/@Clickspring/videos)
 * [Filing metal to make it flat / level](https://www.youtube.com/watch?v=Vkw-fNuCktA)
 * [High precision air bearing CNC lathe and grinder](https://www.youtube.com/watch?v=sFrVdoOhu1Q)
 * [Inheritance Machining](https://www.youtube.com/@InheritanceMachining/videos)
@@ -52,6 +55,7 @@
 * [Open Source Machine Tools](https://www.youtube.com/channel/UC79QdJW2rayvCzqNq-SAM-g/videos)
 * [Scraping basics - Scraping flat - Part 1](https://www.youtube.com/watch?v=QJXqHpSh3SE)
 * [Scraping basics - Scraping flat - Part 2](https://www.youtube.com/watch?v=S9N3Q8Qww2A)
+* [TumliKOVO: Technologie strojního obrábění kovů a broušení nástrojů](http://www.tumlikovo.cz/)
 * [Vrtání děr](https://www.osu.cz/dokumenty/proportal/pdf/kpv/vrtani/index.html)
 
 ## Plumbing
@@ -67,6 +71,7 @@
 * [Kleště pro Elektrikáře - průvodce Štípáním, Odholováním a Krimpováním](https://www.youtube.com/watch?v=o5jpmV6jxGE)
 * [LockPickingLawyer](https://www.youtube.com/@lockpickinglawyer/videos)
 * [oxtoolco](https://www.youtube.com/@oxtoolco/videos)
+* [RECA.CZ](https://www.reca.cz/cz)
 * [The Easy Way to Replace Hammer Handles](https://www.youtube.com/watch?v=mGeZGC7P3OQ)
 
 ## Welding

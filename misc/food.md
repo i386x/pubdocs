@@ -13,6 +13,7 @@
 
 ## Recipes
 
+* [25 Native American Recipes You’ll Wish You Knew Sooner!](https://www.youtube.com/watch?v=eANKYs4MY7M)
 * [Cafe Delites](https://cafedelites.com/)
 * [Chef Jean-Pierre](https://www.youtube.com/@ChefJeanPierre/videos)
 * [Cuketka](https://www.cuketka.cz/)
@@ -23,6 +24,7 @@
   * [Making a Huge Brazilian Feijoada Feast All by Myself in One Day](https://www.youtube.com/watch?v=32Yhmmw7XxI)
 * [Hovězí vývar](https://www.angusfarm.cz/recepty/hovezi-vyvar-698/)
 * [How to make Chile con Carne (aka Chile Colorado)](https://www.youtube.com/shorts/oRmBFi5EcWo)
+* [How to Preserve Meat with no Refrigeration - Biltong 101](https://www.youtube.com/watch?v=406S_u2Dte0)
 * [Italian Chef shares easy "Spaghetti alle Vongole" Recipe - Food in Florence](https://www.youtube.com/watch?v=ltb27_0PiS4)
 * [Jedinečné recepty na ovocné knedlíky: těsto lze udělat z jogurtu i tvarohu](https://www.denik.cz/gastronomie/ovocne-knedliky-20210623.html)
 * [Kynuté borůvkové knedlíky: recept podle Markéty Chovancové](https://www.denik.cz/gastronomie/boruvkove-knedliky.html)
@@ -32,10 +34,12 @@
 * [Recept na koblížky bez kynutí. Příprava je snadná, výsledek skvostný](https://www.denik.cz/gastronomie/koblizky-bez-kynuti.html)
 * [Seek wonder](https://www.youtube.com/@seekwonderr)
 * [Šlehačková roláda bez mouky](https://www.toprecepty.cz/recept/18936-slehackova-rolada-bez-mouky/)
+* [The Breakfast That Fed Cowboys & Soldiers | Mexican Hash Recipe](https://www.youtube.com/watch?v=W--aN13W2eo)
 * [Zach Choi ASMR](https://www.youtube.com/@ZachChoi/videos)
 
 ### Shorts
 
+* [Appetizing.tv](https://www.youtube.com/@appetizingtv/shorts)
 * [Gani Çağlar SANDIKKAYA](https://www.youtube.com/@chefganicaglar/shorts) [[shop](https://www.chefganicaglar.com/)]
 * [black sea adventurer](https://www.youtube.com/c/KaradenizliMacerac%C4%B1/shorts)
 * [Orman Lezzetleri](https://www.youtube.com/@orman_lezzetleri/shorts)

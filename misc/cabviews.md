@@ -26,9 +26,10 @@
 * https://www.youtube.com/user/mkkrzysztof/videos
 * https://www.youtube.com/@provaghu/videos
 * [KIWI RAILTV](https://www.youtube.com/channel/UC8L0FiD3Znju_qEwlCXybSw/videos)
+* https://www.youtube.com/@RailCowGirl/videos
 * [Lars Gustafsson](https://www.youtube.com/channel/UC9hbVu41egKQqgNUz0WBZ9w/videos)
 * https://www.youtube.com/c/JanKivisaar/videos
-* https://www.youtube.com/c/SwedishRailcam/videos
+* https://www.youtube.com/@SwedishRailcam/videos
 * https://www.youtube.com/c/TrainThor/videos
 * [Radolfzell-Friedrichshafen](https://www.youtube.com/watch?v=JmbDvjDnH5k)
 * [Taurus-Tf](https://www.youtube.com/channel/UCowsdpGGcTcKhgurICOJERg/videos)
