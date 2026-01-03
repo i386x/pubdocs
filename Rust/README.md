@@ -31,6 +31,7 @@
     * [Announcing Rust 1.85.0 and Rust 2024](https://blog.rust-lang.org/2025/02/20/Rust-1.85.0.html)
   * [Book](https://doc.rust-lang.org/book/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
+  * [Effective Rust](https://effective-rust.com/)
   * [Learn Rust](https://www.rust-lang.org/learn)
   * [Performance Data](https://perf.rust-lang.org)
     * [Dashboard](https://perf.rust-lang.org/dashboard.html)
@@ -42,6 +43,7 @@
   * [Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
   * [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
   * [Secure Rust Guidelines](https://anssi-fr.github.io/rust-guide/)
+  * [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
   * [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
   * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
@@ -8615,6 +8617,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick)] [[repo](https://github.com/BurntSushi/aho-corasick)]
 * [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow)] [[repo](https://github.com/dtolnay/anyhow)]
 * [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://github.com/zesterer/ariadne)]
+* [`async-compression` - adaptors between compression crates and Rust's modern asynchronous IO types](https://crates.io/crates/async-compression) [[doc](https://docs.rs/async-compression/latest/async_compression)] [[repo](https://github.com/Nullus157/async-compression)]
 * [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty)] [[repo](https://github.com/softprops/atty)]
 * [`backon` - make retry like a built-in feature provided by Rust](https://crates.io/crates/backon) [[doc](https://docs.rs/backon/latest/backon)] [[repo](https://github.com/Xuanwo/backon)]
 * [`bat` - a `cat(1)` clone with wings](https://crates.io/crates/bat) [[doc](https://docs.rs/bat/latest/bat)] [[repo](https://github.com/sharkdp/bat)]
@@ -8639,6 +8642,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [Development tools :: Testing](https://crates.io/categories/development-tools::testing)
 * [`dotenvy` - supply environment variables, load them from `.env`](https://crates.io/crates/dotenvy) [[doc](https://docs.rs/dotenvy/latest/dotenvy)] [[repo](https://github.com/allan2/dotenvy)]
 * [`duct` - a library for running child processes](https://crates.io/crates/duct) [[doc](https://docs.rs/duct/latest/duct)] [[repo](https://github.com/oconnor663/duct.rs)]
+* [`equi` - an easy-to-use immediate mode GUI that runs on both web and native](https://crates.io/crates/egui) [[home](https://www.egui.rs/)] [[doc](https://docs.rs/egui/latest/egui)] [[repo](https://github.com/emilk/egui)]
 * [`emit` - structured diagnostic](https://crates.io/crates/emit) [[doc](https://docs.rs/emit/latest/emit)] [[repo](https://github.com/emit-rs/emit)]
 * [`emit_term` - emit diagnostic events to the console](https://crates.io/crates/emit_term) [[doc](https://docs.rs/emit_term/latest/emit_term/)] [[repo](https://github.com/emit-rs/emit)]
 * [`enumset` - a library for creating compact sets of enums](https://crates.io/crates/enumset) [[doc](https://docs.rs/enumset/latest/enumset)] [[repo](https://github.com/Lymia/enumset)]
@@ -8672,6 +8676,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`libc` - raw FFI bindings to platforms' system libraries](https://crates.io/crates/libc) [[doc](https://docs.rs/libc/latest/libc)] [[repo](https://github.com/rust-lang/libc)]
 * [`log` - a lightweight logging facade for Rust](https://crates.io/crates/log) [[doc](https://docs.rs/log/latest/log)] [[repo](https://github.com/rust-lang/log)]
 * [`memchr` - heavily optimized routines for string search primitives](https://crates.io/crates/memchr) [[doc](https://docs.rs/memchr/latest/memchr)] [[repo](https://github.com/BurntSushi/memchr)]
+* [`mlua` - high level bindings to Lua 5.x](https://crates.io/crates/mlua) [[doc](https://docs.rs/mlua/latest/mlua)] [[repo](https://github.com/mlua-rs/mlua)]
 * [`nom` - a byte-oriented, zero-copy, parser combinators library](https://crates.io/crates/nom) [[doc](https://docs.rs/nom/latest/nom)] [[repo](https://github.com/rust-bakery/nom)]
 * [`nu` - a new type of shell](https://crates.io/crates/nu) [[home](https://www.nushell.sh/)] [[book](https://www.nushell.sh/book/)] [[doc](https://docs.rs/crate/nu/latest)] [[repo](https://github.com/nushell/nushell)]
 * [`num` - numeric types and traits (bigint, complex, rational and more)](https://crates.io/crates/num) [[doc](https://docs.rs/num/latest/num)] [[repo](https://github.com/rust-num/num)]
@@ -8818,6 +8823,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`url` - URL library for Rust](https://crates.io/crates/url) [[doc](https://docs.rs/url/latest/url)] [[repo](https://github.com/servo/rust-url)]
 * [`urlencoding` - URL percentage encoding and decoding library](https://crates.io/crates/urlencoding) [[doc](https://docs.rs/urlencoding/latest/urlencoding)] [[repo](https://github.com/kornelski/rust_urlencoding)]
 * [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir)] [[repo](https://github.com/BurntSushi/walkdir)]
+* [`winit` - cross-platform window creation library](https://crates.io/crates/winit) [[doc](https://docs.rs/winit/latest/winit)] [[repo](https://github.com/rust-windowing/winit)]
 * [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which)] [[repo](https://github.com/harryfei/which-rs)]
 * [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell)] [[repo](https://github.com/matklad/xshell)]
 * [`xz2` - binding to `liblzma` providing read/write access to `xz` streams](https://crates.io/crates/xz2) [[doc](https://docs.rs/xz2/latest/xz2)] [[repo](https://github.com/alexcrichton/xz2-rs)]
