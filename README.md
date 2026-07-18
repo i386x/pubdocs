@@ -23,6 +23,7 @@ interested in. Maybe You find some of these interesting too.
    1. [Beam Bots](#beam-bots)
    1. [Game Consoles](#game-consoles)
    1. [Power Management](#power-management)
+   1. [Radio](#radio)
    1. [RC Circuits](#rc-circuits)
    1. [Simulation](#simulation)
    1. [Synthesizers](#synthesizers)
@@ -155,6 +156,7 @@ interested in. Maybe You find some of these interesting too.
 * [Kubernetes shows the way forward for AI](https://www.infoworld.com/article/2337481/kubernetes-shows-the-way-forward-for-ai.html)
 * [Linux Foundation Launches Open Source Valkey Community](https://www.linuxfoundation.org/press/linux-foundation-launches-open-source-valkey-community)
 * [Meeting-free days: 11 productivity tips from IT leaders](https://enterprisersproject.com/article/2022/2/meeting-free-days-11-productivity-tips-it-leaders?sc_cid=70160000000eUoRAAU&elqTrackId=549f2c2f7dcb44d0af8896e22a3f9fc5&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
+* [Monty Widenius 'heartbroken' at the extent of Oracle's MySQL job cuts](https://www.theregister.com/2025/09/11/oracle_slammed_for_mysql_job/)
 * [NASA Will Create a New Time Zone for the Moon, Called Coordinated Lunar Time](https://www.smithsonianmag.com/smart-news/the-moon-will-get-its-own-time-zone-called-coordinated-lunar-time-under-nasas-lead-180984076/)
 * [New normal is just normal](https://moozzaa.medium.com/new-normal-is-just-normal-1d623d710c93)
 * [Nginx core developer quits project in security dispute, starts “freenginx” fork](https://arstechnica.com/information-technology/2024/02/nginx-key-developer-starts-a-freenginx-fork-after-dispute-with-parent-firm/)
@@ -460,6 +462,7 @@ interested in. Maybe You find some of these interesting too.
 
 * [6 Design Principles for Edge Computing Systems](https://thenewstack.io/6-design-principles-for-edge-computing-systems/)
 * [Edge computing and Red Hat Device Edge explained](https://cloud.redhat.com/learn/edge-computing-and-red-hat-device-edge-explained)
+* [Why you should be using portable zero-touch provisioning on the edge](https://www.redhat.com/en/blog/why-you-should-be-using-portable-zero-touch-provisioning-edge)
 
 ## Electronics
 
@@ -469,6 +472,7 @@ interested in. Maybe You find some of these interesting too.
 * [Harry's Homebrew Homepage](http://www.sm0vpo.com/) [[link2](http://sm0vpo.altervista.org/)]
 * [Le labo de Michel (video series)](https://www.youtube.com/@lelabodemichel5162/videos)
 * [Making Plasma By Hand (video)](https://www.youtube.com/watch?v=CLX_pQbSFFg)
+* [Mr Carlson's Lab](https://mrcarlsonslab.com/) [[youtube](https://www.youtube.com/@MrCarlsonsLab/videos)]
 * [PaJa](http://paja-trb.cz/)
 * [Ronald's electronic Project Site](https://www.dos4ever.com/)
 * [Talking Electronics](https://www.talkingelectronics.com/te_interactive_index.html)
@@ -491,6 +495,11 @@ interested in. Maybe You find some of these interesting too.
 
 * [Auto cut off 3.7 volt battery charger circuit (video)](https://www.youtube.com/watch?v=kIm7mKrD9_I) [[circuit diagram](https://drive.google.com/file/d/1C-NGClLN0LAPDPL03lD-SujnB4Trl49C/view)]
 * [Building a LiFePO4 Battery](https://docs.google.com/document/d/1Oz4NzIyvfr8AKmWZ75G-NqWUgfMxvNS4rosGNNUDkRI/edit)
+
+### Radio
+
+* [High impedance earpiece and crystal radio?](https://www.reddit.com/r/amateurradio/comments/loc028/apologies_if_this_is_the_wrong_place_to_ask_high/)
+* [Trying to use modern earphones in crystal radio](https://www.reddit.com/r/amateurradio/comments/1elyvyq/trying_to_use_modern_earphones_in_crystal_radio/)
 
 ### RC Circuits
 
@@ -533,6 +542,7 @@ interested in. Maybe You find some of these interesting too.
 ## Fedora Project
 
 * [ARC notes](https://fedora-arc.readthedocs.io/en/latest/index.html)
+* [Blocker Bugs](https://qa.fedoraproject.org/blockerbugs/)
 * [Change submission guidance](https://docs.fedoraproject.org/en-US/program_management/changes_guide/)
 * [Changes policy](https://docs.fedoraproject.org/en-US/program_management/changes_policy/)
 * [Content Resolver](https://tiny.distro.builders/)
@@ -541,6 +551,7 @@ interested in. Maybe You find some of these interesting too.
   * [Configs](https://github.com/minimization/content-resolver-input/)
   * [ELN Extras Package Set](https://tiny.distro.builders/view-sources--view-eln-extras.html)
   * [ELN Package Set](https://tiny.distro.builders/view-sources--view-eln.html)
+* [Fedora Calendar](https://calendar.fedoraproject.org/)
 * [Fedora Comps](https://pagure.io/fedora-comps)
 * [Fedora CoreOS Working Group Issue Tracker](https://github.com/coreos/fedora-coreos-tracker)
 * [Fedora Council Charter](https://docs.fedoraproject.org/en-US/council/)
@@ -576,7 +587,9 @@ interested in. Maybe You find some of these interesting too.
   * [`packages-without-spdx-final.txt`](https://pagure.io/copr/license-validate/blob/main/f/packages-without-spdx-final.txt)
   * [`packages-without-spdx-final-maintainers.txt`](https://pagure.io/copr/license-validate/blob/main/f/packages-without-spdx-final-maintainers.txt)
   * [`ignore-packages.txt`](https://pagure.io/copr/license-validate/blob/main/f/ignore-packages.txt)
+* [Meetbot Logs](https://meetbot.fedoraproject.org/)
 * [MinGW](https://fedoraproject.org/wiki/MinGW)
+* [Notifications](https://notifications.fedoraproject.org/)
 * [Release Monitoring](https://release-monitoring.org/)
 * [Report from the Reproducible Builds Hackfest during Flock 2023](https://discussion.fedoraproject.org/t/report-from-the-reproducible-builds-hackfest-during-flock-2023/87469/1)
 * [RFC: Feature macros (aka USE flags)](https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/4DWDPKYBOXTCGKXJTOIVPO34A5BTOE3T/)
@@ -610,6 +623,7 @@ interested in. Maybe You find some of these interesting too.
 * [Dropping of cert.pem file](https://fedoraproject.org/wiki/Changes/dropingOfCertPemFile)
 * [ELN Buildroot and Compose](https://fedoraproject.org/wiki/Changes/ELN_Buildroot_and_Compose)
 * [fno-omit-frame-pointer](https://fedoraproject.org/wiki/Changes/fno-omit-frame-pointer)
+* [Golang Packages Vendored By Default](https://fedoraproject.org/wiki/Changes/GolangPackagesVendoredByDefault)
 * [Linker Error On Security Issues](https://fedoraproject.org/wiki/Changes/Linker_Error_On_Security_Issues)
 * [Make Tuned the Default Power Profile Management Daemon](https://fedoraproject.org/wiki/Changes/TunedAsTheDefaultPowerProfileManagementDaemon)
 * [Move all to `/usr`](https://fedoraproject.org/wiki/Features/UsrMove)
@@ -762,7 +776,7 @@ interested in. Maybe You find some of these interesting too.
 * [Release Engineering Issue Requests](https://pagure.io/releng/issues)
 * [Retire Modularity](https://fedoraproject.org/wiki/Changes/RetireModularity)
 * [rpkg](https://docs.pagure.org/rpkg/) [[doc](https://docs.pagure.org/rpkg/index.html)] [[repo](https://pagure.io/rpkg)]
-* [rpmautospec](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html) [[doc #2](https://fedora-infra.github.io/rpmautospec-docs/)] [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)]
+* [rpmautospec](https://fedora-infra.github.io/rpmautospec-docs/) [[doc #2](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)] [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)] [[repo](https://github.com/fedora-infra/rpmautospec)]
   * [Use rpmautospec in Fedora Linux](https://fedoramagazine.org/use-rpmautospec-in-fedora-linux/)
 * [rpminspect](https://rpminspect.readthedocs.io/) [[copr](https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/)]
   * [rpminspect-data-fedora](https://github.com/rpminspect/rpminspect-data-fedora)
@@ -813,6 +827,7 @@ interested in. Maybe You find some of these interesting too.
 * [Building and Distributing Packages with setuptools](http://peak.telecommunity.com/DevCenter/setuptools)
 * [Clarifying PEP 518 (a.k.a. pyproject.toml)](https://snarky.ca/clarifying-pep-518/)
 * [Classifiers](https://pypi.org/classifiers/)
+* [Conda](https://docs.conda.io/projects/conda/en/latest/index.html) [[repo](https://github.com/conda/conda)]
 * [Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/) [[repo](https://github.com/cookiecutter/cookiecutter)]
   * [Cookiecutter PyPackage](https://github.com/audreyfeldroy/cookiecutter-pypackage)
   * [Cookiecutter UV](https://github.com/fpgmaas/cookiecutter-uv) [[home](https://fpgmaas.github.io/cookiecutter-uv/)]
@@ -832,21 +847,26 @@ interested in. Maybe You find some of these interesting too.
   * [black](https://black.readthedocs.io/) [[repo](https://github.com/psf/black)]
   * [doc8](https://github.com/PyCQA/doc8)
   * [flake8](http://flake8.pycqa.org) [[repo](https://github.com/PyCQA/flake8)] [[extensions](https://julien.danjou.info/the-best-flake8-extensions/)]
+    * [Building a custom Flake8 plugin](https://stummjr.github.io/post/building-a-custom-flake8-plugin/)
     * [flake8-logging-format](https://github.com/globality-corp/flake8-logging-format)
+    * [flake8-logging](https://github.com/adamchainz/flake8-logging)
+    * [flake8-requirements](https://github.com/Arkq/flake8-requirements)
     * [hacking](https://docs.openstack.org/hacking/) [[repo](https://github.com/openstack/hacking)]
     * [mccabe](https://github.com/PyCQA/mccabe)
     * [pycodestyle](https://pycodestyle.pycqa.org/) [[repo](https://github.com/PyCQA/pycodestyle)]
     * [pyflakes](https://github.com/PyCQA/pyflakes)
-  * [isort](https://pycqa.github.io/isort/) [[repo](https://github.com/PyCQA/isort)]
+  * [isort](https://isort.readthedocs.io/en/latest/) [[repo](https://github.com/PyCQA/isort)]
   * [mypy](http://mypy-lang.org/) [[docs](https://mypy.readthedocs.io)] [[repo](https://github.com/python/mypy)]
     * [Advanced Static Typing with mypy (part1)](https://dev.to/chadrik/the-missing-guide-to-python-static-typing-532i)
     * [Advanced Static Typing with mypy (part2)](https://dev.to/chadrik/advanced-static-typing-with-mypy-part2-1f5h)
     * [collections.abc](https://docs.python.org/3/library/collections.abc.html)
     * [Higher Kinded Types in Python](https://sobolevn.me/2020/10/higher-kinded-types-in-python)
+    * [Mypy Best Practices and Coding Standards (Cursor Rules)](https://cursorrules.org/article/mypy-cursor-mdc-file)
+    * [Python Type Hints: How to Gradually Add Types for Third Party Packages](https://adamj.eu/tech/2022/08/23/python-type-hints-gradually-add-types-for-third-party-packages/)
     * [Python type hints: types for regular expressions](https://adamj.eu/tech/2021/09/07/python-type-hints-how-to-work-with-regular-expressions/)
     * [Static Typing with Python](https://typing.python.org/en/latest/index.html)
     * [Testing mypy stubs, plugins, and types](https://sobolevn.me/2019/08/testing-mypy-types)
-    * [The Comprehensive Guide to mypy](https://sadh.life/post/mypy-guide/)
+    * [The Comprehensive Guide to mypy](https://sadh.life/post/mypy-guide/) [[link #2](https://tusharsadhwani.medium.com/the-comprehensive-guide-to-mypy-b7cd502d04e3)]
     * [Type Theory, A Very Rudimentary Introduction](https://www.gaohongnan.com/computer_science/type_theory/intro.html)
     * [Typelets for Python](https://github.com/beanbaginc/python-typelets) [[doc](https://typelets.readthedocs.io/en/latest/)]
     * [typeshed](https://github.com/python/typeshed)
@@ -857,6 +877,7 @@ interested in. Maybe You find some of these interesting too.
     * [`pylint-per-file-ignores` Plugin](https://github.com/christopherpickering/pylint-per-file-ignores)
   * [Pyright](https://microsoft.github.io/pyright) [[repo](https://github.com/microsoft/pyright)]
   * [safety](https://pyup.io/safety/) [[repo](https://github.com/pyupio/safety)]
+  * [ty](https://docs.astral.sh/ty/) [[repo](https://github.com/astral-sh/ty)]
 * [nox](https://nox.thea.codes/en/stable/) [[repo](https://github.com/wntrblm/nox)]
 * [Packaging a Python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/)
 * [PEP 20 -- The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
@@ -885,6 +906,7 @@ interested in. Maybe You find some of these interesting too.
 * [pyp2spec](https://github.com/befeleme/pyp2spec)
 * [PyPA specifications](https://packaging.python.org/en/latest/specifications/)
   * [Binary distribution format](https://packaging.python.org/en/latest/specifications/binary-distribution-format/)
+  * [Core metadata specifications](https://packaging.python.org/en/latest/specifications/core-metadata/)
   * [Dependency specifiers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/)
 * [pyproject-metadata](https://pep621.readthedocs.io/en/latest/) [[repo](https://github.com/pypa/pyproject-metadata)]
 * [pyproject-rpm-macros](https://src.fedoraproject.org/rpms/pyproject-rpm-macros)
@@ -915,6 +937,7 @@ interested in. Maybe You find some of these interesting too.
   * [Data Files Support](https://setuptools.pypa.io/en/latest/userguide/datafiles.html)
   * [Package Discovery and Namespace Packages](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html)
   * [`setup.cfg` example](https://gist.github.com/althonos/6914b896789d3f2078d1e6237642c35c)
+* [Should You Use Upper Bound Version Constraints?](https://iscinumpy.dev/post/bound-version-constraints/#pinning-the-python-version-is-special)
 * spec file examples
   * [python-elementpath.spec](https://src.fedoraproject.org/rpms/python-elementpath/blob/master/f/python-elementpath.spec)
   * [python-xmlschema.spec](https://src.fedoraproject.org/rpms/python-xmlschema/blob/master/f/python-xmlschema.spec)
@@ -949,18 +972,21 @@ interested in. Maybe You find some of these interesting too.
 * [RPM Package Manager](http://rpm.org/)
   * [Documentation](https://rpm.org/docs/)
 * [RPM Reference Manual](https://rpm-software-management.github.io/rpm/manual/)
+* [rpm-gitprep](https://github.com/pemensik/rpm-gitprep)
 * [rpm-showme](https://pagure.io/minimization/rpm-showme)
 * `rpmlint`
   * [Common Rpmlint issues](https://fedoraproject.org/wiki/Common_Rpmlint_issues)
 * [Rukověť baliče RPM (in Czech)](http://www.abclinuxu.cz/serialy/rukovet-balice-rpm)
 * [show rpm packages scriptlets](https://www.commandlinefu.com/commands/view/7555/show-rpm-packages-scriptlets)
 * [Some tips on RPM conditional macros](https://backreference.org/2011/09/17/some-tips-on-rpm-conditional-macros/)
-* [SpecParser (Python)](https://github.com/Bihanojko/SpecParser)
+* [Specfile Parser Simple](https://gitlab.com/jackorp/specfile_parser_simple)
+* [SpecParser](https://github.com/Bihanojko/SpecParser)
 * [Speeding up the kernel testing loop](https://www.hadess.net/2022/08/speeding-up-kernel-testing-loop.html)
 
 #### Ruby Packaging
 
 * [Bundler's Purpose and Rationale](https://bundler.io/v1.7/rationale.html)
+* [ferut](https://github.com/fedora-ruby/ferut)
 * [Understanding the `Gemfile.lock` file](https://stackoverflow.com/questions/7517524/understanding-the-gemfile-lock-file)
 
 #### Rust Packaging
@@ -1015,6 +1041,7 @@ interested in. Maybe You find some of these interesting too.
 
 ## Games & Game Engines
 
+* [DOOM over DNS](https://github.com/resumex/doom-over-dns) [[blog post](https://blog.rice.is/post/doom-over-dns/)]
 * [ecstasy-of-gold](https://github.com/helio-frota/ecstasy-of-gold)
 * [Electronic Arts](https://github.com/electronicarts)
   * [Command & Conquer: Final Sun / Final Alert (YR) 2 Mission Editor](https://github.com/electronicarts/CNC_TS_and_RA2_Mission_Editor)
@@ -1025,6 +1052,7 @@ interested in. Maybe You find some of these interesting too.
   * [Command & Conquer: Renegade](https://github.com/electronicarts/CnC_Renegade)
   * [Command & Conquer: Tiberian Dawn](https://github.com/electronicarts/CnC_Tiberian_Dawn)
 * [eog-atari](https://github.com/helio-frota/eog-atari)
+* [Games for sysadmins: Prince of Persia 1 on Linux with SDLPoP](https://www.redhat.com/en/blog/sdlpop-prince-persia) [[repo](https://github.com/NagyD/SDLPoP)]
 * [MineClone2](https://content.minetest.net/packages/Wuzzy/mineclone2/) [[repo](https://git.minetest.land/MineClone2/MineClone2)]
 * [Minetest](https://www.minetest.net/) [[repo](https://github.com/minetest/minetest)]
 * [OpenRA](https://www.openra.net/)
@@ -1084,12 +1112,14 @@ interested in. Maybe You find some of these interesting too.
 * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/)
 * [How to use RHEL application compatibility guidelines](https://developers.redhat.com/articles/2023/05/18/how-use-rhel-application-compatibility-guidelines#)
 * [Install Arch Linux with Full Disk Encryption (LVM on LUKS)](https://gist.github.com/mjnaderi/28264ce68f87f52f2cabb823a503e673)
+* [Is your RHEL installation getting old? Here's what to do](https://www.redhat.com/en/blog/your-rhel-installation-getting-old-heres-what-do)
 * [LWN.net](https://lwn.net/)
   * [An introduction to compound pages](https://lwn.net/Articles/619514/)
 * [Making open source more inclusive by eradicating problematic language](https://www.redhat.com/en/blog/making-open-source-more-inclusive-eradicating-problematic-language)
 * [Migrate from CentOS Linux to Red Hat Enterprise Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/centos-migration?options=production-environments)
 * [`os-release`](https://www.freedesktop.org/software/systemd/man/latest/os-release.html)
 * [Red Hat Development Model](https://www.redhat.com/en/about/development-model)
+* [Red Hat Documentation](https://docs.redhat.com/en)
 * [Red Hat Enterprise Linux](https://developers.redhat.com/products/rhel/overview)
 * [Red Hat Enterprise Linux 9](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/)
 * [Red Hat Enterprise Linux 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/)
@@ -1098,10 +1128,12 @@ interested in. Maybe You find some of these interesting too.
 * [Simplifying CentOS Linux to RHEL conversions with Red Hat Insights](https://www.redhat.com/en/blog/simplifying-centos-linux-rhel-conversions-red-hat-insights)
 * [The Future of AlmaLinux is Bright](https://old.reddit.com/r/linux/comments/14yyf6y/the_future_of_almalinux_is_bright/jrw30d1/?context=3)
 * [The Linux man-pages project](https://www.kernel.org/doc/man-pages/)
+* [The next evolution of Red Hat’s Developer options](https://www.redhat.com/en/blog/next-evolution-red-hats-developer-options)
 * [Učebnice GNU/Linuxu (in Czech)](http://www.abclinuxu.cz/ucebnice/obsah)
 * [Updates to using Ansible in RHEL 8.6 and 9.0](https://www.redhat.com/en/blog/updates-using-ansible-rhel-86-and-90)
 * [Upgrading from RHEL 8 to RHEL 9](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/upgrading_from_rhel_8_to_rhel_9/index)
 * [Upgrading from RHEL 9 to RHEL 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/upgrading_from_rhel_9_to_rhel_10/index)
+* [Use the RHEL command-line assistant offline with this new developer preview](https://www.redhat.com/en/blog/use-rhel-command-line-assistant-offline-new-developer-preview)
 * [Using image mode for RHEL to build, deploy, and manage operating systems](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/using_image_mode_for_rhel_to_build_deploy_and_manage_operating_systems/index)
 
 ### Administration
@@ -1134,8 +1166,8 @@ interested in. Maybe You find some of these interesting too.
 
 #### Ansible
 
-* [Ansible Docs (latest)](https://docs.ansible.com/ansible/latest/index.html)
-  * [Developing collections](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html)
+* [Ansible Docs (latest)](https://docs.ansible.com/projects/ansible/latest/index.html)
+  * [Developing collections](https://docs.ansible.com/projects/ansible/latest/dev_guide/developing_collections.html)
 * [Ansible on root.cz](https://www.root.cz/serialy/konfiguracni-a-orchestracni-nastroj-ansible/)
 * [Ansible Tower Lab (With Demos) Using Vagrant For Mac OS](https://github.com/m1820/atd)
 * [Getting started with Red Hat Ansible Lightspeed with IBM watsonx Code Assistant](https://www.redhat.com/en/blog/getting-started-red-hat-ansible-lightspeed-ibm-watsonx-code-assistant)
@@ -1149,8 +1181,12 @@ interested in. Maybe You find some of these interesting too.
 
 ##### Ansible Tips
 
+* [Ansible Blocks Advance Guide - Simple & Complex Block Loops, Conditionals, Nested Blocks, Block Vars, delegate_to, retries, block with tags, Block Rescue & Always - Examples Included](https://toptechtips.github.io/2023-06-18-ansible-block/)
+* [Check variable type](https://stackoverflow.com/questions/61255461/ansible-check-variable-type)
 * [How to make Ansible execute a shell script if a package is not installed](https://stackoverflow.com/questions/21892603/how-to-make-ansible-execute-a-shell-script-if-a-package-is-not-installed/46630866#46630866)
 * [How to use Splunk as an event source for Event-Driven Ansible](https://developers.redhat.com/articles/2025/06/10/how-use-splunk-event-source-event-driven-ansible)
+* [`procesor_count` vs `processor_cores` vs `processor_vcpus`](https://stackoverflow.com/questions/39539559/ansible-procesor-count-vs-processor-cores-vs-processor-vcpus)
+* [Test Ansible playbooks using Docker](https://dev.to/pencillr/test-ansible-playbooks-using-docker-ci0)
 
 ##### Ansible Tools
 
@@ -1193,32 +1229,46 @@ interested in. Maybe You find some of these interesting too.
 
 * [15 reasons to adopt Red Hat OpenShift Virtualization](https://www.redhat.com/en/engage/15-reasons-adopt-openshift-virtualization-ebook)
 * [A brief introduction to Apps and Stacks Container Images](https://developers.redhat.com/articles/2024/07/17/brief-introduction-apps-and-stacks-container-images)
+* [A deep dive into Apache Kafka's KRaft protocol](https://developers.redhat.com/articles/2025/09/17/deep-dive-apache-kafkas-kraft-protocol)
 * [A Hacker’s Guide To Moving Linux Services Into Containers](http://crunchtools.com/a-hackers-guide-to-moving-linux-services-into-containers/)
 * [A Makefile for your dockerfiles](https://philpep.org/blog/a-makefile-for-your-dockerfiles/)
 * [AeroGear](https://aerogear.org/)
 * [AI meets containers: My first step into Podman AI Lab](https://developers.redhat.com/articles/2025/07/14/ai-meets-containers-my-first-step-podman-ai-lab)
 * [Automate Skupper networks seamlessly with Ansible](https://developers.redhat.com/articles/2025/06/02/automate-skupper-networks-seamlessly-ansible)
-* [Basic Setup and Use of Podman in a Rootless environment](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md)
+* [Automating Podman with RHEL system roles](https://www.redhat.com/en/blog/automating-podman-rhel-system-roles)
+* [Basic Setup and Use of Podman in a Rootless environment](https://github.com/podman-container-tools/podman/blob/main/docs/tutorials/rootless_tutorial.md)
 * [Bazel rules for OCI containers](https://github.com/bazel-contrib/rules_oci)
 * [Best practices for migration from Jaeger to Tempo](https://developers.redhat.com/articles/2025/04/09/best-practices-migration-jaeger-tempo)
+* [Bridging clusters: a comparative look at multicluster networking performance in Kubernetes](https://research.redhat.com/blog/article/bridging-clusters-a-comparative-look-at-multicluster-networking-performance-in-kubernetes/)
+* [Build a container image for a Quarkus project using Buildpacks](https://developers.redhat.com/articles/2025/08/20/build-container-image-quarkus-project-using-buildpacks)
 * [Build a Container with a Dockerfile](https://docs.fedoraproject.org/en-US/iot/build-docker/)
 * [Build container images in CI/CD with Tekton and Buildpacks](https://developers.redhat.com/articles/2025/07/16/build-container-images-cicd-tekton-and-buildpacks)
 * [Build multi-architecture container images on GitHub Actions](https://developers.redhat.com/articles/2023/12/08/build-multi-architecture-container-images-github-actions)
 * [Build smaller container images using S2I](https://developers.redhat.com/articles/2023/02/15/build-smaller-container-images-using-s2i#)
+* [Building Kubernetes-style pods with Podman](https://willsena.dev/building-kubernetes-style-pods-with-podman/)
 * [CentOS Containers on Quay.io Registry](https://quay.io/repository/centos/centos?tab=tags)
 * [Changing shmem size of a docker container](https://www.deepanseeralan.com/tech/changing-shmem-size-of-docker-container/)
 * [cloud-init and dhcpcd](https://major.io/p/fedora-cloud-init-dhcpcd/)
 * [Compose Specification](https://compose-spec.io/) [[repos](https://github.com/compose-spec/)]
 * [Confidential cluster: Running Red Hat OpenShift clusters on confidential nodes](https://www.redhat.com/en/blog/confidential-cluster-running-red-hat-openshift-clusters-confidential-nodes)
 * [Confidential Container Tools and Components](https://github.com/confidential-containers/guest-components)
+* [Confidential VMs: The core of confidential containers](https://developers.redhat.com/articles/2025/09/15/confidential-vms-core-confidential-containers)
 * [Container Anatomy](https://nuvalence.io/insights/container-anatomy/) [[code](https://github.com/Nuvalence/diy-container)]
+* [Container building best practices](https://docs.docker.com/build/building/best-practices/)
+* [Container multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
 * [Container permission denied: How to diagnose this error](https://www.redhat.com/sysadmin/container-permission-denied-errors)
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 * [Customize AWS cloud images with RHEL image builder and Packit](https://developers.redhat.com/articles/2024/04/02/customize-aws-cloud-images-rhel-image-builder-and-packit)
 * [Dealing with user namespaces and SELinux on rootless containers](https://www.redhat.com/en/blog/user-namespaces-selinux-rootless-containers)
 * [Debugging image mode hosts](https://www.redhat.com/en/blog/debugging-image-mode-hosts)
+* [Declaratively assigning DNS records to virtual machines](https://developers.redhat.com/articles/2025/09/11/declaratively-assigning-dns-records-virtual-machines)
+* [Deploying OpenShift hosted clusters with HyperShift](https://developers.redhat.com/articles/2025/10/07/deploying-openshift-hosted-clusters-hypershift)
+* [Disaster Recovery: Achieving Instantaneous Hot-Hot with OpenShift](https://www.redhat.com/en/blog/disaster-recovery-with-openshift-hot-hot)
 * [Disaster recovery approaches for Red Hat OpenShift Virtualization](https://www.redhat.com/en/blog/disaster-recovery-approaches-red-hat-openshift-virtualization)
+* [Docker and PID 1](https://github.com/antontkv/docker-and-pid1)
 * [Docker: Copying files from Docker container to host](https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host)
+* [Dockerfile reference](https://docs.docker.com/reference/dockerfile/)
+* [Effective observability with Red Hat build of OpenTelemetry](https://developers.redhat.com/articles/2025/09/03/effective-observability-red-hat-build-opentelemetry)
 * [Enable Custom Logos branding in the OpenShift web console](https://developers.redhat.com/articles/2025/07/25/enable-custom-logos-branding-openshift-web-console)
 * [Fedora `bootc` Base Images](https://gitlab.com/fedora/bootc/base-images)
 * [Fedora `bootc` Beaker Test](https://gitlab.com/fedora/bootc/tests/bootc-beaker-test)
@@ -1241,8 +1291,11 @@ interested in. Maybe You find some of these interesting too.
 * [How to include new Kubernetes resource into existing Helm release](https://www.kristhecodingunicorn.com/post/include-k8s-resource-in-existing-helm-release/)
 * [How to run Camel on Spring Boot in the Developer Sandbox](https://developers.redhat.com/articles/2023/02/10/how-run-camel-spring-boot-red-hat-developer-sandbox)
 * [How to run MicroShift as a container using MINC](https://developers.redhat.com/articles/2025/06/30/how-run-microshift-container-using-minc)
+* [How to run systemd in a container](https://developers.redhat.com/blog/2019/04/24/how-to-run-systemd-in-a-container)
+* [How to send signal to program run in a docker container?](https://stackoverflow.com/questions/25687131/how-to-send-signal-to-program-run-in-a-docker-container)
 * [How to simplify your multi-repo workflow with Podman](https://developers.redhat.com/articles/2025/05/28/how-simplify-your-multi-repo-workflow-podman)
 * [How to use Podman inside of a container](https://www.redhat.com/sysadmin/podman-inside-container)
+* [How to use Podman to get information about your containers](https://www.redhat.com/en/blog/container-information-podman)
 * [Hub for systemd-nspawn containers and images](https://nspawn.org/)
 * [Implement zero-touch provisioning for OpenShift with GitOps](https://developers.redhat.com/articles/2025/07/29/implement-zero-touch-provisioning-openshift-gitops)
 * [Install Cryostat with the new Helm chart](https://developers.redhat.com/articles/2022/06/20/install-cryostat-new-helm-chart)
@@ -1252,13 +1305,17 @@ interested in. Maybe You find some of these interesting too.
 * [Knative: An Opinionated Kubernetes](https://davidhadas.wordpress.com/2022/08/29/knative-an-opinionated-kubernetes/)
 * [Kubectl Book](https://kubectl.docs.kubernetes.io/)
 * [Kubernetes](https://kubernetes.io/) [[doc](https://kubernetes.io/docs/home/)]
+* [Kubernetes MCP server: AI-powered cluster management](https://developers.redhat.com/articles/2025/09/25/kubernetes-mcp-server-ai-powered-cluster-management)
 * [KubeVirt](https://kubevirt.io/)
 * [Live migrating VMs with OpenShift Virtualization](https://developers.redhat.com/articles/2025/07/14/live-migrating-vms-openshift-virtualization)
 * [Managing Containers in Podman with Systemd Unit Files (video)](https://www.youtube.com/watch?v=AGkM2jGT61Y)
+* [Migrate your OpenShift logging stack from Elasticsearch to Loki](https://developers.redhat.com/articles/2025/09/01/migrate-your-openshift-logging-stack-elasticsearch-loki)
 * [Migration Toolkit for Applications](https://developers.redhat.com/products/mta/overview)
 * [minikube](https://minikube.sigs.k8s.io/docs/)
 * [Minimize downtime when migrating from VMware to OpenShift Virtualization](https://developers.redhat.com/articles/2024/08/01/minimize-downtime-when-migrating-vmware-openshift-virtualization)
 * [Monitoring container vitality and availability with Podman](https://developers.redhat.com/blog/2019/04/18/monitoring-container-vitality-and-availability-with-podman)
+* [Multicluster authentication with Ansible Automation Platform](https://developers.redhat.com/articles/2025/09/08/multicluster-authentication-ansible-automation-platform)
+* [Multicluster resiliency with global load balancing and mesh federation](https://developers.redhat.com/articles/2025/08/28/multicluster-resiliency-global-load-balancing-and-mesh-federation)
 * [OCI Distribution Specification](https://github.com/opencontainers/distribution-spec)
 * [OpenShift Container Platform 4.12 Documentation](https://docs.openshift.com/container-platform/4.12/welcome/index.html)
   * [RHCOS image layering](https://docs.openshift.com/container-platform/4.12/post_installation_configuration/coreos-layering.html)
@@ -1273,6 +1330,7 @@ interested in. Maybe You find some of these interesting too.
   * [Using RBAC to define and apply permissions](https://docs.openshift.com/container-platform/4.17/authentication/using-rbac.html)
 * [OpenShift Container Platform 4.18 Documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/about/welcome-index)
   * [Configuring ingress cluster traffic](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/networking/configuring-ingress-cluster-traffic)
+* [OpenShift Container Platform 4.19 Documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/)
 * [OpenShift LACP bonding performance expectations](https://developers.redhat.com/articles/2025/07/17/openshift-lacp-bonding-performance-expectations)
 * [OpenShift sandboxed containers](https://www.redhat.com/en/openshift-sandboxed-containers)
 * [OpenShift sandboxed containers 1.2 release notes](https://docs.openshift.com/container-platform/4.10/sandboxed_containers/sandboxed-containers-release-notes.html)
@@ -1285,6 +1343,7 @@ interested in. Maybe You find some of these interesting too.
   * [Operator Capability Levels](https://sdk.operatorframework.io/docs/overview/operator-capabilities/)
 * [Optimising Docker Layers for Better Caching with Nix](https://grahamc.com/blog/nix-and-layered-docker-images/)
 * [Optimize container images for NGINX and Apache HTTPd](https://developers.redhat.com/articles/2023/04/25/optimize-container-images-nginx-and-apache-httpd)
+* [Optimize workloads with right-sizing recommendations](https://developers.redhat.com/articles/2025/08/04/optimize-workloads-right-sizing-recommendations)
 * [Orchestrating Windows containers on Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift/windows-containers-on-red-hat-openshift)
 * [Overview: Build and run a bootable container image with image mode for RHEL and Podman Desktop](https://developers.redhat.com/learn/rhel/build-and-run-bootable-container-image-image-mode-rhel-and-podman-desktop)
 * [Podman (from Docker Mailserver)](https://docker-mailserver.github.io/docker-mailserver/edge/config/advanced/podman/)
@@ -1293,6 +1352,11 @@ interested in. Maybe You find some of these interesting too.
 * [Podman container|image exists](https://podman.io/blogs/2018/11/27/podman-exists.html)
 * [Podman Desktop 1.0: Local container development made easy](https://developers.redhat.com/articles/2023/05/23/podman-desktop-now-generally-available#)
 * [Podman Hello World](https://github.com/containers/PodmanHello)
+* [Podman Keep Container Running: A Comprehensive Guide](https://devtodevops.com/blog/podman-keep-container-running)
+* [podman-kube-play](https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html)
+* [podman-login](https://docs.podman.io/en/latest/markdown/podman-login.1.html)
+* [podman-ps](https://docs.podman.io/en/stable/markdown/podman-ps.1.html)
+* [Podmortem Operator](https://github.com/podmortem)
 * Quadlets
   * [Deploying a multi-container application using Podman and Quadlet](https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet)
   * [How to embed containers on image mode for RHEL](https://developers.redhat.com/articles/2025/05/29/how-embed-containers-image-mode-rhel)
@@ -1312,17 +1376,23 @@ interested in. Maybe You find some of these interesting too.
 * [Red Hat OpenStack Services on OpenShift - the next generation of Red Hat OpenStack Platform](https://www.redhat.com/en/blog/red-hat-openstack-services-openshift-next-generation-red-hat-openstack-platform)
 * [Red Hat Quay 3.10 is generally available](https://www.redhat.com/en/blog/red-hat-quay-310-generally-available)
 * [Red Hat Universal Base Images for Docker users](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users)
+* [Reducing cognitive load in enterprise Kubernetes: 5 strategic tenets](https://www.redhat.com/en/blog/reducing-cognitive-load-enterprise-kubernetes-5-strategic-tenets)
 * [Requesting and installing Let’s Encrypt Certificates for OpenShift 4 on AWS](https://www.redhat.com/en/blog/requesting-and-installing-lets-encrypt-certificates-for-openshift-4)
 * [Resizing Persistent Volumes using Kubernetes](https://kubernetes.io/blog/2018/07/12/resizing-persistent-volumes-using-kubernetes/)
 * [Rootless containers with Podman: The basics](https://developers.redhat.com/blog/2020/09/25/rootless-containers-with-podman-the-basics)
 * [Rootless Podman on Fedora](https://thomascfoulds.com/2021/01/23/rootless-podman-on-fedora.html)
 * [Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
 * [SIG Multicluster](https://multicluster.sigs.k8s.io/)
+* [Simplify local prototyping with Camel JBang infrastructure](https://developers.redhat.com/articles/2025/08/28/simplify-local-prototyping-camel-jbang-infrastructure)
 * [Simplify managing Grafana Tempo instances in Kubernetes with the Tempo Operator](https://grafana.com/blog/2023/07/28/simplify-managing-grafana-tempo-instances-in-kubernetes-with-the-tempo-operator/)
+* [Skopeo: The unsung hero of Linux container-tools](https://developers.redhat.com/articles/2025/09/24/skopeo-unsung-hero-linux-container-tools)
 * [Speeding up container image builds with Buildah](https://www.redhat.com/sysadmin/speeding-container-buildah)
 * [Stolostron project](https://github.com/stolostron/stolostron)
 * [Storage considerations for OpenShift Virtualization](https://developers.redhat.com/articles/2025/07/10/storage-considerations-openshift-virtualization)
+* [Streamlining migration to OpenShift Virtualization with automation and expert guidance](https://www.redhat.com/en/blog/streamlining-migration-red-hat-openshift-virtualization-automation-and-expert-guidance)
 * [Sustainability, the cloud native way](https://next.redhat.com/2023/02/21/sustainability-the-cloud-native-way/)
+* [The Confusing Shell Signal Handling in Docker](https://medium.com/@lapwingcloud/the-confusing-shell-signal-handling-behavior-in-docker-1e480f15fb8f)
+* [The hidden pitfalls of Kafka tiered storage](https://developers.redhat.com/articles/2025/08/21/hidden-pitfalls-kafka-tiered-storage)
 * [The Red Hat build of OpenTelemetry reaches general availability](https://www.redhat.com/en/blog/red-hat-build-opentelemetry-reaches-general-availability)
 * [toolbx](https://containertoolbx.org/)
 * [Toolbx — running the same host binary on Arch Linux, Fedora, Ubuntu, etc. containers](https://debarshiray.wordpress.com/2022/10/02/toolbx-running-the-same-binary-on-arch-linux-fedora-ubuntu-etc-containers/)
@@ -1330,9 +1400,12 @@ interested in. Maybe You find some of these interesting too.
 * [Try Camel on Quarkus in the Developer Sandbox for Red Hat OpenShift](https://developers.redhat.com/articles/2023/10/06/try-camel-quarkus-developer-sandbox-red-hat-openshift)
 * [Universal Base Images FAQ](https://developers.redhat.com/articles/ubi-faq)
 * [Unlocking deeper insights: New observability features in Red Hat OpenShift 4.19 and Red Hat Advanced Cluster Management 2.14](https://www.redhat.com/en/blog/unlocking-deeper-insights-new-observability-features)
+* [Unlocking the power of OpenShift Service Mesh 3](https://developers.redhat.com/articles/2025/09/25/unlocking-power-openshift-service-mesh-3)
 * [Unraveling the Magic Behind Buildpacks (video)](https://www.youtube.com/watch?v=Mi_fb5ToOa8)
 * [Using systemd-run to limit something's memory usage in cgroups v2](https://utcc.utoronto.ca/~cks/space/blog/linux/SystemdForMemoryLimitingII)
 * [Using volumes with rootless podman, explained](https://www.tutorialworks.com/podman-rootless-volumes/)
+* [What are the possible states for a docker container?](https://stackoverflow.com/questions/32427684/what-are-the-possible-states-for-a-docker-container)
+* [What's new in network observability 1.9](https://developers.redhat.com/articles/2025/09/05/whats-new-network-observability-19)
 * [What's new in Red Hat OpenShift Virtualization 4.19](https://www.redhat.com/en/blog/whats-new-red-hat-openshift-virtualization-419)
 * [What's new in the Red Hat build of Quarkus version 3.2](https://developers.redhat.com/articles/2023/10/23/whats-new-red-hat-build-quarkus-version-32)
 * [Why can’t rootless Podman pull my image?](https://www.redhat.com/sysadmin/rootless-podman)
@@ -1346,7 +1419,9 @@ interested in. Maybe You find some of these interesting too.
 * [DBeaver Universal Database Tool](https://dbeaver.io/) [[repo](https://github.com/dbeaver/dbeaver)]
 * [EdgeDB](https://www.edgedb.com/) [[repo](https://github.com/edgedb/edgedb)]
 * [Everything wrong with databases and why their complexity is now unnecessary](https://blog.redplanetlabs.com/2024/01/09/everything-wrong-with-databases-and-why-their-complexity-is-now-unnecessary/)
+* [Hibernate Inheritance Mapping](https://www.baeldung.com/hibernate-inheritance)
 * [How to configure GTID-based replication on MySQL servers](https://www.redhat.com/sysadmin/gtid-replication-mysql-servers)
+* [How we finally fixed an embarrassing (migration) problem](https://www.eric-fritz.com/articles/fixing-broken-migrations)
 * [JSON and JSONB support in SQLite](https://fedoramagazine.org/json-and-jsonb-support-in-sqlite-3-45-0/)
 * [Latest MySQL release is underwhelming, say some DB experts](https://www.theregister.com/2024/07/16/mysql_9_underwhelms_community/)
 * [PostgreSQL](https://www.postgresql.org/) [[doc](https://www.postgresql.org/docs/current/index.html)]
@@ -1360,20 +1435,28 @@ interested in. Maybe You find some of these interesting too.
   * [`EXPLAIN` SQL Command](https://www.postgresql.org/docs/current/sql-explain.html)
   * [Faster `urldecode`](https://www.postgresql.org/message-id/B6F6FD62F2624C4C9916AC0175D56D880CE1C118@jenmbs01.ad.intershop.net)
   * [Foreign keys + table inheritance in PostgreSQL?](https://stackoverflow.com/questions/24360312/foreign-keys-table-inheritance-in-postgresql)
+  * [GIN Indexes](https://www.postgresql.org/docs/current/gin.html)
+    * [Gin for PostgreSQL](http://www.sai.msu.su/~megera/wiki/Gin)
   * [How to avoid deadlocks in PostgreSQL migrations](https://medium.com/dovetail-engineering/writing-safe-database-migrations-4b19d48029e9)
   * [How To Benchmark PostgreSQL Queries Well](https://www.tangramvision.com/blog/how-to-benchmark-postgresql-queries-well)
+  * [Indexes with Included Columns in PostgreSQL](https://atlasgo.io/guides/postgres/included-columns)
   * [Javascript `encodeURI` like function in postgresql?](https://stackoverflow.com/questions/10318014/javascript-encodeuri-like-function-in-postgresql)
+  * [Most efficient way of bulk deleting rows from postgres](https://dba.stackexchange.com/questions/34864/most-efficient-way-of-bulk-deleting-rows-from-postgres)
   * [Online Playground](https://pgplayground.com/)
   * [`pg_top`](https://pg_top.gitlab.io/) [[repo](https://gitlab.com/pg_top/pg_top)]
   * [`pgbouncer`](https://www.pgbouncer.org/) [[repo](https://github.com/pgbouncer/pgbouncer)]
   * [`pgmetrics`](https://pgmetrics.io/) [[repo](https://github.com/rapidloop/pgmetrics)]
+  * [PostGIS: A powerful geospatial extension for PostgreSQL](https://developers.redhat.com/articles/2025/10/02/postgis-powerful-geospatial-extension-postgresql)
   * [Postgres Table Size - How To Debug Your DB To Find The Biggest Tables, Rows and Cells](https://www.sqlbot.co/blog/postgres-table-size-how-to-debug-your-db-to-find-the-biggest-tables-rows-and-cells)
   * [PostgreSQL array of elements that each are a foreign key](https://stackoverflow.com/questions/41054507/postgresql-array-of-elements-that-each-are-a-foreign-key)
   * [PostgreSQL Performance Tuning: Optimize Your Database Server](https://www.enterprisedb.com/postgres-tutorials/introduction-postgresql-performance-tuning-and-optimization)
+  * [PostgreSQL UUID Performance: Benchmarking Random (v4) and Time-based (v7) UUIDs](https://dev.to/umangsinha12/postgresql-uuid-performance-benchmarking-random-v4-and-time-based-v7-uuids-n9b)
   * [Postgres Locks — A Deep Dive](https://medium.com/@hnasr/postgres-locks-a-deep-dive-9fc158a5641c)
   * Queries in PostgreSQL
     * [1. Query execution stages](https://postgrespro.com/blog/pgsql/5969262)
   * [The Magic of VACUUM: Keeping Your PostgreSQL Database in Top Shape](https://levelup.gitconnected.com/the-magic-of-vacuum-keeping-your-postgresql-database-in-top-shape-991a40ae101)
+  * [TOAST Storage Technique](https://www.postgresql.org/docs/current/storage-toast.html)
+    * [How PostgreSQL Stores JSONB Data in TOAST Tables](https://medium.com/@josef.machytka/how-postgresql-stores-jsonb-data-in-toast-tables-8fded495b308)
   * [Unlock the Power of PostgreSQL: A Comprehensive Guide to pg_stat_statements](https://thinhdanggroup.github.io/pg-stat-statements/)
   * [What is a slow SQL query?](https://postgres.ai/blog/20210909-what-is-a-slow-sql-query)
 * [SQLBot.co Blog](https://www.sqlbot.co/blog)
@@ -1391,11 +1474,13 @@ interested in. Maybe You find some of these interesting too.
 * [How can I use fdisk to create a ntfs partition on `/dev/sdx`?](https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx)
 * [How to create virtual block device (loop device/filesystem) in Linux](https://www.thegeekdiary.com/how-to-create-virtual-block-device-loop-device-filesystem-in-linux/)
 * [How To Format USB Drive in Linux Command Line](https://tecadmin.net/format-usb-in-linux/)
+* [How To List Disks on Linux](https://devconnected.com/how-to-list-disks-on-linux/)
 * [ISO 9660](https://wiki.osdev.org/ISO_9660)
 * [Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
 * [Mirror, mirror on the wall, which image building tool is the fairest of them all?](https://pretalx.com/devconf-cz-2024/talk/ZB9NCL/)
 * [Partition and Format Drive With NTFS](https://relentlesscoding.com/2019/01/05/partition-and-format-drive-with-ntfs/)
 * [Scsi_debug adapter driver for Linux](http://sg.danny.cz/sg/sdebug26.html)
+* [Software problem: Deleting Btrfs subvolumes](https://weblog.zamazal.org/sw-problem-btrfs-subvolume-delete/)
 * [Turn off (spin down) external (USB) HDD on Linux](https://superuser.com/questions/1138498/turn-off-spin-down-external-usb-hdd-on-linux)
 * [UDF Packet Writing](https://www.kernel.org/doc/Documentation/cdrom/packet-writing.txt)
 
@@ -1405,6 +1490,7 @@ interested in. Maybe You find some of these interesting too.
 * [Continuous Kernel Integration (CKI) Project](https://cki-project.org/)
   * [kernel-ark](https://gitlab.com/cki-project/kernel-ark) [[doc](https://cki-project.gitlab.io/kernel-ark/)]
   * [kernel-workflow](https://gitlab.com/cki-project/kernel-workflow)
+  * [kwf-lib](https://gitlab.com/cki-project/contrib/kwf-lib)
   * [rhel-backports](https://gitlab.com/cki-project/rhel-backports)
 * [Developing on a native Linux platform](https://kernelnewbies.org/OutreachyfirstpatchSetup)
 * [Eudyptula Challenge](http://eudyptula-challenge.org/)
@@ -1444,6 +1530,7 @@ interested in. Maybe You find some of these interesting too.
 * [Linux initial RAM disk (initrd) overview](https://developer.ibm.com/articles/l-initrd/)
 * [modern uefi network booting](https://www.kraxel.org/blog/2024/07/uefi-network-boot/)
 * [no more boot loader: boot using the Linux kernel (talk)](https://fosdem.org/2025/schedule/event/fosdem-2025-6469-no-more-boot-loader-boot-using-the-linux-kernel/)
+* [Signing with the new 2023 Microsoft UEFI certificates: what submitters need to know](https://techcommunity.microsoft.com/blog/hardware-dev-center/signing-with-the-new-2023-microsoft-uefi-certificates-what-submitters-need-to-kn/4455787)
 * [UAPI Group Specifications](https://uapi-group.org/specifications/) [[repo](https://github.com/uapi-group/specifications)]
   * [The Boot Loader Specification](https://uapi-group.org/specifications/specs/boot_loader_specification/)
 * [Using GRUB on UEFI](https://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt)
@@ -1502,6 +1589,7 @@ interested in. Maybe You find some of these interesting too.
 * [If You Like Bonding, You Will Love Teaming](https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming)
 * [Introducing Passim](https://blogs.gnome.org/hughsie/2023/07/28/introducing-passim/)
 * [Introduction to ASN.1​](https://www.itu.int/en/ITU-T/asn1/Pages/introduction.aspx)
+* [Linux Show / Display Available Network Interfaces](https://www.cyberciti.biz/faq/linux-list-network-interfaces-names-command/)
 * [Pi-hole](https://pi-hole.net/) [[repo](https://github.com/pi-hole/pi-hole)]
 * [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 * [The case of the 500-mile email](https://www.ibiblio.org/harris/500milemail.html)
@@ -1512,6 +1600,8 @@ interested in. Maybe You find some of these interesting too.
 * [RFC 822 -- STANDARD FOR THE FORMAT OF ARPA INTERNET TEXT MESSAGES](https://tools.ietf.org/html/rfc822.html)
 * [RFC 2119 -- Key words for use in RFCs to Indicate Requirement Levels](https://datatracker.ietf.org/doc/html/rfc2119)
 * [RFC 3315 -- Dynamic Host Configuration Protocol for IPv6 (DHCPv6)](https://datatracker.ietf.org/doc/html/rfc3315)
+* [RFC 3484 -- Default Address Selection for Internet Protocol version 6 (IPv6)](https://datatracker.ietf.org/doc/html/rfc3484.html)
+* [RFC 4193 -- Unique Local IPv6 Unicast Addresses](https://datatracker.ietf.org/doc/html/rfc4193.html)
 * [RFC 5234 -- Augmented BNF for Syntax Specifications: ABNF](https://tools.ietf.org/html/rfc5234.html)
   * [example](https://github.com/toml-lang/toml/blob/master/toml.abnf)
 * [RFC 6266 -- Use of the Content-Disposition Header Field in the Hypertext Transfer Protocol (HTTP)](https://datatracker.ietf.org/doc/html/rfc6266)
@@ -1577,8 +1667,10 @@ interested in. Maybe You find some of these interesting too.
 #### Certificates
 
 * [A note about SSL/TLS trusted certificate stores, and platforms (OpenSSL and GnuTLS)](https://www.happyassassin.net/posts/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/)
+* [Extracting Certificate Information with OpenSSL](https://www.baeldung.com/linux/openssl-extract-certificate-info)
 * [How to add trusted CA certificate on CentOS/Fedora](https://www.devdungeon.com/content/how-add-trusted-ca-certificate-centosfedora)
 * [How to configure your CA trust list in Linux](https://www.redhat.com/fr/blog/configure-ca-trust-list)
+* [`openssl req`](https://docs.openssl.org/master/man1/openssl-req/)
 * [Structure of an SSL (X.509) certificate](https://dev.to/wayofthepie/structure-of-an-ssl-x-509-certificate-16b)
 
 #### SSH
@@ -1609,6 +1701,7 @@ interested in. Maybe You find some of these interesting too.
 * [Awesome Shell](https://github.com/alebcay/awesome-shell)
 * Bourne Again Shell
   * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html)
+  * [Arrays](https://www.gnu.org/software/bash/manual/html_node/Arrays.html)
   * [Bash bang commands: A must-know trick for the Linux command line](https://www.redhat.com/sysadmin/bash-bang-commands)
   * [Bash completion tutorial code](https://github.com/iridakos/bash-completion-tutorial)
   * [Bash Guide](http://mywiki.wooledge.org/BashGuide)
@@ -1617,22 +1710,28 @@ interested in. Maybe You find some of these interesting too.
   * [Bash One-Liners Explained, Part II: Working with strings](https://catonmat.net/bash-one-liners-explained-part-two)
   * [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls)
   * [`getopts_long`](https://groups.google.com/forum/#!original/comp.unix.shell/du0MD5HGn4U/4Jp3vUYAeGEJ)
+  * [How do I get the directory where a Bash script is located from within the script itself?](https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script/246128#246128)
+  * [How to check if a string contains a substring in Bash](https://stackoverflow.com/questions/229551/how-to-check-if-a-string-contains-a-substring-in-bash)
+  * [How to split a string into an array in Bash?](https://stackoverflow.com/questions/10586153/how-to-split-a-string-into-an-array-in-bash)
   * [How To Use Bash Parameter Substitution Like A Pro](https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html)
   * [Looping through the content of a file in Bash](https://stackoverflow.com/questions/1521462/looping-through-the-content-of-a-file-in-bash)
   * [Quotes](http://mywiki.wooledge.org/Quotes)
+  * [Read filenames with embedded whitespace into an array in a shell script](https://stackoverflow.com/questions/36373424/read-filenames-with-embedded-whitespace-into-an-array-in-a-shell-script)
   * [Small `getopts` tutorial](https://wiki.bash-hackers.org/howto/getopts_tutorial)
   * [The Definitive Guide to Bash Command Line History](https://catonmat.net/the-definitive-guide-to-bash-command-line-history)
   * [What are the practical differences between Bash and Zsh?](https://apple.stackexchange.com/questions/361870/what-are-the-practical-differences-between-bash-and-zsh)
+  * [`while read` loop](https://unix.stackexchange.com/questions/208911/while-read-loop)
   * [Why does bash say No such file or directory when the file is on the path](https://superuser.com/questions/1016130/why-does-bash-say-no-such-file-or-directory-when-the-file-is-on-the-path)
   * [Why should eval be avoided in Bash, and what should I use instead?](https://stackoverflow.com/questions/17529220/why-should-eval-be-avoided-in-bash-and-what-should-i-use-instead/17529221#17529221)
   * [Writing your own Bash Completion Function](http://fahdshariff.blogspot.cz/2011/04/writing-your-own-bash-completion.html)
 * [commandlinefu.com](https://www.commandlinefu.com/)
 * [DASH Shell (repo)](https://git.kernel.org/pub/scm/utils/dash/dash.git/)
 * [ExplainShell.com](https://explainshell.com/)
-* [FISH Shell](http://fishshell.com/) [[repo](https://github.com/fish-shell/fish-shell)]
-  * issues
+* [Fish Shell](http://fishshell.com/) [[repo](https://github.com/fish-shell/fish-shell)]
+  * Issues
     * [Killing fish reparents some child processes into CPU hogs](https://github.com/fish-shell/fish-shell/issues/3644)
-      * [another attempt to workaround a glibc bug](https://github.com/fish-shell/fish-shell/commit/56e05dab02840443bb29beb6a596e8e3f35c5461#diff-fc9a1225873620e0a6b45c16ed066f27)
+      * [Another attempt to workaround a `glibc` bug](https://github.com/fish-shell/fish-shell/commit/56e05dab02840443bb29beb6a596e8e3f35c5461#diff-fc9a1225873620e0a6b45c16ed066f27)
+  * [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish)
 * [Korn Shell (repo)](https://github.com/ksh93/ksh)
 * [POSIX](http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 
@@ -1645,6 +1744,7 @@ interested in. Maybe You find some of these interesting too.
 * [ioctl_tty - ioctls for terminals and serial lines](http://man7.org/linux/man-pages/man2/ioctl_tty.2.html)
 * [Linux Serial Console](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/serial-console.rst)
 * [Look how to fix column calculation in Python readline if use color prompt](https://stackoverflow.com/questions/9468435/look-how-to-fix-column-calculation-in-python-readline-if-use-color-prompt)
+* [`NO_COLOR`](https://no-color.org/)
 * [Performant Terminals](https://thisweek.gnome.org/posts/2023/10/twig-118/)
 * [Serial Programming/termios](https://en.wikibooks.org/wiki/Serial_Programming/termios)
 * [TTY](https://www.kernel.org/doc/html/latest/driver-api/tty/index.html)
@@ -1763,6 +1863,9 @@ interested in. Maybe You find some of these interesting too.
 
 ### Calculus
 
+* [A Proof of Ramanujan’s Classic π Formula](https://arxiv.org/html/2411.15803v1)
+* [Bailey–Borwein–Plouffe formula (π)](https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula)
+  * [Spigot algorithm](https://en.wikipedia.org/wiki/Spigot_algorithm)
 * [Chain rule proof doubt](https://math.stackexchange.com/questions/1132510/chain-rule-proof-doubt/1132523#1132523)
   * [Proof of the Chain Rule](http://web.archive.org/web/20161021162228/http://kruel.co/math/chainrule.pdf)
 * [Deriving the Gamma Function (video)](https://www.youtube.com/watch?v=kmQjr8nCMgE)
@@ -1786,8 +1889,12 @@ interested in. Maybe You find some of these interesting too.
 * [A covariant form of Maxwell's equations](https://www.vttoth.com/CMS/physics-notes/289)
 * [How do you derive Maxwell's equations?](https://www.quora.com/How-do-you-derive-Maxwells-equations/answer/Viktor-T-Toth-1?ch=10&oid=154938896&share=fec2806c&srid=ubBUtP&target_type=answer)
 * [If gravity is not a force, then how can it accelerate objects?](https://www.quora.com/If-gravity-is-not-a-force-then-how-can-it-accelerate-objects/answer/Armin-Nikkhah-Shirazi?ch=10&oid=1477743708658594&share=a5b529da&srid=ubBUtP&target_type=answer)
+* [Is Biot-Savart law obtained empirically or can it be derived?](https://physics.stackexchange.com/questions/67445/is-biot-savart-law-obtained-empirically-or-can-it-be-derived)
+* [Physics The Feynman Way](https://www.youtube.com/@PhysicsTheFeynmanWay)
 * [The Feynman Lectures on Physics, Volume I](https://www.feynmanlectures.caltech.edu/I_toc.html)
 * [The Feynman Lectures on Physics, Volume II](https://www.feynmanlectures.caltech.edu/II_toc.html)
+* [The Feynman Wisdom](https://www.youtube.com/@TheFeynmanWisdomyt)
+* [There's so much more to electric fields than you were taught](https://www.youtube.com/watch?v=j_tsa-uawJ0)
 * [Where do magnets get their energy to repel other magnets from? Does it last forever?](https://www.quora.com/Where-do-magnets-get-their-energy-to-repel-other-magnets-from-Does-it-last-forever/answer/Mark-John-Fernee?ch=10&oid=313906965&share=0262bb82&srid=ubBUtP&target_type=answer)
 
 ### Category Theory
@@ -1801,6 +1908,7 @@ interested in. Maybe You find some of these interesting too.
 * [Astonishing discovery by computer scientist: how to squeeze space into time (video)](https://www.youtube.com/watch?v=8JuWdXrCmWg)
 * [Computer Science (OSSU)](https://github.com/ossu/computer-science)
 * [Machine Logic](https://lawrencecpaulson.github.io/)
+* [Undergraduate Upends a 40-Year-Old Data Science Conjecture](https://www.quantamagazine.org/undergraduate-upends-a-40-year-old-data-science-conjecture-20250210/)
 * [With Fifth Busy Beaver, Researchers Approach Computation’s Limits](https://www.quantamagazine.org/amateur-mathematicians-find-fifth-busy-beaver-turing-machine-20240702/)
 
 ### Cryptography
@@ -1829,25 +1937,28 @@ interested in. Maybe You find some of these interesting too.
 
 ## Opensource.com Articles
 
-* [4 ways to edit photos on the Linux command line](https://opensource.com/article/21/11/edit-photos-linux-command-line?sc_cid=70160000000eUoRAAU&elqTrackId=862d9a77e1714e09aa51a77088d500a0&elq=5e4fe7bb95a743c8bdbfbfe22aba1b4d&elqaid=88471&elqat=1&elqCampaignId=406136&elqcst=272&elqcsid=26931)
-* [5 must-have Linux media players](https://opensource.com/article/21/2/linux-media-players?sc_cid=70160000000eUoRAAU&elqTrackId=33518535f0f744619d80df7af7143f47&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
-* [5 open source alternatives to Doodle polls](https://opensource.com/article/22/4/open-source-alternatives-doodle-polls?sc_cid=70160000000eUoRAAU&elqTrackId=53c61a95b3cf48598f2df5d59185dac1&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
-* [5 ways to protect your documents with open source software](https://opensource.com/article/21/4/secure-documents-open-source?sc_cid=70160000000eUoRAAU&elqTrackId=c76a52a66417477e82027b001aa2422d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
-* [12 inspiring examples of open source in education this year](https://opensource.com/article/21/12/open-source-education?sc_cid=70160000000eUoRAAU&elqTrackId=835ef4766b7b4f42bffb605fd8c70479&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
+* [4 ways to edit photos on the Linux command line](https://opensource.com/article/21/11/edit-photos-linux-command-line)
+* [5 must-have Linux media players](https://opensource.com/article/21/2/linux-media-players)
+* [5 open source alternatives to Doodle polls](https://opensource.com/article/22/4/open-source-alternatives-doodle-polls)
+* [5 ways to protect your documents with open source software](https://opensource.com/article/21/4/secure-documents-open-source)
+* [12 inspiring examples of open source in education this year](https://opensource.com/article/21/12/open-source-education)
 * [An introduction to the Linux boot and startup processes](https://opensource.com/article/17/2/linux-boot-and-startup)
-* [An open source alternative to Microsoft Exchange](https://opensource.com/article/21/9/open-source-groupware-grommunio?sc_cid=70160000000eUoRAAU&elqTrackId=332ea600c66e465da35e3de60be65d1d&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+* [An open source alternative to Microsoft Exchange](https://opensource.com/article/21/9/open-source-groupware-grommunio)
 * [Compiler optimization and its effect on debugger line information](https://opensource.com/article/23/3/compiler-optimization-debugger-line-information)
 * [How disagreement creates unity in open source](https://opensource.com/article/21/10/disagreement-open-source)
 * [How open source leaders can foster an inclusive environment](https://opensource.com/article/23/2/open-source-leaders-inclusive-environment)
 * [How to create a Bash completion script](https://opensource.com/article/18/3/creating-bash-completion-script)
+* [How to SSH into a running container](https://opensource.com/article/19/6/how-ssh-running-container)
 * [Introduction to GNU Autotools](https://opensource.com/article/19/7/introduction-gnu-autotools)
-* [Manage your Gmail filters from the Linux command line](https://opensource.com/article/22/5/gmailctl-linux-command-line-tool?sc_cid=70160000000eUoRAAU&elqTrackId=db4d27b25a944d3ebad8c791e4ef03d0&elq=31a1641627a44b8ebc417c958643a64f&elqaid=92599&elqat=1&elqCampaignId=438203&elqcst=272&elqcsid=26931)
-* [My favorite Linux commands for optimizing web images](https://opensource.com/article/21/12/optimize-web-images-linux?sc_cid=70160000000eUoRAAU&elqTrackId=d146b4445f684c459ac361c22368ae25&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
-* [Open source file sharing with this Linux tool](https://opensource.com/article/21/12/file-sharing-linux-samba?sc_cid=70160000000eUoRAAU&elqTrackId=88ca563cc43542e1b5827e823fe1a43e&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
-* [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable?sc_cid=70160000000eUoRAAU&elqTrackId=42b2e59ab6114554aba7d5405b88dae5&elq=e6a4a2aa7fcf42a1aa882741193e2ce8&elqaid=88880&elqat=1&elqCampaignId=410739&elqcst=272&elqcsid=26931)
-* [Run your favorite Windows applications on Linux](https://opensource.com/article/21/2/linux-wine?sc_cid=70160000000eUoRAAU&elqTrackId=53197434c7ed4343a262dd78a8274f3f&elq=d3656b632ad6454abb380d6ae6ab9c73&elqaid=89448&elqat=1&elqCampaignId=414795&elqcst=272&elqcsid=26931)
-* [Send your scans to a Linux machine over your network](https://opensource.com/article/21/4/linux-scan-samba?sc_cid=70160000000eUoRAAU&elqTrackId=9909ed9e433d46dc943ee4ae16607de0&elq=74e4cfcb829f44e399c01d8ed59ada0c&elqaid=90351&elqat=1&elqCampaignId=427766&elqcst=272&elqcsid=26931)
+* [Linux commands to display your hardware information](https://opensource.com/article/19/9/linux-commands-hardware-information)
+* [Manage your Gmail filters from the Linux command line](https://opensource.com/article/22/5/gmailctl-linux-command-line-tool)
+* [My favorite Linux commands for optimizing web images](https://opensource.com/article/21/12/optimize-web-images-linux)
+* [Open source file sharing with this Linux tool](https://opensource.com/article/21/12/file-sharing-linux-samba)
+* [Open source photo processing with Darktable](https://opensource.com/article/21/12/open-source-photo-processing-darktable)
+* [Run your favorite Windows applications on Linux](https://opensource.com/article/21/2/linux-wine)
+* [Send your scans to a Linux machine over your network](https://opensource.com/article/21/4/linux-scan-samba)
 * [What is a Makefile and how does it work?](https://opensource.com/article/18/8/what-how-makefile)
+* [You don't know Bash: An introduction to Bash arrays](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
 
 ## Operating Systems
 
@@ -1858,6 +1969,7 @@ interested in. Maybe You find some of these interesting too.
 ### macOS
 
 * [Macintosh notes](https://github.molgen.mpg.de/pages/bs/macOSnotes/mac/home.html)
+* [Shamelectron](https://avarayr.github.io/shamelectron/)
 
 ### Microsoft Windows
 
@@ -1879,18 +1991,26 @@ interested in. Maybe You find some of these interesting too.
 
 * [API Catalog and Documentation](https://developers.redhat.com/api-catalog/)
 * [ClearlyDefined Docs](https://docs.clearlydefined.io/)
+* [Cloud Guides & Tutorials](https://www.linode.com/docs/guides/)
 * [Codewars](https://www.codewars.com/)
+* [Coding Horror](https://blog.codinghorror.com/)
 * [Continuous Delivery Events Common Specification](https://cdevents.dev/)
 * [Conventional Comments](https://conventionalcomments.org/)
 * [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
 * [Conventional Commits](https://www.conventionalcommits.org/)
+* [Design Issues](https://www.w3.org/DesignIssues/)
 * [Design Patterns](http://www.vincehuston.org/dp/)
 * [Dev Tools Made Simple (video series)](https://www.youtube.com/@DevToolsMadeSimple/videos)
 * [Elements of Programming](http://elementsofprogramming.com/) [[book (PDF)](http://elementsofprogramming.com/eop.pdf)]
 * [End of Life Date](https://endoflife.date/)
 * [Green Software](https://greensoftware.foundation/)
 * [Keep A Changelog](https://keepachangelog.com/)
+* [Laws of Software Development](https://www.globalnerdy.com/2007/07/18/laws-of-software-development/)
+  * [19 Eponymous Laws Of Software Development](https://haacked.com/archive/2007/07/17/the-eponymous-laws-of-software-development.aspx/)
+  * [The Principle of Least Power](https://blog.codinghorror.com/the-principle-of-least-power/)
+  * [The Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html)
 * [Model Driven Design – theory to practice](https://www.todaysoftmag.com/article/1529/model-driven-design-theory-to-practice)
+* [Moving Faster by Not Breaking Things—Or How Not to Blow Up the Internet](https://queue.acm.org/detail.cfm)
 * [Open Advice](http://open-advice.org/)
 * [Open Source @ IBM](https://www.ibm.com/opensource/)
 * [Red Hat Developer](https://developers.redhat.com/)
@@ -1908,16 +2028,21 @@ interested in. Maybe You find some of these interesting too.
 * [Semantic Commit Messages](https://sparkbox.com/foundry/semantic_commit_messages)
 * [Semantic Release](https://semantic-release.gitbook.io/semantic-release) [[repo](https://github.com/semantic-release/semantic-release)]
 * [Semantic Versioning](https://semver.org/)
+  * [Semantic Versioning Will Not Save You](https://hynek.me/articles/semver-will-not-save-you/)
+  * [Version numbers: how to use them?](https://bernat.tech/posts/version-numbers/)
+  * [Why I don't like SemVer anymore](https://snarky.ca/why-i-dont-like-semver/)
 * [Serverless Workflow](https://serverlessworkflow.io/)
   * [specification](https://github.com/serverlessworkflow/specification/blob/main/specification.md)
 * [Software optimization resources](https://www.agner.org/optimize/)
 * [SOLID](https://en.wikipedia.org/wiki/SOLID)
 * [Source Making](https://sourcemaking.com/)
   * [Refactoring](https://sourcemaking.com/refactoring)
+* [Sourcebot](https://www.sourcebot.dev/)
 * [Sourcegraph](https://sourcegraph.com/search)
 * [Stack Overflow 2023 Developer Survey](https://survey.stackoverflow.co/2023/)
 * [Standard Glossary of Terms Used in Software Testing](https://glossary.istqb.org/en_US/home)
 * [strchr.com](https://www.strchr.com/)
+* [The Art of Code - Dylan Beattie](https://www.youtube.com/watch?v=6avJHaC3C2U)
 * [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 * [The Open Source Way](https://www.theopensourceway.org/)
   * [The Open Source Way 2.0](https://www.theopensourceway.org/the_open_source_way-guidebook-2.0.html)
@@ -1928,25 +2053,43 @@ interested in. Maybe You find some of these interesting too.
 ### AI & ML
 
 * [2024 enterprise trends: cloud meets AI](https://www.redhat.com/en/blog/2024-enterprise-trends-cloud-meets-ai)
+* [A strategic approach to AI inference performance](https://www.redhat.com/en/blog/strategic-approach-ai-inference-performance)
+* [Agent Skills](https://agentskills.io/home)
+* [AGENTS.md](https://agents.md/)
+* [AI-assisted development: Supercharging the open source way](https://www.redhat.com/en/blog/ai-assisted-development-supercharging-open-source-way)
+* [AI search with style: Fashion on OpenShift AI with EDB](https://developers.redhat.com/articles/2025/09/10/ai-search-style-fashion-openshift-ai-edb)
+* [AI Teams Contend With Synthetic Data’s Jekyll/Hyde Roles](https://cacm.acm.org/news/ai-teams-contend-with-synthetic-datas-jekyll-hyde-roles/)
 * [APIs and Agents: What Developers Need to Know](https://www.oreilly.com/radar/apis-and-agents-what-developers-need-to-know/)
 * [Apply generative AI to app modernization with Konveyor AI](https://developers.redhat.com/articles/2024/05/07/modernize-apps-konveyor-ai)
+* [Batch inference on OpenShift AI with Ray Data, vLLM, and CodeFlare](https://developers.redhat.com/articles/2025/08/07/batch-inference-openshift-ai-ray-data-vllm-and-codeflare)
 * [Bridging the AI Skills gap: Red Hat’s collaboration with Teens in AI](https://www.redhat.com/en/blog/bridging-ai-skills-gap-red-hats-collaboration-teens-ai)
 * [Context7](https://context7.com/) [[repo](https://github.com/upstash/context7)]
 * [Continue](https://www.continue.dev/)
+* [DeepSeek-V3.2-Exp on vLLM, Day 0: Sparse Attention for long-context inference, ready for experimentation today with Red Hat AI](https://developers.redhat.com/articles/2025/10/03/deepseek-v32-exp-vllm-day-0-sparse-attention-long-context-inference)
 * [Dive deeper into large language models and Node.js](https://developers.redhat.com/learn/diving-deeper-large-language-models-and-nodejs)
 * [Extract live data collection from images and logs](https://developers.redhat.com/learn/openshift-ai/extract-live-data-collection-images-and-logs)
 * [From raw data to model serving with OpenShift AI](https://developers.redhat.com/articles/2025/07/29/raw-data-model-serving-openshift-ai)
 * [Generative AI at the Edge: Challenges and Opportunities](https://queue.acm.org/detail.cfm?id=3733702&mkt_tok=NDI3LVRCQy00NzQAAAGbPSSEMCvshgwb_L1PmAxPhQ-gb_4at8uKIf_oNhTP-o0zBYz8QEkWZp_v-xCaYXSGwDx0y4kXlVMOkJTCnlPJoXGHfqP_0V0jBmCZShlxW6Sw9w)
+* [Getting started with llm-d for distributed AI inference](https://developers.redhat.com/articles/2025/08/19/getting-started-llm-d-distributed-ai-inference)
 * [Groq](https://groq.com/)
+* [Guardrailing large language models with TrustyAI Guardrails Orchestrator](https://research.redhat.com/blog/article/guardrailing-large-language-models-with-trustyai-guardrails-orchestrator/)
+* [How I built an agentic application for Docling with MCP](https://developers.redhat.com/articles/2025/08/20/how-i-built-agentic-application-docling-mcp)
+* [How I used Cursor AI to migrate a Bash test suite to Python](https://developers.redhat.com/articles/2025/09/23/how-i-used-cursor-ai-migrate-bash-test-suite-python)
 * [How PagedAttention resolves memory waste of LLM systems](https://developers.redhat.com/articles/2025/07/24/how-pagedattention-resolves-memory-waste-llm-systems)
+* [How to deploy MCP servers on OpenShift using ToolHive](https://developers.redhat.com/articles/2025/10/01/how-deploy-mcp-servers-openshift-using-toolhive)
 * [HumanEval](https://github.com/openai/human-eval)
 * [Humans vs. AI: Who should make the decision? (video)](https://www.youtube.com/watch?v=8lo1s29ODj8)
+* [Learning AI](https://github.com/danbev/learning-ai)
 * Llama Stack for Python developers
   * [1 Exploring Llama Stack with Python: Tool calling and agents](https://developers.redhat.com/articles/2025/07/15/exploring-llama-stack-python-tool-calling-and-agents)
   * [2 Retrieval-augmented generation with Llama Stack and Python](https://developers.redhat.com/articles/2025/08/05/retrieval-augmented-generation-llama-stack-and-python)
   * [3 Implement AI safeguards with Python and Llama Stack](https://developers.redhat.com/articles/2025/08/26/implement-ai-safeguards-python-and-llama-stack)
   * [4 How to implement observability with Python and Llama Stack](https://developers.redhat.com/articles/2025/09/12/how-implement-observability-python-and-llama-stack)
-* [Learning AI](https://github.com/danbev/learning-ai)
+* [LLM Compressor 0.7.0 release recap](https://developers.redhat.com/articles/2025/08/25/llm-compressor-070-release-recap)
+* [Master KV cache aware routing with llm-d for efficient AI inference](https://developers.redhat.com/articles/2025/10/07/master-kv-cache-aware-routing-llm-d-efficient-ai-inference)
+* [MCP server development: Make agentic AI your API’s "customer zero"](https://www.redhat.com/en/blog/mcp-server-development-make-agentic-ai-your-apis-customer-zero)
+* Memes
+  * [Your company's new "AI Agent Workflow"](https://x.com/kmcnam1/status/2032864517231673794?s=52&t=tuzwl7uaRdWEt2sbtNMypQ)
 * Model-as-a-Service (MaaS)
   * [Part 1: 6 benefits of Models-as-a-Service for enterprises](https://developers.redhat.com/articles/2025/06/23/6-benefits-models-service-enterprises)
   * [Part 2: Why Models-as-a-Service architecture is ideal for AI models](https://developers.redhat.com/articles/2025/06/30/why-models-service-architecture-ideal-ai-models)
@@ -1955,12 +2098,18 @@ interested in. Maybe You find some of these interesting too.
 * [Model Context Protocol (MCP): Understanding security risks and controls](https://www.redhat.com/en/blog/model-context-protocol-mcp-understanding-security-risks-and-controls)
 * [NVIDIA Generative AI Examples](https://github.com/NVIDIA/GenerativeAIExamples)
 * [Ollama or vLLM? How to choose the right LLM serving tool for your use case](https://developers.redhat.com/articles/2025/07/08/ollama-or-vllm-how-choose-right-llm-serving-tool-your-use-case)
+* [Ollama vs. vLLM: A deep dive into performance benchmarking](https://developers.redhat.com/articles/2025/08/08/ollama-vs-vllm-deep-dive-performance-benchmarking)
+* [Optimize GPU utilization with Kueue and KEDA](https://developers.redhat.com/articles/2025/08/26/optimize-gpu-utilization-kueue-and-keda)
+* [Optimizing generative AI models with quantization](https://developers.redhat.com/articles/2025/08/18/optimizing-generative-ai-models-quantization)
 * [Project Bob](https://www.ibm.com/products/bob)
 * [PyTorch Community Blog](https://pytorch.org/community-blog)
   * [Powering AI with PyTorch, Fedora, and Open Source Communities](https://pytorch.org/blog/pt-fedora-os-communities/)
 * [RamaLama](https://ramalama.ai/) [[repo](https://github.com/containers/ramalama)]
+* [Reach native speed with MacOS llama.cpp container inference](https://developers.redhat.com/articles/2025/09/18/reach-native-speed-macos-llamacpp-container-inference)
 * [ReAct vs. naive prompt chaining on Llama Stack](https://developers.redhat.com/articles/2025/07/22/react-vs-naive-prompt-chaining-llama-stack)
 * [Red Hat OpenShift AI](https://developers.redhat.com/products/red-hat-openshift-ai/overview)
+* [Run Qwen3-Next on vLLM with Red Hat AI: A step-by-step guide](https://developers.redhat.com/articles/2025/09/12/run-qwen3-next-vllm-red-hat-ai-step-step-guide)
+* [Spec-Driven Development in Action](https://che.eclipseprojects.io/2025/08/18/@oleksii.kurinnyi-spec-driven-development-in-action.html)
 * [Teens in AI](https://www.teensinai.com/)
   * [Making AI accessible to all: our collaboration with Teens in AI](https://www.redhat.com/en/blog/making-ai-accessible-to-all-our-collaboration-with-teens-in-ai)
 * [Tenstorrent](https://tenstorrent.com/)
@@ -1971,7 +2120,17 @@ interested in. Maybe You find some of these interesting too.
     * [TT NN](https://github.com/tenstorrent/tt-metal) [[doc](https://docs.tenstorrent.com/tt-metal/latest/ttnn/)]
 * [The future is now: 13 top AI reads from Q2 2025](https://www.redhat.com/en/blog/future-now-13-top-ai-reads-q2)
 * [The Intelligence Curse](https://intelligence-curse.ai/)
+* [The MLOps Challenge: Scaling from one model to thousands](https://www.redhat.com/en/blog/mlops-challenge-scaling-one-model-thousands)
+* [Trust but Verify](https://www.oreilly.com/radar/trust-but-verify/)
+* [Understanding AI agent types: A guide to categorizing complexity](https://www.redhat.com/en/blog/understanding-ai-agent-types-simple-complex)
+* [Understanding the Rehash Loop: When AI Gets Stuck](https://www.oreilly.com/radar/understanding-the-rehash-loop/)
+* [vLLM Semantic Router: Improving efficiency in AI reasoning](https://developers.redhat.com/articles/2025/09/11/vllm-semantic-router-improving-efficiency-ai-reasoning)
+* [vLLM with torch.compile: Efficient LLM inference on PyTorch](https://developers.redhat.com/articles/2025/09/03/vllm-torchcompile-efficient-llm-inference-pytorch)
+* [Warp](https://www.warp.dev/)
+* [What’s new with data science pipelines in Red Hat OpenShift AI](https://www.redhat.com/en/blog/whats-new-data-science-pipelines-red-hat-openshift-ai)
 * [Why agents are the new kingmakers](https://www.redhat.com/en/blog/why-agents-are-new-kingmakers)
+* [Why some agentic AI developers are moving code from Python to Rust](https://developers.redhat.com/articles/2025/09/15/why-some-agentic-ai-developers-are-moving-code-python-rust)
+* [Your LLM is too large: How I generate production-ready failure analysis on a toaster](https://developers.redhat.com/articles/2025/09/02/your-llm-too-large-how-i-generate-production-ready-failure-analysis-toaster)
 
 ### Algorithms & Data Structures
 
@@ -1985,6 +2144,7 @@ interested in. Maybe You find some of these interesting too.
   * [JSON Schema: A Media Type for Describing JSON Documents (2020-12 draft)](https://json-schema.org/draft/2020-12/json-schema-core.html)
   * [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/index.html)
 * [The TOML Schema Definition](https://github.com/brunoborges/toml-schema)
+* [YAML Multiline](https://yaml-multiline.info/)
 
 #### Hashing
 
@@ -2102,6 +2262,7 @@ interested in. Maybe You find some of these interesting too.
 * [Docutils](https://docutils.sourceforge.io/index.html)
 * [draw.io (online diagram drawing tool)](https://draw.io/)
 * [(Google) Slides Code Highlighter](https://romannurik.github.io/SlidesCodeHighlighter/) [[repo](https://github.com/romannurik/SlidesCodeHighlighter)]
+* [How can I extract embedded fonts from a PDF as valid font files?](https://stackoverflow.com/questions/3488042/how-can-i-extract-embedded-fonts-from-a-pdf-as-valid-font-files)
 * [Is LaTeX dead? If yes, what are some modern alternatives?](https://www.quora.com/Is-LaTeX-dead-If-yes-what-are-some-modern-alternatives)
 * [Markdown](https://daringfireball.net/projects/markdown/)
   * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
@@ -2112,6 +2273,7 @@ interested in. Maybe You find some of these interesting too.
 * [Mermaid Live Editor](https://mermaid.d.foundation/)
 * [Mermaid to Excalidraw Playground](https://mermaid-to-excalidraw.vercel.app/)
 * [On comment headers](https://www.embedded.com/on-comment-headers/)
+* [Pygments](https://pygments.org/) [[doc](https://pygments.org/docs/)] [[repo](https://github.com/pygments/pygments)]
 * [Read the Docs](https://docs.readthedocs.io/en/stable/index.html)
 * [reStructuredText](https://docutils.sourceforge.io/rst.html)
 * [Sphinx](https://www.sphinx-doc.org/en/master/index.html)
@@ -2170,14 +2332,17 @@ interested in. Maybe You find some of these interesting too.
 * [Adding Commits to Someone Else's Pull Request](https://tighten.com/blog/adding-commits-to-a-pull-request/)
 * [Break a previous commit into multiple commits](https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits)
 * [Checking Out GitHub Pull Requests Locally](https://blog.scottlowe.org/2015/09/04/checking-out-github-pull-requests-locally/)
+* [Force "git status" to output color on the terminal (inside a script)](https://stackoverflow.com/questions/16073708/force-git-status-to-output-color-on-the-terminal-inside-a-script)
 * [fork forced sync](https://gist.github.com/glennblock/1974465)
 * [Git: 1.List all files in a branch, 2.compare files from different branch](https://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch)
 * [git branch messed up](https://stackoverflow.com/questions/6984900/git-branch-messed-up)
 * [Git Commit Messages: 50/72 Formatting](https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting)
 * [Git rebase gets stuck after resolving merge conflict](https://stackoverflow.com/questions/21833300/git-rebase-gets-stuck-after-resolving-merge-conflict)
 * [Git Revert Commit – How to Undo the Last Commit](https://www.freecodecamp.org/news/git-revert-commit-how-to-undo-the-last-commit/)
+* [How can I count number of commits between two branches?](https://stackoverflow.com/questions/26413617/how-can-i-count-number-of-commits-between-two-branches)
 * [How can I delete a remote tag?](https://stackoverflow.com/questions/5480258/how-can-i-delete-a-remote-tag)
 * [How can I move a tag on a git branch to a different commit?](https://stackoverflow.com/questions/8044583/how-can-i-move-a-tag-on-a-git-branch-to-a-different-commit)
+* [How can I see which Git branches are tracking which remote / upstream branch?](https://stackoverflow.com/questions/4950725/how-can-i-see-which-git-branches-are-tracking-which-remote-upstream-branch)
 * [How do I apply rejected hunks after fixing them?](https://stackoverflow.com/questions/17879746/how-do-i-apply-rejected-hunks-after-fixing-them)
 * [How do I git rebase the first commit?](https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit)
 * [How to clean up unused side-branches in your commit trees?](https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees)
@@ -2185,7 +2350,9 @@ interested in. Maybe You find some of these interesting too.
 * [How to compare files from two different branches?](https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches)
 * [How to grep (search) committed code in the Git history](https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history)
 * [How to retrieve a single file from a specific revision in Git?](https://stackoverflow.com/questions/610208/how-to-retrieve-a-single-file-from-a-specific-revision-in-git)
+* [How to see which commits in one branch aren't in the other?](https://stackoverflow.com/questions/7566416/how-to-see-which-commits-in-one-branch-arent-in-the-other)
 * [How To Split A Git Commit Into Multiple Ones?](https://dev.to/timmouskhelichvili/how-to-split-a-git-commit-into-multiple-ones-3g6f)
+* [How to show uncommitted changes in Git and some Git diffs in detail](https://stackoverflow.com/questions/35978550/how-to-show-uncommitted-changes-in-git-and-some-git-diffs-in-detail)
 * [How to sync with a remote Git repository?](https://stackoverflow.com/questions/4313125/how-to-sync-with-a-remote-git-repository)
 * [How To Undo Last Git Commit](https://devconnected.com/how-to-undo-last-git-commit/)
 * [Is there a way to squash a number of commits non-interactively?](https://stackoverflow.com/questions/7275508/is-there-a-way-to-squash-a-number-of-commits-non-interactively)
@@ -2193,6 +2360,7 @@ interested in. Maybe You find some of these interesting too.
 * [Move branch pointer to different commit without checkout](https://stackoverflow.com/questions/5471174/move-branch-pointer-to-different-commit-without-checkout)
 * [Renaming a branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch)
 * [Renaming the default branch from master](https://github.com/github/renaming/)
+* [Show branches not up to date with other branch](https://stackoverflow.com/questions/55868474/show-branches-not-up-to-date-with-other-branch)
 * [Source Forge repo gives “denying non-fast-forward refs/heads/master” error](https://stackoverflow.com/questions/12450703/source-forge-repo-gives-denying-non-fast-forward-refs-heads-master-error)
 * [Update Git submodule to latest commit on origin](https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin)
 
@@ -2215,7 +2383,8 @@ interested in. Maybe You find some of these interesting too.
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 * [GitHub Pages Import](https://github.com/c-w/ghp-import)
 * [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
-* [github.com status](https://www.githubstatus.com/) [[Github down?](https://downdetector.com/status/github/)]
+* [GitHub Status](https://www.githubstatus.com/) [[Github down?](https://downdetector.com/status/github/)]
+  * [The Missing GitHub Status Page](https://mrshu.github.io/github-statuses/)
 * [Good First Issues](https://goodfirstissues.com/)
 * [Managing large numbers of GitHub notifications](https://github.blog/developer-skills/github/managing-large-numbers-of-github-notifications/)
 * [Secret scanning and push protection are enabled by default on new public repositories](https://github.blog/changelog/2024-03-11-secret-scanning-and-push-protection-are-enabled-by-default-on-new-public-repositories/)
@@ -2224,6 +2393,7 @@ interested in. Maybe You find some of these interesting too.
 ###### Actions
 
 * [actions/cache](https://github.com/actions/cache)
+* [actions/runner-images](https://github.com/actions/runner-images)
 * [actions/typescript-action](https://github.com/actions/typescript-action)
 * [actions/upload-artifact](https://github.com/actions/upload-artifact)
 * [Caching dependencies to speed up workflows](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
@@ -2260,6 +2430,7 @@ interested in. Maybe You find some of these interesting too.
 * [Langserver.org](https://langserver.org/)
   * [Language Server Protocol](https://microsoft.github.io/language-server-protocol/)
 * [Rules (from SonarSource)](https://rules.sonarsource.com/)
+* [The Worst Programming Language Ever - Mark Rendle - NDC Oslo 2021 (video)](https://www.youtube.com/watch?v=vcFBwt1nu2U)
 
 #### Assembler
 
@@ -2280,26 +2451,37 @@ interested in. Maybe You find some of these interesting too.
 * [New C features in GCC 13](https://developers.redhat.com/articles/2023/05/04/new-c-features-gcc-13)
 * [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)
 * [That is not a number, that is a freed object](https://siddhesh.in/posts/that-is-not-a-number-that-is-a-freed-object.html)
+* [The Pasture (Mostly C/C++ Blog)](https://thephd.dev/)
 * [Undefined behavior](http://en.cppreference.com/w/c/language/behavior)
 * [What Every C Programmer Should Know about Undefined Behavior](http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
 
 #### C++
 
 * [A Brief Introduction to Rvalue References](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2027.html)
+* [A look at range-v3 code generation](https://kristerw.blogspot.com/2017/06/a-look-at-range-v3-code-generation.html)
 * [A new constant expression interpreter for Clang](https://www.redhat.com/en/blog/new-constant-expression-interpreter-clang)
 * [Bjarne Stroustrup: “I Did It For You All…”](http://harmful.cat-v.org/software/c++/I_did_it_for_you_all)
 * [C++ Coding Standard (SEI CERT)](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
 * [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
+* [C++ Standard (ISO) Home](https://isocpp.org/)
+* [C++ Standard Draft Sources](https://github.com/cplusplus/draft)
 * [C++ Team Blog](https://devblogs.microsoft.com/cppblog/)
 * Error handling and exceptions
+  * [An error propagation operator](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2561r1.html)
   * [Basic usage of `std::expected`](https://www.sobyte.net/post/2022-05/cpp-std-expected/)
+  * [C++ Error Handling Strategies - Benchmarks and Performance](https://johnfarrier.com/c-error-handling-strategies-benchmarks-and-performance/)
+  * [Exception Safety: Concepts and Techniques (PDF)](https://www.stroustrup.com/except.pdf)
   * [Expected!](https://bell0bytes.eu/expected/)
   * [Functional exceptionless error-handling with optional and expected](https://blog.tartanllama.xyz/optional-expected/)
     * [reddit discussion](https://www.reddit.com/r/cpp/comments/7gua48/functional_exceptionless_errorhandling_with/?sort=top)
+  * [How to: Design for exception safety](https://learn.microsoft.com/en-us/cpp/cpp/how-to-design-for-exception-safety)
   * [`std::visit` is everything wrong with modern C++](https://bitbashing.io/std-visit.html)
+  * [Summary of SG14 discussion on `<system_error>`](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0824r1.html)
   * [Using the C++23 `std::expected` type](https://mariusbancila.ro/blog/2022/08/17/using-the-cpp23-expected-type/)
   * [why choose sum types over exceptions?](https://vittorioromeo.info/index/blog/adts_over_exceptions.html)
   * [Why is exception handling bad?](https://stackoverflow.com/questions/1736146/why-is-exception-handling-bad)
+  * [Zero-overhead deterministic exceptions: Throwing values (PDF)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf)
+* [Fluent C++](https://www.fluentcpp.com/)
 * [Frame pointers: Untangling the unwinding](https://developers.redhat.com/articles/2023/07/31/frame-pointers-untangling-unwinding)
 * [Frame pointers vs DWARF – my verdict](https://rwmj.wordpress.com/2023/02/14/frame-pointers-vs-dwarf-my-verdict/)
 * [Functional Programming in C++](https://github.com/graninas/cpp_functional_programming)
@@ -2311,9 +2493,14 @@ interested in. Maybe You find some of these interesting too.
 * [More C++ Idioms](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms)
 * [New C++ features in GCC 13](https://developers.redhat.com/articles/2023/06/21/new-c-features-gcc-13)
 * [Obscure C++ Features](http://madebyevan.com/obscure-cpp-features/)
+* [Pattern Matching: `match` Expression](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2025/p2688r5.html)
+* [Reflection for C++26](https://isocpp.org/files/papers/P2996R4.html)
 * [Safe C++](https://safecpp.org/draft.html)
 * [Squaring the circle: value oriented design in an object oriented system](https://sinusoid.es/talks/cpprussia19-piter) [[video](https://www.youtube.com/watch?v=e2-FRFEx8CA)]
 * [Substitution Failure Is Not An Error (SFINAE)](https://en.cppreference.com/w/cpp/language/sfinae)
+* [The Pasture (Mostly C/C++ Blog)](https://thephd.dev/)
+* [The Terrible Problem Of Incrementing A Smart Iterator](https://www.fluentcpp.com/2019/02/12/the-terrible-problem-of-incrementing-a-smart-iterator/)
+* [Throwing Out the Kitchen Sink - Output Ranges](https://thephd.dev/output-ranges)
 * [Top 20 C++ multithreading mistakes and how to avoid them](https://www.acodersjourney.com/top-20-cplusplus-multithreading-mistakes/)
 * [What does `T&&` (double ampersand) mean in C++11?](https://stackoverflow.com/questions/5481539/what-does-t-double-ampersand-mean-in-c11)
   * [Rvalue References: C++0x Features in VC10, Part 2](https://devblogs.microsoft.com/cppblog/rvalue-references-c0x-features-in-vc10-part-2/)
@@ -2352,22 +2539,46 @@ interested in. Maybe You find some of these interesting too.
 
 #### JavaScript & TypeScript & CofeeScript
 
+* [Building command line tools with Node.js](https://www.atlassian.com/blog/developer/scripting-with-node)
+* [Callback Hell](https://callbackhell.com/)
 * [Do I commit the package-lock.json file created by npm 5?](https://stackoverflow.com/questions/44206782/do-i-commit-the-package-lock-json-file-created-by-npm-5)
+* [ECMAScript 2016+ Compatibility Table](https://compat-table.github.io/compat-table/es2016plus/)
 * [Effective TypeScript](https://effectivetypescript.com/)
+* [ESLint](https://eslint.org/) [[doc](https://eslint.org/docs/latest/)] [[repo](https://github.com/eslint/eslint)]
+* [ESLint Stylistic](https://eslint.style/) [[rules](https://eslint.style/rules)] [[repo](https://github.com/eslint-stylistic/eslint-stylistic)]
+* [How can I update each dependency in package.json to the latest version?](https://stackoverflow.com/questions/16073603/how-can-i-update-each-dependency-in-package-json-to-the-latest-version)
 * [Jest](https://jestjs.io/)
 * [Locknote: How JavaScript Happened: A Short History of Programming Languages - Mark Rendle (video)](https://www.youtube.com/watch?v=hEdzaIa4Heg)
-* [Node.js](https://nodejs.org/)
+* [Node.js](https://nodejs.org/) [[repo](https://github.com/nodejs/node)]
   * [An introduction to Node.js 23 from Red Hat](https://www.redhat.com/en/blog/introduction-nodejs-23-red-hat)
   * [API Documentation](https://nodejs.org/api/)
   * [Blog](https://nodejs.org/en/blog)
   * [Distributions](https://nodejs.org/dist/)
 * [npm](https://www.npmjs.com/) [[GitHub](https://github.com/npm)]
+  * [`package.json` (v11)](https://docs.npmjs.com/cli/v11/configuring-npm/package-json)
 * [nvm](https://github.com/nvm-sh/nvm)
+  * [Installing and Using NVM (Node Version Manager)](https://www.linode.com/docs/guides/how-to-install-use-node-version-manager-nvm/)
+* [Prettier](https://prettier.io/) [[doc](https://prettier.io/docs/)] [[repo](https://github.com/prettier/prettier)]
 * [Reading local files with JavaScript](https://dev.to/g33konaut/reading-local-files-with-javascript-25hn)
 * [The Modern JavaScript Tutorial](https://javascript.info/)
+* [The Ultimate Introductory Guide for Bundling TypeScript Packages](https://rakish-labs.medium.com/the-ultimate-introductory-guide-for-bundling-typescript-packages-817e3527c1e)
+* [TSConfig bases](https://github.com/tsconfig/bases)
 * [TypeScript Home](https://www.typescriptlang.org/)
   * [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+* [typescript-eslint](https://typescript-eslint.io/) [[repo](https://github.com/typescript-eslint/typescript-eslint)]
 * [Type Challenges](https://tsch.js.org/) [[repo](https://github.com/type-challenges/type-challenges)]
+
+##### Libraries
+
+* CLI
+  * [Commander.js](https://github.com/tj/commander.js)
+  * [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/)
+  * [oclif](https://github.com/oclif/oclif)
+  * [Vorpal](https://github.com/dthree/vorpal)
+* Schema Validation
+  * [Zod](https://github.com/colinhacks/zod)
+* Terminal
+  * [Chalk](https://github.com/chalk/chalk)
 
 #### JQL
 
@@ -2418,6 +2629,8 @@ See [Caml](#caml).
 * [In practice, what are the main uses for the "yield from" syntax in Python 3.3?](https://stackoverflow.com/questions/9708902/in-practice-what-are-the-main-uses-for-the-yield-from-syntax-in-python-3-3)
 * [Indently](https://www.youtube.com/@Indently/videos)
   * [5 Useful F-String Tricks In Python](https://www.youtube.com/watch?v=EoNOWVYKyo0)
+* [Install Python 3.13 on Red Hat Enterprise Linux from EPEL](https://developers.redhat.com/articles/2025/09/22/install-python-313-red-hat-enterprise-linux-epel)
+* [Intro to Multiple Inheritance & super()](https://www.datacamp.com/tutorial/super-multiple-inheritance-diamond-problem)
 * [Isolate Python Subinterpreters](https://vstinner.github.io/isolate-subinterpreters.html)
 * [Nauč se Python!](https://naucse.python.cz/)
 * [PEP 257 – Docstring Conventions](https://peps.python.org/pep-0257/)
@@ -2427,7 +2640,7 @@ See [Caml](#caml).
 * [PEP 741 – Python Configuration C API](https://peps.python.org/pep-0741/)
 * [Providing Multiple Constructors in Your Python Classes](https://realpython.com/python-multiple-constructors/)
 * [PyCon PL 2022: Making sudo pip safe again](https://hroncok.cz/pyconpl22/) [[repo](https://github.com/hroncok/pyconpl22)]
-* [Pydantic Validation](https://docs.pydantic.dev/latest/)
+* [Pydantic Validation](https://pydantic.dev/docs/validation/latest/get-started/)
 * [Python (The Blue Book)](https://lyz-code.github.io/blue-book/python/)
 * [Python 3 documentation](https://docs.python.org/3/)
 * [Python 3: Using "yield from" in Generators - Part 1](http://simeonvisser.com/posts/python-3-using-yield-from-in-generators-part-1.html)
@@ -2534,6 +2747,8 @@ See [Caml](#caml).
 * [Linux App Summit](https://linuxappsummit.org/)
 * [Linux Security Summit](https://events.linuxfoundation.org/linux-security-summit-europe/)
 * [Open Source Summit](https://events.linuxfoundation.org/open-source-summit-europe/)
+* [OpenSSL Conference Prague](https://openssl-conference.org/)
+  * [2025](https://2025.openssl-conference.org/)
 * [PackagingCon](https://packaging-con.org/)
 * [Pyvo](https://pyvo.cz/)
   * [Brněnské Pyvo](https://pyvo.cz/brno-pyvo/)
@@ -2610,6 +2825,7 @@ See [Caml](#caml).
 * [ast (C)](https://github.com/att/ast)
 * [Async http client/server framework (Python)](https://github.com/aio-libs/aiohttp) [[doc](https://docs.aiohttp.org/en/stable/)]
 * [attrs (Python)](https://github.com/python-attrs/attrs) [[doc](https://www.attrs.org/en/stable/)]
+* [AudioNoise (C)](https://github.com/torvalds/AudioNoise)
 * [Augeas (C/Augeas)](https://github.com/hercules-team/augeas) [[home](http://augeas.net/)] [[wiki](https://github.com/hercules-team/augeas/wiki)]
 * [autocast (Rust)](https://github.com/k9withabone/autocast) [[doc](https://docs.rs/crate/autocast/latest)] [[crate](https://crates.io/crates/autocast)]
 * [AutoGen (C)](https://sourceforge.net/p/autogen/code/ci/master/tree/)
@@ -2639,7 +2855,7 @@ See [Caml](#caml).
 * [Bocker (Bash)](https://github.com/p8952/bocker)
 * [Boehm-Demers-Weiser Garbage Collector (C)](https://github.com/ivmai/bdwgc/)
 * [Boost `exception` (C++)](https://github.com/boostorg/exception) [[doc](https://www.boost.org/doc/libs/1_68_0/libs/exception/doc/boost-exception.html)]
-* [bootc (Rust)](https://github.com/containers/bootc) [[home](https://containers.github.io/bootc/)]
+* [bootc (Rust)](https://github.com/bootc-dev/bootc) [[doc](https://bootc.dev/bootc/)]
 * [bootc-image-builder (Golang/Python)](https://github.com/osbuild/bootc-image-builder)
 * [Bottlerocket OS (Rust)](https://github.com/bottlerocket-os/bottlerocket)
 * [Bottles (Python)](https://github.com/bottlesdevs/Bottles) [[home](https://usebottles.com/)]
@@ -2651,6 +2867,7 @@ See [Caml](#caml).
 * [bugwarrior (Python)](https://github.com/GothenburgBitFactory/bugwarrior)
 * [BugZooka (Python)](https://github.com/vishnuchalla/BugZooka)
 * [build (Python)](https://github.com/pypa/build) [[doc](https://pypa-build.readthedocs.io/en/stable/)]
+* [build-ia16 (Bash)](https://gitlab.com/tkchia/build-ia16)
 * [Bulma (CSS/SASS)](https://github.com/jgthms/bulma) [[home](https://bulma.io/)]
 * [byacc (C)](https://github.com/grandseiken/byacc) [[home](https://invisible-island.net/byacc/byacc.html)]
 * [Bytehound (C/Rust)](https://github.com/koute/bytehound)
@@ -2663,6 +2880,7 @@ See [Caml](#caml).
 * [CCore3 (C++)](https://github.com/SergeyStrukov/CCore-3-xx)
 * [cdemu (C)](https://github.com/cdemu/cdemu) [[home](https://cdemu.sourceforge.io/)]
 * [cdrkit (C)](https://github.com/Distrotech/cdrkit)
+* [Celero (C++)](https://github.com/DigitalInBlue/Celero)
 * [centos-bootc (Ruby)](https://github.com/CentOS/centos-bootc)
 * [centos-bootc-dev (Dockerfile)](https://github.com/CentOS/centos-bootc-dev)
 * [centos-bootc-layered (Dockerfile/Ruby)](https://github.com/CentOS/centos-bootc-layered)
@@ -2712,7 +2930,7 @@ See [Caml](#caml).
 * [cxxtools (C++)](https://github.com/maekitalo/cxxtools) [[home](http://www.tntnet.org/cxxtools.html)]
 * [Cython (C/Python/Cython)](https://github.com/cython/cython)
 * [Dark Reader (TypeScript)](https://github.com/darkreader/darkreader) [[home](https://darkreader.org/)]
-* [Dart Sass (Dart)](https://github.com/sass/dart-sass) [[home](https://sass-lang.com/dart-sass/)]
+* [Dart Sass (Dart)](https://github.com/sass/dart-sass) [[home](https://sass-lang.com/dart-sass/)] [[guide](https://sass-lang.com/guide/)]
 * [dasm (C)](https://github.com/dasm-assembler/dasm) [[home](https://dasm-assembler.github.io/)]
 * [Dasm macro assembler for VSCode (TypeScript)](https://github.com/zeh/vscode-dasm)
 * [dax (TypeScript)](https://github.com/dsherret/dax)
@@ -2784,6 +3002,8 @@ See [Caml](#caml).
 * [fmt (OCaml)](https://github.com/dbuenzli/fmt)
 * [Forgejo (Golang)](https://codeberg.org/forgejo/forgejo) [[home](https://forgejo.org/)] [[doc](https://forgejo.org/docs/latest/)]
 * [Forklift controller (Golang)](https://github.com/kubev2v/forklift)
+* [freeipa (Python/C/JavaScript)](https://github.com/freeipa/freeipa) [[home](https://www.freeipa.org/)]
+* [freeipa-healthcheck (Python)](https://github.com/freeipa/freeipa-healthcheck)
 * [frr (C/Python)](https://github.com/FRRouting/frr) [[home](https://frrouting.org/)]
 * [FTL - The Functional Template Library (C++)](https://github.com/beark/ftl)
 * [funcparserlib (Python)](https://github.com/vlasovskikh/funcparserlib)
@@ -2793,12 +3013,14 @@ See [Caml](#caml).
 * [gdbm (C)](https://git.gnu.org.ua/gdbm.git/tree/) [[home](https://puszcza.gnu.org.ua/projects/gdbm/)]
 * [Generating code in M4 (M4)](https://github.com/jkubin/m4root)
 * [gh-dash (Golang)](https://github.com/dlvhdr/gh-dash) [[home](https://dlvhdr.github.io/gh-dash/)]
+* [git (C)](https://github.com/git/git) [[home](https://git-scm.com/)]
 * [git absorb (Rust)](https://github.com/tummychow/git-absorb)
 * [git-review (Python)](https://opendev.org/opendev/git-review)
 * [git-smart (Ruby)](https://github.com/geelen/git-smart)
 * [GitHub Pages Import (Python)](https://github.com/c-w/ghp-import)
 * [GLab (Golang)](https://github.com/profclems/glab)
 * [Glazier (Python)](https://github.com/google/glazier)
+* [Gluon (Rust/Gluon)](https://github.com/gluon-lang/gluon) [[home](https://gluon-lang.org/)]
 * [Gmail-Preview-Pane-Arrow-Scrolling-Userscript (JavaScript)](https://github.com/DustinLuck/Gmail-Preview-Pane-Arrow-Scrolling-Userscript)
 * [gmail-yaml-filters (Python)](https://github.com/mesozoic/gmail-yaml-filters)
 * [G'MIC (C++)](https://github.com/GreycLab/gmic)
@@ -2833,6 +3055,7 @@ See [Caml](#caml).
 * [HyperShift (Golang)](https://github.com/openshift/hypershift)
 * [Hypervisor (C/C++)](https://github.com/Bareflank/hypervisor)
 * [Hyprland (C++)](https://github.com/hyprwm/Hyprland) [[home](https://hyprland.org/)]
+* [iburg (C)](https://github.com/drh/iburg)
 * [icmake (C)](https://gitlab.com/fbb-git/icmake/) [[home](https://fbb-git.gitlab.io/icmake/)]
 * [IGT GPU Tools (C)](https://gitlab.freedesktop.org/drm/igt-gpu-tools) [[doc](https://drm.pages.freedesktop.org/igt-gpu-tools/)]
 * [ILua (Lua)](https://github.com/guysv/ilua)
@@ -2853,6 +3076,7 @@ See [Caml](#caml).
 * [J Engine Source (C/J)](https://github.com/jsoftware/jsource)
 * [Jaeger (Golang)](https://github.com/jaegertracing/jaeger) [[home](https://www.jaegertracing.io/)]
 * [Jaeger Helm Charts (Mustache)](https://github.com/jaegertracing/helm-charts)
+* [Janet (C/Janet)](https://github.com/janet-lang/janet) [[home](https://janet-lang.org/)]
 * [Janus](https://github.com/orgs/janus-idp/repositories) [[home](https://janus-idp.io/)]
 * [JanusGraph (Java)](https://github.com/JanusGraph/janusgraph) [[home](https://janusgraph.org/)]
 * [Java Operator SDK (Java)](https://github.com/operator-framework/java-operator-sdk) [[home](https://javaoperatorsdk.io/)]
@@ -2860,7 +3084,9 @@ See [Caml](#caml).
 * [Javapackages-validator (Java)](https://github.com/fedora-java/javapackages-validator)
 * [JBake (Java)](https://github.com/jbake-org/jbake) [[home](https://jbake.org/)]
 * [Jim Tcl (C)](https://github.com/msteveb/jimtcl)
+* [Jinja (Python)](https://github.com/pallets/jinja) [[doc](https://jinja.palletsprojects.com/en/stable/)]
 * [jsonschema (Python)](https://github.com/python-jsonschema/jsonschema) [[doc](https://python-jsonschema.readthedocs.io/en/latest/)]
+* [KaTeX (JavaScript)](https://github.com/KaTeX/KaTeX) [[home](https://katex.org/)]
 * [kbd (C)](https://github.com/legionus/kbd) [[repo](https://git.kernel.org/pub/scm/linux/kernel/git/legion/kbd.git)] [[home](http://kbd-project.org/)]
 * [Kea DHCP (C++)](https://gitlab.isc.org/isc-projects/kea) [[home](https://www.isc.org/kea/)]
 * [Kepler (Golang/C)](https://github.com/sustainable-computing-io/kepler) [[home](https://sustainable-computing.io/)]
@@ -2907,6 +3133,7 @@ See [Caml](#caml).
 * [libao (C)](https://github.com/xiph/libao) [[doc](https://xiph.org/ao/doc/)]
 * [libarchive (C)](https://github.com/libarchive/libarchive) [[home](http://www.libarchive.org/)]
 * [libavif (C/C++)](https://github.com/AOMediaCodec/libavif)
+* [libCat (C++)](https://github.com/Cons-Cat/libCat)
 * [libcgroup (C)](https://github.com/libcgroup/libcgroup)
 * [libchrony (C)](https://gitlab.com/chrony/libchrony)
 * [libcpuid (C)](https://github.com/anrieff/libcpuid)
@@ -2918,16 +3145,19 @@ See [Caml](#caml).
 * [libevent (C)](https://github.com/libevent/libevent)
 * [libgit2 (C)](https://github.com/libgit2/libgit2) [[home](https://libgit2.org/)]
 * [libguestfs (OCaml/C)](https://github.com/libguestfs/libguestfs) [[home](https://libguestfs.org/)]
-* [libkrun (Rust)](https://github.com/containers/libkrun)
+* [libkrun (Rust)](https://github.com/libkrun/libkrun)
 * [liblastlog2 (C)](https://github.com/marmolak/liblastlog2)
 * [libleak (C)](https://github.com/WuBingzheng/libleak)
 * [liblockfile (C)](https://github.com/miquels/liblockfile)
 * [libmodulemd (C)](https://github.com/fedora-modularity/libmodulemd)
 * [libmypaint (C)](https://github.com/mypaint/libmypaint)
 * [librdkafka (C/C++)](https://github.com/confluentinc/librdkafka)
+* [librtas (C)](https://github.com/ibm-power-utilities/librtas)
 * [libsass (C++)](https://github.com/sass/libsass)
+* [libsass-python (Python/C)](https://github.com/sass/libsass-python)
 * [libsigsegv (C)](https://github.com/roswell/libsigsegv)
 * [libslirp (C)](https://gitlab.freedesktop.org/slirp/libslirp/)
+* [libsodium (C)](https://github.com/jedisct1/libsodium)
 * [libssh-mirror (C)](https://gitlab.com/libssh/libssh-mirror)
 * [libteam (C)](https://github.com/jpirko/libteam)
 * [libtsm (C)](https://github.com/asciinema/libtsm) [[origrepo](https://cgit.freedesktop.org/~dvdhrm/libtsm)]
@@ -2935,6 +3165,7 @@ See [Caml](#caml).
 * [libvirt (C)](https://gitlab.com/libvirt/libvirt) [[home](https://libvirt.org/)]
 * [libwuya (C)](https://github.com/WuBingzheng/libwuya)
 * [libyang (C)](https://github.com/CESNET/libyang)
+* [libyui (C++)](https://github.com/libyui/libyui)
 * [Linux kernel (C/Rust)](https://github.com/torvalds/linux) [[git.kernel.org](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/)] [[home](https://www.kernel.org/)] [[doc](https://www.kernel.org/doc/html/latest/)]
 * [linux-pam (C)](https://github.com/linux-pam/linux-pam)
 * [Liquid Prompt (Bash)](https://github.com/nojhan/liquidprompt)
@@ -2960,6 +3191,7 @@ See [Caml](#caml).
 * [LVM2 (C)](https://github.com/lvmteam/lvm2)
 * [makedumpfile (C)](https://github.com/makedumpfile/makedumpfile)
 * [Marshal parser (Python)](https://github.com/fedora-python/marshalparser/)
+* [matchit.cpp (C++)](https://github.com/BowenFu/matchit.cpp) [[home](https://bowenfu.github.io/matchit.cpp/)]
 * [matplotlib (Python)](https://github.com/matplotlib/matplotlib)
 * [Matrix (An open network for secure, decentralized communication) server setup using Ansible and Docker (Ansible)](https://github.com/spantaleev/matrix-docker-ansible-deploy/)
 * [memleax (C)](https://github.com/WuBingzheng/memleax)
@@ -2976,6 +3208,7 @@ See [Caml](#caml).
 * [modulemd-tools (Python)](https://github.com/rpm-software-management/modulemd-tools)
 * [Monad Transformer Library (Haskell)](https://github.com/telmich/mtl)
 * [Mosh: the mobile shell (C++)](https://github.com/mobile-shell/mosh)
+* [MPark.Patterns (C++)](https://github.com/mpark/patterns)
 * [mpllibs (C++)](https://github.com/sabel83/mpllibs) [[home](http://abel.web.elte.hu/mpllibs/)]
 * [mpv (C)](https://github.com/mpv-player/mpv)
 * [MyPaint (Python)](https://github.com/mypaint/mypaint)
@@ -3008,6 +3241,7 @@ See [Caml](#caml).
 * [Opal (Ruby)](https://github.com/opal/opal) [[home](https://opalrb.com/)] [[doc](https://opalrb.com/docs/)]
 * [opc (Golang)](https://github.com/openshift-pipelines/opc)
 * [open-vm-tools (C)](https://github.com/vmware/open-vm-tools)
+* [opennask (C/C++/Rakusk)](https://github.com/HobbyOSs/opennask)
 * [OpenResty (C)](https://github.com/openresty/openresty) [[home](https://openresty.org/en/)]
 * [OpenSCAD (C/C++)](https://github.com/openscad/openscad) [[home](https://openscad.org/)]
 * [OpenShift](https://github.com/openshift) [[homepage](https://www.openshift.com/)]
@@ -3016,6 +3250,7 @@ See [Caml](#caml).
   * [Jenkins (Bash/Golang)](https://github.com/openshift/jenkins)
   * [Kubernetes (Golang)](https://github.com/openshift/kubernetes) [[home](https://kubernetes.io/)]
   * [machine-config-operator (Golang)](https://github.com/openshift/machine-config-operator)
+  * [Release Tooling (Bash)](https://github.com/openshift/release)
   * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
 * [OpenShift GitOps Operator (Golang)](https://github.com/redhat-developer/gitops-operator)
 * [OpenShift Toolkit - IntelliJ (Java)](https://github.com/redhat-developer/intellij-openshift-connector)
@@ -3023,6 +3258,7 @@ See [Caml](#caml).
 * [OpenShot Video Editor (Python)](https://github.com/OpenShot/openshot-qt) [[home](https://www.openshot.org/)]
 * [OpenSSL (C)](https://github.com/openssl/openssl) [[home](https://www.openssl.org/)] [[library](https://openssl-library.org/)]
 * [OpenTelemetry K8s Operator (Golang)](https://github.com/open-telemetry/opentelemetry-operator)
+* [orecchio (Python)](https://github.com/captpickles/orecchio) [[home](https://orecch.io/)]
 * [OS and Application Modernization Group](https://github.com/oamg)
   * [convert2rhel (Python)](https://github.com/oamg/convert2rhel)
   * [leapp (Python)](https://github.com/oamg/leapp) [[doc](https://leapp.readthedocs.io/en/latest/index.html)] [[copr](https://copr.fedorainfracloud.org/coprs/g/oamg/leapp/)]
@@ -3037,8 +3273,10 @@ See [Caml](#caml).
 * [OtterDog (Python)](https://gitlab.eclipse.org/eclipsefdn/security/otterdog)
 * [oVirt](https://github.com/oVirt)
   * [oVirt Engine Metrics (Bash/Python)](https://github.com/oVirt/ovirt-engine-metrics)
+* [p11-kit (C)](https://github.com/p11-glue/p11-kit) [[home](https://p11-glue.github.io/p11-glue/p11-kit.html)]
 * [packer (Go)](https://github.com/hashicorp/packer)
 * [packit](https://github.com/packit)
+  * [ai-workflows (Python)](https://github.com/packit/ai-workflows)
   * [deployment (Ansible)](https://github.com/packit/deployment)
   * [packit (Python)](https://github.com/packit/packit)
   * [packit-service (Python)](https://github.com/packit/packit-service)
@@ -3055,10 +3293,12 @@ See [Caml](#caml).
 * [pcre2 (C)](https://github.com/PCRE2Project/pcre2)
 * [pdfrw (Python)](https://github.com/pmaupin/pdfrw)
 * [pdoc (Python)](https://github.com/pdoc3/pdoc)
+* [pefile (Python)](https://github.com/erocarrera/pefile)
 * [Pegex Parser for Perl (Perl)](https://github.com/ingydotnet/pegex-pm)
 * [pg_top (C)](https://gitlab.com/pg_top/pg_top) [[home](https://pg_top.gitlab.io/)]
 * [pgbouncer (C/Python)](https://github.com/pgbouncer/pgbouncer) [[home](https://www.pgbouncer.org/)]
 * [pgmetrics (Golang)](https://github.com/rapidloop/pgmetrics) [[home](https://pgmetrics.io/)]
+* [pigz (C)](https://github.com/madler/pigz)
 * [Pipeless (Python)](https://github.com/pipeless-ai/pipeless) [[home](https://www.pipeless.ai/)]
 * [PipeWire (C)](https://gitlab.freedesktop.org/pipewire/pipewire) [[home](https://pipewire.org/)] [[doc](https://docs.pipewire.org/)]
 * [pkcs11-provider (C)](https://github.com/latchset/pkcs11-provider)
@@ -3067,7 +3307,7 @@ See [Caml](#caml).
 * [po4a (Perl)](https://github.com/mquinson/po4a) [[home](https://www.po4a.org/)]
 * [Podium (JavaScript)](https://github.com/sa-mw-dach/podium)
 * [Podlet (Rust)](https://github.com/containers/podlet)
-* [Podman (Golang)](https://github.com/containers/podman)
+* [Podman (Golang)](https://github.com/podman-container-tools/podman)
 * [Podman Desktop (TypeScript/Svelte)](https://github.com/podman-desktop/podman-desktop) [[home](https://podman-desktop.io/)]
 * [podman-py (Python)](https://github.com/containers/podman-py)
 * [polkit (C)](https://github.com/polkit-org/polkit)
@@ -3088,11 +3328,13 @@ See [Caml](#caml).
 * [ptyxis (C)](https://gitlab.gnome.org/chergert/ptyxis)
 * [purebred (Haskell)](https://github.com/purebred-mua/purebred)
 * [PyCParser (Python)](https://github.com/albertz/PyCParser)
-* [pydantic (Python)](https://github.com/pydantic/pydantic) [[doc](https://docs.pydantic.dev/latest/)]
+* [PycURL (Python/C)](https://github.com/pycurl/pycurl) [[home](http://pycurl.io/)]
+* [pydantic (Python)](https://github.com/pydantic/pydantic) [[doc](https://pydantic.dev/docs/)]
 * [pyenv (Bash)](https://github.com/pyenv/pyenv) [[wiki](https://github.com/pyenv/pyenv/wiki)]
 * [pyenv installer (Bash)](https://github.com/pyenv/pyenv-installer)
 * [pyfakefs (Python)](https://github.com/pytest-dev/pyfakefs) [[doc](https://pytest-pyfakefs.readthedocs.io/en/latest/index.html)]
 * [pyghmi (Python)](https://opendev.org/x/pyghmi)
+* [Pygments (Python)](https://github.com/pygments/pygments) [[home](https://pygments.org/)] [[doc](https://pygments.org/docs/)]
 * [PyHamcrest (Python)](https://github.com/hamcrest/PyHamcrest)
 * [pyparsing (Python)](https://github.com/pyparsing/pyparsing)
 * [Python Prompt Toolkit (Python)](https://github.com/prompt-toolkit/python-prompt-toolkit) [[doc](https://python-prompt-toolkit.readthedocs.io/)]
@@ -3108,6 +3350,8 @@ See [Caml](#caml).
 * [Quarkus Operator SDK (Java)](https://github.com/quarkiverse/quarkus-operator-sdk)
 * [Quay (Python)](https://github.com/quay/quay)
 * [QuestDB (Java)](https://github.com/questdb/questdb)
+* [Raku (Raku)](https://github.com/rakudo/rakudo) [[home](https://raku.org/)] [[compiler home](https://rakudo.org/)]
+* [rakusk (Raku)](https://github.com/HobbyOSs/rakusk)
 * [RamaLama (Python/Bash)](https://github.com/containers/ramalama) [[home](https://ramalama.ai/)]
 * [RE2 (C++)](https://github.com/google/re2)
 * [React Photobooth (JavaScript)](https://github.com/Outfitio/react-photobooth)
@@ -3127,12 +3371,15 @@ See [Caml](#caml).
   * [dist-git (Python/Bash)](https://github.com/release-engineering/dist-git)
   * [kobo (Python)](https://github.com/release-engineering/kobo)
   * [ProductMD (Python)](https://github.com/release-engineering/productmd)
+  * [Sync2Jira (Python)](https://github.com/release-engineering/Sync2Jira)
+  * [WaiverDB (Python)](https://github.com/release-engineering/waiverdb)
 * [renovate (TypeScript)](https://github.com/renovatebot/renovate) [[home](https://www.mend.io/renovate/)]
 * [Resurrecting Open Source Projects](https://github.com/resurrecting-open-source-projects)
 * [retdec (C++)](https://github.com/avast-tl/retdec)
 * [returns (Python)](https://github.com/dry-python/returns) [[doc](https://returns.readthedocs.io/en/latest/)]
 * [review-rot (Python)](https://github.com/redhat-aqe/review-rot)
 * [rhlp (Java)](https://github.com/oskutka/rhlp)
+* [rhsm-subscriptions (Java)](https://github.com/RedHatInsights/rhsm-subscriptions)
 * [Rofi (C)](https://github.com/davatorium/rofi) [[doc](https://davatorium.github.io/rofi/)]
 * [Rosenbridge (ASM/C/Python)](https://github.com/xoreaxeaxeax/rosenbridge)
 * [rpm (C)](https://github.com/rpm-software-management/rpm)
@@ -3140,9 +3387,12 @@ See [Caml](#caml).
 * [rpm-showme (Python)](https://pagure.io/minimization/rpm-showme)
 * [rpminspect (C)](https://github.com/rpminspect/rpminspect)
 * [RSpec (Ruby)](https://github.com/rspec/rspec-core) [[home](https://rspec.info/)]
+* [rsync (C)](https://github.com/RsyncProject/rsync) [[home](https://rsync.samba.org/)]
 * [Ruby / OpenSSL (C/Ruby)](https://github.com/ruby/openssl)
+* [Rue Lang (Rust/Rue)](https://github.com/xch-dev/rue) [[home](https://rue-lang.com/)] [[doc](https://rue-lang.com/docs/installation)]
 * [Ruffle (Rust)](https://github.com/ruffle-rs/ruffle) [[home](https://ruffle.rs/)]
 * [rune (Rust/Emacs Lisp)](https://github.com/CeleritasCelery/rune)
+* [rust-code-analysis (Rust)](https://github.com/mozilla/rust-code-analysis) [[doc](https://mozilla.github.io/rust-code-analysis/index.html)]
 * [rust-stakeholder (Rust)](https://github.com/giacomo-b/rust-stakeholder)
 * [rvm (Bash)](https://github.com/rvm/rvm)
 * [sane backends (C)](https://gitlab.com/sane-project/backends)
@@ -3153,6 +3403,7 @@ See [Caml](#caml).
 * [scelta (C++)](https://github.com/SuperV1234/scelta)
 * [schema (Python)](https://github.com/keleshev/schema)
 * [Schematics (Python)](https://github.com/schematics/schematics)
+* [secexit (Rust)](https://github.com/secexit/secexit)
 * [sedparse (Python)](https://github.com/aureliojargas/sedparse)
 * [sedsed (Python)](https://github.com/aureliojargas/sedsed) [[home](https://aurelio.net/projects/sedsed/)]
 * [semigroup (Haskell)](https://bitbucket.org/dibblego/semigroup/)
@@ -3163,6 +3414,7 @@ See [Caml](#caml).
 * [ShellCheck (Haskell)](https://github.com/koalaman/shellcheck)
 * [shim, a first-stage UEFI bootloader (C)](https://github.com/rhboot/shim)
 * [shim-review (Markdown)](https://github.com/rhboot/shim-review)
+* [Simple Signed Certificate Generator (C)](https://github.com/sgallagher/sscg)
 * [six (Python)](https://github.com/benjaminp/six)
 * [Skupper](https://github.com/skupperproject) [[home](https://skupper.io/)]
   * [skupper (Golang)](https://github.com/skupperproject/skupper)
@@ -3204,7 +3456,7 @@ See [Caml](#caml).
 * [tarantool (Lua/C)](https://github.com/tarantool/tarantool) [[home](https://www.tarantool.io/en/)]
 * [temporal.io](https://github.com/temporalio) [[home](https://temporal.io/)]
 * Terminal emulators
-  * [Alacritty (Rust)](https://github.com/alacritty/alacritty)
+  * [Alacritty (Rust)](https://github.com/alacritty/alacritty) [[home](https://alacritty.org/)]
   * [Eterm (C)](https://github.com/mej/Eterm)
   * [Guake 3 (Python)](https://github.com/Guake/guake)
   * [konsole (C++)](https://cgit.kde.org/konsole.git/tree/)
@@ -3220,7 +3472,7 @@ See [Caml](#caml).
 * [ticketutil (Python)](https://github.com/dmranck/ticketutil)
 * [tix (C/Tcl/Python)](https://github.com/apnadkarni/tix) [[home](https://tixlibrary.sourceforge.net/)]
 * [toolbox (Bash)](https://github.com/debarshiray/toolbox)
-* [toolbox (Bash/Golang)](https://github.com/containers/toolbox)
+* [toolbox (Bash/Golang)](https://github.com/containers/toolbox) [[home](https://containertoolbx.org/)]
 * [toolbx images (Dockerfile)](https://github.com/toolbx-images/images)
 * [tre (C)](https://github.com/laurikari/tre)
 * [tree-sitter (Rust/C)](https://github.com/tree-sitter/tree-sitter) [[doc](https://tree-sitter.github.io/tree-sitter/)]
@@ -3279,6 +3531,7 @@ See [Caml](#caml).
   * [i3: A tiling window manager (C)](https://github.com/i3/i3) [[home](https://i3wm.org/)]
     * [My favorite i3wm config | Linux for Newbs 3 (video)](https://www.youtube.com/watch?v=wXZgUudR41I)
   * [kotatko (C)](https://github.com/contyk/kotatko)
+  * [Microwindows (C)](https://github.com/ghaerr/microwindows)
   * [sway: An i3-compatible Wayland compositor (C)](https://github.com/swaywm/sway) [[home](https://swaywm.org/)]
   * [xmonad: A Tiling Window Manager (Haskell)](https://github.com/xmonad/xmonad)
 * [Windows Machine Config Operator (Golang)](https://github.com/openshift/windows-machine-config-operator)
@@ -3293,6 +3546,7 @@ See [Caml](#caml).
 * [WSL2 Linux Kernel (C)](https://github.com/microsoft/WSL2-Linux-Kernel)
 * [wtmpdb (C)](https://github.com/thkukuk/wtmpdb)
 * [Xbyak (C++)](https://github.com/herumi/xbyak)
+* [xidoc (C/JavaScript)](https://git.sr.ht/~xigoi/xidoc/tree) [[home](https://xidoc.nim.town/)]
 * [XL - An extensible language (C++/XL)](https://github.com/c3d/xl)
 * [xmlto (C)](https://github.com/devexp-db/xmlto)
 * [XMvn (Java)](https://github.com/fedora-java/xmvn)
@@ -3304,9 +3558,10 @@ See [Caml](#caml).
 * [yodl (C)](https://gitlab.com/fbb-git/yodl) [[home](https://fbb-git.gitlab.io/yodl/)]
 * [youtube-dl (Python)](https://github.com/yt-dlp/yt-dlp)
 * [yq (Golang)](https://github.com/mikefarah/yq) [[home](https://mikefarah.gitbook.io/yq/)]
+* [Z3 Theorem Prover (C++)](https://github.com/Z3Prover/z3)
 * [zchunk (C)](https://github.com/zchunk/zchunk)
 * [Zed (Rust)](https://github.com/zed-industries/zed) [[home](https://zed.dev/)]
-* [Ziglang (Zig)](https://github.com/ziglang/zig) [[home](https://ziglang.org/)]
+* [Ziglang (Zig)](https://codeberg.org/ziglang/zig) [[home](https://ziglang.org/)]
 * [Zircon OS (C/C++)](https://github.com/fuchsia-mirror/zircon)
 * [zlib (C)](https://github.com/madler/zlib/)
   * [flate (Go)](https://github.com/golang/go/tree/master/src/compress/flate)
@@ -3334,6 +3589,7 @@ See [Caml](#caml).
 * [Authenticode (I): Understanding Windows Authenticode](https://reversea.me/index.php/authenticode-i-understanding-windows-authenticode/)
 * [Automate dynamic application security testing with RapiDAST](https://developers.redhat.com/articles/2025/06/19/automate-dynamic-application-security-testing-rapidast)
 * [Automated dynamic application security testing with RapiDAST and cross-team collaboration](https://www.redhat.com/en/blog/automated-dynamic-application-security-testing-enhancing-development-security-rapidast)
+* [axios Compromised on npm - Malicious Versions Drop Remote Access Trojan](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan)
 * [Below the Surface: The Supply Chain Security Podcast](https://www.scmagazine.com/podcast-show/below-the-surface)
 * [Beyond the STIG: What does “security leadership” really mean?](https://www.redhat.com/en/blog/beyond-stig-what-does-security-leadership-really-mean)
 * [Caido](https://caido.io/) [[doc](https://docs.caido.io/)]
@@ -3389,6 +3645,7 @@ See [Caml](#caml).
 * [Kubernetes Operators: good security practices](https://www.redhat.com/en/blog/kubernetes-operators-good-security-practices)
 * [Learn about Confidential Computing Attestation](https://www.redhat.com/en/blog/learn-about-confidential-computing-attestation)
 * [Linus Torvalds affirms expulsion of Russian maintainers](https://www.theregister.com/2024/10/23/linus_torvalds_affirms_expulsion_of/)
+* [Microsoft to Replace All C/C++ Code With Rust by 2030](https://www.thurrott.com/dev/330980/microsoft-to-replace-all-c-c-code-with-rust-by-2030)
 * [ML-KEM Security Considerations](https://www.ietf.org/archive/id/draft-sfluhrer-cfrg-ml-kem-security-considerations-01.html)
 * [Moving the U.S. Government Toward Zero Trust Cybersecurity Principles (PDF)](https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf)
 * [MSI and Insecure KMs](https://blogs.gnome.org/hughsie/2023/05/09/msi-and-insecure-kms/)
@@ -3400,6 +3657,7 @@ See [Caml](#caml).
 * [NIST FIPS Standards](https://csrc.nist.gov/publications/fips)
   * [FIPS 140-2 Non-proprietary Security Policy (PDF)](https://csrc.nist.gov/CSRC/media/projects/cryptographic-module-validation-program/documents/security-policies/140sp4642.pdf)
   * [FIPS 140-3 Non-proprietary Security Policy (PDF)](https://csrc.nist.gov/CSRC/media/projects/cryptographic-module-validation-program/documents/security-policies/140sp4746.pdf)
+* [No Prompt Injection Required](https://futuresearch.ai/blog/no-prompt-injection-required/)
 * [Nobody Expected C++ Memory Safety. Rust In Trouble](https://tomaszs2.medium.com/nobody-expected-c-memory-safety-rust-in-trouble-cefb39166923)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
 * [NVIDIA Morpheus](https://docs.nvidia.com/morpheus/index.html)
@@ -3409,9 +3667,11 @@ See [Caml](#caml).
 * [Project Zero](https://googleprojectzero.blogspot.cz/2018/01/reading-privileged-memory-with-side.html)
 * [Python Security](https://python-security.readthedocs.io/index.html)
   * [Prevent DoS by large str-int conversions](https://python-security.readthedocs.io/vuln/large-int-str-dos.html)
+* [Red Hat Enterprise Linux Common Criteria and FIPS certificates](https://www.redhat.com/en/blog/red-hat-enterprise-linux-common-criteria-and-fips-certificates)
 * [Red Hat Enterprise Linux security](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/security)
 * [Red Hat Enterprise Linux Security Select Add-On](https://www.redhat.com/en/resources/rhel-security-select-add-on-datasheet)
 * [Red Hat extends Common Vulnerabilities and Exposure Program expertise as newly-minted Root organization](https://www.redhat.com/en/blog/red-hat-extends-common-vulnerabilities-and-exposure-program-expertise-newly-minted-root-organization)
+* [Red Hat npm Packages Compromised to Spread a Credential-Stealing Worm](https://www.aikido.dev/blog/red-hat-npm-packages-compromised-credential-stealing-worm)
 * [Red Hat Product Security risk report 2022](https://www.redhat.com/en/resources/product-security-risk-report-2022?sc_cid=701f2000000tyBjAAI)
 * [Red Hat Trusted Software Supply Chain](https://developers.redhat.com/products/trusted-software-supply-chain/overview?source=sso)
 * [Red Hat’s CWE journey](https://www.redhat.com/en/blog/red-hat-cwe-journey)
@@ -3437,6 +3697,7 @@ See [Caml](#caml).
 * [The most common 4-digit PIN numbers](https://informationisbeautiful.net/visualizations/most-common-pin-codes/)
 * [TunnelVision (CVE-2024-3661): How Attackers Can Decloak Routing-Based VPNs For a Total VPN Leak](https://www.leviathansecurity.com/blog/tunnelvision)
 * [U2FsdGVkX1 and #AES – Why you should never use #CryptoJS](https://blog.dotnetframework.org/2022/12/30/u2fsdgvkx1-and-aes-why-you-should-never-use-cryptojs/)
+* [Unveiling Remote Code Execution: How Vulnerabilities Lead to System Takeovers (talk)](https://www.youtube.com/live/eL0rbvtkrYk?t=19320s)
 * [vulnerability-engine](https://github.com/RedHatInsights/vulnerability-engine)
 * [What is GSSAPI?](http://www.faqs.org/faqs/kerberos-faq/general/section-84.html)
 * [What's new in the Red Hat build of Keycloak version 22](https://developers.redhat.com/articles/2023/11/15/whats-new-red-hat-build-keycloak-version-22)
@@ -3458,6 +3719,7 @@ See [Caml](#caml).
 * [beakerlib](https://github.com/beakerlib)
 * [Boost Jenkins pipelines with Red Hat Advanced Developer Suite](https://developers.redhat.com/articles/2025/07/30/boost-jenkins-pipelines-red-hat-advanced-developer-suite)
 * [Build custom images for Testing Farm](https://fedoramagazine.org/build-custom-images-for-testing-farm/)
+* [Build trust in your CI/CD pipelines with OpenShift Pipelines](https://developers.redhat.com/articles/2025/08/07/build-trust-your-cicd-pipelines-openshift-pipelines)
 * [Bunsen: A smart test system that knows your upstream](https://developers.redhat.com/articles/2025/07/21/bunsen-smart-test-system-knows-your-upstream)
 * [Centos on DockerHub](https://hub.docker.com/_/centos)
 * [CI Configuration Examples (from openstack)](https://opendev.org/openstack/project-config/)
@@ -3559,9 +3821,11 @@ See [Caml](#caml).
   * [gluetool-modules](https://gitlab.com/testing-farm/gluetool-modules)
   * [infrastructure](https://gitlab.com/testing-farm/infrastructure)
   * [integrations-konflux](https://gitlab.com/testing-farm/integrations-konflux)
+  * [nucleus](https://gitlab.com/testing-farm/nucleus)
   * [oculus](https://gitlab.com/testing-farm/oculus)
   * [profiles](https://gitlab.com/testing-farm/profiles)
   * [tests](https://gitlab.com/testing-farm/tests)
+* [TestML](https://testml.org/) [[repo](https://github.com/testml-lang/testml)]
 * [The Test Trove Repositories](https://github.com/orgs/the-test-trove/repositories)
 * [tmt](https://tmt.readthedocs.io/) [[repo](https://github.com/teemtee/tmt)]
   * [Allow test selection using a shell script](https://github.com/psss/tmt/issues/411)
@@ -3588,15 +3852,27 @@ See [Caml](#caml).
 ## Virtualization
 
 * [15 reasons to adopt Red Hat OpenShift Virtualization](https://www.redhat.com/en/engage/15-reasons-adopt-openshift-virtualization-ebook)
+* [A VM tuning case study: Balancing power and performance on AMD processors](https://developers.redhat.com/articles/2025/08/26/vm-tuning-case-study-balancing-power-and-performance-amd-processors)
+* [Automate virtual machine deployment with Ansible: Design](https://www.redhat.com/en/blog/deployment-ansible-design)
+* [Automate virtual machine deployment with Ansible: Automation](https://www.redhat.com/en/blog/deployment-ansible-automation)
+* [Automate virtual machine deployment with Ansible: The playbooks](https://www.redhat.com/en/blog/deployment-ansible-playbooks)
 * [Build a lab in 36 seconds with Ansible](https://www.redhat.com/sysadmin/build-VM-fast-ansible)
 * [Build a lab in five minutes with three simple commands](https://www.redhat.com/sysadmin/build-lab-quickly)
+* [Can't start KVM guest: "network 'default' is not active"](https://askubuntu.com/questions/1036297/cant-start-kvm-guest-network-default-is-not-active)
 * [cloud-init and dhcpcd](https://major.io/p/fedora-cloud-init-dhcpcd/)
+* [`community.libvirt.virt` module](https://docs.ansible.com/projects/ansible/latest/collections/community/libvirt/virt_module.html)
 * [Confidential virtual machines versus VMs: Latency analysis](https://developers.redhat.com/articles/2025/07/28/confidential-virtual-machines-versus-vms-latency-analysis)
+* [Confidential VMs: The core of confidential containers](https://developers.redhat.com/articles/2025/09/15/confidential-vms-core-confidential-containers)
 * [Configure and run a QEMU-based VM outside of libvirt with virt-manager](https://developers.redhat.com/blog/2020/03/06/configure-and-run-a-qemu-based-vm-outside-of-libvirt)
 * [Configuring and managing virtualization (RHEL 8)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/index) [[link #2](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index)]
 * [Create a libvirt network with Open vSwitch](https://www.redhat.com/sysadmin/libvirt-open-vswitch)
+* [Declaratively assigning DNS records to virtual machines](https://developers.redhat.com/articles/2025/09/11/declaratively-assigning-dns-records-virtual-machines)
 * [Enable confidential computing in OpenShift Virtualization](https://developers.redhat.com/articles/2025/06/24/enable-confidential-computing-openshift-virtualization)
 * [Enable rootless VMs with user-mode networking using Passt](https://developers.redhat.com/articles/2025/07/29/enable-rootless-vms-user-mode-networking-using-passt)
+* [Error creating libvirt KVM domain: invalid argument: could not get preferred machine for `/usr/libexec/qemu-kvm type=kvm`](https://stackoverflow.com/questions/72469555/error-creating-libvirt-kvm-domain-invalid-argument-could-not-get-preferred-mac)
+* [Forwarding ports to guests in libvirt / KVM](https://serverfault.com/questions/170079/forwarding-ports-to-guests-in-libvirt-kvm)
+* [Getting Started (on Fedora)](https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/)
+* [How to connect a cdrom device to a kvm/qemu domain (using command-line tools)?](https://serverfault.com/questions/373372/how-to-connect-a-cdrom-device-to-a-kvm-qemu-domain-using-command-line-tools)
 * [How to set up a network bridge for virtual machine communication](https://www.redhat.com/sysadmin/setup-network-bridge-VM)
 * [How to Setup QEMU Output to Console and Automate Using Shell Script](https://fadeevab.com/how-to-setup-qemu-output-to-console-and-automate-using-shell-script/)
 * [How to SSH from host to guest using QEMU?](https://unix.stackexchange.com/questions/124681/how-to-ssh-from-host-to-guest-using-qemu)
@@ -3607,26 +3883,43 @@ See [Caml](#caml).
 * [libguestfs](http://libguestfs.org/)
   * [guestfish(1)](http://libguestfs.org/guestfish.1.html)
   * [virt-sysprep(1)](http://libguestfs.org/virt-sysprep.1.html)
+* [`libvirt` Domain capabilities XML format](https://libvirt.org/formatdomaincaps.html)
 * [`libvirt` Domain XML format](https://libvirt.org/formatdomain.html)
+* [`libvirt` Disk image chains](https://libvirt.org/kbase/backing_chains.html)
+  * [Snapshots handout](https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html)
+* [`libvirt` in Podman](https://gist.github.com/COM8/f66f8e1e88c7738c8271a0f5c583d2dd)
+* [`libvirt` Network XML Format](https://libvirt.org/formatnetwork.html)
+* [`libvirt` Networking](https://wiki.libvirt.org/Networking.html)
+  * [Handbook](https://jamielinux.com/docs/libvirt-networking-handbook/index.html)
+    * [NAT-based network](https://jamielinux.com/docs/libvirt-networking-handbook/nat-based-network.html)
+* [`libvirt` QEMU/KVM/HVF hypervisor driver](https://libvirt.org/drvqemu.html)
+* [`libvirt` Virtual Networking](https://wiki.libvirt.org/VirtualNetworking.html)
+  * [`community.libvirt.virt_net` Ansible module](https://docs.ansible.com/projects/ansible/latest/collections/community/libvirt/virt_net_module.html)
+  * [How virbr0-nic is created?](https://serverfault.com/questions/516366/how-virbr0-nic-is-created)
+  * [virt-manager doesn't have permissions to create virbr0.](https://www.reddit.com/r/ManjaroLinux/comments/i9jtjt/virtmanager_doesnt_have_permissions_to_create/)
+  * [`virt-net` Ansible role](https://github.com/jfenal-zz/ansible-role-virt-net)
 * [Minimize downtime when migrating from VMware to OpenShift Virtualization](https://developers.redhat.com/articles/2024/08/01/minimize-downtime-when-migrating-vmware-openshift-virtualization)
-* [Networking](https://wiki.libvirt.org/Networking.html)
 * [PiKVM](https://pikvm.org/) [[repo](https://github.com/pikvm)]
 * [QEMU Documentation](https://www.qemu.org/docs/master/index.html)
   * [QEMU Monitor](https://www.qemu.org/docs/master/system/monitor.html)
   * [Recommendations for KVM CPU model configuration on x86 hosts](https://www.qemu.org/docs/master/system/i386/cpu.html)
 * [QEMU Guest Agent Protocol Reference](https://qemu.weilnetz.de/doc/qemu-ga-ref.html)
+* [qemu-img Backing Files: A Poor Man's Snapshot/Rollback](https://dustymabe.com/2015/01/11/qemu-img-backing-files-a-poor-mans-snapshotrollback/)
 * [QEmu-KVM: How to configure VMs without libvirt stuff?](https://serverfault.com/questions/807714/qemu-kvm-how-to-configure-vms-without-libvirt-stuff)
+* [QEMU/KVM - Not Connected `/var/run/libvirt/qvirtqemud-sock` does not exist](https://www.reddit.com/r/VFIO/comments/paj4rv/qemukvm_not_connected_varrunlibvirtqvirtqemudsock/)
 * [QEMU QMP Reference Manual](https://qemu.weilnetz.de/doc/qemu-qmp-ref.html)
 * [QEMU User Documentation](https://qemu.weilnetz.de/doc/qemu-doc.html)
 * [RHEL 8 Hyper-V Quick Install](https://developers.redhat.com/rhel8/install-rhel8-hyperv)
 * [Rootless virtual machines with KVM and QEMU](https://developers.redhat.com/articles/2024/12/18/rootless-virtual-machines-kvm-and-qemu)
 * [Setting up a VM on Fedora Server using Cloud Images and virt-install version 3](https://fedoramagazine.org/setting-up-a-vm-on-fedora-server-using-cloud-images-and-virt-install-version-3/)
 * [Setting up KVM on Red Hat Enterprise Linux](https://developers.redhat.com/blog/2016/08/18/setting-up-kvm-on-rhel)
+* [Setup private networking between two hosts and two VMs with libvirt / openvswitch](https://stackoverflow.com/questions/31566658/setup-private-networking-between-two-hosts-and-two-vms-with-libvirt-openvswitc)
+* [Simplify virtualization deployments with the Assisted Installer](https://www.redhat.com/en/blog/simplify-virtualization-deployments-assisted-installer)
 * [Use virt-manager as a non-root user on Linux](https://www.seei.biz/use-virt-manager-as-a-non-root-user-on-linux/)
+* [Using libvirt within Docker container](https://stackoverflow.com/questions/76683693/using-libvirt-within-docker-container)
 * [virtio-mem](https://virtio-mem.gitlab.io)
 * [Virtio-networking series](https://www.redhat.com/en/virtio-networking-series)
 * [Virtio-networking series two: Advanced topics](https://www.redhat.com/en/blog/virio-networking-series-advanced)
-* [Virtual Networking](https://wiki.libvirt.org/VirtualNetworking.html)
 * [What's new in Red Hat OpenShift Virtualization 4.19](https://www.redhat.com/en/blog/whats-new-red-hat-openshift-virtualization-419)
 
 ## Web Development
@@ -3660,6 +3953,7 @@ See [Caml](#caml).
   * [CSS Flexbox Layout Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
   * [Sticky Footer, Five Ways](https://css-tricks.com/couple-takes-sticky-footer/)
 * [cssnano](https://cssnano.co/)
+* [Expert CSS: The CPU Hack](https://dev.to/janeori/expert-css-the-cpu-hack-4ddj)
 * [Gatsby JS](https://www.gatsbyjs.com/) [[doc](https://www.gatsbyjs.com/docs/)] [[repo](https://github.com/gatsbyjs/gatsby)]
 * [Guidelines for Visualizing Links](https://www.nngroup.com/articles/guidelines-for-visualizing-links/)
 * [highlight.js](https://highlightjs.org/) [[repo](https://github.com/highlightjs/highlight.js)]
@@ -3670,7 +3964,7 @@ See [Caml](#caml).
 * [Learning Axis (video series)](https://www.youtube.com/@learning-axis)
 * [Lit](https://lit.dev/) [[repo](https://github.com/lit/lit/)]
 * [PatternFly](https://www.patternfly.org/) [[repo](https://github.com/patternfly/patternfly)]
-* [Sass](https://sass-lang.com/) [[repo](https://github.com/sass/sass)]
+* [Sass](https://sass-lang.com/) [[repo](https://github.com/sass/sass)] [[guide](https://sass-lang.com/guide/)]
   * [Dart Sass](https://sass-lang.com/dart-sass/) [[repo](https://github.com/sass/dart-sass)]
 * [(S)CSS Best Practices That You Have Not Yet Known](https://medium.com/@mciastek/s-css-best-practices-that-you-have-not-yet-known-ba2f6329b5dd)
 * [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
@@ -3687,7 +3981,10 @@ See [Caml](#caml).
     * [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
     * [Test Utils Living Standard](https://testutils.spec.whatwg.org/)
     * [URL Living Standard](https://url.spec.whatwg.org/)
+* [web-compile](https://github.com/executablebooks/web-compile)
+* [WebAssembly: Yes, but for What?](https://queue.acm.org/detail.cfm?id=3746171)
 * [webcomponents.org](https://www.webcomponents.org/)
+* [x86CSS](https://github.com/rebane2001/x86css)
 
 ## Z-Stuff (Unsorted Stuff)
 
@@ -3699,6 +3996,7 @@ See [Caml](#caml).
 * [Bizarre, Expensive or Incredible Things Found Only in the Netherlands](https://za.investing.com/magazine/bizarre-expensive-or-incredible-things-found-found-only-in-the-netherlands/?utm_source=Outbrain&utm_medium=cpm&utm_campaign=000750f99fc951f328d4f50c556c3fcfa8&utm_content=%5BPhotos%5D+This+Is+Absolutely+Normal+in+Netherlands%2C+But+Not+Anywhere+El&utm_term=Business+Standard+%28Business+Standard%29_Business+Standard&origin=outbrain&outbrain_params[ad_id]=009268c39de0d2be26015a11c6d426d27b&outbrain_params[doc_title]=Bizarre%2C+Expensive+or+Incredible+Things+Found+Only+in+the+Netherlands&outbrain_params[doc_author]=Audrey+Kyanova&outbrain_params[doc_id]=001760c10df3211ab8faafba7885ba2b67&outbrain_params[ad_title]=%5BPhotos%5D+This+Is+Absolutely+Normal+in+Netherlands%2C+But+Not+Anywhere+El&outbrain_params[publish_date]=20230606&outbrain_params[req_id]=407e2ea98d0e516da0ccd648ed812610&outbrain_params[source_id]=00e3115bf0be6e151a821d35ac47bc6403&outbrain_params[promoted_link_id]=009268c39de0d2be26015a11c6d426d27b&outbrain_params[time_stamp]=20231118112624&outbrain_params[campaign_id]=000750f99fc951f328d4f50c556c3fcfa8&outbrain_params[uuid]=&outbrain_params[section_id]=00e3115bf0be6e151a821d35ac47bc6403&outbrain_params[section_name]=Business+Standard&outbrain_params[publisher_id]=004026fbea9f611ee85b5ea4cc87dc6b2e&outbrain_params[publisher_name]=Business+Standard+%28Business+Standard%29&outbrain_params[ob_click_id]=v4-B3x7QgA-1087286001&outbrain_params[android_id]=&outbrain_params[idfa]=&outbrain_params[cpc]=0.022&im_dars=1x100_3x129_5x641_7x980&dicbo=v4-B3x7QgA-1087286001)
 * [Blue Light Screen Protector Panels](https://eyespc.com/collections/blue-light-filter-panels)
 * [Book Depository](https://www.bookdepository.com/)
+* [Brazil Birding Experts](https://www.brazilbirdingexperts.com/)
 * [Brněnské vokruch vokolo Štatlu](http://bvvs.vyskovnice.cz/)
   * [Trasa 2025](https://mapy.com/s/kagumojece)
 * [Brno Hobby Amateur Radio Club (OK2KOJ)](http://www.radio.feec.vutbr.cz/ok2koj/)
@@ -3743,7 +4041,7 @@ See [Caml](#caml).
 * [Our Own Devices (video series)](https://www.youtube.com/@CanadianMacGyver/videos)
 * [Patagonia](https://www.patagonia.com/home/)
 * [Polagraph Brno](https://www.polagraph.cz/brno/)
-* [Programmers are also human (video series)](https://www.youtube.com/@programmersarealsohuman5909/videos)
+* [Programmers are also human / Kai Lentit (video series)](https://www.youtube.com/@programmersarealsohuman5909/videos)
 * [Red Hat People team](https://github.com/red-hat-people-team)
 * [Report ze Sprintu na východě](https://blog.python.cz/Report-ze-sprintu-na-vychode)
 * [Rozbité prasátko](https://rozbiteprasatko.cz/)
