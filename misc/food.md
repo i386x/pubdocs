@@ -15,7 +15,9 @@
 
 * [25 Native American Recipes You’ll Wish You Knew Sooner!](https://www.youtube.com/watch?v=eANKYs4MY7M)
 * [Cafe Delites](https://cafedelites.com/)
+* [Campfire Breakfast Skillet](https://www.youtube.com/shorts/O2AMXqslijA)
 * [Chef Jean-Pierre](https://www.youtube.com/@ChefJeanPierre/videos)
+* [Cowboy Beans](https://www.youtube.com/shorts/JEVNrUIHfP0)
 * [Cuketka](https://www.cuketka.cz/)
   * [Hovězí vývar](https://recepty.cuketka.cz/hovezi-vyvar/)
 * Feijoada

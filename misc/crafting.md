@@ -1,24 +1,32 @@
 # Crafting
 
+* [Alltagskulturen im Rheinland](https://www.youtube.com/@AlltagskulturenimRheinland/videos)
 * [Amperak](https://www.youtube.com/@amperak/videos)
 * [Arbor press from scratch](https://www.youtube.com/watch?v=c_UuVV7fhMc)
 * [Deep in the Undergrowth](https://www.youtube.com/@deepintheundergrowth3877/playlists)
+* [Dynasty Crafts](https://www.youtube.com/@DynastyCrafts/shorts)
 * [Earth Uncovered](https://www.youtube.com/@EarthUncoveredonyoutube/videos)
 * [ElektroMaster](https://www.youtube.com/@Petr-bakom/videos)
 * [eMko Jeseník](https://www.youtube.com/channel/UCM-z4Sa9CHZc5MUF7YDdIog/videos)
 * [Essential Craftsman](https://www.youtube.com/@essentialcraftsman)
 * [IKAP OK II](https://www.youtube.com/@ikapokii5161/videos)
+* [IndigoHeritage](https://www.youtube.com/@DailyTrend-7/shorts)
 * [Japanese Crafting (1)](https://www.youtube.com/@processx/videos)
 * [klimbíkova bastlírna](https://www.youtube.com/c/klimbikovabastlirna/videos)
 * [КУЙ железо](https://www.youtube.com/channel/UCniZSLYkcEXtjGNpdU5lgCA/videos)
+* [鲁磊 LuLei](https://www.youtube.com/@lulei/videos)
 * [Machine Thinking](https://www.youtube.com/@machinethinking/videos)
 * [Made by Madman](https://www.youtube.com/@madebymadman4640/videos)
 * [MateriályNaZakázku](https://www.materialynazakazku.cz/)
 * [Mekanik Mesin](https://www.youtube.com/channel/UCt44gY0CEaIsYygIwXxAHzw/videos)
+* [Mo Dee Fx](https://www.youtube.com/@MoDeeFx/shorts)
 * [Persian Hand Crafts](https://www.youtube.com/@PersianHandCraftsP/videos)
 * [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
+* [The Foot Powered Workshop](https://www.youtube.com/@TheFootPoweredWorkshop/videos)
 * [The Forbidden Knowledge of Washers](https://www.youtube.com/watch?v=F4EvMVpx1Pw)
 * [The Whitworth Three Plates Method](https://ericweinhoffer.com/blog/2017/7/30/the-whitworth-three-plates-method)
+* [Traditional crafts](https://www.youtube.com/@Handicraft-y7m/shorts)
+* [VANISHED Workshop Machines Every 1950s Garage Had (Modern Men Can't Operate Any of Them)](https://www.youtube.com/watch?v=A0Jo8dJnUec)
 * [Výukový film nástrojař](https://www.youtube.com/watch?v=UM8W7gi-DKU)
 * [Whispering Roots](https://www.youtube.com/@Whisperingroots/shorts)
 * [Why Roman CONCRETE Lasts 2000 Years While Ours Dies in 50](https://www.youtube.com/watch?v=lJdNvX8WTVs)
@@ -55,12 +63,17 @@
 * [Open Source Machine Tools](https://www.youtube.com/channel/UC79QdJW2rayvCzqNq-SAM-g/videos)
 * [Scraping basics - Scraping flat - Part 1](https://www.youtube.com/watch?v=QJXqHpSh3SE)
 * [Scraping basics - Scraping flat - Part 2](https://www.youtube.com/watch?v=S9N3Q8Qww2A)
+* [The Obsessive Engineering of Precision Linear Motion](https://www.youtube.com/watch?v=Wnn7AFPuaYo)
 * [TumliKOVO: Technologie strojního obrábění kovů a broušení nástrojů](http://www.tumlikovo.cz/)
 * [Vrtání děr](https://www.osu.cz/dokumenty/proportal/pdf/kpv/vrtani/index.html)
 
 ## Plumbing
 
 * [Ako opraviť tečúci Geberit?](https://mazanik.wordpress.com/2013/01/20/ako-opravit-tecuci-geberit/)
+
+## Stonemasoning
+
+* [Kurz stavby suche kamenne zdi](https://kamennezdi.cz/produkt/kurz-stavby-suche-kamenne-zdi/)
 
 ## Tools
 
