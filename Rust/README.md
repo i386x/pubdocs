@@ -19,9 +19,12 @@
 * [Exercism](https://exercism.org/tracks/rust)
 * [Fast Rust Builds](https://matklad.github.io/2021/09/04/fast-rust-builds.html)
 * [`fp-core.rs`](https://github.com/JasonShin/fp-core.rs)
+* [GUI programming with Rust](https://medium.com/digitalfrontiers/gui-programming-with-rust-c71fe4051b1a)
 * [Home Page](https://www.rust-lang.org/)
   * [Asynchronous Programming in Rust](https://rust-lang.github.io/async-book/)
   * [Blog](https://blog.rust-lang.org/)
+    * [Announcing Rust 1.26](https://blog.rust-lang.org/2018/05/10/Rust-1.26/)
+    * [Announcing Rust 1.56.0](https://blog.rust-lang.org/2021/10/21/Rust-1.56.0/)
     * [Announcing Rust 1.80.0](https://blog.rust-lang.org/2024/07/25/Rust-1.80.0.html)
     * [Announcing Rust 1.80.1](https://blog.rust-lang.org/2024/08/08/Rust-1.80.1.html)
     * [Announcing Rust 1.81.0](https://blog.rust-lang.org/2024/09/05/Rust-1.81.0.html)
@@ -30,6 +33,7 @@
     * [Announcing Rust 1.84.0](https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html)
     * [Announcing Rust 1.85.0 and Rust 2024](https://blog.rust-lang.org/2025/02/20/Rust-1.85.0.html)
   * [Book](https://doc.rust-lang.org/book/)
+  * [Change Logs](https://releases.rs/)
   * [Command Line Applications in Rust](https://rust-cli.github.io/book/)
   * [Effective Rust](https://effective-rust.com/)
   * [Learn Rust](https://www.rust-lang.org/learn)
@@ -42,19 +46,21 @@
   * [Rust Conversions](https://nicholasbishop.github.io/rust-conversions/)
   * [Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
   * [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
+  * [`rustup`](https://rustup.rs/) [[book](https://rust-lang.github.io/rustup/)] [[repo](https://github.com/rust-lang/rustup)]
   * [Secure Rust Guidelines](https://anssi-fr.github.io/rust-guide/)
   * [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
   * [The Little Book of Rust Macros](https://veykril.github.io/tlborm/) [[mirror](https://danielkeep.github.io/tlborm/book/)]
   * [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
   * [The `rustdoc` book](https://doc.rust-lang.org/rustdoc/)
-  * [The `rustup` book](https://rust-lang.github.io/rustup/)
 * [How can I deserialize an optional field with custom functions using Serde?](https://stackoverflow.com/questions/44301748/how-can-i-deserialize-an-optional-field-with-custom-functions-using-serde)
 * [How to Handle Errors in Rust: A Comprehensive Guide](https://dev.to/nathan20/how-to-handle-errors-in-rust-a-comprehensive-guide-1cco)
 * [How to initialize the logger for integration tests?](https://stackoverflow.com/questions/30177845/how-to-initialize-the-logger-for-integration-tests)
+* [Idiomatic callbacks in Rust](https://stackoverflow.com/questions/41081240/idiomatic-callbacks-in-rust)
 * [Karol Kuczmarski's Blog](http://xion.io/)
   * [Better location for unit tests in Rust](http://xion.io/post/code/rust-unit-test-placement.html)
 * [Large Rust Workspaces](https://matklad.github.io/2021/08/22/large-rust-workspaces.html)
 * [Learning Material for Idiomatic Rust](https://corrode.dev/blog/idiomatic-rust-resources/)
+* [Learning Rust](https://quinedot.github.io/rust-learning/)
 * [Learning Rust](https://github.com/danbev/learning-rust)
 * [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
 * [Long-Term Rust Project Maintenance](https://corrode.dev/blog/long-term-rust-maintenance/)
@@ -71,7 +77,11 @@
 * [Rust 1.80.0: Top 10 Most Interesting Things & Blog Highlights](https://www.youtube.com/watch?v=iwV-T5yHJQw)
 * [Rust Compiler Explorer](https://rust.godbolt.org/)
 * [Rust Data Modelling Without Classes (video)](https://www.youtube.com/watch?v=z-0-bbc80JM)
+* [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
 * [Rust Foundation](https://foundation.rust-lang.org/)
+* [Rust Is Beyond Object-Oriented, Part 1: Intro and Encapsulation](https://www.thecodedmessage.com/posts/oop-1-encapsulation/)
+* [Rust Is Beyond Object-Oriented, Part 2: Polymorphism](https://www.thecodedmessage.com/posts/oop-2-polymorphism/)
+* [Rust Is Beyond Object-Oriented, Part 3: Inheritance](https://www.thecodedmessage.com/posts/oop-3-inheritance/)
 * [Rust Language Cheat Sheet](https://cheats.rs/)
 * [Rust Maintenance Checklist](https://corrode.notion.site/Rust-Maintenance-Checklist-3fa116db4c6149cbacbe3c16f81c6bb0)
 * [Rust Trends](https://rust-trends.com/)
@@ -90,6 +100,8 @@
 * [Tips For Faster Rust Compile Times](https://corrode.dev/blog/tips-for-faster-rust-compile-times/)
 * [Translating All C to Rust (TRACTOR)](https://www.darpa.mil/program/translating-all-c-to-rust)
 * [Understanding the `AtomicUsize` in `std::sync::atomic`](https://medium.com/@teamcode20233/understanding-the-atomicusize-in-std-sync-atomic-rust-tutorial-b3b43c77a2b)
+* [What Features Should Rust Include? Part I: Not Inheritance.](https://www.thecodedmessage.com/posts/pl-features/)
+* [What Features Should Rust Have? Part II](https://www.thecodedmessage.com/posts/rust-features-2/)
 * [What it takes to keep Tokio running (video)](https://www.youtube.com/watch?v=Lc3aw_NIOt0)
 
 ## Installation
@@ -122,6 +134,8 @@ $ rm -rf ~/.cargo ~/.rustup
 ```
 
 Then remove any mention of `. "$HOME/.cargo/env"` from:
+* `~/.bashrc`
+* `~/.bash_login`
 * `~/.bash_profile`
 * `~/.profile`
 * `~/.zshenv`
@@ -333,6 +347,7 @@ Useful compiler configuration:
   # opt-level = "s"   # Optimize for binary size (may produce slower binaries)
   strip = true      # Remove debug symbols
   ```
+  * see also [Cargo Profiles](https://doc.rust-lang.org/cargo/reference/profiles.html)
 * stripping local user name (see [this comment](https://github.com/tauri-apps/tauri/issues/6538#issuecomment-1482634473)):
   ```bash
   RUSTFLAGS+=" --remap-path-prefix=${HOME}/my_projects/my_rust_project=my_rust_project"
@@ -5341,6 +5356,8 @@ dereference_expression:
         fn deref_mut(&mut self) -> &mut Self::Target;
     }
     ```
+* Additional reading:
+  * [What are Rust's exact auto-dereferencing rules?](https://stackoverflow.com/questions/28519997/what-are-rusts-exact-auto-dereferencing-rules)
 
 See [The dereference operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#the-dereference-operator)
 for greater detail.
@@ -6620,6 +6637,10 @@ type T2<'a> = Box<dyn Bar<'a> + 'a>;
 impl<'a> dyn Bar<'a> {}
 impl<'a> dyn Bar<'a> + 'a {}
 ```
+
+#### Supplementary Material
+
+* [Rust Dynamic Dispatching deep-dive](https://medium.com/digitalfrontiers/rust-dynamic-dispatching-deep-dive-236a5896e49b)
 
 ### Dynamically Sized Types
 
@@ -8616,7 +8637,7 @@ greater detail.
 Pinned: [[Lib.rs](https://lib.rs/)]
 * [`aho-corasick` - fast multiple substring searching](https://crates.io/crates/aho-corasick) [[doc](https://docs.rs/aho-corasick/latest/aho_corasick)] [[repo](https://github.com/BurntSushi/aho-corasick)]
 * [`anyhow` - flexible concrete error type built on `std::error::Error`](https://crates.io/crates/anyhow) [[doc](https://docs.rs/anyhow/latest/anyhow)] [[repo](https://github.com/dtolnay/anyhow)]
-* [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://github.com/zesterer/ariadne)]
+* [`ariadne` - a fancy diagnostics and reporting](https://crates.io/crates/ariadne) [[doc](https://docs.rs/ariadne/latest/ariadne)] [[repo](https://codeberg.org/zesterer/ariadne)]
 * [`async-compression` - adaptors between compression crates and Rust's modern asynchronous IO types](https://crates.io/crates/async-compression) [[doc](https://docs.rs/async-compression/latest/async_compression)] [[repo](https://github.com/Nullus157/async-compression)]
 * [`atty` - is it a tty?](https://crates.io/crates/atty) [[doc](https://docs.rs/atty/latest/atty)] [[repo](https://github.com/softprops/atty)]
 * [`backon` - make retry like a built-in feature provided by Rust](https://crates.io/crates/backon) [[doc](https://docs.rs/backon/latest/backon)] [[repo](https://github.com/Xuanwo/backon)]
@@ -8627,6 +8648,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`chrono` - date and time library](https://crates.io/crates/chrono) [[doc](https://docs.rs/chrono/latest/chrono)] [[repo](https://github.com/chronotope/chrono)]
 * [`chumsky` - a parser library for humans with powerful error recovery](https://crates.io/crates/chumsky) [[doc](https://docs.rs/chumsky/latest/chumsky)] [[repo](https://github.com/zesterer/chumsky)]
 * [`clap` - command line argument parser for Rust](https://crates.io/crates/clap) [[doc](https://docs.rs/clap/latest/clap)] [[repo](https://github.com/clap-rs/clap)]
+  * [Using Clap in Rust for command line (CLI) argument parsing](https://blog.logrocket.com/using-clap-rust-command-line-argument-parsing/)
+* [`codespan-reporting` - beautiful diagnostic reporting for text-based programming languages](https://crates.io/crates/codespan-reporting) [[doc](https://docs.rs/codespan-reporting/latest/codespan_reporting)] [[repo](https://github.com/brendanzab/codespan)]
 * [`colored` - coloring terminal](https://crates.io/crates/colored) [[doc](https://docs.rs/colored/latest/colored)] [[repo](https://github.com/colored-rs/colored)]
 * [`core` - the Rust core (i.e. dependency free) library](https://doc.rust-lang.org/core/index.html)
   * [`core::panic` - panic support in the Rust core library](https://doc.rust-lang.org/core/panic/index.html)
@@ -8660,6 +8683,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
     * `RUST_LOG=info,log_demo::foo=off` turn on all info logging but turn off
       all logging for `log_demo::foo`
 * [`eyre` - flexible concrete Error Reporting type built on `std::error::Error` with customizable Reports](https://crates.io/crates/eyre) [[doc](https://docs.rs/eyre/latest/eyre)] [[repo](https://github.com/eyre-rs/eyre)]
+* [`futures` - zero-cost asynchronous programming in Rust](https://crates.io/crates/futures) [[home](https://rust-lang.github.io/futures-rs/)] [[doc](https://docs.rs/futures/latest/futures)] [[repo](https://github.com/rust-lang/futures-rs)]
 * [`git2` - bindings to `libgit2` C library](https://crates.io/crates/git2) [[doc](https://docs.rs/git2/latest/git2)] [[repo](https://github.com/rust-lang/git2-rs)]
 * [`glob` - matching file paths against Unix shell style patterns](https://crates.io/crates/glob) [[doc](https://docs.rs/glob/latest/glob)] [[repo](https://github.com/rust-lang/glob)]
 * [`globset` - cross platform single glob and glob set matching](https://crates.io/crates/globset) [[doc](https://docs.rs/globset/latest/globset)] [[repo](https://github.com/BurntSushi/ripgrep)]
@@ -8697,6 +8721,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`rustc-demangle` - Rust compiler symbol demangling](https://crates.io/crates/rustc-demangle) [[doc](https://docs.rs/rustc-demangle/latest/rustc_demangle)] [[repo](https://github.com/rust-lang/rustc-demangle)]
 * [`rustc_version` - a library for querying the version of a `rustc` compiler](https://crates.io/crates/rustc_version) [[doc](https://docs.rs/rustc_version/latest/rustc_version)] [[repo](https://github.com/djc/rustc-version-rs)]
 * [`serde` - a generic serialization/deserialization framework](https://crates.io/crates/serde) [[home](https://serde.rs/)] [[doc](https://docs.rs/serde/latest/serde)] [[repo](https://github.com/serde-rs/serde)]
+* [`serde_json` - a JSON serialization file format](https://crates.io/crates/serde_json) [[doc](https://docs.rs/serde_json/latest/serde_json)] [[repo](https://github.com/serde-rs/json)]
 * [`serial_test` - allows for the creation of serialised Rust tests](https://crates.io/crates/serial_test) [[doc](https://docs.rs/serial_test/latest/serial_test)] [[repo](https://github.com/palfrey/serial_test/)]
 * [`speculoos` - fluent test assertions](https://crates.io/crates/speculoos) [[doc](https://docs.rs/speculoos/latest/speculoos)] [[repo](https://github.com/oknozor/speculoos)]
 * [`stacker` - a stack growth library](https://crates.io/crates/stacker) [[doc](https://docs.rs/stacker/latest/stacker)] [[repo](https://github.com/rust-lang/stacker)]
@@ -8712,6 +8737,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
   * [`std::cell` - shareable mutable containers](https://doc.rust-lang.org/stable/std/cell/index.html)
     * [`std::cell::RefCell` - a mutable memory location with dynamically checked borrow rules](https://doc.rust-lang.org/std/cell/struct.RefCell.html)
     * [`std::cell::UnsafeCell` - the core primitive for interior mutability in Rust](https://doc.rust-lang.org/stable/std/cell/struct.UnsafeCell.html)
+  * [`std::clone` - the `Clone` trait for types that cannot be implicitly copied](https://doc.rust-lang.org/std/clone/index.html)
+    * [`std::clone::Clone` - a common trait that allows explicit creation of a duplicate value](https://doc.rust-lang.org/std/clone/trait.Clone.html)
   * [`std::collections` - collection types](https://doc.rust-lang.org/std/collections/index.html)
     * [`std::collections::HashSet` - a hash set](https://doc.rust-lang.org/std/collections/struct.HashSet.html)
   * [`std::convert` - traits for conversions between types](https://doc.rust-lang.org/std/convert/index.html)
@@ -8817,6 +8844,7 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`thiserror` - `derive(Error)`](https://crates.io/crates/thiserror) [[doc](https://docs.rs/thiserror/latest/thiserror)] [[repo](https://github.com/dtolnay/thiserror)]
 * [`thread_local` - per-object thread-local storage](https://crates.io/crates/thread_local) [[doc](https://docs.rs/thread_local/latest/thread_local)] [[repo](https://github.com/Amanieu/thread_local-rs)]
 * [`time` - date and time library](https://crates.io/crates/time) [[home](https://time-rs.github.io/)] [[doc](https://docs.rs/time/latest/time)] [[api](https://time-rs.github.io/api/time/)] [[repo](https://github.com/time-rs/time)]
+* [`trc` - a faster `Arc`](https://crates.io/crates/trc) [[doc](https://docs.rs/trc/latest/trc)] [[repo](https://github.com/EricLBuehler/trc)]
 * [`ungrammar` - a DSL for specifying concrete syntax trees](https://crates.io/crates/ungrammar) [[doc](https://docs.rs/ungrammar/latest/ungrammar)] [[repo](https://github.com/rust-analyzer/ungrammar)]
   * [Introducing Ungrammar](https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html)
 * [`unwinding` - unwinding library in Rust and for Rust](https://crates.io/crates/unwinding) [[doc](https://docs.rs/unwinding/latest/unwinding)] [[repo](https://github.com/nbdd0121/unwinding)]
@@ -8824,6 +8852,8 @@ Pinned: [[Lib.rs](https://lib.rs/)]
 * [`urlencoding` - URL percentage encoding and decoding library](https://crates.io/crates/urlencoding) [[doc](https://docs.rs/urlencoding/latest/urlencoding)] [[repo](https://github.com/kornelski/rust_urlencoding)]
 * [`walkdir` - recursively walk a directory](https://crates.io/crates/walkdir) [[doc](https://docs.rs/walkdir/latest/walkdir)] [[repo](https://github.com/BurntSushi/walkdir)]
 * [`winit` - cross-platform window creation library](https://crates.io/crates/winit) [[doc](https://docs.rs/winit/latest/winit)] [[repo](https://github.com/rust-windowing/winit)]
+* [`winnow` - a byte-oriented, zero-copy, parser combinators library](https://crates.io/crates/winnow) [[doc](https://docs.rs/winnow/latest/winnow)] [[repo](https://github.com/winnow-rs/winnow)]
 * [`which` - a Rust equivalent of Unix command `which`](https://crates.io/crates/which) [[doc](https://docs.rs/which/latest/which)] [[repo](https://github.com/harryfei/which-rs)]
 * [`xshell` - quick shell scripting in Rust](https://crates.io/crates/xshell) [[doc](https://docs.rs/xshell/latest/xshell)] [[repo](https://github.com/matklad/xshell)]
 * [`xz2` - binding to `liblzma` providing read/write access to `xz` streams](https://crates.io/crates/xz2) [[doc](https://docs.rs/xz2/latest/xz2)] [[repo](https://github.com/alexcrichton/xz2-rs)]
+* [`yansi` - a dead simple ANSI terminal color painting library](https://crates.io/crates/yansi) [[doc](https://docs.rs/yansi/latest/yansi)] [[repo](https://github.com/SergioBenitez/yansi)]
