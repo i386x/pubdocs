@@ -16,6 +16,7 @@ $ git init -b main
 
 Save [this](https://gist.github.com/RangHo/17fc8ea229faeea97e4e1c4c16439f3d) to
 `~/.config/git/.gitmessage`:
+
 ```
 # <type>(<scope>)!: <description> (72 characters maximum)
 # |<--- preferably using up to 50 characters --->|<------------------->|
@@ -73,3 +74,40 @@ Save [this](https://gist.github.com/RangHo/17fc8ea229faeea97e4e1c4c16439f3d) to
 ```
 
 Run `git config --global commit.template ~/.config/git/.gitmessage`.
+
+Another `~/.config/git/.gitmessage` examples:
+
+```
+# <type>(<scope>)!: <description> (72 characters maximum)
+# |<----  Using a Maximum Of 50 Characters  ---->|
+
+
+# Explain why this change is being made
+# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+# Provide links or keys to any relevant tickets, articles or other resources
+# Example: Github issue #23
+
+# --- COMMIT END ---
+# Type can be
+#   - feat        for new features introduced (i.e. MINOR in SemVer standard)
+#   - fix         for bug-fixes (i.e. PATCH in SemVer standard)
+#   - build       for changes in build system or environment
+#   - ci          for configuring continuous integration systems
+#   - test        for adding new tests or correcting defective tests
+#   - docs        for changes in documentation only
+#   - refactor    for rewriting or restructuring of code that does not affect API behavior
+#   - perf        for performance-enhancing refactors
+#   - style       for changes in code styles and no changes in logic
+#   - chore       for miscellaneous tasks
+#   - revert      for reverting commits made previously
+# --------------------
+# Remember to
+#   - Capitalize the subject line
+#   - Use the imperative mood in the subject line
+#   - Do not end the subject line with a period
+#   - Separate subject from body with a blank line
+#   - Use the body to explain what and why vs. how
+#   - Can use multiple lines with "-" for bullet points in body
+# --------------------
+```
