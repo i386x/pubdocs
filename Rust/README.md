@@ -84,6 +84,7 @@
 * [Rust Is Beyond Object-Oriented, Part 3: Inheritance](https://www.thecodedmessage.com/posts/oop-3-inheritance/)
 * [Rust Language Cheat Sheet](https://cheats.rs/)
 * [Rust Maintenance Checklist](https://corrode.notion.site/Rust-Maintenance-Checklist-3fa116db4c6149cbacbe3c16f81c6bb0)
+* [Rust Moves to Restrict LLM Use in Contributions After Months of Internal Debate](https://socket.dev/blog/rust-moves-to-restrict-llm-use-in-contributions)
 * [Rust Trends](https://rust-trends.com/)
   * [Emulators and memory management visualization](https://rust-trends.com/newsletter/emulators-and-memory-management-visualization/)
 * [rust-learning](https://github.com/ctjhoa/rust-learning)
@@ -218,6 +219,8 @@ Tips, tricks, and hacks:
   * [`cargo {build,check,test}-all-features`](https://github.com/frewsxcv/cargo-all-features) [[doc](https://docs.rs/cargo-all-features/latest/cargo_all_features/)] [[crate](https://crates.io/crates/cargo-all-features)]
 * To run tests with injected bugs:
   * [`cargo mutants`](https://github.com/sourcefrog/cargo-mutants) [[book](https://mutants.rs/)] [[doc](https://docs.rs/crate/cargo-mutants/latest)] [[crate](https://crates.io/crates/cargo-mutants)]
+* To find minimum supported Rust version for your project:
+  * [`cargo msrv`](https://github.com/foresterre/cargo-msrv) [[book](https://gribnau.dev/cargo-msrv/index.html)] [[doc](https://docs.rs/cargo-msrv/latest/cargo_msrv)] [[crate](https://crates.io/crates/cargo-msrv)]
 * To update the project dependencies, type:
   ```sh
   $ cargo update
