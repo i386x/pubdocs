@@ -22,6 +22,7 @@
 * [Mo Dee Fx](https://www.youtube.com/@MoDeeFx/shorts)
 * [Persian Hand Crafts](https://www.youtube.com/@PersianHandCraftsP/videos)
 * [Simple Little Life](https://www.youtube.com/@Simplelittlelife/videos)
+* [The Entire History of Precision](https://www.youtube.com/watch?v=d1m2PMbp4Pg)
 * [The Foot Powered Workshop](https://www.youtube.com/@TheFootPoweredWorkshop/videos)
 * [The Forbidden Knowledge of Washers](https://www.youtube.com/watch?v=F4EvMVpx1Pw)
 * [The Whitworth Three Plates Method](https://ericweinhoffer.com/blog/2017/7/30/the-whitworth-three-plates-method)
@@ -74,6 +75,7 @@
 ## Stonemasoning
 
 * [Kurz stavby suche kamenne zdi](https://kamennezdi.cz/produkt/kurz-stavby-suche-kamenne-zdi/)
+* [Learn how to build THIS! Work with NATURAL STONE!. Advanced tips from an active Stonemason! ***](https://www.youtube.com/watch?v=ULpl8LyQXhA)
 
 ## Tools
 
