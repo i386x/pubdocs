@@ -471,12 +471,14 @@ interested in. Maybe You find some of these interesting too.
 * [Creative Techos (video series)](https://www.youtube.com/c/CreativeTechos/videos)
 * [ElectroNoobs](https://electronoobs.com/index.php)
 * [Harry's Homebrew Homepage](http://www.sm0vpo.com/) [[link2](http://sm0vpo.altervista.org/)]
+* [KS Electro](https://www.youtube.com/@kselectrooff/videos)
 * [Le labo de Michel (video series)](https://www.youtube.com/@lelabodemichel5162/videos)
 * [Making Plasma By Hand (video)](https://www.youtube.com/watch?v=CLX_pQbSFFg)
 * [Mr Carlson's Lab](https://mrcarlsonslab.com/) [[youtube](https://www.youtube.com/@MrCarlsonsLab/videos)]
 * [PaJa](http://paja-trb.cz/)
 * [Ronald's electronic Project Site](https://www.dos4ever.com/)
 * [Talking Electronics](https://www.talkingelectronics.com/te_interactive_index.html)
+* [W. Marshall Leach, Jr., Professor](https://leachlegacy.ece.gatech.edu/)
 
 ### Basics
 
@@ -778,7 +780,7 @@ interested in. Maybe You find some of these interesting too.
 * [redhat-rpm-config](https://src.fedoraproject.org/rpms/redhat-rpm-config)
 * [Release Engineering Issue Requests](https://pagure.io/releng/issues)
 * [Retire Modularity](https://fedoraproject.org/wiki/Changes/RetireModularity)
-* [rpkg](https://docs.pagure.org/rpkg/) [[doc](https://docs.pagure.org/rpkg/index.html)] [[repo](https://pagure.io/rpkg)]
+* [rpkg](https://rpkg.readthedocs.io/en/latest/) [[repo](https://forge.fedoraproject.org/packaging/rpkg)]
 * [rpmautospec](https://fedora-infra.github.io/rpmautospec-docs/) [[doc #2](https://docs.pagure.org/Fedora-Infra.rpmautospec/index.html)] [[proposal](https://fedoraproject.org/wiki/Changes/rpmautospec)] [[repo](https://github.com/fedora-infra/rpmautospec)]
   * [Use rpmautospec in Fedora Linux](https://fedoramagazine.org/use-rpmautospec-in-fedora-linux/)
 * [rpminspect](https://rpminspect.readthedocs.io/) [[copr](https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/)]
@@ -1248,6 +1250,7 @@ interested in. Maybe You find some of these interesting too.
 * [A Makefile for your dockerfiles](https://philpep.org/blog/a-makefile-for-your-dockerfiles/)
 * [AeroGear](https://aerogear.org/)
 * [AI meets containers: My first step into Podman AI Lab](https://developers.redhat.com/articles/2025/07/14/ai-meets-containers-my-first-step-podman-ai-lab)
+* [Apache Artemis or Apache Kafka? Here's what you need to know](https://developers.redhat.com/articles/2025/10/29/activemq-artemis-or-apache-kafka-what-you-need-know)
 * [Automate Skupper networks seamlessly with Ansible](https://developers.redhat.com/articles/2025/06/02/automate-skupper-networks-seamlessly-ansible)
 * [Automating Podman with RHEL system roles](https://www.redhat.com/en/blog/automating-podman-rhel-system-roles)
 * [Basic Setup and Use of Podman in a Rootless environment](https://github.com/podman-container-tools/podman/blob/main/docs/tutorials/rootless_tutorial.md)
@@ -1304,6 +1307,7 @@ interested in. Maybe You find some of these interesting too.
 * [How to deploy the new Grafana Tempo operator on OpenShift](https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift)
 * [How to import provider network routes to OpenShift via BGP](https://developers.redhat.com/articles/2025/10/21/how-import-provider-network-routes-openshift-bgp)
 * [How to include new Kubernetes resource into existing Helm release](https://www.kristhecodingunicorn.com/post/include-k8s-resource-in-existing-helm-release/)
+* [How to modify system-reserved parameters on OpenShift nodes](https://developers.redhat.com/articles/2025/10/24/how-modify-system-reserved-parameters-openshift-nodes)
 * [How to run Camel on Spring Boot in the Developer Sandbox](https://developers.redhat.com/articles/2023/02/10/how-run-camel-spring-boot-red-hat-developer-sandbox)
 * [How to run MicroShift as a container using MINC](https://developers.redhat.com/articles/2025/06/30/how-run-microshift-container-using-minc)
 * [How to run systemd in a container](https://developers.redhat.com/blog/2019/04/24/how-to-run-systemd-in-a-container)
@@ -1385,8 +1389,9 @@ interested in. Maybe You find some of these interesting too.
   * [systemd.generator](https://www.freedesktop.org/software/systemd/man/latest/systemd.generator.html)
 * [Quay.io Status](https://status.quay.io/)
 * [Red Hat Advanced Cluster Management for Kubernetes](https://www.redhat.com/en/technologies/management/advanced-cluster-management)
-* [Red Hat OpenShift](https://developers.redhat.com/products/openshift/overview)
+* [Red Hat OpenShift](https://developers.redhat.com/products/openshift)
 * [Red Hat OpenShift AI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)
+* [Red Hat OpenShift is joining the Kueue](https://www.redhat.com/en/blog/openshift-joining-kueue)
 * [Red Hat OpenShift Service on AWS Documentation](https://docs.openshift.com/rosa/welcome/index.html)
 * [Red Hat OpenShift Service on AWS with hosted control planes now available](https://www.redhat.com/en/blog/red-hat-openshift-service-aws-hosted-control-planes-now-available)
 * [Red Hat OpenStack Services on OpenShift - the next generation of Red Hat OpenStack Platform](https://www.redhat.com/en/blog/red-hat-openstack-services-openshift-next-generation-red-hat-openstack-platform)
@@ -1646,6 +1651,7 @@ interested in. Maybe You find some of these interesting too.
 * [CUPSDriverlessPrinting](https://wiki.debian.org/CUPSDriverlessPrinting)
   * [IPP-over-USB (Short Version)](https://wiki.debian.org/CUPSDriverlessPrinting?action=show&redirect=DriverlessPrinting#IPP-over-USB_.28Short_Version.29)
 * [How to Make a Raspberry Pi-Powered Print Server](https://www.tomshardware.com/how-to/raspberry-pi-print-server)
+* [How to print from the Linux command line: double-sided, landscape and more](https://www.networkworld.com/article/967157/printing-from-the-linux-command-line.html)
 * [PAPPL Printer Application Framework](https://www.msweet.org/pappl/) [[repo](https://github.com/michaelrsweet/pappl)]
 * [Printing](https://fedoraproject.org/wiki/Printing)
   * [How to debug printing problems](https://fedoraproject.org/wiki/How_to_debug_printing_problems)
@@ -2078,7 +2084,9 @@ interested in. Maybe You find some of these interesting too.
 ### AI & ML
 
 * [2024 enterprise trends: cloud meets AI](https://www.redhat.com/en/blog/2024-enterprise-trends-cloud-meets-ai)
+* [3 MCP servers you should be using (safely)](https://developers.redhat.com/articles/2025/11/04/3-mcp-servers-you-should-be-using)
 * [A strategic approach to AI inference performance](https://www.redhat.com/en/blog/strategic-approach-ai-inference-performance)
+* [Accelerating Nemotron Nano 2 9B: From Quantization to KV-Cache](https://www.redhat.com/en/blog/accelerating-nemotron-nano-2-9b-quantization-kv-cache)
 * [Agent Skills](https://agentskills.io/home)
 * [AGENTS.md](https://agents.md/)
 * [AI-assisted development: Supercharging the open source way](https://www.redhat.com/en/blog/ai-assisted-development-supercharging-open-source-way)
@@ -2117,6 +2125,8 @@ interested in. Maybe You find some of these interesting too.
   * [4 How to implement observability with Python and Llama Stack](https://developers.redhat.com/articles/2025/09/12/how-implement-observability-python-and-llama-stack)
 * [LLM Compressor 0.7.0 release recap](https://developers.redhat.com/articles/2025/08/25/llm-compressor-070-release-recap)
 * [Master KV cache aware routing with llm-d for efficient AI inference](https://developers.redhat.com/articles/2025/10/07/master-kv-cache-aware-routing-llm-d-efficient-ai-inference)
+* [MCP Best Practices Guide](https://mcp-best-practice.github.io/mcp-best-practice/) [[repo](https://github.com/mcp-best-practice/mcp-best-practice)]
+* [MCP in Red Hat Developer Hub: Chat with your catalog](https://developers.redhat.com/articles/2025/11/10/mcp-red-hat-developer-hub-chat-your-catalog)
 * [MCP server development: Make agentic AI your API’s "customer zero"](https://www.redhat.com/en/blog/mcp-server-development-make-agentic-ai-your-apis-customer-zero)
 * Memes
   * [Your company's new "AI Agent Workflow"](https://x.com/kmcnam1/status/2032864517231673794?s=52&t=tuzwl7uaRdWEt2sbtNMypQ)
@@ -2126,9 +2136,11 @@ interested in. Maybe You find some of these interesting too.
   * [Part 3: How to build a Model-as-a-Service platform](https://developers.redhat.com/articles/2025/07/07/how-build-model-service-platform)
   * [Part 4: Expand Model-as-a-Service for secure enterprise AI](https://developers.redhat.com/articles/2025/07/17/expand-model-service-secure-enterprise-ai)
 * [Model Context Protocol (MCP): Understanding security risks and controls](https://www.redhat.com/en/blog/model-context-protocol-mcp-understanding-security-risks-and-controls)
+* [Multimodal AI at the edge: Deploy vision language models with RamaLama](https://developers.redhat.com/articles/2025/10/27/multimodal-ai-edge-deploy-vision-language-models-ramalama)
 * [NVIDIA Generative AI Examples](https://github.com/NVIDIA/GenerativeAIExamples)
 * [Ollama or vLLM? How to choose the right LLM serving tool for your use case](https://developers.redhat.com/articles/2025/07/08/ollama-or-vllm-how-choose-right-llm-serving-tool-your-use-case)
 * [Ollama vs. vLLM: A deep dive into performance benchmarking](https://developers.redhat.com/articles/2025/08/08/ollama-vs-vllm-deep-dive-performance-benchmarking)
+* [OpenShift AI connector for Red Hat Developer Hub (Developer Preview)](https://developers.redhat.com/articles/2025/11/10/openshift-ai-connector-red-hat-developer-hub)
 * [Optimize GPU utilization with Kueue and KEDA](https://developers.redhat.com/articles/2025/08/26/optimize-gpu-utilization-kueue-and-keda)
 * [Optimizing generative AI models with quantization](https://developers.redhat.com/articles/2025/08/18/optimizing-generative-ai-models-quantization)
 * [Project Bob](https://www.ibm.com/products/bob)
@@ -2137,9 +2149,11 @@ interested in. Maybe You find some of these interesting too.
 * [RamaLama](https://ramalama.ai/) [[repo](https://github.com/containers/ramalama)]
 * [Reach native speed with MacOS llama.cpp container inference](https://developers.redhat.com/articles/2025/09/18/reach-native-speed-macos-llamacpp-container-inference)
 * [ReAct vs. naive prompt chaining on Llama Stack](https://developers.redhat.com/articles/2025/07/22/react-vs-naive-prompt-chaining-llama-stack)
+* [Red Hat AI: Modular building blocks for scalable, repeatable model customization](https://www.redhat.com/en/blog/red-hat-ai-modular-building-blocks-scalable-repeatable-model-customization)
 * [Red Hat OpenShift AI](https://developers.redhat.com/products/red-hat-openshift-ai/overview)
 * [Run AI Agents in Lightweight Sandboxes](https://blog.gpkb.org/posts/ai-agent-sandbox/)
 * [Run Qwen3-Next on vLLM with Red Hat AI: A step-by-step guide](https://developers.redhat.com/articles/2025/09/12/run-qwen3-next-vllm-red-hat-ai-step-step-guide)
+* [SDG Hub: Building synthetic data pipelines with modular blocks](https://developers.redhat.com/articles/2025/10/27/sdg-hub-building-synthetic-data-pipelines-modular-blocks)
 * [Spec-Driven Development in Action](https://che.eclipseprojects.io/2025/08/18/@oleksii.kurinnyi-spec-driven-development-in-action.html)
 * [Teens in AI](https://www.teensinai.com/)
   * [Making AI accessible to all: our collaboration with Teens in AI](https://www.redhat.com/en/blog/making-ai-accessible-to-all-our-collaboration-with-teens-in-ai)
@@ -2152,6 +2166,7 @@ interested in. Maybe You find some of these interesting too.
 * [The future is now: 13 top AI reads from Q2 2025](https://www.redhat.com/en/blog/future-now-13-top-ai-reads-q2)
 * [The Intelligence Curse](https://intelligence-curse.ai/)
 * [The MLOps Challenge: Scaling from one model to thousands](https://www.redhat.com/en/blog/mlops-challenge-scaling-one-model-thousands)
+* [The new and simplified AI accelerator driver experience on Red Hat Enterprise Linux](https://www.redhat.com/en/blog/introducing-new-and-simplified-ai-accelerator-driver-experience-rhel)
 * [Trust but Verify](https://www.oreilly.com/radar/trust-but-verify/)
 * [Understanding AI agent types: A guide to categorizing complexity](https://www.redhat.com/en/blog/understanding-ai-agent-types-simple-complex)
 * [Understanding the Rehash Loop: When AI Gets Stuck](https://www.oreilly.com/radar/understanding-the-rehash-loop/)
@@ -2162,6 +2177,7 @@ interested in. Maybe You find some of these interesting too.
 * [What’s new with data science pipelines in Red Hat OpenShift AI](https://www.redhat.com/en/blog/whats-new-data-science-pipelines-red-hat-openshift-ai)
 * [Why agents are the new kingmakers](https://www.redhat.com/en/blog/why-agents-are-new-kingmakers)
 * [Why some agentic AI developers are moving code from Python to Rust](https://developers.redhat.com/articles/2025/09/15/why-some-agentic-ai-developers-are-moving-code-python-rust)
+* [Why vLLM is the best choice for AI inference today](https://developers.redhat.com/articles/2025/10/30/why-vllm-best-choice-ai-inference-today)
 * [Your LLM is too large: How I generate production-ready failure analysis on a toaster](https://developers.redhat.com/articles/2025/09/02/your-llm-too-large-how-i-generate-production-ready-failure-analysis-toaster)
 
 ### Algorithms & Data Structures
@@ -3407,8 +3423,10 @@ See [Caml](#caml).
 * [release-engineering](https://github.com/release-engineering)
   * [Cachito (Python)](https://github.com/release-engineering/cachito)
   * [dist-git (Python/Bash)](https://github.com/release-engineering/dist-git)
+  * [Greenwave (Python)](https://github.com/release-engineering/greenwave) [[doc](https://gating-greenwave.readthedocs.io/en/latest/)]
   * [kobo (Python)](https://github.com/release-engineering/kobo)
   * [ProductMD (Python)](https://github.com/release-engineering/productmd)
+  * [ResultsDB (Python)](https://github.com/release-engineering/resultsdb)
   * [Sync2Jira (Python)](https://github.com/release-engineering/Sync2Jira)
   * [WaiverDB (Python)](https://github.com/release-engineering/waiverdb)
 * [renovate (TypeScript)](https://github.com/renovatebot/renovate) [[home](https://www.mend.io/renovate/)]
@@ -3426,6 +3444,7 @@ See [Caml](#caml).
 * [rpminspect (C)](https://github.com/rpminspect/rpminspect)
 * [RSpec (Ruby)](https://github.com/rspec/rspec-core) [[home](https://rspec.info/)]
 * [rsync (C)](https://github.com/RsyncProject/rsync) [[home](https://rsync.samba.org/)]
+* [rtrlib (C)](https://github.com/rtrlib/rtrlib) [[home](https://rtrlib.realmv6.org/)]
 * [Ruby / OpenSSL (C/Ruby)](https://github.com/ruby/openssl)
 * [Rue Lang (Rust/Rue)](https://github.com/xch-dev/rue) [[home](https://rue-lang.com/)] [[doc](https://rue-lang.com/docs/installation)]
 * [Ruffle (Rust)](https://github.com/ruffle-rs/ruffle) [[home](https://ruffle.rs/)]
@@ -3705,6 +3724,8 @@ See [Caml](#caml).
 * [Nobody Expected C++ Memory Safety. Rust In Trouble](https://tomaszs2.medium.com/nobody-expected-c-memory-safety-rust-in-trouble-cefb39166923)
 * [Non-interactive creation of SSL certificate requests](https://serverfault.com/questions/649990/non-interactive-creation-of-ssl-certificate-requests)
 * [NVIDIA Morpheus](https://docs.nvidia.com/morpheus/index.html)
+* [OCSP Stapling in Firefox](https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/)
+  * [Firefox cannot open this site (OCSP)](https://techcommunity.microsoft.com/discussions/communityquestions/firefox-cannot-open-this-site-ocsp/3038332)
 * [OpenSSL: Email address buffer overflow security flaws](https://www.redhat.com/en/blog/openssl-email-address-buffer-overflow-security-flaws)
 * [OpenSSL - Manpages for master](https://www.openssl.org/docs/manmaster/)
 * [Our CVE Story: Why Red Hat Became a Root](https://www.cve.org/Media/News/item/blog/2023/01/10/Why-Red-Hat-Became-Root)
